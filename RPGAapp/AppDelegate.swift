@@ -36,6 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 //}
             }
         }
+        if let secondaryAsNavController = secondaryViewController as? UINavigationController {
+            if let topAsDetailController = secondaryAsNavController.topViewController as? MapViewController {
+                    return true
+            }
+        }
+        
+        
         return false
     }
     
