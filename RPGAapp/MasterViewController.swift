@@ -41,6 +41,13 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showTeamView"{
             
         }*/
+        
+        if segue.identifier == "showMap"{
+            let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        }
+        
     }
 
     // MARK: - Table View

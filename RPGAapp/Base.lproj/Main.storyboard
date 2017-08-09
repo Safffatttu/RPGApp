@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Welcome to THE RPG APP" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="367" width="663" height="34"/>
+                                <rect key="frame" x="20" y="367" width="662.5" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -113,7 +113,7 @@
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showCharacterDetail" id="jH0-cX-p4V"/>
                         <segue destination="KJb-yt-am3" kind="show" identifier="showItemMenu" id="eqz-dP-NAn"/>
                         <segue destination="ERJ-FY-coC" kind="show" identifier="showSettings" id="Hs9-rX-etG"/>
-                        <segue destination="EwO-c4-f6a" kind="showDetail" identifier="showMap" id="y2d-Ag-9Y3"/>
+                        <segue destination="a0z-H3-ndm" kind="showDetail" identifier="showMap" id="y2d-Ag-9Y3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
@@ -306,12 +306,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ab7-Kw-8Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2459" y="2195"/>
+            <point key="canvasLocation" x="3181" y="1658"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="bOv-Ar-nFO">
             <objects>
-                <viewController id="EwO-c4-f6a" sceneMemberID="viewController">
+                <viewController id="EwO-c4-f6a" customClass="MapViewController" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wa1-XI-28W"/>
                         <viewControllerLayoutGuide type="bottom" id="n7X-46-XxX"/>
@@ -327,10 +327,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="yT5-JT-eru"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjH-TP-OUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696.875" y="869.53125"/>
+            <point key="canvasLocation" x="1699" y="2195"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aac-L7-IiH">
@@ -362,7 +363,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="57f-LY-rxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2457" y="870"/>
+            <point key="canvasLocation" x="3181.0546875" y="869.53125"/>
         </scene>
         <!--detail1Nav-->
         <scene sceneID="r7l-gg-dq7">
@@ -380,6 +381,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-89" y="870"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bFH-ph-B2h">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a0z-H3-ndm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Mj-RF-dgr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EwO-c4-f6a" kind="relationship" relationship="rootViewController" id="pEV-lg-Npn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cBu-ve-CzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1696.875" y="869.53125"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
