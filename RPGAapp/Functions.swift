@@ -139,12 +139,12 @@ func loadItemList(data: [[String?]]) -> itemList{
             
             
         //categories.last?.2[(categories.last?.2.count)!].1 += 1
-        print (categories.last?.2.count)
+        //print (categories.last?.2.count)
         
         categories[categories.count-1].1 = categories[categories.count-1].1 + 1
         listToRet.append(currentItem)
     }
-    print("Rozpoczęto ładowanie listy przedmiotów")
+    print("Zakończono ładowanie listy przedmiotów")
     return itemList(items: listToRet, exRate: exRate, currecny: currecny, categories: categories)
 }
 

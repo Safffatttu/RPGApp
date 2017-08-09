@@ -9,35 +9,14 @@
 import Foundation
 import UIKit
 
-struct item{
-    var name: String
-    var category : String
-    var subCategory: String
-    var description: String?
-    var price : Double?
-    var rarity: Int?
-    var quantity: Int?
-    var measure: String?
-}
-
-struct itemList{
-    var items:  [item]
-    var exRate: Double
-    var currecny: String?
-    var categories: [(String,Int,[(String,Int)])]
-}
-
-//var itemList: ([item],)
-var listOfItems = loadItemList(data: loadStringTableFromDataAsset(Data: "ITEMS"))
-
-class ItemsView: UITableViewController {
+class itemdet: UITableViewController {
     
   
     override func viewDidLoad() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(showRandomItem(_:)))
     }
     
-    
+
     func showRandomItem(_ sender: UIBarButtonItem) {
         //let index = IndexPath(row: 10,section: 1)
         //let toGo = IndexPath.init(row: myRand((listOfItems.categories.first?.1)! - 1 ), section: 0)
