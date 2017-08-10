@@ -9,24 +9,26 @@
 import Foundation
 import UIKit
 
-class catalogeDetail: UIViewController {
-    /*
-    override func numberOfSections(in tableView: UITableView) -> Int {
+class catalogeDetail: UIViewController ,UITableViewDataSource, UITableViewDelegate {
+    
+    var currentSubCategory: String = ""
+    
+     func numberOfSections(in tableView: UITableView) -> Int {
         return listOfItems.categories.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfItems.categories[section].1 - 1
         
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return listOfItems.categories[section].0
     }
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "")
         var cellAdress = Int()
         if (indexPath.section != 0){
             for i in 0...indexPath.section-1{
@@ -40,6 +42,6 @@ class catalogeDetail: UIViewController {
         return cell!
     }
     
-    */
     
 }
+

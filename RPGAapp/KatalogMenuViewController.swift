@@ -18,7 +18,6 @@ class catalogeMenu: UITableViewController {
     }
     
     
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return listOfItems.categories.count
     }
@@ -38,8 +37,7 @@ class catalogeMenu: UITableViewController {
         return listOfItems.categories[section].0
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
+    
 }

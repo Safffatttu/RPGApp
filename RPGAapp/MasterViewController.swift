@@ -22,19 +22,30 @@ class MasterViewController: UITableViewController {
         //splitViewController.preferredDisplayMode = .primaryOverlay
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        splitViewController?.preferredDisplayMode = .allVisible
+    }
     // MARK: - Segues
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showMap"{
             let controller = (segue.destination as!UINavigationController).topViewController as! MapViewController
             
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            controller.navigationItem.leftItemsSupplementBackButton = true
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
+        }
+        else if segue.identifier == "showTeamView"{
+            let controller = (segue.destination as!UINavigationController).topViewController as! TeamView
+            
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            controller.navigationItem.leftItemsSupplementBackButton = true
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
+        }
+            
             //let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
             //controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             //controller.navigationItem.leftItemsSupplementBackButton = true
-        }
-        
         /*Dotyczy zmiany detail? chyba, albo navigation controllera
          
          

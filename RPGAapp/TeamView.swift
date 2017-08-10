@@ -8,6 +8,12 @@
 
 import Foundation
 import UIKit
-class TeamView: UIStackView{
-    
+
+
+class TeamView: UIViewController{
+
+    override func viewDidLoad() {
+        print("tutaj")
+        //self.splitViewController?.displayModeButtonItem = .
+    }
 }
