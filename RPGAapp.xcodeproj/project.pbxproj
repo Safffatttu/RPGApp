@@ -21,6 +21,7 @@
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
 		3B4626A01F3A6DA1002B7AF3 /* ItemDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */; };
 		3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */; };
+		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		3B3C05301F3BC1D600CFB002 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewControler.swift; sourceTree = "<group>"; };
 		3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemMenuViewController.swift; sourceTree = "<group>"; };
+		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */,
 				3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */,
 				3B3C05301F3BC1D600CFB002 /* MapViewController.swift */,
+				3BCD737F1F3C4E1400B35D75 /* TeamView.swift */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				3B063D7B1F3A263B00B5271C /* Items.swift in Sources */,
 				3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */,
 				3B063D771F3A259B00B5271C /* Functions.swift in Sources */,
+				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
