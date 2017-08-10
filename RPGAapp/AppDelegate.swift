@@ -29,30 +29,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController!, onto primaryViewController:UIViewController!) -> Bool {
         if let secondaryAsNavController = secondaryViewController as? UINavigationController {
             if let topAsDetailController = secondaryAsNavController.topViewController as? catalogeDetail {
-                //if topAsDetailController.currentCharacter == nil {
+                if topAsDetailController == nil {
                     // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
                     //If we don't do this, detail1 will open as the first view when run on iPhone, comment and see
                     return true
-                //}
+                }
             }
         }
-        if let secondaryAsNavController = secondaryViewController as? UINavigationController {
+        else if let secondaryAsNavController = secondaryViewController as? UINavigationController {
             if let topAsDetailController = secondaryAsNavController.topViewController as? MapViewController {
+                if topAsDetailController == nil {
+                    // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+                    //If we don't do this, detail1 will open as the first view when run on iPhone, comment and see
                     return true
+                }
             }
         }
+        
+        
+        
+        
+        
+        
         
         
         return false
+        
+        
+        
+        
+        
     }
     
     // Correctly Handle Portrait to Landscape transition for iPhone 6+ when TableView2 is open in Portrait. Comment and see for yourself, what happens when you don't write this.
-    func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController!) -> UIViewController? {
+    func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
         if let primaryAsNavController = primaryViewController as? UINavigationController {
-            if let topAsTableViewController = primaryAsNavController.topViewController as? ItemDetailViewController {
+            if (primaryAsNavController.topViewController as? ItemDetailViewController) != nil {
                 //Return Navigation controller containing DetailView1 to be used as secondary view for Split View
                 return (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail1Nav") )
             }
+            if (primaryAsNavController.topViewController as? MapViewController) != nil {
+                //Return Navigation controller containing DetailView1 to be used as secondary view for Split View
+                return (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail1Nav") )
+            
+            }
+            
+            
         }
         return nil
     }

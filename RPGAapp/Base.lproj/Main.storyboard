@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Welcome to THE RPG APP" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="367" width="662.5" height="34"/>
+                                <rect key="frame" x="20" y="367" width="663" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -71,7 +71,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-856" y="-330"/>
+            <point key="canvasLocation" x="-1628" y="-181"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="smW-Zh-WAh">
@@ -113,7 +113,7 @@
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showCharacterDetail" id="jH0-cX-p4V"/>
                         <segue destination="KJb-yt-am3" kind="show" identifier="showItemMenu" id="eqz-dP-NAn"/>
                         <segue destination="ERJ-FY-coC" kind="show" identifier="showSettings" id="Hs9-rX-etG"/>
-                        <segue destination="a0z-H3-ndm" kind="showDetail" identifier="showMap" id="y2d-Ag-9Y3"/>
+                        <segue destination="a0z-H3-ndm" kind="showDetail" identifier="showMap" id="fxf-o0-LjE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
@@ -319,12 +319,6 @@
                     <view key="view" contentMode="scaleToFill" id="7KR-R8-rLP">
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1xK-lN-3g5">
-                                <rect key="frame" x="128" y="239" width="447" height="376"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yT5-JT-eru"/>
@@ -342,7 +336,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="SRm-kq-4pG" kind="showDetail" id="J6S-tL-jp3"/>
+                        <segue destination="SRm-kq-4pG" kind="relationship" relationship="rootViewController" id="pZo-te-vFD"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZAF-B6-dXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,7 +387,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="EwO-c4-f6a" kind="relationship" relationship="rootViewController" id="pEV-lg-Npn"/>
+                        <segue destination="EwO-c4-f6a" kind="relationship" relationship="rootViewController" id="alx-7T-pfn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBu-ve-CzA" userLabel="First Responder" sceneMemberID="firstResponder"/>

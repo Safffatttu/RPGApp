@@ -27,27 +27,27 @@ class MasterViewController: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "showMap"{
+            let controller = (segue.destination as!UINavigationController).topViewController as! MapViewController
+            
+            //let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
+            //controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            //controller.navigationItem.leftItemsSupplementBackButton = true
+        }
         
         /*Dotyczy zmiany detail? chyba, albo navigation controllera
          
          
          if segue.identifier == "showItemMenu" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let controller = (segue.destination as! UINavigationController).topViewController as! ItemMenu
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
-            }
-        }
-        if segue.identifier == "showTeamView"{
-            
-        }*/
-        
-        if segue.identifier == "showMap"{
-            let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
-            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            controller.navigationItem.leftItemsSupplementBackButton = true
-        }
-        
+         if let indexPath = tableView.indexPathForSelectedRow {
+         let controller = (segue.destination as! UINavigationController).topViewController as! ItemMenu
+         controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+         controller.navigationItem.leftItemsSupplementBackButton = true
+         }
+         }
+         if segue.identifier == "showTeamView"{
+         
+         }*/
     }
 
     // MARK: - Table View
@@ -72,6 +72,7 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(menuItems[indexPath.row].1)
         self.performSegue(withIdentifier: menuItems[indexPath.row].1, sender: self)
     }
 

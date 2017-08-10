@@ -78,8 +78,8 @@ class ItemMenu: UITableViewController {
             let controller = (segue.destination as! UINavigationController).topViewController as! catalogeDetail
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
-            
         }
+        
         
     }
     
