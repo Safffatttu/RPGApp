@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class catalogeDetail: UIViewController ,UITableViewDataSource, UITableViewDelegate {
+class catalogeDetail: UIViewController ,UITableViewDataSource , UITableViewDelegate {
     
     var currentSubCategory: String = ""
     
@@ -27,7 +27,7 @@ class catalogeDetail: UIViewController ,UITableViewDataSource, UITableViewDelega
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell")
         var cellAdress = Int()
         if (indexPath.section != 0){
             for i in 0...indexPath.section-1{
