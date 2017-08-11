@@ -34,7 +34,7 @@ var listOfItems = loadItemList(data: loadStringTableFromDataAsset(Data: "ITEMS")
 
 class ItemMenu: UITableViewController {
     
-    let itemMenuItems = [("Cataloge","showCatalogeView"),("RandomItem","showRandomItem"),("Handlarze","showHandlarze")]
+    let itemMenuItems = [("Cataloge","showCatalogeView","showCatalogeDetailView"),("RandomItem","showRandomItemView","showRandomItemDetailView"),("Handlarze","showHandlarzeView","showHandlarzeDetailView")]
     
 
     override func viewDidLoad() {
@@ -74,20 +74,33 @@ class ItemMenu: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.identifier)
         if segue.identifier == "showCatalogeDetailView"{
             let controller = (segue.destination as! UINavigationController).topViewController as! catalogeDetail
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
-        
-        
+        if segue.identifier == "showRandomItemsView"{
+            let controller = (segue.destination as! UINavigationController).topViewController as! randomItemDetailView
+            print(self.splitViewController?.displayMode)
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        }
+        if segue.identifier == "showHandlarzeDetailView"{
+            let controller = (segue.destination as! UINavigationController).topViewController as! handlarzeDetailView
+            print(self.splitViewController?.displayMode)
+            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+            controller.navigationItem.leftItemsSupplementBackButton = true
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: itemMenuItems[indexPath.row].1, sender: self)
-        if (indexPath.row == 0){
+        self.performSegue(withIdentifier: itemMenuItems[indexPath.row].2, sender: self)
+        /*if (indexPath.row == 0){
             self.performSegue(withIdentifier: "showCatalogeDetailView", sender: self)
-        }
+        }*/
+        
     }
     
     

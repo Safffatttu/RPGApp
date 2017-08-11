@@ -26,7 +26,6 @@ class catalogeDetail: UIViewController ,UITableViewDataSource, UITableViewDelega
         return listOfItems.categories[section].0
     }
     
-    
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "")
         var cellAdress = Int()
