@@ -11,10 +11,10 @@ import UIKit
 import FontAwesome_swift
 
 class catalogeDetailCell: UITableViewCell{
-
-
     
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var priceLabel: UILabel!
     
     @IBOutlet var packageButton: UIButton!
     
@@ -57,9 +57,6 @@ protocol catalogeDetailCellDelegate: class{
     
 }
 
-
-
-
 class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate{
     
     
@@ -92,10 +89,17 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         cellAdress += indexPath.row
         
         cell.cellDelegate = self
-        cell.tag = 10
+        cell.tag = cellAdress
         
         
         cell.nameLabel.text = listOfItems.items[cellAdress].name
+        
+        if listOfItems.items[cellAdress].price != nil {
+            cell.priceLabel.text = String(describing: (listOfItems.items[cellAdress].price!) * listOfItems.exRate) + " " + listOfItems.currecny
+        }
+        else {
+            cell.priceLabel.text = "Brak ceny"
+        }
         
         cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
         cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
@@ -109,10 +113,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
         cell.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
         
-
-        //cell.packageButton.setTitle("asd" , for: UIControlState.normal)
-        //cell.textLabel?.text = listOfItems.items[cellAdress].name
-        //cell?.detailTextLabel?.text = listOfItems.items[cellAdress].subCategory
         return cell
     }
     
