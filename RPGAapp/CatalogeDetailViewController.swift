@@ -8,12 +8,67 @@
 
 import Foundation
 import UIKit
+import FontAwesome_swift
 
-class catalogeDetail: UIViewController ,UITableViewDataSource , UITableViewDelegate {
+class catalogeDetailCell: UITableViewCell{
+
+
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet var packageButton: UIButton!
+    
+    @IBOutlet var editButton: UIButton!
+    
+    @IBOutlet var infoButton: UIButton!
+    
+    @IBOutlet var sendButton: UIButton!
+    
+    weak var cellDelegate: catalogeDetailCellDelegate?
+    
+    @IBAction func addToPackageButton(_ sender: UIButton) {
+        cellDelegate?.addToPackageButton(sender.tag)
+    }
+    
+    @IBAction func editItemButton(_ sender: UIButton) {
+        cellDelegate?.editItemButton(sender.tag)
+    }
+    
+    @IBAction func showInfoButton(_ sender: UIButton) {
+        cellDelegate?.sendItemButton(sender.tag)
+    }
+    
+    @IBAction func sendItemButton(_ sender: UIButton) {
+        cellDelegate?.sendItemButton(sender.tag)
+    }
+    
+    
+}
+
+protocol catalogeDetailCellDelegate: class{
+   
+    func addToPackageButton(_ tag: Int)
+    
+    func editItemButton(_ tag: Int)
+    
+    func showInfoButton(_ tag: Int)
+    
+    func sendItemButton(_ tag: Int)
+    
+}
+
+
+
+
+class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate{
+    
     
     var currentSubCategory: String = ""
     
-     func numberOfSections(in tableView: UITableView) -> Int {
+    let iconSize: CGFloat = 20
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return listOfItems.categories.count
     }
     
@@ -27,7 +82,7 @@ class catalogeDetail: UIViewController ,UITableViewDataSource , UITableViewDeleg
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! catalogeDetailCell
         var cellAdress = Int()
         if (indexPath.section != 0){
             for i in 0...indexPath.section-1{
@@ -36,9 +91,45 @@ class catalogeDetail: UIViewController ,UITableViewDataSource , UITableViewDeleg
         }
         cellAdress += indexPath.row
         
-        cell?.textLabel?.text = listOfItems.items[cellAdress].name
-        cell?.detailTextLabel?.text = listOfItems.items[cellAdress].subCategory
-        return cell!
+        cell.cellDelegate = self
+        cell.tag = 10
+        
+        
+        cell.nameLabel.text = listOfItems.items[cellAdress].name
+        
+        cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+        cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
+
+        cell.infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+        cell.infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
+        
+        cell.editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+        cell.editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
+        
+        cell.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+        cell.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
+        
+
+        //cell.packageButton.setTitle("asd" , for: UIControlState.normal)
+        //cell.textLabel?.text = listOfItems.items[cellAdress].name
+        //cell?.detailTextLabel?.text = listOfItems.items[cellAdress].subCategory
+        return cell
+    }
+    
+    func addToPackageButton(_ tag: Int){
+        print(tag)
+    }
+    
+    func editItemButton(_ tag: Int){
+        print("edit \(tag)")
+    }
+    
+    func showInfoButton(_ tag: Int){
+        print(listOfItems.items[tag].name)
+    }
+    
+    func sendItemButton(_ tag: Int){
+        print("send \(tag)")
     }
     
     
