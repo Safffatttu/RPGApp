@@ -9,23 +9,55 @@
 import Foundation
 import UIKit
 
-class SettingMenu: UITableViewController {
+var settingValues = [("Auto hide menu",true), ("Change currency",true)]
+
+protocol settingCellDelegate {
     
-    let settingItems = [("Auto hide menu","menuSwitchCell"), ("CustomSliderControll","menuSliderCell")]
+    func touchedSwitch(_ sender: UISwitch)
+}
+
+class settingMenuCell: UITableViewCell{
+    
+    var delegate: settingCellDelegate?
+    
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        delegate?.touchedSwitch(sender)
+    }
+    @IBOutlet weak var settingLabel: UILabel!
+    
+    @IBOutlet weak var settingSwitch: UISwitch!
+    
+}
+
+class SettingMenu: UITableViewController, settingCellDelegate {
+    
+    func touchedSwitch(_ sender: UISwitch) {
+        if let indexPath = getCurrentCellIndexPath(sender) {
+            settingValues[indexPath.row].1 = sender.isOn
+            print(settingValues[indexPath.row].0)
+            print(settingValues[indexPath.row].1)
+        }
+    }
+
+    
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingItems.count
+        return settingValues.count
+    }
+    
+    func getCurrentCellIndexPath(_ sender: UISwitch) -> IndexPath? {
+        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
+        if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
+            return indexPath
+        }
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: settingItems[indexPath.row].1)
-        cell?.textLabel?.text = settingItems[indexPath.row].0
-        
-        return cell!
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! settingMenuCell
+        cell.settingLabel.text = settingValues[indexPath.row].0
+        cell.delegate = self
+        return cell
     }
-    
-    
-    
 }
