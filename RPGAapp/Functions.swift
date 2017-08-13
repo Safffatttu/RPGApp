@@ -87,21 +87,26 @@ func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]]{
     return tableToRet
 }
 
+
 func loadItemList(data: [[String?]]) -> itemList{
     if(data.first!.first! == "DATA"){
         print("Rozpoczęto ładowanie listy przedmiotów")
     }
+    var currencyToRet = [(String,Double)]()
     
-    let exRate = Double((data.first?[1])!)!
-    let currecny = data.first?[2]
-    
+    for i in stride(from: 1, to: (data.first?.count)! - 1, by: 2){
+        if data.first?[i] == ""{
+        continue
+        }
+        let subCurency = (data.first?[i],Double((data.first?[i+1]!)!))
+        currencyToRet.append(subCurency as! (String, Double))
+        print(i)
+    }
     
 
     var listToRet = [item]()
     var currentCategory = String("")
     var currentSubCategory = String()
-    
-    
     
     var categories = [(String,Int, [(String, Int)])] ()
     
@@ -145,32 +150,5 @@ func loadItemList(data: [[String?]]) -> itemList{
         listToRet.append(currentItem)
     }
     print("Zakończono ładowanie listy przedmiotów")
-    return itemList(items: listToRet, exRate: exRate, currecny: currecny, categories: categories)
+    return itemList(items: listToRet, currency: currencyToRet, categories: categories)
 }
-
-
-/*
-
-
-var name: String
-var category : String?
-var subCategory: String?
-var description: String?
-var price : Double?
-var rarity: Int?
-var quantity: Int?
-var measure: String?
-*/
-
-
-
-
-
-
-
-
-
-
-
-//let toAppend = (Int(table[i].first!),UInt(table[i][1]))
-//tableToRet.append(toAppend)
