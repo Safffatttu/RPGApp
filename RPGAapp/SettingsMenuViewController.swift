@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-var settingValues = [("Auto hide menu",true), ("Change currency",true)]
+//var settingValues = [("Auto hide menu",true), ("Change currency",true)]
+
+var settingValues = ["Auto hide menu" : true, "Show price" :true]
 
 protocol settingCellDelegate {
     
@@ -30,17 +32,18 @@ class settingMenuCell: UITableViewCell{
 }
 
 class SettingMenu: UITableViewController, settingCellDelegate {
+    let keys = Array(settingValues.keys)
     
     func touchedSwitch(_ sender: UISwitch) {
         if let indexPath = getCurrentCellIndexPath(sender) {
-            settingValues[indexPath.row].1 = sender.isOn
-            print(settingValues[indexPath.row].0)
-            print(settingValues[indexPath.row].1)
+            settingValues[keys[indexPath.row]] = sender.isOn
+            print(keys[indexPath.row])
+            if keys[indexPath.row] == "Show price" {
+                NotificationCenter.default.post(name: .reload, object: nil)
+            }
         }
     }
 
-    
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingValues.count
@@ -56,8 +59,12 @@ class SettingMenu: UITableViewController, settingCellDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! settingMenuCell
-        cell.settingLabel.text = settingValues[indexPath.row].0
+        cell.settingLabel.text = keys[indexPath.row]
+        cell.settingSwitch.setOn(settingValues[keys[indexPath.row]]!, animated: false)
         cell.delegate = self
         return cell
     }
+}
+extension Notification.Name{
+    static let reload = Notification.Name("reload")
 }

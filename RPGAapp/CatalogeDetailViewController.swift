@@ -57,12 +57,23 @@ protocol catalogeDetailCellDelegate: class{
     
 }
 
+
 class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate{
     
     
-    var currentSubCategory: String = ""
+    @IBOutlet weak var tableView: UITableView!
     
+    var currentSubCategory: String = ""
     let iconSize: CGFloat = 20
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
+    }
+    
+    func reloadTableData(_ notification: Notification) {
+        tableView.reloadData()
+    }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -94,12 +105,19 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.nameLabel.text = listOfItems.items[cellAdress].name
         
-        if listOfItems.items[cellAdress].price != nil {
-            cell.priceLabel.text = String(describing: (listOfItems.items[cellAdress].price!) * listOfItems.exRate) + " " + listOfItems.currecny
+        var priceToShow = String()
+        
+        if settingValues["Show price"]! {
+            if listOfItems.items[cellAdress].price != nil {
+            priceToShow = String(describing: (listOfItems.items[cellAdress].price!)) //* listOfItems.exRate) + " " + listOfItems.currecny
+            }
+            else {
+                priceToShow = "Brak ceny"
+            }
         }
-        else {
-            cell.priceLabel.text = "Brak ceny"
-        }
+
+        cell.priceLabel.text = priceToShow
+        
         
         cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
         cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
