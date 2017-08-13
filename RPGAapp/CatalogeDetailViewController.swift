@@ -27,19 +27,19 @@ class catalogeDetailCell: UITableViewCell{
     weak var cellDelegate: catalogeDetailCellDelegate?
     
     @IBAction func addToPackageButton(_ sender: UIButton) {
-        cellDelegate?.addToPackageButton(sender.tag)
+        cellDelegate?.addToPackageButton(sender)
     }
     
     @IBAction func editItemButton(_ sender: UIButton) {
-        cellDelegate?.editItemButton(sender.tag)
+        cellDelegate?.editItemButton(sender)
     }
     
     @IBAction func showInfoButton(_ sender: UIButton) {
-        cellDelegate?.sendItemButton(sender.tag)
+        cellDelegate?.sendItemButton(sender)
     }
     
     @IBAction func sendItemButton(_ sender: UIButton) {
-        cellDelegate?.sendItemButton(sender.tag)
+        cellDelegate?.sendItemButton(sender)
     }
     
     
@@ -47,13 +47,13 @@ class catalogeDetailCell: UITableViewCell{
 
 protocol catalogeDetailCellDelegate: class{
    
-    func addToPackageButton(_ tag: Int)
+    func addToPackageButton(_ sender: UIButton)
     
-    func editItemButton(_ tag: Int)
+    func editItemButton(_ sender: UIButton)
     
-    func showInfoButton(_ tag: Int)
+    func showInfoButton(_ sender: UIButton)
     
-    func sendItemButton(_ tag: Int)
+    func sendItemButton(_ sender: UIButton)
     
 }
 
@@ -75,6 +75,13 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.reloadData()
     }
     
+    func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
+        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
+        if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
+            return indexPath
+        }
+        return nil
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return listOfItems.categories.count
@@ -134,22 +141,18 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    func addToPackageButton(_ tag: Int){
-        print(tag)
+    func addToPackageButton(_ sender: UIButton){
+        if let indexPath = getCurrentCellIndexPath(sender){
+        }
     }
     
-    func editItemButton(_ tag: Int){
-        print("edit \(tag)")
+    func editItemButton(_ sender: UIButton){
     }
     
-    func showInfoButton(_ tag: Int){
-        print(listOfItems.items[tag].name)
+    func showInfoButton(_ sender: UIButton){
     }
     
-    func sendItemButton(_ tag: Int){
-        print("send \(tag)")
+    func sendItemButton(_ sender: UIButton){
     }
-    
-    
 }
 
