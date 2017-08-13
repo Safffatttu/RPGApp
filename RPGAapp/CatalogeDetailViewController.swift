@@ -63,11 +63,14 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
+    let packageService = PackageService()
+    
     var currentSubCategory: String = ""
     let iconSize: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        packageService.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
     }
     
@@ -142,7 +145,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func addToPackageButton(_ sender: UIButton){
-        if let indexPath = getCurrentCellIndexPath(sender){
+    if let indexPath = getCurrentCellIndexPath(sender){
         }
     }
     
@@ -155,4 +158,21 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func sendItemButton(_ sender: UIButton){
     }
 }
+
+
+extension catalogeDetail: PackageServiceDelegate{
+    
+    func connectedDevicesChanged(manager: PackageService, connectedDevices: [String]) {
+        print("connections\(connectedDevices)")
+    }
+    func colorChanged(manager: PackageService, String: String) {
+        OperationQueue.main.addOperation {
+            print(String)
+        }
+    }
+    
+    
+}
+
+
 
