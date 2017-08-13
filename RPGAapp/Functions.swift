@@ -87,6 +87,19 @@ func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]]{
     return tableToRet
 }
 
+func changeCurrency(price: Double, currency: [(String,Double)]) -> String{
+    var priceToRet = String()
+    
+    var currentPrice = (currency.first?.1)! * price
+    
+    priceToRet.append(String(describing: floor(currentPrice)) + (currency.first?.0)!)
+    for i in 1...currency.count-1{
+        currentPrice = currentPrice * currency[i].1
+        priceToRet.append(String(floor(currentPrice.truncatingRemainder(dividingBy: currency[i].1))) + currency[i].0)
+    }
+    return priceToRet
+}
+
 
 func loadItemList(data: [[String?]]) -> itemList{
     if(data.first!.first! == "DATA"){
@@ -99,8 +112,13 @@ func loadItemList(data: [[String?]]) -> itemList{
         continue
         }
         let subCurency = (data.first?[i],Double((data.first?[i+1]!)!))
+        /*if currencyToRet.count > 0 {
+            currencyToRet[currencyToRet.count - 1].1 *= subCurency.1!
+        }*/
         currencyToRet.append(subCurency as! (String, Double))
-        print(i)
+    }
+    for i in currencyToRet{
+        print(i.1)
     }
     
 
