@@ -44,11 +44,12 @@ class PackageService: NSObject{
         return session
     }()
     
-    func sendPackage(String: String){
+    func sendPackage(itemToDend: item){
         
         if session.connectedPeers.count > 0{
             do{
-               try self.session.send(String.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
+                let data = item.archive(w: itemToDend)
+                try self.session.send(data, toPeers: session.connectedPeers, with: .reliable)
             }
             catch let error{
                 NSLog("Error: \(error)")
@@ -93,7 +94,7 @@ extension PackageService: MCSessionDelegate{
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
-        let str = String(data: data, encoding: .utf8)!
+        let str = item.unarchive(d: data).name
         self.delegate?.colorChanged(manager: self, String: str)
         
     }

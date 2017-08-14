@@ -156,6 +156,15 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func sendItemButton(_ sender: UIButton){
+        let indexPath = getCurrentCellIndexPath(sender)
+        print(indexPath?.row)
+        var cellAdress = Int()
+        if (indexPath?.section != 0){
+            for i in 0...(indexPath?.section)!-1{
+                cellAdress += (listOfItems.categories[i].1 - 1)
+            }
+        }
+        packageService.sendPackage(itemToDend: listOfItems.items[cellAdress])
     }
 }
 

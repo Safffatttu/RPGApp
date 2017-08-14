@@ -18,6 +18,26 @@ struct item{
     var rarity: Int?
     var quantity: Int?
     var measure: String?
+    
+    static func archive(w:item) -> Data {
+        var fw = w
+        return Data(bytes: &fw, count: MemoryLayout<item>.stride)
+    }
+    
+    static func unarchive(d:Data) -> item {
+        /*guard d.count == MemoryLayout<item>.stride else {
+            fatalError("BOOM!")
+        }*/
+        
+        var w:item?
+        d.withUnsafeBytes({(bytes: UnsafePointer<item>)->Void in
+            w = UnsafePointer<item>(bytes).pointee
+        })
+        return w!
+    }
+
+    
+    
 }
 
 struct itemList{
