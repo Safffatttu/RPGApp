@@ -33,14 +33,18 @@ class MasterViewController: UITableViewController {
             
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
-            self.splitViewController?.preferredDisplayMode = .primaryHidden
+            if settingValues["Auto hide menu"]!{
+                self.splitViewController?.preferredDisplayMode = .primaryHidden
+            }
         }
         else if segue.identifier == "showTeamView"{
             let controller = (segue.destination as!UINavigationController).topViewController as! TeamView
             
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
-            self.splitViewController?.preferredDisplayMode = .primaryHidden
+            if settingValues["Auto hide menu"]!{
+                self.splitViewController?.preferredDisplayMode = .primaryHidden
+            }
         }
             
             //let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
