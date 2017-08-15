@@ -58,7 +58,7 @@ protocol catalogeDetailCellDelegate: class{
 }
 
 
-class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate{
+class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate, UIPopoverPresentationControllerDelegate{
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -167,8 +167,20 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
                 cellAdress += (listOfItems.categories[i].1 - 1)
             }
         }
-        packageService.sendPackage(itemToDend: listOfItems.items[cellAdress])
+        //packageService.sendPackage(itemToDend: listOfItems.items[cellAdress])
+        
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
+        
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        popController.popoverPresentationController?.sourceRect = CGRect(x:self.view.bounds.minX, y: self.view.bounds.minY,width: 200,height: 200 )
+        
+        self.present(popController, animated: true, completion: nil)
     }
+
 }
 
 
