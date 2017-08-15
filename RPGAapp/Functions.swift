@@ -60,7 +60,7 @@ func loadStringTableFromDataAsset(Data: String) -> [[String]]{
     var result: [[String]] = []
     let rows = decoded.components(separatedBy: "\n")
     for row in rows {
-        let columns = row.components(separatedBy: ",")
+        let columns = row.components(separatedBy: ";")
         result.append(columns)
     }
     return result
