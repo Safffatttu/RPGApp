@@ -58,7 +58,7 @@ func loadStringTableFromDataAsset(Data: String) -> [[String]]{
     let table = NSDataAsset.init(name: Data)
     let decoded = String(data: (table?.data)!, encoding: .utf8)!
     var result: [[String]] = []
-    let rows = decoded.components(separatedBy: "\n")
+    let rows = decoded.components(separatedBy: "\r")
     for row in rows {
         let columns = row.components(separatedBy: ";")
         result.append(columns)
@@ -128,7 +128,7 @@ func loadItemList(data: [[String?]]) -> itemList{
     
     var categories = [(String,Int, [(String, Int)])] ()
     
-    for i in 1...data.count-1{
+    for i in 1...data.count-2{
         if(data[i].first! == "KTG"){
             currentCategory = (data[i][1])!
             categories.append((currentCategory!,1,[("",001)]))

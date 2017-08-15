@@ -1,224 +1,1 @@
-DATA,ZK,0.07,Sr,12,
-KTG,AKCESORIA,,,0,
-SUBKTG,DOMOWE,,,0,
-Chorągiew,Płócienna chorągiew na kiju.,30,1,0,
-Chorągiewka,Niewielka chorągiewka.,5,1,0,
-Donica drewniana rzeźbiona ,Donica na kwiaty.,30,1,0,
-Donica gliniana,Donica na kwiaty.,20,1,0,
-Donica ozdobna,Donica na kwiaty.,25,1,0,
-Drabina długa,"Drewniana drabina, 8 m.",400,1,0,
-Drabina krótka,"Drewniana drabina, 3 m. ",170,1,0,
-Drabina rozkładana,"Drabina dwu lub trzy częściowa, rozkładana poziomo. ",700,1,0,
-Drabina z hakami,Drabina zwieńczona metalowymi hakami do stabilizacji.,400,1,0,
-Drewniana tablica,Tablica do pisania kredą.,150,1,0,
-Dzwonek na drzwi,Dzwonek na haczyku.,15,1,0,
-Firanka,"Zwinięta, biała firanka.",180,1,0,
-Kadzidło,Drewniane kadzidło.,3,1,0,
-Kadzielnica,Metalowa kadzielnica na łańcuchu.,20,1,0,
-Kandelabr,Mosiężny świecznik z wieloma miseczkami.,30,1,0,
-Klepsydra duża,"Spora klepsydra, odmierza 10 minut. ",25,1,0,
-Klepsydra mała,"Niewielka klepsydra, odmierza 1 minutę.",5,1,0,
-Klepsydra średnia,"Klepsydra, odmierza 3 minuty.",12,1,0,
-Klepsydra wodna,"Klepsydra, odmierza 2 minuty.",7,1,0,
-Kłódka metalowa,"Solidna, metalowa kłódka na kluczyk.",25,1,0,
-Lampka naftowa,"Oszklona, metalowa lampka. ",40,1,0,
-Lichtarz,Mosiężny świecznik z jedną miseczką.,8,1,0,
-Lina jedwabna,"Zwykła, całkiem wytrzymała lina.",,1,30,m
-Lina konopna,Solidna lina.,,1,0,
-Menora,Mosiężny świecznik z siedmioma miseczkami.,,1,0,
-Metalowy lampion,Metalowa klatka z uchwytem. W środku ma miejsce na świecę.,,1,0,
-"Metalowy, oszklony lampion","Metalona, oszklona klatka z uchwytem. W środku ma miejsce na świecę.",,1,0,
-Miech,Przyrząd do tłoczenia powietrza.,,1,0,
-Miednica drewniana,Naczynie do utrzymywania higieny osobistej.,,1,0,
-Miednica metalowa,Naczynie do utrzymywania higieny osobistej.,,1,0,
-Miotła,"Tradycyjna, brzozowa miotła.",,1,0,
-Mosiężna kołatka,Kołatka na drzwi.,,1,0,
-Nafta do lampy,"Pojemnik z naftą do lampy, 0,5 l. ",,1,0,
-Osełka,Narzędzie do szlifowania metalu.,,1,0,
-Paczka kredy,Paczka kredy do pisania.,,1,0,
-Pleciona narzuta na krzesło,Ozdobna narzuta na krzesło.,,1,0,
-Popielniczka miedziana,Pojemnik na popiół z fajek.,,1,0,
-Popielniczka żeliwna,Pojemnik na popiół z fajek.,,1,0,
-Rama na obraz,"Drewniana rama, 50 x 50 cm.",,1,0,
-Rama na obraz,"Drewniana rama, 50 x 80 cm.",,1,0,
-"Rama na obraz, duża","Drewniana rama, 100 x 100 cm. ",,1,0,
-"Rama na obraz, duża","Drewniana rama, 100 x 140 cm.",,1,0,
-"Rama na obraz, mała","Drewniana rama, 30 x 30 cm.",,1,0,
-"Rama na obraz, mała","Drewniana rama, 30 x 50 cm.",,1,0,
-Rama ozdobna,"Rzeźbiona rama na obraz, 50 x 50 cm.",,1,0,
-Rama ozdobna,"Rzeźbiona rama na obraz, 50 x 80 cm.",,1,0,
-"Rama ozdobna, duża","Rzeźbiona rama na obraz, 100 x 100 cm. ",,1,0,
-"Rama ozdobna, duża","Rzeźbiona rama na obraz, 100 x 140 cm.",,1,0,
-"Rama ozdobna, mała","Rzeźbiona rama na obraz, 30 x 30 cm.",,1,0,
-"Rama ozdobna, mała","Rzeźbiona rama na obraz, 30 x 50 cm.",,1,0,
-Skobel z kłódką ,Kłódka ze skoblem do wkręcenia. ,,1,0,
-Stojak na wino,Drewniany stojak.,,1,0,
-Stojak na wino,"Metalowy, grawerowany stojak na wino.",,1,0,
-Szachy,Drewniane szachy wraz z pudełkiem. ,,1,0,
-Szczotka,"Drewniana szczotka z końskim włosiem, dobra do czyszczenia podłóg.",,1,0,
-Szczotka druciana,"Szczotka, dobra do szorowania metalowych powierzchni.",,1,0,
-Ścierka płócienna,"Niewielka, czysta ścierka.",,1,0,
-Świeca,"Świeca woskowa, knot pali się pół godziny.",,1,0,
-Świeca,"Świeca woskowa, knot pali się godzinę.",,1,0,
-Świeca duża,"Świeca woskowa, knot pali się dwie godziny.",,1,0,
-Świeca zapachowa,"Świeca z wosku pszczelego, pachnie miodem. Knot pali się pół godziny.",,1,0,
-Wazon gliniany na kwiaty,"Ceramiczny wazon z dwoma uchami, 5l. ",,1,0,
-Wazon szklany na kwiaty,"Szklany wazon z dwoma uchami i przykrywką, 5l.",,1,0,
-Wiadro drewniane,"Solidne wiadro z uchwytem, 10l.",,1,0,
-"Wiadro drewniane, duże","Solidne wiadro z uchwytem, 20l.",,1,0,
-Wiadro metalowe,"Metalowe wiadro z uchwytem, 10l.",,1,0,
-"Wiadro metalowe, duże","Metalowe wiadro z uchwytem, 20l.",,1,0,
-Wieszak,Drewniany wieszak.,,1,0,
-Wieszak ozdobny,Rzeźbiony wieszak z ornamentami.,,1,0,
-Worek szmat,Płócienny worek wypełnione materiałowymi strzępami.,,1,0,
-Zestaw igieł,Drewniane pudełeczko z różnego rozmiaru igłami.,,1,0,
-Zestaw nici,Pudełko z kłębkami kolorowych nici.,,1,0,
-Zwierciadło brązowe,Zwierciadło z wyszlifowanego kawałka brązu. ,,1,0,
-Zwierciadło ołowiane,Zwierciadło z wyszlifowanego kawałka ołowiu. ,,1,0,
-Zwierciadło srebrne,Zwierciadło z wyszlifowanego srebra.,,1,0,
-Zwierciadło szklane,Szklane zwierciadło w ramie. ,,1,0,
-Zwierciadło w grawerowanej ramie,"Szklane zwierciadło w ozdobnej, grawerowanej ramie.",,1,0,
-Zwierciadło w rzeźbionej ramie,"Szklane zwierciadło w ozdobnej, rzeźbionej ramie.",,1,0,
-Zwierciadło w srebrnej ramie,"Szklane zwierciadło w ozdobnej, srebrnej ramie.",,1,0,
-SUBKTG,KUCHENNE,,,,
-Blacha do ciasta,"Blacha do ciasta, graniastosłup prostokątny.",30,1,0,
-Chlebak,Drewniany pojemnik na pieczywo. ,10,1,0,
-Czajnik miedziany,"Czajnik, 2l pojemności.",25,1,0,
-Czajnik srebrny,"Element srebrnej zastawy, 2,5l pojemności.",150,2,0,
-Czajnik żeliwny,"Porządny, metalowy czajnik o drewnianej rączce. O pojemności 3l.",70,1,0,
-Deska do krojenia,Drewniana deska do krojenia.,10,1,0,
-Duża patelnia żeliwna,"Wielka patelnia do ustawienia na stojaku, 40x40 cm.",80,1,0,
-Dzbanek gliniany,"Ceramiczny, dwulitrowy dzbanek słabej jakości.",10,1,0,
-Dzbanek miedziany,"Metalowy, dwulitrowy dzbanek. ",20,1,0,
-Dzbanek z miarką,Szklany dzbanek do odmierzania płynów.,25,1,0,
-Dziadek do orzechów,Metalowy rozbijak do orzechów.,10,1,0,
-Foremka do chleba,25x10x10 cm,25,1,0,
-Garnek gliniany ,"Zwykły, małej wytrzymałości garnek.",15,1,0,
-Garnek miedziany,"Zwykły, metalowy garnek.",30,1,0,
-Garnek żeliwny,"Zwykły, wytrzymały metalowy garnek.",60,1,0,
-Kieliszek,Niewielkie naczynie do spożywania alkoholu.,6,1,0,
-Korkociąg,Metalowe korkociąg.,5,1,0,
-Koszyk na warzywa,"Niewielki, pleciony koszyk na warzywa. ",15,1,0,
-Kubek drewniany,"Drewniany kubek z uchem, słabej jakości.",3,1,0,
-Kubek gliniany,"Ceramiczny kubek z uchem, słabej jakości.",5,1,0,
-Kubek miedziany,Metalowy kubek z uchem.,5,1,0,
-Kufel do piwa gliniany,"Słabej jakosci kufel, 1l pojemności.",5,1,0,
-Kufel do piwa miedziany,"Zwykły kufel, 1l pojemności.",10,1,0,
-Kufel do piwa szklany,"Porządny kufel, 1l pojemności.",15,1,0,
-Lejek miedziany,"Niewielki, metalowy lejek.",10,1,0,
-Łyżka drewniana,"Łyżka wystrugana z kawałka drewna, słabej jakości.",1,1,0,
-Łyżka srebrna,"Element srebrnej zastawy. Niegdyś popularny prezent chrzcielny, mający odstraszać złe duchy.",25,2,0,
-Łyżka stołowa,"Zwykła, metalowa łyżka.",3,1,0,
-Maselniczka miedziana,Metalowa podstawka do masła.,4,1,0,
-Miedziany kociołek,"Duży kociołek, 50 l. ",100,1,0,
-Miska drewniana,"Drewniana miska, słabej jakości. ",3,1,0,
-Miska gliniana,"Drewniana miska, słabej jakości. ",5,1,0,
-Miska miedziana,Metalowa miska. ,7,1,0,
-Młynek do kawy,Elegancki młynek do mielenia kawy.,100,2,0,
-Moździeż,Naczynie z tłuczkiem do rozcierania jedzenia na miazgę.,15,1,0,
-Nożyczki,Żeliwne nożyczki.,10,1,0,
-Nóż do filetowania,"Nóż o wąskim, elastycznym ostrzu, stworzony do usuwania ości.",15,1,0,
-Nóż francuski,"Nóż kuchenny, zwany nożem szefa kuchni, wyprofilowany do dokładnego cięcia składników.",20,1,0,
-Nóż srebrny,Element srebrnej zastawy.,40,2,0,
-Nóż stołowy,"Zwykły, metalowy nóż.",5,1,0,
-Nóż z ząbkami,Nóż do krajania pieczywa.,10,1,0,
-Obrus płócienny ,Kawałek szarego materiału. Wycinany w metrach. ,10,1,x,m2
-Patelnia żeliwna,Przyrząd do smażenia na ogniu.,25,1,0,
-Praska do czosnku,Zgniatacz do wyciskania esencji z ząbków czosnku. ,20,1,0,
-Pusta brązowa butelka z korkiem,Szklana butelka o pojemności 1l.,1,1,0,
-Pusta butelka z korkiem,Szklana butelka o pojemności 1l.,1,1,0,
-Pusta zielona butelka z korkiem,Szklana butelka o pojemności 1l.,1,1,0,
-Pusty słoik z wieczkiem,Szklany słoik o pojemności 1l.,1,1,0,
-Rękawice kuchenne,"Grube rękawice, dobrze izolują temperaturę.",50,1,0,
-Salaterka drewniana,Element zastawy do podawania sałatek.,3,1,0,
-Salaterka gliniana,Element zastawy do podawania sałatek.,5,1,0,
-Salaterka miedziana,Element zastawy do podawania sałatek.,7,1,0,
-Sitko metalowe,Sitko do odcedzania wody.,10,1,0,
-Solniczka,"Zwykła, drewniana solniczka.",2,1,0,
-Solniczka z młynkiem,Metalowa solniczka z wbudowanym młynkiem.,10,1,0,
-Srebrna taca ,"Element srebrnej zastawy, wielkości 40x15 cm.",150,2,0,
-Srebrna zastawa w drewnianym kufrze,"Stary komplet grawerowanych naczyń i sztućców dla sześciu osób, wraz ze szklankami, kielichem i tacą.",2800,3,0,
-Srebrny puchar,Element srebrnej zastawy. Kielich z nóżką.,250,2,0,
-Stojak na nóże,Drewniany stojak na pięć noży.,10,1,0,
-Szklanka ozdobna,Element zastawy zdobiony kolorowymi nićmi szklanymi.,15,1,0,
-Szklanka w srebrnym koszyczku,Element srebrnej zastawy zamknięty w zdobionym ochraniaczu.,60,2,0,
-Szklanka zwykła,Element zastawy.,7,1,0,
-Talerz drewniany,Popularny niegdyś typ talerza.,3,1,0,
-Talerz gliniany,"Zwykły, małej wytrzymałości talerz.",5,1,0,
-Talerz głęboki drewniany,Popularny niegdyś typ talerza. Używany do podawania zupy.,3,1,0,
-Talerz głęboki gliniany,"Zwykły, małej wytrzymałości talerz. Używany do podawania zupy.",5,1,0,
-Talerz głęboki srebrny,Element srebrnej zastawy.,100,2,0,
-Talerz miedziany,"Ozdobny, metalowy talerz.",20,1,0,
-Talerz srebrny,Element srebrnej zastawy.,80,2,0,
-Tarka,Dwustronna tarka. ,10,1,0,
-Tasak,Ciężki nóż przeznaczony do cięcia mięsa. ,30,1,0,
-Tłuczek do mięsa,Młotek do ubijania mięsa.,10,1,0,
-Tłuczek do ziemniaków,Rozbija ziemniaki na puree.,7,1,0,
-Trzepaczka do jajek,Metalowa trzepaczka z drewnianą rączką.,10,1,0,
-Waga kuchenna,Precyzyjna waga z odważnikami. Do 5 kg. ,80,2,0,
-Wałek do ciasta,Drewniany wałek do rozpłaszczania ciasta.,20,1,0,
-Widelec drewniany,"Widelec wystrugany z kawałka drewna, słabej jakości.",1,1,0,
-Widelec srebrny,Element srebrnej zastawy.,25,2,0,
-Widelec stołowy,"Zwykły, metalowy widelec.",3,1,0,
-Wojskowa patelnia polowa,"Ogromna patelnia do rozstawienia nad ogniem, 1x1 m. ",230,2,0,
-Zatyczka do wina metalowa,"Zatyka butelkę, odwlekając zepsucie się wina.",10,1,0,
-Zestaw drewnianych sztućców,"Zestaw sztućców dla dwunastu osób. Drewniane widelce i łyżki, metalowe noże.",80,1,0,
-Zestaw metalowych sztućców,Zestaw sztućców dla dwunastu osób.,160,1,0,
-SUBKTG,OSOBISTE,,,,
-Składane zwierciadełko,Kieszonkowe lusterko.,,1,0,
-Zwierciadło podręczne,Kieszonkowe lusterko.,,1,0,
-Zwierciadełko na łańcuchu,Podręczne lusterko na łańcuchu.,,1,0,
-SUBKTG,NARZĘDZIA,,,,
-Brzeszczot do drewna,Część tnąca piły.,6,1,0,
-Brzeszczot do metalu,Część tnąca piły.,8,1,0,
-Cep,"Narzędzie zbudowane z dwóch kijów na rzemyku, służące do młócenia zboża.",10,1,0,
-Ciesak,Narzędzie ciesielskie.,15,2,0,
-Dłuto,"Metalowy trzon na drewnianej rączce, służący do zrywania powierzchni materiału. ",5,1,0,
-Graca,"Narzędzie rolnicze, służące do plewienia bądź płytkiego spulchniania ziemi.",10,1,0,
-Gwóźdź,10 cm,"0,1",1,0,
-Kilof,"Metalowe narzędzie o drewnianym stylisku, służące do kruszenia materiałow.",40,1,0,
-Kosa,Kosa o drewnianym stylisku. ,30,1,0,
-Łom,"Metalowe, ciężkie narzędzie do wybijania lub wywarzania.",20,1,0,
-Łopata,Stalowa łopata z drewnianym styliskiem.,30,1,0,
-Łopata piekarska,Narzędzie służące wkładaniu wyrobów do pieca.,25,2,0,
-Młot,Duży młot o drewnianym stylisku.,50,1,0,
-Młotek,Niewielki młotek do przybijania.,20,1,0,
-Motyka,Narzędzie do spulchniania ziemi i plewienia.,25,1,0,
-Obcęgi,"Narzędzie z metalowymi szczękami, służące do wyciągania bądź przecinania materiałów.",10,1,0,
-Paczka gwoździ,"Sto sztuk, 10 cm. ",10,1,0,
-Pilnik,Metalowe narzędzie służące do ścierania wierzchnej powierzchni materiału.,3,1,0,
-Piła do metalu,Niewielkich rozmiarów piła ręczna.,40,1,0,
-Piła ręczna,Niewielka piła do drewna.,20,1,0,
-Piła tartaczna,Wielka piła obsługiwana przez kilka osób.,300,2,0,
-Pobijak,Drewniany młot do pobijania dłuta.,10,1,0,
-Saperka,Lekka łopata podręczna.,15,1,0,
-Siekiera,"Stare narzędzie, służące do wycinki drzew.",50,1,0,
-Sierp,"Narzędzie o zakrzywionym ostrzu, służące do prac żniwnych.",15,1,0,
-Szpachla,"Giętka blaszka na drewnianym trzonku, służące do zdrapywania osadu z powierzchni materiału bądź nakładania mas szpachlowych.",8,1,0,
-Szpadel,Typ łopaty przeznaczony do kopania (w przeciwieństwie do czerpania i przenoszenia materiałów sypkich) o prostej łyżce.,8,1,0,
-Świder do drewna,Świder do wiercenia otworów w drewnie.,4,1,0,
-Tarnik,Pilnik do drewna.,4,1,0,
-Trok,"Skórzany rzemyk, niekiedy zakończony pętlą.",3,1,0,
-Troki myśliwskie,"Wielorzemykowe, skórzane pęta służące do przywiązywania zdobyczy.",30,2,0,
-Żarno,Prosta maszyna do rozcierania ziarna.,150,2,0,
-SUBKTG,POJEMNIKI,,,,
-Drewniane puzderko,,,,0,
-Grawerowana metalowa szkatuła na kluczyk,,,,0,
-Metalowa szkatuła na kluczyk,,,,0,
-Metalowe puzderko,,,,0,
-Ozdobne pudełko na tytoń,,,,0,
-Pudełko na tytoń,,,,0,
-Puzderko w kształcie serca,,,,0,
-Szkatuła,,,,0,
-SUBKTG,ŻEGLARSKIE,,,0,
-Bosak,"Kij z hakiem, służy do manipulowania do przyciągania, odpychania łodzi.",25,1,0,
-Kotwica jachtowa,"Stalowa kotwica, mogąca zaczepić o dno jacht. ",600,2,0,
-Kotwica stalowa,"Wielka, stalowa kotwica, przeznaczona na większe jednostki.",3000,3,0,
-Kotwiczka,Niewielka kotwiczka z linką - 5 m.,20,1,0,
-Lina,"Zwój liny, 20 m.",50,1,0,
-Lina cumownicza,Gruba lina służąca do umiejscowienia statku w porcie bądź jego holowania - 20 m. ,200,1,0,
-Osęk,"Kij z hakiem, używany przez flisaków do prowadzenia niewielkich jednostek po rzece.",15,1,0,
-Prosiak,Obciążnik dla kotwicy.,1500,3,0,
-Sekstant,Przyrząd nawigacyjny na statkach.,300,2,0,
-Szekla,"Metalowa klamra, służąca do łączenia elementów takielunku.",10,1,0,
-Śpiewnik z szantami,Zawiera utwory spisane lokalnym pismem.,20,1,0,
+DATA;ZK;0.07;SR;12;KTG;AKCESORIA;;;;SUBKTG;DOMOWE;;;;Chorągiew;Płócienna chorągiew na kiju.;30;1;0;Chorągiewka;Niewielka chorągiewka.;5;1;0;Donica drewniana rzeźbiona ;Donica na kwiaty.;30;1;0;Donica gliniana;Donica na kwiaty.;20;1;0;Donica ozdobna;Donica na kwiaty.;25;1;0;Drabina długa;Drewniana drabina, 8 m.;400;1;0;Drabina krótka;Drewniana drabina, 3 m. ;170;1;0;Drabina rozkładana;Drabina dwu lub trzy częściowa, rozkładana poziomo. ;700;3;0;Drabina z hakami;Drabina zwieńczona metalowymi hakami do stabilizacji.;400;2;0;Drewniana tablica;Tablica do pisania kredą.;150;1;0;Dzwonek na drzwi;Dzwonek na haczyku.;15;1;0;Firanka;Zwinięta, biała firanka.;180;2;0;Kadzidło;Drewniane kadzidło.;3;1;0;Kadzielnica;Metalowa kadzielnica na łańcuchu.;20;1;0;Kandelabr;Mosiężny świecznik z wieloma miseczkami.;30;2;0;Klepsydra duża;Spora klepsydra, odmierza 10 minut. ;25;2;0;Klepsydra mała;Niewielka klepsydra, odmierza 1 minutę.;5;1;0;Klepsydra średnia;Klepsydra, odmierza 3 minuty.;12;1;0;Klepsydra wodna;Klepsydra, odmierza 2 minuty.;7;1;0;Kłódka metalowa;Solidna, metalowa kłódka na kluczyk.;25;1;0;Lampka naftowa;Oszklona, metalowa lampka. ;40;2;0;Lichtarz;Mosiężny świecznik z jedną miseczką.;8;1;0;Lina jedwabna;Zwykła, całkiem wytrzymała lina.;8;1;30;mLina konopna;Solidna lina.;15;2;20;mMenora;Mosiężny świecznik z siedmioma miseczkami.;80;1;0;Metalowy lampion;Metalowa klatka z uchwytem. W środku ma miejsce na świecę.;25;1;0;Metalowy, oszklony lampion;Metalona, oszklona klatka z uchwytem. W środku ma miejsce na świecę.;40;2;0;Miech;Przyrząd do tłoczenia powietrza.;80;1;0;Miednica drewniana;Naczynie do utrzymywania higieny osobistej.;100;1;0;Miednica metalowa;Naczynie do utrzymywania higieny osobistej.;200;1;0;Miotła;Tradycyjna, brzozowa miotła.;10;1;0;Mosiężna kołatka;Kołatka na drzwi.;10;2;0;Nafta do lampy;Pojemnik z naftą do lampy, 0,5 l. ;5;1;0;Osełka;Narzędzie do szlifowania metalu.;7;1;0;Paczka kredy;Paczka kredy do pisania.;10;1;0;Pleciona narzuta na krzesło;Ozdobna narzuta na krzesło.;5;1;0;Popielniczka miedziana;Pojemnik na popiół z fajek.;10;1;0;Popielniczka żeliwna;Pojemnik na popiół z fajek.;12;1;0;Rama na obraz;Drewniana rama, 50 x 50 cm.;20;1;0;Rama na obraz;Drewniana rama, 50 x 80 cm.;27;1;0;Rama na obraz, duża;Drewniana rama, 100 x 100 cm. ;40;1;0;Rama na obraz, duża;Drewniana rama, 100 x 140 cm.;50;1;0;Rama na obraz, mała;Drewniana rama, 30 x 30 cm.;10;1;0;Rama na obraz, mała;Drewniana rama, 30 x 50 cm.;12;1;0;Rama ozdobna;Rzeźbiona rama na obraz, 50 x 50 cm.;70;2;0;Rama ozdobna;Rzeźbiona rama na obraz, 50 x 80 cm.;95;2;0;Rama ozdobna, duża;Rzeźbiona rama na obraz, 100 x 100 cm. ;140;2;0;Rama ozdobna, duża;Rzeźbiona rama na obraz, 100 x 140 cm.;190;2;0;Rama ozdobna, mała;Rzeźbiona rama na obraz, 30 x 30 cm.;30;2;0;Rama ozdobna, mała;Rzeźbiona rama na obraz, 30 x 50 cm.;38;2;0;Skobel z kłódką ;Kłódka ze skoblem do wkręcenia. ;20;1;0;Stojak na wino;Drewniany stojak.;25;1;0;Stojak na wino;Metalowy, grawerowany stojak na wino.;60;2;0;Szachy;Drewniane szachy wraz z pudełkiem. ;20;1;0;Szczotka;Drewniana szczotka z końskim włosiem, dobra do czyszczenia podłóg.;8;1;0;Szczotka druciana;Szczotka, dobra do szorowania metalowych powierzchni.;12;1;0;Ścierka płócienna;Niewielka, czysta ścierka.;1;1;0;Świeca;Świeca woskowa, knot pali się pół godziny.;3;1;0;Świeca;Świeca woskowa, knot pali się godzinę.;6;1;0;Świeca duża;Świeca woskowa, knot pali się dwie godziny.;12;1;0;Świeca zapachowa;Świeca z wosku pszczelego, pachnie miodem. Knot pali się pół godziny.;10;2;0;Wazon gliniany na kwiaty;Ceramiczny wazon z dwoma uchami, 5l. ;8;1;0;Wazon szklany na kwiaty;Szklany wazon z dwoma uchami i przykrywką, 5l.;20;2;0;Węgiel do pisania;Paczka węgla do pisania.;10;1;0;Wiadro drewniane;Solidne wiadro z uchwytem, 10l.;10;1;0;Wiadro drewniane, duże;Solidne wiadro z uchwytem, 20l.;20;1;0;Wiadro metalowe;Metalowe wiadro z uchwytem, 10l.;20;1;0;Wiadro metalowe, duże;Metalowe wiadro z uchwytem, 20l.;40;1;0;Wieszak;Drewniany wieszak.;2;1;0;Wieszak ozdobny;Rzeźbiony wieszak z ornamentami.;10;2;0;Worek szmat;Płócienny worek wypełnione materiałowymi strzępami.;5;1;0;Zestaw igieł;Drewniane pudełeczko z różnego rozmiaru igłami.;5;1;0;Zestaw nici;Pudełko z kłębkami kolorowych nici.;20;1;0;Zwierciadło brązowe;Zwierciadło z wyszlifowanego kawałka brązu. ;20;1;0;Zwierciadło ołowiane;Zwierciadło z wyszlifowanego kawałka ołowiu. ;40;1;0;Zwierciadło srebrne;Zwierciadło z wyszlifowanego srebra.;200;2;0;Zwierciadło szklane;Szklane zwierciadło w ramie. ;80;1;0;Zwierciadło w grawerowanej ramie;Szklane zwierciadło w ozdobnej, grawerowanej ramie.;200;2;0;Zwierciadło w rzeźbionej ramie;Szklane zwierciadło w ozdobnej, rzeźbionej ramie.;150;1;0;Zwierciadło w srebrnej ramie;Szklane zwierciadło w ozdobnej, srebrnej ramie.;400;3;0;SUBKTG;KUCHENNE;;;;Blacha do ciasta;Blacha do ciasta, graniastosłup prostokątny.;30;1;0;Chlebak;Drewniany pojemnik na pieczywo. ;10;1;0;Czajnik miedziany;Czajnik, 2l pojemności.;25;1;0;Czajnik srebrny;Element srebrnej zastawy, 2,5l pojemności.;150;2;0;Czajnik żeliwny;Porządny, metalowy czajnik o drewnianej rączce. O pojemności 3l.;70;1;0;Deska do krojenia;Drewniana deska do krojenia.;10;1;0;Duża patelnia żeliwna;Wielka patelnia do ustawienia na stojaku, 40x40 cm.;80;1;0;Dzbanek gliniany;Ceramiczny, dwulitrowy dzbanek słabej jakości.;10;1;0;Dzbanek miedziany;Metalowy, dwulitrowy dzbanek. ;20;1;0;Dzbanek z miarką;Szklany dzbanek do odmierzania płynów.;25;1;0;Dziadek do orzechów;Metalowy rozbijak do orzechów.;10;1;0;Foremka do chleba;25x10x10 cm;25;1;0;Garnek gliniany ;Zwykły, małej wytrzymałości garnek.;15;1;0;Garnek miedziany;Zwykły, metalowy garnek.;30;1;0;Garnek żeliwny;Zwykły, wytrzymały metalowy garnek.;60;1;0;Kielich z ludzkiej czaszki;Kielich z obrobionej, ludzkiej czaszki.;600;3;0;Kieliszek;Niewielkie naczynie do spożywania alkoholu.;6;1;0;Korkociąg;Metalowe korkociąg.;5;1;0;Koszyk na warzywa;Niewielki, pleciony koszyk na warzywa. ;15;1;0;Kubek drewniany;Drewniany kubek z uchem, słabej jakości.;3;1;0;Kubek gliniany;Ceramiczny kubek z uchem, słabej jakości.;5;1;0;Kubek miedziany;Metalowy kubek z uchem.;5;1;0;Kufel do piwa gliniany;Słabej jakosci kufel, 1l pojemności.;5;1;0;Kufel do piwa miedziany;Zwykły kufel, 1l pojemności.;10;1;0;Kufel do piwa szklany;Porządny kufel, 1l pojemności.;15;1;0;Lejek miedziany;Niewielki, metalowy lejek.;10;1;0;Łyżka drewniana;Łyżka wystrugana z kawałka drewna, słabej jakości.;1;1;0;Łyżka srebrna;Element srebrnej zastawy. Niegdyś popularny prezent chrzcielny, mający odstraszać złe duchy.;25;2;0;Łyżka stołowa;Zwykła, metalowa łyżka.;3;1;0;Maselniczka miedziana;Metalowa podstawka do masła.;4;1;0;Miedziany kociołek;Duży kociołek, 50 l. ;100;1;0;Miska drewniana;Drewniana miska, słabej jakości. ;3;1;0;Miska gliniana;Drewniana miska, słabej jakości. ;5;1;0;Miska miedziana;Metalowa miska. ;7;1;0;Młynek do kawy;Elegancki młynek do mielenia kawy.;100;2;0;Moździeż;Naczynie z tłuczkiem do rozcierania jedzenia na miazgę.;15;1;0;Nożyczki;Żeliwne nożyczki.;10;1;0;Nóż do filetowania;Nóż o wąskim, elastycznym ostrzu, stworzony do usuwania ości.;15;1;0;Nóż francuski;Nóż kuchenny, zwany nożem szefa kuchni, wyprofilowany do dokładnego cięcia składników.;20;1;0;Nóż srebrny;Element srebrnej zastawy.;40;2;0;Nóż stołowy;Zwykły, metalowy nóż.;5;1;0;Nóż z ząbkami;Nóż do krajania pieczywa.;10;1;0;Obrus płócienny ;Kawałek szarego materiału z haftowanymi brzegami.;10;1;12;m2Patelnia żeliwna;Przyrząd do smażenia na ogniu.;25;1;0;Praska do czosnku;Zgniatacz do wyciskania esencji z ząbków czosnku. ;20;1;0;Pusta brązowa butelka z korkiem;Szklana butelka o pojemności 1l.;1;1;0;Pusta butelka z korkiem;Szklana butelka o pojemności 1l.;1;1;0;Pusta zielona butelka z korkiem;Szklana butelka o pojemności 1l.;1;1;0;Pusty słoik z wieczkiem;Szklany słoik o pojemności 1l.;1;1;0;Pytel;Spory przyrząd do przesiewu mąki.;400;2;0;Rękawice kuchenne;Grube rękawice, dobrze izolują temperaturę.;50;1;0;Salaterka drewniana;Element zastawy do podawania sałatek.;3;1;0;Salaterka gliniana;Element zastawy do podawania sałatek.;5;1;0;Salaterka miedziana;Element zastawy do podawania sałatek.;7;1;0;Sitko metalowe;Sitko do odcedzania wody.;10;1;0;Solniczka;Zwykła, drewniana solniczka.;2;1;0;Solniczka z młynkiem;Metalowa solniczka z wbudowanym młynkiem.;10;1;0;Srebrna taca ;Element srebrnej zastawy, wielkości 40x15 cm.;150;2;0;Srebrna zastawa w drewnianym kufrze;Stary komplet grawerowanych naczyń i sztućców dla sześciu osób, wraz ze szklankami, kielichem i tacą.;2800;3;0;Srebrny puchar;Element srebrnej zastawy. Kielich z nóżką.;250;2;0;Stojak na nóże;Drewniany stojak na pięć noży.;10;1;0;Szklanka ozdobna;Element zastawy zdobiony kolorowymi nićmi szklanymi.;15;1;0;Szklanka w srebrnym koszyczku;Element srebrnej zastawy zamknięty w zdobionym ochraniaczu.;60;2;0;Szklanka zwykła;Element zastawy.;7;1;0;Talerz drewniany;Popularny niegdyś typ talerza.;3;1;0;Talerz gliniany;Zwykły, małej wytrzymałości talerz.;5;1;0;Talerz głęboki drewniany;Popularny niegdyś typ talerza. Używany do podawania zupy.;3;1;0;Talerz głęboki gliniany;Zwykły, małej wytrzymałości talerz. Używany do podawania zupy.;5;1;0;Talerz głęboki srebrny;Element srebrnej zastawy.;100;2;0;Talerz miedziany;Ozdobny, metalowy talerz.;20;1;0;Talerz srebrny;Element srebrnej zastawy.;80;2;0;Tarka;Dwustronna tarka. ;10;1;0;Tasak;Ciężki nóż przeznaczony do cięcia mięsa. ;30;1;0;Tłuczek do mięsa;Młotek do ubijania mięsa.;10;1;0;Tłuczek do ziemniaków;Rozbija ziemniaki na puree.;7;1;0;Trzepaczka do jajek;Metalowa trzepaczka z drewnianą rączką.;10;1;0;Waga kuchenna;Precyzyjna waga z odważnikami. Do 5 kg. ;80;2;0;Wałek do ciasta;Drewniany wałek do rozpłaszczania ciasta.;20;1;0;Widelec drewniany;Widelec wystrugany z kawałka drewna, słabej jakości.;1;1;0;Widelec srebrny;Element srebrnej zastawy.;25;2;0;Widelec stołowy;Zwykły, metalowy widelec.;3;1;0;Wojskowa patelnia polowa;Ogromna patelnia do rozstawienia nad ogniem, 1x1 m. ;230;2;0;Zatyczka do wina metalowa;Zatyka butelkę, odwlekając zepsucie się wina.;10;1;0;Zestaw drewnianych sztućców;Zestaw sztućców dla dwunastu osób. Drewniane widelce i łyżki, metalowe noże.;80;1;0;Zestaw metalowych sztućców;Zestaw sztućców dla dwunastu osób.;160;1;0;SUBKTG;OSOBISTE;;;;Agrafka;Metalowa przyrząd do spinania rzeczy.;0,2;1;0;Bębenek;Instrument.;40;1;0;Binokle;Okulary na łańcuszku.;50;1;0;Butelka spirytusu;Szklana butelka wypełniona spirytusem.;5;1;0;Cymbałki;Instrument.;30;1;0;Cytra;Szarpany instrument strunowy.;90;1;0;Fajka dębowa;Zwykła dębowa fajka.;15;1;0;Fajka wodna;Wschodnia fajka, filtrująca dym przez wodę. ;80;2;0;Fajka wrzościowa;Fajka z korzenia wrzośca, bardzo dobrej jakości, gwarantująca komfortowe palenie.;180;3;0;Fletnia;Instrument.;20;1;0;Gęśle;Prymitywny instrument smyczkowy.;40;1;0;Gitara;Instrument.;90;1;0;Grzebień;Drewniany grzebień.;2;1;0;Harfa;Instrument.;100;1;0;Harfa zdobiona;Instrument.;400;2;0;Hubka;Materiał łatwopalny, wytwarzany z grzyba nadrzewnego - rozpalany krzesiwem.;0,1;1;100;gHubka i krzesiwo;Łatwopalna hubka i krzesiwo do jej rozpalenia.;12;1;0;Inkaust;Atrament w baniaczku.;20;2;0;Kalumet;"Indiańska fajka o długim cybuchu, ""fajka pokoju"".";50;2;0;Koc;Ciepły koc.;15;1;0;Kociołek podróżny;Niewielki, żeliwny kociołek.;15;1;0;Kompas;Przyrząd nawigacyjny z igłą wskazującą północ.;60;2;0;Kozik;Niewielki, podręczny nożyk.;8;1;0;Kreda do pisania;Paczka kredy do pisania.;4;1;0;Krzesiwo;Narzędzie do rozniecania ognia.;5;1;0;Lira;Instrument.;50;1;0;Lira korbowa;Używany w średniowieczu instrument smyczkowy.;2300;3;0;Lupa;Powiększa obraz ponad trzykrotnie. ;20;1;0;Lutnia;Instrument.;60;1;0;Mandolina;Instrument.;70;1;0;Mapa gwiazd;Specjalna mapa żeglarska.;1500;3;0;Mapa kontynentu;Mapa o niewielkim stopniu szczegółowości.;300;2;0;Mapa rzeczna;Mapa wykorzystywana przez przewoźników z zaznaczonymi przeszkodzami i wszelkimi odnogami rzek.;1200;3;0;Mapa terenu;Szczegółowa mapa okolicy.;100;2;0;Mapa wyspy;Szczegółowa mapa wyspy.;200;2;0;Mieszek na troku;Skórzany worek spięty na skórzanym pasku.;15;1;0;Mieszek skórzany;Niewielki skórzany worek.;10;1;0;Monokl na łańcuszku;Rodzaj okularów na jedno oko.;25;1;0;Okaryna;Rodzaj fletu o jajowatym kształcie.;20;1;0;Okulary przeciwsłoneczne;Ciemne szkła w srebrnej ramce.;80;2;0;Ozdobna spinka do włosów;Srebrna spinka.;4;2;0;Pergamin;Materiał do pisania, wyrabiany ze skór zwierzęcych.;12;2;20;Pęk wytrychów;Pęk metalowych wytrychów, służących do otwierania zamków w wypadku braku klucza.;10;1;0;Pochodnia;Pochodnia, w której materiałem świetlnym jest len nasączony substancją smolistą.;7;1;0;Portatyw;Przenośne organy, popularne w średniowieczu.;70;1;0;Portfel skórzany;Skórzany portfel dobrej jakości.;15;1;0;Portmonetka skórzana;Niewielka, skórzana portmonetka dobrej jakości.;10;1;0;Przybornik kowalski;Przybornik z narzędziami kowalskimi.;600;2;0;Przybornik kreślarski;Przybornik z narzędziami  kreślarskimi.;200;2;0;Przybornik medyczny;Przybornik z narzędziami medycznymi.;1500;3;0;Przybornik myśliwski;Przybornik z narzędziami myśliwskimi.;600;2;0;Przybornik szlifierski;Przybornik z narzędziami szlifierskimi.;600;2;0;Przybornik wędkarski;Przybornik z narzędziami wędkarskimi.;300;2;0;Przybornik złodziejski;Przybornik z narzędziami złodziejskimi.;400;2;0;Puzon;Instrument.;500;2;0;Rak;Nakładka na podeszwę buta, zwiększająca przyczepność na lodzie i śniegu za pomocą przyczepionych do niej kolców.;20;1;2;Róg;Instrument.;25;1;0;Składane zwierciadełko;Kieszonkowe lusterko.;30;2;0;Skrzypce;Instrument.;150;2;0;Spinka do włosów;Zwykła, tandetna spinka do włosów.;1;1;0;Srebrny zegarek na łańcuszku;Grawerowany, mechaniczny zegarek na łańuszku.;350;2;0;Szałamaja;Popularny w średniowieczu instrument dęty.;80;1;0;Szczegółowa mapa terenu;Mapa najbliższej okolicy o najwyższym stopniu szczegółowości.;100;2;0;Szkło powiększające;Szkło powiększające obraz nie więcej niż trzykrotnie.;20;1;0;Sztandar;"Specjalny, wojskowy sztandar; znak rozpoznawczy oddziału, gotowy do zamocowania płata.";200;1;0;Talia kart;Zwykła talia poniszczonych kart.;5;1;0;Talia kart w srebrnych obwolutach;Elegancka, bardzo dobrze wykonana talia kart. ;50;2;0;Talia kart w złotych obwolutach;Elegancka, bardzo dobrze wykonana talia kart. ;75;2;0;Talia zdobionych kart;Talia porządnie wykonanych kart.;25;1;0;Trąbka;Instrument.;90;1;0;Tuba na mapy;Skórzana tuba na mapy.;20;1;0;Waga kupiecka;Niedokładna waga z szalkami.;100;1;0;Waga precyzyjna;Bardzo dokładna waga z niewielkim zakresem błędu pomiarowego. ;900;3;0;Węgiel do pisania;Paczka węgla do pisania.;10;1;0;Wytrych;Przyrząd szlifierski służący do otwierania zamków bez pomocy klucza.;0,2;1;30;Zawieszka na glejt;Łańcuch z zaczepem na glejt.;8;1;0;Zegarek na łańcuszku;Mechaniczny zegarek na łańcuszku.;100;2;0;Zgrzebło;Grzebień do czesania sierści zwierzęcej.;12;1;0;Zwierciadełko na łańcuchu;Podręczne lusterko na łańcuchu.;30;2;0;Zwierciadło podręczne;Kieszonkowe lusterko.;22;2;0;Żyłka z włosia;Żyłka z końskiego włosia.;1;1;80;mSUBKTG;NARZĘDZIA;;;;Brzeszczot do drewna;Część tnąca piły.;6;1;0;Brzeszczot do metalu;Część tnąca piły.;8;1;0;Cep;Narzędzie zbudowane z dwóch kijów na rzemyku, służące do młócenia zboża.;10;1;0;Ciesak;Narzędzie ciesielskie.;15;2;0;Dłuto;Metalowy trzon na drewnianej rączce, służący do zrywania powierzchni materiału. ;5;1;0;Graca;Narzędzie rolnicze, służące do plewienia bądź płytkiego spulchniania ziemi.;10;1;0;Gwóźdź;10 cm;0,1;1;0;Kilof;Metalowe narzędzie o drewnianym stylisku, służące do kruszenia materiałow.;40;1;0;Kosa;Kosa o drewnianym stylisku. ;30;1;0;Kowadło;Kowadło kowalskie, bardzo ciężkie.;400;2;0;Łom;Metalowe, ciężkie narzędzie do wybijania lub wywarzania.;20;1;0;Łopata;Stalowa łopata z drewnianym styliskiem.;30;1;0;Łopata piekarska;Narzędzie służące wkładaniu wyrobów do pieca.;25;2;0;Mapa gwiazd;Mapa konstelacji gwiezdnych z oznaczeniami.;2000;3;0;Mapa portów;Mapa portów, bardzo pomoca w nawigacji morskiej.;850;2;0;Młot;Duży młot o drewnianym stylisku.;50;1;0;Młot kowalski;Porządnie wykonany młot o ciężkiej głowni.;80;1;0;Młotek;Niewielki młotek do przybijania.;20;1;0;Motyka;Narzędzie do spulchniania ziemi i plewienia.;25;1;0;Obcęgi;Narzędzie z metalowymi szczękami, służące do wyciągania bądź przecinania materiałów.;10;1;0;Paczka gwoździ;Sto sztuk, 10 cm. ;10;1;0;Paczka tytoniu;Paczka dobrej jakości tytoniu, nieotwarta.;90;2;0;Pilnik;Metalowe narzędzie służące do ścierania wierzchnej powierzchni materiału.;3;1;0;Piła do metalu;Niewielkich rozmiarów piła ręczna.;40;1;0;Piła ręczna;Niewielka piła do drewna.;20;1;0;Piła tartaczna;Wielka piła obsługiwana przez kilka osób.;300;2;0;Pobijak;Drewniany młot do pobijania dłuta.;10;1;0;Saperka;Lekka łopata podręczna.;15;1;0;Sieć;Pleciona sieć.;10;1;20;m2Siekiera;Stare narzędzie, służące do wycinki drzew.;50;1;0;Sierp;Narzędzie o zakrzywionym ostrzu, służące do prac żniwnych.;15;1;0;Suchy tytoń;Garść suchego tytoniu zwinięta w szmatkę.;2;1;0;Szpachla;Giętka blaszka na drewnianym trzonku, służąca do zdrapywania osadu z powierzchni materiału bądź nakładania mas szpachlowych.;8;1;0;Szpadel;Typ łopaty przeznaczony do kopania (w przeciwieństwie do czerpania i przenoszenia materiałów sypkich) o prostej łyżce.;8;1;0;Świder do drewna;Świder do wiercenia otworów w drewnie.;4;1;0;Tarnik;Pilnik do drewna.;4;1;0;Trok;Skórzany rzemyk, niekiedy zakończony pętlą.;3;1;0;Troki myśliwskie;Wielorzemykowe, skórzane pęta służące do przywiązywania zdobyczy.;30;2;0;Wędka;Przyrząd do łowienia ryb.;10;1;0;Widły;Narzędzie służące do przerzucania siana.;12;1;0;Wilgotny tytoń;Garść wilgotnego, pachnącego tytoniu, szczelnie zamknięta w jedwabnym woreczku. ;15;2;0;Żarno;Prosta maszyna do rozcierania ziarna.;150;2;0;SUBKTG;POJEMNIKI;;;;Bransoleta ze schowkiem;Srebrna bransoleta wyłożona kamieniami - pod którymi znajdują się pojemniki o śladowej pojemności.;180;3;0;Bukłak skórzany;Niewielki, skórzany bukłak, 1l pojemności.;15;1;0;Bukłak skórzany, duży;Duży skórzany bukłak, 4l pojemności.;50;1;0;Bukłak z lejkiem;Bukłak wkopywany na noc w ziemię, nabierający deszczu i rosy przez filtrowany lejek. Pojemność 2l.;90;1;0;Całun pogrzebowy;Materiał do owijania zmarłych przed pochówkiem. ;45;1;0;Dębowa trumna;Rzeźbiona, dobrze wykonana trumna dębowego drewna.;170;2;0;Drewniana skrzynia;Zwykła, drewniana skrzynia.;30;1;0;Drewniana skrzynia okuta metalem;Skrzynia zbudowana ze znakomitego drewna, dodatkowo okuta metalem - przez co bardzo wytrzymała. Wbudowany zamek.;100;1;0;Drewniana skrzynia z zamkiem;Dobrej jakości drewniana skrzynia, zabezpieczona zamkiem.;52;1;0;Drewniane puzderko;Ozdobny, niewielki pojemnik na szpargały.;3;1;0;Duży bukłak z kieszeniami.;Duży bukłak o pojemności 4l, obszyty dodatkowymi kieszeniami. ;90;1;0;Duży żelazny sejf;Potężny żelazny sejf z systemem zamków.;300;1;0;Dzielony bukłak;Bukłak z dwoma komorami na dwie różne ciecze, każda o pojemności 2l. ;90;2;0;Grawerowana metalowa szkatuła z zamkiem;Ozdobna szkatuła z niewielkim zamkiem.;20;2;0;Kamienny sarkofag;Rzeźbiony, ciężki sarkofag, wykonany z marmuru.;1200;3;0;Kufer okuty żelazem;Specjalnie zabezpieczony kufer podróżny z zamkiem.;160;2;0;Kufer z zamkiem;Kufer podróżny z zamkiem.;80;1;0;Mała drewniana skrzynia;Zwykła, drewniana skrzynia.;10;1;0;Mała drewniana skrzynia okuta metalem;Skrzynia zbudowana ze znakomitego drewna, dodatkowo okuta metalem - przez co bardzo wytrzymała. Wbudowany zamek.;50;1;0;Mała drewniana skrzynia z zamkiem;Dobrej jakości drewniana skrzynia, zabezpieczona zamkiem.;20;1;0;Mała metalowa skrzynia;Zwykła, metalowa skrzynia.;30;1;0;Mała metalowa skrzynia z zamkiem;Dobrej jakości metalowa skrzynia, zabezpieczona zamkiem.;60;1;0;Mała metalowa skrzynia ze wzmocnieniami;Skrzynia zbudowana z grubego metalu, dodatkowo wzmocniona od środka stalową kratownicą. Wbudowany zamek.;110;1;0;Metalowa skrzynia;Zwykła, metalowa skrzynia.;80;1;0;Metalowa skrzynia z zamkiem;Dobrej jakości metalowa skrzynia, zabezpieczona zamkiem.;140;1;0;Metalowa skrzynia ze wzmocnieniami;Skrzynia zbudowana z grubego metalu, dodatkowo wzmocniona od środka stalową kratownicą. Wbudowany zamek.;160;1;0;Metalowa szkatuła z zamkiem;Szkatuła z niewielkim zamkiem.;10;1;0;Metalowe puzderko;Ozdobny, niewielki pojemnik na szpargały.;5;1;0;Ogromna drewniana skrzynia;Dobrej jakości, potężna drewniana skrzynia.;120;1;0;Ogromna drewniana skrzynia okuta metalem;Potężna skrzynia zbudowana ze znakomitego drewna, dodatkowo okuta metalem. Wbudowane wsporniki zapobiegające wgnieceniu ścian i system zamków.;350;3;0;Ogromna drewniana skrzynia z zamkiem;Potężna drewniana skrzynia, zabezpieczona zamkiem.;180;2;0;Ogromna metalowa skrzynia;Dobrej jakości, potężna metalowa skrzynia.;200;2;0;Ogromna metalowa skrzynia z zamkiem;Potężna metalowa skrzynia, zabezpieczona zamkiem.;300;2;0;Ogromna metalowa skrzynia ze wzmocnieniami;Potężna skrzynia zbudowana z grubego metalu, dodatkowo wzmocniona od środka stalową kratownicą i wspornikami, zapobiegającymi wgnieceniu ścian. Zabezpieczona systemem zamków zewnętrznych i wewnętrznych.;800;3;0;Ozdobne pudełko na tytoń;Ładne, drewniane pudełko o wysokim stopniu izolacji wilgoci.;15;1;0;Pierścień z pojemnikiem;Srebrny pierścień z kamieniem - pod którym znajduje się szczelny pojemnik o śladowej pojemności. ;120;3;0;Portfel skórzany;Skórzany portfel dobrej jakości.;15;1;0;Portmomentka;Niewielka, skórzana portmonetka dobrej jakości.;10;1;0;Pudełko na tytoń;Drewniane pudełko, dobrze izolujące wilogoć.;9;1;0;Puzderko w kształcie serca;Metalowe, grawerowane puzderko w kształcie serca - z czerwonym szkiełkiem na spodzie.;10;1;0;Srebrna, grawerowana skrzynka;Srebrna, ozdobna skrzynka.;90;2;0;Szafka na klucze;Drewniana szafka do zawieszenia na ścianie.;16;1;0;Szkatuła;Niewielki, drewniany pojemnik na szpargały.;6;1;0;Szklany kufer;Kufer wykonany ze szkła, ze srebrnymi ramami. ;250;3;0;Szklany sarkofag;Przeszklony sarkofag pogrzebowy, wystawiany publicznie.;900;3;0;Trójdzielony bukłak ;Alchemiczny bukłak z trzema komorami, na trzy różne płyny, każdy po pojemności 1,5l. ;120;2;0;Worek na wodę;"Worek dobry do przenoszenia wody na krótkie dystanse; po czasie zaczyna przeciekać.";5;1;0;Żelazny sarkofag;Metlowy sarkofag, służący do suszenia zwłok. ;600;3;0;Żelazny sejf;Żelazny sejf z systemem zamków.;150;1;0;SUBKTG;ŻEGLARSKIE;;;;Bosak;Kij z hakiem, służy do manipulowania do przyciągania, odpychania łodzi.;25;1;0;Kotwica jachtowa;Stalowa kotwica, mogąca zaczepić jacht o dno.;600;2;0;Kotwica stalowa;Wielka, stalowa kotwica, przeznaczona na większe jednostki.;3000;3;0;Kotwiczka;Niewielka kotwiczka z linką - 5 m.;20;1;0;Lina cumownicza;Gruba lina służąca do umiejscowienia statku w porcie bądź jego holowania. ;20;2;15;mLina jedwabna;Zwykła, całkiem wytrzymała lina.;8;1;30;mLina konopna;Solidna lina.;15;1;20;mLuneta;Przyrząd optyczny.;400;2;0;Luneta teleskopowa;Podręczna, rozkładana luntera, wybierana często przez kapitanów jednostek morskich.;900;3;0;Osęk;Kij z hakiem, używany przez flisaków do prowadzenia niewielkich jednostek po rzece.;15;1;0;Prosiak;Obciążnik dla kotwicy.;1500;3;0;Sekstant;Przyrząd nawigacyjny na statkach.;300;2;0;Sieć rybacka;Specjalna sieć do połowu ryb.;30;2;20;m2Szekla;Metalowa klamra, służąca do łączenia elementów takielunku.;10;1;0;Śpiewnik z szantami;Zawiera utwory spisane lokalnym pismem. W skórzanej oprawce.;20;1;0;Zestaw wędek;Pięć związanych ze sobą wędek.;50;1;0;
