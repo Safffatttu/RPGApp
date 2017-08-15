@@ -11,7 +11,7 @@ import UIKit
 
 //var settingValues = [("Auto hide menu",true), ("Change currency",true)]
 
-var settingValues = ["Auto hide menu" : true, "Show price" :true]
+var settingValues = ["Auto hide menu": false, "Show price": true]
 
 protocol settingCellDelegate {
     
