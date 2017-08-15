@@ -10,7 +10,6 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var listOfItems = loadItemList(data: loadStringTableFromDataAsset(Data: "ITEMS"))
     var characterDetailViewController: CharacterDetailViewController? = nil
     
     
