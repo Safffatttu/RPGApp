@@ -89,13 +89,18 @@ func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]]{
 
 func changeCurrency(price: Double, currency: [(String,Double)]) -> String{
     var priceToRet = String()
-    
+
     var currentPrice = (currency.first?.1)! * price
-    
-    priceToRet.append(String(describing: floor(currentPrice)) + (currency.first?.0)!)
+    var toAppend = floor(currentPrice)
+    if(toAppend > 0){
+        priceToRet.append(forTailingZero(floor(currentPrice)) + (currency.first?.0)!)
+    }
     for i in 1...currency.count-1{
         currentPrice = currentPrice * currency[i].1
-        priceToRet.append(String(floor(currentPrice.truncatingRemainder(dividingBy: currency[i].1))) + currency[i].0)
+        toAppend = floor(currentPrice.truncatingRemainder(dividingBy: currency[i].1))
+        if( toAppend > 0){
+            priceToRet.append(" " + forTailingZero(toAppend) + currency[i].0)
+        }
     }
     return priceToRet
 }
@@ -170,3 +175,10 @@ func loadItemList(data: [[String?]]) -> itemList{
     print("Zakończono ładowanie listy przedmiotów")
     return itemList(items: listToRet, currency: currencyToRet, categories: categories)
 }
+
+func forTailingZero(_ temp: Double) -> String{
+    var tempVar = String(format: "%g", temp)
+    return tempVar
+}
+
+

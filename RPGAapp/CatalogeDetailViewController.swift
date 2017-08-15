@@ -117,17 +117,20 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         
         var priceToShow = String()
         
-        if settingValues["Show price"]! {
-            if listOfItems.items[cellAdress].price != nil {
-            priceToShow = changeCurrency(price: listOfItems.items[cellAdress].price!, currency: listOfItems.currency)
+        if  listOfItems.items[cellAdress].price != nil  {
+            if settingValues["Show price"]!{
+                priceToShow = changeCurrency(price: listOfItems.items[cellAdress].price!, currency: listOfItems.currency)
             }
-            else {
-                priceToShow = "Brak ceny"
+            else{
+                priceToShow = String(listOfItems.items[cellAdress].price!) + "PLN"
             }
+        }
+        else {
+            priceToShow = "Brak ceny"
+            print(listOfItems.items[cellAdress])
         }
 
         cell.priceLabel.text = priceToShow
-        
         
         cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
         cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
