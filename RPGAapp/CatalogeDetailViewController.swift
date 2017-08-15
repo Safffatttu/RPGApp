@@ -35,7 +35,7 @@ class catalogeDetailCell: UITableViewCell{
     }
     
     @IBAction func showInfoButton(_ sender: UIButton) {
-        cellDelegate?.sendItemButton(sender)
+        cellDelegate?.showInfoButton(sender)
     }
     
     @IBAction func sendItemButton(_ sender: UIButton) {
