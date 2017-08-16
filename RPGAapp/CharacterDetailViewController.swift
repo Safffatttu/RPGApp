@@ -33,11 +33,13 @@ class CharacterDetailViewController: UIViewController {
 }
 
 struct character {
-    var name : String?
+    var name : String
+    var health: Int
     var race : String?
     var profesion : String?
     var abilites : [String]?
-    var abilitesNames : [String]
+    var abilitesNames : [String]?
+    var items: [Int]?
 }
 
 
