@@ -71,6 +71,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         packageService.delegate = self
+        let characterToAppend = character(name: "Postać",health: 10, race: "a", profesion: nil, abilites: nil,abilitesNames: nil, items: [])
+        team.append(characterToAppend)
+        team.append(characterToAppend)
+        team.append(characterToAppend)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
     }
     
@@ -156,32 +160,63 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func showInfoButton(_ sender: UIButton){
-    }
-    
-    func sendItemButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
-        print(indexPath?.row)
         var cellAdress = Int()
         if (indexPath?.section != 0){
             for i in 0...(indexPath?.section)!-1{
                 cellAdress += (listOfItems.categories[i].1 - 1)
             }
+        }else{
+            cellAdress = (indexPath?.row)!
         }
-        //packageService.sendPackage(itemToDend: listOfItems.items[cellAdress])
         
-        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
+        
+        popController.preferredContentSize = CGSize(width: 300, height: 100)
         
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
         
         popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        popController.popoverPresentationController?.sourceRect = CGRect(x:self.view.bounds.minX, y: self.view.bounds.minY,width: 200,height: 200 )
+        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
+        (popController as! showItemInfoPopover).itemToShow = cellAdress
+        print(String(describing: indexPath?.row) + "as")
+        self.present(popController, animated: true, completion: nil)
+
+    
+    
+    }
+    
+    func sendItemButton(_ sender: UIButton){
+        let indexPath = getCurrentCellIndexPath(sender)
+
+        var cellAdress = Int()
+        if (indexPath?.section != 0){
+            for i in 0...(indexPath?.section)!-1{
+                cellAdress += (listOfItems.categories[i].1 - 1)
+            }
+        }else{
+            cellAdress = (indexPath?.row)!
+        }
+        //packageService.sendPackage(itemToDend: listOfItems.items[cellAdress])
         
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
+        
+        popController.preferredContentSize = CGSize(width: 300, height: 45 * team.count - 1 )
+        
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
+        (popController as! sendPopover).itemToSend = cellAdress
         self.present(popController, animated: true, completion: nil)
     }
-
 }
+
+
 
 
 extension catalogeDetail: PackageServiceDelegate{

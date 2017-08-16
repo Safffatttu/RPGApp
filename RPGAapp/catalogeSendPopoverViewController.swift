@@ -12,6 +12,7 @@ import FontAwesome_swift
 
 class sendPopover: UITableViewController, sendPopoverDelegate{
     
+    var itemToSend: Int = 0
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -22,6 +23,8 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sendPopoverCell") as! sendPopoverCell
+        cell.cellDelegate = self
+        
         cell.playerName.text = team[indexPath.row].name
         
         cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
@@ -39,7 +42,13 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     }
     
     func sendItem(_ sender: UIButton) {
-        print(getCurrentCellIndexPath(sender))
+        let playerNum = getCurrentCellIndexPath(sender)?.row
+        print(team[playerNum!].name)
+        team[playerNum!].items?.append(itemToSend)
+        for item in (team[playerNum!].items)!{
+            print(listOfItems.items[item].name)
+            
+        }
     }
     
 }
@@ -48,7 +57,7 @@ class sendPopoverCell: UITableViewCell{
     
     weak var cellDelegate: sendPopoverDelegate?
     
-    @IBAction func sendButton(_ sender: UIButton){
+    @IBAction func sendButtonAction(_ sender: UIButton){
         cellDelegate?.sendItem(sender)
     }
     

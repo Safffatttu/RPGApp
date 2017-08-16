@@ -510,31 +510,73 @@
             </objects>
             <point key="canvasLocation" x="3365.625" y="2194.53125"/>
         </scene>
+        <!--Show Item Info Popover-->
+        <scene sceneID="Tx7-Yc-G7w">
+            <objects>
+                <viewController storyboardIdentifier="showInfoPop" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aai-j2-H7u" customClass="showItemInfoPopover" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AOw-hl-Z1R"/>
+                        <viewControllerLayoutGuide type="bottom" id="gbQ-sk-7EW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OO8-is-Zg1">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sa4-Vt-9y8">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="22" name=".SFNSDisplay"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sa4-Vt-9y8" firstAttribute="top" secondItem="OO8-is-Zg1" secondAttribute="top" id="2KP-c2-D9A"/>
+                            <constraint firstItem="Sa4-Vt-9y8" firstAttribute="leading" secondItem="OO8-is-Zg1" secondAttribute="leading" id="nhq-Fz-ziU"/>
+                            <constraint firstItem="Sa4-Vt-9y8" firstAttribute="bottom" secondItem="gbQ-sk-7EW" secondAttribute="top" id="sbF-Yr-LMk"/>
+                            <constraint firstAttribute="trailing" secondItem="Sa4-Vt-9y8" secondAttribute="trailing" id="weY-5A-ykr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descritionText" destination="Sa4-Vt-9y8" id="pDH-fe-GwJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nsp-2g-rnK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3085.546875" y="3252.34375"/>
+        </scene>
         <!--Send Popover-->
         <scene sceneID="I9s-Sj-PRd">
             <objects>
-                <tableViewController storyboardIdentifier="sendPop" id="r8E-g9-R9t" customClass="sendPopover" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="w0w-T9-bn1">
+                <tableViewController storyboardIdentifier="sendPop" modalPresentationStyle="pageSheet" id="r8E-g9-R9t" customClass="sendPopover" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="1" sectionFooterHeight="1" id="w0w-T9-bn1">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sendPopoverCell" id="btc-eA-rE4" customClass="sendPopoverCell" customModule="RPGAapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
+                                <rect key="frame" x="0.0" y="1" width="1024" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="btc-eA-rE4" id="fsM-mU-3V9">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izQ-qO-7Ci">
-                                            <rect key="frame" x="973" y="6" width="46" height="30"/>
+                                            <rect key="frame" x="973" y="7.5" width="46" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <connections>
-                                                <action selector="sendButton:" destination="btc-eA-rE4" eventType="touchUpInside" id="wJO-pE-sk8"/>
+                                                <action selector="sendButtonAction:" destination="btc-eA-rE4" eventType="touchUpInside" id="Geq-pd-2WD"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCC-hM-QQ2">
-                                            <rect key="frame" x="13" y="10.5" width="42" height="21"/>
+                                            <rect key="frame" x="13" y="12" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -561,7 +603,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhd-m7-nb5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3365.625" y="3075.78125"/>
+            <point key="canvasLocation" x="3799" y="3213"/>
         </scene>
         <!--Random Item Detail View-->
         <scene sceneID="xwf-32-xoA">
