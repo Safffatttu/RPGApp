@@ -40,7 +40,6 @@ class TeamView: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? TeamViewCell else { return }
-        //print("ustawianie datasource")
         tableViewCell.setTableViewDataSourceDelegate(self, forRow: indexPath.row)
     }
 }
@@ -52,7 +51,6 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(team[tableView.tag].items?.count)
         return (team[tableView.tag].items?.count)!
     }
     
@@ -60,7 +58,6 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         let itemNum = team[tableView.tag].items?[indexPath.row]
         cell?.textLabel?.text = listOfItems.items[itemNum!].name
-        print("aa")
         print(listOfItems.items[itemNum!].name)
         return cell!
     }
