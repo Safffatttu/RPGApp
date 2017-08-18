@@ -62,7 +62,6 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
         cell?.textLabel?.text = listOfItems.items[itemNum!].name
         print("aa")
         print(listOfItems.items[itemNum!].name)
-        cell?.textLabel?.text = "123"
         return cell!
     }
     
