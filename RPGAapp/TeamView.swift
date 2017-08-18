@@ -14,7 +14,7 @@ var team = [character]()
 
 
 class TeamView: UICollectionViewController {
- 
+    
     override func viewDidLoad() {
         let characterToAppend = character(name: "Postać",health: 10, race: "a", profesion: nil, abilites: nil,abilitesNames: nil, items: [])
         team.append(characterToAppend)
@@ -55,11 +55,23 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-        let itemNum = team[tableView.tag].items?[indexPath.row]
-        cell?.textLabel?.text = listOfItems.items[itemNum!].name
-        print(listOfItems.items[itemNum!].name)
-        return cell!
+        //print(tableView.tag)
+        //print((tableView as UITableView).restorationIdentifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
+        
+        if (cell != nil) {
+            return cell!
+        }
+        
+        else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "abilityCell")
+            /*let itemNum = team[tableView.tag].items?[indexPath.row]
+            cell?.textLabel?.text = listOfItems.items[itemNum!].name
+            print(listOfItems.items[itemNum!].name)*/
+            print(indexPath.row)
+            cell?.textLabel?.text = String(indexPath.row)
+            return cell!
+        }
     }
     
     
@@ -67,29 +79,18 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
 
 class TeamViewCell: UICollectionViewCell {
     
-    @IBOutlet fileprivate weak var table: UITableView!
+    @IBOutlet var table: UITableView!
+    
+    @IBOutlet var ablilityTable: UITableView!
     
     func setTableViewDataSourceDelegate<D: UITableViewDataSource & UITableViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
         //print(dataSourceDelegate.description)
         table.delegate = dataSourceDelegate
         table.dataSource = dataSourceDelegate
         table.tag = row
-    }
-}
-
-class TeamTestTable: UITableView {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
-        cell?.textLabel?.text = String(indexPath.row)
-        return cell!
+        ablilityTable.delegate = dataSourceDelegate
+        ablilityTable.dataSource = dataSourceDelegate
+        ablilityTable.tag = row
     }
 }
 
