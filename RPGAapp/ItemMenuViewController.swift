@@ -93,18 +93,20 @@ class ItemMenu: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        print(segue.identifier)
         if segue.identifier == "showCatalogeDetailView"{
             let controller = (segue.destination as! UINavigationController).topViewController as! catalogeDetail
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
         if segue.identifier == "showRandomItemsView"{
+            print(segue.destination)
             let controller = (segue.destination as! UINavigationController).topViewController as! randomItemDetailView
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
         if segue.identifier == "showHandlarzeDetailView"{
+            print(segue.destination)
             let controller = (segue.destination as! UINavigationController).topViewController as! handlarzeDetailView
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true

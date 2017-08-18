@@ -11,8 +11,8 @@ import UIKit
 
 class handlarzeDetailView: UIViewController{
     
-    override func viewDidLoad() {
+    /*override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible
-    }
+    }*/
     
 }
