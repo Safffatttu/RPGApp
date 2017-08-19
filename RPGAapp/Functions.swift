@@ -122,9 +122,6 @@ func loadItemList(data: [[String?]]) -> itemList{
         }*/
         currencyToRet.append(subCurency as! (String, Double))
     }
-    for i in currencyToRet{
-        print(i.1)
-    }
     
 
     var listToRet = [item]()
@@ -132,7 +129,7 @@ func loadItemList(data: [[String?]]) -> itemList{
     var currentSubCategory = String()
     
     var categories = [(String,Int, [(String, Int)])] ()
-    
+
     for i in 1...data.count-2{
         if(data[i].first! == "KTG"){
             currentCategory = (data[i][1])!
@@ -143,6 +140,9 @@ func loadItemList(data: [[String?]]) -> itemList{
         
         if(data[i].first! == "SUBKTG"){
             currentSubCategory = (data[i][1])!
+            if(categories[categories.count-1].2.last?.0 == ""){
+                categories[categories.count-1].2.removeFirst()
+            }
             categories[categories.count-1].2.append((currentSubCategory,1))
             continue
         }
