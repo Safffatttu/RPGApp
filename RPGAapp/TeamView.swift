@@ -18,14 +18,20 @@ class TeamView: UICollectionViewController {
     override func viewDidLoad() {
         let addButton =  UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.rightBarButtonItem = addButton
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
         //self.splitViewController?.displayModeButtonItem = .
     }
     func addCharacter(_ sender: Any){
-        let characterToAppend = character(name: "Postać",health: 10, race: "a", profesion: nil, abilites: [("WW",42),("US",22)], items: [123,222])
-        team.append(characterToAppend)
-        self.collectionView?.reloadData()
+        
+        let addCharControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addCharacter")
+        addCharControler.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        self.present(addCharControler, animated: true, completion: nil)
     }
     
+    func reloadTeam(_ notification: Notification){
+        collectionView?.reloadData()
+    }
+
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -99,6 +105,10 @@ class TeamViewCell: UICollectionViewCell {
         ablilityTable.tag = row
     }
 }
+extension Notification.Name{
+    static let reloadTeam = Notification.Name("reloadTeam")
+}
+
 
 
 
