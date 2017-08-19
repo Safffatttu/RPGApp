@@ -18,18 +18,26 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return team.count
+        if (team.count > 0){
+            return team.count
+        }
+        else{
+            return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sendPopoverCell") as! sendPopoverCell
         cell.cellDelegate = self
-        
-        cell.playerName.text = team[indexPath.row].name
-        
-        cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
-        cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
-        
+        if (team.count > 0){
+            cell.playerName.text = team[indexPath.row].name
+            cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
+            cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
+        }
+        else{
+            cell.playerName.text = "Brak postaci"
+            cell.sendButton.isHidden = true
+        }
         return cell
     }
     

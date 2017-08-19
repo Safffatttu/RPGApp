@@ -71,10 +71,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         packageService.delegate = self
-        let characterToAppend = character(name: "Postać",health: 10, race: "a", profesion: nil, abilites: nil,abilitesNames: nil, items: [])
-        team.append(characterToAppend)
-        team.append(characterToAppend)
-        team.append(characterToAppend)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
     }
     
@@ -181,7 +177,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         popController.popoverPresentationController?.sourceView = sender
         popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
         (popController as! showItemInfoPopover).itemToShow = cellAdress
-        print(String(describing: indexPath?.row) + "as")
         self.present(popController, animated: true, completion: nil)
 
     
@@ -202,15 +197,26 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         //packageService.sendPackage(itemToDend: listOfItems.items[cellAdress])
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
+        /* Brzydki kod :( Chyba*/
+        var height =  Int()
+        var y = Int()
+        if (team.count > 0){
+            height = 45 * team.count - 1
+            y = 13
+        }
+        else{
+            height = 45
+            y = 24
+        }
         
-        popController.preferredContentSize = CGSize(width: 300, height: 45 * team.count - 1 )
+        popController.preferredContentSize = CGSize(width: 150, height: height)
         
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
         
         popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
+        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0 )
         (popController as! sendPopover).itemToSend = cellAdress
         self.present(popController, animated: true, completion: nil)
     }
