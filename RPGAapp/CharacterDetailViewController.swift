@@ -37,8 +37,7 @@ struct character {
     var health: Int
     var race : String?
     var profesion : String?
-    var abilites : [String]?
-    var abilitesNames : [String]?
+    var abilites : [(String,Int)]?
     var items: [Int]?
 }
 
