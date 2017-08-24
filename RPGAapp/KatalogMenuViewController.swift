@@ -31,7 +31,7 @@ class catalogeMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
-        cell?.textLabel?.text = listOfItems.categories[indexPath.section].2[indexPath.row].0
+        cell?.textLabel?.text = listOfItems.categories[indexPath.section].2[indexPath.row].0.capitalized
         return cell!
     }
     

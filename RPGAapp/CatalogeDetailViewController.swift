@@ -114,7 +114,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let subCategory = (orderedsubCtgs[section] as! String)
         let category = listOfItems.items.first{$0.subCategory == subCategory}?.category
-        return category! + ": " + subCategory
+        return category!.capitalized + " " + subCategory.lowercased()
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
