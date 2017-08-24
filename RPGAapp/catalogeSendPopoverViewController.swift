@@ -57,6 +57,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
             print(listOfItems.items[item].name)
             
         }
+        dismiss(animated: true, completion: nil)
     }
     
 }
