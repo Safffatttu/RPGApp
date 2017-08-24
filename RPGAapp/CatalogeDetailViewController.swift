@@ -77,7 +77,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection), name: .goToSectionCataloge, object: nil)
         orderedsubCtgs = NSOrderedSet(array: subCtgs).array as NSArray
-        orderedsubCtgs.sorted(by: {String(describing: $0) > String(describing: $1)})
+        //orderedsubCtgs.sorted(by: {String(describing: $0) > String(describing: $1)})
         var currentOfSet = Int()
         for i in 0...NSOrderedSet(array: subCtgs).count-1{
             currentOfSet += listOfItems.items.filter({$0.subCategory == orderedsubCtgs[i] as! String }).count
@@ -112,7 +112,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return orderedsubCtgs[section] as! String
+        let subCategory = (orderedsubCtgs[section] as! String)
+        let category = listOfItems.items.first{$0.subCategory == subCategory}?.category
+        return category! + ": " + subCategory
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
