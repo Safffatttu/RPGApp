@@ -63,21 +63,38 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    let packageService = PackageService()
+    //let packageService = PackageService()
     
+    var subCtgs = listOfItems.items.map({$0.subCategory})
     var currentSubCategory: String = ""
     let iconSize: CGFloat = 20
+    var orderedsubCtgs = NSArray()
+    var cellAdresses = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        packageService.delegate = self
+        //packageService.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(goToSection), name: .goToSectionCataloge, object: nil)
+        orderedsubCtgs = NSOrderedSet(array: subCtgs).array as NSArray
+        orderedsubCtgs.sorted(by: {String(describing: $0) > String(describing: $1)})
+        var currentOfSet = Int()
+        for i in 0...NSOrderedSet(array: subCtgs).count-1{
+            currentOfSet += listOfItems.items.filter({$0.subCategory == orderedsubCtgs[i] as! String }).count
+            cellAdresses.append(currentOfSet)
+        }
     }
     
     func reloadTableData(_ notification: Notification) {
         tableView.reloadData()
     }
     
+    func goToSection(_ notification: Notification) {
+        let toGo = IndexPath(row: 0, section: goToLocation)
+        tableView.scrollToRow(at: toGo, at: UITableViewScrollPosition.top, animated: true)
+        
+    }
+
     func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
         let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
         if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
@@ -87,31 +104,36 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return listOfItems.categories.count
+        return orderedsubCtgs.count
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfItems.categories[section].1 - 1
-        
+        return listOfItems.items.filter({$0.subCategory == orderedsubCtgs[section] as! String }).count
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return listOfItems.categories[section].0
+        return orderedsubCtgs[section] as! String
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! catalogeDetailCell
         var cellAdress = Int()
-        if (indexPath.section != 0){
+        /*if (indexPath.section > 0){
             for i in 0...indexPath.section-1{
-                cellAdress += (listOfItems.categories[i].1 - 1)
+                if i > listOfItems.categories[catNum].2.count
+                {
+                    catNum += 1
+                }
+            cellAdress += (listOfItems.categories[catNum].2.count - 1)
             }
+        }*/
+        if indexPath.section > 0 {
+            cellAdress = cellAdresses[indexPath.section - 1 ]
         }
         cellAdress += indexPath.row
         
         cell.cellDelegate = self
         cell.tag = cellAdress
-        
         
         cell.nameLabel.text = listOfItems.items[cellAdress].name
         
@@ -158,13 +180,17 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func showInfoButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
         var cellAdress = Int()
-        if (indexPath?.section != 0){
+        /*if (indexPath?.section != 0){
             for i in 0...(indexPath?.section)!-1{
                 cellAdress += (listOfItems.categories[i].1 - 1)
             }
         }else{
             cellAdress = (indexPath?.row)!
+        }*/
+        if (indexPath?.section)! > 0 {
+            cellAdress = cellAdresses[(indexPath?.section)! - 1 ]
         }
+        cellAdress += (indexPath?.row)!
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
@@ -187,13 +213,17 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         let indexPath = getCurrentCellIndexPath(sender)
 
         var cellAdress = Int()
-        if (indexPath?.section != 0){
+        /*if (indexPath?.section != 0){
             for i in 0...(indexPath?.section)!-1{
                 cellAdress += (listOfItems.categories[i].1 - 1)
             }
         }else{
             cellAdress = (indexPath?.row)!
+        }*/
+        if (indexPath?.section)! > 0 {
+            cellAdress = cellAdresses[(indexPath?.section)! - 1 ]
         }
+        cellAdress += (indexPath?.row)!
         //packageService.sendPackage(itemToDend: listOfItems.items[cellAdress])
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
