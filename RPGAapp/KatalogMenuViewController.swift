@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-
+var goToLocation =  Int()
 
 class catalogeMenu: UITableViewController {
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     
@@ -23,7 +24,8 @@ class catalogeMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfItems.categories[section].2.count - 1
+        let subCategoriesInSection = NSSet(array: listOfItems.items.filter({$0.category == listOfItems.categories[section].0}).map({$0.subCategory}))
+        return subCategoriesInSection.count
         
     }
     
@@ -38,6 +40,18 @@ class catalogeMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        goToLocation = 0
+        if indexPath.section > 0{
+            for i in 0...indexPath.section - 1{
+                goToLocation += NSSet(array: listOfItems.items.filter({$0.category == listOfItems.categories[i].0}).map({$0.subCategory})).count
+            }
+        }
+        goToLocation += indexPath.row
+        NotificationCenter.default.post(name: .goToSectionCataloge, object: nil)
     }
     
 }
+extension Notification.Name{
+    static let goToSectionCataloge = Notification.Name("goToSectionCataloge")
+}
+
