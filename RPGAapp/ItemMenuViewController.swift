@@ -99,7 +99,7 @@ class ItemMenu: UITableViewController {
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
-        if segue.identifier == "showRandomItemsView"{
+        if segue.identifier == "showRandomItemDetailView"{
             print(segue.destination)
             let controller = (segue.destination as! UINavigationController).topViewController as! randomItemDetailView
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
