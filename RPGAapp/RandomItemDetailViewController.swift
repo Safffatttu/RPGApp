@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class randomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate{
+class randomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate, UIPopoverPresentationControllerDelegate{
     
     let iconSize: CGFloat = 20
     
@@ -40,6 +40,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell") as! randomItemCell
+        
         if randomlySelected.count > 0{
             cell.nameLabel.text = listOfItems.items[randomlySelected[indexPath.row]].name
             var priceToShow = String()
@@ -68,6 +69,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             cell.packageButton.isHidden = true
         }
         
+        cell.cellDelegate = self
         
         cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
         cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
@@ -90,9 +92,52 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func showInfoButton(_ sender: UIButton){
+        let indexPath = getCurrentCellIndexPath(sender)
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
+        
+        popController.preferredContentSize = CGSize(width: 300, height: 100)
+
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
+        (popController as! showItemInfoPopover).itemToShow = randomlySelected[(indexPath?.row)!]
+        self.present(popController, animated: true, completion: nil)
     }
     
     func sendItemButton(_ sender: UIButton){
+        let indexPath = getCurrentCellIndexPath(sender)
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
+        var height =  Int()
+        var y = Int()
+        if (team.count > 0){
+            height = 45 * team.count - 1
+            y = 13
+        }
+        else{
+            height = 45
+            y = 24
+        }
+
+        popController.preferredContentSize = CGSize(width: 150, height: height)
+        
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0 )
+        (popController as! sendPopover).itemToSend = randomlySelected[(indexPath?.row)!]
+        self.present(popController, animated: true, completion: nil)
+    }
+    
+    func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
+        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
+        if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
+            return indexPath
+        }
+        return nil
     }
 }
 
