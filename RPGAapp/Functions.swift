@@ -53,6 +53,25 @@ func weightedRandomElement<T>(items: [(T, UInt)]) -> T {
     fatalError("This should never be reached")
 }
 
+func weightedRandom(items: [(item)], weightTotal: UInt) -> item {
+    /*function by
+     Martin R
+     https://codereview.stackexchange.com/questions/112605/weighted-probability-problem-in-swift
+     */
+    
+    precondition(weightTotal > 0, "The sum of the weights must be positive")
+    
+    let rand = UInt(arc4random_uniform(UInt32(weightTotal)))
+    
+    var sum = UInt(0)
+    for item in items {
+        sum += UInt(item.rarity!)
+        if rand < sum {
+            return item
+        }
+    }
+    fatalError("This should never be reached")
+}
 
 func loadStringTableFromDataAsset(Data: String) -> [[String]]{
     let table = NSDataAsset.init(name: Data)

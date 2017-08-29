@@ -42,19 +42,23 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell") as! randomItemCell
         
         if randomlySelected.count > 0{
-            cell.nameLabel.text = listOfItems.items[randomlySelected[indexPath.row]].name
+            //cell.nameLabel.text = listOfItems.items[randomlySelected[indexPath.row]].name
+            cell.nameLabel.text = randomlySelected[indexPath.row].name
             var priceToShow = String()
-            if  listOfItems.items[randomlySelected[indexPath.row]].price != nil  {
+            //if  listOfItems.items[randomlySelected[indexPath.row]].price != nil  {
+            if  randomlySelected[indexPath.row].price != nil  {
                 if settingValues["Show price"]!{
-                    priceToShow = changeCurrency(price: listOfItems.items[randomlySelected[indexPath.row]].price!, currency: listOfItems.currency)
+                    //priceToShow = changeCurrency(price: listOfItems.items[randomlySelected[indexPath.row]].price!, currency: listOfItems.currency)
+                    priceToShow = changeCurrency(price: randomlySelected[indexPath.row].price!, currency: listOfItems.currency)
                 }
                 else{
-                    priceToShow = String(listOfItems.items[randomlySelected[indexPath.row]].price!) + "PLN"
+                    //priceToShow = String(listOfItems.items[randomlySelected[indexPath.row]].price!) + "PLN"
+                    priceToShow = String(randomlySelected[indexPath.row].price!) + "PLN"
                 }
             }
             else {
                 priceToShow = "Brak ceny"
-                print(listOfItems.items[randomlySelected[indexPath.row]])
+                print(randomlySelected[indexPath.row])
             }
             cell.priceLabel.text = priceToShow
             
@@ -102,7 +106,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
-        (popController as! showItemInfoPopover).itemToShow = randomlySelected[(indexPath?.row)!]
+        (popController as! showItemInfoPopover).item = randomlySelected[(indexPath?.row)!]
         self.present(popController, animated: true, completion: nil)
     }
     
@@ -128,7 +132,8 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0 )
-        (popController as! sendPopover).itemToSend = randomlySelected[(indexPath?.row)!]
+        (popController as! sendPopover).itemToSend = listOfItems.items.index{$0.name == (randomlySelected[(indexPath?.row)!] as item).name}!
+        //let a = listOfItems.items.index{$0.name == (randomlySelected[(indexPath?.row)!] as item).name}
         self.present(popController, animated: true, completion: nil)
     }
     
