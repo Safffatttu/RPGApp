@@ -12,13 +12,13 @@ import UIKit
 class showItemInfoPopover: UIViewController {
     
     var itemToShow: Int = 0
-    
+    var item: item? = nil
     @IBOutlet weak var descritionText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(itemToShow)
-        descritionText.text = listOfItems.items[itemToShow].description
+        //descritionText.text = listOfItems.items[itemToShow].description
+        descritionText.text = item?.description
     }
     
 }

@@ -12,7 +12,7 @@ import FontAwesome_swift
 
 class sendPopover: UITableViewController, sendPopoverDelegate{
     
-    var itemToSend: Int = 0
+    var item: item? = nil
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -52,11 +52,11 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     func sendItem(_ sender: UIButton) {
         let playerNum = getCurrentCellIndexPath(sender)?.row
         print(team[playerNum!].name)
-        team[playerNum!].items?.append(itemToSend)
-        for item in (team[playerNum!].items)!{
+        team[playerNum!].items?.append(item!)
+        /*for item in (team[playerNum!].items)!{
             print(listOfItems.items[item].name)
             
-        }
+        }*/
         dismiss(animated: true, completion: nil)
     }
     

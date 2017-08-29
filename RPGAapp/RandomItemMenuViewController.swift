@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
+let propabilities: [UInt] = [100,800,90,9,1]
 var randomlySelected = [item]()
 class randomItemMenu: UITableViewController {
     
     fileprivate let drawQueue = DispatchQueue(label: "com.SS.RPGAapp")
     
     
-    let losowania = [("Broń", drawType.category,"BROŃ",10000), ("Broń biała", drawType.subCategory,"BIAŁA",2)]
+    let losowania = [("Broń", drawType.category,"BROŃ",100000), ("Broń biała", drawType.subCategory,"BIAŁA",2)]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return  1
@@ -48,7 +49,7 @@ class randomItemMenu: UITableViewController {
         }
         //print(listOfItems.items.filter({$0.category == range}).filter({$0.rarity! > 4}))
         //print(NSSet(array: listOfItems.items.filter({$0.category == "BROŃ"}).map({$0.quantity})))
-        let itemsToDraw: [item]
+        var itemsToDraw: [item]
         switch type{
             case .category:
                 itemsToDraw = listOfItems.items.filter({$0.category == range})
@@ -56,6 +57,11 @@ class randomItemMenu: UITableViewController {
             case .subCategory:
                 itemsToDraw = listOfItems.items.filter({$0.subCategory == range})
             }
+        
+        itemsToDraw = itemsToDraw.map{var a = $0
+            a.rarity = propabilities[Int($0.rarity! - 1)]
+            return a
+        }
         
         let weightTotal = UInt(itemsToDraw.map{$0.rarity!}.reduce(0, +))
         for _ in 1...numberOf{

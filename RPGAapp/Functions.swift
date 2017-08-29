@@ -169,7 +169,7 @@ func loadItemList(data: [[String?]]) -> itemList{
         let name = data[i].first!!
         let description = data[i][1]
         let price = Double(data[i][2]!)
-        var rarity: Int? =  Int(data[i][3]!)
+        var rarity: UInt? =  UInt(data[i][3]!)
         
         if (rarity == nil || (rarity! >= 0 && rarity! <= 3)){
             rarity = 1

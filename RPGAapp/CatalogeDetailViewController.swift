@@ -204,7 +204,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
-        (popController as! showItemInfoPopover).itemToShow = cellAdress
+        (popController as! showItemInfoPopover).item = listOfItems.items[cellAdress]
         self.present(popController, animated: true, completion: nil)
 
     
@@ -249,7 +249,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0 )
-        (popController as! sendPopover).itemToSend = cellAdress
+        (popController as! sendPopover).item = listOfItems.items[cellAdress]
         self.present(popController, animated: true, completion: nil)
     }
 }

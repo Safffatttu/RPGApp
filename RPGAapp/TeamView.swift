@@ -72,8 +72,8 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
         if (cell != nil) {
-            let itemNum = team[tableView.tag].items?[indexPath.row]
-            cell?.textLabel?.text = listOfItems.items[itemNum!].name
+            let item = team[tableView.tag].items?[indexPath.row]
+            cell?.textLabel?.text = item?.name
             return cell!
         }
         

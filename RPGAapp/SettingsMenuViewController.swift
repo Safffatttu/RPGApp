@@ -40,6 +40,7 @@ class SettingMenu: UITableViewController, settingCellDelegate {
             print(keys[indexPath.row])
             if keys[indexPath.row] == "Show price" {
                 NotificationCenter.default.post(name: .reload, object: nil)
+                NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
             }
         }
     }

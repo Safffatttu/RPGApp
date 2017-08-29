@@ -132,7 +132,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0 )
-        (popController as! sendPopover).itemToSend = listOfItems.items.index{$0.name == (randomlySelected[(indexPath?.row)!] as item).name}!
+        (popController as! sendPopover).item = randomlySelected[(indexPath?.row)!]
         //let a = listOfItems.items.index{$0.name == (randomlySelected[(indexPath?.row)!] as item).name}
         self.present(popController, animated: true, completion: nil)
     }

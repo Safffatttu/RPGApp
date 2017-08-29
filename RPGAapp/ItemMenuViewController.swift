@@ -15,7 +15,7 @@ struct item{
     var subCategory: String
     var description: String?
     var price : Double?
-    var rarity: Int?
+    var rarity: UInt?
     var quantity: Int?
     var measure: String?
     
@@ -94,6 +94,8 @@ class ItemMenu: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print(segue.identifier)
+        print(segue.description)
+        //print(navigationController?.topViewController)
         if segue.identifier == "showCatalogeDetailView"{
             let controller = (segue.destination as! UINavigationController).topViewController as! catalogeDetail
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
