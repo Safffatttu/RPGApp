@@ -22,6 +22,7 @@
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
 		3B43879A1F48A116003F67B9 /* addCharacterModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4387991F48A116003F67B9 /* addCharacterModalViewController.swift */; };
 		3B4626A01F3A6DA1002B7AF3 /* ItemDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */; };
+		3B50DBBE1F5637790071DF2B /* sendAllPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
 		3B7B159D1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */; };
@@ -51,6 +52,7 @@
 		3B3C05301F3BC1D600CFB002 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3B4387991F48A116003F67B9 /* addCharacterModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCharacterModalViewController.swift; sourceTree = "<group>"; };
 		3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewControler.swift; sourceTree = "<group>"; };
+		3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sendAllPopoverViewController.swift; sourceTree = "<group>"; };
 		3B50DC011F40EB6B0040DCCC /* MPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPManager.swift; sourceTree = "<group>"; };
 		3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemDetailViewController.swift; sourceTree = "<group>"; };
 		3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlarzeDetailViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				3B7D23041F43468D00A86F3E /* catalogeSendPopoverViewController.swift */,
+				3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */,
 				3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */,
 				3B4387991F48A116003F67B9 /* addCharacterModalViewController.swift */,
 			);
@@ -300,6 +303,7 @@
 				3B31B3E61F3B67A6003526E1 /* KatalogMenuViewController.swift in Sources */,
 				3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */,
 				3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */,
+				3B50DBBE1F5637790071DF2B /* sendAllPopoverViewController.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
 				3B43879A1F48A116003F67B9 /* addCharacterModalViewController.swift in Sources */,
 				3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */,

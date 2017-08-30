@@ -144,6 +144,32 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         }
         return nil
     }
+    @IBAction func sendAll(_ sender: UIButton) {
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendAllPop")
+        var height =  Int()
+        var y = Int()
+        if (team.count > 0){
+            height = 45 * team.count - 1
+            y = 13
+        }
+        else{
+            height = 45
+            y = 24
+        }
+        
+        popController.preferredContentSize = CGSize(width: 150, height: height)
+        
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        popController.popoverPresentationController?.sourceRect = CGRect(x:20, y: y,width: 0,height: 0 )
+
+        self.present(popController, animated: true, completion: nil)
+ 
+        //team[0].items? += randomlySelected
+    }
 }
 
 class randomItemCell: UITableViewCell{
