@@ -142,7 +142,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         var priceToShow = String()
         
         if  listOfItems.items[cellAdress].price != nil  {
-            if settingValues["Show price"]!{
+            if UserDefaults.standard.bool(forKey: "Show price"){
                 priceToShow = changeCurrency(price: listOfItems.items[cellAdress].price!, currency: listOfItems.currency)
             }
             else{

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+
 
 class MasterViewController: UITableViewController {
 
@@ -15,10 +17,17 @@ class MasterViewController: UITableViewController {
     
     var menuItems = [("Items","showItemMenu"), ("TeamView","showTeamView"), ("Map", "showMap"), ("Settings" ,"showSettings")]
     
-
+    
     override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible
         //splitViewController.preferredDisplayMode = .primaryOverlay
+        let defaults = UserDefaults.standard
+        for setting in settingValues{
+            if defaults.bool(forKey: setting.key) == nil{
+                print(settingValues)
+                defaults.set(setting.value, forKey: setting.key)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,7 +41,7 @@ class MasterViewController: UITableViewController {
             
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
-            if settingValues["Auto hide menu"]!{
+            if UserDefaults.standard.bool(forKey: "Auto hide menu"){
                 self.splitViewController?.preferredDisplayMode = .primaryHidden
             }
         }
@@ -41,7 +50,7 @@ class MasterViewController: UITableViewController {
             
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
-            if settingValues["Auto hide menu"]!{
+            if UserDefaults.standard.bool(forKey: "Auto hide menu"){
                 self.splitViewController?.preferredDisplayMode = .primaryHidden
             }
         }

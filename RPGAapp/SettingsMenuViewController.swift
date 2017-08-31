@@ -9,9 +9,6 @@
 import Foundation
 import UIKit
 
-//var settingValues = [("Auto hide menu",true), ("Change currency",true)]
-
-var settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false]
 
 protocol settingCellDelegate {
     
@@ -31,14 +28,16 @@ class settingMenuCell: UITableViewCell{
     
 }
 
+let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false]
 class SettingMenu: UITableViewController, settingCellDelegate {
-    let keys = Array(settingValues.keys)
+    
+
+    let keys = Array(UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}))
     
     func touchedSwitch(_ sender: UISwitch) {
         if let indexPath = getCurrentCellIndexPath(sender) {
-            settingValues[keys[indexPath.row]] = sender.isOn
-            print(keys[indexPath.row])
-            if keys[indexPath.row] == "Show price" {
+            UserDefaults.standard.set(sender.isOn, forKey: keys[indexPath.row].key)
+            if keys[indexPath.row].key == "Show price" {
                 NotificationCenter.default.post(name: .reload, object: nil)
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
             }
@@ -47,7 +46,7 @@ class SettingMenu: UITableViewController, settingCellDelegate {
 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingValues.count
+        return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count
     }
     
     func getCurrentCellIndexPath(_ sender: UISwitch) -> IndexPath? {
@@ -60,8 +59,8 @@ class SettingMenu: UITableViewController, settingCellDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! settingMenuCell
-        cell.settingLabel.text = keys[indexPath.row]
-        cell.settingSwitch.setOn(settingValues[keys[indexPath.row]]!, animated: false)
+        cell.settingLabel.text = keys[indexPath.row].key
+        cell.settingSwitch.setOn(UserDefaults.standard.bool(forKey: keys[indexPath.row].key), animated: false)
         cell.delegate = self
         return cell
     }

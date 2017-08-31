@@ -44,7 +44,7 @@ class randomItemMenu: UITableViewController {
     }
     
     func drawItems(type: drawType, range: String, numberOf: Int){
-        if !(settingValues["Dodawaj do listy wylosowanych"]!) {
+        if !(UserDefaults.standard.bool(forKey: "Dodawaj do listy wylosowanych")) {
             randomlySelected = []
         }
         //print(listOfItems.items.filter({$0.category == range}).filter({$0.rarity! > 4}))
