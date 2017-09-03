@@ -72,11 +72,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     var subCategories: [SubCategory] = []
     
     let iconSize: CGFloat = 20
-    
-    let sortByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
-    let sortBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
-    let sortByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         //packageService.delegate = self
@@ -84,25 +80,27 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection), name: .goToSectionCataloge, object: nil)
 
         let context = CoreDataStack.managedObjectContext
-        let itemfetch: NSFetchRequest<Item> = Item.fetchRequest()
+        let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         
-        itemfetch.sortDescriptors = [sortByCategory,sortBySubCategory,sortByName]
+        itemFetch.sortDescriptors = [sortItemByCategory,sortItemBySubCategory,sortItemByName]
+        
         do{
-            items = try context.fetch(itemfetch)
+            items = try context.fetch(itemFetch)
         }
         catch{
            print("error fetching")
         }
         
-        subCategoryFetch.sortDescriptors = [sortByCategory,sortByName]
+        subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
+        
         do{
             subCategories = try context.fetch(subCategoryFetch)
         }
         catch{
             print("error fetching")
         }
-        
+        print(subCategories.map{$0.name})
     }
     
     func reloadTableData(_ notification: Notification) {
@@ -111,8 +109,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func goToSection(_ notification: Notification) {
         let toGo = IndexPath(row: 0, section: goToLocation)
-        tableView.scrollToRow(at: toGo, at: UITableViewScrollPosition.top, animated: true)
-        
+        tableView.scrollToRow(at: toGo, at: .top, animated: true)
     }
 
     func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
@@ -132,7 +129,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
         let category = subCategories[section].category?.name
         let subCategory = subCategories[section].name
         return category!.capitalized + " " + subCategory!.lowercased()
@@ -141,7 +137,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! catalogeDetailCell
         
-        let cellItem = subCategories[indexPath.section].items?.sortedArray(using: [sortByName])[indexPath.row] as! Item
+        let cellItem = subCategories[indexPath.section].items?.sortedArray(using: [sortItemByName])[indexPath.row] as! Item
          
         cell.cellDelegate = self
         cell.item = cellItem
@@ -191,7 +187,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func showInfoButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
 
-        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortByName])[(indexPath?.row)!] as! Item
+        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortItemByName])[(indexPath?.row)!] as! Item
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
@@ -208,7 +204,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func sendItemButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
        
-        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortByName])[(indexPath?.row)!] as! Item
+        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortItemByName])[(indexPath?.row)!] as! Item
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
         
@@ -223,21 +219,17 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 }
 
-
-
-
 extension catalogeDetail: PackageServiceDelegate{
     
     func connectedDevicesChanged(manager: PackageService, connectedDevices: [String]) {
         print("connections\(connectedDevices)")
     }
+    
     func colorChanged(manager: PackageService, String: String) {
         OperationQueue.main.addOperation {
             print(String)
         }
     }
-    
-    
 }
 
 

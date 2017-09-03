@@ -8,45 +8,69 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 var goToLocation =  Int()
 
 class catalogeMenu: UITableViewController {
     
+    var categories: [Category] = []
+    var subCategories: [SubCategory] = []
+    
+    let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
+    let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
     
     override func viewDidLoad() {
+        
+        let context = CoreDataStack.managedObjectContext
+        
+        subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
+        do{
+            subCategories = try context.fetch(subCategoryFetch) as [SubCategory]
+        }
+        catch{
+            print("error fetching")
+        }
+        
+        categoryFetch.sortDescriptors = [sortCategoryByName]
+        do{
+            categories = try context.fetch(categoryFetch) as [Category]
+        }
+        catch{
+            print("error fetching")
+        }
+        
+        print(subCategories.map({$0.name}))
+        
         super.viewDidLoad()
     }
     
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return listOfItems.categories.count
+        return categories.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let subCategoriesInSection = NSSet(array: listOfItems.items.filter({$0.category == listOfItems.categories[section].0}).map({$0.subCategory}))
-        return subCategoriesInSection.count
-        
+        return (categories[section].subCateogories?.count)!
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
-        cell?.textLabel?.text = listOfItems.categories[indexPath.section].2[indexPath.row].0.capitalized
+        let cellSubCategory = categories[indexPath.section].subCateogories?.sortedArray(using: [sortSubCategoryByCategory,sortSubCategoryByName])[indexPath.row] as! SubCategory
+        cell?.textLabel?.text = cellSubCategory.name?.capitalized
         return cell!
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return listOfItems.categories[section].0
+        return categories[section].name
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         goToLocation = 0
-        if indexPath.section > 0{
-            for i in 0...indexPath.section - 1{
-                goToLocation += NSSet(array: listOfItems.items.filter({$0.category == listOfItems.categories[i].0}).map({$0.subCategory})).count
-            }
-        }
-        goToLocation += indexPath.row
+
+        let cellSubCategory = categories[indexPath.section].subCateogories?.sortedArray(using: [sortSubCategoryByCategory,sortSubCategoryByName])[indexPath.row] as! SubCategory
+        
+        goToLocation = subCategories.index(where: {$0.name == cellSubCategory.name})!
+        
         NotificationCenter.default.post(name: .goToSectionCataloge, object: nil)
     }
     
