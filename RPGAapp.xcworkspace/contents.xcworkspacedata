@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "container:"
+      name = "Data Classes">
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Item+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Item+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Package+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Category+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Category+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/SubCategory+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/SubCategory+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Package+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Package+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Character+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Character+CoreDataProperties.swift">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:RPGAapp.xcodeproj">
    </FileRef>
