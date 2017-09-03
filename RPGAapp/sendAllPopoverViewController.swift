@@ -14,14 +14,25 @@ import CoreData
 class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
-        let context = CoreDataStack.managedObjectContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Character")
+        reloadCoreData()
         
-        do {
-            newTeam = try context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+        var height =  Int()
+        var y = Int()
+        let team: [Int] = []
+        if (team.count > 0){
+            height = 45 * team.count - 1
+            y = 13
         }
+        else{
+            height = 45
+            y = 24
+        }
+        
+        self.preferredContentSize = CGSize(width: 150, height: height)
+        self.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0)
+        self.popoverPresentationController?.permittedArrowDirections = .right
+        
+        super.viewWillAppear(animated)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,8 +73,8 @@ class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
     
     func sendItem(_ sender: UIButton) {
         let playerNum = getCurrentCellIndexPath(sender)?.row
-        let senTo = newTeam[playerNum!] as! Character
-        senTo.addToEquipment(NSOrderedSet(array: randomlySelected))
+        let sendTo = newTeam[playerNum!] as! Character
+        sendTo.addToEquipment(NSOrderedSet(array: randomlySelected))
         CoreDataStack.saveContext()
         dismiss(animated: true, completion: nil)
     }

@@ -11,14 +11,23 @@ import UIKit
 
 class showItemInfoPopover: UIViewController {
     
-    var itemToShow: Int = 0
-    var item: item? = nil
+    var item: Item? = nil
     @IBOutlet weak var descritionText: UILabel!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.modalPresentationStyle = .popover
+        
+        self.preferredContentSize = CGSize(width: 300, height: 100)
+        self.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0)
+        self.popoverPresentationController?.permittedArrowDirections = .right
+        
+        super.viewWillAppear(animated)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //descritionText.text = listOfItems.items[itemToShow].description
-        descritionText.text = item?.description
+        descritionText.text = item?.item_description
     }
     
 }
