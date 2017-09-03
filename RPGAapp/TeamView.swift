@@ -8,10 +8,9 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-
-var team = [character]()
-
+var newTeam = [NSManagedObject]()
 
 class TeamView: UICollectionViewController {
     
@@ -20,7 +19,9 @@ class TeamView: UICollectionViewController {
         self.navigationItem.rightBarButtonItem = addButton
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
         //self.splitViewController?.displayModeButtonItem = .
+        reloadCoreData()
     }
+    
     func addCharacter(_ sender: Any){
         
         let addCharControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addCharacter")
@@ -29,21 +30,22 @@ class TeamView: UICollectionViewController {
     }
     
     func reloadTeam(_ notification: Notification){
+        reloadCoreData()
         collectionView?.reloadData()
     }
 
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return team.count
+        return newTeam.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TeamViewCell
-        (cell.viewWithTag(1) as! UILabel).text = team[indexPath.row].name
+        let person = newTeam[indexPath.row] as! Character
+        (cell.viewWithTag(1) as! UILabel).text = person.name
         return cell
     }
     
@@ -62,26 +64,28 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
         if (cell != nil){
-            return (team[tableView.tag].items?.count)!
+            return (newTeam[tableView.tag] as! Character).equipment!.count
         }
         else{
-            return (team[tableView.tag].abilites?.count)!
+            return 1
         }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
         if (cell != nil) {
-            let item = team[tableView.tag].items?[indexPath.row]
-            cell?.textLabel?.text = item?.name
+            let equipment = (newTeam[tableView.tag] as! Character).equipment!.array as! [Item]
+            print(equipment.count)
+            cell?.textLabel?.text = equipment[indexPath.row].name
             return cell!
         }
         
         else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "abilityCell")
-            let ablility = team[tableView.tag].abilites?[indexPath.row]
-            let abilityToShow = (ablility?.0)! + ": " + String(describing: (ablility?.1)!)
-            cell?.textLabel?.text = abilityToShow
+          //  let ablility = team[tableView.tag].abilites?[indexPath.row]
+            //let abilityToShow = (ablility?.0)! + ": " + String(describing: (ablility?.1)!)
+            //cell?.textLabel?.text = abilityToShow
             return cell!
         }
     }
