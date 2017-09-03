@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 import FontAwesome_swift
+import CoreData
 
 class catalogeDetailCell: UITableViewCell{
+    
+    var item: Item? = nil
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -65,24 +68,41 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //let packageService = PackageService()
     
-    var subCtgs = listOfItems.items.map({$0.subCategory})
-    var currentSubCategory: String = ""
+    var items: [Item] = []
+    var subCategories: [SubCategory] = []
+    
     let iconSize: CGFloat = 20
-    var orderedsubCtgs = NSArray()
-    var cellAdresses = [Int]()
+    
+    let sortByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
+    let sortBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
+    let sortByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //packageService.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection), name: .goToSectionCataloge, object: nil)
-        orderedsubCtgs = NSOrderedSet(array: subCtgs).array as NSArray
-        //orderedsubCtgs.sorted(by: {String(describing: $0) > String(describing: $1)})
-        var currentOfSet = Int()
-        for i in 0...NSOrderedSet(array: subCtgs).count-1{
-            currentOfSet += listOfItems.items.filter({$0.subCategory == orderedsubCtgs[i] as! String }).count
-            cellAdresses.append(currentOfSet)
+
+        let context = CoreDataStack.managedObjectContext
+        let itemfetch: NSFetchRequest<Item> = Item.fetchRequest()
+        let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+        
+        itemfetch.sortDescriptors = [sortByCategory,sortBySubCategory,sortByName]
+        do{
+            items = try context.fetch(itemfetch)
         }
+        catch{
+           print("error fetching")
+        }
+        
+        subCategoryFetch.sortDescriptors = [sortByCategory,sortByName]
+        do{
+            subCategories = try context.fetch(subCategoryFetch)
+        }
+        catch{
+            print("error fetching")
+        }
+        
     }
     
     func reloadTableData(_ notification: Notification) {
@@ -104,54 +124,43 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return orderedsubCtgs.count
+        return subCategories.count
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfItems.items.filter({$0.subCategory == orderedsubCtgs[section] as! String }).count
+        return (subCategories[section].items?.count)!
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let subCategory = (orderedsubCtgs[section] as! String)
-        let category = listOfItems.items.first{$0.subCategory == subCategory}?.category
-        return category!.capitalized + " " + subCategory.lowercased()
+
+        let category = subCategories[section].category?.name
+        let subCategory = subCategories[section].name
+        return category!.capitalized + " " + subCategory!.lowercased()
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! catalogeDetailCell
-        var cellAdress = Int()
-        /*if (indexPath.section > 0){
-            for i in 0...indexPath.section-1{
-                if i > listOfItems.categories[catNum].2.count
-                {
-                    catNum += 1
-                }
-            cellAdress += (listOfItems.categories[catNum].2.count - 1)
-            }
-        }*/
-        if indexPath.section > 0 {
-            cellAdress = cellAdresses[indexPath.section - 1 ]
-        }
-        cellAdress += indexPath.row
         
+        let cellItem = subCategories[indexPath.section].items?.sortedArray(using: [sortByName])[indexPath.row] as! Item
+         
         cell.cellDelegate = self
-        cell.tag = cellAdress
+        cell.item = cellItem
         
-        cell.nameLabel.text = listOfItems.items[cellAdress].name
+        cell.nameLabel.text = cellItem.name
         
         var priceToShow = String()
         
-        if  listOfItems.items[cellAdress].price != nil  {
+        if  cellItem.price != nil  {
             if UserDefaults.standard.bool(forKey: "Show price"){
-                priceToShow = changeCurrency(price: listOfItems.items[cellAdress].price!, currency: listOfItems.currency)
+                priceToShow = changeCurrency(price: cellItem.price, currency: listOfItems.currency)
             }
             else{
-                priceToShow = String(listOfItems.items[cellAdress].price!) + "PLN"
+                priceToShow = String(cellItem.price) + "PLN"
             }
         }
         else {
             priceToShow = "Brak ceny"
-            print(listOfItems.items[cellAdress])
+            print(cellItem.price)
         }
 
         cell.priceLabel.text = priceToShow
@@ -181,75 +190,35 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func showInfoButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
-        var cellAdress = Int()
-        /*if (indexPath?.section != 0){
-            for i in 0...(indexPath?.section)!-1{
-                cellAdress += (listOfItems.categories[i].1 - 1)
-            }
-        }else{
-            cellAdress = (indexPath?.row)!
-        }*/
-        if (indexPath?.section)! > 0 {
-            cellAdress = cellAdresses[(indexPath?.section)! - 1 ]
-        }
-        cellAdress += (indexPath?.row)!
+
+        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortByName])[(indexPath?.row)!] as! Item
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
-        popController.preferredContentSize = CGSize(width: 300, height: 100)
+        popController.modalPresentationStyle = .popover
         
-        popController.modalPresentationStyle = UIModalPresentationStyle.popover
-        
-        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
-        (popController as! showItemInfoPopover).item = listOfItems.items[cellAdress]
-        self.present(popController, animated: true, completion: nil)
+        
+        (popController as! showItemInfoPopover).item = cellItem
 
-    
-    
+        self.present(popController, animated: true, completion: nil)
     }
     
     func sendItemButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
-
-        var cellAdress = Int()
-        /*if (indexPath?.section != 0){
-            for i in 0...(indexPath?.section)!-1{
-                cellAdress += (listOfItems.categories[i].1 - 1)
-            }
-        }else{
-            cellAdress = (indexPath?.row)!
-        }*/
-        if (indexPath?.section)! > 0 {
-            cellAdress = cellAdresses[(indexPath?.section)! - 1 ]
-        }
-        cellAdress += (indexPath?.row)!
-        //packageService.sendPackage(itemToDend: listOfItems.items[cellAdress])
+       
+        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortByName])[(indexPath?.row)!] as! Item
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
-        /* Brzydki kod :( Chyba*/
-        var height =  Int()
-        var y = Int()
-        if (team.count > 0){
-            height = 45 * team.count - 1
-            y = 13
-        }
-        else{
-            height = 45
-            y = 24
-        }
         
-        popController.preferredContentSize = CGSize(width: 150, height: height)
+        popController.modalPresentationStyle = .popover
         
-        popController.modalPresentationStyle = UIModalPresentationStyle.popover
-        
-        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0 )
-        (popController as! sendPopover).item = listOfItems.items[cellAdress]
+        
+        (popController as! sendPopover).item = cellItem
+
         self.present(popController, animated: true, completion: nil)
     }
 }
