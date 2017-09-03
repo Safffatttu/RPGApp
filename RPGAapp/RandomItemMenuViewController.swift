@@ -47,10 +47,7 @@ class randomItemMenu: UITableViewController {
             randomlySelected = []
         }
 
-        //let fetch =  NSFetchRequest<Item>(entityName: "Item")
         var itemsToDraw: [Item] = []
-        let sortByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
-        let sortBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
         let context = CoreDataStack.managedObjectContext
         
         switch type{
@@ -58,40 +55,29 @@ class randomItemMenu: UITableViewController {
                 let fetchRequest = NSFetchRequest<Category>(entityName: NSStringFromClass(Category))
                 fetchRequest.predicate = NSPredicate(format: "name == %@", range)
                 do{
-                    itemsToDraw = try (context.fetch(fetchRequest).first as! Category).items?.sortedArray(using: [sortByName]) as! [Item]
-                    //itemsToDraw = try (CoreDataStack.managedObjectContext.fetch(fetch).first!).items?.sortedArray(using: [sortByName,sortBySubCategory]) as! [Item]
+                    itemsToDraw = try (context.fetch(fetchRequest).first!).items?.sortedArray(using: [sortItemByName]) as! [Item]
                 }
                 catch{
                     print("Error")
                 }
             
             case .subCategory:
-                let fetchRequest = NSFetchRequest<SubCategory>(entityName: NSStringFromClass(SubCategory))
+                let fetchRequest = NSFetchRequest<SubCategory>(entityName: NSStringFromClass(SubCategory.self))
                 fetchRequest.predicate = NSPredicate(format: "name == %@", range)
                 do{
-                    itemsToDraw = try (context.fetch(fetchRequest).first as! Category).items?.sortedArray(using: [sortByName]) as! [Item]
-                    //itemsToDraw = try (CoreDataStack.managedObjectContext.fetch(fetch).first!).items?.sortedArray(using: [sortByName,sortBySubCategory]) as! [Item]
+                    itemsToDraw = try (context.fetch(fetchRequest).first!).items?.sortedArray(using: [sortItemByName]) as! [Item]
                 }
                 catch{
                     print("Error")
                 }
         }
- 
-        /*do{
-            itemsToDraw = try CoreDataStack.managedObjectContext.fetch(fetch)
-        }
-        catch{
-            print("Error")
-        }*/
-      
-        print(itemsToDraw)
+
         itemsToDraw = itemsToDraw.map{
-            $0.rarity = propabilities[Int(Int(($0 as! Item).rarity) - 1)]
+            $0.propability = propabilities[Int(Int(($0).rarity) - 1)]
             return $0
         }
         
-        //let weightTotal = Int((itemsToDraw as! [(Item,UInt)]).map{$0.1}.reduce(0, +))
-        let weightTotal = Int (itemsToDraw.map{$0.rarity}.reduce(0, +))
+        let weightTotal = Int (itemsToDraw.map{$0.propability}.reduce(0, +))
         for _ in 1...numberOf{
             let newItem = drawItem(items: itemsToDraw, weightTotal: weightTotal)
             randomlySelected.append(newItem)
