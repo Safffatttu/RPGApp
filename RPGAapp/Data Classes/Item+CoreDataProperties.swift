@@ -22,6 +22,7 @@ extension Item {
     @NSManaged public var price: Double
     @NSManaged public var quantity: Int16
     @NSManaged public var rarity: Int16
+    @NSManaged public var propability: Int16
     @NSManaged public var category: Category?
     @NSManaged public var subCategory: SubCategory?
 
