@@ -50,12 +50,12 @@ class catalogeMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (categories[section].subCateogories?.count)!
+        return (categories[section].subCategories?.count)!
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
-        let cellSubCategory = categories[indexPath.section].subCateogories?.sortedArray(using: [sortSubCategoryByCategory,sortSubCategoryByName])[indexPath.row] as! SubCategory
+        let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [sortSubCategoryByCategory,sortSubCategoryByName])[indexPath.row] as! SubCategory
         cell?.textLabel?.text = cellSubCategory.name?.capitalized
         return cell!
     }
@@ -67,7 +67,7 @@ class catalogeMenu: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         goToLocation = 0
 
-        let cellSubCategory = categories[indexPath.section].subCateogories?.sortedArray(using: [sortSubCategoryByCategory,sortSubCategoryByName])[indexPath.row] as! SubCategory
+        let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [sortSubCategoryByCategory,sortSubCategoryByName])[indexPath.row] as! SubCategory
         
         goToLocation = subCategories.index(where: {$0.name == cellSubCategory.name})!
         
