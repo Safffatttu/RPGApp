@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class addCharacter: UIViewController {
-    
     
     @IBOutlet weak var nameField: UITextField!
     
@@ -29,16 +29,25 @@ class addCharacter: UIViewController {
     override func viewDidLoad() {
         self.preferredContentSize = CGSize(width: 300, height: 400)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addCharacter(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView(_:)))
         hpField.text = String(describing: Int(hpStepper.value)) + "HP"
     }
     
+    func dismissView(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     func addCharacter(_ sender: UIBarButtonItem){
-        let newCharacter = character(name: nameField.text!, health: Int(hpStepper.value), race: raceField.text, profesion: profesionField.text, abilites: [], items: [])
-        team.append(newCharacter)
+        guard nameField.text != "" else {
+            return
+        }
+        let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext)
+        newCharacter.setValue(nameField.text!, forKey: #keyPath(Character.name))
+        newCharacter.setValue(hpStepper.value, forKey: #keyPath(Character.health))
+        CoreDataStack.saveContext()
+        
         NotificationCenter.default.post(name: .reloadTeam, object: nil)
         dismiss(animated: true, completion: nil)
-        
     }
 }
