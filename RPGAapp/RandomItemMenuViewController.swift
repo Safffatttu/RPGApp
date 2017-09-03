@@ -8,9 +8,10 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-let propabilities: [UInt] = [100,800,90,9,1]
-var randomlySelected = [item]()
+let propabilities: [Int16] = [100,800,90,9,1]
+var randomlySelected = [Item]()
 class randomItemMenu: UITableViewController {
     
     fileprivate let drawQueue = DispatchQueue(label: "com.SS.RPGAapp")
@@ -35,10 +36,8 @@ class randomItemMenu: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         drawQueue.async {
             self.drawItems(type: self.losowania[indexPath.row].1, range: self.losowania[indexPath.row].2, numberOf: self.losowania[indexPath.row].3)
-            print("asd")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
-                print("dd")
             }
         }
     }
@@ -47,32 +46,60 @@ class randomItemMenu: UITableViewController {
         if !(UserDefaults.standard.bool(forKey: "Dodawaj do listy wylosowanych")) {
             randomlySelected = []
         }
-        //print(listOfItems.items.filter({$0.category == range}).filter({$0.rarity! > 4}))
-        //print(NSSet(array: listOfItems.items.filter({$0.category == "BROŃ"}).map({$0.quantity})))
-        var itemsToDraw: [item]
+
+        //let fetch =  NSFetchRequest<Item>(entityName: "Item")
+        var itemsToDraw: [Item] = []
+        let sortByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
+        let sortBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
+        let context = CoreDataStack.managedObjectContext
+        
         switch type{
             case .category:
-                itemsToDraw = listOfItems.items.filter({$0.category == range})
-
+                let fetchRequest = NSFetchRequest<Category>(entityName: NSStringFromClass(Category))
+                fetchRequest.predicate = NSPredicate(format: "name == %@", range)
+                do{
+                    itemsToDraw = try (context.fetch(fetchRequest).first as! Category).items?.sortedArray(using: [sortByName]) as! [Item]
+                    //itemsToDraw = try (CoreDataStack.managedObjectContext.fetch(fetch).first!).items?.sortedArray(using: [sortByName,sortBySubCategory]) as! [Item]
+                }
+                catch{
+                    print("Error")
+                }
+            
             case .subCategory:
-                itemsToDraw = listOfItems.items.filter({$0.subCategory == range})
-            }
-        
-        itemsToDraw = itemsToDraw.map{var a = $0
-            a.rarity = propabilities[Int($0.rarity! - 1)]
-            return a
+                let fetchRequest = NSFetchRequest<SubCategory>(entityName: NSStringFromClass(SubCategory))
+                fetchRequest.predicate = NSPredicate(format: "name == %@", range)
+                do{
+                    itemsToDraw = try (context.fetch(fetchRequest).first as! Category).items?.sortedArray(using: [sortByName]) as! [Item]
+                    //itemsToDraw = try (CoreDataStack.managedObjectContext.fetch(fetch).first!).items?.sortedArray(using: [sortByName,sortBySubCategory]) as! [Item]
+                }
+                catch{
+                    print("Error")
+                }
+        }
+ 
+        /*do{
+            itemsToDraw = try CoreDataStack.managedObjectContext.fetch(fetch)
+        }
+        catch{
+            print("Error")
+        }*/
+      
+        print(itemsToDraw)
+        itemsToDraw = itemsToDraw.map{
+            $0.rarity = propabilities[Int(Int(($0 as! Item).rarity) - 1)]
+            return $0
         }
         
-        let weightTotal = UInt(itemsToDraw.map{$0.rarity!}.reduce(0, +))
+        //let weightTotal = Int((itemsToDraw as! [(Item,UInt)]).map{$0.1}.reduce(0, +))
+        let weightTotal = Int (itemsToDraw.map{$0.rarity}.reduce(0, +))
         for _ in 1...numberOf{
             let newItem = drawItem(items: itemsToDraw, weightTotal: weightTotal)
-            //randomlySelected.append(listOfItems.items.index{$0.name == newItem.name}!)
             randomlySelected.append(newItem)
         }
         return
     }
     
-    func drawItem(items: [item],weightTotal: UInt) -> item{
+    func drawItem(items: [Item],weightTotal: Int) -> Item{
         return weightedRandom(items: items,weightTotal: weightTotal)
     }
     

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class randomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate, UIPopoverPresentationControllerDelegate{
     
@@ -49,11 +50,11 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             if  randomlySelected[indexPath.row].price != nil  {
                 if UserDefaults.standard.bool(forKey: "Show price"){
                     //priceToShow = changeCurrency(price: listOfItems.items[randomlySelected[indexPath.row]].price!, currency: listOfItems.currency)
-                    priceToShow = changeCurrency(price: randomlySelected[indexPath.row].price!, currency: listOfItems.currency)
+                    priceToShow = changeCurrency(price: randomlySelected[indexPath.row].price, currency: listOfItems.currency)
                 }
                 else{
                     //priceToShow = String(listOfItems.items[randomlySelected[indexPath.row]].price!) + "PLN"
-                    priceToShow = String(randomlySelected[indexPath.row].price!) + "PLN"
+                    priceToShow = String(randomlySelected[indexPath.row].price) + "PLN"
                 }
             }
             else {
@@ -115,8 +116,8 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
         var height =  Int()
         var y = Int()
-        if (team.count > 0){
-            height = 45 * team.count - 1
+        if (newTeam.count > 0){
+            height = 45 * newTeam.count - 1
             y = 13
         }
         else{
@@ -133,7 +134,6 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.sourceView = sender
         popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0 )
         (popController as! sendPopover).item = randomlySelected[(indexPath?.row)!]
-        //let a = listOfItems.items.index{$0.name == (randomlySelected[(indexPath?.row)!] as item).name}
         self.present(popController, animated: true, completion: nil)
     }
     
@@ -148,8 +148,8 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendAllPop")
         var height =  Int()
         var y = Int()
-        if (team.count > 0){
-            height = 45 * team.count - 1
+        if (newTeam.count > 0){
+            height = 45 * newTeam.count - 1
             y = 13
         }
         else{
@@ -167,9 +167,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.sourceRect = CGRect(x:20, y: y,width: 0,height: 0 )
 
         self.present(popController, animated: true, completion: nil)
- 
-        //team[0].items? += randomlySelected
-    }
+     }
 }
 
 class randomItemCell: UITableViewCell{
