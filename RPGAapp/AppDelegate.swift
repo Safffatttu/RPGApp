@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             if item.subCategory != currentSubCategory{
                 currentSubCategory = item.subCategory
                 newSubCategory = NSEntityDescription.insertNewObject(forEntityName: "SubCategory", into: context) as! SubCategory
-                newSubCategory!.name = currentSubCategory
+                newSubCategory!.setValue(currentSubCategory, forKey: #keyPath(SubCategory.name))
+                newCategory!.addToSubCateogories(newSubCategory!)
             }
             
             let itemToSave = NSEntityDescription.insertNewObject(forEntityName: "Item", into: context)
