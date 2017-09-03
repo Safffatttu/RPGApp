@@ -21,6 +21,7 @@ extension Character {
     @NSManaged public var race: String?
     @NSManaged public var equipment: NSOrderedSet?
 
+    let className = NSStringFromClass(Category.self)
 }
 
 // MARK: Generated accessors for equipment
