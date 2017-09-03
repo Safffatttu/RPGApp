@@ -53,7 +53,7 @@ func weightedRandomElement<T>(items: [(T, UInt)]) -> T {
     fatalError("This should never be reached")
 }
 
-func weightedRandom(items: [(item)], weightTotal: UInt) -> item {
+func weightedRandom(items: [Item], weightTotal: Int) -> Item {
     /*function by
      Martin R
      https://codereview.stackexchange.com/questions/112605/weighted-probability-problem-in-swift
@@ -61,11 +61,11 @@ func weightedRandom(items: [(item)], weightTotal: UInt) -> item {
     
     precondition(weightTotal > 0, "The sum of the weights must be positive")
     
-    let rand = UInt(arc4random_uniform(UInt32(weightTotal)))
+    let rand = Int(arc4random_uniform(UInt32(weightTotal)))
     
-    var sum = UInt(0)
+    var sum = Int(0)
     for item in items {
-        sum += UInt(item.rarity!)
+        sum += Int(item.propability)
         if rand < sum {
             return item
         }
@@ -196,8 +196,14 @@ func loadItemList(data: [[String?]]) -> itemList{
 }
 
 func forTailingZero(_ temp: Double) -> String{
-    var tempVar = String(format: "%g", temp)
-    return tempVar
+    return String(format: "%g", temp)
 }
 
+let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
+let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
+let sortItemByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
 
+let sortSubCategoryByName = NSSortDescriptor(key: #keyPath(SubCategory.name), ascending: true)
+let sortSubCategoryByCategory = NSSortDescriptor(key: #keyPath(SubCategory.category), ascending: true)
+
+let sortCategoryByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
