@@ -3,13 +3,23 @@
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="category" inverseEntity="Item" syncable="YES"/>
-        <relationship name="subCateogories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
+        <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="Character" representedClassName="Character" syncable="YES" codeGenerationType="class">
         <attribute name="health" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Item" syncable="YES"/>
+    </entity>
+    <entity name="DrawSettings" representedClassName="DrawSettings" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="subSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrawSubSetting" syncable="YES"/>
+    </entity>
+    <entity name="DrawSubSetting" representedClassName="DrawSubSetting" syncable="YES" codeGenerationType="class">
+        <attribute name="itemsToDraw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
+        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="item_description" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,14 +38,16 @@
     </entity>
     <entity name="SubCategory" representedClassName="SubCategory" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCateogories" inverseEntity="Category" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
         <relationship name="items" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="subCategory" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="351" positionY="-45" width="128" height="90"/>
+        <element name="Category" positionX="333" positionY="-27" width="128" height="90"/>
         <element name="Character" positionX="-236" positionY="131" width="128" height="103"/>
+        <element name="DrawSettings" positionX="900" positionY="90" width="128" height="73"/>
         <element name="Item" positionX="90" positionY="63" width="108" height="180"/>
         <element name="Package" positionX="-144" positionY="-45" width="128" height="75"/>
-        <element name="SubCategory" positionX="378" positionY="198" width="128" height="88"/>
+        <element name="SubCategory" positionX="297" positionY="261" width="128" height="88"/>
+        <element name="DrawSubSetting" positionX="702" positionY="84" width="128" height="105"/>
     </elements>
 </model>
