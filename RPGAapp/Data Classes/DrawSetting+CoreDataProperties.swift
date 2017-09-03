@@ -1,5 +1,5 @@
 //
-//  DrawSettings+CoreDataProperties.swift
+//  DrawSetting+CoreDataProperties.swift
 //  
 //
 //  Created by Jakub on 03.09.2017.
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension DrawSettings {
+extension DrawSetting {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<DrawSettings> {
-        return NSFetchRequest<DrawSettings>(entityName: "DrawSettings")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<DrawSetting> {
+        return NSFetchRequest<DrawSetting>(entityName: "DrawSetting")
     }
 
     @NSManaged public var name: String?
@@ -22,7 +22,7 @@ extension DrawSettings {
 }
 
 // MARK: Generated accessors for subSettings
-extension DrawSettings {
+extension DrawSetting {
 
     @objc(addSubSettingsObject:)
     @NSManaged public func addToSubSettings(_ value: DrawSubSetting)
