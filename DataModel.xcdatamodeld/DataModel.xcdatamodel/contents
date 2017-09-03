@@ -2,8 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="category" inverseEntity="Item" syncable="YES"/>
-        <relationship name="subCateogories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="category" inverseEntity="Item" syncable="YES"/>
+        <relationship name="subCateogories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="Character" representedClassName="Character" syncable="YES" codeGenerationType="class">
         <attribute name="health" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -16,6 +16,7 @@
         <attribute name="measure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="propability" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rarity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
@@ -28,13 +29,13 @@
     <entity name="SubCategory" representedClassName="SubCategory" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCateogories" inverseEntity="Category" syncable="YES"/>
-        <relationship name="items" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="subCategory" inverseEntity="Item" syncable="YES"/>
+        <relationship name="items" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="subCategory" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Category" positionX="351" positionY="-45" width="128" height="90"/>
         <element name="Character" positionX="-236" positionY="131" width="128" height="103"/>
-        <element name="Item" positionX="90" positionY="63" width="108" height="163"/>
+        <element name="Item" positionX="90" positionY="63" width="108" height="180"/>
         <element name="Package" positionX="-144" positionY="-45" width="128" height="75"/>
-        <element name="Category" positionX="387" positionY="-0" width="128" height="88"/>
-        <element name="SubCategory" positionX="396" positionY="216" width="128" height="88"/>
+        <element name="SubCategory" positionX="378" positionY="198" width="128" height="88"/>
     </elements>
 </model>
