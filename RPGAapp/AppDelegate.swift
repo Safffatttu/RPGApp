@@ -66,6 +66,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             newCategory!.addToItems(itemToSave as! Item)
             newSubCategory!.addToItems(itemToSave as! Item)
         }
+        
+        var newSetting: DrawSetting
+        var newSubSetting: DrawSubSetting
+        
+        newSubSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
+        newSubSetting.itemsToDraw = 10
+        newSubSetting.category = newCategory
+        
+        newSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
+        newSetting.setValue("Broń", forKey: #keyPath(DrawSetting.name))
+        newSetting.addToSubSettings(newSubSetting)
+        
+        /*------------------------------------------------------*/
+        
+        var newSetting2: DrawSetting
+        var newSubSetting2: DrawSubSetting
+      
+        newSubSetting2 = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
+        newSubSetting2.subCategory = newSubCategory
+        newSubSetting2.itemsToDraw = 4
+        
+        newSetting2 = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
+        newSetting2.setValue("Inna broń", forKey: #keyPath(DrawSetting.name))
+        newSetting2.addToSubSettings(newSubSetting2)
+        
+        
         CoreDataStack.saveContext()
         return
     }
@@ -100,14 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 }
             }
         }
-        
-        
-        
-        
-        
-        
-        
-        
+               
         return false
         
         
