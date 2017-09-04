@@ -311,7 +311,7 @@
         <scene sceneID="hnk-Zf-2pi">
             <objects>
                 <navigationController id="S6X-FX-ZXN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0K4-3N-T66">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0K4-3N-T66">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -327,7 +327,7 @@
         <scene sceneID="qp8-9j-QTc">
             <objects>
                 <navigationController id="uL0-b7-9Bc" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Etb-NT-wxV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Etb-NT-wxV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -908,7 +908,7 @@
         <scene sceneID="2I1-H5-N86">
             <objects>
                 <collectionViewController id="i43-Aj-Vf2" customClass="TeamView" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" id="N43-wO-ILd">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="black" dataMode="prototypes" id="N43-wO-ILd">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1016,7 +1016,7 @@
         <scene sceneID="aac-L7-IiH">
             <objects>
                 <navigationController id="dGt-rw-rF7" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xCQ-Un-uGj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xCQ-Un-uGj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1032,7 +1032,7 @@
         <scene sceneID="22q-Le-Frp">
             <objects>
                 <navigationController id="sJi-kv-4vj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="97x-1z-sHB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="97x-1z-sHB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1048,7 +1048,7 @@
         <scene sceneID="Ked-jA-bZM">
             <objects>
                 <navigationController id="ql2-IU-CCY" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W9h-1h-drq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="W9h-1h-drq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1064,7 +1064,7 @@
         <scene sceneID="r7l-gg-dq7">
             <objects>
                 <navigationController storyboardIdentifier="detail1Nav" title="detail1Nav" id="vC3-pB-5Vb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="DjV-YW-jjY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1082,7 +1082,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a0z-H3-ndm" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Mj-RF-dgr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2Mj-RF-dgr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1100,7 +1100,7 @@
             <objects>
                 <navigationController storyboardIdentifier="addCharacter" automaticallyAdjustsScrollViewInsets="NO" id="xeG-P3-guC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hSV-iY-A0A">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hSV-iY-A0A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1166,6 +1166,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Csl-CG-JDV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4875" y="2940"/>
+        </scene>
+        <!--Add To Package-->
+        <scene sceneID="Dsd-2R-zoc">
+            <objects>
+                <tableViewController storyboardIdentifier="addToPackage" modalPresentationStyle="pageSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tfy-Dy-6h6" customClass="addToPackage" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WSc-jW-QNj">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="bottom" selectionStyle="default" indentationWidth="10" reuseIdentifier="packageCell" id="gIq-4B-zmq" customClass="packageCell" customModule="RPGAapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gIq-4B-zmq" id="Q8c-TB-11o">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifz-sj-M7a">
+                                            <rect key="frame" x="717" y="7" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="addToPackge:" destination="gIq-4B-zmq" eventType="touchUpInside" id="E7u-dH-r7d"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekm-57-2wz">
+                                            <rect key="frame" x="13" y="12" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ekm-57-2wz" firstAttribute="leading" secondItem="Q8c-TB-11o" secondAttribute="leadingMargin" constant="5" id="A27-Hi-8xx"/>
+                                        <constraint firstItem="ifz-sj-M7a" firstAttribute="centerY" secondItem="Q8c-TB-11o" secondAttribute="centerY" id="Bv8-PX-TXZ"/>
+                                        <constraint firstItem="ekm-57-2wz" firstAttribute="centerY" secondItem="ifz-sj-M7a" secondAttribute="centerY" id="Z7u-ps-crC"/>
+                                        <constraint firstAttribute="trailing" secondItem="ifz-sj-M7a" secondAttribute="trailing" constant="5" id="nrb-Jn-wSm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="packageName" destination="ekm-57-2wz" id="C0w-5l-V9u"/>
+                                    <outlet property="sendButton" destination="ifz-sj-M7a" id="dXZ-zp-IpU"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="bottomRight" selectionStyle="default" indentationWidth="10" reuseIdentifier="newPackageCell" id="gsa-gh-OVW" customClass="newPackageCell" customModule="RPGAapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gsa-gh-OVW" id="Hv4-0t-2Lt">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uu0-gj-6UQ">
+                                            <rect key="frame" x="361" y="7" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="newPackage:" destination="gsa-gh-OVW" eventType="touchUpInside" id="32w-o4-Gi7"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uu0-gj-6UQ" firstAttribute="centerY" secondItem="Hv4-0t-2Lt" secondAttribute="centerY" id="8V2-aD-32V"/>
+                                        <constraint firstItem="uu0-gj-6UQ" firstAttribute="centerX" secondItem="Hv4-0t-2Lt" secondAttribute="centerX" id="SMh-hn-eU3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="newPackageButton" destination="uu0-gj-6UQ" id="r0b-bo-hEy"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tfy-Dy-6h6" id="DLn-kP-37r"/>
+                            <outlet property="delegate" destination="tfy-Dy-6h6" id="7oX-Fp-beA"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fcc-tf-tMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5659" y="2940"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
