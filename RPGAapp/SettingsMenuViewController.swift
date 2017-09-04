@@ -28,7 +28,7 @@ class settingMenuCell: UITableViewCell{
     
 }
 
-let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false]
+let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false, "Schowaj menu pakietów" : true]
 class SettingMenu: UITableViewController, settingCellDelegate {
     
 
