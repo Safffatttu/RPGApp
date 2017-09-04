@@ -17,17 +17,16 @@ class showItemInfoPopover: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.modalPresentationStyle = .popover
         
-        self.preferredContentSize = CGSize(width: 300, height: 100)
+        let characters =  Double((item?.item_description?.characters.count)!)
+        
+        let height = round(characters / 20) * 20 + 20
+        let width = round(characters / 50) * 40 + 300
+        
+        self.preferredContentSize = CGSize(width: width, height: height)
         self.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0)
         self.popoverPresentationController?.permittedArrowDirections = .right
         
+        descritionText.text = item?.item_description
         super.viewWillAppear(animated)
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        descritionText.text = item?.item_description
-    }
-    
 }
