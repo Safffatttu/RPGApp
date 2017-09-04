@@ -83,10 +83,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         
-        itemFetch.sortDescriptors = [sortItemByCategory]
-        
-        print(itemFetch)
-        
+        itemFetch.sortDescriptors = [sortItemByCategory,sortItemBySubCategory,sortItemByName]
+                
         do{
             items = try context.fetch(itemFetch)
         }
@@ -179,8 +177,21 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func addToPackageButton(_ sender: UIButton){
-    if let indexPath = getCurrentCellIndexPath(sender){
-        }
+        let indexPath = getCurrentCellIndexPath(sender)
+        
+        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortItemByName])[(indexPath?.row)!] as! Item
+        
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
+        
+        popController.modalPresentationStyle = .popover
+        
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        
+        (popController as! addToPackage).item = cellItem
+        
+        self.present(popController, animated: true, completion: nil)
+        
     }
     
     func editItemButton(_ sender: UIButton){
