@@ -25,7 +25,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         
         var height =  Int()
         var y = Int()
-        if (packages.count > 1){
+        if (packages.count > 0){
             height = 44 * (packages.count + 1)
             y = 13
         }
@@ -90,7 +90,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     
     func addToPackage(_ sender: UIButton) {
-        
+        let indexPath = getCurrentCellIndexPath(sender)
+        packages[(indexPath?.row)!].addToItems(item!)
     }
     
     func newPackage(_ sender: UIButton) {
@@ -103,6 +104,15 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         
         viewDidLoad()
     }
+    
+    func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
+        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
+        if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
+            return indexPath
+        }
+        return nil
+    }
+    
     
 }
 
