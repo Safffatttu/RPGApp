@@ -17,23 +17,23 @@ extension Package {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var relationship: NSSet?
+    @NSManaged public var items: NSSet?
 
 }
 
-// MARK: Generated accessors for relationship
+// MARK: Generated accessors for items
 extension Package {
 
-    @objc(addRelationshipObject:)
-    @NSManaged public func addToRelationship(_ value: Item)
+    @objc(addItemsObject:)
+    @NSManaged public func addToItems(_ value: Item)
 
-    @objc(removeRelationshipObject:)
-    @NSManaged public func removeFromRelationship(_ value: Item)
+    @objc(removeItemsObject:)
+    @NSManaged public func removeFromItems(_ value: Item)
 
-    @objc(addRelationship:)
-    @NSManaged public func addToRelationship(_ values: NSSet)
+    @objc(addItems:)
+    @NSManaged public func addToItems(_ values: NSSet)
 
-    @objc(removeRelationship:)
-    @NSManaged public func removeFromRelationship(_ values: NSSet)
+    @objc(removeItems:)
+    @NSManaged public func removeFromItems(_ values: NSSet)
 
 }
