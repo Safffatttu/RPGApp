@@ -73,8 +73,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let iconSize: CGFloat = 20
         
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         //packageService.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection), name: .goToSectionCataloge, object: nil)
@@ -83,13 +83,15 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         
-        itemFetch.sortDescriptors = [sortItemByCategory,sortItemBySubCategory,sortItemByName]
+        itemFetch.sortDescriptors = [sortItemByCategory]
+        
+        print(itemFetch)
         
         do{
             items = try context.fetch(itemFetch)
         }
-        catch{
-           print("error fetching")
+        catch let error as NSError{
+           print(error)
         }
         
         subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]

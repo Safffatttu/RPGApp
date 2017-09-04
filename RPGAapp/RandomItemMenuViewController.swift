@@ -27,8 +27,6 @@ class randomItemMenu: UITableViewController {
         catch{
             print("error")
         }
-        print(drawSettings.map{$0.name})
-        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,6 +81,8 @@ class randomItemMenu: UITableViewController {
                 randomlySelected.append(newItem)
             }
         }
+        
+        CoreDataStack.saveContext()
         return
     }
     
