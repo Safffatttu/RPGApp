@@ -91,6 +91,18 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func addToPackageButton(_ sender: UIButton){
+        let indexPath = getCurrentCellIndexPath(sender)
+        
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
+        
+        popController.modalPresentationStyle = .popover
+        
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        
+        (popController as! addToPackage).item = randomlySelected[(indexPath?.row)!]
+        
+        self.present(popController, animated: true, completion: nil)
     }
     
     func editItemButton(_ sender: UIButton){
@@ -100,40 +112,25 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         let indexPath = getCurrentCellIndexPath(sender)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
-        popController.preferredContentSize = CGSize(width: 300, height: 100)
-
-        popController.modalPresentationStyle = UIModalPresentationStyle.popover
-        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
+        popController.modalPresentationStyle = .popover
+        
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: 13,width: 0,height: 0 )
         (popController as! showItemInfoPopover).item = randomlySelected[(indexPath?.row)!]
+        
         self.present(popController, animated: true, completion: nil)
     }
     
     func sendItemButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
-        var height =  Int()
-        var y = Int()
-        if (newTeam.count > 0){
-            height = 45 * newTeam.count - 1
-            y = 13
-        }
-        else{
-            height = 45
-            y = 24
-        }
 
-        popController.preferredContentSize = CGSize(width: 150, height: height)
-        
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
         
-        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        popController.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0 )
         (popController as! sendPopover).item = randomlySelected[(indexPath?.row)!]
+        
         self.present(popController, animated: true, completion: nil)
     }
     
@@ -146,25 +143,11 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     @IBAction func sendAll(_ sender: UIButton) {
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendAllPop")
-        var height =  Int()
-        var y = Int()
-        if (newTeam.count > 0){
-            height = 45 * newTeam.count - 1
-            y = 13
-        }
-        else{
-            height = 45
-            y = 24
-        }
-        
-        popController.preferredContentSize = CGSize(width: 150, height: height)
         
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
         
-        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        popController.popoverPresentationController?.sourceRect = CGRect(x:20, y: y,width: 0,height: 0 )
 
         self.present(popController, animated: true, completion: nil)
      }
