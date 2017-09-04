@@ -19,6 +19,9 @@ class randomItemMenu: UITableViewController {
     var drawSettings: [DrawSetting] = []
     
     override func viewDidLoad() {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDrawSetting(_:)))
+        
         let context = CoreDataStack.managedObjectContext
         let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
         do{
@@ -50,6 +53,14 @@ class randomItemMenu: UITableViewController {
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
             }
         }
+    }
+    
+    func addDrawSetting(_ sender: UIBarButtonItem){
+        let addDrawSettingControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editDrawSetting")
+        
+        addDrawSettingControler.modalPresentationStyle = .pageSheet
+        
+        self.present(addDrawSettingControler, animated: true, completion: nil)
     }
     
     func drawItems(drawSetting: DrawSetting){
