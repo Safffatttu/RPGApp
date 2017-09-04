@@ -20,8 +20,7 @@ class catalogeMenu: UITableViewController {
     let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
     let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
     
-    override func viewDidLoad() {
-        
+    override func viewWillAppear(_ animated: Bool) {
         let context = CoreDataStack.managedObjectContext
         
         subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
@@ -40,11 +39,9 @@ class catalogeMenu: UITableViewController {
             print("error fetching")
         }
         
-        print(subCategories.map({$0.name}))
-        
-        super.viewDidLoad()
+        super.viewWillAppear(animated)
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return categories.count
     }
