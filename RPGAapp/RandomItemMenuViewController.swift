@@ -53,6 +53,10 @@ class randomItemMenu: UITableViewController {
     }
     
     func drawItems(drawSetting: DrawSetting){
+        if !(UserDefaults.standard.bool(forKey: "Dodawaj do listy wylosowanych")) {
+            randomlySelected = []
+        }
+        
         let subSettings: [DrawSubSetting] = drawSetting.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)]) as! [DrawSubSetting]
         
         for setting in subSettings{
@@ -74,7 +78,6 @@ class randomItemMenu: UITableViewController {
             }
             
             weight = Int (itemsToDraw.map{$0.propability}.reduce(0, +))
-            print(numberOf)
             
             for _ in 1...numberOf{
                 let newItem = drawItem(items: itemsToDraw, weightTotal: weight)
