@@ -45,7 +45,7 @@ class randomItemMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         drawQueue.async {
-            self.drawItems(drawSetting: self.drawSettings.first!)
+            self.drawItems(drawSetting: self.drawSettings[indexPath.row])
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
             }
