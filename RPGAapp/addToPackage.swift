@@ -92,6 +92,10 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     func addToPackage(_ sender: UIButton) {
         let indexPath = getCurrentCellIndexPath(sender)
         packages[(indexPath?.row)!].addToItems(item!)
+        if UserDefaults.standard.bool(forKey: "Schowaj menu pakietów"){
+            dismiss(animated: true, completion: nil)
+        }
+        CoreDataStack.saveContext()
     }
     
     func newPackage(_ sender: UIButton) {
