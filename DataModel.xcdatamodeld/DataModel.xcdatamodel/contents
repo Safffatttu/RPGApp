@@ -9,7 +9,7 @@
         <attribute name="health" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Item" syncable="YES"/>
+        <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
     </entity>
     <entity name="DrawSetting" representedClassName="DrawSetting" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -22,6 +22,7 @@
         <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+        <attribute name="baseDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="item_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="measure" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -30,24 +31,41 @@
         <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rarity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
+        <relationship name="itemAtribute" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
         <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="items" inverseEntity="SubCategory" syncable="YES"/>
+    </entity>
+    <entity name="ItemAtribute" representedClassName="ItemAtribute" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priceMod" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rarityMod" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="ItemAtributeHandler" representedClassName="ItemAtributeHandler" syncable="YES" codeGenerationType="class">
+        <relationship name="itemAtributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
+    </entity>
+    <entity name="ItemHandler" representedClassName="ItemHandler" syncable="YES" codeGenerationType="class">
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Item" syncable="YES"/>
+        <relationship name="itemAtributesHandler" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ItemAtributeHandler" syncable="YES"/>
     </entity>
     <entity name="Package" representedClassName="Package" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
     </entity>
     <entity name="SubCategory" representedClassName="SubCategory" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
         <relationship name="items" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="subCategory" inverseEntity="Item" syncable="YES"/>
     </entity>
+    <fetchRequest name="FetchRequest" entity="Category" predicateString="name ENDSWITH &quot;&quot;"/>
     <elements>
-        <element name="Category" positionX="333" positionY="-27" width="128" height="90"/>
-        <element name="Character" positionX="-236" positionY="131" width="128" height="103"/>
-        <element name="DrawSetting" positionX="900" positionY="90" width="128" height="75"/>
-        <element name="DrawSubSetting" positionX="702" positionY="84" width="128" height="105"/>
-        <element name="Item" positionX="90" positionY="63" width="108" height="180"/>
-        <element name="Package" positionX="-144" positionY="-45" width="128" height="75"/>
-        <element name="SubCategory" positionX="297" positionY="261" width="128" height="88"/>
+        <element name="Category" positionX="288" positionY="-36" width="128" height="90"/>
+        <element name="Character" positionX="-495" positionY="90" width="128" height="103"/>
+        <element name="DrawSetting" positionX="540" positionY="-48" width="128" height="75"/>
+        <element name="DrawSubSetting" positionX="547" positionY="111" width="128" height="105"/>
+        <element name="Item" positionX="36" positionY="-36" width="108" height="208"/>
+        <element name="ItemAtribute" positionX="25" positionY="236" width="128" height="88"/>
+        <element name="ItemAtributeHandler" positionX="-245" positionY="248" width="128" height="58"/>
+        <element name="ItemHandler" positionX="-279" positionY="81" width="128" height="73"/>
+        <element name="Package" positionX="-497" positionY="-27" width="128" height="73"/>
+        <element name="SubCategory" positionX="241" positionY="225" width="128" height="88"/>
     </elements>
 </model>

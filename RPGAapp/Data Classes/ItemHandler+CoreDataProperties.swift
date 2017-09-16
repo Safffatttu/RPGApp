@@ -16,44 +16,8 @@ extension ItemHandler {
         return NSFetchRequest<ItemHandler>(entityName: "ItemHandler")
     }
 
-    @NSManaged public var number: Int16
-    @NSManaged public var item: NSOrderedSet?
+    @NSManaged public var item: Item?
     @NSManaged public var itemAtributesHandler: NSOrderedSet?
-
-}
-
-// MARK: Generated accessors for item
-extension ItemHandler {
-
-    @objc(insertObject:inItemAtIndex:)
-    @NSManaged public func insertIntoItem(_ value: Item, at idx: Int)
-
-    @objc(removeObjectFromItemAtIndex:)
-    @NSManaged public func removeFromItem(at idx: Int)
-
-    @objc(insertItem:atIndexes:)
-    @NSManaged public func insertIntoItem(_ values: [Item], at indexes: NSIndexSet)
-
-    @objc(removeItemAtIndexes:)
-    @NSManaged public func removeFromItem(at indexes: NSIndexSet)
-
-    @objc(replaceObjectInItemAtIndex:withObject:)
-    @NSManaged public func replaceItem(at idx: Int, with value: Item)
-
-    @objc(replaceItemAtIndexes:withItem:)
-    @NSManaged public func replaceItem(at indexes: NSIndexSet, with values: [Item])
-
-    @objc(addItemObject:)
-    @NSManaged public func addToItem(_ value: Item)
-
-    @objc(removeItemObject:)
-    @NSManaged public func removeFromItem(_ value: Item)
-
-    @objc(addItem:)
-    @NSManaged public func addToItem(_ values: NSOrderedSet)
-
-    @objc(removeItem:)
-    @NSManaged public func removeFromItem(_ values: NSOrderedSet)
 
 }
 
