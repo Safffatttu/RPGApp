@@ -2,7 +2,7 @@
 //  Package+CoreDataProperties.swift
 //  
 //
-//  Created by Jakub on 01.09.2017.
+//  Created by Jakub on 16.09.2017.
 //
 //
 
@@ -25,10 +25,10 @@ extension Package {
 extension Package {
 
     @objc(addItemsObject:)
-    @NSManaged public func addToItems(_ value: Item)
+    @NSManaged public func addToItems(_ value: ItemHandler)
 
     @objc(removeItemsObject:)
-    @NSManaged public func removeFromItems(_ value: Item)
+    @NSManaged public func removeFromItems(_ value: ItemHandler)
 
     @objc(addItems:)
     @NSManaged public func addToItems(_ values: NSSet)

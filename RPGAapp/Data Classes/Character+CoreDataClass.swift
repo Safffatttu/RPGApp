@@ -2,7 +2,7 @@
 //  Character+CoreDataClass.swift
 //  
 //
-//  Created by Jakub on 20.08.2017.
+//  Created by Jakub on 16.09.2017.
 //
 //
 

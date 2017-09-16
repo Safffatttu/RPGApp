@@ -2,7 +2,7 @@
 //  Category+CoreDataClass.swift
 //  
 //
-//  Created by Jakub on 01.09.2017.
+//  Created by Jakub on 16.09.2017.
 //
 //
 
