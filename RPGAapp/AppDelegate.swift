@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let isPreloaded = defaults.bool(forKey: "isPreloaded")
         if !isPreloaded {
             DispatchQueue.global(qos: .userInitiated).async {
-                self.preloadData()
+                loadItemsFromAsset()
                 defaults.set(true, forKey: "isPreloaded")
             }
         }
