@@ -25,7 +25,7 @@ class TeamView: UICollectionViewController {
     func addCharacter(_ sender: Any){
         
         let addCharControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addCharacter")
-        addCharControler.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        addCharControler.modalPresentationStyle = .formSheet
         self.present(addCharControler, animated: true, completion: nil)
     }
     
@@ -66,19 +66,15 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
         if (cell != nil){
             return (newTeam[tableView.tag] as! Character).equipment!.count
         }
-        else{
-            return 1
-        }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
-        if (cell != nil) {
-            let equipment = (newTeam[tableView.tag] as! Character).equipment!.array as! [Item]
-            print(equipment.count)
-            cell?.textLabel?.text = equipment[indexPath.row].name
-            return cell!
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") {
+            let equipment = (newTeam[tableView.tag] as! Character).equipment!.sortedArray(using: [sortItemByName]) as! [ItemHandler]
+            cell.textLabel?.text = (equipment[indexPath.row].item?.name)!
+            cell.detailTextLabel?.text = String(describing: (equipment[indexPath.row].itemAtributesHandler?.count)!)
+            return cell
         }
         
         else{

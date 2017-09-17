@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
 func myRand(_ num: Int) -> Int{
@@ -198,6 +199,99 @@ func loadItemList(data: [[String?]]) -> itemList{
 func forTailingZero(_ temp: Double) -> String{
     return String(format: "%g", temp)
 }
+
+func loadItemsFromAsset(){
+    let context = CoreDataStack.managedObjectContext
+    var currentCategory: Category? = nil
+    var currentSubCategory: SubCategory? = nil
+
+    let table = NSDataAsset.init(name: "ITEMS3")
+    let decoded = String(data: (table?.data)!, encoding: .utf8)!
+    var itemList: [[String]] = []
+    let rows = decoded.components(separatedBy: "\n")
+    for row in rows {
+        let columns = row.components(separatedBy: ";")
+        itemList.append(columns)
+    }
+
+    var item: Item? = nil
+    
+    for line in itemList{
+        print(line)
+        if line.first == "DATA"{
+            continue
+        }
+        
+        if line.first == "KTG" {
+            currentCategory = (NSEntityDescription.insertNewObject(forEntityName: String(describing: Category.self), into: context) as! Category)
+            currentCategory?.name = line[1]
+            CoreDataStack.saveContext()
+            continue
+        }
+        
+        if line.first == "SUBKTG" {
+            currentSubCategory = (NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCategory.self), into: context) as! SubCategory)
+            currentSubCategory?.name = line[1]
+            currentSubCategory?.category = currentCategory
+            CoreDataStack.saveContext()
+            continue
+        }
+        
+        if line.first == "PODITEM"{
+            let attribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtribute.self), into: context) as! ItemAtribute
+            attribute.name = line[3]
+            attribute.priceMod = Double(line[4])!
+            attribute.rarityMod = Double(line[5])!
+            item?.addToItemAtribute(attribute)
+            continue
+        }
+        
+        
+        item = NSEntityDescription.insertNewObject(forEntityName: String(describing: Item.self), into: context) as! Item
+        
+        item?.setValue(line[0], forKey: #keyPath(Item.name))
+        item?.setValue(line[1], forKey: #keyPath(Item.item_description))
+        item?.setValue(Double(line[4]), forKey: #keyPath(Item.price))
+        item?.setValue(Int16(line[5]), forKey: #keyPath(Item.rarity))
+        item?.setValue(Int16(line[6]), forKey: #keyPath(Item.quantity))
+        item?.setValue(line[7], forKey: #keyPath(Item.measure))
+        
+        
+        item?.category = currentCategory
+        item?.subCategory = currentSubCategory
+    }
+}
+
+
+
+func addToEquipment(item: Item, toCharacter: Character){
+    let context = CoreDataStack.managedObjectContext
+    
+    let filter = NSPredicate(format: "item == %@", item)
+
+    let handlers = toCharacter.equipment?.filtered(using: filter)
+    
+    let itemHandler: ItemHandler
+    
+    if handlers?.count == 0{
+        itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+        itemHandler.item = item
+        
+        toCharacter.addToEquipment(itemHandler)
+    }
+    else{
+        itemHandler = handlers?.first as! ItemHandler
+    }
+    
+    let atribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: context) as! ItemAtributeHandler
+    
+    itemHandler.addToItemAtributesHandler(atribute)
+    
+    
+}
+
+
+
 
 let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
 let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)

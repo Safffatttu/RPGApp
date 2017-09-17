@@ -76,7 +76,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     func sendItem(_ sender: UIButton) {
         let playerNum = getCurrentCellIndexPath(sender)?.row
         let sendTo = newTeam[playerNum!] as! Character
-        sendTo.addToEquipment(item!)
+        addToEquipment(item: item!, toCharacter: sendTo)
         CoreDataStack.saveContext()
         dismiss(animated: true, completion: nil)
     }
