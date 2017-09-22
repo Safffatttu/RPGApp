@@ -71,7 +71,7 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") {
-            let equipment = (newTeam[tableView.tag] as! Character).equipment!.sortedArray(using: [sortItemByName]) as! [ItemHandler]
+            let equipment = (newTeam[tableView.tag] as! Character).equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
             cell.textLabel?.text = (equipment[indexPath.row].item?.name)!
             cell.detailTextLabel?.text = String(describing: (equipment[indexPath.row].itemAtributesHandler?.count)!)
             return cell
