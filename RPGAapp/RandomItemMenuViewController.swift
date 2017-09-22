@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 
 let propabilities: [Int16] = [100,800,90,9,1]
-var randomlySelected = [Item]()
+var randomlySelected = [ItemHandler]()
 class randomItemMenu: UITableViewController {
     
     fileprivate let drawQueue = DispatchQueue(label: "com.SS.RPGAapp")
@@ -24,6 +24,7 @@ class randomItemMenu: UITableViewController {
         
         let context = CoreDataStack.managedObjectContext
         let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
+        drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
         do{
             drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
         }
@@ -71,36 +72,59 @@ class randomItemMenu: UITableViewController {
         let subSettings: [DrawSubSetting] = drawSetting.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)]) as! [DrawSubSetting]
         
         for setting in subSettings{
-            var itemsToDraw: [Item]
-            let weight: Int
-            
+            var itemsToDraw: [Item] = []
+            let context = CoreDataStack.managedObjectContext
+            let weight: Int64
+
             let numberOf = Int(setting.itemsToDraw)
             
             if(setting.category != nil){
                 itemsToDraw = setting.category?.items?.sortedArray(using: [NSSortDescriptor(key: #keyPath(Item.name), ascending: true)]) as! [Item]
             }
-            else{
+            else if(setting.subCategory != nil) {
                 itemsToDraw = setting.subCategory?.items?.sortedArray(using: [NSSortDescriptor(key: #keyPath(Item.name), ascending: true)]) as! [Item]
+            }else{
+                let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+                do{
+                    itemsToDraw = try context.fetch(itemFetch)
+                }
+                catch let error as NSError{
+                    print(error)
+                }
             }
+
             
             itemsToDraw = itemsToDraw.map{
-                $0.propability = propabilities[Int(Int(($0).rarity) - 1)]
+                $0.propability = Int64(propabilities[Int(Int(($0).rarity) - 1)])
                 return $0
             }
             
-            weight = Int (itemsToDraw.map{$0.propability}.reduce(0, +))
+            //CoreDataStack.saveContext()
+
+            weight = Int64(itemsToDraw.map{$0.propability}.reduce(0,+))
             
             for _ in 1...numberOf{
                 let newItem = drawItem(items: itemsToDraw, weightTotal: weight)
-                randomlySelected.append(newItem)
+                
+                var itemHandler = randomlySelected.filter({$0.item == newItem}).first
+                
+                itemHandler?.count += 1
+        
+                if itemHandler == nil{
+                    itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+                    itemHandler?.count = 1
+                    itemHandler?.item = newItem
+                    randomlySelected.append(itemHandler!)
+                }
+                
             }
+        CoreDataStack.saveContext()
         }
         
-        CoreDataStack.saveContext()
         return
     }
     
-    func drawItem(items: [Item],weightTotal: Int) -> Item{
+    func drawItem(items: [Item],weightTotal: Int64) -> Item{
         return weightedRandom(items: items,weightTotal: weightTotal)
     }
     
