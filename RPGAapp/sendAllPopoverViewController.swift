@@ -18,9 +18,8 @@ class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
         
         var height =  Int()
         var y = Int()
-        let team: [Int] = []
-        if (team.count > 0){
-            height = 45 * team.count - 1
+        if (newTeam.count > 0){
+            height = 45 * newTeam.count - 1
             y = 13
         }
         else{
