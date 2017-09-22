@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             DispatchQueue.global(qos: .userInitiated).async {
                 loadItemsFromAsset()
                 defaults.set(true, forKey: "isPreloaded")
+                print("aa")
             }
         }
         reloadCoreData()
@@ -56,12 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
             
             let itemToSave = NSEntityDescription.insertNewObject(forEntityName: "Item", into: context)
-            itemToSave.setValue(item.description, forKey: "item_description")
-            itemToSave.setValue(item.measure, forKey: "measure")
-            itemToSave.setValue(item.name, forKey: "name")
-            itemToSave.setValue(item.price, forKey: "price")
-            itemToSave.setValue(item.quantity, forKey: "quantity")
-            itemToSave.setValue(item.rarity, forKey: "rarity")
+            itemToSave.setValue(item.description, forKey: #keyPath(Item.item_description))
+            itemToSave.setValue(item.measure, forKey: #keyPath(Item.measure))
+            itemToSave.setValue(item.name, forKey: #keyPath(Item.name))
+            itemToSave.setValue(item.price, forKey: #keyPath(Item.price))
+            itemToSave.setValue(item.quantity, forKey: #keyPath(Item.quantity))
+            itemToSave.setValue(item.rarity, forKey: #keyPath(Item.rarity))
             
             newCategory!.addToItems(itemToSave as! Item)
             newSubCategory!.addToItems(itemToSave as! Item)
