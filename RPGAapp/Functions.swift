@@ -202,8 +202,14 @@ func forTailingZero(_ temp: Double) -> String{
 
 func loadItemsFromAsset(){
     let context = CoreDataStack.managedObjectContext
+    var currency: Currency
+    var subCurrency: SubCurrency
+    
     var currentCategory: Category? = nil
     var currentSubCategory: SubCategory? = nil
+    
+    var newSetting: DrawSetting
+    var newSubSetting: DrawSubSetting
 
     let table = NSDataAsset.init(name: "ITEMS3")
     let decoded = String(data: (table?.data)!, encoding: .utf8)!
@@ -217,15 +223,30 @@ func loadItemsFromAsset(){
     var item: Item? = nil
     
     for line in itemList{
-        print(line)
         if line.first == "DATA"{
+            currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency
+            currency.name = "Złoty"
+            currency.globalRate = Double(line[2])!
+            
+            subCurrency = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
+            subCurrency.name = "PLN"
+            subCurrency.rate = 1
+            
             continue
         }
         
         if line.first == "KTG" {
             currentCategory = (NSEntityDescription.insertNewObject(forEntityName: String(describing: Category.self), into: context) as! Category)
             currentCategory?.name = line[1]
-            CoreDataStack.saveContext()
+            
+            newSubSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
+            newSubSetting.itemsToDraw = 3
+            newSubSetting.category = currentCategory
+            
+            newSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
+            newSetting.setValue(currentCategory?.name, forKey: #keyPath(DrawSetting.name))
+            newSetting.addToSubSettings(newSubSetting)
+
             continue
         }
         
@@ -233,7 +254,15 @@ func loadItemsFromAsset(){
             currentSubCategory = (NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCategory.self), into: context) as! SubCategory)
             currentSubCategory?.name = line[1]
             currentSubCategory?.category = currentCategory
-            CoreDataStack.saveContext()
+            
+            newSubSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
+            newSubSetting.itemsToDraw = 3
+            newSubSetting.subCategory = currentSubCategory
+            
+            newSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
+            newSetting.setValue(currentSubCategory?.name, forKey: #keyPath(DrawSetting.name))
+            newSetting.addToSubSettings(newSubSetting)
+            
             continue
         }
         
@@ -246,20 +275,31 @@ func loadItemsFromAsset(){
             continue
         }
         
-        
-        item = NSEntityDescription.insertNewObject(forEntityName: String(describing: Item.self), into: context) as! Item
+        item = (NSEntityDescription.insertNewObject(forEntityName: String(describing: Item.self), into: context) as! Item)
         
         item?.setValue(line[0], forKey: #keyPath(Item.name))
         item?.setValue(line[1], forKey: #keyPath(Item.item_description))
         item?.setValue(Double(line[4]), forKey: #keyPath(Item.price))
-        item?.setValue(Int16(line[5]), forKey: #keyPath(Item.rarity))
+        if let rarity = Int16(line[5]){
+            if rarity > 0 && rarity < 5 {
+                item?.setValue(rarity, forKey: #keyPath(Item.rarity))
+            }
+        }
         item?.setValue(Int16(line[6]), forKey: #keyPath(Item.quantity))
         item?.setValue(line[7], forKey: #keyPath(Item.measure))
-        
         
         item?.category = currentCategory
         item?.subCategory = currentSubCategory
     }
+    
+    newSubSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
+    newSubSetting.itemsToDraw = 100000
+    
+    newSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
+    newSetting.name = "Wszystkie"
+    newSetting.addToSubSettings(newSubSetting)
+    
+    CoreDataStack.saveContext()
 }
 
 
