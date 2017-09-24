@@ -160,6 +160,21 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         }
         return nil
     }
+    
+    @IBAction func addAllToPackage(_ sender: UIView) {
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
+        
+        popController.modalPresentationStyle = .popover
+        
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        
+        (popController as! addToPackage).items = randomlySelected
+        
+        self.present(popController, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func sendAll(_ sender: UIButton) {
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendAllPop")
         

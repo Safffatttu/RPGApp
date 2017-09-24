@@ -18,6 +18,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     var item: Item? = nil
     
+    var items: [ItemHandler]? = nil
+    
     let iconSize: CGFloat = 20
     
     override func viewDidLoad() {
@@ -91,7 +93,15 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     func addToPackage(_ sender: UIButton) {
         let indexPath = getCurrentCellIndexPath(sender)
-        packages[(indexPath?.row)!].addToItems(item!)
+        let package = packages[(indexPath?.row)!]
+        if (item != nil){
+            add(item!, to: package, count: nil)
+        }else if(items != nil){
+            for item in items!{
+                add(item.item!, to: package, count: item.count)
+            }
+        }
+        
         if UserDefaults.standard.bool(forKey: "Schowaj menu pakietów"){
             dismiss(animated: true, completion: nil)
         }
@@ -102,7 +112,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext)
         let number = packages.count
         
-        newPackage.setValue("Paczka nr.", forKey: #keyPath(Package.name))
+        newPackage.setValue("Paczka nr." + String(number + 1), forKey: #keyPath(Package.name))
         
         CoreDataStack.saveContext()
         
@@ -116,8 +126,6 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         }
         return nil
     }
-    
-    
 }
 
 class packageCell: UITableViewCell {
@@ -143,7 +151,6 @@ class newPackageCell: UITableViewCell {
     @IBAction func newPackage(_ sender: UIButton) {
         cellDelegate?.newPackage(sender)
     }
-    
 }
 
 
@@ -152,6 +159,5 @@ protocol addToPackageDelegate: class {
     func addToPackage(_ sender: UIButton)
     
     func newPackage(_ sender: UIButton)
-    
 }
 
