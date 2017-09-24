@@ -54,7 +54,7 @@ func weightedRandomElement<T>(items: [(T, UInt)]) -> T {
     fatalError("This should never be reached")
 }
 
-func weightedRandom(items: [Item], weightTotal: Int) -> Item {
+func weightedRandom(items: [Item], weightTotal: Int64) -> Item {
     /*function by
      Martin R
      https://codereview.stackexchange.com/questions/112605/weighted-probability-problem-in-swift
@@ -327,15 +327,38 @@ func addToEquipment(item: Item, toCharacter: Character){
     
     itemHandler.addToItemAtributesHandler(atribute)
     
-    
 }
 
-
-
+func add(_ item: Item,to package: Package, count: Int16?){
+    let context = CoreDataStack.managedObjectContext
+    //var itemHandler = package.items?.filter({($0 as AnyObject).item == item}).first as? ItemHandler
+    //var itemHandler = package.items?.filtered(using: NSPredicate(format: "item == %@", item)).first as? ItemHandler
+    let filter = NSPredicate(format: "item == %@", item)
+    var itemHandler = package.items?.filtered(using: filter).first as? ItemHandler
+    
+    if count != nil{
+        itemHandler?.count += count!
+    }
+    else{
+        itemHandler?.count += 1
+    }
+    if itemHandler == nil{
+        itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+        itemHandler!.item = item
+        if count != nil{
+            itemHandler!.count = count!
+        }
+        package.addToItems(itemHandler!)
+    }
+}
 
 let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
 let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
 let sortItemByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
+
+let sortItemHandlerByCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.category), ascending: true)
+let sortItemHandlerBySubCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.subCategory), ascending: true)
+let sortItemHandlerByName = NSSortDescriptor(key: #keyPath(ItemHandler.item.name), ascending: true)
 
 let sortSubCategoryByName = NSSortDescriptor(key: #keyPath(SubCategory.name), ascending: true)
 let sortSubCategoryByCategory = NSSortDescriptor(key: #keyPath(SubCategory.category), ascending: true)
