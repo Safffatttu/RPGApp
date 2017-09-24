@@ -93,34 +93,27 @@ class randomItemMenu: UITableViewController {
                 }
             }
 
-            
             itemsToDraw = itemsToDraw.map{
                 $0.propability = Int64(propabilities[Int(Int(($0).rarity) - 1)])
                 return $0
             }
-            
-            //CoreDataStack.saveContext()
 
             weight = Int64(itemsToDraw.map{$0.propability}.reduce(0,+))
             
             for _ in 1...numberOf{
                 let newItem = drawItem(items: itemsToDraw, weightTotal: weight)
-                
                 var itemHandler = randomlySelected.filter({$0.item == newItem}).first
                 
                 itemHandler?.count += 1
         
                 if itemHandler == nil{
                     itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
-                    itemHandler?.count = 1
                     itemHandler?.item = newItem
                     randomlySelected.append(itemHandler!)
                 }
-                
             }
         CoreDataStack.saveContext()
         }
-        
         return
     }
     
@@ -129,12 +122,7 @@ class randomItemMenu: UITableViewController {
     }
     
 }
+
 extension Notification.Name{
     static let reloadRandomItemTable = Notification.Name("reloadRandomItemTable")
-}
-
-
-enum drawType: Int{
-    case category
-    case subCategory
 }
