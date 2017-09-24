@@ -17,7 +17,7 @@ extension DrawSubSetting {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var itemsToDraw: Int16
+    @NSManaged public var itemsToDraw: Int64
     @NSManaged public var category: Category?
     @NSManaged public var subCategory: SubCategory?
 
