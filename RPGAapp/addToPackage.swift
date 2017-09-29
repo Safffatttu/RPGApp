@@ -90,6 +90,18 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.row < packages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            CoreDataStack.managedObjectContext.delete(packages[indexPath.row])
+            packages.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            viewDidLoad()
+        }
+    }
     
     func addToPackage(_ sender: UIButton) {
         let indexPath = getCurrentCellIndexPath(sender)
@@ -160,4 +172,3 @@ protocol addToPackageDelegate: class {
     
     func newPackage(_ sender: UIButton)
 }
-
