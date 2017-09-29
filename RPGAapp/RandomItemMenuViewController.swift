@@ -22,8 +22,12 @@ class randomItemMenu: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDrawSetting(_:)))
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadDrawSettings), name: .reloadDrawSettings, object: nil)
+        
         let context = CoreDataStack.managedObjectContext
         let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
+        let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+        
         drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
         do{
             drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
@@ -31,6 +35,30 @@ class randomItemMenu: UITableViewController {
         catch{
             print("error")
         }
+        
+        subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
+        
+        do{
+            subCategories = try context.fetch(subCategoryFetch)
+        }
+        catch{
+            print("error fetching")
+        }
+    }
+    
+    func reloadDrawSettings(){
+        let context = CoreDataStack.managedObjectContext
+        let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
+
+        drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
+        do{
+            drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
+        }
+        catch{
+            print("error")
+        }
+        
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
