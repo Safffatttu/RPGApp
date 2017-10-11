@@ -71,8 +71,14 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     var items: [Item] = []
     var subCategories: [SubCategory] = []
     
+    var currentItem: Item? = nil
+    
     let iconSize: CGFloat = 20
         
+    @IBOutlet weak var catalogTable: UITableView!
+    
+    private var currentItemView: itemView!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //packageService.delegate = self
@@ -84,7 +90,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         
         itemFetch.sortDescriptors = [sortItemByCategory,sortItemBySubCategory,sortItemByName]
-                
+        itemFetch.fetchBatchSize = 40
         do{
             items = try context.fetch(itemFetch)
         }
@@ -119,6 +125,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         return nil
     }
+    
+    //MARK: Table
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return subCategories.count
@@ -176,6 +184,14 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentItem = (subCategories[indexPath.section].items?.sortedArray(using: [sortItemByName])[indexPath.row] as! Item)
+        currentItemView.item = currentItem
+        self.currentItemView.displayNewItem()
+    }
+    
+    //MARK: Cell Delegates
+    
     func addToPackageButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
         
@@ -230,6 +246,12 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 
         self.present(popController, animated: true, completion: nil)
     }
+ 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let itemView = segue.destination as? itemView, segue.identifier == "ItemView"{
+            self.currentItemView = itemView
+        }
+    }
 }
 
 extension catalogeDetail: PackageServiceDelegate{
@@ -245,5 +267,39 @@ extension catalogeDetail: PackageServiceDelegate{
     }
 }
 
+class itemView: UIViewController, UITableViewDataSource, UITableViewDelegate{
+    
+    var item: Item? = nil
+    var atributes: [ItemAtribute]!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var atributeTable: UITableView!
+    
+    func displayNewItem(){
 
+        nameLabel.text = (item?.name)!
+        priceLabel.text = String(describing: item?.price)
+        
+        let sortAtributes = NSSortDescriptor(key: #keyPath(ItemAtribute.name), ascending: true)
+        atributes = item?.itemAtribute?.sortedArray(using: [sortAtributes]) as! [ItemAtribute]
+        atributeTable.reloadData()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard item != nil else {
+            return 0
+        }
+        return atributes.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AtributeCell")
+        cell?.textLabel?.text = atributes[indexPath.row].name
+        return cell!
+    }
+}
 
