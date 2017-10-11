@@ -16,7 +16,7 @@ extension ItemHandler {
         return NSFetchRequest<ItemHandler>(entityName: "ItemHandler")
     }
 
-    @NSManaged public var count: Int16
+    @NSManaged public var count: Int64
     @NSManaged public var item: Item?
     @NSManaged public var itemAtributesHandler: NSOrderedSet?
 

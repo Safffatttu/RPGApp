@@ -16,7 +16,7 @@ extension DrawSetting {
         return NSFetchRequest<DrawSetting>(entityName: "DrawSetting")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var subSettings: NSSet?
 
 }
