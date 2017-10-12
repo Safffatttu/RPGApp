@@ -13,8 +13,6 @@
 		3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D681F3A21A800B5271C /* Main.storyboard */; };
 		3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D6B1F3A21A800B5271C /* Assets.xcassets */; };
 		3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */; };
-		3B063D771F3A259B00B5271C /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
-		3B063D7B1F3A263B00B5271C /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D7A1F3A263B00B5271C /* Items.swift */; };
 		3B063D7D1F3A268400B5271C /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D7C1F3A268400B5271C /* CharacterDetailViewController.swift */; };
 		3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */; };
 		3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */; };
@@ -22,7 +20,6 @@
 		3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */; };
 		3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */; };
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
-		3B43879A1F48A116003F67B9 /* addCharacterModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4387991F48A116003F67B9 /* addCharacterModalViewController.swift */; };
 		3B4626A01F3A6DA1002B7AF3 /* ItemDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */; };
 		3B50DBBE1F5637790071DF2B /* sendAllPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
@@ -32,6 +29,7 @@
 		3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD951F3F784700AC4193 /* HandlarzeMenuViewController.swift */; };
 		3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */; };
 		3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */; };
+		3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
 		3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
@@ -49,8 +47,7 @@
 		3B063D6B1F3A21A800B5271C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B063D6E1F3A21A800B5271C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B063D701F3A21A800B5271C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B063D761F3A259B00B5271C /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Functions.swift; sourceTree = "<group>"; };
-		3B063D7A1F3A263B00B5271C /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		3B063D761F3A259B00B5271C /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Functions.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		3B063D7C1F3A268400B5271C /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editPackage.swift; sourceTree = "<group>"; };
 		3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDrawSetting.swift; sourceTree = "<group>"; };
@@ -69,7 +66,6 @@
 		3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemMenuViewController.swift; sourceTree = "<group>"; };
 		3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemMenuViewController.swift; sourceTree = "<group>"; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		3BB856EC1F59713F00C35073 /* RPGAapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RPGAapp.entitlements; sourceTree = "<group>"; };
 		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
 		3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowInfoPopOver.swift; sourceTree = "<group>"; };
@@ -114,14 +110,12 @@
 		3B063D611F3A21A800B5271C /* RPGAapp */ = {
 			isa = PBXGroup;
 			children = (
-				3BB856EC1F59713F00C35073 /* RPGAapp.entitlements */,
 				3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */,
 				3B063D621F3A21A800B5271C /* AppDelegate.swift */,
 				3B3C052E1F3BBE3E00CFB002 /* Menu */,
 				3B3C052F1F3BBE4E00CFB002 /* Detail */,
 				3BF480AD1F44DBC50017169D /* Popover */,
 				3B063D681F3A21A800B5271C /* Main.storyboard */,
-				3B063D7A1F3A263B00B5271C /* Items.swift */,
 				3B063D761F3A259B00B5271C /* Functions.swift */,
 				3B063D6B1F3A21A800B5271C /* Assets.xcassets */,
 				3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */,
@@ -229,7 +223,13 @@
 						DevelopmentTeam = SMH62TPPHV;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
 							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+							com.apple.Siri = {
 								enabled = 0;
 							};
 						};
@@ -331,9 +331,9 @@
 				3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */,
 				3B50DBBE1F5637790071DF2B /* sendAllPopoverViewController.swift in Sources */,
 				3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */,
+				3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
 				3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */,
-				3B43879A1F48A116003F67B9 /* addCharacterModalViewController.swift in Sources */,
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,
 				3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */,
 				3B7D23051F43468D00A86F3E /* catalogeSendPopoverViewController.swift in Sources */,
@@ -342,10 +342,8 @@
 				3B4626A01F3A6DA1002B7AF3 /* ItemDetailViewControler.swift in Sources */,
 				3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */,
 				3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */,
-				3B063D7B1F3A263B00B5271C /* Items.swift in Sources */,
 				3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */,
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
-				3B063D771F3A259B00B5271C /* Functions.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,7 +400,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -453,7 +451,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -476,6 +474,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SMH62TPPHV;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -486,9 +487,10 @@
 				LLVM_LTO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -498,6 +500,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = SMH62TPPHV;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GENERATE_PROFILING_CODE = NO;
@@ -509,7 +514,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

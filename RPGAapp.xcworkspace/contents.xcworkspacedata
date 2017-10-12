@@ -3,27 +3,12 @@
    version = "1.0">
    <Group
       location = "container:"
-      name = "Data Classes">
+      name = "DataClasses">
       <FileRef
-         location = "group:RPGAapp/Data Classes/Item+CoreDataClass.swift">
+         location = "group:Currency+CoreDataClass.swift">
       </FileRef>
       <FileRef
-         location = "group:RPGAapp/Data Classes/Item+CoreDataProperties.swift">
-      </FileRef>
-      <FileRef
-         location = "group:RPGAapp/Data Classes/Package+CoreDataProperties.swift">
-      </FileRef>
-      <FileRef
-         location = "group:RPGAapp/Data Classes/Category+CoreDataClass.swift">
-      </FileRef>
-      <FileRef
-         location = "group:RPGAapp/Data Classes/Category+CoreDataProperties.swift">
-      </FileRef>
-      <FileRef
-         location = "group:RPGAapp/Data Classes/SubCategory+CoreDataClass.swift">
-      </FileRef>
-      <FileRef
-         location = "group:RPGAapp/Data Classes/SubCategory+CoreDataProperties.swift">
+         location = "group:Currency+CoreDataProperties.swift">
       </FileRef>
       <FileRef
          location = "group:RPGAapp/Data Classes/Package+CoreDataClass.swift">
@@ -32,10 +17,58 @@
          location = "group:RPGAapp/Data Classes/Package+CoreDataProperties.swift">
       </FileRef>
       <FileRef
+         location = "group:RPGAapp/Data Classes/ItemAtribute+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/ItemAtribute+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Item+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Item+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/DrawSubSetting+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/DrawSubSetting+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/DrawSetting+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/DrawSetting+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/ItemHandler+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/ItemHandler+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/SubCategory+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/SubCategory+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
          location = "group:RPGAapp/Data Classes/Character+CoreDataClass.swift">
       </FileRef>
       <FileRef
          location = "group:RPGAapp/Data Classes/Character+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/ItemAtributeHandler+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/ItemAtributeHandler+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Category+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Category+CoreDataProperties.swift">
       </FileRef>
    </Group>
    <FileRef

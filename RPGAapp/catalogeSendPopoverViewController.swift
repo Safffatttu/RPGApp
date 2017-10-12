@@ -93,14 +93,11 @@ class sendPopoverCell: UITableViewCell{
     
     @IBOutlet var sendButton: UIButton!
     
-    
     @IBOutlet var playerName: UILabel!
     
 }
 
-
 protocol sendPopoverDelegate: class{
     
     func sendItem(_ sender: UIButton)
-    
 }

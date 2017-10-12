@@ -184,10 +184,6 @@ func loadItemList(data: [[String?]]) -> itemList{
         let measure = data[i][5]
         
         let currentItem = item(name: name, category: currentCategory!, subCategory: currentSubCategory, description: description, price: price, rarity: rarity, quantity: quantity, measure: measure)
-            
-            
-        //categories.last?.2[(categories.last?.2.count)!].1 += 1
-        //print (categories.last?.2.count)
         
         categories[categories.count-1].1 = categories[categories.count-1].1 + 1
         listToRet.append(currentItem)
@@ -237,32 +233,14 @@ func loadItemsFromAsset(){
         
         if line.first == "KTG" {
             currentCategory = (NSEntityDescription.insertNewObject(forEntityName: String(describing: Category.self), into: context) as! Category)
-            currentCategory?.name = line[1]
-            
-            newSubSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
-            newSubSetting.itemsToDraw = 3
-            newSubSetting.category = currentCategory
-            
-            newSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
-            newSetting.setValue(currentCategory?.name, forKey: #keyPath(DrawSetting.name))
-            newSetting.addToSubSettings(newSubSetting)
-
+            currentCategory?.name = line[1].capitalized
             continue
         }
         
         if line.first == "SUBKTG" {
             currentSubCategory = (NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCategory.self), into: context) as! SubCategory)
-            currentSubCategory?.name = line[1]
+            currentSubCategory?.name = line[1].capitalized
             currentSubCategory?.category = currentCategory
-            
-            newSubSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
-            newSubSetting.itemsToDraw = 3
-            newSubSetting.subCategory = currentSubCategory
-            
-            newSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
-            newSetting.setValue(currentSubCategory?.name, forKey: #keyPath(DrawSetting.name))
-            newSetting.addToSubSettings(newSubSetting)
-            
             continue
         }
         
@@ -291,14 +269,7 @@ func loadItemsFromAsset(){
         item?.category = currentCategory
         item?.subCategory = currentSubCategory
     }
-    
-    newSubSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
-    newSubSetting.itemsToDraw = 100000
-    
-    newSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
-    newSetting.name = "Wszystkie"
-    newSetting.addToSubSettings(newSubSetting)
-    
+
     CoreDataStack.saveContext()
 }
 
@@ -329,10 +300,9 @@ func addToEquipment(item: Item, toCharacter: Character){
     
 }
 
-func add(_ item: Item,to package: Package, count: Int16?){
+func add(_ item: Item,to package: Package, count: Int64?){
     let context = CoreDataStack.managedObjectContext
-    //var itemHandler = package.items?.filter({($0 as AnyObject).item == item}).first as? ItemHandler
-    //var itemHandler = package.items?.filtered(using: NSPredicate(format: "item == %@", item)).first as? ItemHandler
+
     let filter = NSPredicate(format: "item == %@", item)
     var itemHandler = package.items?.filtered(using: filter).first as? ItemHandler
     

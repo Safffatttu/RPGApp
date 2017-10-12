@@ -23,14 +23,14 @@ class addCharacter: UIViewController {
     @IBOutlet weak var hpField: UILabel!
     
     @IBAction func stepperChanged(_ sender: UIStepper) {
-        hpField.text = String(describing: Int(sender.value)) + "HP"
+        //hpField.text = String(describing: Int(sender.value)) + "HP"
     }
 
     override func viewDidLoad() {
         self.preferredContentSize = CGSize(width: 300, height: 400)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView(_:)))
-        hpField.text = String(describing: Int(hpStepper.value)) + "HP"
+        //hpField.text = String(describing: Int(hpStepper.value)) + "HP"
     }
     
     func dismissView(_ sender: UIBarButtonItem) {

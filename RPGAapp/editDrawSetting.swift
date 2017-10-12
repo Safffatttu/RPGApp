@@ -105,7 +105,7 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func done(_ sender: UIBarButtonItem){
-        setting?.name = "Custom setting"
+        setting?.name = "Własne losowanie"
         CoreDataStack.saveContext()
         NotificationCenter.default.post(name: .reloadDrawSettings, object: nil)
         dismiss(animated: true, completion: nil)

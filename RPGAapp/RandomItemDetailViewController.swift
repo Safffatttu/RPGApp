@@ -18,8 +18,8 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reloadRandomItemTable, object: nil)
         
         let context = CoreDataStack.managedObjectContext
@@ -31,7 +31,6 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         catch let error as NSError{
             print(error)
         }
-        
         
     }
     
@@ -82,6 +81,25 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             }
             cell.priceLabel.text = priceToShow
             
+            cell.sendButton.isHidden = false
+            cell.infoButton.isHidden = false
+            cell.redrawButton.isHidden = false
+            cell.packageButton.isHidden = false
+
+            cell.cellDelegate = self
+            
+            cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+            cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
+            
+            cell.infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+            cell.infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
+            
+            cell.redrawButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+            cell.redrawButton.setTitle(String.fontAwesomeIcon(name: .refresh), for: .normal)
+            
+            cell.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+            cell.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
+            
         }
         else{
             cell.nameLabel?.text = "Jeszcze nie wylosowano przedmiotów"
@@ -89,23 +107,10 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             
             cell.sendButton.isHidden = true
             cell.infoButton.isHidden = true
-            cell.editButton.isHidden = true
+            cell.redrawButton.isHidden = true
             cell.packageButton.isHidden = true
         }
-        
-        cell.cellDelegate = self
-        
-        cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-        cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
-        
-        cell.infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-        cell.infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
-        
-        cell.editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-        cell.editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
-        
-        cell.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-        cell.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
+    
         return cell
     }
     
@@ -124,7 +129,8 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         self.present(popController, animated: true, completion: nil)
     }
     
-    func editItemButton(_ sender: UIButton){
+    func redrawItemButton(_ sender: UIButton){
+        
     }
     
     func showInfoButton(_ sender: UIButton){
@@ -195,7 +201,7 @@ class randomItemCell: UITableViewCell{
     
     @IBOutlet var packageButton: UIButton!
     
-    @IBOutlet var editButton: UIButton!
+    @IBOutlet var redrawButton: UIButton!
     
     @IBOutlet var infoButton: UIButton!
     
@@ -207,8 +213,8 @@ class randomItemCell: UITableViewCell{
         cellDelegate?.addToPackageButton(sender)
     }
     
-    @IBAction func editItemButton(_ sender: UIButton) {
-        cellDelegate?.editItemButton(sender)
+    @IBAction func redrawItemButton(_ sender: UIButton) {
+        cellDelegate?.redrawItemButton(sender)
     }
     
     @IBAction func showInfoButton(_ sender: UIButton) {
@@ -224,7 +230,7 @@ protocol randomItemCellDelegate: class{
     
     func addToPackageButton(_ sender: UIButton)
     
-    func editItemButton(_ sender: UIButton)
+    func redrawItemButton(_ sender: UIButton)
     
     func showInfoButton(_ sender: UIButton)
     

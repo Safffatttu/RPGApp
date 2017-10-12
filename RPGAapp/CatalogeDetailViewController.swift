@@ -45,7 +45,6 @@ class catalogeDetailCell: UITableViewCell{
         cellDelegate?.sendItemButton(sender)
     }
     
-    
 }
 
 protocol catalogeDetailCellDelegate: class{
@@ -60,13 +59,9 @@ protocol catalogeDetailCellDelegate: class{
     
 }
 
-
 class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate, UIPopoverPresentationControllerDelegate{
     
-    
     @IBOutlet weak var tableView: UITableView!
-    
-    //let packageService = PackageService()
     
     var items: [Item] = []
     var subCategories: [SubCategory] = []
@@ -81,7 +76,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //packageService.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection), name: .goToSectionCataloge, object: nil)
 
@@ -156,7 +150,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if  cellItem.price != nil  {
             if UserDefaults.standard.bool(forKey: "Show price"){
-                priceToShow = changeCurrency(price: cellItem.price, currency: listOfItems.currency)
+                //priceToShow = changeCurrency(price: cellItem.price, currency: listOfItems.currency)
+                priceToShow = String(cellItem.price) + "PLN"
             }
             else{
                 priceToShow = String(cellItem.price) + "PLN"
