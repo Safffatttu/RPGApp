@@ -266,19 +266,39 @@ class itemView: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     var item: Item? = nil
     var atributes: [ItemAtribute]!
+    var atributeHandler: ItemAtributeHandler!
+    
+    var atributesGood: Bool = true
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var atributeTable: UITableView!
-    
+
     func displayNewItem(){
 
         nameLabel.text = (item?.name)!
         priceLabel.text = String(describing: item?.price)
+       
+        atributeHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: CoreDataStack.managedObjectContext) as! ItemAtributeHandler
+        if atributes != nil{
+            for cellNum in 0...tableView(atributeTable, numberOfRowsInSection: 0){
+                let cell = atributeTable.cellForRow(at: IndexPath(row: cellNum, section: 0))
+                cell?.prepareForReuse()
+                cell?.setSelected(false, animated: true)
+                cell?.accessoryType = .none
+            }
+            
+        }
         
         let sortAtributes = NSSortDescriptor(key: #keyPath(ItemAtribute.name), ascending: true)
         atributes = item?.itemAtribute?.sortedArray(using: [sortAtributes]) as! [ItemAtribute]
+        
         atributeTable.reloadData()
+        
+        if atributes.count > 0 {
+            atributeTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -294,7 +314,32 @@ class itemView: UIViewController, UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AtributeCell")
         cell?.textLabel?.text = atributes[indexPath.row].name
+        cell?.selectionStyle = .none
+        if (cell?.isSelected)!{
+            cell?.accessoryType = .checkmark
+        }
+        else{
+            cell?.accessoryType = .none
+        }
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let newAtribute = atributes[indexPath.row]
+        atributeHandler.addToItemAtributes(newAtribute)
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .checkmark
+    }
+
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let atribute = atributes[indexPath.row]
+        atributeHandler.removeFromItemAtributes(atribute)
+
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .none
+    }
+
 }
 
