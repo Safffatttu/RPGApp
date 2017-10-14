@@ -103,9 +103,20 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         }
     }
     
-    func addToPackage(_ sender: UIButton) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row != packages.count{
+            addToPackage(indexPath)
+        }
+    }
+    
+    func addToPackageButton(_ sender: UIButton) {
         let indexPath = getCurrentCellIndexPath(sender)
-        let package = packages[(indexPath?.row)!]
+        addToPackage(indexPath!)
+    }
+    
+    func addToPackage(_ indexPath: IndexPath){
+        print(indexPath.row)
+        let package = packages[indexPath.row]
         if (item != nil){
             add(item!, to: package, count: nil)
         }else if(items != nil){
@@ -148,8 +159,8 @@ class packageCell: UITableViewCell {
     
     @IBOutlet weak var sendButton: UIButton!
     
-    @IBAction func addToPackge(_ sender: UIButton){
-        cellDelegate?.addToPackage(sender)
+    @IBAction func addToPackage(_ sender: UIButton){
+        cellDelegate?.addToPackageButton(sender)
     }
     
 }
@@ -168,7 +179,7 @@ class newPackageCell: UITableViewCell {
 
 protocol addToPackageDelegate: class {
     
-    func addToPackage(_ sender: UIButton)
+    func addToPackageButton(_ sender: UIButton)
     
     func newPackage(_ sender: UIButton)
 }
