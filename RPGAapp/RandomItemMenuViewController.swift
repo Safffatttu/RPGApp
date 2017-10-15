@@ -18,7 +18,7 @@ class randomItemMenu: UITableViewController {
     
     var drawSettings: [DrawSetting] = []
     var subCategories: [SubCategory] = []
-    
+    var categories: [Category] = []
     override func viewDidLoad() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDrawSetting(_:)))
@@ -28,6 +28,7 @@ class randomItemMenu: UITableViewController {
         let context = CoreDataStack.managedObjectContext
         let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+        let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
         
         drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
         do{
@@ -41,6 +42,15 @@ class randomItemMenu: UITableViewController {
         
         do{
             subCategories = try context.fetch(subCategoryFetch)
+        }
+        catch{
+            print("error fetching")
+        }
+        
+        categoryFetch.sortDescriptors = [sortCategoryByName]
+        
+        do{
+            categories = try context.fetch(categoryFetch)
         }
         catch{
             print("error fetching")
@@ -63,32 +73,54 @@ class randomItemMenu: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return  2
+        if drawSettings.count > 0{
+            return categories.count + 1
+        }else{
+            return categories.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
-            return drawSettings.count
+        if drawSettings.count > 0{
+            if section == 0{
+                return drawSettings.count
+            }
+            return (categories[section - 1].subCategories?.count)! + 1
+        }else{
+            return (categories[section].subCategories?.count)! + 1
         }
-        return subCategories.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0{
-            return "Własne losowania"
+        if drawSettings.count > 0{
+            if section == 0{
+                return "Własne losowania"
+            }else{
+                return categories[section-1].name
+            }
+        }else{
+            return categories[section].name
         }
-        return "Domyślne"
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0{
-            return 100
+        if  indexPath.section == 0 && drawSettings.count > 0{
+            return CGFloat((drawSettings[indexPath.row].subSettings?.count)! * 30 + 20)
+        }else{
+            return 44
         }
-        return 44
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
+        let section: Int
+        print(String(indexPath.section) + "row" + String(indexPath.row))
+        if drawSettings.count > 0{
+            section = indexPath.section - 1
+        }else{
+            section = indexPath.section
+        }
+
+        if indexPath.section == 0 && drawSettings.count > 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "customSettingCell") as! customSettingCell
             cell.nameLabel?.text = drawSettings[indexPath.row].name
             cell.drawSetting = drawSettings[indexPath.row]
@@ -96,7 +128,16 @@ class randomItemMenu: UITableViewController {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell")
-        cell?.textLabel?.text = subCategories[indexPath.row].name
+        let cellName: String
+        
+        if indexPath.row == 0{
+            cellName = "Cała kategoria " + categories[section].name!
+            cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
+        }else{
+            cellName = (categories[section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as! SubCategory).name!
+        }
+        
+        cell?.textLabel?.text = cellName
         return cell!
     }
     
@@ -104,13 +145,24 @@ class randomItemMenu: UITableViewController {
         drawQueue.async {
             var setting: DrawSetting?
             var subCategory: SubCategory?
-            if indexPath.section == 0{
-                setting = self.drawSettings[indexPath.row]
+            var category: Category?
+            let section: Int
+            
+            if self.drawSettings.count > 0{
+                section = indexPath.section - 1
             }else{
-                subCategory = self.subCategories[indexPath.row]
+                section = indexPath.section
             }
-
-            self.drawItems(drawSetting: setting, subCategory: subCategory )
+            
+            if indexPath.section == 0 && self.drawSettings.count > 0{
+                setting = self.drawSettings[indexPath.row]
+            }else if indexPath.row == 0{
+                category = self.categories[section]
+            }else{
+                subCategory = self.categories[section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
+            }
+            
+            self.drawItems(drawSetting: setting, subCategory: subCategory, category: category)
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
             }
@@ -118,15 +170,15 @@ class randomItemMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 0
+        return indexPath.section == 0 && drawSettings.count > 0
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             CoreDataStack.managedObjectContext.delete(drawSettings[indexPath.row])
             drawSettings.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .left)
-            viewDidLoad()
+            CoreDataStack.saveContext()
+            tableView.reloadData()
         }
     }
     
@@ -138,7 +190,7 @@ class randomItemMenu: UITableViewController {
         self.present(addDrawSettingControler, animated: true, completion: nil)
     }
     
-    func drawItems(drawSetting: DrawSetting?, subCategory: SubCategory?){
+    func drawItems(drawSetting: DrawSetting?, subCategory: SubCategory?, category: Category?){
         var itemsToDraw: [Item] = []
         
         if !(UserDefaults.standard.bool(forKey: "Dodawaj do listy wylosowanych")) {
@@ -147,6 +199,11 @@ class randomItemMenu: UITableViewController {
         
         if subCategory != nil{
             itemsToDraw = subCategory?.items?.sortedArray(using: [sortItemByName]) as! [Item]
+            drawItemHandler(items: itemsToDraw, numberOf: 10)
+            CoreDataStack.saveContext()
+            return
+        }else if category != nil{
+            itemsToDraw = category?.items?.sortedArray(using: [sortItemByName]) as! [Item]
             drawItemHandler(items: itemsToDraw, numberOf: 10)
             CoreDataStack.saveContext()
             return
@@ -181,7 +238,7 @@ class randomItemMenu: UITableViewController {
 
             drawItemHandler(items: itemsToDraw,numberOf: numberOf)
             
-        CoreDataStack.saveContext()
+            CoreDataStack.saveContext()
         }
         return
     }
