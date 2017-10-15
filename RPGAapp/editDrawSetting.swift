@@ -14,10 +14,10 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     var setting: DrawSetting? = nil
     
-    //var categories: [Category] = []
+    var categories: [Category] = []
     var subCategories: [SubCategory] = []
     
-    //let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
+    let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
     let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
     
     let context = CoreDataStack.managedObjectContext
@@ -33,6 +33,17 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView(_:)))
         
         self.numberField.delegate = self
+        
+        let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
+        
+        categoryFetch.sortDescriptors = [sortCategoryByName]
+        
+        do{
+            categories = try context.fetch(categoryFetch)
+        }
+        catch{
+            print("error fetching")
+        }
         
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         
@@ -54,22 +65,39 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if tableView == categoriesTable{
+            return categories.count
+        }else{
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == categoriesTable{
-            return subCategories.count// + categories.count
+            return (categories[section].subCategories?.count)! + 1
         }else{
             return (setting?.subSettings?.count)!
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == categoriesTable{
+            return categories[section].name
+        }
+        return ""
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell?
         if tableView == categoriesTable{
             cell = tableView.dequeueReusableCell(withIdentifier: "categoriesCell")
-            cell?.textLabel?.text = subCategories[indexPath.row].name
+            if indexPath.row == 0{
+                cell?.textLabel?.text = "Cała Kategoria " + categories[indexPath.section].name!
+            }else{
+                let cellCategory = categories[indexPath.section]
+                let cellSubCategories = cellCategory.subCategories?.sortedArray(using: [sortSubCategoryByName]) as! [SubCategory]
+                cell?.textLabel?.text = cellSubCategories[indexPath.row - 1].name
+            }
             cell?.detailTextLabel?.font = UIFont.fontAwesome(ofSize: CGFloat(20))
             cell?.detailTextLabel?.text = String.fontAwesomeIcon(name: .send)
         }else{
@@ -84,8 +112,14 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == categoriesTable{
             let subDraw = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
-            subDraw.subCategory = subCategories[indexPath.row]
-            subDraw.name = subCategories[indexPath.row].name
+            if indexPath.row == 0{
+                subDraw.category = categories[indexPath.section]
+                subDraw.name = subDraw.category?.name
+            }else{
+                subDraw.subCategory = categories[indexPath.section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as! SubCategory
+                subDraw.name = subDraw.subCategory?.name
+            }
+            
             if !((numberField.text?.isEmpty)!){
                 subDraw.itemsToDraw = Int64((numberField?.text)!)!
             }else{
@@ -95,7 +129,6 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             setting?.addToSubSettings(subDraw)
             subSettingsTable.reloadData()
         }
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
