@@ -23,12 +23,14 @@
 		3B4626A01F3A6DA1002B7AF3 /* ItemDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */; };
 		3B50DBBE1F5637790071DF2B /* sendAllPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
+		3B73F9201F8FB04900EA7E6A /* RPGAappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B73F91F1F8FB04900EA7E6A /* RPGAappTests.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
 		3B7B159D1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */; };
 		3B7D23051F43468D00A86F3E /* catalogeSendPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D23041F43468D00A86F3E /* catalogeSendPopoverViewController.swift */; };
 		3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD951F3F784700AC4193 /* HandlarzeMenuViewController.swift */; };
 		3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */; };
 		3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */; };
+		3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F06AF1F9792F100611C34 /* PackageViewer.swift */; };
 		3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
 		3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
@@ -38,6 +40,16 @@
 		3BFEFA251F570A69008B0C12 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFEFA241F570A69008B0C12 /* CoreData.framework */; };
 		3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3B73F9221F8FB04900EA7E6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B063D571F3A21A800B5271C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B063D5E1F3A21A800B5271C;
+			remoteInfo = RPGAapp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3B063D5F1F3A21A800B5271C /* RPGAapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGAapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,12 +71,16 @@
 		3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewControler.swift; sourceTree = "<group>"; };
 		3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sendAllPopoverViewController.swift; sourceTree = "<group>"; };
 		3B50DC011F40EB6B0040DCCC /* MPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPManager.swift; sourceTree = "<group>"; };
+		3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B73F91F1F8FB04900EA7E6A /* RPGAappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPGAappTests.swift; sourceTree = "<group>"; };
+		3B73F9211F8FB04900EA7E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemDetailViewController.swift; sourceTree = "<group>"; };
 		3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlarzeDetailViewController.swift; sourceTree = "<group>"; };
 		3B7D23041F43468D00A86F3E /* catalogeSendPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = catalogeSendPopoverViewController.swift; sourceTree = "<group>"; };
 		3B7FCD951F3F784700AC4193 /* HandlarzeMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlarzeMenuViewController.swift; sourceTree = "<group>"; };
 		3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemMenuViewController.swift; sourceTree = "<group>"; };
 		3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemMenuViewController.swift; sourceTree = "<group>"; };
+		3B8F06AF1F9792F100611C34 /* PackageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageViewer.swift; sourceTree = "<group>"; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
@@ -86,6 +102,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3B73F91A1F8FB04900EA7E6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -93,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				3B063D611F3A21A800B5271C /* RPGAapp */,
+				3B73F91E1F8FB04900EA7E6A /* RPGAappTests */,
 				3B063D601F3A21A800B5271C /* Products */,
 				CB81D7CA0204AF3DDF488BBA /* Frameworks */,
 				720AED23FB42C467F5CA1912 /* Pods */,
@@ -103,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				3B063D5F1F3A21A800B5271C /* RPGAapp.app */,
+				3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +160,7 @@
 				3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */,
 				3B7FCD951F3F784700AC4193 /* HandlarzeMenuViewController.swift */,
 				3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */,
+				3B8F06AF1F9792F100611C34 /* PackageViewer.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -151,6 +177,15 @@
 				3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */,
 			);
 			name = Detail;
+			sourceTree = "<group>";
+		};
+		3B73F91E1F8FB04900EA7E6A /* RPGAappTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B73F91F1F8FB04900EA7E6A /* RPGAappTests.swift */,
+				3B73F9211F8FB04900EA7E6A /* Info.plist */,
+			);
+			path = RPGAappTests;
 			sourceTree = "<group>";
 		};
 		3BF480AD1F44DBC50017169D /* Popover */ = {
@@ -208,6 +243,24 @@
 			productReference = 3B063D5F1F3A21A800B5271C /* RPGAapp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3B73F91C1F8FB04900EA7E6A /* RPGAappTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B73F9241F8FB04900EA7E6A /* Build configuration list for PBXNativeTarget "RPGAappTests" */;
+			buildPhases = (
+				3B73F9191F8FB04900EA7E6A /* Sources */,
+				3B73F91A1F8FB04900EA7E6A /* Frameworks */,
+				3B73F91B1F8FB04900EA7E6A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B73F9231F8FB04900EA7E6A /* PBXTargetDependency */,
+			);
+			name = RPGAappTests;
+			productName = RPGAappTests;
+			productReference = 3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -234,6 +287,11 @@
 							};
 						};
 					};
+					3B73F91C1F8FB04900EA7E6A = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3B063D5E1F3A21A800B5271C;
+					};
 				};
 			};
 			buildConfigurationList = 3B063D5A1F3A21A800B5271C /* Build configuration list for PBXProject "RPGAapp" */;
@@ -250,6 +308,7 @@
 			projectRoot = "";
 			targets = (
 				3B063D5E1F3A21A800B5271C /* RPGAapp */,
+				3B73F91C1F8FB04900EA7E6A /* RPGAappTests */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +321,13 @@
 				3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */,
 				3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */,
 				3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B73F91B1F8FB04900EA7E6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +406,7 @@
 				3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */,
 				3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */,
 				3B4626A01F3A6DA1002B7AF3 /* ItemDetailViewControler.swift in Sources */,
+				3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */,
 				3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */,
 				3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */,
 				3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */,
@@ -348,7 +415,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3B73F9191F8FB04900EA7E6A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B73F9201F8FB04900EA7E6A /* RPGAappTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B73F9231F8FB04900EA7E6A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B063D5E1F3A21A800B5271C /* RPGAapp */;
+			targetProxy = 3B73F9221F8FB04900EA7E6A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3B063D681F3A21A800B5271C /* Main.storyboard */ = {
@@ -412,6 +495,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LLVM_LTO = NO;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -459,6 +543,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LLVM_LTO = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -477,6 +562,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SMH62TPPHV;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -503,6 +589,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = SMH62TPPHV;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GENERATE_PROFILING_CODE = NO;
@@ -515,6 +602,36 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		3B73F9251F8FB04900EA7E6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = RPGAappTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RPGAapp.app/RPGAapp";
+			};
+			name = Debug;
+		};
+		3B73F9261F8FB04900EA7E6A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RPGAappTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAappTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RPGAapp.app/RPGAapp";
 			};
 			name = Release;
 		};
@@ -535,6 +652,15 @@
 			buildConfigurations = (
 				3B063D741F3A21A800B5271C /* Debug */,
 				3B063D751F3A21A800B5271C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B73F9241F8FB04900EA7E6A /* Build configuration list for PBXNativeTarget "RPGAappTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B73F9251F8FB04900EA7E6A /* Debug */,
+				3B73F9261F8FB04900EA7E6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
