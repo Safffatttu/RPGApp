@@ -169,8 +169,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
         
-        if tableView.cellForRow(at: indexPath) == tableView.visibleCells[0] || tableView.cellForRow(at: indexPath) == tableView.visibleCells[1]{
+        if tableView.cellForRow(at: indexPath) == tableView.visibleCells.first {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }else if tableView.cellForRow(at: indexPath) == tableView.visibleCells.last {
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
     
@@ -358,7 +360,7 @@ class catalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
         }
         cell?.textLabel?.text = atributes[indexPath.row].name
         cell?.selectionStyle = .none
-        if (cell?.isSelected)!{
+        if (atributeHandler.itemAtributes?.contains(atributes[indexPath.row]))!{
             cell?.accessoryType = .checkmark
         }
         else{
