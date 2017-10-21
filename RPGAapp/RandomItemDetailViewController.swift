@@ -114,7 +114,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    func addToPackageButton(_ sender: UIButton){
+    func addToPackage(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
@@ -129,11 +129,13 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         self.present(popController, animated: true, completion: nil)
     }
     
-    func redrawItemButton(_ sender: UIButton){
-        
+    func reDrawItem(_ sender: UIButton){
+        let indexPath = getCurrentCellIndexPath(sender)
+        NotificationCenter.default.post(name: .reDrawItem, object: randomlySelected[(indexPath?.row)!])
+        randomlySelected.remove(at: (indexPath?.row)!)
     }
     
-    func showInfoButton(_ sender: UIButton){
+    func showInfo(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
@@ -146,7 +148,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         self.present(popController, animated: true, completion: nil)
     }
     
-    func sendItemButton(_ sender: UIButton){
+    func sendItem(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
 
@@ -165,6 +167,10 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             return indexPath
         }
         return nil
+    }
+    
+    @IBAction func reDrawAllItems(_ sender: UIButton){
+        NotificationCenter.default.post(name: .reDrawAllItems, object: nil)
     }
     
     @IBAction func addAllToPackage(_ sender: UIView) {
@@ -209,31 +215,31 @@ class randomItemCell: UITableViewCell{
     
     weak var cellDelegate: randomItemCellDelegate?
     
-    @IBAction func addToPackageButton(_ sender: UIButton) {
-        cellDelegate?.addToPackageButton(sender)
+    @IBAction func addToPackage(_ sender: UIButton) {
+        cellDelegate?.addToPackage(sender)
     }
     
-    @IBAction func redrawItemButton(_ sender: UIButton) {
-        cellDelegate?.redrawItemButton(sender)
+    @IBAction func redrawItem(_ sender: UIButton) {
+        cellDelegate?.reDrawItem(sender)
     }
     
-    @IBAction func showInfoButton(_ sender: UIButton) {
-        cellDelegate?.showInfoButton(sender)
+    @IBAction func showInfo(_ sender: UIButton) {
+        cellDelegate?.showInfo(sender)
     }
     
-    @IBAction func sendItemButton(_ sender: UIButton) {
-        cellDelegate?.sendItemButton(sender)
+    @IBAction func sendItem(_ sender: UIButton) {
+        cellDelegate?.sendItem(sender)
     }
 }
 
 protocol randomItemCellDelegate: class{
     
-    func addToPackageButton(_ sender: UIButton)
+    func addToPackage(_ sender: UIButton)
     
-    func redrawItemButton(_ sender: UIButton)
+    func reDrawItem(_ sender: UIButton)
     
-    func showInfoButton(_ sender: UIButton)
+    func showInfo(_ sender: UIButton)
     
-    func sendItemButton(_ sender: UIButton)
+    func sendItem(_ sender: UIButton)
     
 }

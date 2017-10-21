@@ -19,11 +19,14 @@ class randomItemMenu: UITableViewController {
     var drawSettings: [DrawSetting] = []
     var subCategories: [SubCategory] = []
     var categories: [Category] = []
+    var lastDrawSetting: Any?
     override func viewDidLoad() {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDrawSetting(_:)))
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadDrawSettings), name: .reloadDrawSettings, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reDrawAllItems), name: .reDrawAllItems, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reDrawItem(_:)), name: .reDrawItem, object: nil)
         
         let context = CoreDataStack.managedObjectContext
         let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
@@ -113,7 +116,6 @@ class randomItemMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section: Int
-        print(String(indexPath.section) + "row" + String(indexPath.row))
         if drawSettings.count > 0{
             section = indexPath.section - 1
         }else{
@@ -156,13 +158,16 @@ class randomItemMenu: UITableViewController {
             
             if indexPath.section == 0 && self.drawSettings.count > 0{
                 setting = self.drawSettings[indexPath.row]
+                self.lastDrawSetting = setting
             }else if indexPath.row == 0{
                 category = self.categories[section]
+                self.lastDrawSetting = category
             }else{
                 subCategory = self.categories[section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
+                self.lastDrawSetting = subCategory
             }
             
-            self.drawItems(drawSetting: setting, subCategory: subCategory, category: category)
+            self.drawItems(drawSetting: setting, subCategory: subCategory, category: category, reDraw: .not)
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
             }
@@ -182,6 +187,39 @@ class randomItemMenu: UITableViewController {
         }
     }
     
+    func reDrawAllItems(){
+        drawQueue.async {
+            guard self.lastDrawSetting != nil else{
+                return
+            }
+            let setting = self.lastDrawSetting as? DrawSetting
+            let subCategory = self.lastDrawSetting as? SubCategory
+            let category = self.lastDrawSetting as? Category
+            self.drawItems(drawSetting: setting, subCategory: subCategory, category: category,reDraw: .all)
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
+            }
+        }
+    }
+    
+    func reDrawItem(_ notification: NSNotification){
+        drawQueue.async {
+            guard self.lastDrawSetting != nil else{
+                return
+            }
+        
+            let setting = self.lastDrawSetting as? DrawSetting
+            let subCategory = self.lastDrawSetting as? SubCategory
+            let category = self.lastDrawSetting as? Category
+            
+            self.drawItems(drawSetting: setting, subCategory: subCategory, category: category, reDraw: .single)
+            
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
+            }
+        }
+    }
+    
     func addDrawSetting(_ sender: UIBarButtonItem){
         let addDrawSettingControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor")
         
@@ -190,21 +228,27 @@ class randomItemMenu: UITableViewController {
         self.present(addDrawSettingControler, animated: true, completion: nil)
     }
     
-    func drawItems(drawSetting: DrawSetting?, subCategory: SubCategory?, category: Category?){
+    func drawItems(drawSetting: DrawSetting?, subCategory: SubCategory?, category: Category?, reDraw: reDraw){
         var itemsToDraw: [Item] = []
         
-        if !(UserDefaults.standard.bool(forKey: "Dodawaj do listy wylosowanych")) {
+        if !(UserDefaults.standard.bool(forKey: "Dodawaj do listy wylosowanych")) && reDraw != .single {
             randomlySelected = []
+        }
+        var numberOf: Int
+        if reDraw == .single{
+            numberOf = 1
+        }else{
+            numberOf = 10
         }
         
         if subCategory != nil{
             itemsToDraw = subCategory?.items?.sortedArray(using: [sortItemByName]) as! [Item]
-            drawItemHandler(items: itemsToDraw, numberOf: 10)
+            drawItemHandler(items: itemsToDraw, numberOf: numberOf)
             CoreDataStack.saveContext()
             return
         }else if category != nil{
             itemsToDraw = category?.items?.sortedArray(using: [sortItemByName]) as! [Item]
-            drawItemHandler(items: itemsToDraw, numberOf: 10)
+            drawItemHandler(items: itemsToDraw, numberOf: numberOf)
             CoreDataStack.saveContext()
             return
         }
@@ -215,7 +259,11 @@ class randomItemMenu: UITableViewController {
             
             let context = CoreDataStack.managedObjectContext
             
-            let numberOf = Int(setting.itemsToDraw)
+            if reDraw == .single{
+                numberOf = 1
+            }else{
+                numberOf = Int(setting.itemsToDraw)
+            }
             
             if(setting.category != nil){
                 itemsToDraw = setting.category?.items?.sortedArray(using: [sortItemByName]) as! [Item]
@@ -239,6 +287,10 @@ class randomItemMenu: UITableViewController {
             drawItemHandler(items: itemsToDraw,numberOf: numberOf)
             
             CoreDataStack.saveContext()
+            
+            if reDraw == .single {
+                break
+            }
         }
         return
     }
@@ -304,4 +356,13 @@ class customSettingCell: UITableViewCell, UITableViewDataSource, UITableViewDele
 extension Notification.Name{
     static let reloadRandomItemTable = Notification.Name("reloadRandomItemTable")
     static let reloadDrawSettings = Notification.Name("reloadDrawSettings")
+    static let reDrawAllItems = Notification.Name("reDrawAllItems")
+    static let reDrawItem = Notification.Name("reDrawItem")
 }
+
+enum reDraw {
+    case all
+    case single
+    case not
+}
+
