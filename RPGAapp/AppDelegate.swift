@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 defaults.set(true, forKey: "isPreloaded")
             }
         }
-        reloadCoreData()
+        //reloadCoreData()
         return true
     }
     
@@ -42,19 +42,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         CoreDataStack.saveContext()
     }
     
-    
     // MARK: - Split view
     
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController!, onto primaryViewController:UIViewController!) -> Bool {
+        
         if let secondaryAsNavController = secondaryViewController as? UINavigationController {
             if let topAsDetailController = secondaryAsNavController.topViewController as? catalogeDetail {
                 if topAsDetailController == nil {
+                    print("me")
                     // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
                     //If we don't do this, detail1 will open as the first view when run on iPhone, comment and see
                     return true
                 }
             }
         }
+
         else if let secondaryAsNavController = secondaryViewController as? UINavigationController {
             if let topAsDetailController = secondaryAsNavController.topViewController as? MapViewController {
                 if topAsDetailController == nil {
@@ -65,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
         }
                
-        return false
+        return true
     }
     
     // Correctly Handle Portrait to Landscape transition for iPhone 6+ when TableView2 is open in Portrait. Comment and see for yourself, what happens when you don't write this.

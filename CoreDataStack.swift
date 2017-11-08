@@ -71,7 +71,7 @@ class CoreDataStack {
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
                 abort()
             }
-        }
+        } 
     }
     
 }

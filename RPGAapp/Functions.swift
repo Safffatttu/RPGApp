@@ -204,9 +204,6 @@ func loadItemsFromAsset(){
     var currentCategory: Category? = nil
     var currentSubCategory: SubCategory? = nil
     
-    var newSetting: DrawSetting
-    var newSubSetting: DrawSubSetting
-
     let table = NSDataAsset.init(name: "ITEMS3")
     let decoded = String(data: (table?.data)!, encoding: .utf8)!
     var itemList: [[String]] = []
@@ -273,8 +270,6 @@ func loadItemsFromAsset(){
     CoreDataStack.saveContext()
 }
 
-
-
 func addToEquipment(item: Item, toCharacter: Character){
     let context = CoreDataStack.managedObjectContext
     
@@ -297,7 +292,6 @@ func addToEquipment(item: Item, toCharacter: Character){
     let atribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: context) as! ItemAtributeHandler
     
     itemHandler.addToItemAtributesHandler(atribute)
-    
 }
 
 func add(_ item: Item,to package: Package, count: Int64?){
@@ -322,6 +316,24 @@ func add(_ item: Item,to package: Package, count: Int64?){
     }
 }
 
+extension NSSortDescriptor{
+    static let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
+    static let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
+    static let sortItemByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
+    
+    static let sortItemHandlerByCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.category), ascending: true)
+    static let sortItemHandlerBySubCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.subCategory), ascending: true)
+    static let sortItemHandlerByName = NSSortDescriptor(key: #keyPath(ItemHandler.item.name), ascending: true)
+    
+    static let sortSubCategoryByName = NSSortDescriptor(key: #keyPath(SubCategory.name), ascending: true)
+    static let sortSubCategoryByCategory = NSSortDescriptor(key: #keyPath(SubCategory.category), ascending: true)
+    
+    static let sortCategoryByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
+    
+    static let sortPackageByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
+}
+
+
 let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
 let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
 let sortItemByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
@@ -334,3 +346,5 @@ let sortSubCategoryByName = NSSortDescriptor(key: #keyPath(SubCategory.name), as
 let sortSubCategoryByCategory = NSSortDescriptor(key: #keyPath(SubCategory.category), ascending: true)
 
 let sortCategoryByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
+
+let sortPackageByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)

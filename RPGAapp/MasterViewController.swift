@@ -30,6 +30,21 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    func baseLoading(){
+        let alert = UIAlertController(title: "Title", message: "Proszę czekać", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 50, y: 10, width: 37, height: 37))
+        loadingIndicator.center = self.view.center;
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        alert.setValue(loadingIndicator, forKey: "accessoryView")
+        loadingIndicator.startAnimating()
+        
+        self.show(alert, sender: nil)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         splitViewController?.preferredDisplayMode = .allVisible
     }
@@ -88,9 +103,7 @@ class MasterViewController: UITableViewController {
         
         // Set appropriate labels for the cells.
         cell.textLabel?.text = menuItems[indexPath.row].0
-        if indexPath.row == 0{
-            cell.accessoryType = .disclosureIndicator
-        }
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     

@@ -69,7 +69,8 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             
             if  randomlySelected[indexPath.row].item?.price != nil  {
                 if UserDefaults.standard.bool(forKey: "Show price"){
-                    priceToShow = changeCurrency(price: (randomlySelected[indexPath.row].item?.price)!, currency: listOfItems.currency)
+                    //priceToShow = changeCurrency(price: (randomlySelected[indexPath.row].item?.price)!, currency: listOfItems.currency)
+                    priceToShow = String(describing: (randomlySelected[indexPath.row].item?.price)!) + "PLN"
                 }
                 else{
                     priceToShow = String(describing: (randomlySelected[indexPath.row].item?.price)!) + "PLN"

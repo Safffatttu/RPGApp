@@ -136,6 +136,7 @@ class randomItemMenu: UITableViewController {
             cellName = "Cała kategoria " + categories[section].name!
             cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
         }else{
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
             cellName = (categories[section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as! SubCategory).name!
         }
         

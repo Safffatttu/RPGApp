@@ -93,8 +93,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.item = cellItem
             cell.loadAtributes()
             
+            cell.cellDelegate = self
             
             cell.nameLabel.text = cellItem.name
+            cell.priceLabel.text = String(cellItem.price) + "PLN"
             
             cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
             cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
