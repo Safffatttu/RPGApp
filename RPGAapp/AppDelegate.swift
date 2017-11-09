@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     var window: UIWindow?
     
+    let pack = PackageService()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,8 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 defaults.set(true, forKey: "isPreloaded")
             }
         }
-        //reloadCoreData()
+        pack.delegate = self
         return true
+    }
+    
+    func send(_ action: NSDictionary){
+        pack.send(action)
+    }
+    
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        let a = NSDictionary(dictionary: ["123": "555"])
+        self.send(a)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -49,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         if let secondaryAsNavController = secondaryViewController as? UINavigationController {
             if let topAsDetailController = secondaryAsNavController.topViewController as? catalogeDetail {
                 if topAsDetailController == nil {
-                    print("me")
                     // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
                     //If we don't do this, detail1 will open as the first view when run on iPhone, comment and see
                     return true
@@ -86,3 +95,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return nil
     }
 }
+
+extension AppDelegate: PackageServiceDelegate{
+    func recieved(_ action: NSDictionary, manager: PackageService) {
+        print(action)
+    }
+    
+    func connectedDevicesChanged(manager: PackageService, connectedDevices: [String]) {
+        print(connectedDevices)
+    }
+    
+}
+

@@ -236,19 +236,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 }
 
-extension catalogeDetail: PackageServiceDelegate{
-    
-    func connectedDevicesChanged(manager: PackageService, connectedDevices: [String]) {
-        print("connections\(connectedDevices)")
-    }
-    
-    func colorChanged(manager: PackageService, String: String) {
-        OperationQueue.main.addOperation {
-            print(String)
-        }
-    }
-}
-
 class catalogeDetailCell: UITableViewCell{
     
     var item: Item? = nil

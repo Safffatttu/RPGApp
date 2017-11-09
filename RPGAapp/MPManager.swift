@@ -24,31 +24,34 @@ class PackageService: NSObject{
         self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType)
         
         super.init()
+        print("initialized")
         
         self.serviceAdvertiser.delegate = self
         self.serviceAdvertiser.startAdvertisingPeer()
         
         self.serviceBrowser.delegate = self
         self.serviceBrowser.startBrowsingForPeers()
+
     }
     
     deinit {
         self.serviceAdvertiser.stopAdvertisingPeer()
         self.serviceBrowser.stopBrowsingForPeers()
+        print("deinit")
     }
     
     
     lazy var session: MCSession = {
-        let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .required)
+        let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         return session
     }()
     
-    func sendPackage(itemToDend: item){
-        
-        if session.connectedPeers.count > 0{
+    func send(_ action: NSDictionary){
+        NSLog("%@", "send")
+            if session.connectedPeers.count > 0{
             do{
-                let data = item.archive(w: itemToDend)
+                let data = NSKeyedArchiver.archivedData(withRootObject: action)
                 try self.session.send(data, toPeers: session.connectedPeers, with: .reliable)
             }
             catch let error{
@@ -64,7 +67,7 @@ extension PackageService: MCNearbyServiceAdvertiserDelegate{
     }
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-    invitationHandler(true, self.session)
+        invitationHandler(true, self.session)
     }
 }
 
@@ -89,14 +92,12 @@ extension PackageService: MCSessionDelegate{
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         NSLog("%@", "peer \(peerID) didChangeState: \(state)")
         self.delegate?.connectedDevicesChanged(manager: self, connectedDevices: session.connectedPeers.map{$0.displayName})
-        
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
-        let str = item.unarchive(d: data).name
-        self.delegate?.colorChanged(manager: self, String: str)
-        
+        let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSDictionary
+        self.delegate?.recieved(action, manager: self)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -115,8 +116,7 @@ extension PackageService: MCSessionDelegate{
 protocol PackageServiceDelegate {
     
     func connectedDevicesChanged(manager : PackageService, connectedDevices: [String])
-    func colorChanged(manager: PackageService, String: String)
-    
+    func recieved(_ action: NSDictionary, manager: PackageService)
 }
 
 
