@@ -8,6 +8,8 @@
 
 import Foundation
 import MultipeerConnectivity
+import Popover
+import UIKit
 
 class PackageService: NSObject{
     
@@ -31,7 +33,6 @@ class PackageService: NSObject{
         
         self.serviceBrowser.delegate = self
         self.serviceBrowser.startBrowsingForPeers()
-
     }
     
     deinit {
@@ -47,7 +48,7 @@ class PackageService: NSObject{
         return session
     }()
     
-    func send(_ action: NSDictionary){
+    func send(_ action: NSMutableDictionary){
         NSLog("%@", "send")
             if session.connectedPeers.count > 0{
             do{
@@ -83,6 +84,7 @@ extension PackageService: MCNearbyServiceBrowserDelegate{
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        self.delegate?.lost(peerID)
         NSLog("%@", "lostPeer: \(peerID)")
     }
 }
@@ -96,7 +98,8 @@ extension PackageService: MCSessionDelegate{
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
-        let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSDictionary
+        let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary
+        action.setValue(peerID.displayName, forKey: "sender")
         self.delegate?.recieved(action, manager: self)
     }
     
@@ -116,7 +119,14 @@ extension PackageService: MCSessionDelegate{
 protocol PackageServiceDelegate {
     
     func connectedDevicesChanged(manager : PackageService, connectedDevices: [String])
-    func recieved(_ action: NSDictionary, manager: PackageService)
+    func lost(_ peer: MCPeerID)
+    func recieved(_ action: NSMutableDictionary, manager: PackageService)
 }
 
-
+enum ActionType: Int {
+    case applicationWillTerminate = 0
+    case applicationDidEnterBackground
+    case itemSend
+    case packageSend
+    case characterCreated
+}

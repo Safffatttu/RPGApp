@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
     
     let pack = PackageService()
+    let actionDelegate = ActionDelegate()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,17 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 defaults.set(true, forKey: "isPreloaded")
             }
         }
-        pack.delegate = self
+        pack.delegate = actionDelegate
         return true
     }
     
-    func send(_ action: NSDictionary){
-        pack.send(action)
-    }
-    
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        let a = NSDictionary(dictionary: ["123": "555"])
-        self.send(a)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -49,6 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        let at: NSNumber = NSNumber(value: ActionType.applicationDidEnterBackground.rawValue)
+        let a = NSMutableDictionary(dictionary: ["action": at])
+        pack.send(a)
         CoreDataStack.saveContext()
     }
     
@@ -65,7 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 }
             }
         }
-
         else if let secondaryAsNavController = secondaryViewController as? UINavigationController {
             if let topAsDetailController = secondaryAsNavController.topViewController as? MapViewController {
                 if topAsDetailController == nil {
@@ -75,7 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 }
             }
         }
-               
         return true
     }
     
@@ -95,15 +91,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return nil
     }
 }
-
-extension AppDelegate: PackageServiceDelegate{
-    func recieved(_ action: NSDictionary, manager: PackageService) {
-        print(action)
-    }
-    
-    func connectedDevicesChanged(manager: PackageService, connectedDevices: [String]) {
-        print(connectedDevices)
-    }
-    
-}
-
