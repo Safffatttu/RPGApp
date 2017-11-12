@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '380C118EE5B0BCE6FF3AB9B1CCC096A8'
-               BlueprintName = 'Pods-RPGAapp'
+               BlueprintIdentifier = '7AB565EDE3083ABA8C6C99766CA215E0'
+               BlueprintName = 'Popover'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-RPGAapp.framework'>
+               BuildableName = 'Popover.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

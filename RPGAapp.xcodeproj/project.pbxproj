@@ -168,11 +168,11 @@
 		3B3C052F1F3BBE4E00CFB002 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				3BCD737F1F3C4E1400B35D75 /* TeamView.swift */,
 				3B063D7C1F3A268400B5271C /* CharacterDetailViewController.swift */,
 				3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */,
 				3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */,
 				3B3C05301F3BC1D600CFB002 /* MapViewController.swift */,
-				3BCD737F1F3C4E1400B35D75 /* TeamView.swift */,
 				3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */,
 				3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */,
 			);
@@ -498,6 +498,7 @@
 				LLVM_LTO = NO;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -545,6 +546,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LLVM_LTO = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = "";
@@ -572,6 +574,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = NO;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -599,6 +602,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
