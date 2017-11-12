@@ -108,7 +108,7 @@ class randomItemMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if  indexPath.section == 0 && drawSettings.count > 0{
-            return CGFloat((drawSettings[indexPath.row].subSettings?.count)! * 30 + 20)
+            return CGFloat((drawSettings[indexPath.row].subSettings?.count)! * 30 + 25)
         }else{
             return 44
         }
@@ -285,6 +285,12 @@ class randomItemMenu: UITableViewController {
                 }
             }
 
+            itemsToDraw = itemsToDraw.filter({$0.rarity >= setting.minRarity && $0.rarity <= setting.maxRarity})
+            
+            if itemsToDraw.count == 0{
+                continue
+            }
+            
             drawItemHandler(items: itemsToDraw,numberOf: numberOf)
             
             CoreDataStack.saveContext()
