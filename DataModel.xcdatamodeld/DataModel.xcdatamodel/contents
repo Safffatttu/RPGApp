@@ -21,7 +21,9 @@
         <relationship name="subSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrawSubSetting" syncable="YES"/>
     </entity>
     <entity name="DrawSubSetting" representedClassName="DrawSubSetting" syncable="YES" codeGenerationType="class">
-        <attribute name="itemsToDraw" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="itemsToDraw" optional="YES" attributeType="Integer 64" defaultValueString="3" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="maxRarity" attributeType="Integer 16" defaultValueString="4" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="minRarity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
@@ -30,7 +32,7 @@
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="baseDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="item_description" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="measure" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="measure" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="propability" optional="YES" transient="YES" attributeType="Integer 64" defaultValueString="100" usesScalarValueType="YES" syncable="YES"/>
@@ -86,21 +88,21 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="rate" attributeType="Double" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <fetchRequest name="FetchRequest" entity="Category" predicateString="name ENDSWITH &quot;&quot;"/>
+    <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
         <element name="Character" positionX="-441" positionY="90" width="128" height="103"/>
         <element name="Currency" positionX="-270" positionY="-163" width="128" height="88"/>
-        <element name="DrawSetting" positionX="259" positionY="431" width="128" height="73"/>
-        <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="118"/>
-        <element name="Item" positionX="-27" positionY="-19" width="108" height="208"/>
+        <element name="DrawSetting" positionX="243" positionY="476" width="128" height="73"/>
+        <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="148"/>
+        <element name="Item" positionX="-27" positionY="-19" width="108" height="210"/>
         <element name="ItemAtribute" positionX="-47" positionY="261" width="128" height="120"/>
         <element name="ItemAtributeHandler" positionX="-191" positionY="225" width="128" height="58"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="88"/>
         <element name="Package" positionX="-443" positionY="-27" width="128" height="73"/>
-        <element name="Store" positionX="-612" positionY="329" width="126" height="118"/>
-        <element name="StoreAvalibleItem" positionX="-423" positionY="234" width="128" height="75"/>
-        <element name="StorePurchases" positionX="-405" positionY="503" width="128" height="118"/>
+        <element name="Store" positionX="-639" positionY="356" width="126" height="118"/>
+        <element name="StoreAvalibleItem" positionX="-450" positionY="261" width="128" height="75"/>
+        <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
         <element name="SubCategory" positionX="153" positionY="-43" width="128" height="88"/>
         <element name="SubCurrency" positionX="-83" positionY="-153" width="128" height="75"/>
     </elements>

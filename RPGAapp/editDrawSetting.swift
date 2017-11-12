@@ -22,15 +22,29 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     let context = CoreDataStack.managedObjectContext
     
+    let rarityName = ["Dziadostwo", "Normalne", "Rzadkie", "Legendarne"]
+    
     @IBOutlet weak var subSettingsTable: UITableView!
     @IBOutlet weak var categoriesTable: UITableView!
     
+    @IBOutlet weak var drawSettingNameField: UITextField!
+    
+    @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var numberField: UITextField!
+    
+    @IBOutlet weak var minRarityLabelName: UILabel!
+    @IBOutlet weak var minRarityLabel: UILabel!
+    @IBOutlet weak var minRaritySlider: UISlider!
+    
+    
+    @IBOutlet weak var maxRarityLabelName: UILabel!
+    @IBOutlet weak var maxRarityLabel: UILabel!
+    @IBOutlet weak var maxRaritySlider: UISlider!
     
     override func viewWillAppear(_ animated: Bool) {
         self.preferredContentSize = CGSize(width: 400, height: 400)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done(_:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissView(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         
         self.numberField.delegate = self
         
@@ -61,7 +75,23 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             setting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as? DrawSetting
         }
         
+        numberLabel.text = "Liczba przedmiotów"
+        minRarityLabelName.text = "Minimalna rzakdość"
+        maxRarityLabelName.text = "Maksymalna rzakdość"
+        
+        minRarityLabel.text = rarityName.first
+        maxRarityLabel.text = rarityName.last
         super.viewWillAppear(animated)
+    }
+    
+    @IBAction func minRaritySliderChanged(_ sender: UISlider) {
+        let rarity = Int(minRaritySlider.value.rounded(.toNearestOrEven))
+        minRarityLabel.text = rarityName[rarity]
+    }
+    
+    @IBAction func maxRaritySliderChanged(_ sender: UISlider) {
+        let rarity = Int(maxRaritySlider.value.rounded(.toNearestOrEven))
+        maxRarityLabel.text = rarityName[rarity]
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -103,8 +133,12 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         }else{
             cell = tableView.dequeueReusableCell(withIdentifier: "drawSubSettingCell")
             let subSetting = setting?.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)])[indexPath.row] as! DrawSubSetting
-            cell?.textLabel?.text = subSetting.name
-            cell?.detailTextLabel?.text = String(subSetting.itemsToDraw)
+            
+            let min = subSetting.minRarity > 0 ? "Min: " + rarityName[Int(subSetting.minRarity)] + " " : ""
+            let max = subSetting.maxRarity < 3 ? "Max: " + rarityName[Int(subSetting.maxRarity)] + " " : ""
+            
+            cell?.textLabel?.text = subSetting.name!
+            cell?.detailTextLabel?.text = min + max + "Ilość: " + String(subSetting.itemsToDraw)
         }
         return cell!
     }
@@ -125,7 +159,8 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             }else{
                 subDraw.itemsToDraw = 10
             }
-            
+            subDraw.minRarity = Int16(minRaritySlider.value.rounded(.toNearestOrEven))
+            subDraw.maxRarity = Int16(maxRaritySlider.value.rounded(.toNearestOrEven))
             setting?.addToSubSettings(subDraw)
             subSettingsTable.reloadData()
         }
@@ -138,13 +173,14 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func done(_ sender: UIBarButtonItem){
-        setting?.name = "Własne losowanie"
+        setting?.name = drawSettingNameField.text
         CoreDataStack.saveContext()
         NotificationCenter.default.post(name: .reloadDrawSettings, object: nil)
         dismiss(animated: true, completion: nil)
     }
     
-    func dismissView(_ sender: UIBarButtonItem){
+    func cancel(_ sender: UIBarButtonItem){
+        CoreDataStack.managedObjectContext.delete(setting!)
         dismiss(animated: true, completion: nil)
     }
 }

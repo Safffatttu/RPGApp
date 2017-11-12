@@ -2,7 +2,7 @@
 //  DrawSubSetting+CoreDataProperties.swift
 //  
 //
-//  Created by Jakub on 03.09.2017.
+//  Created by Jakub on 12.11.2017.
 //
 //
 
@@ -17,10 +17,12 @@ extension DrawSubSetting {
     }
 
     @NSManaged public var itemsToDraw: Int64
+    @NSManaged public var maxRarity: Int16
+    @NSManaged public var minRarity: Int16
     @NSManaged public var name: String?
     @NSManaged public var category: Category?
-    @NSManaged public var subCategory: SubCategory?
     @NSManaged public var items: NSSet?
+    @NSManaged public var subCategory: SubCategory?
 
 }
 
