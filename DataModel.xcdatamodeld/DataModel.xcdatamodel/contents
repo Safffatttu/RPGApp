@@ -7,7 +7,9 @@
     </entity>
     <entity name="Character" representedClassName="Character" syncable="YES" codeGenerationType="class">
         <attribute name="health" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="profession" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
     </entity>
@@ -31,6 +33,7 @@
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="baseDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="item_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="measure" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" spotlightIndexingEnabled="YES" syncable="YES"/>
@@ -91,15 +94,15 @@
     <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
-        <element name="Character" positionX="-441" positionY="90" width="128" height="103"/>
+        <element name="Character" positionX="-450" positionY="36" width="128" height="133"/>
         <element name="Currency" positionX="-270" positionY="-163" width="128" height="88"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="73"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="148"/>
-        <element name="Item" positionX="-27" positionY="-19" width="108" height="210"/>
+        <element name="Item" positionX="-27" positionY="-19" width="108" height="225"/>
         <element name="ItemAtribute" positionX="-47" positionY="261" width="128" height="120"/>
         <element name="ItemAtributeHandler" positionX="-191" positionY="225" width="128" height="58"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="88"/>
-        <element name="Package" positionX="-443" positionY="-27" width="128" height="73"/>
+        <element name="Package" positionX="-452" positionY="-81" width="128" height="73"/>
         <element name="Store" positionX="-639" positionY="356" width="126" height="118"/>
         <element name="StoreAvalibleItem" positionX="-450" positionY="261" width="128" height="75"/>
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>

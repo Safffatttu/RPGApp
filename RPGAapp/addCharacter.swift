@@ -37,14 +37,30 @@ class addCharacter: UIViewController {
         guard nameField.text != "" else {
             return
         }
-        let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext)
+        let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
         newCharacter.setValue(nameField.text!, forKey: #keyPath(Character.name))
         newCharacter.setValue(hpStepper.value, forKey: #keyPath(Character.health))
         let id = nameField.text! + String((nameField.text! + UIDevice.current.name).hash)
         newCharacter.setValue(nameField.text! + id, forKey: #keyPath(Character.id))
+        newCharacter.setValue(profesionField.text, forKey: #keyPath(Character.profession))
         CoreDataStack.saveContext()
         
         NotificationCenter.default.post(name: .reloadTeam, object: nil)
         dismiss(animated: true, completion: nil)
+        
+        let action =  NSMutableDictionary()
+        
+        let actionType: NSNumber = NSNumber(value: ActionType.characterCreated.rawValue)
+        action.setValue(actionType, forKey: "action")
+        
+        action.setValue(newCharacter.name, forKey: #keyPath(Character.name))
+        action.setValue(newCharacter.health, forKey: #keyPath(Character.health))
+        action.setValue(newCharacter.race, forKey: #keyPath(Character.race))
+        action.setValue(newCharacter.id, forKey: #keyPath(Character.id))
+        action.setValue(newCharacter.profession, forKey: #keyPath(Character.profession))
+     
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.pack.send(action)
     }
 }

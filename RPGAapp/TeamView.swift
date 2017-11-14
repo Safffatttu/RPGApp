@@ -18,7 +18,6 @@ class TeamView: UICollectionViewController {
         let addButton =  UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.rightBarButtonItem = addButton
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
-        //self.splitViewController?.displayModeButtonItem = .
         reloadCoreData()
     }
     
@@ -45,7 +44,7 @@ class TeamView: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TeamViewCell
         let person = newTeam[indexPath.row] as! Character
-        (cell.viewWithTag(1) as! UILabel).text = person.name
+        cell.nameLabel.text = person.name
         return cell
     }
     
@@ -95,6 +94,8 @@ class TeamViewCell: UICollectionViewCell {
     
     @IBOutlet var ablilityTable: UITableView!
     
+    @IBOutlet weak var nameLabel: UILabel!
+    
     func setTableViewDataSourceDelegate<D: UITableViewDataSource & UITableViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
         //print(dataSourceDelegate.description)
         table.delegate = dataSourceDelegate
@@ -108,12 +109,3 @@ class TeamViewCell: UICollectionViewCell {
 extension Notification.Name{
     static let reloadTeam = Notification.Name("reloadTeam")
 }
-
-
-
-
-
-
-
-
-

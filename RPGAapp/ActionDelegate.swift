@@ -9,6 +9,7 @@
 import Foundation
 import Popover
 import MultipeerConnectivity
+import CoreData
 
 class ActionDelegate: NSObject, PackageServiceDelegate{
     
@@ -19,6 +20,22 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
         if actionType == ActionType.applicationDidEnterBackground{
             let message = sender! + " wyszedł z aplikacji"
             showPopover(with: message)
+        }else if actionType == ActionType.characterCreated{
+            print("here")
+            DispatchQueue.main.async {
+                let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
+                
+                newCharacter.name = action.value(forKey: #keyPath(Character.name)) as? String
+                newCharacter.health = action.value(forKey: #keyPath(Character.health)) as! Double
+                newCharacter.race = action.value(forKey: #keyPath(Character.race)) as? String
+                newCharacter.id = action.value(forKey: #keyPath(Character.id)) as? String
+                newCharacter.profession = action.value(forKey: #keyPath(Character.profession)) as? String
+                
+                CoreDataStack.saveContext()
+                
+                NotificationCenter.default.post(name: .reloadTeam, object: nil)
+                self.showPopover(with: "Dodano nową postać")
+            }
         }
     }
     

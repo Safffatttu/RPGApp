@@ -2,7 +2,7 @@
 //  Character+CoreDataProperties.swift
 //  
 //
-//  Created by Jakub on 16.09.2017.
+//  Created by Jakub on 14.11.2017.
 //
 //
 
@@ -17,8 +17,10 @@ extension Character {
     }
 
     @NSManaged public var health: Double
+    @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var race: String?
+    @NSManaged public var profession: String?
     @NSManaged public var equipment: NSSet?
 
 }
