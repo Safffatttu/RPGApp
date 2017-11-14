@@ -59,6 +59,7 @@
 		3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
 		3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF0FEA1F5C946100135252 /* addToPackage.swift */; };
+		3BECB6CC1FBA53BA00A947E9 /* addCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */; };
 		3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */; };
 		3BFEFA251F570A69008B0C12 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFEFA241F570A69008B0C12 /* CoreData.framework */; };
 		3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */; };
@@ -130,6 +131,7 @@
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
+		3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCharacter.swift; sourceTree = "<group>"; };
 		3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowInfoPopOver.swift; sourceTree = "<group>"; };
 		3BFEFA241F570A69008B0C12 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../CoreDataStack.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */,
 				3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */,
 				3B4387991F48A116003F67B9 /* addCharacterModalViewController.swift */,
+				3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */,
 				3BDF0FEA1F5C946100135252 /* addToPackage.swift */,
 				3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */,
 				3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */,
