@@ -9,19 +9,29 @@
 import Foundation
 import UIKit
 import FontAwesome_swift
+import CoreData
 
 class sendPopover: UITableViewController, sendPopoverDelegate{
     
     var item: Item? = nil
     
+    var team: [Character] = []
+        
     override func viewWillAppear(_ animated: Bool) {
-        reloadCoreData()
-                
+        let context = CoreDataStack.managedObjectContext
+        
+        let fetchRequest: NSFetchRequest<Character> = Character.fetchRequest()
+        
+        do {
+            team = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
         var height =  Int()
         var y = Int()
-        let newTeam: [Int] = []
-        if (newTeam.count > 0){
-            height = 45 * newTeam.count - 1
+        if (team.count > 0){
+            height = 45 * team.count - 1
             y = 13
         }
         else{
@@ -42,8 +52,8 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (newTeam.count > 0){
-            return newTeam.count
+        if (team.count > 0){
+            return team.count
         }
         else{
             return 1
@@ -53,8 +63,8 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sendPopoverCell") as! sendPopoverCell
         cell.cellDelegate = self
-        if (newTeam.count > 0){
-            cell.playerName.text = (newTeam[indexPath.row] as! Character).name
+        if (team.count > 0){
+            cell.playerName.text = team[indexPath.row].name
             cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
             cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
         }
@@ -75,7 +85,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     
     func sendItem(_ sender: UIButton) {
         let playerNum = getCurrentCellIndexPath(sender)?.row
-        let sendTo = newTeam[playerNum!] as! Character
+        let sendTo = team[playerNum!]
         addToEquipment(item: item!, toCharacter: sendTo)
         CoreDataStack.saveContext()
         dismiss(animated: true, completion: nil)
