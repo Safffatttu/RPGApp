@@ -87,10 +87,21 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         let playerNum = getCurrentCellIndexPath(sender)?.row
         let sendTo = team[playerNum!]
         addToEquipment(item: item!, toCharacter: sendTo)
+        
         CoreDataStack.saveContext()
         dismiss(animated: true, completion: nil)
+        
+        let action =  NSMutableDictionary()
+        
+        let actionType: NSNumber = NSNumber(value: ActionType.itemSend.rawValue)
+        action.setValue(actionType, forKey: "action")
+        
+        action.setValue(item?.id, forKey: "itemId")
+        action.setValue(sendTo.id, forKey: "characterId")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.pack.send(action)
     }
-    
 }
 
 class sendPopoverCell: UITableViewCell{

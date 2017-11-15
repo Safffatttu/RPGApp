@@ -316,6 +316,10 @@ func add(_ item: Item,to package: Package, count: Int64?){
     }
 }
 
+extension Notification.Name{
+    static let addedItemToCharacter = Notification.Name("addedItemToCharacter")
+}
+
 extension NSSortDescriptor{
     static let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
     static let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)

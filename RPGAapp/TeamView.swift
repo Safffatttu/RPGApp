@@ -51,6 +51,7 @@ class TeamView: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? TeamViewCell else { return }
         tableViewCell.setTableViewDataSourceDelegate(self, forRow: indexPath.row)
+        tableViewCell.createObserver()
     }
 }
 
@@ -104,6 +105,14 @@ class TeamViewCell: UICollectionViewCell {
         ablilityTable.delegate = dataSourceDelegate
         ablilityTable.dataSource = dataSourceDelegate
         ablilityTable.tag = row
+    }
+    
+    func createObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadItem), name: .addedItemToCharacter, object: nil)
+    }
+    
+    func reloadItem(){
+        table.reloadData()
     }
 }
 extension Notification.Name{

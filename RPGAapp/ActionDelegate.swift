@@ -20,6 +20,43 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
         if actionType == ActionType.applicationDidEnterBackground{
             let message = sender! + " wyszedł z aplikacji"
             showPopover(with: message)
+        }else if actionType == ActionType.itemSend{
+                DispatchQueue.main.async {
+                var character: Character? = nil
+                let characterId = action.value(forKey: "characterId") as? String
+                var item: Item? = nil
+                let itemId = action.value(forKey: "itemId") as? String
+                let context = CoreDataStack.managedObjectContext
+                
+                guard characterId != nil && itemId != nil else {
+                    return
+                }
+                
+                let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
+                let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+                
+                do{
+                    character = try context.fetch(characterFetch).first(where: {$0.id == characterId})
+                }catch let error as NSError {
+                    print("Could not fetch. \(error), \(error.userInfo)")
+                }
+                
+                do{
+                    item = try context.fetch(itemFetch).first(where: {$0.id == itemId})
+                }catch let error as NSError {
+                    print("Could not fetch. \(error), \(error.userInfo)")
+                }
+                
+                guard item != nil && character != nil else {
+                    return
+                }
+                
+                addToEquipment(item: item!, toCharacter: character!)
+                
+                CoreDataStack.saveContext()
+                
+                NotificationCenter.default.post(name: .addedItemToCharacter, object: nil)
+            }
         }else if actionType == ActionType.characterCreated{
             print("here")
             DispatchQueue.main.async {
@@ -65,5 +102,4 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
             popover.show(view, point: point)
         }
     }
-    
 }
