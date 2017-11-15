@@ -125,7 +125,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         
-        (popController as! addToPackage).item = randomlySelected[(indexPath?.row)!].item
+        (popController as! addToPackage).itemToAdd = randomlySelected[(indexPath?.row)!]
         
         self.present(popController, animated: true, completion: nil)
     }
@@ -182,7 +182,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         
-        (popController as! addToPackage).items = randomlySelected
+        (popController as! addToPackage).itemsToAdd = randomlySelected
         
         self.present(popController, animated: true, completion: nil)
     }

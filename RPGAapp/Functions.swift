@@ -297,22 +297,22 @@ func addToEquipment(item: Item, toCharacter: Character){
 func add(_ item: Item,to package: Package, count: Int64?){
     let context = CoreDataStack.managedObjectContext
 
-    let filter = NSPredicate(format: "item == %@", item)
-    var itemHandler = package.items?.filtered(using: filter).first as? ItemHandler
+    var itemHandler = package.items?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler
     
-    if count != nil{
-        itemHandler?.count += count!
-    }
-    else{
-        itemHandler?.count += 1
-    }
     if itemHandler == nil{
-        itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+        itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as? ItemHandler
         itemHandler!.item = item
         if count != nil{
             itemHandler!.count = count!
         }
         package.addToItems(itemHandler!)
+    }
+
+    else if count != nil{
+        itemHandler?.count += count!
+    }
+    else if (itemHandler?.count)! > 0{
+        itemHandler?.count += 1
     }
 }
 

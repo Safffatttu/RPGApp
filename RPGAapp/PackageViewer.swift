@@ -53,7 +53,7 @@ class PackageViewer: UITableViewController {
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "PackageViewerItemCell")!
-            let currentItemHandler = packages[tableView.tag].items?.sortedArray(using: [.sortItemByName])[indexPath.row] as! ItemHandler
+            let currentItemHandler = packages[tableView.tag].items?.sortedArray(using: [.sortItemHandlerByName])[indexPath.row] as! ItemHandler
 
             cell.textLabel?.text = (currentItemHandler.item?.name)! + ": " + String(describing: currentItemHandler.count)
             return cell
