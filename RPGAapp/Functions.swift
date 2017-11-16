@@ -246,6 +246,7 @@ func loadItemsFromAsset(){
             attribute.name = line[3]
             attribute.priceMod = Double(line[4])!
             attribute.rarityMod = Double(line[5])!
+            attribute.id = (attribute.name)! + String(describing: strHash((attribute.name)! + String(describing: attribute.priceMod) + String(describing: (attribute.rarityMod))))
             item?.addToItemAtribute(attribute)
             continue
         }
@@ -265,9 +266,21 @@ func loadItemsFromAsset(){
         
         item?.category = currentCategory
         item?.subCategory = currentSubCategory
+        
+        let id = (item?.name)! + String(describing: strHash((item?.name)! + (item?.item_description)! + String(describing: item?.price)))
+        item?.setValue(id, forKey: #keyPath(Item.id))
     }
 
     CoreDataStack.saveContext()
+}
+
+func strHash(_ str: String) -> UInt64 {
+    var result = UInt64 (5381)
+    let buf = [UInt8](str.utf8)
+    for b in buf {
+        result = 127 * (result & 0x00ffffffffffffff) + UInt64(b)
+    }
+    return result
 }
 
 func addToEquipment(item: Item, toCharacter: Character){
@@ -314,10 +327,13 @@ func add(_ item: Item,to package: Package, count: Int64?){
     else if (itemHandler?.count)! > 0{
         itemHandler?.count += 1
     }
+ 
+    NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
 }
 
 extension Notification.Name{
     static let addedItemToCharacter = Notification.Name("addedItemToCharacter")
+    static let addedItemToPackage = Notification.Name("addedItemToPackage")
 }
 
 extension NSSortDescriptor{
