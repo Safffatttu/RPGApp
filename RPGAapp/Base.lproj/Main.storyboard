@@ -1411,7 +1411,7 @@
                                             <rect key="frame" x="489" y="7" width="46" height="30"/>
                                             <state key="normal" title="Button"/>
                                             <connections>
-                                                <action selector="newPackage:" destination="gsa-gh-OVW" eventType="touchUpInside" id="32w-o4-Gi7"/>
+                                                <action selector="newPackage" destination="gsa-gh-OVW" eventType="touchUpInside" id="2eG-ia-Qcb"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1756,14 +1756,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ftA-2m-qaR">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                                            <rect key="frame" x="95" y="0.0" width="225" height="119"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PackageViewerItemCell" id="Kb9-WN-C9i">
-                                                    <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                    <rect key="frame" x="0.0" y="28" width="225" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kb9-WN-C9i" id="Ypu-r8-j36">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="225" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </tableViewCellContentView>
                                                 </tableViewCell>
@@ -1774,7 +1774,7 @@
                                         <constraint firstAttribute="trailing" secondItem="ftA-2m-qaR" secondAttribute="trailing" id="G0C-nG-ZxN"/>
                                         <constraint firstItem="ftA-2m-qaR" firstAttribute="top" secondItem="trd-U8-ILk" secondAttribute="top" id="Jmu-Xn-WI8"/>
                                         <constraint firstAttribute="bottom" secondItem="ftA-2m-qaR" secondAttribute="bottom" id="S6Q-PH-mbF"/>
-                                        <constraint firstItem="ftA-2m-qaR" firstAttribute="leading" secondItem="trd-U8-ILk" secondAttribute="leading" id="jgi-dU-bAX"/>
+                                        <constraint firstItem="ftA-2m-qaR" firstAttribute="leading" secondItem="trd-U8-ILk" secondAttribute="leading" constant="95" id="jgi-dU-bAX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1793,7 +1793,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lsu-M7-wBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4876.5625" y="-2128.125"/>
+            <point key="canvasLocation" x="4876.171875" y="-2128.125"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

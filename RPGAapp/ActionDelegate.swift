@@ -73,6 +73,53 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 NotificationCenter.default.post(name: .reloadTeam, object: nil)
                 self.showPopover(with: "Dodano nową postać")
             }
+        }else if actionType == ActionType.itemAddedToPackge{
+            DispatchQueue.main.async {
+                let itemId = action.value(forKey: "itemId") as? String
+                let itemHandlerId = action.value(forKey: "itemToAdd") as? String
+                let itemHandlerCount = action.value(forKey: "itemsToAdd") as? Int64
+                let itemsHandlerId = action.value(forKey: "itemsToAdd") as? NSArray
+                let itemsHandlerCount = action.value(forKey: "itemsToAddCount") as? NSArray
+                let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+                var allItems: [Item] = []
+                let context = CoreDataStack.managedObjectContext
+                
+                let packageName = action.value(forKey: "packageName") as! String
+                let packageFetch: NSFetchRequest<Package> = Package.fetchRequest()
+                var package: Package? = nil
+                
+                do{
+                    package = try context.fetch(packageFetch).first(where: {$0.name == packageName})
+                    allItems = try context.fetch(itemFetch)
+                }
+                catch{
+                    print(error)
+                }
+                
+                if package == nil{
+                    package = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as? Package
+                    package?.name = packageName
+                    NotificationCenter.default.post(name: .createdPackage, object: nil)
+                }
+                
+                if itemId != nil{
+                    let item = allItems.first(where: {$0.id == itemId})
+                        add(item!, to: package!, count: nil)
+                }
+                else if (itemHandlerId != nil){
+                    let item = allItems.first(where: {$0.id == itemHandlerId})
+                    add(item!, to: package!, count: itemHandlerCount)
+                }
+                else if(itemsHandlerId != nil){
+                    for i in 0...((itemsHandlerId?.count)! - 1){
+                        let id = itemsHandlerId?[i] as? String
+                        let count = itemsHandlerCount?[i] as? Int64
+                        let item = allItems.first(where: {$0.id == id})
+                        add(item!, to: package!, count: count)
+                    }
+                }
+                NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
+            }
         }
     }
     

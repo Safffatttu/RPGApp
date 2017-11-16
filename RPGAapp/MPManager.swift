@@ -128,6 +128,7 @@ enum ActionType: Int {
     case applicationDidEnterBackground
     case itemSend
     case packageSend
+    case itemAddedToPackge
     case characterCreated
 }
 

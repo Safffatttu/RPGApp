@@ -17,17 +17,29 @@ class PackageViewer: UITableViewController {
     @IBOutlet var packagesTable: UITableView!
     
     override func viewDidLoad() {
+        loadPackages()
+        
+        super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .createdPackage, object: nil)
+    }
+    
+    func loadPackages(){
         let context = CoreDataStack.managedObjectContext
         let packageFetch: NSFetchRequest<Package> = Package.fetchRequest()
         packageFetch.sortDescriptors = [.sortPackageByName]
-
+        
         do{
             packages = try context.fetch(packageFetch) as [Package]
         }
         catch{
             print(error)
         }
-        super.viewDidLoad()
+    }
+    
+    func reloadPackages(){
+        loadPackages()
+        self.tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,6 +57,7 @@ class PackageViewer: UITableViewController {
         guard let tableViewCell = cell as? PackageViewerCell else { return }
         print(indexPath.row)
         tableViewCell.setTableViewDataSourceDelegate(self, forRow: indexPath.row)
+        tableViewCell.addObserver()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,4 +102,11 @@ class PackageViewerCell: UITableViewCell{
         itemTable.tag = row
     }
     
+    func addObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadPackage), name: .addedItemToPackage, object: nil)
+    }
+    
+    func reloadPackage(){
+        itemTable.reloadData()
+    }
 }

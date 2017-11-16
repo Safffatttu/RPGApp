@@ -18,7 +18,9 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     var item: Item? = nil
     
-    var items: [ItemHandler]? = nil
+    var itemToAdd: ItemHandler? = nil
+    
+    var itemsToAdd: [ItemHandler]? = nil
     
     let iconSize: CGFloat = 20
     
@@ -106,6 +108,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != packages.count{
             addToPackage(indexPath)
+        }else{
+            newPackage()
         }
     }
     
@@ -115,12 +119,16 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     func addToPackage(_ indexPath: IndexPath){
-        print(indexPath.row)
         let package = packages[indexPath.row]
-        if (item != nil){
+        
+        if item != nil{
             add(item!, to: package, count: nil)
-        }else if(items != nil){
-            for item in items!{
+        }
+        if (itemToAdd != nil){
+            add((itemToAdd?.item!)!, to: package, count: itemToAdd?.count)
+        }
+        else if(itemsToAdd != nil){
+            for item in itemsToAdd!{
                 add(item.item!, to: package, count: item.count)
             }
         }
@@ -129,9 +137,31 @@ class addToPackage: UITableViewController, addToPackageDelegate {
             dismiss(animated: true, completion: nil)
         }
         CoreDataStack.saveContext()
+        
+        let action = NSMutableDictionary()
+        
+        let actionType = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+        action.setValue(actionType, forKey: "action")
+        action.setValue(package.name, forKey: "packageName")
+        
+        action.setValue(item?.id, forKey: "itemId")
+        
+        action.setValue(itemToAdd?.item?.id, forKey: "itemToAdd")
+        action.setValue(itemToAdd?.count, forKey: "itemToAddCount")
+        
+        
+        let items = NSArray(array: itemsToAdd.flatMap({$0.map({($0.item?.id)!})})!)
+        let itemsCount = NSArray(array: itemsToAdd.flatMap({$0.map({$0.count})})!)
+        action.setValue(items, forKey: "itemsToAdd")
+        action.setValue(itemsCount, forKey: "itemsToAddCount")
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.pack.send(action)
+        
     }
     
-    func newPackage(_ sender: UIButton) {
+    func newPackage(){
         let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext)
         let number = packages.count
         
@@ -140,6 +170,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         CoreDataStack.saveContext()
         
         viewDidLoad()
+        
+        NotificationCenter.default.post(name: .createdPackage, object: nil)
     }
     
     func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
@@ -171,8 +203,8 @@ class newPackageCell: UITableViewCell {
     
     @IBOutlet weak var newPackageButton: UIButton!
 
-    @IBAction func newPackage(_ sender: UIButton) {
-        cellDelegate?.newPackage(sender)
+    @IBAction func newPackage() {
+        cellDelegate?.newPackage()
     }
 }
 
@@ -181,5 +213,9 @@ protocol addToPackageDelegate: class {
     
     func addToPackageButton(_ sender: UIButton)
     
-    func newPackage(_ sender: UIButton)
+    func newPackage()
+}
+
+extension Notification.Name{
+    static let createdPackage = Notification.Name("createdPackage")
 }
