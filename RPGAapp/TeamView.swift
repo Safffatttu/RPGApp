@@ -104,8 +104,6 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
             return
         }
     }
-    
-    
 }
 
 class TeamViewCell: UICollectionViewCell {

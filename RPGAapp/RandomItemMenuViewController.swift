@@ -77,9 +77,9 @@ class randomItemMenu: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if drawSettings.count > 0{
-            return categories.count + 1
+            return categories.count + 2
         }else{
-            return categories.count
+            return categories.count + 1
         }
     }
     
@@ -87,10 +87,15 @@ class randomItemMenu: UITableViewController {
         if drawSettings.count > 0{
             if section == 0{
                 return drawSettings.count
+            }else if section == 1{
+                return 1
+            }
+            return (categories[section - 2].subCategories?.count)! + 1
+        }else {
+            if section == 0{
+                return 1
             }
             return (categories[section - 1].subCategories?.count)! + 1
-        }else{
-            return (categories[section].subCategories?.count)! + 1
         }
     }
     
@@ -98,11 +103,15 @@ class randomItemMenu: UITableViewController {
         if drawSettings.count > 0{
             if section == 0{
                 return "Własne losowania"
+            }else if section == 1{
+                return "Wszystkie przedmioty"
             }else{
-                return categories[section-1].name
+                return categories[section-2].name
             }
+        }else if section == 0{
+            return "Wszystkie przedmioty"
         }else{
-            return categories[section].name
+            return categories[section-1].name
         }
     }
     
@@ -117,9 +126,9 @@ class randomItemMenu: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section: Int
         if drawSettings.count > 0{
-            section = indexPath.section - 1
+            section = indexPath.section - 2
         }else{
-            section = indexPath.section
+            section = indexPath.section - 1
         }
 
         if indexPath.section == 0 && drawSettings.count > 0{
@@ -131,6 +140,11 @@ class randomItemMenu: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell")
         let cellName: String
+        
+        if section == -1{
+            cell?.textLabel?.text = "Wszystkie przedmioty"
+            return cell!
+        }
         
         if indexPath.row == 0{
             cellName = "Cała kategoria " + categories[section].name!
@@ -152,18 +166,18 @@ class randomItemMenu: UITableViewController {
             let section: Int
             
             if self.drawSettings.count > 0{
-                section = indexPath.section - 1
+                section = indexPath.section - 2
             }else{
-                section = indexPath.section
+                section = indexPath.section - 1
             }
             
             if indexPath.section == 0 && self.drawSettings.count > 0{
                 setting = self.drawSettings[indexPath.row]
                 self.lastDrawSetting = setting
-            }else if indexPath.row == 0{
+            }else if indexPath.row == 0 && section != -1{
                 category = self.categories[section]
                 self.lastDrawSetting = category
-            }else{
+            }else if section != -1{
                 subCategory = self.categories[section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
                 self.lastDrawSetting = subCategory
             }
@@ -179,13 +193,28 @@ class randomItemMenu: UITableViewController {
         return indexPath.section == 0 && drawSettings.count > 0
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            CoreDataStack.managedObjectContext.delete(drawSettings[indexPath.row])
-            drawSettings.remove(at: indexPath.row)
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: .normal, title: "Edytuj") { (action, path) in
+            let edditDraw = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor") as! UINavigationController
+            
+            edditDraw.modalPresentationStyle = .pageSheet
+            
+            (edditDraw.viewControllers.first as! editDrawSetting).setting = self.drawSettings[indexPath.row]
+            (edditDraw.viewControllers.first as! editDrawSetting).editingMode = true
+            (edditDraw.viewControllers.first as! editDrawSetting).title = "Edytor ustawień"
+            self.present(edditDraw, animated: true, completion: nil)
+        }
+        editAction.backgroundColor = .blue
+        
+        let deleteAction = UITableViewRowAction(style: .normal, title: "Usuń") { (rowAction, indexPath) in
+            CoreDataStack.managedObjectContext.delete(self.drawSettings[indexPath.row])
+            self.drawSettings.remove(at: indexPath.row)
             CoreDataStack.saveContext()
             tableView.reloadData()
         }
+        deleteAction.backgroundColor = .red
+        
+        return [deleteAction,editAction]
     }
     
     func reDrawAllItems(){
@@ -250,6 +279,21 @@ class randomItemMenu: UITableViewController {
         }else if category != nil{
             itemsToDraw = category?.items?.sortedArray(using: [sortItemByName]) as! [Item]
             drawItemHandler(items: itemsToDraw, numberOf: numberOf)
+            CoreDataStack.saveContext()
+            return
+        }else if drawSetting == nil{
+            let context = CoreDataStack.managedObjectContext
+            let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+            
+            do{
+                itemsToDraw = try context.fetch(itemFetch)
+            }
+            catch let error as NSError{
+                print(error)
+            }
+            
+            drawItemHandler(items: itemsToDraw, numberOf: numberOf)
+            
             CoreDataStack.saveContext()
             return
         }
@@ -330,7 +374,6 @@ class randomItemMenu: UITableViewController {
     func drawItem(items: [Item],weightTotal: Int64) -> Item{
         return weightedRandom(items: items,weightTotal: weightTotal)
     }
-    
 }
 
 class customSettingCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
@@ -354,7 +397,7 @@ class customSettingCell: UITableViewCell, UITableViewDataSource, UITableViewDele
         let cellDrawSubSetting = (drawSetting?.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)])[indexPath.row] as! DrawSubSetting)
 
         cell?.textLabel?.text = cellDrawSubSetting.name
-            cell?.detailTextLabel?.text = String(cellDrawSubSetting.itemsToDraw)
+        cell?.detailTextLabel?.text = String(cellDrawSubSetting.itemsToDraw)
         
         return cell!
     }

@@ -12,6 +12,7 @@ import CoreData
 
 class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
     
+    var editingMode = false
     var setting: DrawSetting? = nil
     
     var categories: [Category] = []
@@ -180,7 +181,9 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func cancel(_ sender: UIBarButtonItem){
-        CoreDataStack.managedObjectContext.delete(setting!)
+        if !editingMode{
+            CoreDataStack.managedObjectContext.delete(setting!)
+        }
         dismiss(animated: true, completion: nil)
     }
 }
