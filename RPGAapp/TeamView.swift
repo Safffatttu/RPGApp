@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 import CoreData
 
-var newTeam = [NSManagedObject]()
-
 class TeamView: UICollectionViewController {
+    
+    var team: [Character] = []
     
     override func viewDidLoad() {
         let addButton =  UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.rightBarButtonItem = addButton
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
-        reloadCoreData()
+        reloadTeam()
+        super.viewDidLoad()
     }
     
     func addCharacter(_ sender: Any){
@@ -28,8 +29,15 @@ class TeamView: UICollectionViewController {
         self.present(addCharControler, animated: true, completion: nil)
     }
     
-    func reloadTeam(_ notification: Notification){
-        reloadCoreData()
+    func reloadTeam(){
+        let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
+        let context = CoreDataStack.managedObjectContext
+        do{
+            team = try context.fetch(characterFetch)
+        }
+        catch let error as NSError{
+            print(error)
+        }
         collectionView?.reloadData()
     }
 
@@ -38,12 +46,12 @@ class TeamView: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return newTeam.count
+        return team.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TeamViewCell
-        let person = newTeam[indexPath.row] as! Character
+        let person = team[indexPath.row]
         cell.nameLabel.text = person.name
         return cell
     }
@@ -64,14 +72,14 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
         if (cell != nil){
-            return (newTeam[tableView.tag] as! Character).equipment!.count
+            return team[tableView.tag].equipment!.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") {
-            let equipment = (newTeam[tableView.tag] as! Character).equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
+            let equipment = team[tableView.tag].equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
             cell.textLabel?.text = (equipment[indexPath.row].item?.name)!
             cell.detailTextLabel?.text = String(describing: (equipment[indexPath.row].itemAtributesHandler?.count)!)
             return cell
@@ -97,8 +105,8 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
         if cell != nil && editingStyle == .delete{
-            let equipment = (newTeam[tableView.tag] as! Character).equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
-            (newTeam[tableView.tag] as! Character).removeFromEquipment(equipment[indexPath.row])
+            let equipment = team[tableView.tag].equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
+            team[tableView.tag].removeFromEquipment(equipment[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .automatic)
             CoreDataStack.saveContext()
             return

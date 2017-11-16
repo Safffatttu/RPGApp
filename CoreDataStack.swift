@@ -73,18 +73,4 @@ class CoreDataStack {
             }
         } 
     }
-    
-}
-
-func reloadCoreData(){
-    let context = CoreDataStack.managedObjectContext
-    
-    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Character")
-    
-    do {
-        newTeam = try context.fetch(fetchRequest)
-    } catch let error as NSError {
-        print("Could not fetch. \(error), \(error.userInfo)")
-        CoreDataStack.saveContext()
-    }
 }
