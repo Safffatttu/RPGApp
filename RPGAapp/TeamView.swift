@@ -86,6 +86,25 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
         }
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if tableView.dequeueReusableCell(withIdentifier: "itemCell") != nil{
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
+        if cell != nil && editingStyle == .delete{
+            let equipment = (newTeam[tableView.tag] as! Character).equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
+            (newTeam[tableView.tag] as! Character).removeFromEquipment(equipment[indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            CoreDataStack.saveContext()
+            return
+        }
+    }
+    
     
 }
 
@@ -98,7 +117,6 @@ class TeamViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     func setTableViewDataSourceDelegate<D: UITableViewDataSource & UITableViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
-        //print(dataSourceDelegate.description)
         table.delegate = dataSourceDelegate
         table.dataSource = dataSourceDelegate
         table.tag = row
