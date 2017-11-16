@@ -80,12 +80,13 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
         let message = "Utracono połączenie z " + peer.displayName
         showPopover(with: message)
     }
-    
 
     func connectedDevicesChanged(manager: PackageService, connectedDevices: [String]) {
+        DispatchQueue.main.sync {
+            NotificationCenter.default.post(name: .connectedDevicesChanged, object: nil)
+        }
         return
     }
-    
     
     func showPopover(with message: String){
         DispatchQueue.main.async {

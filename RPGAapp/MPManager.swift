@@ -130,3 +130,7 @@ enum ActionType: Int {
     case packageSend
     case characterCreated
 }
+
+extension Notification.Name{
+    static let connectedDevicesChanged = Notification.Name("connectedDevicesChanged")
+}

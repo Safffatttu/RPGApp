@@ -15,7 +15,7 @@ protocol settingCellDelegate {
     func touchedSwitch(_ sender: UISwitch)
 }
 
-class settingMenuCell: UITableViewCell{
+class settingSwitchCell: UITableViewCell{
     
     var delegate: settingCellDelegate?
     
@@ -31,8 +31,19 @@ class settingMenuCell: UITableViewCell{
 let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false, "Schowaj menu pakietów" : true]
 class SettingMenu: UITableViewController, settingCellDelegate {
     
-
+    @IBOutlet var settingTable: UITableView!
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     let keys = Array(UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}))
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(connectedDevicesChanged), name: .connectedDevicesChanged, object: nil)
+    }
+    
+    func connectedDevicesChanged() {
+        settingTable.reloadData()
+    }
     
     func touchedSwitch(_ sender: UISwitch) {
         if let indexPath = getCurrentCellIndexPath(sender) {
@@ -43,10 +54,25 @@ class SettingMenu: UITableViewController, settingCellDelegate {
             }
         }
     }
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return appDelegate.pack.session.connectedPeers.count > 0 ? 2 : 1
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count
+        if section == 0{
+            return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count
+        }else{
+            return appDelegate.pack.session.connectedPeers.count
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0{
+            return "Ustawienia"
+        }else{
+            return "Połączone urządzenia"
+        }
     }
     
     func getCurrentCellIndexPath(_ sender: UISwitch) -> IndexPath? {
@@ -58,11 +84,17 @@ class SettingMenu: UITableViewController, settingCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! settingMenuCell
-        cell.settingLabel.text = keys[indexPath.row].key
-        cell.settingSwitch.setOn(UserDefaults.standard.bool(forKey: keys[indexPath.row].key), animated: false)
-        cell.delegate = self
-        return cell
+        if indexPath.section == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "settingSwitchCell") as! settingSwitchCell
+            cell.settingLabel.text = keys[indexPath.row].key
+            cell.settingSwitch.setOn(UserDefaults.standard.bool(forKey: keys[indexPath.row].key), animated: false)
+            cell.delegate = self
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
+            cell?.textLabel?.text = appDelegate.pack.session.connectedPeers[indexPath.row].displayName
+            return cell!
+        }
     }
 }
 extension Notification.Name{
