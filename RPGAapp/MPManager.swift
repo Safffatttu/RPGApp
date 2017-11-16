@@ -130,6 +130,7 @@ enum ActionType: Int {
     case packageSend
     case itemAddedToPackge
     case characterCreated
+    case disconnectPeer
 }
 
 extension Notification.Name{

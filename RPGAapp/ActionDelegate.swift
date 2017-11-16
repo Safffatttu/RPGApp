@@ -120,6 +120,13 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 }
                 NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
             }
+        }else if actionType == ActionType.disconnectPeer{
+            print(action.value(forKey: "peer"))
+            print(UIDevice.current.name)
+            if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.pack.session.disconnect()
+            }
         }
     }
     

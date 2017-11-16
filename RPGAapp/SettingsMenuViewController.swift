@@ -96,6 +96,21 @@ class SettingMenu: UITableViewController, settingCellDelegate {
             return cell!
         }
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 1
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let peer = appDelegate.pack.session.connectedPeers[indexPath.row]
+            let action = NSMutableDictionary()
+            let actionType: NSNumber = NSNumber(value: ActionType.disconnectPeer.rawValue)
+            action.setValue(actionType, forKey: "action")
+            action.setValue(peer.displayName, forKey: "peer")
+            appDelegate.pack.send(action)
+        }
+    }
 }
 extension Notification.Name{
     static let reload = Notification.Name("reload")
