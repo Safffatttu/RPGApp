@@ -44,9 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        let at: NSNumber = NSNumber(value: ActionType.applicationDidEnterBackground.rawValue)
-        let a = NSMutableDictionary(dictionary: ["action": at])
-        pack.send(a)
         CoreDataStack.saveContext()
     }
     

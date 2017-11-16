@@ -16,6 +16,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
     func recieved(_ action: NSMutableDictionary, manager: PackageService) {
         let actionType = ActionType(rawValue: action.value(forKey: "action") as! Int)
         let sender = action.value(forKey: "sender") as? String
+        print(action)
         
         if actionType == ActionType.applicationDidEnterBackground{
             let message = sender! + " wyszedł z aplikacji"
@@ -121,8 +122,6 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
             }
         }else if actionType == ActionType.disconnectPeer{
-            print(action.value(forKey: "peer"))
-            print(UIDevice.current.name)
             if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.pack.session.disconnect()
@@ -139,7 +138,6 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
         DispatchQueue.main.sync {
             NotificationCenter.default.post(name: .connectedDevicesChanged, object: nil)
         }
-        return
     }
     
     func showPopover(with message: String){

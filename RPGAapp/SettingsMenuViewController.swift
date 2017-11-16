@@ -25,13 +25,11 @@ class settingSwitchCell: UITableViewCell{
     @IBOutlet weak var settingLabel: UILabel!
     
     @IBOutlet weak var settingSwitch: UISwitch!
-    
 }
 
 let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false, "Schowaj menu pakietów" : true]
+
 class SettingMenu: UITableViewController, settingCellDelegate {
-    
-    @IBOutlet var settingTable: UITableView!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -42,7 +40,7 @@ class SettingMenu: UITableViewController, settingCellDelegate {
     }
     
     func connectedDevicesChanged() {
-        settingTable.reloadData()
+        self.tableView.reloadData()
     }
     
     func touchedSwitch(_ sender: UISwitch) {
@@ -112,6 +110,7 @@ class SettingMenu: UITableViewController, settingCellDelegate {
         }
     }
 }
+
 extension Notification.Name{
     static let reload = Notification.Name("reload")
 }

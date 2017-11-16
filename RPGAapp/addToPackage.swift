@@ -17,9 +17,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     var packages: [Package] = []
     
     var item: Item? = nil
-    
     var itemToAdd: ItemHandler? = nil
-    
     var itemsToAdd: [ItemHandler]? = nil
     
     let iconSize: CGFloat = 20
@@ -158,7 +156,6 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.pack.send(action)
-        
     }
     
     func newPackage(){
@@ -194,7 +191,6 @@ class packageCell: UITableViewCell {
     @IBAction func addToPackage(_ sender: UIButton){
         cellDelegate?.addToPackageButton(sender)
     }
-    
 }
 
 class newPackageCell: UITableViewCell {
