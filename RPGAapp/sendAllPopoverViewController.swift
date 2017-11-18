@@ -12,9 +12,9 @@ import FontAwesome_swift
 import CoreData
 
 class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
+    let newTeam: [NSManagedObject] = []
     
     override func viewWillAppear(_ animated: Bool) {
-        reloadCoreData()
         
         var height =  Int()
         var y = Int()
