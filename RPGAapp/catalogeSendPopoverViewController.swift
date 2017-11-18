@@ -86,7 +86,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     func sendItem(_ sender: UIButton) {
         let playerNum = getCurrentCellIndexPath(sender)?.row
         let sendTo = team[playerNum!]
-        addToEquipment(item: item!, toCharacter: sendTo)
+        let createdNewHandler = addToEquipment(item: item!, toCharacter: sendTo)
         
         CoreDataStack.saveContext()
         dismiss(animated: true, completion: nil)
@@ -95,9 +95,14 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         
         let actionType: NSNumber = NSNumber(value: ActionType.itemSend.rawValue)
         action.setValue(actionType, forKey: "action")
+        action.setValue(createdNewHandler, forKey: "createdNewHandler")
         
         action.setValue(item?.id, forKey: "itemId")
         action.setValue(sendTo.id, forKey: "characterId")
+        
+        action.setValue(team.index(where: {$0 == sendTo}), forKey: "characterNumber")
+        action.setValue(sendTo.equipment?.sortedArray(using: [.sortItemHandlerByName]).index(where: {($0 as! ItemHandler).item == item}), forKey: "itemNumber")
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.pack.send(action)

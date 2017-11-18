@@ -54,9 +54,9 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 
                 addToEquipment(item: item!, toCharacter: character!)
                 
+                NotificationCenter.default.post(name: .itemAddedToCharacter, object: action)
+                    
                 CoreDataStack.saveContext()
-                
-                NotificationCenter.default.post(name: .addedItemToCharacter, object: nil)
             }
         }else if actionType == ActionType.characterCreated{
             print("here")
@@ -119,7 +119,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                         add(item!, to: package!, count: count)
                     }
                 }
-                NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
+                NotificationCenter.default.post(name: .reloadCharacterItems, object: nil)
             }
         }else if actionType == ActionType.disconnectPeer{
             if (action.value(forKey: "peer") as? String) == UIDevice.current.name{

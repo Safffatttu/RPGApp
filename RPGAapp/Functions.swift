@@ -283,8 +283,9 @@ func strHash(_ str: String) -> UInt64 {
     return result
 }
 
-func addToEquipment(item: Item, toCharacter: Character){
+func addToEquipment(item: Item, toCharacter: Character) -> Bool{
     let context = CoreDataStack.managedObjectContext
+    var newHandler = false
     
     let filter = NSPredicate(format: "item == %@", item)
 
@@ -297,14 +298,18 @@ func addToEquipment(item: Item, toCharacter: Character){
         itemHandler.item = item
         
         toCharacter.addToEquipment(itemHandler)
+        newHandler = true
     }
     else{
         itemHandler = handlers?.first as! ItemHandler
+        itemHandler.count += 1
     }
     
     let atribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: context) as! ItemAtributeHandler
     
     itemHandler.addToItemAtributesHandler(atribute)
+    
+    return newHandler
 }
 
 func add(_ item: Item,to package: Package, count: Int64?){
@@ -332,7 +337,7 @@ func add(_ item: Item,to package: Package, count: Int64?){
 }
 
 extension Notification.Name{
-    static let addedItemToCharacter = Notification.Name("addedItemToCharacter")
+    static let itemAddedToCharacter = Notification.Name("itemAddedToCharacter")
     static let addedItemToPackage = Notification.Name("addedItemToPackage")
 }
 

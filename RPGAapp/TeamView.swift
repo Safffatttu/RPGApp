@@ -18,9 +18,29 @@ class TeamView: UICollectionViewController {
         let addButton =  UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.rightBarButtonItem = addButton
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addItem(_:)), name: .itemAddedToCharacter, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteItem(_:)), name: .itemDeletedFromCharacter, object: nil)
         reloadTeam()
         super.viewDidLoad()
+    }
+    
+    func addItem(_ notification: NSNotification){
+        let action = notification.object as! NSMutableDictionary
+        let characterNumber = action.value(forKey: "characterNumber") as! Int
+        
+        let cell = self.collectionView?.cellForItem(at: IndexPath(item: characterNumber, section: 0)) as! TeamViewCell
+        
+        if (action.value(forKey: "createdNewHandler") as! Bool){
+            let index = IndexPath(item: cell.table.visibleCells.count, section: 0)
+            cell.table.insertRows(at: [index], with: .left)
+        }else{
+            let itemId = action.value(forKey: "itemId") as! String
+            let itemNumber = team[characterNumber].equipment?
+                .sortedArray(using: [.sortItemHandlerByName])
+                .index(where: {($0 as! ItemHandler).item?.id == itemId})
+            let index = IndexPath(item: itemNumber!, section: 0)
+            cell.table.reloadRows(at: [index], with: .fade)
+        }
     }
     
     func deleteItem(_ notification: NSNotification){
@@ -71,7 +91,6 @@ class TeamView: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? TeamViewCell else { return }
         tableViewCell.setTableViewDataSourceDelegate(self, forRow: indexPath.row)
-        tableViewCell.createObserver()
     }
 }
 
@@ -93,7 +112,7 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
         if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") {
             let equipment = team[tableView.tag].equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
             cell.textLabel?.text = (equipment[indexPath.row].item?.name)!
-            cell.detailTextLabel?.text = String(describing: (equipment[indexPath.row].itemAtributesHandler?.count)!)
+            cell.detailTextLabel?.text = String(describing: equipment[indexPath.row].count)
             return cell
         }
         
@@ -155,15 +174,9 @@ class TeamViewCell: UICollectionViewCell {
         ablilityTable.dataSource = dataSourceDelegate
         ablilityTable.tag = row
     }
-    
-    func createObserver(){
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadItem), name: .addedItemToCharacter, object: nil)
-    }
-    
-    func reloadItem(){
-        table.reloadData()
-    }
 }
 extension Notification.Name{
     static let reloadTeam = Notification.Name("reloadTeam")
+    static let reloadCharacterItems = Notification.Name("reloadCharacterItems")
+    static let itemDeletedFromCharacter = Notification.Name("itemDeletedFromCharacter")
 }
