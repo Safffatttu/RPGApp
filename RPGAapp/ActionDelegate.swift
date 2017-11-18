@@ -126,6 +126,31 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.pack.session.disconnect()
             }
+        }else if actionType == ActionType.itemDeletedFromCharacter{
+            DispatchQueue.main.async {
+                let itemId = action.value(forKey: "itemId") as? String
+                let characterId = action.value(forKey: "characterId") as? String
+                
+                var item: Item? = nil
+                var character: Character? = nil
+                
+                let context = CoreDataStack.managedObjectContext
+                let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+                let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
+                do{
+                    item = try context.fetch(itemFetch).first(where: {$0.id == itemId})!
+                    character = try context.fetch(characterFetch).first(where: {$0.id! == characterId!})!
+                }catch{
+                    print(error)
+                }
+                let equipment = character?.equipment?.allObjects as! [ItemHandler]
+                
+                character?.removeFromEquipment(equipment.first(where: {$0.item == item})!)
+
+                NotificationCenter.default.post(name: .itemDeletedFromCharacter, object: action)
+                
+                CoreDataStack.saveContext()
+            }
         }
     }
     

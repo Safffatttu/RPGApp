@@ -18,8 +18,20 @@ class TeamView: UICollectionViewController {
         let addButton =  UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.rightBarButtonItem = addButton
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteItem(_:)), name: .itemDeletedFromCharacter, object: nil)
         reloadTeam()
         super.viewDidLoad()
+    }
+    
+    func deleteItem(_ notification: NSNotification){
+        let action = notification.object as! NSMutableDictionary
+        let characterNumber = action.value(forKey: "characterNumber") as! Int
+        let itemNumber = action.value(forKey: "itemNumber") as! Int
+        
+        let cell = self.collectionView?.cellForItem(at: IndexPath(item: characterNumber, section: 0)) as! TeamViewCell
+        
+        let index = IndexPath(item: itemNumber, section: 0)
+        cell.table.deleteRows(at: [index], with: .left)
     }
     
     func addCharacter(_ sender: Any){
@@ -106,9 +118,22 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
         if cell != nil && editingStyle == .delete{
             let equipment = team[tableView.tag].equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
+            
+            let action = NSMutableDictionary()
+            let at = NSNumber(value: ActionType.itemDeletedFromCharacter.rawValue)
+            action.setValue(at, forKey: "action")
+            
+            action.setValue(team[tableView.tag].id, forKey: "characterId")
+            action.setValue(tableView.tag, forKey: "characterNumber")
+            action.setValue(equipment[indexPath.row].item?.id, forKey: "itemId")
+            action.setValue(indexPath.row, forKey: "itemNumber")
+            
             team[tableView.tag].removeFromEquipment(equipment[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .automatic)
             CoreDataStack.saveContext()
+            
+            let packageService = (UIApplication.shared.delegate as! AppDelegate).pack
+            packageService.send(action)
             return
         }
     }
