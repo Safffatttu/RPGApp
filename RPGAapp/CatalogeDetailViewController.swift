@@ -18,16 +18,19 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     var items: [Item] = []
     var subCategories: [SubCategory] = []
     
+    var filter: [String : Double?] = [:]
+    
     var expandedCell: IndexPath? = nil
     
     let iconSize: CGFloat = 20
-        
+    
     @IBOutlet weak var catalogTable: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection), name: .goToSectionCataloge, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
 
         let context = CoreDataStack.managedObjectContext
         let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
@@ -53,6 +56,31 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         print(subCategories.map{$0.name})
     }
     
+    func reloadFilter(_ notification: Notification){
+        if let newFilter = notification.object as? Dictionary<String, Double?>{
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.filter = newFilter
+                self.tableView.reloadData()
+            }
+
+            /*UIView.transition(with: tableView,
+                              duration: 0.3,
+                              options: .transitionCrossDissolve,
+                              animations: { self.tableView.reloadData() })
+             */
+        }
+    }
+    
+    func filterItemList( _ items: inout [Item]) -> [Item]{
+        if let minRarity = filter["minRarity"] {
+            items = items.filter({$0.rarity >= Int16(minRarity!)})
+        }
+        if let maxRarity = filter["maxRarity"] {
+            items = items.filter({$0.rarity <= Int16(maxRarity!)})
+        }
+        return items
+    }
+    
     func reloadTableData(_ notification: Notification) {
         tableView.reloadData()
     }
@@ -74,10 +102,14 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return subCategories.count
+        /*return subCategories.reduce(0, {
+            return Int( $1.items?.contains(where: {($0 as! Item).rarity > 0})) + $0
+        })*/
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (subCategories[section].items?.count)!
+        var itemsInSubCategory = subCategories[section].items?.allObjects as! [Item]
+        return filterItemList(&itemsInSubCategory).count
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -87,7 +119,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellItem = subCategories[indexPath.section].items?.sortedArray(using: [sortItemByName])[indexPath.row] as! Item
+        var itemList = subCategories[indexPath.section].items?.sortedArray(using: [sortItemByName]) as! [Item]
+        let cellItem = filterItemList(&itemList)[indexPath.row]
         if expandedCell == indexPath{
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! catalogeDetailExpandedCell
             cell.item = cellItem

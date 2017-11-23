@@ -20,8 +20,12 @@ class catalogeMenu: UITableViewController {
     let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
     let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
     
+    var filter =  Dictionary<String, Double?>()
+    
     override func viewWillAppear(_ animated: Bool) {
         let context = CoreDataStack.managedObjectContext
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(setFilters(_:)))
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
         
         subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
         do{
@@ -40,8 +44,31 @@ class catalogeMenu: UITableViewController {
         }
         
         super.viewWillAppear(animated)
-    }
 
+    }
+    
+    func reloadFilter(_ notification: Notification){
+        let newFilter = notification.object as? Dictionary<String, Double?>
+        if newFilter != nil{
+            filter = newFilter!
+            
+        }
+    }
+    
+    func setFilters(_ sender: UIBarButtonItem){
+        let filterPopover = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catalogeFilter") as! catalogeFilterPopover
+        
+        filterPopover.modalPresentationStyle = .popover
+
+        filterPopover.popoverPresentationController?.sourceView = self.view
+            //UIView(frame: CGRect(x: 500, y: 100, width: 300, height: 300))
+        if filter.count != 0{
+            filterPopover.filter = filter
+        }
+        
+        self.present(filterPopover, animated: true, completion: nil)
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return categories.count
     }
@@ -74,5 +101,5 @@ class catalogeMenu: UITableViewController {
 }
 extension Notification.Name{
     static let goToSectionCataloge = Notification.Name("goToSectionCataloge")
+    static let reloadCatalogeFilter = Notification.Name("reloadCatalogeFilter")
 }
-

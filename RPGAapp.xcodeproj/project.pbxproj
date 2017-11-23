@@ -26,6 +26,7 @@
 		3B73F9201F8FB04900EA7E6A /* RPGAappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B73F91F1F8FB04900EA7E6A /* RPGAappTests.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
 		3B7B159D1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */; };
+		3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */; };
 		3B7D23051F43468D00A86F3E /* catalogeSendPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D23041F43468D00A86F3E /* catalogeSendPopoverViewController.swift */; };
 		3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD951F3F784700AC4193 /* HandlarzeMenuViewController.swift */; };
 		3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */; };
@@ -78,6 +79,7 @@
 		3B73F9211F8FB04900EA7E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemDetailViewController.swift; sourceTree = "<group>"; };
 		3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlarzeDetailViewController.swift; sourceTree = "<group>"; };
+		3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeFilterPopover.swift; sourceTree = "<group>"; };
 		3B7D23041F43468D00A86F3E /* catalogeSendPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = catalogeSendPopoverViewController.swift; sourceTree = "<group>"; };
 		3B7FCD951F3F784700AC4193 /* HandlarzeMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlarzeMenuViewController.swift; sourceTree = "<group>"; };
 		3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemMenuViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				3BDF0FEA1F5C946100135252 /* addToPackage.swift */,
 				3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */,
 				3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */,
+				3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */,
 			);
 			name = Popover;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */,
 				3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */,
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
+				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
