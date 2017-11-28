@@ -12,6 +12,7 @@
         <attribute name="profession" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
+        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="characters" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Currency" representedClassName="Currency" syncable="YES" codeGenerationType="class">
         <attribute name="globalRate" attributeType="Double" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
@@ -65,6 +66,14 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
     </entity>
+    <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
+        <attribute name="current" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="gameMaster" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gameMasterName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
+        <relationship name="packages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Package" syncable="YES"/>
+    </entity>
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
         <attribute name="budget" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="Sklep" syncable="YES"/>
@@ -95,7 +104,7 @@
     <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
-        <element name="Character" positionX="-450" positionY="36" width="128" height="133"/>
+        <element name="Character" positionX="-459" positionY="72" width="128" height="150"/>
         <element name="Currency" positionX="-270" positionY="-163" width="128" height="88"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="73"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="148"/>
@@ -109,5 +118,6 @@
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
         <element name="SubCategory" positionX="153" positionY="-43" width="128" height="88"/>
         <element name="SubCurrency" positionX="-83" positionY="-153" width="128" height="75"/>
+        <element name="Session" positionX="-720" positionY="-54" width="128" height="133"/>
     </elements>
 </model>

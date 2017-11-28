@@ -19,9 +19,10 @@ extension Character {
     @NSManaged public var health: Double
     @NSManaged public var id: String?
     @NSManaged public var name: String?
-    @NSManaged public var race: String?
     @NSManaged public var profession: String?
+    @NSManaged public var race: String?
     @NSManaged public var equipment: NSSet?
+    @NSManaged public var session: Session?
 
 }
 

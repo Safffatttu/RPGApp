@@ -163,14 +163,14 @@
                                     <outlet property="settingSwitch" destination="qk6-oE-uy3" id="aDX-rd-0ut"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" textLabel="nrU-8Z-1vh" style="IBUITableViewCellStyleDefault" id="SnF-EP-UAI" customClass="settingSwitchCell" customModule="RPGAapp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" textLabel="CLn-VK-9en" style="IBUITableViewCellStyleDefault" id="Qg1-Pb-fEy">
                                 <rect key="frame" x="0.0" y="99.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SnF-EP-UAI" id="wMI-Ny-ZLl">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qg1-Pb-fEy" id="kbD-Xt-CeQ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nrU-8Z-1vh">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CLn-VK-9en">
                                             <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -179,6 +179,39 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingButtonCell" id="SnF-EP-UAI" customClass="settingButtonCell" customModule="RPGAapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="143.5" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SnF-EP-UAI" id="wMI-Ny-ZLl">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUW-it-9Bd">
+                                            <rect key="frame" x="266" y="7" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="buttonPressed:" destination="SnF-EP-UAI" eventType="touchUpInside" id="8f4-jZ-lXq"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gi9-W1-CC4">
+                                            <rect key="frame" x="15" y="11.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gi9-W1-CC4" firstAttribute="leading" secondItem="wMI-Ny-ZLl" secondAttribute="leadingMargin" constant="7" id="Bmg-F5-xgz"/>
+                                        <constraint firstItem="gi9-W1-CC4" firstAttribute="centerY" secondItem="RUW-it-9Bd" secondAttribute="centerY" id="KA6-SF-cod"/>
+                                        <constraint firstItem="RUW-it-9Bd" firstAttribute="centerY" secondItem="wMI-Ny-ZLl" secondAttribute="centerY" id="awX-rv-5Nn"/>
+                                        <constraint firstItem="RUW-it-9Bd" firstAttribute="trailing" secondItem="wMI-Ny-ZLl" secondAttribute="trailingMargin" id="duo-qw-DdR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="settingButton" destination="RUW-it-9Bd" id="ufi-sG-nLs"/>
+                                    <outlet property="settingLabel" destination="gi9-W1-CC4" id="FQ4-Gh-iLe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

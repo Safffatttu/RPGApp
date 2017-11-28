@@ -373,8 +373,8 @@ extension NSSortDescriptor{
     static let sortCategoryByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
     
     static let sortPackageByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
+    static let sortSessionByName = NSSortDescriptor(key: #keyPath(Session.name), ascending: true)
 }
-
 
 let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
 let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)

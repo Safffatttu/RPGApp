@@ -53,6 +53,12 @@
          location = "group:RPGAapp/Data Classes/SubCategory+CoreDataProperties.swift">
       </FileRef>
       <FileRef
+         location = "group:RPGAapp/Data Classes/Session+CoreDataClass.swift">
+      </FileRef>
+      <FileRef
+         location = "group:RPGAapp/Data Classes/Session+CoreDataProperties.swift">
+      </FileRef>
+      <FileRef
          location = "group:RPGAapp/Data Classes/Character+CoreDataClass.swift">
       </FileRef>
       <FileRef
