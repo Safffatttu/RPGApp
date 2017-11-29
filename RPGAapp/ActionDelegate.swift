@@ -143,7 +143,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 NotificationCenter.default.post(name: .itemDeletedFromCharacter, object: action)
                 
                 CoreDataStack.saveContext()
-            }else if actionType == ActionType.createdSession{
+            }else if actionType == ActionType.sessionCreated{
                 let sessionName = action.value(forKey: "sessionName") as? String
                 let gameMaster = action.value(forKey: "gameMaster") as? String
                 let gameMasterName = action.value(forKey: "gameMasterName") as? String
@@ -156,10 +156,25 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 session.gameMaster = gameMaster
                 session.gameMasterName = gameMasterName
                 session.id = sessionId
+                
+                CoreDataStack.saveContext()
+                
+                var sessions: [Session] = []
+                let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
+                
+                do{
+                    sessions = try context.fetch(sessionFetch)
+                }catch{
+                    print(error)
+                }
+                
+                sessions.first(where: {$0.current == true})?.current = false
+                session.current = true
+                
                 CoreDataStack.saveContext()
                 
                 NotificationCenter.default.post(name: .addedSession, object: session)
-            }else if actionType == ActionType.switchedSession{
+            }else if actionType == ActionType.sessionSwitched{
                 NotificationCenter.default.post(name: .switchedSession, object: action)
                 let sessionId = action.value(forKey: "sessionId") as! String
                 
@@ -176,6 +191,25 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 sessions.first(where: {$0.current == true})?.current = false
                 
                 sessions.first(where: {$0.id == sessionId})?.current = true
+            }else if actionType == .sessionDeleted{
+                let sessionId = action.value(forKey: "sessionId") as! String
+                
+                let context = CoreDataStack.managedObjectContext
+                var sessions: [Session] = []
+                let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
+                
+                do{
+                    sessions = try context.fetch(sessionFetch)
+                }catch{
+                    print(error)
+                }
+
+                if let session = sessions.first(where: {$0.id == sessionId}){
+                    let index = sessions.index(of: session)
+                    let indexPath = IndexPath(row: index! + 1, section: 1)
+                    context.delete(session)
+                    NotificationCenter.default.post(name: .sessionDeleted, object: indexPath)
+                }
             }
         }
     }

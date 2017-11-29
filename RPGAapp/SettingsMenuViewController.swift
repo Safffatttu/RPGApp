@@ -58,6 +58,7 @@ class SettingMenu: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(connectedDevicesChanged), name: .connectedDevicesChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addedSession(_:)), name: .addedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchedSessionAction(_:)), name: .switchedSession, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sessionDeleted(_:)), name: .sessionDeleted, object: nil)
         super.viewWillAppear(animated)
     }
     
@@ -116,6 +117,12 @@ class SettingMenu: UITableViewController {
         sessions[indexPath.row - 1].current = true
         
         self.tableView.reloadRows(at: indexesToReload, with: .automatic)
+    }
+    
+    func sessionDeleted(_ notification: Notification){
+        let index = notification.object as! IndexPath
+        loadSessions()
+        tableView.deleteRows(at: [index], with: .automatic)
     }
     
     func connectedDevicesChanged() {
@@ -189,7 +196,7 @@ class SettingMenu: UITableViewController {
                 self.switchedSession(indexPath: indexPath)
                 
                 let action = NSMutableDictionary()
-                let actionType = NSNumber(value: ActionType.switchedSession.rawValue)
+                let actionType = NSNumber(value: ActionType.sessionSwitched.rawValue)
                 
                 action.setValue(actionType, forKey: "action")
                 action.setValue(self.sessions[indexPath.row - 1].id, forKey: "sessionId")
@@ -217,13 +224,19 @@ class SettingMenu: UITableViewController {
             if indexPath.section == 1{
                 let context = CoreDataStack.managedObjectContext
                 let session = sessions[indexPath.row - 1]
-                
+                let sessionId = session.id
                 sessions.remove(at: indexPath.row - 1)
                 
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 
                 context.delete(session)
                 CoreDataStack.saveContext()
+                
+                let action = NSMutableDictionary()
+                let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
+                action.setValue(actionType, forKey: "action")
+                action.setValue(sessionId, forKey: "sessionId")
+                appDelegate.pack.send(action)
             }else{
                 let peer = appDelegate.pack.session.connectedPeers[indexPath.row]
                 let action = NSMutableDictionary()
@@ -273,7 +286,7 @@ extension SettingMenu: settingCellDelegate {
         CoreDataStack.saveContext()
         
         let action = NSMutableDictionary()
-        let actionType = NSNumber(value: ActionType.createdSession.rawValue)
+        let actionType = NSNumber(value: ActionType.sessionCreated.rawValue)
 
         action.setValue(actionType, forKey: "action")
         
@@ -292,4 +305,5 @@ extension Notification.Name{
     static let reload = Notification.Name("reload")
     static let addedSession = Notification.Name("addedSession")
     static let switchedSession = Notification.Name("switchedSession")
+    static let sessionDeleted = Notification.Name("sessionDeleted")
 }
