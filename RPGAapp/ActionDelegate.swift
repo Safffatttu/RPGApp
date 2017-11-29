@@ -14,15 +14,15 @@ import CoreData
 class ActionDelegate: NSObject, PackageServiceDelegate{
     
     func recieved(_ action: NSMutableDictionary, manager: PackageService) {
-        let actionType = ActionType(rawValue: action.value(forKey: "action") as! Int)
-        let sender = action.value(forKey: "sender") as? String
-        print(action)
-        
-        if actionType == ActionType.applicationDidEnterBackground{
-            let message = sender! + " wyszedł z aplikacji"
-            showPopover(with: message)
-        }else if actionType == ActionType.itemSend{
-                DispatchQueue.main.async {
+        DispatchQueue.main.async{
+            let actionType = ActionType(rawValue: action.value(forKey: "action") as! Int)
+            let sender = action.value(forKey: "sender") as? String
+            print(action)
+            
+            if actionType == ActionType.applicationDidEnterBackground{
+                let message = sender! + " wyszedł z aplikacji"
+                self.showPopover(with: message)
+            }else if actionType == ActionType.itemSend{
                 var character: Character? = nil
                 let characterId = action.value(forKey: "characterId") as? String
                 var item: Item? = nil
@@ -57,10 +57,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 NotificationCenter.default.post(name: .itemAddedToCharacter, object: action)
                     
                 CoreDataStack.saveContext()
-            }
-        }else if actionType == ActionType.characterCreated{
-            print("here")
-            DispatchQueue.main.async {
+            }else if actionType == ActionType.characterCreated{
                 let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
                 
                 newCharacter.name = action.value(forKey: #keyPath(Character.name)) as? String
@@ -73,9 +70,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 
                 NotificationCenter.default.post(name: .reloadTeam, object: nil)
                 self.showPopover(with: "Dodano nową postać")
-            }
-        }else if actionType == ActionType.itemAddedToPackge{
-            DispatchQueue.main.async {
+            }else if actionType == ActionType.itemAddedToPackge{
                 let itemId = action.value(forKey: "itemId") as? String
                 let itemHandlerId = action.value(forKey: "itemToAdd") as? String
                 let itemHandlerCount = action.value(forKey: "itemsToAdd") as? Int64
@@ -120,14 +115,12 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     }
                 }
                 NotificationCenter.default.post(name: .reloadCharacterItems, object: nil)
-            }
-        }else if actionType == ActionType.disconnectPeer{
-            if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.pack.session.disconnect()
-            }
-        }else if actionType == ActionType.itemDeletedFromCharacter{
-            DispatchQueue.main.async {
+            }else if actionType == ActionType.disconnectPeer{
+                if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.pack.session.disconnect()
+                }
+            }else if actionType == ActionType.itemDeletedFromCharacter{
                 let itemId = action.value(forKey: "itemId") as? String
                 let characterId = action.value(forKey: "characterId") as? String
                 
@@ -150,9 +143,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 NotificationCenter.default.post(name: .itemDeletedFromCharacter, object: action)
                 
                 CoreDataStack.saveContext()
-            }
-        }else if actionType == ActionType.createdSession{
-            DispatchQueue.main.async {
+            }else if actionType == ActionType.createdSession{
                 let sessionName = action.value(forKey: "sessionName") as? String
                 let gameMaster = action.value(forKey: "gameMaster") as? String
                 let gameMasterName = action.value(forKey: "gameMasterName") as? String
@@ -168,9 +159,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 CoreDataStack.saveContext()
                 
                 NotificationCenter.default.post(name: .addedSession, object: session)
-            }
-        }else if actionType == ActionType.switchedSession{
-            DispatchQueue.main.async {
+            }else if actionType == ActionType.switchedSession{
                 NotificationCenter.default.post(name: .switchedSession, object: action)
                 let sessionId = action.value(forKey: "sessionId") as! String
                 
