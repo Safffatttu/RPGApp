@@ -105,7 +105,7 @@
     <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
-        <element name="Character" positionX="-459" positionY="72" width="128" height="150"/>
+        <element name="Character" positionX="-425" positionY="72" width="128" height="148"/>
         <element name="Currency" positionX="-270" positionY="-163" width="128" height="88"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="73"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="148"/>
