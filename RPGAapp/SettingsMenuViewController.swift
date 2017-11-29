@@ -56,7 +56,8 @@ class SettingMenu: UITableViewController {
         loadSessions()
         
         NotificationCenter.default.addObserver(self, selector: #selector(connectedDevicesChanged), name: .connectedDevicesChanged, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(addedSession(_:)), name: .addedSession, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchedSessionAction(_:)), name: .switchedSession, object: nil)
         super.viewWillAppear(animated)
     }
     
@@ -71,6 +72,50 @@ class SettingMenu: UITableViewController {
         } catch let error {
             print(error)
         }
+    }
+    
+    func addedSession(_ notification: NSNotification){
+        let session = notification.object as! Session
+        
+        let previous = sessions.index(where: {$0.current == true})
+        if previous != nil{
+            sessions[previous!].current = false
+        }
+        
+        let index = IndexPath(row: tableView(self.tableView, numberOfRowsInSection: 1), section: 1)
+        sessions.append(session)
+        
+        self.tableView.insertRows(at: [index], with: .automatic)
+        
+        if previous != nil{
+            let previousIndex = IndexPath(row: previous! + 1, section: 1)
+            self.tableView.reloadRows(at: [previousIndex], with: .automatic)
+        }
+    }
+    
+    func switchedSessionAction(_ notification: Notification){
+        let action = notification.object as? NSMutableDictionary
+        let sessionId = action?.value(forKey: "sessionId") as? String
+        
+        let index = sessions.index(where: {$0.id == sessionId})
+        guard index != nil else {
+            return
+        }
+        let indexPath = IndexPath(row: index! + 1, section: 1)
+        
+        switchedSession(indexPath: indexPath)
+    }
+    
+    func switchedSession(indexPath: IndexPath){
+        let previousIndex = self.sessions.index(where: {$0.current == true})
+        var indexesToReload = [indexPath]
+        if previousIndex != nil{
+            sessions[previousIndex!].current = false
+            indexesToReload.append(IndexPath(row: previousIndex! + 1, section: 1))
+        }
+        sessions[indexPath.row - 1].current = true
+        
+        self.tableView.reloadRows(at: indexesToReload, with: .automatic)
     }
     
     func connectedDevicesChanged() {
@@ -141,15 +186,17 @@ class SettingMenu: UITableViewController {
             let alert = UIAlertController(title: "?", message: "Czy na pewno chcesz zmienić sesję", preferredStyle: .alert)
             
             let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
-                let previousIndex = self.sessions.index(where: {$0.current == true})
-                var indexesToReload = [indexPath]
-                if previousIndex != nil{
-                    self.sessions[previousIndex!].current = false
-                    indexesToReload.append(IndexPath(row: previousIndex! + 1, section: 1))
-                }
-                self.sessions[indexPath.row - 1].current = true
-
-                self.tableView.reloadRows(at: indexesToReload, with: .automatic)
+                self.switchedSession(indexPath: indexPath)
+                
+                let action = NSMutableDictionary()
+                let actionType = NSNumber(value: ActionType.switchedSession.rawValue)
+                
+                action.setValue(actionType, forKey: "action")
+                action.setValue(self.sessions[indexPath.row - 1].id, forKey: "sessionId")
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.pack.send(action)
             })
             
             let alertNo = UIAlertAction(title: "Nie", style: .cancel, handler: nil)
@@ -207,6 +254,7 @@ extension SettingMenu: settingCellDelegate {
         session.name = "Nowa sesja" + String(describing: sessions.count)
         session.gameMaster = UIDevice.current.name
         session.current = true
+        session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
         
         let previous = sessions.index(where: {$0.current == true})
         if previous != nil{
@@ -223,9 +271,25 @@ extension SettingMenu: settingCellDelegate {
             self.tableView.reloadRows(at: [previousIndex], with: .automatic)
         }
         CoreDataStack.saveContext()
+        
+        let action = NSMutableDictionary()
+        let actionType = NSNumber(value: ActionType.createdSession.rawValue)
+
+        action.setValue(actionType, forKey: "action")
+        
+        action.setValue(session.name, forKey: "sessionName")
+        action.setValue(session.gameMaster, forKey: "gameMaster")
+        action.setValue(session.gameMasterName, forKey: "gameMasterName")
+        action.setValue(session.id, forKey: "sessionId")
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.pack.send(action)
     }
 }
 
 extension Notification.Name{
     static let reload = Notification.Name("reload")
+    static let addedSession = Notification.Name("addedSession")
+    static let switchedSession = Notification.Name("switchedSession")
 }

@@ -151,6 +151,43 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 
                 CoreDataStack.saveContext()
             }
+        }else if actionType == ActionType.createdSession{
+            DispatchQueue.main.async {
+                let sessionName = action.value(forKey: "sessionName") as? String
+                let gameMaster = action.value(forKey: "gameMaster") as? String
+                let gameMasterName = action.value(forKey: "gameMasterName") as? String
+                let sessionId = action.value(forKey: "sessionId") as? String
+                let context = CoreDataStack.managedObjectContext
+                
+                let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
+                
+                session.name = sessionName
+                session.gameMaster = gameMaster
+                session.gameMasterName = gameMasterName
+                session.id = sessionId
+                CoreDataStack.saveContext()
+                
+                NotificationCenter.default.post(name: .addedSession, object: session)
+            }
+        }else if actionType == ActionType.switchedSession{
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .switchedSession, object: action)
+                let sessionId = action.value(forKey: "sessionId") as! String
+                
+                let context = CoreDataStack.managedObjectContext
+                var sessions: [Session] = []
+                let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
+                
+                do{
+                    sessions = try context.fetch(sessionFetch)
+                }catch{
+                    print(error)
+                }
+                
+                sessions.first(where: {$0.current == true})?.current = false
+                
+                sessions.first(where: {$0.id == sessionId})?.current = true
+            }
         }
     }
     

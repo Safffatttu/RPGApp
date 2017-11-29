@@ -132,6 +132,8 @@ enum ActionType: Int {
     case characterCreated
     case disconnectPeer
     case itemDeletedFromCharacter
+    case createdSession
+    case switchedSession
 }
 
 extension Notification.Name{
