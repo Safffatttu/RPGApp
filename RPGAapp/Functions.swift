@@ -423,18 +423,3 @@ extension NSSortDescriptor{
     
     static let sortCharacterById = NSSortDescriptor(key: #keyPath(Character.id), ascending: true)
 }
-
-let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
-let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
-let sortItemByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
-
-let sortItemHandlerByCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.category), ascending: true)
-let sortItemHandlerBySubCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.subCategory), ascending: true)
-let sortItemHandlerByName = NSSortDescriptor(key: #keyPath(ItemHandler.item.name), ascending: true)
-
-let sortSubCategoryByName = NSSortDescriptor(key: #keyPath(SubCategory.name), ascending: true)
-let sortSubCategoryByCategory = NSSortDescriptor(key: #keyPath(SubCategory.category), ascending: true)
-
-let sortCategoryByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
-
-let sortPackageByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)

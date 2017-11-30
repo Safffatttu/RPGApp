@@ -36,7 +36,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         
-        itemFetch.sortDescriptors = [sortItemByCategory,sortItemBySubCategory,sortItemByName]
+        itemFetch.sortDescriptors = [.sortItemByCategory,.sortItemBySubCategory,.sortItemByName]
         itemFetch.fetchBatchSize = 40
         do{
             items = try context.fetch(itemFetch)
@@ -45,7 +45,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
            print(error)
         }
         
-        subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
+        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
         
         do{
             subCategories = try context.fetch(subCategoryFetch)
@@ -119,7 +119,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var itemList = subCategories[indexPath.section].items?.sortedArray(using: [sortItemByName]) as! [Item]
+        var itemList = subCategories[indexPath.section].items?.sortedArray(using: [.sortItemByName]) as! [Item]
         let cellItem = filterItemList(&itemList)[indexPath.row]
         if expandedCell == indexPath{
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! catalogeDetailExpandedCell
@@ -217,7 +217,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func addToPackageButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
         
-        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortItemByName])[(indexPath?.row)!] as! Item
+        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
         
@@ -237,7 +237,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func showInfoButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
 
-        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortItemByName])[(indexPath?.row)!] as! Item
+        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
@@ -254,7 +254,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func sendItemButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender)
        
-        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [sortItemByName])[(indexPath?.row)!] as! Item
+        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
         

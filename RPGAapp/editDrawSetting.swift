@@ -51,7 +51,7 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
         
-        categoryFetch.sortDescriptors = [sortCategoryByName]
+        categoryFetch.sortDescriptors = [.sortCategoryByName]
         
         do{
             categories = try context.fetch(categoryFetch)
@@ -62,7 +62,7 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         
-        subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
+        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
         
         do{
             subCategories = try context.fetch(subCategoryFetch)
@@ -126,7 +126,7 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell?.textLabel?.text = "Cała Kategoria " + categories[indexPath.section].name!
             }else{
                 let cellCategory = categories[indexPath.section]
-                let cellSubCategories = cellCategory.subCategories?.sortedArray(using: [sortSubCategoryByName]) as! [SubCategory]
+                let cellSubCategories = cellCategory.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
                 cell?.textLabel?.text = cellSubCategories[indexPath.row - 1].name
             }
             cell?.detailTextLabel?.font = UIFont.fontAwesome(ofSize: CGFloat(20))
@@ -151,7 +151,7 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
                 subDraw.category = categories[indexPath.section]
                 subDraw.name = subDraw.category?.name
             }else{
-                subDraw.subCategory = categories[indexPath.section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
+                subDraw.subCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
                 subDraw.name = subDraw.subCategory?.name
             }
             

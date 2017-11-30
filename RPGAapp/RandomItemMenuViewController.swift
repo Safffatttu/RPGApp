@@ -41,7 +41,7 @@ class randomItemMenu: UITableViewController {
             print("error")
         }
         
-        subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
+        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
         
         do{
             subCategories = try context.fetch(subCategoryFetch)
@@ -50,7 +50,7 @@ class randomItemMenu: UITableViewController {
             print("error fetching")
         }
         
-        categoryFetch.sortDescriptors = [sortCategoryByName]
+        categoryFetch.sortDescriptors = [.sortCategoryByName]
         
         do{
             categories = try context.fetch(categoryFetch)
@@ -151,7 +151,7 @@ class randomItemMenu: UITableViewController {
             cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
         }else{
             cell?.textLabel?.font = UIFont.systemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
-            cellName = (categories[section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as! SubCategory).name!
+            cellName = (categories[section].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as! SubCategory).name!
         }
         
         cell?.textLabel?.text = cellName
@@ -178,7 +178,7 @@ class randomItemMenu: UITableViewController {
                 category = self.categories[section]
                 self.lastDrawSetting = category
             }else if section != -1{
-                subCategory = self.categories[section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
+                subCategory = self.categories[section].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
                 self.lastDrawSetting = subCategory
             }
             
@@ -272,12 +272,12 @@ class randomItemMenu: UITableViewController {
         }
         
         if subCategory != nil{
-            itemsToDraw = subCategory?.items?.sortedArray(using: [sortItemByName]) as! [Item]
+            itemsToDraw = subCategory?.items?.sortedArray(using: [.sortItemByName]) as! [Item]
             drawItemHandler(items: itemsToDraw, numberOf: numberOf)
             CoreDataStack.saveContext()
             return
         }else if category != nil{
-            itemsToDraw = category?.items?.sortedArray(using: [sortItemByName]) as! [Item]
+            itemsToDraw = category?.items?.sortedArray(using: [.sortItemByName]) as! [Item]
             drawItemHandler(items: itemsToDraw, numberOf: numberOf)
             CoreDataStack.saveContext()
             return
@@ -311,13 +311,13 @@ class randomItemMenu: UITableViewController {
             }
             
             if(setting.category != nil){
-                itemsToDraw = setting.category?.items?.sortedArray(using: [sortItemByName]) as! [Item]
+                itemsToDraw = setting.category?.items?.sortedArray(using: [.sortItemByName]) as! [Item]
             }
             else if(setting.subCategory != nil){
-                itemsToDraw = setting.subCategory?.items?.sortedArray(using: [sortItemByName]) as! [Item]
+                itemsToDraw = setting.subCategory?.items?.sortedArray(using: [.sortItemByName]) as! [Item]
             }
             else if((setting.items?.count)! > 0){
-                itemsToDraw = setting.items?.sortedArray(using: [sortItemByName]) as! [Item]
+                itemsToDraw = setting.items?.sortedArray(using: [.sortItemByName]) as! [Item]
             }
             else{
                 let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()

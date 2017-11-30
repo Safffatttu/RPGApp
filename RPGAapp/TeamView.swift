@@ -106,7 +106,7 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") {
-            let equipment = team[tableView.tag].equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
+            let equipment = team[tableView.tag].equipment!.sortedArray(using: [.sortItemHandlerByName]) as! [ItemHandler]
             cell.textLabel?.text = (equipment[indexPath.row].item?.name)!
             cell.detailTextLabel?.text = String(describing: equipment[indexPath.row].count)
             return cell
@@ -132,7 +132,7 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
         if cell != nil && editingStyle == .delete{
-            let equipment = team[tableView.tag].equipment!.sortedArray(using: [sortItemHandlerByName]) as! [ItemHandler]
+            let equipment = team[tableView.tag].equipment!.sortedArray(using: [.sortItemHandlerByName]) as! [ItemHandler]
             
             let action = NSMutableDictionary()
             let at = NSNumber(value: ActionType.itemDeletedFromCharacter.rawValue)

@@ -27,7 +27,7 @@ class catalogeMenu: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(setFilters(_:)))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
         
-        subCategoryFetch.sortDescriptors = [sortSubCategoryByCategory,sortSubCategoryByName]
+        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
         do{
             subCategories = try context.fetch(subCategoryFetch) as [SubCategory]
         }
@@ -35,7 +35,7 @@ class catalogeMenu: UITableViewController {
             print("error fetching")
         }
         
-        categoryFetch.sortDescriptors = [sortCategoryByName]
+        categoryFetch.sortDescriptors = [.sortCategoryByName]
         do{
             categories = try context.fetch(categoryFetch) as [Category]
         }
@@ -79,7 +79,7 @@ class catalogeMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
-        let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [sortSubCategoryByCategory,sortSubCategoryByName])[indexPath.row] as! SubCategory
+        let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
         cell?.textLabel?.text = cellSubCategory.name?.capitalized
         return cell!
     }
@@ -91,7 +91,7 @@ class catalogeMenu: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         goToLocation = 0
 
-        let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [sortSubCategoryByCategory,sortSubCategoryByName])[indexPath.row] as! SubCategory
+        let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
         
         goToLocation = subCategories.index(where: {$0.name == cellSubCategory.name})!
         
