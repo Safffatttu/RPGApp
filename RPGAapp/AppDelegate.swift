@@ -32,6 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 defaults.set(true, forKey: "isPreloaded")
             }
         }
+        
+        for setting in settingValues{
+            if defaults.value(forKey: setting.key) == nil{
+                print(setting)
+                defaults.set(setting.value, forKey: setting.key)
+            }
+        }
+        
         pack.delegate = actionDelegate
         return true
     }

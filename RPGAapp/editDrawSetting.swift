@@ -151,7 +151,7 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
                 subDraw.category = categories[indexPath.section]
                 subDraw.name = subDraw.category?.name
             }else{
-                subDraw.subCategory = categories[indexPath.section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as! SubCategory
+                subDraw.subCategory = categories[indexPath.section].subCategories?.sortedArray(using: [sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
                 subDraw.name = subDraw.subCategory?.name
             }
             

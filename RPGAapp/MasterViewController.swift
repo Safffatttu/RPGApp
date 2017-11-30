@@ -14,20 +14,10 @@ class MasterViewController: UITableViewController {
 
     var characterDetailViewController: CharacterDetailViewController? = nil
     
-    
     var menuItems = [("Items","showItemMenu"), ("TeamView","showTeamView"), ("Map", "showMap"), ("Settings" ,"showSettings")]
-    
     
     override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible
-        //splitViewController.preferredDisplayMode = .primaryOverlay
-        let defaults = UserDefaults.standard
-        for setting in settingValues{
-            if defaults.bool(forKey: setting.key) == nil{
-                print(settingValues)
-                defaults.set(setting.value, forKey: setting.key)
-            }
-        }
     }
     
     func baseLoading(){
@@ -69,23 +59,6 @@ class MasterViewController: UITableViewController {
                 self.splitViewController?.preferredDisplayMode = .primaryHidden
             }
         }
-            
-            //let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
-            //controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            //controller.navigationItem.leftItemsSupplementBackButton = true
-        /*Dotyczy zmiany detail? chyba, albo navigation controllera
-         
-         
-         if segue.identifier == "showItemMenu" {
-         if let indexPath = tableView.indexPathForSelectedRow {
-         let controller = (segue.destination as! UINavigationController).topViewController as! ItemMenu
-         controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-         controller.navigationItem.leftItemsSupplementBackButton = true
-         }
-         }
-         if segue.identifier == "showTeamView"{
-         
-         }*/
     }
 
     // MARK: - Table View
@@ -100,8 +73,6 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        // Set appropriate labels for the cells.
         cell.textLabel?.text = menuItems[indexPath.row].0
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -111,7 +82,4 @@ class MasterViewController: UITableViewController {
         print(menuItems[indexPath.row].1)
         self.performSegue(withIdentifier: menuItems[indexPath.row].1, sender: self)
     }
-
-
 }
-
