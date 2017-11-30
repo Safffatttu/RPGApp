@@ -210,7 +210,14 @@ class randomItemMenu: UITableViewController {
             CoreDataStack.managedObjectContext.delete(self.drawSettings[indexPath.row])
             self.drawSettings.remove(at: indexPath.row)
             CoreDataStack.saveContext()
-            tableView.reloadData()
+            
+            if self.drawSettings.count == 0{
+                let index = IndexSet(integer: 0)
+                tableView.deleteSections(index, with: .automatic)
+            }else{
+                let index = IndexPath(row: indexPath.row, section: 0)
+                tableView.deleteRows(at: [index], with: .automatic)
+            }
         }
         deleteAction.backgroundColor = .red
         
