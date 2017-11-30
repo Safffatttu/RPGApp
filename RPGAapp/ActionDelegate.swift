@@ -66,6 +66,10 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 newCharacter.id = action.value(forKey: #keyPath(Character.id)) as? String
                 newCharacter.profession = action.value(forKey: #keyPath(Character.profession)) as? String
                 
+                let session = getCurrentSession()
+                
+                session.addToCharacters(newCharacter)
+                
                 CoreDataStack.saveContext()
                 
                 NotificationCenter.default.post(name: .reloadTeam, object: nil)

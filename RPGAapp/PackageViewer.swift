@@ -25,16 +25,8 @@ class PackageViewer: UITableViewController {
     }
     
     func loadPackages(){
-        let context = CoreDataStack.managedObjectContext
-        let packageFetch: NSFetchRequest<Package> = Package.fetchRequest()
-        packageFetch.sortDescriptors = [.sortPackageByName]
-        
-        do{
-            packages = try context.fetch(packageFetch) as [Package]
-        }
-        catch{
-            print(error)
-        }
+        let session = getCurrentSession()
+        packages = session.packages?.sortedArray(using: [.sortPackageByName]) as! [Package]
     }
     
     func reloadPackages(){

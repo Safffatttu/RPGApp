@@ -344,6 +344,51 @@ func getCurrentCellIndexPath(_ sender: Any,tableView: UITableView) -> IndexPath?
     return nil
 }
 
+func getCurrentSession() -> Session{
+    let context = CoreDataStack.managedObjectContext
+    let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
+    sessionFetch.sortDescriptors = [.sortSessionByName]
+    var sessions: [Session] = []
+    do{
+        sessions = try context.fetch(sessionFetch)
+    }catch{
+        print(error)
+    }
+    if sessions.count == 0{
+        let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
+        session.name = "Sesja"
+        session.gameMaster = UIDevice.current.name
+        session.current = true
+        session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
+        CoreDataStack.saveContext()
+        
+        let action = NSMutableDictionary()
+        let actionType = NSNumber(value: ActionType.sessionCreated.rawValue)
+        
+        action.setValue(actionType, forKey: "action")
+        
+        action.setValue(session.name, forKey: "sessionName")
+        action.setValue(session.gameMaster, forKey: "gameMaster")
+        action.setValue(session.gameMasterName, forKey: "gameMasterName")
+        action.setValue(session.id, forKey: "sessionId")
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.pack.send(action)
+        
+        return session
+    }
+    
+    var currentSession = sessions.first(where: {$0.current == true})
+    
+    if currentSession == nil{
+        currentSession = sessions.first
+        currentSession?.current = true
+    }
+    
+    return currentSession!
+}
+
 extension Int{
     init?(_ bool: Bool?) {
         guard bool != nil else {
@@ -373,7 +418,10 @@ extension NSSortDescriptor{
     static let sortCategoryByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
     
     static let sortPackageByName = NSSortDescriptor(key: #keyPath(Category.name), ascending: true)
+    
     static let sortSessionByName = NSSortDescriptor(key: #keyPath(Session.name), ascending: true)
+    
+    static let sortCharacterById = NSSortDescriptor(key: #keyPath(Character.id), ascending: true)
 }
 
 let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)

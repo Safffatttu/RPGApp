@@ -18,15 +18,8 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     var team: [Character] = []
         
     override func viewWillAppear(_ animated: Bool) {
-        let context = CoreDataStack.managedObjectContext
-        
-        let fetchRequest: NSFetchRequest<Character> = Character.fetchRequest()
-        
-        do {
-            team = try context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
+        let session = getCurrentSession()
+        team = session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
         
         var height =  Int()
         var y = Int()

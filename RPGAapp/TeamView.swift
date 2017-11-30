@@ -62,14 +62,10 @@ class TeamView: UICollectionViewController {
     }
     
     func reloadTeam(){
-        let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
-        let context = CoreDataStack.managedObjectContext
-        do{
-            team = try context.fetch(characterFetch)
-        }
-        catch let error as NSError{
-            print(error)
-        }
+        let session = getCurrentSession()
+        
+        team = session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
+        
         collectionView?.reloadData()
     }
 

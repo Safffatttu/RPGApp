@@ -44,18 +44,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     func loadPackages(){
-        let context = CoreDataStack.managedObjectContext
-        
-        let packageFetch: NSFetchRequest<Package> = Package.fetchRequest()
-        packageFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(Package.name), ascending: true)]
-        
-        do{
-            packages = try context.fetch(packageFetch)
-        }
-        catch{
-            print("error")
-        }
-        
+        let session = getCurrentSession()
+        packages = session.packages?.sortedArray(using: [.sortPackageByName]) as! [Package]
         tableView.reloadData()
     }
     
@@ -97,6 +87,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             CoreDataStack.managedObjectContext.delete(packages[indexPath.row])
+            CoreDataStack.saveContext()
             packages.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
             viewDidLoad()
@@ -159,10 +150,14 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     func newPackage(){
-        let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext)
+        let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext) as! Package
         let number = packages.count
         
-        newPackage.setValue("Paczka nr." + String(number + 1), forKey: #keyPath(Package.name))
+        newPackage.name = "Paczka nr." + String(number + 1)
+        
+        let session = getCurrentSession()
+        
+        session.addToPackages(newPackage)
         
         CoreDataStack.saveContext()
         
