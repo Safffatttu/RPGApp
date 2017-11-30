@@ -62,14 +62,6 @@ class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
         return cell
     }
     
-    func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
-        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
-        if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
-            return indexPath
-        }
-        return nil
-    }
-    
     func sendItem(_ sender: UIButton) {
         let playerNum = getCurrentCellIndexPath(sender)?.row
         let sendTo = newTeam[playerNum!] as! Character

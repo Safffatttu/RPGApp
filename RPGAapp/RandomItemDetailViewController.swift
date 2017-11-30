@@ -116,7 +116,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func addToPackage(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender)
+        let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
         
@@ -131,13 +131,13 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func reDrawItem(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender)
+        let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         NotificationCenter.default.post(name: .reDrawItem, object: randomlySelected[(indexPath?.row)!])
         randomlySelected.remove(at: (indexPath?.row)!)
     }
     
     func showInfo(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender)
+        let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
         popController.modalPresentationStyle = .popover
@@ -150,7 +150,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func sendItem(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender)
+        let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
 
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -160,14 +160,6 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         (popController as! sendPopover).item = randomlySelected[(indexPath?.row)!].item
         
         self.present(popController, animated: true, completion: nil)
-    }
-    
-    func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
-        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
-        if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
-            return indexPath
-        }
-        return nil
     }
     
     @IBAction func reDrawAllItems(_ sender: UIButton){

@@ -103,7 +103,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     func addToPackageButton(_ sender: UIButton) {
-        let indexPath = getCurrentCellIndexPath(sender)
+        let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         addToPackage(indexPath!)
     }
     
@@ -164,14 +164,6 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         viewDidLoad()
         
         NotificationCenter.default.post(name: .createdPackage, object: nil)
-    }
-    
-    func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
-        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
-        if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
-            return indexPath
-        }
-        return nil
     }
 }
 

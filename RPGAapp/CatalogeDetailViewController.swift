@@ -89,14 +89,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         let toGo = IndexPath(row: 0, section: goToLocation)
         tableView.scrollToRow(at: toGo, at: .top, animated: true)
     }
-
-    func getCurrentCellIndexPath(_ sender: UIButton) -> IndexPath? {
-        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
-        if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
-            return indexPath
-        }
-        return nil
-    }
     
     //MARK: Table
     
@@ -215,7 +207,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: Cell Delegates
     
     func addToPackageButton(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender)
+        let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
         let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
         
@@ -235,7 +227,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func showInfoButton(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender)
+        let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
 
         let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
         
@@ -252,7 +244,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func sendItemButton(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender)
+        let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
        
         let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
         
