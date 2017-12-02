@@ -45,7 +45,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     func loadPackages(){
         let session = getCurrentSession()
-        packages = session.packages?.sortedArray(using: [.sortPackageByName]) as! [Package]
+        packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
         tableView.reloadData()
     }
     
