@@ -16,8 +16,10 @@ extension Package {
         return NSFetchRequest<Package>(entityName: "Package")
     }
 
+    @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var items: NSSet?
+    @NSManaged public var session: Session?
 
 }
 

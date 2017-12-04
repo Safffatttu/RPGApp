@@ -14,7 +14,7 @@ import CoreData
 class ActionDelegate: NSObject, PackageServiceDelegate{
     
     func recieved(_ action: NSMutableDictionary, manager: PackageService) {
-        DispatchQueue.main.async{
+        DispatchQueue.main.sync{
             let actionType = ActionType(rawValue: action.value(forKey: "action") as! Int)
             let sender = action.value(forKey: "sender") as? String
             print(action)

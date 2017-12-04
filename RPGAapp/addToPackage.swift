@@ -36,6 +36,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
             y = 24
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .createdPackage, object: nil)
+        
         self.preferredContentSize = CGSize(width: 200, height: height)
         self.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0)
         self.popoverPresentationController?.permittedArrowDirections = .right
@@ -43,12 +45,15 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         super.viewDidLoad()
     }
     
+    func reloadPackages(){
+        viewDidLoad()
+    }
+    
     func loadPackages(){
         let session = getCurrentSession()
         packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
         tableView.reloadData()
     }
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -86,11 +91,26 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
+            let packageId = packages[indexPath.row].id
+            let session = getCurrentSession()
+            session.removeFromPackages(packages[indexPath.row])
             CoreDataStack.managedObjectContext.delete(packages[indexPath.row])
             CoreDataStack.saveContext()
             packages.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
             viewDidLoad()
+            
+            NotificationCenter.default.post(name: .createdPackage, object: nil)
+            
+            let action = NSMutableDictionary()
+            let actionType = NSNumber(value: ActionType.packageDeleted.hashValue)
+            
+            action.setValue(actionType, forKey: "action")
+            action.setValue(packageId, forKey: "packageId")
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDelegate.pack.send(action)
         }
     }
     
@@ -116,8 +136,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         if (itemToAdd != nil){
             add((itemToAdd?.item!)!, to: package, count: itemToAdd?.count)
         }
-        else if(itemsToAdd != nil){
-            for item in itemsToAdd!{
+        else if(itemsToAdd.count == 0){
+            for item in itemsToAdd{
                 add(item.item!, to: package, count: item.count)
             }
         }
@@ -132,15 +152,15 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let actionType = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
         action.setValue(actionType, forKey: "action")
         action.setValue(package.name, forKey: "packageName")
+        action.setValue(package.id, forKey: "packageId")
         
         action.setValue(item?.id, forKey: "itemId")
         
         action.setValue(itemToAdd?.item?.id, forKey: "itemToAdd")
         action.setValue(itemToAdd?.count, forKey: "itemToAddCount")
         
-        
-        let items = NSArray(array: itemsToAdd.flatMap({$0.map({($0.item?.id)!})})!)
-        let itemsCount = NSArray(array: itemsToAdd.flatMap({$0.map({$0.count})})!)
+        let items = NSArray(array: itemsToAdd.map({$0.item?.id!}))
+        let itemsCount = NSArray(array: itemsToAdd.map({$0.count}))
         action.setValue(items, forKey: "itemsToAdd")
         action.setValue(itemsCount, forKey: "itemsToAddCount")
         
@@ -154,12 +174,23 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let number = packages.count
         
         newPackage.name = "Paczka nr." + String(number + 1)
-        
+        newPackage.id = newPackage.name! + String(describing: Date())
         let session = getCurrentSession()
         
         session.addToPackages(newPackage)
         
         CoreDataStack.saveContext()
+        
+        let action = NSMutableDictionary()
+        let actionType = NSNumber(value: ActionType.packageCreated.hashValue)
+        
+        action.setValue(actionType, forKey: "action")
+        action.setValue(newPackage.name, forKey: "packageName")
+        action.setValue(newPackage.id, forKey: "packageId")
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.pack.send(action)
         
         viewDidLoad()
         

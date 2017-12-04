@@ -75,13 +75,25 @@ class PackageViewer: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
+            let packageId = packages[indexPath.row].id
+            
             CoreDataStack.managedObjectContext.delete(packages[indexPath.row])
             CoreDataStack.saveContext()
             packages.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
+            
+            
+            let action = NSMutableDictionary()
+            let actionType = NSNumber(value: ActionType.packageDeleted.rawValue)
+            
+            action.setValue(actionType, forKey: "action")
+            action.setValue(packageId, forKey: "packageId")
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            appDelegate.pack.send(action)
         }
     }
-    
 }
 
 class PackageViewerCell: UITableViewCell{

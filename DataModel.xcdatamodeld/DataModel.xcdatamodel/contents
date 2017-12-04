@@ -63,17 +63,20 @@
         <relationship name="itemAtributesHandler" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ItemAtributeHandler" syncable="YES"/>
     </entity>
     <entity name="Package" representedClassName="Package" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
+        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="packages" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
         <attribute name="current" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="devices" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="gameMaster" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gameMasterName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
-        <relationship name="packages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Package" syncable="YES"/>
+        <relationship name="packages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
     </entity>
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
         <attribute name="budget" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -113,8 +116,8 @@
         <element name="ItemAtribute" positionX="-29" positionY="270" width="128" height="133"/>
         <element name="ItemAtributeHandler" positionX="-191" positionY="225" width="128" height="58"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="88"/>
-        <element name="Package" positionX="-452" positionY="-81" width="128" height="73"/>
-        <element name="Session" positionX="-720" positionY="-54" width="128" height="150"/>
+        <element name="Package" positionX="-452" positionY="-81" width="128" height="105"/>
+        <element name="Session" positionX="-720" positionY="-54" width="128" height="165"/>
         <element name="Store" positionX="-639" positionY="356" width="126" height="118"/>
         <element name="StoreAvalibleItem" positionX="-450" positionY="261" width="128" height="75"/>
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
