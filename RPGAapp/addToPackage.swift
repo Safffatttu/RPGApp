@@ -18,7 +18,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     var item: Item? = nil
     var itemToAdd: ItemHandler? = nil
-    var itemsToAdd: [ItemHandler]? = nil
+    var itemsToAdd: [ItemHandler] = []
     
     let iconSize: CGFloat = 20
     

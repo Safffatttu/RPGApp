@@ -85,11 +85,13 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let context = CoreDataStack.managedObjectContext
                 
                 let packageName = action.value(forKey: "packageName") as! String
+                let packageId = action.value(forKey: "packageId") as! String
+                
                 let packageFetch: NSFetchRequest<Package> = Package.fetchRequest()
                 var package: Package? = nil
                 
                 do{
-                    package = try context.fetch(packageFetch).first(where: {$0.name == packageName})
+                    package = try context.fetch(packageFetch).first(where: {$0.id == packageId})
                     allItems = try context.fetch(itemFetch)
                 }
                 catch{
@@ -97,8 +99,13 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 }
                 
                 if package == nil{
-                    package = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as? Package
+                    package = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package
                     package?.name = packageName
+                    package?.id = packageId
+                    
+                    let session = getCurrentSession()
+                    session.addToPackages(package!)
+                    CoreDataStack.saveContext()
                     NotificationCenter.default.post(name: .createdPackage, object: nil)
                 }
                 
@@ -118,7 +125,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                         add(item!, to: package!, count: count)
                     }
                 }
-                NotificationCenter.default.post(name: .reloadCharacterItems, object: nil)
+                NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
             }else if actionType == ActionType.disconnectPeer{
                 if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -214,6 +221,36 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     context.delete(session)
                     NotificationCenter.default.post(name: .sessionDeleted, object: indexPath)
                 }
+            }else if actionType == .packageCreated{
+                let packageName = action.value(forKey: "packageName") as! String
+                let packageId = action.value(forKey: "packageId") as! String
+                
+                let context = CoreDataStack.managedObjectContext
+                let newPackage = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package
+                
+                newPackage.name = packageName
+                newPackage.id = packageId
+                
+                let session = getCurrentSession()
+                
+                session.addToPackages(newPackage)
+                
+                CoreDataStack.saveContext()
+                
+                NotificationCenter.default.post(name: .createdPackage, object: nil)
+            }else if actionType == .packageDeleted{
+                let packageId = action.value(forKey: "packageId") as? String
+                
+                let session = getCurrentSession()
+                let package = session.packages?.first(where: {($0 as! Package).id == packageId}) as? Package
+                guard package != nil else{
+                    return
+                }
+                
+                session.removeFromPackages(package!)
+                
+                CoreDataStack.saveContext()
+                NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
             }
         }
     }
