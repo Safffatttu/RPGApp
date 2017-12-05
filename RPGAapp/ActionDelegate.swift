@@ -159,6 +159,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let gameMaster = action.value(forKey: "gameMaster") as? String
                 let gameMasterName = action.value(forKey: "gameMasterName") as? String
                 let sessionId = action.value(forKey: "sessionId") as? String
+                let sessionDevices = action.value(forKey: "sessionDevices") as? NSSet
                 let context = CoreDataStack.managedObjectContext
                 
                 let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
@@ -167,6 +168,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 session.gameMaster = gameMaster
                 session.gameMasterName = gameMasterName
                 session.id = sessionId
+                session.devices = sessionDevices
                 
                 CoreDataStack.saveContext()
                 
@@ -258,10 +260,32 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
     func lost(_ peer: MCPeerID) {
         let message = "Utracono połączenie z " + peer.displayName
         showPopover(with: message)
+        UserDefaults.standard.set(false, forKey: "sessionIsActive")
     }
+    
+    func found(_ peer: MCPeerID) {
+        DispatchQueue.main.async{
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            var connectedDevices = appDelegate.pack.session.connectedPeers.map({$0.displayName})
+            connectedDevices.append(UIDevice.current.name)
+            
+            let devices = NSSet(array: connectedDevices)
+            
+            let session = getCurrentSession()
+            let sessionDevices = session.devices as! NSSet
+            
+            if sessionDevices == devices && devices.count > 0{
+                self.showPopover(with: "Przywrócono połączenie z wszystkimi członkami sesji")
+            }else{
+                let message = "Ponownie połączono z " + peer.displayName
+                self.showPopover(with: message)
+            }
+        }
+    }
+        
 
     func connectedDevicesChanged(manager: PackageService, connectedDevices: [String]) {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             NotificationCenter.default.post(name: .connectedDevicesChanged, object: nil)
         }
     }

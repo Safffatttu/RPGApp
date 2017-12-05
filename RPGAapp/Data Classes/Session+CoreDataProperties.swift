@@ -20,6 +20,8 @@ extension Session {
     @NSManaged public var gameMaster: String?
     @NSManaged public var gameMasterName: String?
     @NSManaged public var current: Bool
+    @NSManaged public var id: String?
+    @NSManaged public var devices: NSSet?
     @NSManaged public var characters: NSSet?
     @NSManaged public var packages: NSSet?
 

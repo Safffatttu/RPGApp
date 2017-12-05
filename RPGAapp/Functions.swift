@@ -362,6 +362,15 @@ func getCurrentSession() -> Session{
         session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
         CoreDataStack.saveContext()
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        var devices = appDelegate.pack.session.connectedPeers.map{$0.displayName}
+        devices.append(UIDevice.current.name)
+        
+        session.devices = NSSet(array: devices)
+        
+        UserDefaults.standard.set(true, forKey: "sessionIsActive")
+        
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.sessionCreated.rawValue)
         
@@ -371,11 +380,10 @@ func getCurrentSession() -> Session{
         action.setValue(session.gameMaster, forKey: "gameMaster")
         action.setValue(session.gameMasterName, forKey: "gameMasterName")
         action.setValue(session.id, forKey: "sessionId")
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        action.setValue(session.devices, forKey: "sessionDevices")
         
         appDelegate.pack.send(action)
-        
+        NotificationCenter.default.post(name: .addedSession, object: session)
         return session
     }
     

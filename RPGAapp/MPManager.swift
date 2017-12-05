@@ -81,6 +81,7 @@ extension PackageService: MCNearbyServiceBrowserDelegate{
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         NSLog("%@", "foundPeer: \(peerID)")
         browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+        self.delegate?.found(peerID)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -120,6 +121,7 @@ protocol PackageServiceDelegate {
     
     func connectedDevicesChanged(manager : PackageService, connectedDevices: [String])
     func lost(_ peer: MCPeerID)
+    func found(_ peer: MCPeerID)
     func recieved(_ action: NSMutableDictionary, manager: PackageService)
 }
 
@@ -127,6 +129,8 @@ enum ActionType: Int {
     case applicationWillTerminate = 0
     case applicationDidEnterBackground
     case itemSend
+    case packageCreated
+    case packageDeleted
     case packageSend
     case itemAddedToPackge
     case characterCreated
