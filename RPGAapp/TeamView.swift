@@ -55,7 +55,9 @@ class TeamView: UICollectionViewController {
     }
     
     func addCharacter(_ sender: Any){
-        
+        if !sessionIsActive(){
+            return
+        }
         let addCharControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addCharacter")
         addCharControler.modalPresentationStyle = .formSheet
         self.present(addCharControler, animated: true, completion: nil)
@@ -122,7 +124,7 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if tableView.dequeueReusableCell(withIdentifier: "itemCell") != nil{
+        if tableView.dequeueReusableCell(withIdentifier: "itemCell") != nil && sessionIsActive(show: false){
             return true
         }else{
             return false

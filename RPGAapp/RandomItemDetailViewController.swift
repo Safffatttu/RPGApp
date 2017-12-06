@@ -116,6 +116,9 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func addToPackage(_ sender: UIButton){
+        if !sessionIsActive(){
+            return
+        }
         let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
@@ -150,6 +153,9 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func sendItem(_ sender: UIButton){
+        if !sessionIsActive(){
+            return
+        }
         let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
 
@@ -167,6 +173,9 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func addAllToPackage(_ sender: UIView) {
+        if !sessionIsActive(){
+            return
+        }
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
         
         popController.modalPresentationStyle = .popover
@@ -181,6 +190,9 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBAction func sendAll(_ sender: UIButton) {
+        if !sessionIsActive(){
+            return
+        }
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendAllPop")
         
         popController.modalPresentationStyle = UIModalPresentationStyle.popover

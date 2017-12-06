@@ -66,7 +66,7 @@ class PackageViewer: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if tableView == packagesTable{
+        if tableView == packagesTable && sessionIsActive(show: false){
             return true
         }else{
             return false

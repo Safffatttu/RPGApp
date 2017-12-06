@@ -207,6 +207,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: Cell Delegates
     
     func addToPackageButton(_ sender: UIButton){
+        if !sessionIsActive(){
+            return
+        }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
         let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
@@ -224,6 +227,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func editItemButton(_ sender: UIButton){
+        if !sessionIsActive(){
+            return
+        }
     }
     
     func showInfoButton(_ sender: UIButton){
@@ -244,6 +250,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func sendItemButton(_ sender: UIButton){
+        if !sessionIsActive(){
+            return
+        }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
        
         let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item

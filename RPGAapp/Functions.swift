@@ -413,6 +413,18 @@ func showPopover(with message: String){
     }
 }
 
+
+func sessionIsActive(show: Bool = true) -> Bool{
+    let active = UserDefaults.standard.bool(forKey: "sessionIsActive")
+    
+    if !active && show{
+        let message = "Sesja nie jest aktywna"
+        showPopover(with: message)
+    }
+    
+    return active
+}
+
 extension Int{
     init?(_ bool: Bool?) {
         guard bool != nil else {
