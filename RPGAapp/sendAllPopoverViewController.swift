@@ -63,7 +63,7 @@ class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
     }
     
     func sendItem(_ sender: UIButton) {
-        let playerNum = getCurrentCellIndexPath(sender)?.row
+        let playerNum = getCurrentCellIndexPath(sender, tableView: tableView)?.row
         let sendTo = newTeam[playerNum!] as! Character
         //sendTo.addToEquipment(NSSet(array: randomlySelected))
         /*for item in randomlySelected{

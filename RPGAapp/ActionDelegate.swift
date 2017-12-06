@@ -73,7 +73,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 CoreDataStack.saveContext()
                 
                 NotificationCenter.default.post(name: .reloadTeam, object: nil)
-                self.showPopover(with: "Dodano nową postać")
+                showPopover(with: "Dodano nową postać")
             }else if actionType == ActionType.itemAddedToPackge{
                 let itemId = action.value(forKey: "itemId") as? String
                 let itemHandlerId = action.value(forKey: "itemToAdd") as? String

@@ -8,8 +8,6 @@
 
 import Foundation
 import MultipeerConnectivity
-import Popover
-import UIKit
 
 class PackageService: NSObject{
     
