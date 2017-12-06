@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
-
+import Popover
 
 func myRand(_ num: Int) -> Int{
     return Int(arc4random_uniform(UInt32(num)))
@@ -395,6 +395,22 @@ func getCurrentSession() -> Session{
     }
     
     return currentSession!
+}
+
+func showPopover(with message: String){
+    DispatchQueue.main.async {
+        let point = CGPoint(x: 15, y: 20)
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+        let frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.maxX, height: view.frame.maxY)
+        let label = UILabel(frame: frame)
+        label.text = message
+        label.textAlignment = .center
+        label.center = view.center
+        view.addSubview(label)
+        let popover = Popover()
+        popover.arrowSize = .zero
+        popover.show(view, point: point)
+    }
 }
 
 extension Int{

@@ -21,7 +21,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
             
             if actionType == ActionType.applicationDidEnterBackground{
                 let message = sender! + " wyszedł z aplikacji"
-                self.showPopover(with: message)
+                showPopover(with: message)
             }else if actionType == ActionType.itemSend{
                 var character: Character? = nil
                 let characterId = action.value(forKey: "characterId") as? String
@@ -275,34 +275,17 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
             let sessionDevices = session.devices as! NSSet
             
             if sessionDevices == devices && devices.count > 0{
-                self.showPopover(with: "Przywrócono połączenie z wszystkimi członkami sesji")
+                showPopover(with: "Przywrócono połączenie z wszystkimi członkami sesji")
             }else{
                 let message = "Ponownie połączono z " + peer.displayName
-                self.showPopover(with: message)
+                showPopover(with: message)
             }
         }
     }
-        
-
+    
     func connectedDevicesChanged(manager: PackageService, connectedDevices: [String]) {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .connectedDevicesChanged, object: nil)
-        }
-    }
-    
-    func showPopover(with message: String){
-        DispatchQueue.main.async {
-            let point = CGPoint(x: 15, y: 20)
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-            let frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.maxX, height: view.frame.maxY)
-            let label = UILabel(frame: frame)
-            label.text = message
-            label.textAlignment = .center
-            label.center = view.center
-            view.addSubview(label)
-            let popover = Popover()
-            popover.arrowSize = .zero
-            popover.show(view, point: point)
         }
     }
 }
