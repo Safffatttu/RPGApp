@@ -13,15 +13,12 @@
 		3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D681F3A21A800B5271C /* Main.storyboard */; };
 		3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D6B1F3A21A800B5271C /* Assets.xcassets */; };
 		3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */; };
-		3B063D7D1F3A268400B5271C /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D7C1F3A268400B5271C /* CharacterDetailViewController.swift */; };
 		3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */; };
 		3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */; };
 		3B31B3E61F3B67A6003526E1 /* KatalogMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E51F3B67A6003526E1 /* KatalogMenuViewController.swift */; };
 		3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */; };
 		3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */; };
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
-		3B4626A01F3A6DA1002B7AF3 /* ItemDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */; };
-		3B50DBBE1F5637790071DF2B /* sendAllPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
 		3B73F9201F8FB04900EA7E6A /* RPGAappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B73F91F1F8FB04900EA7E6A /* RPGAappTests.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
@@ -63,16 +60,12 @@
 		3B063D6E1F3A21A800B5271C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B063D701F3A21A800B5271C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B063D761F3A259B00B5271C /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Functions.swift; sourceTree = "<group>"; wrapsLines = 1; };
-		3B063D7C1F3A268400B5271C /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editPackage.swift; sourceTree = "<group>"; };
 		3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDrawSetting.swift; sourceTree = "<group>"; };
 		3B31B3E51F3B67A6003526E1 /* KatalogMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatalogMenuViewController.swift; sourceTree = "<group>"; };
 		3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDetailViewController.swift; sourceTree = "<group>"; };
 		3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
 		3B3C05301F3BC1D600CFB002 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		3B4387991F48A116003F67B9 /* addCharacterModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCharacterModalViewController.swift; sourceTree = "<group>"; };
-		3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewControler.swift; sourceTree = "<group>"; };
-		3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sendAllPopoverViewController.swift; sourceTree = "<group>"; };
 		3B50DC011F40EB6B0040DCCC /* MPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPManager.swift; sourceTree = "<group>"; };
 		3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B73F91F1F8FB04900EA7E6A /* RPGAappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPGAappTests.swift; sourceTree = "<group>"; };
@@ -172,8 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				3BCD737F1F3C4E1400B35D75 /* TeamView.swift */,
-				3B063D7C1F3A268400B5271C /* CharacterDetailViewController.swift */,
-				3B46269F1F3A6DA1002B7AF3 /* ItemDetailViewControler.swift */,
 				3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */,
 				3B3C05301F3BC1D600CFB002 /* MapViewController.swift */,
 				3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */,
@@ -215,9 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				3B7D23041F43468D00A86F3E /* catalogeSendPopoverViewController.swift */,
-				3B50DBBD1F5637790071DF2B /* sendAllPopoverViewController.swift */,
 				3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */,
-				3B4387991F48A116003F67B9 /* addCharacterModalViewController.swift */,
 				3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */,
 				3BDF0FEA1F5C946100135252 /* addToPackage.swift */,
 				3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */,
@@ -417,12 +406,10 @@
 				3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */,
 				3B7B159D1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift in Sources */,
 				3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */,
-				3B063D7D1F3A268400B5271C /* CharacterDetailViewController.swift in Sources */,
 				3BECB6CC1FBA53BA00A947E9 /* addCharacter.swift in Sources */,
 				3B31B3E61F3B67A6003526E1 /* KatalogMenuViewController.swift in Sources */,
 				3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */,
 				3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */,
-				3B50DBBE1F5637790071DF2B /* sendAllPopoverViewController.swift in Sources */,
 				3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */,
 				3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
@@ -432,7 +419,6 @@
 				3B7D23051F43468D00A86F3E /* catalogeSendPopoverViewController.swift in Sources */,
 				3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */,
 				3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */,
-				3B4626A01F3A6DA1002B7AF3 /* ItemDetailViewControler.swift in Sources */,
 				3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */,
 				3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */,
 				3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */,

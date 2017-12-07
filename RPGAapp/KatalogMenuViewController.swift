@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import CoreData
 
-var goToLocation =  Int()
-
 class catalogeMenu: UITableViewController {
     
     var categories: [Category] = []
@@ -89,13 +87,11 @@ class catalogeMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        goToLocation = 0
-
         let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
         
-        goToLocation = subCategories.index(where: {$0.name == cellSubCategory.name})!
+        let goToLocation = subCategories.index(where: {$0.name == cellSubCategory.name})!
         
-        NotificationCenter.default.post(name: .goToSectionCataloge, object: nil)
+        NotificationCenter.default.post(name: .goToSectionCataloge, object: goToLocation)
     }
     
 }

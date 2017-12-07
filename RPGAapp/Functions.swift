@@ -15,7 +15,6 @@ func myRand(_ num: Int) -> Int{
     return Int(arc4random_uniform(UInt32(num)))
 }
 
-
 func datatostring() -> String{
     let proTable = NSDataAsset.init(name: "Profesion")
     let dataToDecode = proTable?.data
@@ -32,7 +31,6 @@ func csv(data: String) -> [[String]] {
     }
     return result
 }
-
 
 func weightedRandomElement<T>(items: [(T, UInt)]) -> T {
     /*function by
@@ -123,73 +121,6 @@ func changeCurrency(price: Double, currency: [(String,Double)]) -> String{
         }
     }
     return priceToRet
-}
-
-
-func loadItemList(data: [[String?]]) -> itemList{
-    if(data.first!.first! == "DATA"){
-        print("Rozpoczęto ładowanie listy przedmiotów")
-    }
-    var currencyToRet = [(String,Double)]()
-    
-    for i in stride(from: 1, to: (data.first?.count)! - 1, by: 2){
-        if data.first?[i] == ""{
-        continue
-        }
-        let subCurency = (data.first?[i],Double((data.first?[i+1]!)!))
-        /*if currencyToRet.count > 0 {
-            currencyToRet[currencyToRet.count - 1].1 *= subCurency.1!
-        }*/
-        currencyToRet.append(subCurency as! (String, Double))
-    }
-    
-
-    var listToRet = [item]()
-    var currentCategory = String("")
-    var currentSubCategory = String()
-    
-    var categories = [(String,Int, [(String, Int)])] ()
-
-    for i in 1...data.count-2{
-        if(data[i].first! == "KTG"){
-            currentCategory = (data[i][1])!
-            categories.append((currentCategory!,1,[("",001)]))
-            currentSubCategory = ""
-            continue
-        }
-        
-        if(data[i].first! == "SUBKTG"){
-            currentSubCategory = (data[i][1])!
-            if(categories[categories.count-1].2.last?.0 == ""){
-                categories[categories.count-1].2.removeFirst()
-            }
-            categories[categories.count-1].2.append((currentSubCategory,1))
-            continue
-        }
-        
-        let name = data[i].first!!
-        let description = data[i][1]
-        let price = Double(data[i][2]!)
-        var rarity: UInt? =  UInt(data[i][3]!)
-        
-        if (rarity == nil || (rarity! >= 0 && rarity! <= 3)){
-            rarity = 1
-        }
-        
-        var quantity: Int? = Int(data[i][4]!)
-        if(quantity == nil){
-            quantity = 0
-        }
-        
-        let measure = data[i][5]
-        
-        let currentItem = item(name: name, category: currentCategory!, subCategory: currentSubCategory, description: description, price: price, rarity: rarity, quantity: quantity, measure: measure)
-        
-        categories[categories.count-1].1 = categories[categories.count-1].1 + 1
-        listToRet.append(currentItem)
-    }
-    print("Zakończono ładowanie listy przedmiotów")
-    return itemList(items: listToRet, currency: currencyToRet, categories: categories)
 }
 
 func forTailingZero(_ temp: Double) -> String{
@@ -283,6 +214,7 @@ func strHash(_ str: String) -> UInt64 {
     return result
 }
 
+@discardableResult
 func addToEquipment(item: Item, toCharacter: Character) -> Bool{
     let context = CoreDataStack.managedObjectContext
     var newHandler = false

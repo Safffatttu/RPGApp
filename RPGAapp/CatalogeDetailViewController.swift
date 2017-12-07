@@ -29,7 +29,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(goToSection), name: .goToSectionCataloge, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(goToSection(_:)), name: .goToSectionCataloge, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
 
         let context = CoreDataStack.managedObjectContext
@@ -86,7 +86,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func goToSection(_ notification: Notification) {
-        let toGo = IndexPath(row: 0, section: goToLocation)
+        let subCategoryNumber = notification.object as! Int
+        let toGo = IndexPath(row: 0, section: subCategoryNumber)
         tableView.scrollToRow(at: toGo, at: .top, animated: true)
     }
     

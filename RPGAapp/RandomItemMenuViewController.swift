@@ -12,6 +12,7 @@ import CoreData
 
 let propabilities: [Int16] = [100,800,90,9,1]
 var randomlySelected = [ItemHandler]()
+
 class randomItemMenu: UITableViewController {
     
     fileprivate let drawQueue = DispatchQueue(label: "com.SS.RPGAapp")

@@ -11,7 +11,6 @@ import UIKit
 import CoreData
 import FontAwesome_swift
 
-
 class addToPackage: UITableViewController, addToPackageDelegate {
 
     var packages: [Package] = []
@@ -221,7 +220,6 @@ class newPackageCell: UITableViewCell {
         cellDelegate?.newPackage()
     }
 }
-
 
 protocol addToPackageDelegate: class {
     

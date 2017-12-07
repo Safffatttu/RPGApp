@@ -9,10 +9,7 @@
 import UIKit
 import Foundation
 
-
 class MasterViewController: UITableViewController {
-
-    var characterDetailViewController: CharacterDetailViewController? = nil
     
     var menuItems = [("Items","showItemMenu"), ("TeamView","showTeamView"), ("Map", "showMap"), ("Settings" ,"showSettings")]
     

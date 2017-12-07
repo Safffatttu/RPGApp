@@ -9,43 +9,6 @@
 import Foundation
 import UIKit
 
-struct item{
-    var name: String
-    var category : String
-    var subCategory: String
-    var description: String?
-    var price : Double?
-    var rarity: UInt?
-    var quantity: Int?
-    var measure: String?
-    
-    static func archive(w:item) -> Data {
-        var fw = w
-        return Data(bytes: &fw, count: MemoryLayout<item>.stride)
-    }
-
-    static func unarchive(d:Data) -> item {
-        /*guard d.count == MemoryLayout<item>.stride else {
-            fatalError("BOOM!")
-        }*/
-
-        var w:item?
-        d.withUnsafeBytes({(bytes: UnsafePointer<item>)->Void in
-            w = UnsafePointer<item>(bytes).pointee
-        })
-        return w!
-    }
-}
-
-struct itemList{
-    var items:  [item]
-    var currency: [(String,Double)]
-    var categories: [(String,Int,[(String,Int)])]
-}
-
-var listOfItems = loadItemList(data: loadStringTableFromDataAsset(Data: "ITEMS"))
-
-
 class ItemMenu: UITableViewController {
 
     let itemMenuItems = [("Katalog","showCatalogeView","showCatalogeDetailView"),("Losowanie Przedmiotu","showRandomItemView","showRandomItemDetailView"),("Handlarze","showHandlarzeView","showHandlarzeDetailView"),("Paczki","showPackageViewer","")]
