@@ -11,7 +11,7 @@ import Foundation
 
 class MasterViewController: UITableViewController {
     
-    var menuItems = [("Items","showItemMenu"), ("TeamView","showTeamView"), ("Map", "showMap"), ("Settings" ,"showSettings")]
+    var menuItems = [("Items","showItemMenu"), ("TeamView","showTeamView"), ("Map", "showMap"), ("Losowanie","showRNG"), ("Settings" ,"showSettings")]
     
     override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible

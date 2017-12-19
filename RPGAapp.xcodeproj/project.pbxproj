@@ -21,6 +21,7 @@
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
 		3B73F9201F8FB04900EA7E6A /* RPGAappTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B73F91F1F8FB04900EA7E6A /* RPGAappTests.swift */; };
+		3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
 		3B7B159D1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */; };
 		3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */; };
@@ -70,6 +71,7 @@
 		3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B73F91F1F8FB04900EA7E6A /* RPGAappTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPGAappTests.swift; sourceTree = "<group>"; };
 		3B73F9211F8FB04900EA7E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemDetailViewController.swift; sourceTree = "<group>"; };
 		3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlarzeDetailViewController.swift; sourceTree = "<group>"; };
 		3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeFilterPopover.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				3B7FCD951F3F784700AC4193 /* HandlarzeMenuViewController.swift */,
 				3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */,
 				3B8F06AF1F9792F100611C34 /* PackageViewer.swift */,
+				3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
+				3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

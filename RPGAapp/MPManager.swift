@@ -137,6 +137,7 @@ enum ActionType: Int {
     case sessionCreated
     case sessionSwitched
     case sessionDeleted
+    case generatedRandomNumber
 }
 
 extension Notification.Name{

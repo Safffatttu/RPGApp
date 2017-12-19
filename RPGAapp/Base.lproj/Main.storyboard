@@ -115,11 +115,49 @@
                         <segue destination="ERJ-FY-coC" kind="show" identifier="showSettings" id="Hs9-rX-etG"/>
                         <segue destination="a0z-H3-ndm" kind="showDetail" identifier="showMap" id="fxf-o0-LjE"/>
                         <segue destination="ql2-IU-CCY" kind="showDetail" identifier="showTeamView" id="VdB-Oq-Wn3"/>
+                        <segue destination="v25-R4-Tyh" kind="show" identifier="showRNG" id="VSh-0I-bo7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="842" y="-630"/>
+        </scene>
+        <!--Losowanie-->
+        <scene sceneID="zQM-Fp-MAn">
+            <objects>
+                <tableViewController title="Losowanie" id="v25-R4-Tyh" customClass="RandomNumberGenerator" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rcr-yQ-fzu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="mam-yB-ULe" style="IBUITableViewCellStyleDefault" id="9IG-JS-TxK">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9IG-JS-TxK" id="1BO-oP-OqX">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mam-yB-ULe">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="v25-R4-Tyh" id="zk8-go-wfc"/>
+                            <outlet property="delegate" destination="v25-R4-Tyh" id="E3G-z2-Xwb"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j7z-Bp-h5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2121" y="-2311"/>
         </scene>
         <!--Settings-->
         <scene sceneID="8fp-a3-43O">

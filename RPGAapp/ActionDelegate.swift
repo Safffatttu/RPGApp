@@ -253,6 +253,11 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 
                 CoreDataStack.saveContext()
                 NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
+            }else if actionType == .generatedRandomNumber{
+                let number = action.value(forKey: "number") as! Int
+                let message = "Wylosowano " + String(number)
+                
+                showPopover(with: message)
             }
         }
     }
