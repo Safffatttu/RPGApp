@@ -357,6 +357,48 @@ func sessionIsActive(show: Bool = true) -> Bool{
     return active
 }
 
+func loadSubCategories() -> [(SubCategory,[Item])] {
+    var subCategories: [(SubCategory,[Item])] = []
+    
+    let context = CoreDataStack.managedObjectContext
+    
+    let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+    
+    subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
+    var subCats: [SubCategory] = []
+    do{
+        subCats = try context.fetch(subCategoryFetch)
+    }
+    catch{
+        print("error fetching")
+    }
+    
+    subCategories = []
+    
+    for sub in subCats{
+        let subCategory = (sub,sub.items?.sortedArray(using: [.sortItemByName]) as! [Item])
+        subCategories.append(subCategory)
+    }
+    return subCategories
+}
+
+func loadItems() -> [Item] {
+    let context = CoreDataStack.managedObjectContext
+    var items: [Item] = []
+    let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+    
+    itemFetch.sortDescriptors = [.sortItemByName]
+    
+    do{
+        items = try context.fetch(itemFetch)
+    }
+    catch{
+        print("error fetching")
+    }
+
+    return items
+}
+
 extension Int{
     init?(_ bool: Bool?) {
         guard bool != nil else {

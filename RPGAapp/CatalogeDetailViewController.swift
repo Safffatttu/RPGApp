@@ -15,8 +15,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    var items: [Item] = []
-    var subCategories: [SubCategory] = []
+    var subCategories: [(SubCategory,[Item])] = []
     
     var filter: [String : Double?] = [:]
     
@@ -31,36 +30,27 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection(_:)), name: .goToSectionCataloge, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
-
-        let context = CoreDataStack.managedObjectContext
-        let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
-        let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         
-        itemFetch.sortDescriptors = [.sortItemByCategory,.sortItemBySubCategory,.sortItemByName]
-        itemFetch.fetchBatchSize = 40
-        do{
-            items = try context.fetch(itemFetch)
-        }
-        catch let error as NSError{
-           print(error)
-        }
-        
-        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
-        
-        do{
-            subCategories = try context.fetch(subCategoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
-        print(subCategories.map{$0.name})
+        subCategories = loadSubCategories()
     }
     
     func reloadFilter(_ notification: Notification){
         if let newFilter = notification.object as? Dictionary<String, Double?>{
-            DispatchQueue.global(qos: .userInitiated).async {
+            DispatchQueue.global(qos: .default).sync {
+                self.subCategories = loadSubCategories()
+                
                 self.filter = newFilter
-                self.tableView.reloadData()
+                var newSubCategoriesList: [(SubCategory,[Item])] = []
+                for sub in self.subCategories{
+                    let filteredList = self.filterItemList(sub.1)
+                    newSubCategoriesList.append((sub.0),filteredList)
+                }
+                
+                self.subCategories = newSubCategoriesList
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
 
             /*UIView.transition(with: tableView,
@@ -71,14 +61,22 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func filterItemList( _ items: inout [Item]) -> [Item]{
+    func filterItemList( _ items: [Item]) -> [Item]{
+        var itemsToRet = items
         if let minRarity = filter["minRarity"] {
-            items = items.filter({$0.rarity >= Int16(minRarity!)})
+            itemsToRet = items.filter({$0.rarity >= Int16(minRarity!)})
         }
         if let maxRarity = filter["maxRarity"] {
-            items = items.filter({$0.rarity <= Int16(maxRarity!)})
+            itemsToRet = itemsToRet.filter({$0.rarity <= Int16(maxRarity!)})
         }
-        return items
+        if let minPrice = filter["minPrice"] {
+            itemsToRet = itemsToRet.filter({$0.price >= minPrice!})
+        }
+        if let maxPrice = filter["maxPrice"] {
+            itemsToRet = itemsToRet.filter({$0.price <= maxPrice!})
+        }
+        
+        return itemsToRet
     }
     
     func reloadTableData(_ notification: Notification) {
@@ -87,8 +85,22 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func goToSection(_ notification: Notification) {
         let subCategoryNumber = notification.object as! Int
-        let toGo = IndexPath(row: 0, section: subCategoryNumber)
-        tableView.scrollToRow(at: toGo, at: .top, animated: true)
+
+        print(subCategoryNumber)
+        if tableView(self.tableView, numberOfRowsInSection: subCategoryNumber) != 0{
+            let toGo = IndexPath(row: 0, section: subCategoryNumber)
+            tableView.scrollToRow(at: toGo, at: .top, animated: true)
+            
+        }else if subCategoryNumber != 0
+            && tableView(self.tableView, numberOfRowsInSection: subCategoryNumber - 1) != 0{
+            let toGo = IndexPath(row: 0, section: subCategoryNumber - 1)
+            tableView.scrollToRow(at: toGo, at: .top, animated: true)
+            
+        }else if subCategoryNumber != numberOfSections(in: self.tableView)
+            && tableView(self.tableView, numberOfRowsInSection: subCategoryNumber + 1) != 0 {
+            let toGo = IndexPath(row: 0, section: subCategoryNumber + 1)
+            tableView.scrollToRow(at: toGo, at: .top, animated: true)
+        }
     }
     
     //MARK: Table
@@ -101,19 +113,17 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var itemsInSubCategory = subCategories[section].items?.allObjects as! [Item]
-        return filterItemList(&itemsInSubCategory).count
+        return subCategories[section].1.count
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let category = subCategories[section].category?.name
-        let subCategory = subCategories[section].name
+        let category = subCategories[section].0.category?.name
+        let subCategory = subCategories[section].0.name
         return category!.capitalized + " " + subCategory!.lowercased()
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var itemList = subCategories[indexPath.section].items?.sortedArray(using: [.sortItemByName]) as! [Item]
-        let cellItem = filterItemList(&itemList)[indexPath.row]
+        let cellItem = subCategories[indexPath.section].1[indexPath.row]
         if expandedCell == indexPath{
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! catalogeDetailExpandedCell
             cell.item = cellItem
@@ -213,7 +223,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
-        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
+        let cellItem = subCategories[(indexPath?.section)!].1[(indexPath?.row)!]
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
         
@@ -236,7 +246,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func showInfoButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
 
-        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
+        let cellItem = subCategories[(indexPath?.section)!].1[(indexPath?.row)!]
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
@@ -256,7 +266,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
        
-        let cellItem = subCategories[(indexPath?.section)!].items?.sortedArray(using: [.sortItemByName])[(indexPath?.row)!] as! Item
+        let cellItem = subCategories[(indexPath?.section)!].1[(indexPath?.row)!]
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
         
