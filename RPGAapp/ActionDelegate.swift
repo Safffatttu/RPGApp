@@ -28,6 +28,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 var item: Item? = nil
                 let itemId = action.value(forKey: "itemId") as? String
                 let context = CoreDataStack.managedObjectContext
+                let itemCount = action.value(forKey: "itemCount") as? Int64
                 
                 guard characterId != nil && itemId != nil else {
                     return
@@ -52,11 +53,14 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     return
                 }
                 
-                addToEquipment(item: item!, toCharacter: character!)
+                if let count = itemCount{
+                    addToEquipment(item: item!, to: character!, count: count)
+                }else{
+                    addToEquipment(item: item!, to: character!)
+                }
+                CoreDataStack.saveContext()
                 
                 NotificationCenter.default.post(name: .itemAddedToCharacter, object: action)
-                    
-                CoreDataStack.saveContext()
             }else if actionType == ActionType.characterCreated{
                 let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
                 
@@ -147,13 +151,14 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 }catch{
                     print(error)
                 }
-                let equipment = character?.equipment?.allObjects as! [ItemHandler]
                 
-                character?.removeFromEquipment(equipment.first(where: {$0.item == item})!)
-
-                NotificationCenter.default.post(name: .itemDeletedFromCharacter, object: action)
-                
-                CoreDataStack.saveContext()
+                if let handlerToRemove = (character?.equipment?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler){
+                    character?.removeFromEquipment(handlerToRemove)
+                    
+                    NotificationCenter.default.post(name: .itemDeletedFromCharacter, object: action)
+                    
+                    CoreDataStack.saveContext()
+                }
             }else if actionType == ActionType.sessionCreated{
                 let sessionName = action.value(forKey: "sessionName") as? String
                 let gameMaster = action.value(forKey: "gameMaster") as? String

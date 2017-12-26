@@ -215,33 +215,46 @@ func strHash(_ str: String) -> UInt64 {
 }
 
 @discardableResult
-func addToEquipment(item: Item, toCharacter: Character) -> Bool{
+func addToEquipment(item: Item, to character: Character, count: Int64 = 1) -> Bool{
     let context = CoreDataStack.managedObjectContext
     var newHandler = false
     
-    let filter = NSPredicate(format: "item == %@", item)
-
-    let handlers = toCharacter.equipment?.filtered(using: filter)
-    
-    let itemHandler: ItemHandler
-    
-    if handlers?.count == 0{
-        itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
-        itemHandler.item = item
-        
-        toCharacter.addToEquipment(itemHandler)
+    if let handler = (character.equipment?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler){
+        handler.count += count
+    }else{
+        let handler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
         newHandler = true
+        handler.item = item
+        handler.count = count
+        character.addToEquipment(handler)
     }
-    else{
-        itemHandler = handlers?.first as! ItemHandler
-        itemHandler.count += 1
+    
+    return newHandler
+}
+
+@discardableResult
+func addToEquipment(itemHandler: ItemHandler, to character: Character) -> Bool{
+    let context = CoreDataStack.managedObjectContext
+    var createdNewHandler = false
+    
+    var newHandler = itemHandler
+    
+    if let handler = (character.equipment?.first(where: {($0 as! ItemHandler).item == itemHandler.item}) as? ItemHandler){
+        handler.count += itemHandler.count
+    }else{
+        newHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+        newHandler.item = itemHandler.item
+        newHandler.count = itemHandler.count
+        
+        character.addToEquipment(newHandler)
+        createdNewHandler = true
     }
     
     let atribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: context) as! ItemAtributeHandler
     
     itemHandler.addToItemAtributesHandler(atribute)
     
-    return newHandler
+    return createdNewHandler
 }
 
 func add(_ item: Item,to package: Package, count: Int64?){

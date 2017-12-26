@@ -204,7 +204,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        (popController as! sendPopover).item = randomlySelected[(indexPath?.row)!].item
+        (popController as! sendPopover).itemHandler = randomlySelected[(indexPath?.row)!]
         
         self.present(popController, animated: true, completion: nil)
     }
