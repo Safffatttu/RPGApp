@@ -20,6 +20,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.accessibilityIdentifier = "selectedTable"
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reloadRandomItemTable, object: nil)
         
         let context = CoreDataStack.managedObjectContext
@@ -49,7 +50,33 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func reloadTableData(_ notification: Notification) {
-        tableView.reloadData()
+        if let reloadData = notification.object as? (([Int],[Int]),IndexPath?){
+            
+            var cellsToReload: [IndexPath] = []
+            
+            for index in reloadData.0.0 {
+                cellsToReload.append(IndexPath(row: index, section: 0))
+            }
+            
+            var cellsToInsert: [IndexPath] = []
+            
+            for index in reloadData.0.1 {
+                cellsToInsert.append(IndexPath(row: index, section: 0))
+            }
+            tableView.beginUpdates()
+
+            tableView.reloadRows(at: cellsToReload, with: .automatic)
+            tableView.insertRows(at: cellsToInsert, with: .automatic)
+
+            if let index = reloadData.1 {
+                tableView.deleteRows(at: [index], with: .automatic)
+            }
+            
+            tableView.endUpdates()
+            
+        }else{
+            tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,6 +142,21 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let contex = CoreDataStack.managedObjectContext
+            let handlerToRemove = randomlySelected[indexPath.row]
+            randomlySelected.remove(at: indexPath.row)
+            contex.delete(handlerToRemove)
+            CoreDataStack.saveContext()
+            tableView.deleteRows(at: [indexPath], with: .left)
+        }
+    }
+    
     func addToPackage(_ sender: UIButton){
         if !sessionIsActive(){
             return
@@ -135,8 +177,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     func reDrawItem(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
-        NotificationCenter.default.post(name: .reDrawItem, object: randomlySelected[(indexPath?.row)!])
-        randomlySelected.remove(at: (indexPath?.row)!)
+        NotificationCenter.default.post(name: .reDrawItem, object: (randomlySelected[(indexPath?.row)!],indexPath))
     }
     
     func showInfo(_ sender: UIButton){

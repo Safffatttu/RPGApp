@@ -59,6 +59,8 @@ class randomItemMenu: UITableViewController {
         catch{
             print("error fetching")
         }
+        
+        self.tableView.accessibilityIdentifier = "randomItemMenu"
     }
     
     func reloadDrawSettings(){
@@ -241,21 +243,118 @@ class randomItemMenu: UITableViewController {
     }
     
     func reDrawItem(_ notification: NSNotification){
-        drawQueue.async {
-            guard self.lastDrawSetting != nil else{
-                return
-            }
-        
-            let setting = self.lastDrawSetting as? DrawSetting
-            let subCategory = self.lastDrawSetting as? SubCategory
-            let category = self.lastDrawSetting as? Category
+        //drawQueue.async {
+            let object =  notification.object as! (ItemHandler,IndexPath)
+            let handler = object.0
+            var index: IndexPath? = object.1
+
+            let originalCount = Int(handler.count)
             
-            self.drawItems(drawSetting: setting, subCategory: subCategory, category: category, reDraw: .single)
+            var reloadData: ([Int],[Int]) = ([],[])
+            
+            print(randomlySelected.map({($0.item?.name)! + String($0.count)}))
+            print("orginalny index: " + String(describing: index?.row))
+            if let drawSetting = self.lastDrawSetting as? DrawSetting{
+                var itemsToDraw: [Item] = []
+                
+                let subSettings: [DrawSubSetting] = (drawSetting.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)]) as? [DrawSubSetting])!
+                
+                for setting in subSettings{
+                    let context = CoreDataStack.managedObjectContext
+                    var subItems: [Item] = []
+                    if(setting.category != nil){
+                        subItems = setting.category?.items?.sortedArray(using: [.sortItemByName]) as! [Item]
+                    }
+                    else if(setting.subCategory != nil){
+                        subItems = setting.subCategory?.items?.sortedArray(using: [.sortItemByName]) as! [Item]
+                    }
+                    else if((setting.items?.count)! > 0){
+                        subItems = setting.items?.sortedArray(using: [.sortItemByName]) as! [Item]
+                    }
+                    else{
+                        let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+                        do{
+                            subItems = try context.fetch(itemFetch)
+                        }
+                        catch let error as NSError{
+                            print(error)
+                        }
+                    }
+                    print(subItems.map({$0.name}))
+                    subItems = subItems.filter({$0.rarity >= setting.minRarity && $0.rarity <= setting.maxRarity})
+                    print(subItems.map({$0.name}))
+                    
+                    itemsToDraw.append(contentsOf: subItems)
+                }
+                
+                print(itemsToDraw.map({$0.name}))
+                reloadData = self.drawItemHandler(items: itemsToDraw, numberOf: originalCount)
+            }
+            
+            else if let subCategory = self.lastDrawSetting as? SubCategory{
+                let itemsToDraw = subCategory.items?.sortedArray(using: [.sortItemByName]) as! [Item]
+                reloadData = self.drawItemHandler(items: itemsToDraw , numberOf: originalCount)
+            }
+            
+            else if let category = self.lastDrawSetting as? Category{
+                let itemsToDraw = category.items?.sortedArray(using: [.sortItemByName]) as! [Item]
+                reloadData = self.drawItemHandler(items: itemsToDraw , numberOf: originalCount)
+            }else{
+                let context = CoreDataStack.managedObjectContext
+                var itemsToDraw: [Item] = []
+                let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
+                
+                do{
+                    itemsToDraw = try context.fetch(itemFetch)
+                }
+                catch let error as NSError{
+                    print(error)
+                }
+                                
+                reloadData = self.drawItemHandler(items: itemsToDraw, numberOf: originalCount)
+            }
+            
+            if reloadData.0.first(where: {$0 == index?.row}) == nil{
+                randomlySelected.remove(at: (index?.row)!)
+                print("usunięto")
+                reloadData.0 = reloadData.0.map({
+                    if $0 > (index?.row)!{
+                        return $0 - 1
+                    }
+                    return $0
+                })
+                
+                
+                if let indexToRemove = reloadData.0.index(of: (index?.row)!){
+                    reloadData.0.remove(at: indexToRemove)
+                    print("removed")
+                }
+                
+                if reloadData.0.first(where: {$0 == index?.row}) != nil{
+                    index = nil
+                }
+                
+            }else{
+                randomlySelected[(index?.row)!].count = randomlySelected[(index?.row)!].count - originalCount
+                index = nil
+            }
+
+            var sum = 0
+            for ran in randomlySelected{
+                sum += Int(ran.count)
+            }
+            
+            print(randomlySelected.map({($0.item?.name)! + String($0.count)}))
+            print(reloadData) // cellsToReload | cellsToInsert
+            print(index)
+            print(sum)
+            
+            print("------------------------------")
             
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
+                NotificationCenter.default.post(name: .reloadRandomItemTable, object: (reloadData,index))
             }
-        }
+       // }
     }
     
     func addDrawSetting(_ sender: UIBarButtonItem){
@@ -354,12 +453,16 @@ class randomItemMenu: UITableViewController {
         return
     }
     
-    func drawItemHandler(items: [Item],numberOf: Int){
+    @discardableResult
+    func drawItemHandler(items: [Item],numberOf: Int) -> ([Int],[Int]){
         let weight: Int64
         var itemsToDraw = items
         
+        var cellsToReload: [Int] = []
+        var cellsToInsert: [Int] = []
+        
         itemsToDraw = items.map{
-            $0.propability = Int64(propabilities[Int(Int(($0).rarity) - 1)])
+            $0.propability = Int64(propabilities[Int($0.rarity) - 1])
             return $0
         }
         
@@ -368,15 +471,24 @@ class randomItemMenu: UITableViewController {
         for _ in 1...numberOf{
             let newItem = drawItem(items: itemsToDraw, weightTotal: weight)
             var itemHandler = randomlySelected.filter({$0.item == newItem}).first
+            if itemHandler != nil{
+                let itemHandlerIndex = randomlySelected.index(of: itemHandler!)
+                cellsToReload.append(itemHandlerIndex!)
+            }
             
             itemHandler?.count += 1
             
             if itemHandler == nil{
-                itemHandler = (NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: CoreDataStack.managedObjectContext) as! ItemHandler)
+                let context = CoreDataStack.managedObjectContext
+                itemHandler = (NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler)
                 itemHandler?.item = newItem
                 randomlySelected.append(itemHandler!)
+                let itemHandlerIndex = randomlySelected.index(of: itemHandler!)! - 1
+                cellsToInsert.append(itemHandlerIndex)
             }
         }
+        
+        return (cellsToReload,cellsToInsert)
     }
     
     func drawItem(items: [Item],weightTotal: Int64) -> Item{
