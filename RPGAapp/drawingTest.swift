@@ -59,15 +59,84 @@ class drawingTest: XCTestCase {
             for sub in subCategoires{
                 toTest.drawItems(drawSetting: nil, subCategory: sub, category: nil, reDraw: .not)
             }
+            
+            for _ in 0...10{
+                let setting = self.createRandomDrawSettin(categories: categories, subCategories: subCategoires)
+                toTest.drawItems(drawSetting: setting, subCategory: nil, category: nil, reDraw: .not)
+            }
         }
-        
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testStressDraw(){
+        let toTest = randomItemMenu()
+        let context = CoreDataStack.managedObjectContext
+        
+        let categoryFetch: NSFetchRequest<RPGAapp.Category> = Category.fetchRequest()
+        
+        categoryFetch.sortDescriptors = [.sortCategoryByName]
+        var categories: [RPGAapp.Category] = []
+        do{
+            categories = try context.fetch(categoryFetch)
         }
+        catch{
+            print("error fetching")
+        }
+        
+    
+        let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+        
+        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
+        var subCategoires: [SubCategory] = []
+        do{
+            subCategoires = try context.fetch(subCategoryFetch)
+        }
+        catch{
+            print("error fetching")
+        }
+        
+        for i in 0...100{
+            print("test nr:" + String(describing: i))
+            
+            for cat in categories{
+                toTest.drawItems(drawSetting: nil, subCategory: nil, category: cat, reDraw: .not)
+            }
+            
+            for sub in subCategoires{
+                toTest.drawItems(drawSetting: nil, subCategory: sub, category: nil, reDraw: .not)
+            }
+            
+            for _ in 0...10{
+                let setting = createRandomDrawSettin(categories: categories, subCategories: subCategoires)
+                toTest.drawItems(drawSetting: setting, subCategory: nil, category: nil, reDraw: .not)
+            }
+        }
+    }
+    
+    func createRandomDrawSettin(categories: [RPGAapp.Category], subCategories: [SubCategory]) -> DrawSetting {
+        let context = CoreDataStack.managedObjectContext
+        
+        let drawSetting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as! DrawSetting
+        drawSetting.name = ""
+        
+        for _ in 0...myRand(5) {
+            let newSubDraw = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
+
+            switch myRand(2){
+                case 0:
+                    let category = categories[myRand(categories.count - 1)]
+                    newSubDraw.category = category
+                case 1:
+                    let subCategory = subCategories[myRand(subCategories.count - 1)]
+                    newSubDraw.subCategory = subCategory
+                default:
+                    break
+            }
+            
+            drawSetting.addToSubSettings(newSubDraw)
+        }
+        
+        CoreDataStack.saveContext()
+        return drawSetting
     }
     
 }
