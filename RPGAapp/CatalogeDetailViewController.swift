@@ -198,6 +198,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath != expandedCell else {
+            return
+        }
+        
         if expandedCell != nil{
             let tmpIndex = expandedCell
             expandedCell = nil
@@ -415,6 +419,9 @@ class catalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard atributes.count != 0 else{
+            return
+        }
         let atribute = atributes[indexPath.row]
         atributeHandler.removeFromItemAtributes(atribute)
         
