@@ -38,3 +38,9 @@ extension SubCategory {
     @NSManaged public func removeFromItems(_ values: NSSet)
     
 }
+
+extension SubCategory: Equatable{
+    func ==(lhs: SubCategory, rhs: SubCategory) -> Bool {
+        return lhs.name == rhs.name
+    }
+}

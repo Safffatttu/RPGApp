@@ -32,6 +32,9 @@
 		3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F06AF1F9792F100611C34 /* PackageViewer.swift */; };
 		3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
 		3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */; };
+		3BA35D0E1FF59E1700FB40AC /* Dwifft.framework in Sources */ = {isa = PBXBuildFile; fileRef = 3BA35D011FF5965000FB40AC /* Dwifft.framework */; };
+		3BA35D101FF59E8F00FB40AC /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */; };
+		3BA35D111FF59E8F00FB40AC /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
 		3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
@@ -60,6 +63,20 @@
 			remoteInfo = RPGAapp;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3BA35D121FF59E8F00FB40AC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3BA35D111FF59E8F00FB40AC /* Dwifft.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3B063D5F1F3A21A800B5271C /* RPGAapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGAapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +107,8 @@
 		3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemMenuViewController.swift; sourceTree = "<group>"; };
 		3B8F06AF1F9792F100611C34 /* PackageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageViewer.swift; sourceTree = "<group>"; };
 		3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionDelegate.swift; sourceTree = "<group>"; };
+		3BA35D011FF5965000FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dwifft.framework; path = "../../../Downloads/Dwifft-0.6/build/Debug-iphoneos/Dwifft.framework"; sourceTree = "<group>"; };
+		3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		3BD335881FF28B2E004F70BF /* RPGAappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA35D101FF59E8F00FB40AC /* Dwifft.framework in Frameworks */,
 				3BFEFA251F570A69008B0C12 /* CoreData.framework in Frameworks */,
 				12F51BB5C46DBD12E46D0BD5 /* Pods_RPGAapp.framework in Frameworks */,
 			);
@@ -263,6 +283,8 @@
 		CB81D7CA0204AF3DDF488BBA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */,
+				3BA35D011FF5965000FB40AC /* Dwifft.framework */,
 				3BFEFA241F570A69008B0C12 /* CoreData.framework */,
 				BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */,
 			);
@@ -278,10 +300,11 @@
 			buildPhases = (
 				8C38864759148D99E6708452 /* [CP] Check Pods Manifest.lock */,
 				3B063D5B1F3A21A800B5271C /* Sources */,
-				3B063D5C1F3A21A800B5271C /* Frameworks */,
 				3B063D5D1F3A21A800B5271C /* Resources */,
+				3B063D5C1F3A21A800B5271C /* Frameworks */,
 				AA67172CAE17E32BD0F151D2 /* [CP] Embed Pods Frameworks */,
 				FAA1336C59A3703269C6978F /* [CP] Copy Pods Resources */,
+				3BA35D121FF59E8F00FB40AC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -466,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA35D0E1FF59E1700FB40AC /* Dwifft.framework in Sources */,
 				3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */,
 				3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */,
 				3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */,

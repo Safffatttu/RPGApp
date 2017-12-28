@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 import FontAwesome_swift
 import CoreData
+import Dwifft
 
 class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate, UIPopoverPresentationControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     
-    var subCategories: [(SubCategory,[Item])] = []
+    var subCategories: [(SubCategory,[Item])] = loadSubCategories()
     
     var filter: [String : Double?] = [:]
     
@@ -25,20 +26,31 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var catalogTable: UITableView!
     
+    var diffCalculator: TableViewDiffCalculator<SubCategory,Item>?
+    
+    var items: SectionedValues<SubCategory,Item> = SectionedValues(loadSubCategories()){
+        didSet{
+            self.diffCalculator?.sectionedValues = items
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        
+        self.diffCalculator = TableViewDiffCalculator(tableView: self.tableView, initialSectionedValues: self.items)
+    }
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection(_:)), name: .goToSectionCataloge, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
-        
-        subCategories = loadSubCategories()
     }
     
     func reloadFilter(_ notification: Notification){
         if let newFilter = notification.object as? Dictionary<String, Double?>{
             DispatchQueue.global(qos: .default).sync {
-                self.subCategories = loadSubCategories()
-                
                 self.filter = newFilter
                 var newSubCategoriesList: [(SubCategory,[Item])] = []
                 for sub in self.subCategories{
@@ -46,18 +58,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
                     newSubCategoriesList.append((sub.0),filteredList)
                 }
                 
-                self.subCategories = newSubCategoriesList
-                
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.items = SectionedValues(newSubCategoriesList)
                 }
             }
-
-            /*UIView.transition(with: tableView,
-                              duration: 0.3,
-                              options: .transitionCrossDissolve,
-                              animations: { self.tableView.reloadData() })
-             */
         }
     }
     
@@ -106,24 +110,21 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: Table
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return subCategories.count
-        /*return subCategories.reduce(0, {
-            return Int( $1.items?.contains(where: {($0 as! Item).rarity > 0})) + $0
-        })*/
+        return self.diffCalculator?.numberOfSections() ?? 0
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subCategories[section].1.count
+        return self.diffCalculator?.numberOfObjects(inSection: section) ?? 0
     }
     
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let category = subCategories[section].0.category?.name
-        let subCategory = subCategories[section].0.name
+        let category = self.diffCalculator?.value(forSection: section).category?.name
+        let subCategory = self.diffCalculator?.value(forSection: section).name
         return category!.capitalized + " " + subCategory!.lowercased()
     }
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellItem = subCategories[indexPath.section].1[indexPath.row]
+        let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath))!
         if expandedCell == indexPath{
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! catalogeDetailExpandedCell
             cell.item = cellItem

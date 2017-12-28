@@ -61,7 +61,7 @@
 		0173C1CCF52D407ECAD4CE760D431931 /* Popover.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Popover.swift; path = Classes/Popover.swift; sourceTree = "<group>"; };
 		03CADE02097622C41F136474EA407ACD /* ResourceBundle-FontAwesome.swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-FontAwesome.swift-Info.plist"; sourceTree = "<group>"; };
 		04ED69DAE5973AD1C04E17DFC6B7462E /* Pods-RPGAapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RPGAapp.release.xcconfig"; sourceTree = "<group>"; };
-		0E7E937FDECF3F4E806087D099D46FA4 /* Pods_RPGAapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RPGAapp.framework; path = "Pods-RPGAapp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E7E937FDECF3F4E806087D099D46FA4 /* Pods_RPGAapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RPGAapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		119A1709E525A4C14EF544F09D28E084 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		148E8AE8204809BB4A2265AE4B1C857E /* Pods-RPGAapp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RPGAapp-umbrella.h"; sourceTree = "<group>"; };
 		2031AC31D9A767DC17E94820D074E370 /* Enum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enum.swift; path = FontAwesome/Enum.swift; sourceTree = "<group>"; };
@@ -72,25 +72,25 @@
 		402B8030723664CE4A620A96FFCE7EFF /* Popover.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Popover.xcconfig; sourceTree = "<group>"; };
 		48BE2222C7A2B0767FC8DADB22F777BB /* Pods-RPGAapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RPGAapp.debug.xcconfig"; sourceTree = "<group>"; };
 		5148B320D94C562D9673E72C2092DA4A /* FontAwesome.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-prefix.pch"; sourceTree = "<group>"; };
-		528B8BB8011E3C279A7CBC4EA663F2F3 /* Pods-RPGAapp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RPGAapp.modulemap"; sourceTree = "<group>"; };
+		528B8BB8011E3C279A7CBC4EA663F2F3 /* Pods-RPGAapp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-RPGAapp.modulemap"; sourceTree = "<group>"; };
 		5C1646DA841CA0ED0645BDEC0FBDEA70 /* FontAwesomeImageRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeImageRepresentable.swift; path = FontAwesome/FontAwesomeImageRepresentable.swift; sourceTree = "<group>"; };
-		5CFF67A729974DC2B957B94172BDB43B /* Popover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Popover.framework; path = Popover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CFF67A729974DC2B957B94172BDB43B /* Popover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Popover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AD4CB04040284204C1C1FBDC74069BE /* FontAwesomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeView.swift; path = FontAwesome/FontAwesomeView.swift; sourceTree = "<group>"; };
 		7113C103AA50527E248D9CB40EA41F58 /* FontAwesome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesome.swift; path = FontAwesome/FontAwesome.swift; sourceTree = "<group>"; };
-		751C215082224BA6ED971B325A4CB43D /* Popover.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Popover.modulemap; sourceTree = "<group>"; };
+		751C215082224BA6ED971B325A4CB43D /* Popover.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Popover.modulemap; sourceTree = "<group>"; };
 		7A8EEECCA45B2222C960A8716AC0BD8F /* FontAwesome.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FontAwesome.swift-dummy.m"; sourceTree = "<group>"; };
-		809D3032328B97C27655BCB0F3992470 /* FontAwesome.otf */ = {isa = PBXFileReference; includeInIndex = 1; name = FontAwesome.otf; path = FontAwesome/FontAwesome.otf; sourceTree = "<group>"; };
+		809D3032328B97C27655BCB0F3992470 /* FontAwesome.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = FontAwesome.otf; path = FontAwesome/FontAwesome.otf; sourceTree = "<group>"; };
 		829428E6EA8F14697CD63EFD86CE41BB /* FontAwesome.swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FontAwesome.swift.xcconfig; sourceTree = "<group>"; };
 		891AD9D14A50756960676956DFD43F0D /* Pods-RPGAapp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RPGAapp-resources.sh"; sourceTree = "<group>"; };
 		8DFFE09C98A6179E61D5F6D2BD6E450D /* Pods-RPGAapp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RPGAapp-dummy.m"; sourceTree = "<group>"; };
 		92EAAF656D018A7B6C49F33B753A73E3 /* Pods-RPGAapp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RPGAapp-acknowledgements.markdown"; sourceTree = "<group>"; };
 		932C3ADD1B49CDB6387A13E4DD980B2F /* Popover-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Popover-umbrella.h"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		97B15A341AE8930DC8DA8181C8DD3C32 /* Popover-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Popover-prefix.pch"; sourceTree = "<group>"; };
-		9E062EA86EC1B153BB5778EEE3A8B1F6 /* FontAwesome.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FontAwesome.swift.modulemap; sourceTree = "<group>"; };
+		9E062EA86EC1B153BB5778EEE3A8B1F6 /* FontAwesome.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FontAwesome.swift.modulemap; sourceTree = "<group>"; };
 		A38CFFF8039F620C0259127BBB382127 /* FontAwesomeStateRequirement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeStateRequirement.swift; path = FontAwesome/FontAwesomeStateRequirement.swift; sourceTree = "<group>"; };
 		A57EBA12F9E4321AEB7172FC20C11D2C /* FontAwesomeTextRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeTextRepresentable.swift; path = FontAwesome/FontAwesomeTextRepresentable.swift; sourceTree = "<group>"; };
-		ABC5059A0AEF2D86575896C582593887 /* FontAwesome.swift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FontAwesome.swift.bundle; path = FontAwesome.swift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABC5059A0AEF2D86575896C582593887 /* FontAwesome.swift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontAwesome.swift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32431FA5524F12225B1B779AF3E4A6D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		BE29D7E114D2830B484E68307526FF87 /* Pods-RPGAapp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RPGAapp-acknowledgements.plist"; sourceTree = "<group>"; };
 		CA36EC9C6EAF78FE74BBA16F313B5E72 /* FontAwesomeTabBarItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeTabBarItem.swift; path = FontAwesome/FontAwesomeTabBarItem.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		D9925206EDB4277B926F4A2E203B90A1 /* Popover-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Popover-dummy.m"; sourceTree = "<group>"; };
 		DBBD0866FFE99C0657CC42ED2F391574 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5041EF9DEA37D0847A4AA0254A85AD0 /* FontAwesomeImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeImageView.swift; path = FontAwesome/FontAwesomeImageView.swift; sourceTree = "<group>"; };
-		EE608439E1B48C5A6856E972A23C0E31 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FontAwesome_swift.framework; path = FontAwesome.swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE608439E1B48C5A6856E972A23C0E31 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontAwesome_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F48C6D76934FEFA85E87DC6F2E181F78 /* FontAwesome.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-umbrella.h"; sourceTree = "<group>"; };
 		F9E1802A25DDB8617CBD4DE9BFC796AF /* FontAwesomeBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeBarButtonItem.swift; path = FontAwesome/FontAwesomeBarButtonItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,7 +183,6 @@
 				0173C1CCF52D407ECAD4CE760D431931 /* Popover.swift */,
 				B666E67375BF59399C76DB231E5B941C /* Support Files */,
 			);
-			name = Popover;
 			path = Popover;
 			sourceTree = "<group>";
 		};
@@ -214,7 +213,6 @@
 				092B3F77433AE7D2843D5CCD58A97C51 /* Resources */,
 				9685F2DA01DA89A5A8E2FE53DB1F4C3A /* Support Files */,
 			);
-			name = FontAwesome.swift;
 			path = FontAwesome.swift;
 			sourceTree = "<group>";
 		};
@@ -267,7 +265,6 @@
 		FAF7C5610D929CFB22D9E38C14DD492E /* Pods-RPGAapp */ = {
 			isa = PBXGroup;
 			children = (
-				DBBD0866FFE99C0657CC42ED2F391574 /* Info.plist */,
 				528B8BB8011E3C279A7CBC4EA663F2F3 /* Pods-RPGAapp.modulemap */,
 				92EAAF656D018A7B6C49F33B753A73E3 /* Pods-RPGAapp-acknowledgements.markdown */,
 				BE29D7E114D2830B484E68307526FF87 /* Pods-RPGAapp-acknowledgements.plist */,
@@ -277,6 +274,7 @@
 				148E8AE8204809BB4A2265AE4B1C857E /* Pods-RPGAapp-umbrella.h */,
 				48BE2222C7A2B0767FC8DADB22F777BB /* Pods-RPGAapp.debug.xcconfig */,
 				04ED69DAE5973AD1C04E17DFC6B7462E /* Pods-RPGAapp.release.xcconfig */,
+				DBBD0866FFE99C0657CC42ED2F391574 /* Info.plist */,
 			);
 			name = "Pods-RPGAapp";
 			path = "Target Support Files/Pods-RPGAapp";
