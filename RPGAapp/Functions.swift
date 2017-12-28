@@ -360,6 +360,7 @@ func showPopover(with message: String){
 
 
 func sessionIsActive(show: Bool = true) -> Bool{
+    return true
     let active = UserDefaults.standard.bool(forKey: "sessionIsActive")
     
     if !active && show{

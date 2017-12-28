@@ -236,6 +236,9 @@ class SettingMenu: UITableViewController {
                 let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
                 action.setValue(actionType, forKey: "action")
                 action.setValue(sessionId, forKey: "sessionId")
+//                if sessions.count == 0 {
+//                    action.setValue(false, forKey: "sessionIsActive")
+//                }
                 appDelegate.pack.send(action)
             }else{
                 let peer = appDelegate.pack.session.connectedPeers[indexPath.row]

@@ -243,6 +243,10 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     print(error)
                 }
 
+//                if action.value(forKey: "sessionIsActive") as? Bool == false{
+//                    UserDefaults.standard.set(false, forKey: "sessionIsActive")
+//                }
+                
                 if let session = sessions.first(where: {$0.id == sessionId}){
                     let index = sessions.index(of: session)
                     let indexPath = IndexPath(row: index! + 1, section: 1)
@@ -303,10 +307,14 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
             let devices = NSSet(array: connectedDevices)
             
             let session = getCurrentSession()
-            let sessionDevices = session.devices as! NSSet
             
-            if sessionDevices == devices && devices.count > 0{
+            let sessionDevices = session.devices as? NSSet
+            
+            print(devices)
+            print(sessionDevices)
+            if sessionDevices != nil && sessionDevices! == devices && devices.count > 0{
                 showPopover(with: "Przywrócono połączenie z wszystkimi członkami sesji")
+                UserDefaults.standard.set(true, forKey: "sessionIsActive")
             }else{
                 let message = "Ponownie połączono z " + peer.displayName
                 showPopover(with: message)

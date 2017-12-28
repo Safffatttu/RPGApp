@@ -20,6 +20,7 @@
 		3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */; };
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
+		3B588E001FF30C0500715440 /* randomUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B588DFF1FF30C0500715440 /* randomUserTests.swift */; };
 		3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
 		3B7B159D1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */; };
@@ -68,7 +69,7 @@
 		3B063D6B1F3A21A800B5271C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B063D6E1F3A21A800B5271C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B063D701F3A21A800B5271C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B063D761F3A259B00B5271C /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Functions.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		3B063D761F3A259B00B5271C /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Functions.swift; path = RPGAapp/Functions.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editPackage.swift; sourceTree = "<group>"; };
 		3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDrawSetting.swift; sourceTree = "<group>"; };
 		3B31B3E51F3B67A6003526E1 /* KatalogMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatalogMenuViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
 		3B3C05301F3BC1D600CFB002 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3B50DC011F40EB6B0040DCCC /* MPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPManager.swift; sourceTree = "<group>"; };
+		3B588DFF1FF30C0500715440 /* randomUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = randomUserTests.swift; sourceTree = "<group>"; };
 		3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B73F9211F8FB04900EA7E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
@@ -135,6 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				3B063D611F3A21A800B5271C /* RPGAapp */,
+				3B063D681F3A21A800B5271C /* Main.storyboard */,
+				3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */,
+				3B063D761F3A259B00B5271C /* Functions.swift */,
 				3B73F91E1F8FB04900EA7E6A /* RPGAappTests */,
 				3BD335891FF28B2E004F70BF /* RPGAappUITests */,
 				3B063D601F3A21A800B5271C /* Products */,
@@ -156,15 +161,12 @@
 		3B063D611F3A21A800B5271C /* RPGAapp */ = {
 			isa = PBXGroup;
 			children = (
+				3B063D621F3A21A800B5271C /* AppDelegate.swift */,
 				3B3C052E1F3BBE3E00CFB002 /* Menu */,
 				3B3C052F1F3BBE4E00CFB002 /* Detail */,
 				3BF480AD1F44DBC50017169D /* Popover */,
 				3B9D6BDC1FB907E100474C71 /* Networking */,
 				3B9D6BDD1FB907F400474C71 /* Data */,
-				3B063D621F3A21A800B5271C /* AppDelegate.swift */,
-				3B063D681F3A21A800B5271C /* Main.storyboard */,
-				3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */,
-				3B063D761F3A259B00B5271C /* Functions.swift */,
 			);
 			path = RPGAapp;
 			sourceTree = "<group>";
@@ -228,6 +230,7 @@
 		3BD335891FF28B2E004F70BF /* RPGAappUITests */ = {
 			isa = PBXGroup;
 			children = (
+				3B588DFF1FF30C0500715440 /* randomUserTests.swift */,
 				3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */,
 				3BD3358C1FF28B2E004F70BF /* Info.plist */,
 			);
@@ -506,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */,
+				3B588E001FF30C0500715440 /* randomUserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +535,7 @@
 				3B063D691F3A21A800B5271C /* Base */,
 			);
 			name = Main.storyboard;
+			path = RPGAapp;
 			sourceTree = "<group>";
 		};
 		3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */ = {
@@ -539,6 +544,7 @@
 				3B063D6E1F3A21A800B5271C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = RPGAapp;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -797,6 +803,7 @@
 				3BD335911FF28B2E004F70BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
