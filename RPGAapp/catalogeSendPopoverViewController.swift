@@ -79,6 +79,10 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
             createdNewHandler = addToEquipment(item: itemToAdd, to: sendTo)
         }else if let handlerToAdd = itemHandler {
             createdNewHandler = addToEquipment(itemHandler: handlerToAdd, to: sendTo)
+        }else {
+            for handler in itemHandlers{
+                addToEquipment(itemHandler: handler, to: sendTo)
+            }
         }
         
         CoreDataStack.saveContext()
@@ -96,6 +100,20 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         }else if let handlerToSend = itemHandler {
             action.setValue(handlerToSend.item?.id, forKey: "itemId")
             action.setValue(handlerToSend.count, forKey: "itemCount")
+        }else {
+            var itemsId: [String] = []
+            var itemsCount: [Int64] = []
+            for handler in itemHandlers{
+                let itemId = handler.item?.id
+                itemsId.append(itemId!)
+                let itemCount = handler.count
+                itemsCount.append(itemCount)
+            }
+            let itemsIdToSend = NSArray(array: itemsId)
+            let itemsCountToSend = NSArray(array: itemsCount)
+            
+            action.setValue(itemsIdToSend, forKey: "itemsId")
+            action.setValue(itemsCountToSend, forKey: "itemsCount")
         }
 
         action.setValue(sendTo.id, forKey: "characterId")

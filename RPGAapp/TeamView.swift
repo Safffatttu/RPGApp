@@ -27,15 +27,18 @@ class TeamView: UICollectionViewController {
     func addItem(_ notification: NSNotification){
         let action = notification.object as! NSMutableDictionary
         let characterNumber = action.value(forKey: "characterNumber") as! Int
-        let itemNumber = action.value(forKey: "itemNumber") as! Int
         let cell = self.collectionView?.cellForItem(at: IndexPath(item: characterNumber, section: 0)) as! TeamViewCell
         
-        if (action.value(forKey: "createdNewHandler") as! Bool){
-            let index = IndexPath(item: itemNumber, section: 0)
-            cell.table.insertRows(at: [index], with: .left)
+        if let itemNumber = action.value(forKey: "itemNumber") as? Int{
+            if (action.value(forKey: "createdNewHandler") as! Bool){
+                let index = IndexPath(item: itemNumber, section: 0)
+                cell.table.insertRows(at: [index], with: .left)
+            }else{
+                let index = IndexPath(item: itemNumber, section: 0)
+                cell.table.reloadRows(at: [index], with: .fade)
+            }
         }else{
-            let index = IndexPath(item: itemNumber, section: 0)
-            cell.table.reloadRows(at: [index], with: .fade)
+            cell.table.reloadData()
         }
     }
     

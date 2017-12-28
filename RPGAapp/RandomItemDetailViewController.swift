@@ -234,6 +234,16 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         if !sessionIsActive(){
             return
         }
+        
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
+        
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = sender
+        (popController as! sendPopover).itemHandlers = randomlySelected
+        
+        self.present(popController, animated: true, completion: nil)
     }
 }
 

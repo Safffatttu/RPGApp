@@ -30,9 +30,8 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let context = CoreDataStack.managedObjectContext
                 let itemCount = action.value(forKey: "itemCount") as? Int64
                 
-                guard characterId != nil && itemId != nil else {
-                    return
-                }
+                var itemsId: [String] = action.value(forKey: "itemsId") as! [String]
+                var itemsCount: [Int64] = action.value(forKey: "itemsCount") as! [Int64]
                 
                 let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
                 let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
@@ -42,22 +41,44 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 }catch let error as NSError {
                     print("Could not fetch. \(error), \(error.userInfo)")
                 }
-                
-                do{
-                    item = try context.fetch(itemFetch).first(where: {$0.id == itemId})
-                }catch let error as NSError {
-                    print("Could not fetch. \(error), \(error.userInfo)")
-                }
-                
-                guard item != nil && character != nil else {
+
+                guard character != nil else{
                     return
                 }
                 
-                if let count = itemCount{
-                    addToEquipment(item: item!, to: character!, count: count)
+                if itemId != nil{
+                
+                    do{
+                        item = try context.fetch(itemFetch).first(where: {$0.id == itemId})
+                    }catch let error as NSError {
+                        print("Could not fetch. \(error), \(error.userInfo)")
+                    }
+                
+                    guard item != nil else {
+                        return
+                    }
+                    
+                    if let count = itemCount{
+                        addToEquipment(item: item!, to: character!, count: count)
+                    }else{
+                        addToEquipment(item: item!, to: character!)
+                    }
                 }else{
-                    addToEquipment(item: item!, to: character!)
+                    for itemNum in 0...itemsId.count - 1{
+                        do{
+                            item = try context.fetch(itemFetch).first(where: {$0.id == itemsId[itemNum]})
+                        }catch let error as NSError {
+                            print("Could not fetch. \(error), \(error.userInfo)")
+                        }
+                        
+                        guard item != nil else {
+                            return
+                        }
+                        
+                        addToEquipment(item: item!, to: character!, count: itemsCount[itemNum])
+                    }
                 }
+                
                 CoreDataStack.saveContext()
                 
                 NotificationCenter.default.post(name: .itemAddedToCharacter, object: action)
