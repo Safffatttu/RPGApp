@@ -112,6 +112,119 @@ class drawingTest: XCTestCase {
         }
     }
     
+    func testFlitering(){
+        let itemList = loadItems()
+        let cat = catalogeDetail()
+        var newItemList = itemList
+        cat.filter = randomFilter()
+        
+        self.measure {
+            for _ in 0...100{
+                cat.filter = self.randomFilter()
+                newItemList = itemList
+                cat.filterItemList(newItemList)
+            }
+        }
+    }
+    
+//    func testFlitering2(){
+//        let itemList = loadItems()
+//        let cat = catalogeDetail()
+//        cat.filter = randomFilter()
+//        var newItemList = itemList
+//        self.measure {
+//            for _ in 0...100{
+//                cat.filter = self.randomFilter()
+//                newItemList = itemList
+//                cat.filterItemInoutList(&newItemList)
+//            }
+//        }
+//    }
+    
+    func testFlitering3(){
+        let itemList = loadItems()
+        let cat = catalogeDetail()
+        cat.filter = randomFilter()
+        var newItemList = itemList
+        self.measure {
+            for _ in 0...100{
+                let filter = self.randomFilter()
+                newItemList = itemList
+                self.filterItems(newItemList, filter: filter)
+            }
+        }
+    }
+    
+    func testDrawSettings(){
+        var drawSettings: [DrawSetting] = []
+        let context = CoreDataStack.managedObjectContext
+        let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
+        
+        drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
+        do{
+            drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
+        }
+        catch{
+            print("error")
+        }
+        
+        
+        for sett in drawSettings {
+            let asd = sett.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)]) as! [DrawSubSetting]
+            for i in 0...(asd.count-1) {
+                print(asd[i])
+            }
+        }
+    
+    }
+    
+    func filterItems(_ items: [Item], filter: [String: Double?]) -> [Item] {
+        var itemsToRet = items
+        
+        let minRarity = filter["minRarity"]
+        let maxRarity = filter["maxRarity"]
+        let minPrice = filter["minPrice"]
+        let maxPrice = filter["maxPrice"]
+        
+        
+        itemsToRet = items.filter({
+            $0.rarity >= Int16(minRarity!!) &&
+            $0.rarity <= Int16(maxRarity!!) &&
+            $0.price >= minPrice!! &&
+            $0.price <= maxPrice!!
+            })
+        
+        return itemsToRet
+    }
+    
+    func randomFilter() -> [String: Double?]{
+        let items = loadItems()
+        var maxPrice: Double = {
+            return (items.max { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
+        }()
+        
+        var minPrice: Double = {
+            return (items.min { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
+        }()
+        
+        var maxRarity: Double = {
+            return Double((items.max { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
+        }()
+        
+        var minRarity: Double = {
+            return Double((items.min { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
+        }()
+
+        maxPrice = Double(myRand(Int(maxPrice)))
+        minPrice = Double(myRand(Int(minPrice)))
+        
+        maxRarity = Double(myRand(Int(maxRarity)))
+        minRarity = Double(myRand(Int(minRarity)))
+        
+        let filter: [String: Double] = ["maxPrice" : maxPrice, "minPrice" : minPrice, "maxRarity": maxRarity, "minRarity" : minRarity]
+        return filter
+    }
+    
     func createRandomDrawSettin(categories: [RPGAapp.Category], subCategories: [SubCategory]) -> DrawSetting {
         let context = CoreDataStack.managedObjectContext
         
