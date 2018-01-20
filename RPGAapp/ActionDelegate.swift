@@ -30,8 +30,8 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let context = CoreDataStack.managedObjectContext
                 let itemCount = action.value(forKey: "itemCount") as? Int64
                 
-                var itemsId: [String] = action.value(forKey: "itemsId") as! [String]
-                var itemsCount: [Int64] = action.value(forKey: "itemsCount") as! [Int64]
+                var itemsId: [String]? = action.value(forKey: "itemsId") as? [String]
+                var itemsCount: [Int64]? = action.value(forKey: "itemsCount") as? [Int64]
                 
                 let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
                 let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
@@ -63,10 +63,10 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     }else{
                         addToEquipment(item: item!, to: character!)
                     }
-                }else{
-                    for itemNum in 0...itemsId.count - 1{
+                }else if let count = itemsId?.count{
+                    for itemNum in 0...count - 1{
                         do{
-                            item = try context.fetch(itemFetch).first(where: {$0.id == itemsId[itemNum]})
+                            item = try context.fetch(itemFetch).first(where: {$0.id == itemsId?[itemNum]})
                         }catch let error as NSError {
                             print("Could not fetch. \(error), \(error.userInfo)")
                         }
@@ -75,7 +75,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                             return
                         }
                         
-                        addToEquipment(item: item!, to: character!, count: itemsCount[itemNum])
+                        addToEquipment(item: item!, to: character!, count: (itemsCount?[itemNum])!)
                     }
                 }
                 
