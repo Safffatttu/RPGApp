@@ -66,20 +66,17 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func filterItemList( _ items: [Item]) -> [Item]{
-        var itemsToRet = items
-        if let minRarity = filter["minRarity"] {
-            itemsToRet = items.filter({$0.rarity >= Int16(minRarity!)})
-        }
-        if let maxRarity = filter["maxRarity"] {
-            itemsToRet = itemsToRet.filter({$0.rarity <= Int16(maxRarity!)})
-        }
-        if let minPrice = filter["minPrice"] {
-            itemsToRet = itemsToRet.filter({$0.price >= minPrice!})
-        }
-        if let maxPrice = filter["maxPrice"] {
-            itemsToRet = itemsToRet.filter({$0.price <= maxPrice!})
-        }
+        let minRarity = filter["minRarity"]
+        let maxRarity = filter["maxRarity"]
+        let minPrice = filter["minPrice"]
+        let maxPrice = filter["maxPrice"]
         
+        let itemsToRet = items.filter({
+            $0.rarity >= Int16(minRarity!!) &&
+                $0.rarity <= Int16(maxRarity!!) &&
+                $0.price >= minPrice!! &&
+                $0.price <= maxPrice!!
+        })
         return itemsToRet
     }
     
@@ -89,7 +86,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func goToSection(_ notification: Notification) {
         let subCategoryNumber = notification.object as! Int
-
+        
         print(subCategoryNumber)
         if tableView(self.tableView, numberOfRowsInSection: subCategoryNumber) != 0{
             let toGo = IndexPath(row: 0, section: subCategoryNumber)
@@ -113,17 +110,17 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         return self.diffCalculator?.numberOfSections() ?? 0
     }
     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.diffCalculator?.numberOfObjects(inSection: section) ?? 0
     }
     
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let category = self.diffCalculator?.value(forSection: section).category?.name
         let subCategory = self.diffCalculator?.value(forSection: section).name
         return category!.capitalized + " " + subCategory!.lowercased()
     }
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath))!
         if expandedCell == indexPath{
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! catalogeDetailExpandedCell
@@ -171,12 +168,12 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
                 priceToShow = "Brak ceny"
                 print(cellItem.price)
             }
-
+            
             cell.priceLabel.text = priceToShow
             
             cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
             cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
-
+            
             cell.infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
             cell.infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
             
@@ -250,7 +247,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func showInfoButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
-
+        
         let cellItem = subCategories[(indexPath?.section)!].1[(indexPath?.row)!]
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
@@ -261,7 +258,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         popController.popoverPresentationController?.sourceView = sender
         
         (popController as! showItemInfoPopover).item = cellItem
-
+        
         self.present(popController, animated: true, completion: nil)
     }
     
@@ -270,7 +267,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
             return
         }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
-       
+        
         let cellItem = subCategories[(indexPath?.section)!].1[(indexPath?.row)!]
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
