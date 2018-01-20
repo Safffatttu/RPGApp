@@ -138,7 +138,12 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             let min = subSetting.minRarity > 0 ? "Min: " + rarityName[Int(subSetting.minRarity)] + " " : ""
             let max = subSetting.maxRarity < 3 ? "Max: " + rarityName[Int(subSetting.maxRarity)] + " " : ""
             
-            cell?.textLabel?.text = subSetting.name!
+            if let subName = subSetting.name {
+                cell?.textLabel?.text = subName
+            }else{
+                cell?.textLabel?.text = ""
+            }
+            
             cell?.detailTextLabel?.text = min + max + "Ilość: " + String(subSetting.itemsToDraw)
         }
         return cell!
