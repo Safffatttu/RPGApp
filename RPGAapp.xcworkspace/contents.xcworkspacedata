@@ -81,9 +81,9 @@
       location = "group:RPGAapp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:Dwifft/Dwifft.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Target Support Files/Pods-RPGAapp/../../../Dwifft.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

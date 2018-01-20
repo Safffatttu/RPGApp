@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5A1DC2830CFAE07489C5D8CCA2FF3F67"
+               BlueprintIdentifier = "380C118EE5B0BCE6FF3AB9B1CCC096A8"
                BuildableName = "Pods_RPGAapp.framework"
                BlueprintName = "Pods-RPGAapp"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5A1DC2830CFAE07489C5D8CCA2FF3F67"
+            BlueprintIdentifier = "380C118EE5B0BCE6FF3AB9B1CCC096A8"
             BuildableName = "Pods_RPGAapp.framework"
             BlueprintName = "Pods-RPGAapp"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5A1DC2830CFAE07489C5D8CCA2FF3F67"
+            BlueprintIdentifier = "380C118EE5B0BCE6FF3AB9B1CCC096A8"
             BuildableName = "Pods_RPGAapp.framework"
             BlueprintName = "Pods-RPGAapp"
             ReferencedContainer = "container:Pods.xcodeproj">

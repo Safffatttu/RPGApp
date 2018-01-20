@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/CatalogeDetailViewController.swift"
-            timestampString = "536191708.579183"
+            timestampString = "537918817.514057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "570"
-            endingLineNumber = "570">
+            startingLineNumber = "590"
+            endingLineNumber = "590">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -198,13 +198,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/CatalogeDetailViewController.swift"
-            timestampString = "536191708.579183"
+            timestampString = "537918817.514057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
-            landmarkName = "editItemButton(_:)"
-            landmarkType = "7">
+            startingLineNumber = "332"
+            endingLineNumber = "332"
+            landmarkName = "catalogeDetailExpandedCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -554,148 +554,6 @@
             endingLineNumber = "388"
             landmarkName = "drawItems(drawSetting:subCategory:category:reDraw:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGAapp/CatalogeDetailViewController.swift"
-            timestampString = "536191708.579183"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGAapp/CatalogeDetailViewController.swift"
-            timestampString = "536188520.101743"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "catalogeDetail"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RPGAapp.catalogeDetail.items.getter : Swift.Array&lt;RPGAapp.Item&gt;"
-                  moduleName = "RPGAapp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/CatalogeDetailViewController.swift"
-                  timestampString = "530040095.601914"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "25">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RPGAapp.catalogeDetail.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; RPGAapp.catalogeDetail"
-                  moduleName = "RPGAapp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/CatalogeDetailViewController.swift"
-                  timestampString = "530040095.603838"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "70">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed&gt; of RPGAapp.catalogeDetail.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;RPGAapp.catalogeDetail&gt;"
-                  moduleName = "RPGAapp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/CatalogeDetailViewController.swift"
-                  timestampString = "530040095.605857"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "38">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGAapp/CatalogeDetailViewController.swift"
-            timestampString = "536188520.101743"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "catalogeDetail"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RPGAapp.catalogeDetail.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; RPGAapp.catalogeDetail"
-                  moduleName = "RPGAapp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/CatalogeDetailViewController.swift"
-                  timestampString = "526339266.255625"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "53">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RPGAapp.catalogeDetail.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;RPGAapp.catalogeDetail&gt;"
-                  moduleName = "RPGAapp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/CatalogeDetailViewController.swift"
-                  timestampString = "526339266.256927"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "68">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed&gt; of RPGAapp.catalogeDetail.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;RPGAapp.catalogeDetail&gt;"
-                  moduleName = "RPGAapp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/CatalogeDetailViewController.swift"
-                  timestampString = "526339266.258261"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "26">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1076,7 +934,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "536189996.526579"
+                  timestampString = "537995010.8158979"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
@@ -1091,7 +949,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "536189996.529055"
+                  timestampString = "537995010.818349"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
@@ -1124,7 +982,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "536189996.533462"
+                  timestampString = "537995010.823612"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
@@ -1139,7 +997,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "536189996.535883"
+                  timestampString = "537995010.825961"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
@@ -1450,22 +1308,6 @@
                   offsetFromSymbolStart = "2148">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGAapp/CatalogeDetailViewController.swift"
-            timestampString = "536191708.579183"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

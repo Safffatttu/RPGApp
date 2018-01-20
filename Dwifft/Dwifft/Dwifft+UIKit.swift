@@ -68,7 +68,13 @@ internal class AbstractDiffCalculator<Section: Equatable, Value: Equatable> {
         set {
             let oldSectionedValues = sectionedValues
             let newSectionedValues = newValue
-            let diff = Dwifft.diff(lhs: oldSectionedValues, rhs: newSectionedValues)
+            
+            var diff: [SectionedDiffStep<Section, Value>] = []
+            
+            DispatchQueue.global(qos: .default).sync{
+                diff = Dwifft.diff(lhs: oldSectionedValues, rhs: newSectionedValues)
+            }
+            
             if (diff.count > 0) {
                 self.processChanges(newState: newSectionedValues, diff: diff)
             }

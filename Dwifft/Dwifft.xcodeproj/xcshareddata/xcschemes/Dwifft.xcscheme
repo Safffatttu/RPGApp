@@ -20,20 +20,6 @@
                ReferencedContainer = "container:Dwifft.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "041EBB9C1B89679200E113B3"
-               BuildableName = "DwifftTests.xctest"
-               BlueprintName = "DwifftTests"
-               ReferencedContainer = "container:Dwifft.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -43,16 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "041EBB9C1B89679200E113B3"
-               BuildableName = "DwifftTests.xctest"
-               BlueprintName = "DwifftTests"
-               ReferencedContainer = "container:Dwifft.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
