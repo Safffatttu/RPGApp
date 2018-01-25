@@ -289,7 +289,7 @@ func getCurrentCellIndexPath(_ sender: Any,tableView: UITableView) -> IndexPath?
     return nil
 }
 
-func getCurrentSession() -> Session{
+func getCurrentSession(orCreateNew: Bool = true) -> Session{
     let context = CoreDataStack.managedObjectContext
     let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
     sessionFetch.sortDescriptors = [.sortSessionByName]
@@ -299,7 +299,7 @@ func getCurrentSession() -> Session{
     }catch{
         print(error)
     }
-    if sessions.count == 0{
+    if sessions.count == 0 && orCreateNew{
         let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
         session.name = "Sesja"
         session.gameMaster = UIDevice.current.name

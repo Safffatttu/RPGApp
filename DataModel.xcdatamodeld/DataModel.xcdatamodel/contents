@@ -122,6 +122,6 @@
         <element name="StoreAvalibleItem" positionX="-450" positionY="261" width="128" height="75"/>
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
         <element name="SubCategory" positionX="153" positionY="-43" width="128" height="88"/>
-        <element name="SubCurrency" positionX="-83" positionY="-153" width="128" height="75"/>
+        <element name="SubCurrency" positionX="-83" positionY="-153" width="128" height="73"/>
     </elements>
 </model>
