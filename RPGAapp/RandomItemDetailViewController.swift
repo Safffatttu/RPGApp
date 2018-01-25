@@ -9,30 +9,44 @@
 import Foundation
 import UIKit
 import CoreData
+import Dwifft
 
 class randomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate, UIPopoverPresentationControllerDelegate{
     
     let iconSize: CGFloat = 20
     
-    var currency: Currency? = nil
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    var diffCalculator: SingleSectionTableViewDiffCalculator<val>?
+    
+    struct val: Equatable {
+        var name: String
+        var count: Int64
+        
+        static func ==(lhs: randomItemDetailView.val, rhs: randomItemDetailView.val) -> Bool {
+            return lhs.count == rhs.count && lhs.name == rhs.name
+        }
+    }
+    
+    var diffTable : [val] = []
+    
+    func setDiffTable(){
+        diffTable = []
+        for han in randomlySelected{
+            let newVal = val(name: (han.item?.name)!, count: han.count)
+            diffTable.append(newVal)
+        }
+    }
+    
+    override func viewDidLoad() {
+        setDiffTable()
+        self.diffCalculator = SingleSectionTableViewDiffCalculator(tableView: tableView, initialRows: diffTable, sectionIndex: 0)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.accessibilityIdentifier = "selectedTable"
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reloadRandomItemTable, object: nil)
-        
-        let context = CoreDataStack.managedObjectContext
-        let currencyFetch: NSFetchRequest<Currency> = Currency.fetchRequest()
-        
-        do{
-            currency = try context.fetch(currencyFetch).first
-        }
-        catch let error as NSError{
-            print(error)
-        }
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,72 +54,45 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if randomlySelected.count > 0{
-            return randomlySelected.count
-        }
-        else{
-            return 1
-        }
-        
+        return self.diffCalculator?.rows.count ?? 0
     }
     
     func reloadTableData(_ notification: Notification) {
-        if let reloadData = notification.object as? (([Int],[Int]),IndexPath?){
-            
-            var cellsToReload: [IndexPath] = []
-            
-            for index in reloadData.0.0 {
-                cellsToReload.append(IndexPath(row: index, section: 0))
-            }
-            
-            var cellsToInsert: [IndexPath] = []
-            
-            for index in reloadData.0.1 {
-                cellsToInsert.append(IndexPath(row: index, section: 0))
-            }
-            tableView.beginUpdates()
-
-            tableView.reloadRows(at: cellsToReload, with: .automatic)
-            tableView.insertRows(at: cellsToInsert, with: .automatic)
-
-            if let index = reloadData.1 {
-                tableView.deleteRows(at: [index], with: .automatic)
-            }
-            
-            tableView.endUpdates()
-            
-        }else{
-            tableView.reloadData()
-        }
+        setDiffTable()
+        diffCalculator?.rows = diffTable
+    }
+    
+    override func didReceiveMemoryWarning() {
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell") as! randomItemCell
         
         if randomlySelected.count > 0{
-            let num = randomlySelected[indexPath.row].count
+            let cellItem = randomlySelected[indexPath.row]
             
-            if num > 1 {
-                cell.nameLabel.text = (randomlySelected[indexPath.row].item?.name)! + ": " + String(describing: randomlySelected[indexPath.row].count)
+            if cellItem.count > 1 {
+                cell.nameLabel.text = (cellItem.item?.name)! + ": " + String(describing: cellItem.count)
             }
             else{
-                cell.nameLabel.text = (randomlySelected[indexPath.row].item?.name)!
+                cell.nameLabel.text = (cellItem.item?.name)!
             }
             
             var priceToShow = String()
             
-            if  randomlySelected[indexPath.row].item?.price != nil  {
+            if  cellItem.item?.price != nil  {
                 if UserDefaults.standard.bool(forKey: "Show price"){
-                    //priceToShow = changeCurrency(price: (randomlySelected[indexPath.row].item?.price)!, currency: listOfItems.currency)
-                    priceToShow = String(describing: (randomlySelected[indexPath.row].item?.price)!) + "PLN"
+                    //priceToShow = changeCurrency(price: (cellItem.item?.price)!, currency: listOfItems.currency)
+                    priceToShow = String(describing: (cellItem.item?.price)!) + "PLN"
                 }
                 else{
-                    priceToShow = String(describing: (randomlySelected[indexPath.row].item?.price)!) + "PLN"
+                    priceToShow = String(describing: (cellItem.item?.price)!) + "PLN"
                 }
             }
             else {
                 priceToShow = "Brak ceny"
-                print(randomlySelected[indexPath.row])
+                print(cellItem)
             }
             cell.priceLabel.text = priceToShow
             
