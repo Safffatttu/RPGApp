@@ -48,10 +48,9 @@ public struct Load {
         var subCategories: [SubCategory] = []
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
-        subCategoryFetch.predicate = NSPredicate(format: "temp == %@", "NO")
         
         do{
-            subCategories = try context.fetch(subCategoryFetch)
+            subCategories = try context.fetch(subCategoryFetch).filter({!$0.temp})
         }
         catch{
             print("error fetching")

@@ -371,12 +371,63 @@ func sessionIsActive(show: Bool = true) -> Bool{
     return active
 }
 
+func createTempSubCategory(with name: String = "Temp") -> SubCategory {
+    let context = CoreDataStack.managedObjectContext
+    
+    var tempSubCategory: SubCategory?
+    let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+    
+    do{
+        tempSubCategory = try context.fetch(subCategoryFetch).first(where: {$0.temp})
+    }
+    catch{
+        print("error fetching")
+    }
+    
+    if let subCategory = tempSubCategory{
+        return subCategory
+        
+    }else{
+        let subCategory = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCategory.self), into: context) as! SubCategory
+        subCategory.name = name
+        subCategory.temp = true
+        
+        CoreDataStack.saveContext()
+        return subCategory
+    }
+}
+
+func deleteTempSubCategory(){
+    let context = CoreDataStack.managedObjectContext
+    
+    var tempSubCategories: [SubCategory] = []
+    let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+    
+    do{
+        tempSubCategories = try context.fetch(subCategoryFetch).filter({$0.temp})
+    }
+    catch{
+        print("error fetching")
+    }
+    for subCat in tempSubCategories{
+        context.delete(subCat)
+    }
+    CoreDataStack.saveContext()
+}
+
 extension Int{
     init?(_ bool: Bool?) {
         guard bool != nil else {
             return nil
         }
         self = bool! ? 1 : 0
+    }
+}
+
+extension String {
+    
+    func containsIgnoringCase(_ string: String) -> Bool{
+        return self.lowercased().range(of: string.lowercased()) != nil
     }
 }
 

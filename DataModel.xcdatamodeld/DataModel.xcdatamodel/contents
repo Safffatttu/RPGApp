@@ -98,6 +98,7 @@
     </entity>
     <entity name="SubCategory" representedClassName="SubCategory" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="temp" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
         <relationship name="items" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="subCategory" inverseEntity="Item" syncable="YES"/>
     </entity>
@@ -121,7 +122,7 @@
         <element name="Store" positionX="-639" positionY="356" width="126" height="118"/>
         <element name="StoreAvalibleItem" positionX="-450" positionY="261" width="128" height="75"/>
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
-        <element name="SubCategory" positionX="153" positionY="-43" width="128" height="88"/>
+        <element name="SubCategory" positionX="153" positionY="-43" width="128" height="105"/>
         <element name="SubCurrency" positionX="-83" positionY="-153" width="128" height="73"/>
     </elements>
 </model>

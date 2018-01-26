@@ -46,6 +46,43 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection(_:)), name: .goToSectionCataloge, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        deleteTempSubCategory()
+        super.viewWillDisappear(animated)
+    }
+    
+    
+    func searchCataloge(_ notifcation: Notification){
+        var itemsToSearch = Load.items()
+        
+        if let enteredString = (notifcation.object as? String){
+            let searchString = enteredString.replacingOccurrences(of: " ", with: "")
+            
+            if searchString == ""{
+                    self.items = SectionedValues(Load.subCategoriesForCatalog())
+
+                    itemsToSearch = itemsToSearch.filter({
+                        ($0.name?.containsIgnoringCase(searchString))!
+                        || ($0.item_description?.containsIgnoringCase(searchString))!
+                        || ($0.category?.name?.containsIgnoringCase(searchString))!
+                        || ($0.subCategory?.name?.containsIgnoringCase(searchString))!
+                        || ($0.category?.name?.containsIgnoringCase(searchString))!
+                        || $0.itemAtribute?.filter({
+                            (($0 as! ItemAtribute).name?
+                                .containsIgnoringCase(searchString))!
+                            }).count != 0
+                        
+                    })
+                
+                    let searchSubCategory = createTempSubCategory(with: "Wyszukane")
+                    
+                    let newSubList: [(SubCategory,[Item])] = [(searchSubCategory,itemsToSearch)]
+                    self.items = SectionedValues(newSubList)
+            }
+        }
     }
     
     func reloadFilter(_ notification: Notification){
@@ -115,9 +152,16 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let category = self.diffCalculator?.value(forSection: section).category?.name
-        let subCategory = self.diffCalculator?.value(forSection: section).name
-        return category!.capitalized + " " + subCategory!.lowercased()
+        var title = ""
+        
+        if let subCategory = self.diffCalculator?.value(forSection: section).name{
+            if let category = self.diffCalculator?.value(forSection: section).category?.name{
+                title = category.capitalized + " " + subCategory.lowercased()
+            }else{
+                title = subCategory.capitalized
+            }
+        }
+        return title
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
