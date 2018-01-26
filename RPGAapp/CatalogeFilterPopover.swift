@@ -15,7 +15,7 @@ class catalogeFilterPopover: UITableViewController, filterCellDelegate {
     
     override func viewDidLoad() {
         if filter.count == 0{
-            let items = loadItems()
+            let items = Load.items()
             
             let maxPrice: Double = {
                 return (items.max { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
@@ -90,7 +90,7 @@ class catalogeFilterPopover: UITableViewController, filterCellDelegate {
             
             cell.nameLabel.text = keys[indexPath.row] + " " + String(format: "%g", filter[keys[indexPath.row]]!!)
             
-            let items = loadItems()
+            let items = Load.items()
             
             let maxRarity: Double = {
                 return Double((items.max { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
@@ -114,7 +114,7 @@ class catalogeFilterPopover: UITableViewController, filterCellDelegate {
             cell.nameLabel.text = keys[indexPath.row] + " " + String(format: "%g", filter[keys[indexPath.row]]!!)
             
             if (keys[indexPath.row].contains("Price")){
-                let items = loadItems()
+                let items = Load.items()
                 
                 let maxPrice: Double = {
                     return (items.max { (item1, item2) -> Bool in item1.price < item2.price}?.price)!

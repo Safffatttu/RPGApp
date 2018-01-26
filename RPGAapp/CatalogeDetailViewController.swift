@@ -16,7 +16,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    var subCategories: [(SubCategory,[Item])] = loadSubCategories()
+    var subCategories: [(SubCategory,[Item])] = Load.subCategoriesForCatalog()
     
     var filter: [String : Double?] = [:]
     
@@ -28,7 +28,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var diffCalculator: TableViewDiffCalculator<SubCategory,Item>?
     
-    var items: SectionedValues<SubCategory,Item> = SectionedValues(loadSubCategories()){
+    var items: SectionedValues<SubCategory,Item> = SectionedValues(Load.subCategoriesForCatalog()){
         didSet{
             self.diffCalculator?.sectionedValues = items
         }

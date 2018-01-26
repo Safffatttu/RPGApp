@@ -15,13 +15,8 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     var editingMode = false
     var setting: DrawSetting? = nil
     
-    var categories: [Category] = []
-    var subCategories: [SubCategory] = []
-    
-    let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
-    let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
-    
-    let context = CoreDataStack.managedObjectContext
+    var categories: [Category] = Load.categories()
+    var subCategories: [SubCategory] = Load.subCategories()
     
     let rarityName = ["Dziadostwo", "Normalne", "Rzadkie", "Legendarne"]
     
@@ -48,28 +43,6 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         
         self.numberField.delegate = self
-        
-        let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
-        
-        categoryFetch.sortDescriptors = [.sortCategoryByName]
-        
-        do{
-            categories = try context.fetch(categoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
-        
-        let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
-        
-        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
-        
-        do{
-            subCategories = try context.fetch(subCategoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
         
         if setting == nil{
             let context = CoreDataStack.managedObjectContext
@@ -151,6 +124,7 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == categoriesTable{
+            let context = CoreDataStack.managedObjectContext
             let subDraw = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
             if indexPath.row == 0{
                 subDraw.category = categories[indexPath.section]

@@ -113,7 +113,7 @@ class drawingTest: XCTestCase {
     }
     
     func testFlitering(){
-        let itemList = loadItems()
+        let itemList = Load.items()
         let cat = catalogeDetail()
         var newItemList = itemList
         cat.filter = randomFilter()
@@ -142,7 +142,7 @@ class drawingTest: XCTestCase {
 //    }
     
     func testFlitering3(){
-        let itemList = loadItems()
+        let itemList = Load.items()
         let cat = catalogeDetail()
         cat.filter = randomFilter()
         var newItemList = itemList
@@ -178,6 +178,12 @@ class drawingTest: XCTestCase {
     
     }
     
+    func testTempSubCategory(){
+        let sub = Load.subCategories()
+        print(sub.count)
+    }
+    
+    
     func filterItems(_ items: [Item], filter: [String: Double?]) -> [Item] {
         var itemsToRet = items
         
@@ -198,7 +204,7 @@ class drawingTest: XCTestCase {
     }
     
     func randomFilter() -> [String: Double?]{
-        let items = loadItems()
+        let items = Load.items()
         var maxPrice: Double = {
             return (items.max { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
         }()

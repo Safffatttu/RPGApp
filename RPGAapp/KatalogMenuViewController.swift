@@ -12,34 +12,14 @@ import CoreData
 
 class catalogeMenu: UITableViewController {
     
-    var categories: [Category] = []
-    var subCategories: [SubCategory] = []
-    
-    let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
-    let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+    var categories: [Category] = Load.categories()
+    var subCategories: [SubCategory] = Load.subCategories()
     
     var filter =  Dictionary<String, Double?>()
     
     override func viewWillAppear(_ animated: Bool) {
-        let context = CoreDataStack.managedObjectContext
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(setFilters(_:)))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
-        
-        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
-        do{
-            subCategories = try context.fetch(subCategoryFetch) as [SubCategory]
-        }
-        catch{
-            print("error fetching")
-        }
-        
-        categoryFetch.sortDescriptors = [.sortCategoryByName]
-        do{
-            categories = try context.fetch(categoryFetch) as [Category]
-        }
-        catch{
-            print("error fetching")
-        }
         
         super.viewWillAppear(animated)
 
@@ -93,9 +73,18 @@ class catalogeMenu: UITableViewController {
         
         NotificationCenter.default.post(name: .goToSectionCataloge, object: goToLocation)
     }
-    
 }
+
+extension catalogeMenu: UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NotificationCenter.default.post(name: .searchCataloge, object: searchText)
+        
+    }
+}
+
 extension Notification.Name{
     static let goToSectionCataloge = Notification.Name("goToSectionCataloge")
     static let reloadCatalogeFilter = Notification.Name("reloadCatalogeFilter")
+    static let searchCataloge = Notification.Name("searchCataloge")
 }

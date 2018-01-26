@@ -13,7 +13,7 @@ import FontAwesome_swift
 
 class addToPackage: UITableViewController, addToPackageDelegate {
 
-    var packages: [Package] = []
+    var packages: [Package] = Load.packages()
     
     var item: Item? = nil
     var itemToAdd: ItemHandler? = nil
@@ -22,8 +22,6 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     let iconSize: CGFloat = 20
     
     override func viewDidLoad() {
-        loadPackages()
-        
         var height =  Int()
         var y = Int()
         if (packages.count > 0){
@@ -45,13 +43,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     func reloadPackages(){
+        packages = Load.packages()
         viewDidLoad()
-    }
-    
-    func loadPackages(){
-        let session = getCurrentSession()
-        packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
-        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

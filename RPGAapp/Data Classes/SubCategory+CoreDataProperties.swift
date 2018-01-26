@@ -17,6 +17,7 @@ extension SubCategory {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var temp: Bool
     @NSManaged public var category: Category?
     @NSManaged public var items: NSSet?
     

@@ -50,29 +50,14 @@ class SettingMenu: UITableViewController {
     
     let keys = Array(UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}))
     
-    var sessions: [Session] = []
+    var sessions: [Session] = Load.sessions()
     
     override func viewWillAppear(_ animated: Bool) {
-        loadSessions()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(connectedDevicesChanged), name: .connectedDevicesChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addedSession(_:)), name: .addedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchedSessionAction(_:)), name: .switchedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sessionDeleted(_:)), name: .sessionDeleted, object: nil)
         super.viewWillAppear(animated)
-    }
-    
-    func loadSessions(){
-        let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
-        let context = CoreDataStack.managedObjectContext
-        
-        sessionFetch.sortDescriptors = [.sortSessionByName]
-        
-        do {
-            sessions = try context.fetch(sessionFetch)
-        } catch let error {
-            print(error)
-        }
     }
     
     func addedSession(_ notification: NSNotification){
@@ -121,7 +106,7 @@ class SettingMenu: UITableViewController {
     
     func sessionDeleted(_ notification: Notification){
         let index = notification.object as! IndexPath
-        loadSessions()
+        sessions = Load.sessions()
         tableView.deleteRows(at: [index], with: .automatic)
     }
     

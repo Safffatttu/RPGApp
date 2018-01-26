@@ -23,36 +23,28 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let message = sender! + " wyszedł z aplikacji"
                 showPopover(with: message)
             }else if actionType == ActionType.itemSend{
-                var character: Character? = nil
                 let characterId = action.value(forKey: "characterId") as? String
-                var item: Item? = nil
                 let itemId = action.value(forKey: "itemId") as? String
-                let context = CoreDataStack.managedObjectContext
                 let itemCount = action.value(forKey: "itemCount") as? Int64
                 
-                var itemsId: [String]? = action.value(forKey: "itemsId") as? [String]
-                var itemsCount: [Int64]? = action.value(forKey: "itemsCount") as? [Int64]
+                let itemsId: [String]? = action.value(forKey: "itemsId") as? [String]
+                let itemsCount: [Int64]? = action.value(forKey: "itemsCount") as? [Int64]
                 
-                let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
-                let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
-                
-                do{
-                    character = try context.fetch(characterFetch).first(where: {$0.id == characterId})
-                }catch let error as NSError {
-                    print("Could not fetch. \(error), \(error.userInfo)")
+                guard characterId != nil else{
+                    return
                 }
+                
+                let character: Character? = Load.character(with: characterId!)
+                var item: Item? = nil
+                
 
                 guard character != nil else{
                     return
                 }
                 
-                if itemId != nil{
+                if let id = itemId{
                 
-                    do{
-                        item = try context.fetch(itemFetch).first(where: {$0.id == itemId})
-                    }catch let error as NSError {
-                        print("Could not fetch. \(error), \(error.userInfo)")
-                    }
+                    item = Load.item(with: id)
                 
                     guard item != nil else {
                         return
@@ -65,12 +57,9 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     }
                 }else if let count = itemsId?.count{
                     for itemNum in 0...count - 1{
-                        do{
-                            item = try context.fetch(itemFetch).first(where: {$0.id == itemsId?[itemNum]})
-                        }catch let error as NSError {
-                            print("Could not fetch. \(error), \(error.userInfo)")
+                        if let id = itemsId?[itemNum]{
+                            item = Load.item(with: id)
                         }
-                        
                         guard item != nil else {
                             return
                         }
@@ -105,23 +94,14 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let itemHandlerCount = action.value(forKey: "itemsToAdd") as? Int64
                 let itemsHandlerId = action.value(forKey: "itemsToAdd") as? NSArray
                 let itemsHandlerCount = action.value(forKey: "itemsToAddCount") as? NSArray
-                let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
-                var allItems: [Item] = []
+                
                 let context = CoreDataStack.managedObjectContext
                 
                 let packageName = action.value(forKey: "packageName") as! String
                 let packageId = action.value(forKey: "packageId") as! String
                 
-                let packageFetch: NSFetchRequest<Package> = Package.fetchRequest()
-                var package: Package? = nil
-                
-                do{
-                    package = try context.fetch(packageFetch).first(where: {$0.id == packageId})
-                    allItems = try context.fetch(itemFetch)
-                }
-                catch{
-                    print(error)
-                }
+                var package = Load.packages(with: packageId)
+                let allItems: [Item] = Load.items()
                 
                 if package == nil{
                     package = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package
@@ -160,18 +140,12 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let itemId = action.value(forKey: "itemId") as? String
                 let characterId = action.value(forKey: "characterId") as? String
                 
-                var item: Item? = nil
-                var character: Character? = nil
-                
-                let context = CoreDataStack.managedObjectContext
-                let itemFetch: NSFetchRequest<Item> = Item.fetchRequest()
-                let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
-                do{
-                    item = try context.fetch(itemFetch).first(where: {$0.id == itemId})!
-                    character = try context.fetch(characterFetch).first(where: {$0.id! == characterId!})!
-                }catch{
-                    print(error)
+                guard itemId != nil && characterId != nil else{
+                    return
                 }
+                
+                let item: Item? = Load.item(with: itemId!)
+                let character: Character? = Load.character(with: characterId!)
                 
                 if let handlerToRemove = (character?.equipment?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler){
                     character?.removeFromEquipment(handlerToRemove)
@@ -198,14 +172,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 
                 CoreDataStack.saveContext()
                 
-                var sessions: [Session] = []
-                let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
-                
-                do{
-                    sessions = try context.fetch(sessionFetch)
-                }catch{
-                    print(error)
-                }
+                let sessions: [Session] = Load.sessions()
                 
                 sessions.first(where: {$0.current == true})?.current = false
                 session.current = true
@@ -217,15 +184,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 NotificationCenter.default.post(name: .switchedSession, object: action)
                 let sessionId = action.value(forKey: "sessionId") as! String
                 
-                let context = CoreDataStack.managedObjectContext
-                var sessions: [Session] = []
-                let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
-                
-                do{
-                    sessions = try context.fetch(sessionFetch)
-                }catch{
-                    print(error)
-                }
+                let sessions: [Session] = Load.sessions()
                 
                 sessions.first(where: {$0.current == true})?.current = false
                 
@@ -234,14 +193,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let sessionId = action.value(forKey: "sessionId") as! String
                 
                 let context = CoreDataStack.managedObjectContext
-                var sessions: [Session] = []
-                let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
-                
-                do{
-                    sessions = try context.fetch(sessionFetch)
-                }catch{
-                    print(error)
-                }
+                let sessions: [Session] = Load.sessions()
 
 //                if action.value(forKey: "sessionIsActive") as? Bool == false{
 //                    UserDefaults.standard.set(false, forKey: "sessionIsActive")
@@ -271,18 +223,14 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 
                 NotificationCenter.default.post(name: .createdPackage, object: nil)
             }else if actionType == .packageDeleted{
-                let packageId = action.value(forKey: "packageId") as? String
-                
-                let session = getCurrentSession()
-                let package = session.packages?.first(where: {($0 as! Package).id == packageId}) as? Package
-                guard package != nil else{
-                    return
+                if let packageId = action.value(forKey: "packageId") as? String{
+                    if let package = Load.packages(with: packageId){
+                        let session = getCurrentSession()
+                        session.removeFromPackages(package)
+                        CoreDataStack.saveContext()
+                        NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
+                    }
                 }
-                
-                session.removeFromPackages(package!)
-                
-                CoreDataStack.saveContext()
-                NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
             }else if actionType == .generatedRandomNumber{
                 let number = action.value(forKey: "number") as! Int
                 let message = "Wylosowano " + String(number)

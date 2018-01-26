@@ -17,9 +17,9 @@ class randomItemMenu: UITableViewController {
     
     fileprivate let drawQueue = DispatchQueue(label: "com.SS.RPGAapp")
     
-    var drawSettings: [DrawSetting] = []
-    var subCategories: [SubCategory] = []
-    var categories: [Category] = []
+    var drawSettings: [DrawSetting] = Load.drawSettings()
+    var subCategories: [SubCategory] = Load.subCategories()
+    var categories: [Category] = Load.categories()
     var lastDrawSetting: Any?
     override func viewDidLoad() {
         
@@ -29,51 +29,11 @@ class randomItemMenu: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reDrawAllItems), name: .reDrawAllItems, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reDrawItem(_:)), name: .reDrawItem, object: nil)
         
-        let context = CoreDataStack.managedObjectContext
-        let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
-        let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
-        let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
-        
-        drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
-        do{
-            drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
-        }
-        catch{
-            print("error")
-        }
-        
-        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
-        
-        do{
-            subCategories = try context.fetch(subCategoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
-        
-        categoryFetch.sortDescriptors = [.sortCategoryByName]
-        
-        do{
-            categories = try context.fetch(categoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
-        
         self.tableView.accessibilityIdentifier = "randomItemMenu"
     }
     
     func reloadDrawSettings(){
-        let context = CoreDataStack.managedObjectContext
-        let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
-
-        drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
-        do{
-            drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
-        }
-        catch{
-            print("error")
-        }
+        drawSettings = Load.drawSettings()
         
         tableView.reloadData()
     }
