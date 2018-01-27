@@ -15,15 +15,23 @@ class catalogeMenu: UITableViewController {
     var categories: [Category] = Load.categories()
     var subCategories: [SubCategory] = Load.subCategories()
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var filter =  Dictionary<String, Double?>()
     
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(setFilters(_:)))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissKeyboard), name: .dismissKeyboard, object: nil)
         
         super.viewWillAppear(animated)
 
     }
+    
+    func dismissKeyboard() {
+        searchBar.endEditing(true)
+    }
+    
     
     func reloadFilter(_ notification: Notification){
         let newFilter = notification.object as? Dictionary<String, Double?>
@@ -87,4 +95,5 @@ extension Notification.Name{
     static let goToSectionCataloge = Notification.Name("goToSectionCataloge")
     static let reloadCatalogeFilter = Notification.Name("reloadCatalogeFilter")
     static let searchCataloge = Notification.Name("searchCataloge")
+    static let dismissKeyboard = Notification.Name("dismissKeyboard")
 }

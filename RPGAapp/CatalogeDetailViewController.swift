@@ -45,6 +45,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection(_:)), name: .goToSectionCataloge, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,6 +56,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewWillDisappear(animated)
     }
     
+    func dismissKeyboard(){
+        NotificationCenter.default.post(name: .dismissKeyboard, object: nil)
+    }
     
     func searchCataloge(_ notifcation: Notification){
 

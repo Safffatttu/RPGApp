@@ -554,6 +554,9 @@
                             <outlet property="delegate" destination="4zW-xu-N3D" id="sc0-Wv-1CY"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="JjZ-q0-tPj" id="lvH-ZA-k9X"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7w-qx-rba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
