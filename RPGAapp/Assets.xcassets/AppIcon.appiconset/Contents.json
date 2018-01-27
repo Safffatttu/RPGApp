@@ -160,13 +160,6 @@
       "scale" : "2x",
       "role" : "quickLook",
       "subtype" : "42mm"
-    },
-    {
-      "size" : "20x20",
-      "idiom" : "ipad",
-      "filename" : "RPGIcon-40x40.png",
-      "unassigned" : true,
-      "scale" : "2x"
     }
   ],
   "info" : {

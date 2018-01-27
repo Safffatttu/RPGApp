@@ -104,7 +104,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let allItems: [Item] = Load.items()
                 
                 if package == nil{
-                    package = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package
+                    package = (NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package)
                     package?.name = packageName
                     package?.id = packageId
                     
@@ -259,7 +259,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
             let sessionDevices = session.devices as? NSSet
             
             print(devices)
-            print(sessionDevices)
+            print(sessionDevices as Any)
             if sessionDevices != nil && sessionDevices! == devices && devices.count > 0{
                 showPopover(with: "Przywrócono połączenie z wszystkimi członkami sesji")
                 UserDefaults.standard.set(true, forKey: "sessionIsActive")

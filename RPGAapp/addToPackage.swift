@@ -152,7 +152,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         action.setValue(itemToAdd?.item?.id, forKey: "itemToAdd")
         action.setValue(itemToAdd?.count, forKey: "itemToAddCount")
         
-        let items = NSArray(array: itemsToAdd.map({$0.item?.id!}))
+        let items = NSArray(array: itemsToAdd.map({$0.item?.id! as Any}))
         let itemsCount = NSArray(array: itemsToAdd.map({$0.count}))
         action.setValue(items, forKey: "itemsToAdd")
         action.setValue(itemsCount, forKey: "itemsToAddCount")
