@@ -44,6 +44,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     func reloadPackages(){
         packages = Load.packages()
+        tableView.reloadData()
         viewDidLoad()
     }
     
@@ -171,6 +172,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         
         session.addToPackages(newPackage)
         
+        reloadPackages()
+        
         CoreDataStack.saveContext()
         
         let action = NSMutableDictionary()
@@ -183,8 +186,6 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.pack.send(action)
-        
-        viewDidLoad()
         
         NotificationCenter.default.post(name: .createdPackage, object: nil)
     }
