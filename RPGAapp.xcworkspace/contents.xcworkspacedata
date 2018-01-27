@@ -5,10 +5,10 @@
       location = "group:RPGAapp/.."
       name = "DataClasses">
       <FileRef
-         location = "group:Currency+CoreDataClass.swift">
+         location = "group:RPGAapp/Data Classes/Currency+CoreDataClass.swift">
       </FileRef>
       <FileRef
-         location = "group:Currency+CoreDataProperties.swift">
+         location = "group:RPGAapp/Data Classes/Currency+CoreDataProperties.swift">
       </FileRef>
       <FileRef
          location = "group:RPGAapp/Data Classes/Package+CoreDataClass.swift">

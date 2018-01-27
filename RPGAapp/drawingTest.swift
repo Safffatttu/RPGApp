@@ -26,30 +26,10 @@ class drawingTest: XCTestCase {
     func testDrawItem(){
         
         let toTest = randomItemMenu()
-        let context = CoreDataStack.managedObjectContext
 
-        let categoryFetch: NSFetchRequest<RPGAapp.Category> = Category.fetchRequest()
+        let categories: [RPGAapp.Category] = Load.categories()
         
-        categoryFetch.sortDescriptors = [.sortCategoryByName]
-        var categories: [RPGAapp.Category] = []
-        do{
-            categories = try context.fetch(categoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
-        
-        
-        let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
-        
-        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
-        var subCategoires: [SubCategory] = []
-        do{
-            subCategoires = try context.fetch(subCategoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
+        let subCategoires: [SubCategory] = Load.subCategories()
         
         self.measure {
             for cat in categories{
@@ -57,6 +37,7 @@ class drawingTest: XCTestCase {
             }
             
             for sub in subCategoires{
+                print(sub.name)
                 toTest.drawItems(drawSetting: nil, subCategory: sub, category: nil, reDraw: .not)
             }
             
@@ -69,30 +50,10 @@ class drawingTest: XCTestCase {
     
     func testStressDraw(){
         let toTest = randomItemMenu()
-        let context = CoreDataStack.managedObjectContext
         
-        let categoryFetch: NSFetchRequest<RPGAapp.Category> = Category.fetchRequest()
+        let categories: [RPGAapp.Category] = Load.categories()
         
-        categoryFetch.sortDescriptors = [.sortCategoryByName]
-        var categories: [RPGAapp.Category] = []
-        do{
-            categories = try context.fetch(categoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
-        
-    
-        let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
-        
-        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
-        var subCategoires: [SubCategory] = []
-        do{
-            subCategoires = try context.fetch(subCategoryFetch)
-        }
-        catch{
-            print("error fetching")
-        }
+        let subCategoires: [SubCategory] = Load.subCategories()
         
         for i in 0...100{
             print("test nr:" + String(describing: i))
