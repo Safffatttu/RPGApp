@@ -56,31 +56,33 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func searchCataloge(_ notifcation: Notification){
-        var itemsToSearch = Load.items()
-        
+
         if let enteredString = (notifcation.object as? String){
             let searchString = enteredString.replacingOccurrences(of: " ", with: "")
             
             if searchString == ""{
                     self.items = SectionedValues(Load.subCategoriesForCatalog())
-
-                    itemsToSearch = itemsToSearch.filter({
-                        ($0.name?.containsIgnoringCase(searchString))!
-                        || ($0.item_description?.containsIgnoringCase(searchString))!
-                        || ($0.category?.name?.containsIgnoringCase(searchString))!
-                        || ($0.subCategory?.name?.containsIgnoringCase(searchString))!
-                        || ($0.category?.name?.containsIgnoringCase(searchString))!
-                        || $0.itemAtribute?.filter({
-                            (($0 as! ItemAtribute).name?
-                                .containsIgnoringCase(searchString))!
-                            }).count != 0
-                        
-                    })
+            }else{
+                var itemsToSearch = Load.items()
                 
-                    let searchSubCategory = createTempSubCategory(with: "Wyszukane")
+                itemsToSearch = itemsToSearch.filter({
+                    ($0.name?.containsIgnoringCase(searchString))!
+                    || ($0.item_description?.containsIgnoringCase(searchString))!
+                    || ($0.category?.name?.containsIgnoringCase(searchString))!
+                    || ($0.subCategory?.name?.containsIgnoringCase(searchString))!
+                    || ($0.category?.name?.containsIgnoringCase(searchString))!
+                    || forTailingZero($0.price) == searchString
+                    || $0.itemAtribute?.filter({
+                        (($0 as! ItemAtribute).name?
+                            .containsIgnoringCase(searchString))!
+                        }).count != 0
                     
-                    let newSubList: [(SubCategory,[Item])] = [(searchSubCategory,itemsToSearch)]
-                    self.items = SectionedValues(newSubList)
+                })
+            
+                let searchSubCategory = createTempSubCategory(with: "Wyszukane")
+                
+                let newSubList: [(SubCategory,[Item])] = [(searchSubCategory,itemsToSearch)]
+                self.items = SectionedValues(newSubList)
             }
         }
     }
@@ -122,9 +124,12 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func goToSection(_ notification: Notification) {
+        guard items.sectionsAndValues.count == 0 else {
+            return
+        }
+        
         let subCategoryNumber = notification.object as! Int
         
-        print(subCategoryNumber)
         if tableView(self.tableView, numberOfRowsInSection: subCategoryNumber) != 0{
             let toGo = IndexPath(row: 0, section: subCategoryNumber)
             tableView.scrollToRow(at: toGo, at: .top, animated: true)

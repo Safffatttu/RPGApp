@@ -427,7 +427,7 @@ extension Int{
 extension String {
     
     func containsIgnoringCase(_ string: String) -> Bool{
-        return self.lowercased().range(of: string.lowercased()) != nil
+        return self.lowercased().replacingOccurrences(of: " ", with: "").contains(string.lowercased())
     }
 }
 
