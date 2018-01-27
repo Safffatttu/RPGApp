@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 import Popover
+import Whisper
 
 func myRand(_ num: Int) -> Int{
     return Int(arc4random_uniform(UInt32(num)))
@@ -342,22 +343,10 @@ func getCurrentSession(orCreateNew: Bool = true) -> Session{
     return currentSession!
 }
 
-func showPopover(with message: String){
-    DispatchQueue.main.async {
-        let point = CGPoint(x: 15, y: 20)
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-        let frame = CGRect(x: view.frame.minX, y: view.frame.minY, width: view.frame.maxX, height: view.frame.maxY)
-        let label = UILabel(frame: frame)
-        label.text = message
-        label.textAlignment = .center
-        label.center = view.center
-        view.addSubview(label)
-        let popover = Popover()
-        popover.arrowSize = .zero
-        popover.show(view, point: point)
-    }
+func whisper(messege: String){
+    let murmur = Murmur(title: messege, backgroundColor: .white, titleColor: .black, font: .systemFont(ofSize: UIFont.systemFontSize), action: nil)
+    Whisper.show(whistle: murmur, action: .show(3))
 }
-
 
 func sessionIsActive(show: Bool = true) -> Bool{
     return true
@@ -365,7 +354,7 @@ func sessionIsActive(show: Bool = true) -> Bool{
     
     if !active && show{
         let message = "Sesja nie jest aktywna"
-        showPopover(with: message)
+        whisper(messege: message)
     }
     
     return active

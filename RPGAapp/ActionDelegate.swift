@@ -10,6 +10,7 @@ import Foundation
 import Popover
 import MultipeerConnectivity
 import CoreData
+import Whisper
 
 class ActionDelegate: NSObject, PackageServiceDelegate{
     
@@ -21,7 +22,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
             
             if actionType == ActionType.applicationDidEnterBackground{
                 let message = sender! + " wyszedł z aplikacji"
-                showPopover(with: message)
+                whisper(messege: message)
             }else if actionType == ActionType.itemSend{
                 let characterId = action.value(forKey: "characterId") as? String
                 let itemId = action.value(forKey: "itemId") as? String
@@ -87,7 +88,8 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 CoreDataStack.saveContext()
                 
                 NotificationCenter.default.post(name: .reloadTeam, object: nil)
-                showPopover(with: "Dodano nową postać")
+                
+                whisper(messege: "Dodano nową postać")
             }else if actionType == ActionType.itemAddedToPackge{
                 let itemId = action.value(forKey: "itemId") as? String
                 let itemHandlerId = action.value(forKey: "itemToAdd") as? String
@@ -235,14 +237,14 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let number = action.value(forKey: "number") as! Int
                 let message = "Wylosowano " + String(number)
                 
-                showPopover(with: message)
+                whisper(messege: message)
             }
         }
     }
     
     func lost(_ peer: MCPeerID) {
         let message = "Utracono połączenie z " + peer.displayName
-        showPopover(with: message)
+        whisper(messege: message)
         UserDefaults.standard.set(false, forKey: "sessionIsActive")
     }
     
@@ -261,11 +263,12 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
             print(devices)
             print(sessionDevices as Any)
             if sessionDevices != nil && sessionDevices! == devices && devices.count > 0{
-                showPopover(with: "Przywrócono połączenie z wszystkimi członkami sesji")
+
+                
                 UserDefaults.standard.set(true, forKey: "sessionIsActive")
             }else{
                 let message = "Ponownie połączono z " + peer.displayName
-                showPopover(with: message)
+                whisper(messege: message)
             }
         }
     }

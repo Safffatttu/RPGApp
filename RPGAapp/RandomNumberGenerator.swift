@@ -37,7 +37,7 @@ class RandomNumberGenerator: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let number = myRand(draw[indexPath.row])
         let message = "Wylosowano " + String(number)
-        showPopover(with: message)
+        whisper(messege: message)
         
         let action = NSMutableDictionary()
         let at = NSNumber(value: ActionType.generatedRandomNumber.rawValue)
