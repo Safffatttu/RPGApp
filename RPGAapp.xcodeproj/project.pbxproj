@@ -37,6 +37,7 @@
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
 		3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBBBE88201A875800ECA86A /* LoadData.swift */; };
+		3BBCC477201CDE81005AE5C3 /* Data Classes in Resources */ = {isa = PBXBuildFile; fileRef = 3BBCC476201CDE81005AE5C3 /* Data Classes */; };
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
 		3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */; };
 		3BD335931FF291DC004F70BF /* drawingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD335921FF291DC004F70BF /* drawingTest.swift */; };
@@ -110,6 +111,7 @@
 		3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3BBBBE88201A875800ECA86A /* LoadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
+		3BBCC476201CDE81005AE5C3 /* Data Classes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Data Classes"; sourceTree = "<group>"; };
 		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		3BD335881FF28B2E004F70BF /* RPGAappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPGAappUITests.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				3BF480AD1F44DBC50017169D /* Popover */,
 				3B9D6BDC1FB907E100474C71 /* Networking */,
 				3B9D6BDD1FB907F400474C71 /* Data */,
+				3BBCC476201CDE81005AE5C3 /* Data Classes */,
 			);
 			path = RPGAapp;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BBCC477201CDE81005AE5C3 /* Data Classes in Resources */,
 				3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */,
 				3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */,
 				3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */,
