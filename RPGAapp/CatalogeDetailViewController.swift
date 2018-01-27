@@ -16,8 +16,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
     
-    var subCategories: [(SubCategory,[Item])] = Load.subCategoriesForCatalog()
-    
     var filter: [String : Double?] = [:]
     
     var expandedCell: IndexPath? = nil
@@ -92,7 +90,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
             DispatchQueue.global(qos: .default).sync {
                 self.filter = newFilter
                 var newSubCategoriesList: [(SubCategory,[Item])] = []
-                for sub in self.subCategories{
+                for sub in Load.subCategoriesForCatalog(){
                     let filteredList = self.filterItemList(sub.1)
                     newSubCategoriesList.append((sub.0),filteredList)
                 }
@@ -124,7 +122,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func goToSection(_ notification: Notification) {
-        guard items.sectionsAndValues.count == 0 else {
+        guard items.sectionsAndValues.count > 1  else {
             return
         }
         
@@ -274,7 +272,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
-        let cellItem = subCategories[(indexPath?.section)!].1[(indexPath?.row)!]
+        let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
         
@@ -297,7 +295,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func showInfoButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
-        let cellItem = subCategories[(indexPath?.section)!].1[(indexPath?.row)!]
+        let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
@@ -317,7 +315,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
-        let cellItem = subCategories[(indexPath?.section)!].1[(indexPath?.row)!]
+        let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
         
