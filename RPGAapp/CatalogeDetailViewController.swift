@@ -17,7 +17,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     var filter: [String : Double?] = [:]
-    
+
+	var lastSearchString: String = ""
+	
     var expandedCell: IndexPath? = nil
     
     let iconSize: CGFloat = 20
@@ -45,6 +47,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection(_:)), name: .goToSectionCataloge, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(searchModelChanged(_:)), name: .searchCatalogeModelChanged, object: nil)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -59,37 +62,21 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func dismissKeyboard(){
         NotificationCenter.default.post(name: .dismissKeyboard, object: nil)
     }
-    
-    func searchCataloge(_ notifcation: Notification){
-
-        if let enteredString = (notifcation.object as? String){
-            let searchString = enteredString.replacingOccurrences(of: " ", with: "")
-            
-            if searchString == ""{
-                    self.items = SectionedValues(Load.subCategoriesForCatalog())
-            }else{
-                var itemsToSearch = Load.items()
-                
-                itemsToSearch = itemsToSearch.filter({
-                    ($0.name?.containsIgnoringCase(searchString))!
-                    || ($0.item_description?.containsIgnoringCase(searchString))!
-                    || ($0.category?.name?.containsIgnoringCase(searchString))!
-                    || ($0.subCategory?.name?.containsIgnoringCase(searchString))!
-                    || ($0.category?.name?.containsIgnoringCase(searchString))!
-                    || forTailingZero($0.price) == searchString
-                    || $0.itemAtribute?.filter({
-                        (($0 as! ItemAtribute).name?
-                            .containsIgnoringCase(searchString))!
-                        }).count != 0
-                    
-                })
-            
-                let searchSubCategory = createTempSubCategory(with: "Wyszukane")
-                
-                let newSubList: [(SubCategory,[Item])] = [(searchSubCategory,itemsToSearch)]
-                self.items = SectionedValues(newSubList)
-            }
-        }
+	
+	func searchModelChanged(_ notification: Notification){
+		if let searchModel = notification.object as? [(String, Bool)]{
+			items = RPGAapp.searchCataloge(searchWith: lastSearchString, using: searchModel)
+		}
+	}
+	
+	func searchCataloge(_ notification: Notification){
+		if let searchModel = (notification.object as? (String,[(String, Bool)]))?.1{
+			if let enteredString = (notification.object as? (String,[(String, Bool)]))?.0{
+				
+				lastSearchString = enteredString
+				items = RPGAapp.searchCataloge(searchWith: enteredString, using: searchModel)
+			}
+		}
     }
     
     func reloadFilter(_ notification: Notification){

@@ -16,9 +16,13 @@ class catalogeMenu: UITableViewController {
     var subCategories: [SubCategory] = Load.subCategories()
     
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    var filter =  Dictionary<String, Double?>()
-    
+	
+	var searchMode: Bool = false
+	
+    var filter: [String: Double?] = [:]
+	
+	var searchModel: [(String, Bool)] = [("Search by name",true),("Search in description",true),("Search in category name ",false),("Search in sub category name",false),("Search by price",false),("Search by atribute name",false)]
+	
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(setFilters(_:)))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
@@ -37,7 +41,7 @@ class catalogeMenu: UITableViewController {
     
     
     func reloadFilter(_ notification: Notification){
-        let newFilter = notification.object as? Dictionary<String, Double?>
+        let newFilter = notification.object as? [String: Double?]
         if newFilter != nil{
             filter = newFilter!
             
@@ -59,38 +63,114 @@ class catalogeMenu: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return categories.count
+		if searchMode {
+			return 1
+		}
+		
+		return categories.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (categories[section].subCategories?.count)!
+		if searchMode{
+			return searchModel.count
+		}
+		
+		return (categories[section].subCategories?.count)!
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
-        let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
-        cell?.textLabel?.text = cellSubCategory.name?.capitalized
-        return cell!
+		
+		if searchMode{
+			cell?.textLabel?.text = searchModel[indexPath.row].0
+			if searchModel[indexPath.row].1{
+				cell?.accessoryType = .checkmark
+			}else{
+				cell?.accessoryType = .none
+			}
+			
+			cell?.selectionStyle = .none
+		}else{
+			let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
+				cell?.textLabel?.text = cellSubCategory.name?.capitalized
+		}
+		
+		return cell!
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return categories[section].name
+		if searchMode{
+			return ""
+		}
+		
+		return categories[section].name
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
-        
-        let goToLocation = subCategories.index(where: {$0.name == cellSubCategory.name})!
-        
-        NotificationCenter.default.post(name: .goToSectionCataloge, object: goToLocation)
+		if searchMode{
+			searchModel[indexPath.row].1 = true
+			
+			let cell = tableView.cellForRow(at: indexPath)
+			cell?.accessoryType = .checkmark
+			
+			NotificationCenter.default.post(name: .searchCatalogeModelChanged, object: searchModel)
+		}else{
+			let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
+			
+			let goToLocation = subCategories.index(where: {$0.name == cellSubCategory.name})!
+			
+			NotificationCenter.default.post(name: .goToSectionCataloge, object: goToLocation)
+		}
     }
+	
+	override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+		if searchMode{
+			searchModel[indexPath.row].1 = false
+			
+			let cell = tableView.cellForRow(at: indexPath)
+			cell?.accessoryType = .none
+			
+			NotificationCenter.default.post(name: .searchCatalogeModelChanged, object: searchModel)
+		}
+	}
 }
 
 extension catalogeMenu: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        NotificationCenter.default.post(name: .searchCataloge, object: searchText)
-        
+		let searchFieldIsFull = searchText.replacingOccurrences(of: " ", with: "").characters.count > 0
+		
+		NotificationCenter.default.post(name: .searchCataloge, object: (searchText,searchModel))
+		
+		if searchFieldIsFull {
+			if searchMode == false{
+				
+				searchMode = true
+				
+				tableView.beginUpdates()
+				
+				let indexSet = IndexSet(integersIn: Range(uncheckedBounds: (1,categories.count)))
+				tableView.deleteSections(indexSet, with: .automatic)
+				
+				let lastSectionIndex = IndexSet(integer: 0)
+				tableView.reloadSections(lastSectionIndex, with: .automatic)
+				
+				tableView.endUpdates()
+			}
+			
+		}else{
+			searchMode = false
+			
+			tableView.beginUpdates()
+			
+			let indexSet = IndexSet(integersIn: Range(uncheckedBounds: (1,categories.count)))
+			tableView.insertSections(indexSet, with: .automatic)
+			
+			let lastSectionIndex = IndexSet(integer: 0)
+			tableView.reloadSections(lastSectionIndex, with: .automatic)
+			
+			tableView.endUpdates()
+		}
     }
 }
 
@@ -99,4 +179,5 @@ extension Notification.Name{
     static let reloadCatalogeFilter = Notification.Name("reloadCatalogeFilter")
     static let searchCataloge = Notification.Name("searchCataloge")
     static let dismissKeyboard = Notification.Name("dismissKeyboard")
+	static let searchCatalogeModelChanged = Notification.Name("searchCatalogeModelChanged")
 }

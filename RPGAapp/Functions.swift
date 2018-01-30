@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 import Popover
 import Whisper
+import Dwifft
 
 func myRand(_ num: Int) -> Int{
     return Int(arc4random_uniform(UInt32(num)))
@@ -402,6 +403,37 @@ func deleteTempSubCategory(){
         context.delete(subCat)
     }
     CoreDataStack.saveContext()
+}
+
+func searchCataloge(searchWith string: String = "",using searchModel: [(String,Bool)]) -> SectionedValues<SubCategory,Item>{
+	let searchString = string.replacingOccurrences(of: " ", with: "")
+	let model = searchModel.map({$0.1})
+	
+	if searchString == ""{
+		return SectionedValues(Load.subCategoriesForCatalog())
+		
+	}else{
+		var itemsToSearch = Load.items()
+		
+		itemsToSearch = itemsToSearch.filter({
+			(($0.name?.containsIgnoringCase(searchString))! && model[0])
+				|| (($0.item_description?.containsIgnoringCase(searchString))! && model[1])
+				|| (($0.category?.name?.containsIgnoringCase(searchString))! && model[2])
+				|| (($0.subCategory?.name?.containsIgnoringCase(searchString))! && model[3])
+				|| (forTailingZero($0.price) == searchString && model[4])
+				|| ($0.itemAtribute?.filter({
+					(($0 as! ItemAtribute).name?
+						.containsIgnoringCase(searchString))!
+				}).count != 0  && model[5])
+			
+		})
+		
+		let searchSubCategory = createTempSubCategory(with: "Wyszukane")
+		
+		let newSubList: [(SubCategory,[Item])] = [(searchSubCategory,itemsToSearch)]
+		
+		return SectionedValues(newSubList)
+	}
 }
 
 extension Int{
