@@ -405,9 +405,10 @@ func deleteTempSubCategory(){
     CoreDataStack.saveContext()
 }
 
-func searchCataloge(searchWith string: String = "",using searchModel: [(String,Bool)]) -> SectionedValues<SubCategory,Item>{
+func searchCataloge(searchWith string: String = "",using searchModel: [(String,Bool)],sortBy sortModel: [(String,Bool,NSSortDescriptor)]) -> SectionedValues<SubCategory,Item>{
 	let searchString = string.replacingOccurrences(of: " ", with: "")
-	let model = searchModel.map({$0.1})
+	let searchModel = searchModel.map({$0.1})
+	let sortModel = sortModel.filter({$0.1}).map({$0.2})
 	
 	if searchString == ""{
 		return SectionedValues(Load.subCategoriesForCatalog())
@@ -416,22 +417,24 @@ func searchCataloge(searchWith string: String = "",using searchModel: [(String,B
 		var itemsToSearch = Load.items()
 		
 		itemsToSearch = itemsToSearch.filter({
-			(($0.name?.containsIgnoringCase(searchString))! && model[0])
-				|| (($0.item_description?.containsIgnoringCase(searchString))! && model[1])
-				|| (($0.category?.name?.containsIgnoringCase(searchString))! && model[2])
-				|| (($0.subCategory?.name?.containsIgnoringCase(searchString))! && model[3])
-				|| (forTailingZero($0.price) == searchString && model[4])
+			(($0.name?.containsIgnoringCase(searchString))! && searchModel[0])
+				|| (($0.item_description?.containsIgnoringCase(searchString))! && searchModel[1])
+				|| (($0.category?.name?.containsIgnoringCase(searchString))! && searchModel[2])
+				|| (($0.subCategory?.name?.containsIgnoringCase(searchString))! && searchModel[3])
+				|| (forTailingZero($0.price) == searchString && searchModel[4])
 				|| ($0.itemAtribute?.filter({
 					(($0 as! ItemAtribute).name?
 						.containsIgnoringCase(searchString))!
-				}).count != 0  && model[5])
+				}).count != 0  && searchModel[5])
 			
 		})
+		
+		itemsToSearch = Array(NSArray(array: itemsToSearch).sortedArray(using: sortModel)) as! [Item]
 		
 		let searchSubCategory = createTempSubCategory(with: "Wyszukane")
 		
 		let newSubList: [(SubCategory,[Item])] = [(searchSubCategory,itemsToSearch)]
-		
+
 		return SectionedValues(newSubList)
 	}
 }
@@ -461,7 +464,9 @@ extension NSSortDescriptor{
     static let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
     static let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
     static let sortItemByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
-    
+	static let sortItemByPrice = NSSortDescriptor(key: #keyPath(Item.price), ascending: true)
+	static let sortItemByRarity = NSSortDescriptor(key: #keyPath(Item.rarity), ascending: true)
+	
     static let sortItemHandlerByCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.category), ascending: true)
     static let sortItemHandlerBySubCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.subCategory), ascending: true)
     static let sortItemHandlerByName = NSSortDescriptor(key: #keyPath(ItemHandler.item.name), ascending: true)

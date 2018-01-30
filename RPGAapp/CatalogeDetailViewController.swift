@@ -18,6 +18,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var filter: [String : Double?] = [:]
 
+	var sortModel: [(String,Bool,NSSortDescriptor)] = []
+	
+	var searchModel: [(String, Bool)] = []
+	
 	var lastSearchString: String = ""
 	
     var expandedCell: IndexPath? = nil
@@ -48,7 +52,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(searchModelChanged(_:)), name: .searchCatalogeModelChanged, object: nil)
-        
+		NotificationCenter.default.addObserver(self, selector: #selector(sortModelChange(_:)), name: .sortModelChanged, object: nil)
+		
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
@@ -63,19 +68,33 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.post(name: .dismissKeyboard, object: nil)
     }
 	
+	func sortModelChange(_ notification: Notification){
+		if let newSortModel = notification.object as? [(String,Bool,NSSortDescriptor)]{
+			sortModel = newSortModel
+			
+			items = RPGAapp.searchCataloge(searchWith: lastSearchString, using: searchModel, sortBy: sortModel)
+		}
+	}
+	
 	func searchModelChanged(_ notification: Notification){
-		if let searchModel = notification.object as? [(String, Bool)]{
-			items = RPGAapp.searchCataloge(searchWith: lastSearchString, using: searchModel)
+		if let newSearchModel = notification.object as? [(String, Bool)]{
+			searchModel = newSearchModel
+			items = RPGAapp.searchCataloge(searchWith: lastSearchString, using: searchModel,sortBy: sortModel)
 		}
 	}
 	
 	func searchCataloge(_ notification: Notification){
-		if let searchModel = (notification.object as? (String,[(String, Bool)]))?.1{
-			if let enteredString = (notification.object as? (String,[(String, Bool)]))?.0{
-				
-				lastSearchString = enteredString
-				items = RPGAapp.searchCataloge(searchWith: enteredString, using: searchModel)
-			}
+		if let data = (notification.object as? (String,[(String, Bool)],[(String,Bool,NSSortDescriptor)])){
+			let enteredString = data.0
+			lastSearchString = enteredString
+			
+			let newSearchModel = data.1
+			searchModel = newSearchModel
+			
+			let newSortModel = data.2
+			sortModel = newSortModel
+		
+			items = RPGAapp.searchCataloge(searchWith: enteredString, using: searchModel,sortBy: sortModel)
 		}
     }
     
