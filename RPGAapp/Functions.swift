@@ -416,18 +416,20 @@ func searchCataloge(searchWith string: String = "",using searchModel: [(String,B
 	}else{
 		var itemsToSearch = Load.items()
 		
-		itemsToSearch = itemsToSearch.filter({
-			(($0.name?.containsIgnoringCase(searchString))! && searchModel[0])
-				|| (($0.item_description?.containsIgnoringCase(searchString))! && searchModel[1])
-				|| (($0.category?.name?.containsIgnoringCase(searchString))! && searchModel[2])
-				|| (($0.subCategory?.name?.containsIgnoringCase(searchString))! && searchModel[3])
-				|| (forTailingZero($0.price) == searchString && searchModel[4])
-				|| ($0.itemAtribute?.filter({
-					(($0 as! ItemAtribute).name?
-						.containsIgnoringCase(searchString))!
-				}).count != 0  && searchModel[5])
-			
-		})
+		if !(searchString == "*"){
+			itemsToSearch = itemsToSearch.filter({
+				(($0.name?.containsIgnoringCase(searchString))! && searchModel[0])
+					|| (($0.item_description?.containsIgnoringCase(searchString))! && searchModel[1])
+					|| (($0.category?.name?.containsIgnoringCase(searchString))! && searchModel[2])
+					|| (($0.subCategory?.name?.containsIgnoringCase(searchString))! && searchModel[3])
+					|| (forTailingZero($0.price) == searchString && searchModel[4])
+					|| ($0.itemAtribute?.filter({
+						(($0 as! ItemAtribute).name?
+							.containsIgnoringCase(searchString))!
+					}).count != 0  && searchModel[5])
+				
+			})
+		}
 		
 		itemsToSearch = Array(NSArray(array: itemsToSearch).sortedArray(using: sortModel)) as! [Item]
 		

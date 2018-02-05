@@ -92,6 +92,8 @@ class catalogeMenu: UITableViewController {
 			if indexPath.section == 0{
 				cell?.textLabel?.text = searchModel[indexPath.row].0
 				
+				cell?.setSelected(searchModel[indexPath.row].1, animated: true)
+				
 				if searchModel[indexPath.row].1{
 					cell?.accessoryType = .checkmark
 				}else{
@@ -133,9 +135,19 @@ class catalogeMenu: UITableViewController {
 			if indexPath.section == 0{
 				searchModel[indexPath.row].1 = true
 				
+				if searchModel.filter({$0.1}).count == 0 && indexPath.row != 0{
+					searchModel[0].1 = true
+					tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+				}
+				
 				NotificationCenter.default.post(name: .searchCatalogeModelChanged, object: searchModel)
 				
 			}else{
+				let index = sortModel.index(where: {$0.1})!
+				sortModel[index].1 = false
+				
+				tableView.reloadRows(at: [IndexPath(row: index, section: 1)], with: .automatic)
+				
 				sortModel[indexPath.row].1 = true
 				
 				NotificationCenter.default.post(name: .sortModelChanged, object: sortModel)
@@ -157,7 +169,6 @@ class catalogeMenu: UITableViewController {
 		if searchMode{
 			
 			if indexPath.section == 0{
-				
 				searchModel[indexPath.row].1 = false
 				
 				NotificationCenter.default.post(name: .searchCatalogeModelChanged, object: searchModel)
@@ -181,17 +192,14 @@ class catalogeMenu: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-		print(sortModel.filter({$0.1}).count <= 1)
-		
-		if indexPath == IndexPath(row: 0, section: 1) && sortModel.filter({$0.1}).count <= 1 {
+		if searchMode && indexPath.section == 1 && sortModel[indexPath.row].1  {
 			return nil
 		}
 		return indexPath
 	}
 
 	override func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-		print(sortModel.filter({$0.1}).count <= 1)
-		if indexPath == IndexPath(row: 0, section: 1) && sortModel.filter({$0.1}).count <= 1 {
+		if searchMode && indexPath.section == 1 && sortModel[indexPath.row].1{
 			return nil
 		}
 		return indexPath
