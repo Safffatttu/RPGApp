@@ -441,6 +441,85 @@ func searchCataloge(searchWith string: String = "",using searchModel: [(String,B
 	}
 }
 
+func packSessionForMessage(_ session: Session) -> NSDictionary{
+	let current = session.current
+	let devices = NSArray(array: (session.devices as! NSSet).allObjects)
+	let gameMaster = session.gameMaster
+	let gameMasterName = session.gameMasterName
+	let id = session.id
+	let name = session.name
+	
+	let charactersToSend = NSMutableArray()
+	
+	for case let character as Character in session.characters! {
+		let characterDict = NSMutableDictionary()
+		characterDict.setValue(character.name, forKey: "name")
+		characterDict.setValue(character.id, forKey: "id")
+		characterDict.setValue(character.health, forKey: "health")
+		characterDict.setValue(character.profession, forKey: "profession")
+		characterDict.setValue(character.race, forKey: "race")
+		
+		
+		let characterItems = NSMutableArray()
+		
+		for case let handler as ItemHandler in character.equipment!{
+			let handlerDict = NSMutableDictionary()
+			handlerDict.setValue(handler.item?.id, forKey: "itemId")
+			handlerDict.setValue(handler.count, forKey: "count")
+			
+			characterItems.add(handlerDict)
+		}
+		
+		characterDict.setValue(characterItems, forKey: "items")
+		
+		let characterAbilities = NSMutableArray()
+		
+		for case let ability as Ability in character.abilities!{
+			let abilityDict = NSMutableDictionary()
+			abilityDict.setValue(ability.name, forKey: "name")
+			abilityDict.setValue(ability.id, forKey: "id")
+			abilityDict.setValue(ability.value, forKey: "value")
+			
+			characterAbilities.add(abilityDict)
+		}
+		
+		characterDict.setValue(characterAbilities, forKey: "abilities")
+		
+		charactersToSend.add(characterDict)
+	}
+	
+	let packages = NSMutableArray()
+	
+	for case let package as Package in session.packages! {
+		let packageDict = NSMutableDictionary()
+		packageDict.setValue(package.name, forKey: "name")
+		packageDict.setValue(package.id, forKey: "id")
+		
+		let packageItems = NSMutableArray()
+		
+		for case let handler as ItemHandler in package.items!{
+			let handlerDict = NSMutableDictionary()
+			handlerDict.setValue(handler.item?.id, forKey: "itemId")
+			handlerDict.setValue(handler.count, forKey: "count")
+			
+			packageItems.add(handlerDict)
+		}
+		
+		packages.add(packageDict)
+	}
+	
+	let dictionary = NSMutableDictionary()
+	dictionary.setValue(current, forKey: "current")
+	dictionary.setValue(devices, forKey: "devices")
+	dictionary.setValue(gameMaster, forKey: "gameMaster")
+	dictionary.setValue(gameMasterName, forKey: "gameMasterName")
+	dictionary.setValue(id, forKey: "id")
+	dictionary.setValue(name, forKey: "name")
+	dictionary.setValue(charactersToSend, forKey: "characters")
+	
+	return dictionary
+}
+
 extension Int{
     init?(_ bool: Bool?) {
         guard bool != nil else {
