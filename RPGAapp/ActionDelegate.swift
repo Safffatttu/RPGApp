@@ -291,6 +291,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				CoreDataStack.saveContext()
 				
 				NotificationCenter.default.post(name: .removedAbility, object: (characterId ,index))
+				
 			}else if actionType == .removeCharacter{
 				guard let characterId = action.value(forKey: "characterId") as? String else { return }
 				
@@ -308,6 +309,21 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				CoreDataStack.saveContext()
 				
 				NotificationCenter.default.post(name: .removedCharacter, object: indexPath)
+				
+			}else if actionType == .itemHandlerCountChanged{
+				guard let characterId = action.value(forKey: "characterId") as? String else { return }
+				guard let itemId = action.value(forKey: "itemId") as? String else { return }
+				guard let itemCount = action.value(forKey: "itemCount") as? Int64 else { return }
+				
+				guard let character = Load.character(with: characterId) else { return }
+				
+				guard let handler = character.equipment?.first(where: {($0 as? ItemHandler)?.item?.id == itemId}) as? ItemHandler else { return }
+				
+				handler.count = itemCount
+				
+				CoreDataStack.saveContext()
+				
+				NotificationCenter.default.post(name: .itemHandlerCountChanged, object: (characterId,itemId))
 			}
         }
     }

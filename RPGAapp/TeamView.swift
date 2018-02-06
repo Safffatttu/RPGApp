@@ -24,7 +24,7 @@ class TeamView: UICollectionViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(valueOfAblitityChanged(_:)), name: .valueOfAbilityChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(removedAbility(_:)), name: .removedAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(removeCharacter(_:)), name: .removedCharacter, object: nil)
-		
+		NotificationCenter.default.addObserver(self, selector: #selector(characterItemCountChanged(_:)), name: .itemHandlerCountChanged, object: nil)
 		reloadTeam()
         super.viewDidLoad()
     }
@@ -135,6 +135,25 @@ class TeamView: UICollectionViewController {
 		collectionView?.deleteItems(at: [index])
 	}
 	
+	func characterItemCountChanged(_ notification: Notification) {
+		guard let object = notification.object as? (String,String) else{
+			return
+		}
+		
+		let characterId = object.0
+		let itemId = object.1
+		
+		guard let character = team.first(where: {$0.id == characterId}) else { return }
+		let index = IndexPath(row: team.index(of: character)!, section: 0)
+		
+		let itemIndex = character.equipment?.sortedArray(using: [.sortItemHandlerByName]).index(where: {($0 as! ItemHandler).item?.id == itemId})
+		
+		let cell = collectionView?.cellForItem(at: index) as! TeamViewCell
+		
+		let itemPath = IndexPath(row: itemIndex!, section: 0)
+		cell.table.reloadRows(at: [itemPath], with: .automatic)
+	}
+	
     func reloadTeam(){
         let session = getCurrentSession()
 		
@@ -180,11 +199,15 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") as? characterItemCell {
             let equipment = team[tableView.tag].equipment!.sortedArray(using: [.sortItemHandlerByName]) as! [ItemHandler]
             cell.textLabel?.text = (equipment[indexPath.row].item?.name)!
-            cell.detailTextLabel?.text = String(describing: equipment[indexPath.row].count)
-            return cell
+            cell.detailLabel.text = String(describing: equipment[indexPath.row].count)
+			
+			cell.stepper.value = Double(equipment[indexPath.row].count)
+			cell.itemHandler = equipment[indexPath.row]
+			cell.character = team[tableView.tag]
+			return cell
         }
         
         else{
@@ -453,6 +476,39 @@ class abilityCell: UITableViewCell {
 	}
 }
 
+class characterItemCell: UITableViewCell {
+	
+	var itemHandler: ItemHandler!
+	
+	var character: Character!
+	
+	@IBOutlet weak var detailLabel: UILabel!
+	
+	@IBOutlet weak var stepper: UIStepper!
+	
+	@IBAction func valueChanged(_ sender: UIStepper) {
+		
+		detailLabel.text = String(sender.value)
+		
+		itemHandler.count = Int64(sender.value)
+		
+		CoreDataStack.saveContext()
+		
+		let action = NSMutableDictionary()
+		let actionType = NSNumber(value: ActionType.valueOfAblilityChanged.rawValue)
+		
+		action.setValue(actionType, forKey: "action")
+		
+		action.setValue(itemHandler.count, forKey: "itemCount")
+		action.setValue(itemHandler.item?.id, forKey: "itemId")
+		action.setValue(character.id, forKey: "characterId")
+		
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		
+		appDelegate.pack.send(action)
+	}
+}
+
 extension Notification.Name{
     static let reloadTeam = Notification.Name("reloadTeam")
     static let reloadCharacterItems = Notification.Name("reloadCharacterItems")
@@ -461,4 +517,5 @@ extension Notification.Name{
 	static let valueOfAbilityChanged = Notification.Name("valueOfAbilityChanged")
 	static let removedAbility = Notification.Name("removedAbility")
 	static let removedCharacter = Notification.Name("removedCharacter")
+	static let itemHandlerCountChanged = Notification.Name("itemHandlerCountChanged")
 }
