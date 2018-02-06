@@ -272,6 +272,25 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				CoreDataStack.saveContext()
 				
 				NotificationCenter.default.post(name: .valueOfAbilityChanged, object: (characterId,abilityId))
+				
+			}else if actionType == .removeAbility{
+				guard let characterId = action.value(forKey: "characterId") as? String else {return}
+				guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
+				
+				guard let character = Load.character(with: characterId) else { return }
+				
+				guard let ability = character.abilities?.first(where: {($0 as! Ability).id == abilityId}) as? Ability else { return }
+				
+				let index = character.abilities?.sortedArray(using: [.sortAbilityByName]).index(where: {($0 as! Ability) == ability})
+				
+				let contex = CoreDataStack.managedObjectContext
+				
+				character.removeFromAbilities(ability)
+				contex.delete(ability)
+				
+				CoreDataStack.saveContext()
+				
+				NotificationCenter.default.post(name: .removedAbility, object: (characterId ,index))
 			}
         }
     }

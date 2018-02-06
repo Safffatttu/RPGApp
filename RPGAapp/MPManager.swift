@@ -140,6 +140,7 @@ enum ActionType: Int {
     case generatedRandomNumber
 	case addedAbilityToCharacter
 	case valueOfAblilityChanged
+	case removeAbility
 }
 
 extension Notification.Name{

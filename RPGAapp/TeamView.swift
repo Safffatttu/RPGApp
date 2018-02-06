@@ -22,7 +22,7 @@ class TeamView: UICollectionViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(deleteItem(_:)), name: .itemDeletedFromCharacter, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(addedNewAbility(_:)), name: .addedNewAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(valueOfAblitityChanged(_:)), name: .valueOfAbilityChanged, object: nil)
-		
+		NotificationCenter.default.addObserver(self, selector: #selector(removedAbility(_:)), name: .removedAbility, object: nil)
 		reloadTeam()
         super.viewDidLoad()
     }
@@ -107,6 +107,21 @@ class TeamView: UICollectionViewController {
 		abilityCell?.textLabel?.text = (ability.name)! + ": " + String(describing: (ability.value))
 		abilityCell?.stepper.value = Double(ability.value)
 		return
+	}
+	
+	func removedAbility(_ notification: Notification) {
+		guard let object = notification.object as? (String,Int) else{
+			return
+		}
+		let characterId = object.0
+		let abilityCellIndex = IndexPath(row: object.1, section: 0)
+
+		guard let characterIndex = team.index(where: {$0.id == characterId}) else {return}
+		let cellIndex = IndexPath(row: characterIndex, section: 0)
+		
+		guard let teamCell = self.collectionView?.cellForItem(at: cellIndex) as? TeamViewCell else {return}
+		
+		teamCell.ablilityTable.deleteRows(at: [abilityCellIndex], with: .automatic)
 	}
 	
     func reloadTeam(){
@@ -283,9 +298,57 @@ class abilityCell: UITableViewCell {
 	
 	@IBOutlet weak var stepper: UIStepper!
 	
-	@IBAction func valueChanged(_ sender: UIStepper) {
-		let index = getCurrentCellIndexPath(sender, tableView: next(UITableView.self)!)
+	override func awakeFromNib() {
+		super.awakeFromNib()
 		
+		let removeAbilityLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeAbility(_:)))
+		
+		self.contentView.addGestureRecognizer(removeAbilityLongPress)
+	}
+	
+	func removeAbility(_ sender: UILongPressGestureRecognizer){
+		
+		switch sender.state {
+		case .ended:
+			guard let tableView = next(UITableView.self) else { return }
+			
+			let contex = CoreDataStack.managedObjectContext
+			
+			let abilityId = ability.id
+			
+			character.removeFromAbilities(ability)
+			contex.delete(ability)
+			
+			CoreDataStack.saveContext()
+			
+			guard let index = getCurrentCellIndexPath(stepper, tableView: tableView) else { return }
+			tableView.deleteRows(at: [index], with: .automatic)
+			
+			self.backgroundColor = UIColor.white
+			
+			let action = NSMutableDictionary()
+			let actionType = NSNumber(value: ActionType.removeAbility.rawValue)
+			
+			action.setValue(actionType, forKey: "action")
+			
+			action.setValue(abilityId, forKey: "abilityId")
+			action.setValue(character.id, forKey: "characterId")
+			
+			let appDelegate = UIApplication.shared.delegate as! AppDelegate
+			
+			appDelegate.pack.send(action)
+			
+		case .began:
+			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
+				self.backgroundColor = UIColor.red
+			})
+			
+		default:
+			self.backgroundColor = UIColor.white
+		}
+	}
+	
+	@IBAction func valueChanged(_ sender: UIStepper) {
 		ability.value = Int16(sender.value)
 		
 		CoreDataStack.saveContext()
@@ -313,4 +376,5 @@ extension Notification.Name{
     static let itemDeletedFromCharacter = Notification.Name("itemDeletedFromCharacter")
 	static let addedNewAbility = Notification.Name("addedNewAbility")
 	static let valueOfAbilityChanged = Notification.Name("valueOfAbilityChanged")
+	static let removedAbility = Notification.Name("removedAbility")
 }
