@@ -23,6 +23,8 @@ class TeamView: UICollectionViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(addedNewAbility(_:)), name: .addedNewAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(valueOfAblitityChanged(_:)), name: .valueOfAbilityChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(removedAbility(_:)), name: .removedAbility, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(removeCharacter(_:)), name: .removedCharacter, object: nil)
+		
 		reloadTeam()
         super.viewDidLoad()
     }
@@ -124,6 +126,15 @@ class TeamView: UICollectionViewController {
 		teamCell.ablilityTable.deleteRows(at: [abilityCellIndex], with: .automatic)
 	}
 	
+	func removeCharacter(_ notification: Notification) {
+		guard let index = notification.object as? IndexPath else { return }
+		
+		let session = getCurrentSession()
+		team = session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
+		
+		collectionView?.deleteItems(at: [index])
+	}
+	
     func reloadTeam(){
         let session = getCurrentSession()
 		
@@ -144,6 +155,7 @@ class TeamView: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TeamViewCell
         let person = team[indexPath.row]
         cell.nameLabel.text = person.name
+		cell.character = person
         return cell
     }
     
@@ -235,6 +247,77 @@ class TeamViewCell: UICollectionViewCell {
     @IBOutlet var ablilityTable: UITableView!
     
     @IBOutlet weak var nameLabel: UILabel!
+	
+	var character: Character!
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		
+		let removeCharacterLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeCharacter(_:)))
+		
+		self.contentView.addGestureRecognizer(removeCharacterLongPress)
+	}
+	
+	func removeCharacter(_ sender: UILongPressGestureRecognizer){
+		
+		switch sender.state {
+		case .ended:
+			let alert = UIAlertController(title: "Na pewno chcesz usunąć postać?", message: "", preferredStyle: .alert)
+			
+			let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
+				guard let collectionView = self.next(UICollectionView.self) else { return }
+				
+				let context = CoreDataStack.managedObjectContext
+				
+				let characterId = self.character.id
+				context.delete(self.character)
+				
+				CoreDataStack.saveContext()
+				
+				self.table.backgroundColor = .white
+				self.ablilityTable.backgroundColor = .white
+				self.backgroundColor = .white
+				
+				let index = collectionView.indexPath(for: self)
+				
+				NotificationCenter.default.post(name: .removedCharacter, object: index)
+				
+				let action = NSMutableDictionary()
+				let actionType = NSNumber(value: ActionType.removeCharacter.rawValue)
+				
+				action.setValue(actionType, forKey: "action")
+				
+				action.setValue(characterId, forKey: "characterId")
+				
+				let appDelegate = UIApplication.shared.delegate as! AppDelegate
+				
+				appDelegate.pack.send(action)
+			})
+			
+			let alertNo = UIAlertAction(title: "Nie", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
+				self.table.backgroundColor = .red
+				self.ablilityTable.backgroundColor = .red
+				self.backgroundColor = .red
+			})
+			
+			alert.addAction(alertNo)
+			alert.addAction(alertYes)
+			
+			next(UICollectionViewController.self)?.present(alert, animated: true, completion: nil)
+		case .began:
+			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
+				self.table.backgroundColor = .red
+				self.ablilityTable.backgroundColor = .red
+				self.backgroundColor = .red
+			})
+			
+		default:
+			self.table.backgroundColor = .white
+			self.ablilityTable.backgroundColor = .white
+			self.backgroundColor = .white
+			
+		}
+	}
     
     func setTableViewDataSourceDelegate<D: UITableViewDataSource & UITableViewDelegate>(_ dataSourceDelegate: D, forRow row: Int) {
         table.delegate = dataSourceDelegate
@@ -377,4 +460,5 @@ extension Notification.Name{
 	static let addedNewAbility = Notification.Name("addedNewAbility")
 	static let valueOfAbilityChanged = Notification.Name("valueOfAbilityChanged")
 	static let removedAbility = Notification.Name("removedAbility")
+	static let removedCharacter = Notification.Name("removedCharacter")
 }

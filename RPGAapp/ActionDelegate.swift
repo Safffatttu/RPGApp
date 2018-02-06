@@ -291,6 +291,23 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				CoreDataStack.saveContext()
 				
 				NotificationCenter.default.post(name: .removedAbility, object: (characterId ,index))
+			}else if actionType == .removeCharacter{
+				guard let characterId = action.value(forKey: "characterId") as? String else { return }
+				
+				guard let character = Load.character(with: characterId) else { return }
+				
+				let session = getCurrentSession()
+				
+				guard let index = (session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]).index(of: character) else { return }
+				let indexPath = IndexPath(row: index, section: 0)
+				
+				let context = CoreDataStack.managedObjectContext
+				
+				context.delete(character)
+				
+				CoreDataStack.saveContext()
+				
+				NotificationCenter.default.post(name: .removedCharacter, object: indexPath)
 			}
         }
     }
