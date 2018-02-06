@@ -17,12 +17,13 @@ extension Character {
     }
 
     @NSManaged public var health: Double
-    @NSManaged public var id: String?
+    @NSManaged public var id: String
     @NSManaged public var name: String?
     @NSManaged public var profession: String?
     @NSManaged public var race: String?
     @NSManaged public var equipment: NSSet?
     @NSManaged public var session: Session?
+    @NSManaged public var abilities: NSSet?
 
 }
 
@@ -40,5 +41,22 @@ extension Character {
 
     @objc(removeEquipment:)
     @NSManaged public func removeFromEquipment(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for abilities
+extension Character {
+
+    @objc(addAbilitiesObject:)
+    @NSManaged public func addToAbilities(_ value: Ability)
+
+    @objc(removeAbilitiesObject:)
+    @NSManaged public func removeFromAbilities(_ value: Ability)
+
+    @objc(addAbilities:)
+    @NSManaged public func addToAbilities(_ values: NSSet)
+
+    @objc(removeAbilities:)
+    @NSManaged public func removeFromAbilities(_ values: NSSet)
 
 }

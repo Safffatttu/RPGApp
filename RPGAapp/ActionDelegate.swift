@@ -238,7 +238,41 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let message = "Wylosowano " + String(number)
                 
                 whisper(messege: message)
-            }
+				
+			}else if actionType == .addedAbilityToCharacter{
+				guard let characterId = action.value(forKey: "characterId") as? String else {return}
+				guard let abilityName = action.value(forKey: "abilityName") as? String else {return}
+				guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
+				guard let abilityValue = action.value(forKey: "abilityValue") as? Int16 else {return}
+				
+				guard let character = Load.character(with: characterId) else {return}
+				
+				let context = CoreDataStack.managedObjectContext
+				let newAbility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Ability.self), into: context) as! Ability
+				
+				newAbility.name = abilityName
+				newAbility.id = abilityId
+				newAbility.value = abilityValue
+				newAbility.character = character
+				
+				CoreDataStack.saveContext()
+				
+				NotificationCenter.default.post(name: .addedNewAbility, object: (characterId,abilityId))
+				
+			}else if actionType == .valueOfAblilityChanged{
+				guard let characterId = action.value(forKey: "characterId") as? String else {return}
+				guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
+				guard let abilityValue = action.value(forKey: "abilityValue") as? Int16 else {return}
+				
+				guard let character = Load.character(with: characterId) else {return}
+				
+				guard let ability = character.abilities?.first(where: {($0 as! Ability).id == abilityId}) as? Ability else {return}
+				ability.value = abilityValue
+
+				CoreDataStack.saveContext()
+				
+				NotificationCenter.default.post(name: .valueOfAbilityChanged, object: (characterId,abilityId))
+			}
         }
     }
     

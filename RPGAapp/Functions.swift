@@ -457,6 +457,13 @@ extension String {
     }
 }
 
+extension UIResponder {
+	
+	func next<T: UIResponder>(_ type: T.Type) -> T? {
+		return next as? T ?? next?.next(type)
+	}
+}
+
 extension Notification.Name{
     static let itemAddedToCharacter = Notification.Name("itemAddedToCharacter")
     static let addedItemToPackage = Notification.Name("addedItemToPackage")
@@ -484,4 +491,7 @@ extension NSSortDescriptor{
     static let sortSessionByName = NSSortDescriptor(key: #keyPath(Session.name), ascending: true)
     
     static let sortCharacterById = NSSortDescriptor(key: #keyPath(Character.id), ascending: true)
+	
+	static let sortAbilityByName = NSSortDescriptor(key: #keyPath(Ability.name), ascending: true)
+	
 }

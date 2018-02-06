@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Ability" representedClassName="Ability" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="value" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="character" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="abilities" inverseEntity="Character" syncable="YES"/>
+    </entity>
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="category" inverseEntity="Item" syncable="YES"/>
@@ -11,6 +17,7 @@
         <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="profession" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="abilities" toMany="YES" deletionRule="Nullify" destinationEntity="Ability" inverseName="character" inverseEntity="Ability" syncable="YES"/>
         <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="characters" inverseEntity="Session" syncable="YES"/>
     </entity>
@@ -108,8 +115,9 @@
     </entity>
     <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
+        <element name="Ability" positionX="-513" positionY="-9" width="128" height="105"/>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
-        <element name="Character" positionX="-425" positionY="72" width="128" height="148"/>
+        <element name="Character" positionX="-425" positionY="72" width="128" height="165"/>
         <element name="Currency" positionX="-270" positionY="-163" width="128" height="88"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="73"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="148"/>

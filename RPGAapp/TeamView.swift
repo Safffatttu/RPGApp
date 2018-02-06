@@ -20,7 +20,10 @@ class TeamView: UICollectionViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addItem(_:)), name: .itemAddedToCharacter, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteItem(_:)), name: .itemDeletedFromCharacter, object: nil)
-        reloadTeam()
+		NotificationCenter.default.addObserver(self, selector: #selector(addedNewAbility(_:)), name: .addedNewAbility, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(valueOfAblitityChanged(_:)), name: .valueOfAbilityChanged, object: nil)
+		
+		reloadTeam()
         super.viewDidLoad()
     }
     
@@ -61,10 +64,54 @@ class TeamView: UICollectionViewController {
         addCharControler.modalPresentationStyle = .formSheet
         self.present(addCharControler, animated: true, completion: nil)
     }
-    
+	
+	func addedNewAbility(_ notification: Notification){
+		guard let object = notification.object as? (String,String) else{
+			return
+		}
+		let characterId = object.0
+		let abilityId = object.1
+		
+		guard let characterIndex = team.index(where: {$0.id == characterId}) else {return}
+		let cellIndex = IndexPath(row: characterIndex, section: 0)
+		
+		guard let abilityIndex = team.first(where: {$0.id == characterId})?.abilities?.sortedArray(using: [.sortAbilityByName]).index(where: { ($0 as! Ability).id == abilityId})
+			else { return }
+		let tableCellIndex = IndexPath(row: abilityIndex, section: 0)
+		
+		guard let cell = self.collectionView?.cellForItem(at: cellIndex) as? TeamViewCell else {return}
+		
+		cell.ablilityTable.insertRows(at: [tableCellIndex], with: .automatic)
+	}
+	
+	func valueOfAblitityChanged(_ notification: Notification){
+		guard let object = notification.object as? (String,String) else{
+			return
+		}
+		let characterId = object.0
+		let abilityId = object.1
+
+		guard let characterIndex = team.index(where: {$0.id == characterId}) else {return}
+		let cellIndex = IndexPath(row: characterIndex, section: 0)
+		
+		guard let character = team.first(where: {$0.id == characterId}) else { return }
+		
+		guard let ability = character.abilities?.first(where: {($0 as! Ability).id == abilityId}) as? Ability else { return }
+		
+		guard let abilityIndex = character.abilities?.sortedArray(using: [.sortAbilityByName]).index(where: {($0 as! Ability) == ability}) else { return }
+		let tableCellIndex = IndexPath(row: abilityIndex, section: 0)
+		
+		guard let teamCell = self.collectionView?.cellForItem(at: cellIndex) as? TeamViewCell else {return}
+		
+		let abilityCell = teamCell.ablilityTable.cellForRow(at: tableCellIndex) as? abilityCell
+		abilityCell?.textLabel?.text = (ability.name)! + ": " + String(describing: (ability.value))
+		abilityCell?.stepper.value = Double(ability.value)
+		return
+	}
+	
     func reloadTeam(){
         let session = getCurrentSession()
-        
+		
         team = session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
         
         collectionView?.reloadData()
@@ -98,11 +145,11 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell")
-        if (cell != nil){
+        if let _ = tableView.dequeueReusableCell(withIdentifier: "itemCell"){
             return team[tableView.tag].equipment!.count
-        }
-        return 1
+		}else{
+			return team[tableView.tag].abilities!.count + 1
+		}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,11 +161,22 @@ extension TeamView: UITableViewDataSource, UITableViewDelegate{
         }
         
         else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "abilityCell")
-          //  let ablility = team[tableView.tag].abilites?[indexPath.row]
-            //let abilityToShow = (ablility?.0)! + ": " + String(describing: (ablility?.1)!)
-            //cell?.textLabel?.text = abilityToShow
-            return cell!
+			if indexPath.row == self.tableView(tableView, numberOfRowsInSection: 0) - 1{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "newAbilityCell") as? newAbilityCell
+				cell?.character = team[tableView.tag]
+				return cell!
+			}else{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "abilityCell") as? abilityCell
+				
+				let ability = team[tableView.tag].abilities?.sortedArray(using: [.sortAbilityByName])[indexPath.row] as! Ability
+				let abilityToShow = (ability.name)! + ": " + String(describing: (ability.value))
+				
+				cell?.ability = ability
+				cell?.character = team[tableView.tag]
+				cell?.textLabel?.text = abilityToShow
+				
+				return cell!
+			}
         }
     }
     
@@ -172,8 +230,87 @@ class TeamViewCell: UICollectionViewCell {
         ablilityTable.tag = row
     }
 }
+
+class newAbilityCell: UITableViewCell,UITextFieldDelegate {
+	
+	var character: Character!
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		
+		guard textField.text?.replacingOccurrences(of: " ", with: "").characters.count != 0 else{
+			return true
+		}
+		
+		if let text = textField.text{
+			let context = CoreDataStack.managedObjectContext
+			let newAbility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Ability.self), into: context) as! Ability
+			
+			newAbility.name = text
+			newAbility.character = character
+			newAbility.id = String(strHash(newAbility.name! + (newAbility.character?.id)! + String(describing: Date())))
+			
+			CoreDataStack.saveContext()
+			
+			NotificationCenter.default.post(name: .addedNewAbility, object: (character.id,newAbility.id))
+			
+			let action = NSMutableDictionary()
+			let actionType = NSNumber(value: ActionType.addedAbilityToCharacter.rawValue)
+			
+			action.setValue(actionType, forKey: "action")
+			
+			action.setValue(newAbility.name, forKey: "abilityName")
+			action.setValue(newAbility.id, forKey: "abilityId")
+			action.setValue(newAbility.value, forKey: "abilityValue")
+			action.setValue(character.id, forKey: "characterId")
+			
+			let appDelegate = UIApplication.shared.delegate as! AppDelegate
+			
+			appDelegate.pack.send(action)
+			
+			textField.text = ""
+		}
+		
+		return true
+	}
+}
+
+class abilityCell: UITableViewCell {
+
+	var character: Character!
+	
+	var ability: Ability!
+	
+	@IBOutlet weak var stepper: UIStepper!
+	
+	@IBAction func valueChanged(_ sender: UIStepper) {
+		let index = getCurrentCellIndexPath(sender, tableView: next(UITableView.self)!)
+		
+		ability.value = Int16(sender.value)
+		
+		CoreDataStack.saveContext()
+		
+		self.textLabel?.text = (ability.name)! + ": " + String(describing: (ability.value))
+		
+		let action = NSMutableDictionary()
+		let actionType = NSNumber(value: ActionType.valueOfAblilityChanged.rawValue)
+		
+		action.setValue(actionType, forKey: "action")
+		
+		action.setValue(ability.id, forKey: "abilityId")
+		action.setValue(ability.value, forKey: "abilityValue")
+		action.setValue(character.id, forKey: "characterId")
+		
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		
+		appDelegate.pack.send(action)
+	}
+}
+
 extension Notification.Name{
     static let reloadTeam = Notification.Name("reloadTeam")
     static let reloadCharacterItems = Notification.Name("reloadCharacterItems")
     static let itemDeletedFromCharacter = Notification.Name("itemDeletedFromCharacter")
+	static let addedNewAbility = Notification.Name("addedNewAbility")
+	static let valueOfAbilityChanged = Notification.Name("valueOfAbilityChanged")
 }
