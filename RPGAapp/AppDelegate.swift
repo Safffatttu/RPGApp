@@ -44,6 +44,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         pack.delegate = actionDelegate
         return true
     }
+	
+	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+		guard let sessionDictionary = NSDictionary(contentsOf: url) else { return false }
+		
+		
+		guard let newSession = unPackSession(from: sessionDictionary) else { return false }
+		Load.sessions().first(where: {$0.current})?.current = false
+		newSession.current = true
+		
+		return true
+	}
     
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
         let message = Message(title: "Enter your message here.", backgroundColor: .red)

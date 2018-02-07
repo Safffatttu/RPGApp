@@ -99,7 +99,23 @@ public struct Load {
         }
         return sessions
     }
-    
+	
+	public static func session(with Id: String) -> Session?{
+		var sessions: [Session] = []
+		let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
+		
+		sessionFetch.sortDescriptors = [.sortSessionByName]
+		
+		do {
+			sessions = try context.fetch(sessionFetch)
+		}
+		catch{
+			print(error)
+		}
+		
+		return sessions.first(where: {$0.id == Id})
+	}
+	
     public static func packages(fromCurrentSession: Bool = true) -> [Package]{
         var packages: [Package] = []
         if fromCurrentSession{

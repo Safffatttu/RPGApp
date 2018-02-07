@@ -459,7 +459,6 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		characterDict.setValue(character.profession, forKey: "profession")
 		characterDict.setValue(character.race, forKey: "race")
 		
-		
 		let characterItems = NSMutableArray()
 		
 		for case let handler as ItemHandler in character.equipment!{
@@ -505,6 +504,8 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 			packageItems.add(handlerDict)
 		}
 		
+		packageDict.setValue(packageItems, forKey: "items")
+		
 		packages.add(packageDict)
 	}
 	
@@ -516,10 +517,121 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	dictionary.setValue(id, forKey: "id")
 	dictionary.setValue(name, forKey: "name")
 	dictionary.setValue(charactersToSend, forKey: "characters")
+	dictionary.setValue(packages, forKey: "packages")
 	
 	return dictionary
 }
 
+func unPackSession(from dictionary: NSDictionary) -> Session? {
+	print(dictionary)
+	guard let name = dictionary.value(forKey: "name") as? String else { return nil }
+	guard let id = dictionary.value(forKey: "id") as? String else { return nil }
+	
+	let gameMaster = dictionary.value(forKey: "gameMaster") as? String
+	let gameMasterName = dictionary.value(forKey: "gameMasterName") as? String
+	let devices = dictionary.value(forKey: "devices") as? NSArray
+	
+	guard let allCharactersDict = dictionary.value(forKey: "characters") as? NSArray else { return nil }
+	guard let allPackagesDict = dictionary.value(forKey: "packages") as? NSArray else { return nil }
+	
+	let context = CoreDataStack.managedObjectContext
+	
+	if let previousSession = Load.session(with: id) {
+		context.delete(previousSession)
+	}
+	
+	let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
+	
+	session.name = name
+	session.id = id
+	session.gameMaster = gameMaster
+	session.gameMasterName = gameMasterName
+	session.devices	= NSSet(array: devices as! [Any])
+	
+	for case let characterDict as NSDictionary in allCharactersDict{
+		
+		guard let characterName = characterDict.value(forKey: "name") as? String else { continue }
+		guard let characterId = characterDict.value(forKey: "id") as? String else { continue }
+		guard let characterHealth = characterDict.value(forKey: "health") as? Double else { continue }
+		let characterProfession = characterDict.value(forKey: "profession") as? String
+		let characterRace = characterDict.value(forKey: "race") as? String
+		
+		let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: context) as! Character
+		
+		newCharacter.name = characterName
+		newCharacter.id = characterId
+		newCharacter.health = characterHealth
+		newCharacter.profession = characterProfession
+		newCharacter.race = characterRace
+		
+		guard let items = characterDict.value(forKey: "items") as? NSArray else { continue }
+		
+		for case let item as NSDictionary in items {
+			guard let itemId = item.value(forKey: "itemId") as? String else { continue }
+			guard let itemCount = item.value(forKey: "count") as? Int64 else { continue }
+			
+			guard let itemToAdd = Load.item(with: itemId) else { continue }
+			
+			let handler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+			
+			handler.item = itemToAdd
+			handler.count = itemCount
+			
+			newCharacter.addToEquipment(handler)
+		}
+		
+		
+		guard let abilities = characterDict.value(forKey: "abilities") as? NSArray else { continue }
+		
+		for case let abilityDict as NSDictionary in abilities {
+			guard let abilityName = abilityDict.value(forKey: "name") as? String else { continue }
+			guard let abilityId = abilityDict.value(forKey: "id") as? String else { continue }
+			guard let abilityValue = abilityDict.value(forKey: "value") as? Int16 else { continue }
+			
+			let ability = NSEntityDescription.insertNewObject(forEntityName: String(describing: Ability.self), into: context) as! Ability
+			
+			ability.name = abilityName
+			ability.id = abilityId
+			ability.value = abilityValue
+			
+			newCharacter.addToAbilities(ability)
+		}
+		
+		session.addToCharacters(newCharacter)
+	}
+	
+	for case let packageDict as NSDictionary in allPackagesDict{
+		
+		guard let packageName = packageDict.value(forKey: "name") as? String else { continue }
+		guard let packageId = packageDict.value(forKey: "id") as? String else { continue }
+		guard let packageItems = packageDict.value(forKey: "items") as? NSArray else { continue }
+
+		let package = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package
+		
+		package.name = packageName
+		package.id = packageId
+		
+		for case let item as NSDictionary in packageItems {
+			guard let itemId = item.value(forKey: "itemId") as? String else { continue }
+			guard let itemCount = item.value(forKey: "count") as? Int64 else { continue }
+			
+			guard let itemToAdd = Load.item(with: itemId) else { continue }
+			
+			let handler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+			
+			handler.item = itemToAdd
+			handler.count = itemCount
+			
+			package.addToItems(handler)
+		}
+		
+		session.addToPackages(package)
+	}
+	
+	CoreDataStack.saveContext()
+	
+	return session
+}
 
 func save(dictionary: NSDictionary)-> URL{
 	
