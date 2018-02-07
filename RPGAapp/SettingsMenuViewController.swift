@@ -51,15 +51,36 @@ class SettingMenu: UITableViewController {
     let keys = Array(UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}))
     
     var sessions: [Session] = Load.sessions()
-    
+	
+	var documenController:UIDocumentInteractionController!
+	
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(connectedDevicesChanged), name: .connectedDevicesChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addedSession(_:)), name: .addedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchedSessionAction(_:)), name: .switchedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sessionDeleted(_:)), name: .sessionDeleted, object: nil)
+		
         super.viewWillAppear(animated)
     }
-    
+	
+	func sendSession(_ sender: UILongPressGestureRecognizer) {
+		guard sender.state == .ended else { return }
+		
+		let touchPoint = sender.location(in: tableView)
+		guard let indexPath = tableView.indexPathForRow(at: touchPoint) else { return }
+		let dict = packSessionForMessage(sessions[indexPath.row - 1])
+		let url = save(dictionary: dict)
+			
+		documenController = UIDocumentInteractionController(url: url)
+		
+		let rect = CGRect(origin: touchPoint, size: CGSize(width: 100, height: 100))
+		documenController.presentOptionsMenu(from: rect , in: tableView, animated: true)
+	}
+	
+	func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+		return self
+	}
+	
     func addedSession(_ notification: NSNotification){
         let session = notification.object as! Session
         
@@ -162,6 +183,10 @@ class SettingMenu: UITableViewController {
                 if sessions[indexPath.row - 1].current{
                     cell?.accessoryType = .checkmark
                 }
+				let longPress = UILongPressGestureRecognizer(target: self, action: #selector(sendSession(_:)))
+				
+				cell?.contentView.addGestureRecognizer(longPress)
+				
                 return cell!
             }
         }else{

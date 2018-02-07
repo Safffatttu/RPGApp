@@ -520,6 +520,21 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	return dictionary
 }
 
+
+func save(dictionary: NSDictionary)-> URL{
+	
+	let randomFilename = UUID().uuidString
+	let url = getDocumentsDirectory().appendingPathComponent("session" + randomFilename).appendingPathExtension("rpgs")
+	dictionary.write(to: url, atomically: true)
+		
+	return url
+}
+
+func getDocumentsDirectory() -> URL {
+	let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+	return paths[0]
+}
+
 extension Int{
     init?(_ bool: Bool?) {
         guard bool != nil else {
