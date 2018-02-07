@@ -634,8 +634,8 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 
 func save(dictionary: NSDictionary)-> URL{
 	
-	let randomFilename = UUID().uuidString
-	let url = getDocumentsDirectory().appendingPathComponent("session" + randomFilename).appendingPathExtension("rpgs")
+	//let randomFilename = UUID().uuidString
+	let url = getDocumentsDirectory().appendingPathComponent("session" + String(describing: Date())).appendingPathExtension("rpgs")
 	dictionary.write(to: url, atomically: true)
 		
 	return url

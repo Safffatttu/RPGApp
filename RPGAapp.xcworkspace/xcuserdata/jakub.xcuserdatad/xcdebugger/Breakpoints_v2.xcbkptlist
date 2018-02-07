@@ -1397,11 +1397,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/SettingsMenuViewController.swift"
-            timestampString = "539698227.7845711"
+            timestampString = "539700892.456736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "pressedButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1413,13 +1413,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/SettingsMenuViewController.swift"
-            timestampString = "539698227.7845711"
+            timestampString = "539700892.456736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "switchedSession(indexPath:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed&gt; of RPGAapp.SettingMenu.switchedSession (indexPath : Foundation.IndexPath) -&gt; ()"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/SettingsMenuViewController.swift"
+                  timestampString = "539700892.9596781"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed&gt; of RPGAapp.SettingMenu.switchedSession (indexPath : Foundation.IndexPath) -&gt; ()"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/SettingsMenuViewController.swift"
+                  timestampString = "539700892.962145"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1429,27 +1461,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/SettingsMenuViewController.swift"
-            timestampString = "539698227.7845711"
+            timestampString = "539700892.456736"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "switchedSession(indexPath:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed&gt; of RPGAapp.SettingMenu.switchedSession (indexPath : Foundation.IndexPath) -&gt; ()"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/SettingsMenuViewController.swift"
+                  timestampString = "539700892.9673131"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed&gt; of RPGAapp.SettingMenu.switchedSession (indexPath : Foundation.IndexPath) -&gt; ()"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/SettingsMenuViewController.swift"
+                  timestampString = "539700892.969877"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "126"
+                  endingLineNumber = "126"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPGAapp/SettingsMenuViewController.swift"
+            timestampString = "539700892.456736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "127"
             endingLineNumber = "127"
-            landmarkName = "switchedSession(indexPath:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGAapp/SettingsMenuViewController.swift"
-            timestampString = "539698227.7845711"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
             landmarkName = "switchedSession(indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1493,11 +1557,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/Functions.swift"
-            timestampString = "539697024.097249"
+            timestampString = "539700395.29187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "628"
-            endingLineNumber = "628"
+            startingLineNumber = "627"
+            endingLineNumber = "627"
             landmarkName = "unPackSession(from:)"
             landmarkType = "9">
          </BreakpointContent>

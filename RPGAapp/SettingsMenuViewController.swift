@@ -74,6 +74,9 @@ class SettingMenu: UITableViewController {
 		
 		let touchPoint = sender.location(in: tableView)
 		guard let indexPath = tableView.indexPathForRow(at: touchPoint) else { return }
+		
+		guard sessions.count > indexPath.row - 1 && indexPath.row - 1 >= 0  else { return }
+		
 		let dict = packSessionForMessage(sessions[indexPath.row - 1])
 		let url = save(dictionary: dict)
 			
@@ -81,10 +84,6 @@ class SettingMenu: UITableViewController {
 		
 		let rect = CGRect(origin: touchPoint, size: CGSize(width: 100, height: 100))
 		documenController.presentOptionsMenu(from: rect , in: tableView, animated: true)
-	}
-	
-	func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
-		return self
 	}
 	
     func addedSession(_ notification: NSNotification){
