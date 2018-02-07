@@ -324,6 +324,19 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				CoreDataStack.saveContext()
 				
 				NotificationCenter.default.post(name: .itemHandlerCountChanged, object: (characterId,itemId))
+			
+			}else if actionType == .sessionReceived{
+				guard let session = action.value(forKey: "session") as? NSDictionary else { return }
+				
+				
+				guard let newSession =  unPackSession(from: session) else { return }
+				
+				if let setCurrent = action.value(forKey: "setCurrent") as? Bool{
+					Load.sessions().first(where: {$0.current})?.current = false
+					newSession.current = setCurrent
+				}
+				
+				NotificationCenter.default.post(name: .sessionReceived, object: nil)
 			}
         }
     }

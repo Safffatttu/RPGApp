@@ -143,6 +143,7 @@ enum ActionType: Int {
 	case removeAbility
 	case removeCharacter
 	case itemHandlerCountChanged
+	case sessionReceived
 }
 
 extension Notification.Name{

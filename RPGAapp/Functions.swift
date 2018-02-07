@@ -523,7 +523,6 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 }
 
 func unPackSession(from dictionary: NSDictionary) -> Session? {
-	print(dictionary)
 	guard let name = dictionary.value(forKey: "name") as? String else { return nil }
 	guard let id = dictionary.value(forKey: "id") as? String else { return nil }
 	

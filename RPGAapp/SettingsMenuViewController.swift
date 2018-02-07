@@ -59,9 +59,15 @@ class SettingMenu: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(addedSession(_:)), name: .addedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchedSessionAction(_:)), name: .switchedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sessionDeleted(_:)), name: .sessionDeleted, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(sessionReceived), name: .sessionReceived, object: nil)
 		
         super.viewWillAppear(animated)
     }
+	
+	func sessionReceived() {
+		sessions = Load.sessions()
+		tableView.reloadData()
+	}
 	
 	func sendSession(_ sender: UILongPressGestureRecognizer) {
 		guard sender.state == .ended else { return }
@@ -325,4 +331,5 @@ extension Notification.Name{
     static let addedSession = Notification.Name("addedSession")
     static let switchedSession = Notification.Name("switchedSession")
     static let sessionDeleted = Notification.Name("sessionDeleted")
+	static let sessionReceived = Notification.Name("sessionReceived")
 }

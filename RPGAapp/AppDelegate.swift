@@ -53,6 +53,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		Load.sessions().first(where: {$0.current})?.current = false
 		newSession.current = true
 		
+		let action = NSMutableDictionary()
+		let actionType = NSNumber(value: ActionType.sessionReceived.hashValue)
+		
+		action.setValue(actionType, forKey: "action")
+		action.setValue(sessionDictionary, forKey: "session")
+		action.setValue(newSession.current, forKey: "setCurrent")
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		
+		appDelegate.pack.send(action)
+		
+		NotificationCenter.default.post(name: .sessionReceived, object: nil)
+		
 		return true
 	}
     
