@@ -12,6 +12,7 @@ import MultipeerConnectivity
 class PackageService: NSObject{
     
     let serviceType = "RPGapp"
+	let info = ["other info": "info"]
     let myPeerID = MCPeerID(displayName: UIDevice.current.name)
     
     let serviceAdvertiser: MCNearbyServiceAdvertiser
@@ -20,7 +21,7 @@ class PackageService: NSObject{
     var delegate: PackageServiceDelegate?
     
     override init(){
-        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: serviceType)
+        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: info, serviceType: serviceType)
         self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType)
         
         super.init()
@@ -78,7 +79,7 @@ extension PackageService: MCNearbyServiceBrowserDelegate{
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         NSLog("%@", "foundPeer: \(peerID)")
-        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 30)
         self.delegate?.found(peerID)
     }
     

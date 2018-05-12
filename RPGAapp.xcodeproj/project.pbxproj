@@ -42,7 +42,6 @@
 		3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */; };
 		3BD335931FF291DC004F70BF /* drawingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD335921FF291DC004F70BF /* drawingTest.swift */; };
 		3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF0FEA1F5C946100135252 /* addToPackage.swift */; };
-		3BE1E8C0202A69C100A937C2 /* RPGIcon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BE1E8BF202A69C100A937C2 /* RPGIcon-60x60@3x.png */; };
 		3BECB6CC1FBA53BA00A947E9 /* addCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */; };
 		3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */; };
 		3BFEFA251F570A69008B0C12 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFEFA241F570A69008B0C12 /* CoreData.framework */; };
@@ -119,7 +118,6 @@
 		3BD3358C1FF28B2E004F70BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BD335921FF291DC004F70BF /* drawingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = drawingTest.swift; path = ../RPGAapp/drawingTest.swift; sourceTree = "<group>"; };
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
-		3BE1E8BF202A69C100A937C2 /* RPGIcon-60x60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RPGIcon-60x60@3x.png"; path = "RPGAapp/Assets.xcassets/AppIcon.appiconset/RPGIcon-60x60@3x.png"; sourceTree = "<group>"; };
 		3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCharacter.swift; sourceTree = "<group>"; };
 		3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowInfoPopOver.swift; sourceTree = "<group>"; };
 		3BFEFA241F570A69008B0C12 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -160,7 +158,6 @@
 		3B063D561F3A21A800B5271C = {
 			isa = PBXGroup;
 			children = (
-				3BE1E8BF202A69C100A937C2 /* RPGIcon-60x60@3x.png */,
 				3B063D611F3A21A800B5271C /* RPGAapp */,
 				3B73F91E1F8FB04900EA7E6A /* RPGAappTests */,
 				3BD335891FF28B2E004F70BF /* RPGAappUITests */,
@@ -422,7 +419,6 @@
 			files = (
 				3BBCC477201CDE81005AE5C3 /* Data Classes in Resources */,
 				3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */,
-				3BE1E8C0202A69C100A937C2 /* RPGIcon-60x60@3x.png in Resources */,
 				3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */,
 				3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */,
 			);
