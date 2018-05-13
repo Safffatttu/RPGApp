@@ -122,7 +122,7 @@ class randomItemMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        drawQueue.async {
+//        drawQueue.async {
             var setting: DrawSetting?
             var subCategory: SubCategory?
             var category: Category?
@@ -146,10 +146,10 @@ class randomItemMenu: UITableViewController {
             }
             
             self.drawItems(drawSetting: setting, subCategory: subCategory, category: category, reDraw: .not)
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
-            }
-        }
+//            }
+//        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -188,7 +188,7 @@ class randomItemMenu: UITableViewController {
     }
     
     func reDrawAllItems(){
-        drawQueue.async {
+//        drawQueue.async {
             guard self.lastDrawSetting != nil else{
                 return
             }
@@ -199,7 +199,7 @@ class randomItemMenu: UITableViewController {
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
             }
-        }
+//        }
     }
     
     func reDrawItem(_ notification: NSNotification){
