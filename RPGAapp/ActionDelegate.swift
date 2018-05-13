@@ -250,10 +250,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let context = CoreDataStack.managedObjectContext
                 let sessions: [Session] = Load.sessions()
 
-//                if action.value(forKey: "sessionIsActive") as? Bool == false{
-//                    UserDefaults.standard.set(false, forKey: "sessionIsActive")
-//                }
-                
+				
                 if let session = sessions.first(where: {$0.id == sessionId}){
                     let index = sessions.index(of: session)
                     let indexPath = IndexPath(row: index! + 1, section: 1)
@@ -310,7 +307,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				CoreDataStack.saveContext()
 				
-				NotificationCenter.default.post(name: .addedNewAbility, object: (characterId,abilityId))
+				NotificationCenter.default.post(name: .reloadTeam, object: (characterId,abilityId))
 				
 			}else if actionType == .valueOfAblilityChanged{
 				guard let characterId = action.value(forKey: "characterId") as? String else {return}
@@ -350,18 +347,13 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				guard let character = Load.character(with: characterId) else { return }
 				
-				let session = getCurrentSession()
-				
-				guard let index = (session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]).index(of: character) else { return }
-				let indexPath = IndexPath(row: index, section: 0)
-				
 				let context = CoreDataStack.managedObjectContext
 				
 				context.delete(character)
 				
 				CoreDataStack.saveContext()
 				
-				NotificationCenter.default.post(name: .removedCharacter, object: indexPath)
+				NotificationCenter.default.post(name: .reloadTeam, object: nil)
 				
 			}else if actionType == .itemHandlerCountChanged{
 				guard let characterId = action.value(forKey: "characterId") as? String else { return }

@@ -9,12 +9,21 @@
 import Foundation
 import UIKit
 import CoreData
+import Dwifft
 
 class TeamView: UICollectionViewController {
     
-    var team: [Character] = []
-    
+	var team: [Character] = Load.characters(){
+		didSet{
+			let valuesForDiffCalc = SectionedValues([("Gracze",team)])
+			diffCalculator?.sectionedValues = valuesForDiffCalc
+		}
+	}
+	
+	var diffCalculator: CollectionViewDiffCalculator<String, Character>?
+	
     override func viewDidLoad() {
+		self.diffCalculator = CollectionViewDiffCalculator(collectionView: self.collectionView, initialSectionedValues: SectionedValues([("Gracze",team)]))
         let addButton =  UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.rightBarButtonItem = addButton
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
@@ -23,9 +32,7 @@ class TeamView: UICollectionViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(addedNewAbility(_:)), name: .addedNewAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(valueOfAblitityChanged(_:)), name: .valueOfAbilityChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(removedAbility(_:)), name: .removedAbility, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(removeCharacter(_:)), name: .removedCharacter, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(characterItemCountChanged(_:)), name: .itemHandlerCountChanged, object: nil)
-		reloadTeam()
         super.viewDidLoad()
     }
     
@@ -126,15 +133,6 @@ class TeamView: UICollectionViewController {
 		teamCell.ablilityTable.deleteRows(at: [abilityCellIndex], with: .automatic)
 	}
 	
-	func removeCharacter(_ notification: Notification) {
-		guard let index = notification.object as? IndexPath else { return }
-		
-		let session = getCurrentSession()
-		team = session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
-		
-		collectionView?.deleteItems(at: [index])
-	}
-	
 	func characterItemCountChanged(_ notification: Notification) {
 		guard let object = notification.object as? (String,String) else{
 			return
@@ -155,24 +153,20 @@ class TeamView: UICollectionViewController {
 	}
 	
     func reloadTeam(){
-        let session = getCurrentSession()
-		
-        team = session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
-        
-        collectionView?.reloadData()
+        team = Load.characters()
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return self.diffCalculator?.numberOfSections() ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return team.count
+        return self.diffCalculator?.numberOfObjects(inSection: section) ?? 3
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TeamViewCell
-        let person = team[indexPath.row]
+        let person = (self.diffCalculator?.value(atIndexPath: indexPath))!
         cell.nameLabel.text = person.name
 		cell.character = person
         return cell
@@ -301,9 +295,7 @@ class TeamViewCell: UICollectionViewCell {
 				self.ablilityTable.backgroundColor = .white
 				self.backgroundColor = .white
 				
-				let index = collectionView.indexPath(for: self)
-				
-				NotificationCenter.default.post(name: .removedCharacter, object: index)
+				NotificationCenter.default.post(name: .reloadTeam, object: nil)
 				
 				let action = NSMutableDictionary()
 				let actionType = NSNumber(value: ActionType.removeCharacter.rawValue)

@@ -128,6 +128,8 @@ class SettingMenu: UITableViewController {
         sessions[indexPath.row - 1].current = true
         
         self.tableView.reloadRows(at: indexesToReload, with: .automatic)
+		
+		NotificationCenter.default.post(name: .reloadTeam, object: nil)
     }
     
     func sessionDeleted(_ notification: Notification){
