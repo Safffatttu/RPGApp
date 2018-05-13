@@ -15,6 +15,8 @@
 		3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */; };
 		3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */; };
 		3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */; };
+		3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B295D8520A8E326001DC35D /* DiceRollModels.swift */; };
+		3B295D8820A8E3C4001DC35D /* DiceRollFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B295D8720A8E3C4001DC35D /* DiceRollFunctions.swift */; };
 		3B31B3E61F3B67A6003526E1 /* KatalogMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E51F3B67A6003526E1 /* KatalogMenuViewController.swift */; };
 		3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */; };
 		3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */; };
@@ -92,6 +94,8 @@
 		3B063D761F3A259B00B5271C /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Functions.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editPackage.swift; sourceTree = "<group>"; };
 		3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDrawSetting.swift; sourceTree = "<group>"; };
+		3B295D8520A8E326001DC35D /* DiceRollModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceRollModels.swift; sourceTree = "<group>"; };
+		3B295D8720A8E3C4001DC35D /* DiceRollFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceRollFunctions.swift; sourceTree = "<group>"; };
 		3B31B3E51F3B67A6003526E1 /* KatalogMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatalogMenuViewController.swift; sourceTree = "<group>"; };
 		3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDetailViewController.swift; sourceTree = "<group>"; };
 		3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -187,15 +191,25 @@
 				3B063D621F3A21A800B5271C /* AppDelegate.swift */,
 				3B063D681F3A21A800B5271C /* Main.storyboard */,
 				3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */,
-				3B063D761F3A259B00B5271C /* Functions.swift */,
 				3B3C052E1F3BBE3E00CFB002 /* Menu */,
 				3B3C052F1F3BBE4E00CFB002 /* Detail */,
 				3BF480AD1F44DBC50017169D /* Popover */,
 				3B9D6BDC1FB907E100474C71 /* Networking */,
 				3B9D6BDD1FB907F400474C71 /* Data */,
 				3BBCC476201CDE81005AE5C3 /* Data Classes */,
+				3B295D8420A8E303001DC35D /* Utilities */,
 			);
 			path = RPGAapp;
+			sourceTree = "<group>";
+		};
+		3B295D8420A8E303001DC35D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3B063D761F3A259B00B5271C /* Functions.swift */,
+				3B295D8520A8E326001DC35D /* DiceRollModels.swift */,
+				3B295D8720A8E3C4001DC35D /* DiceRollFunctions.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		3B3C052E1F3BBE3E00CFB002 /* Menu */ = {
@@ -521,8 +535,10 @@
 				3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */,
 				3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */,
 				3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */,
+				3B295D8820A8E3C4001DC35D /* DiceRollFunctions.swift in Sources */,
 				3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */,
 				3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */,
+				3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */,
 				3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */,
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
