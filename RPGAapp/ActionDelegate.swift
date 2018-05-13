@@ -166,13 +166,17 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 						}
 					}
 					
-					let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+					if itemsToRequest.count > 0 {
 					
-					subAction.setValue(at, forKey: "at")
-					subAction.setValue(NSArray(array: itemsToRequest), forKey: "itemsToAdd")
-					subAction.setValue(itemsToRequestCount, forKey: "itemsToAddCount")
-					
-					request = ItemRequest(with: itemsToRequest, sender: sender, action: subAction)
+						let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+						
+						subAction.setValue(at, forKey: "at")
+						subAction.setValue(NSArray(array: itemsToRequest), forKey: "itemsToAdd")
+						subAction.setValue(itemsToRequestCount, forKey: "itemsToAddCount")
+						
+						request = ItemRequest(with: itemsToRequest, sender: sender, action: subAction)
+						
+					}
 				}
 				
 				
