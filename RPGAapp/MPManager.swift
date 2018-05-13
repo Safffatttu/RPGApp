@@ -59,6 +59,19 @@ class PackageService: NSObject{
             }
         }
     }
+	
+	func send(_ action: NSMutableDictionary,to peer: MCPeerID){
+		NSLog("%@", "sendTo")
+		if session.connectedPeers.count > 0{
+			do{
+				let data = NSKeyedArchiver.archivedData(withRootObject: action)
+				try self.session.send(data, toPeers: [peer], with: .reliable)
+			}
+			catch let error{
+				NSLog("Error: \(error)")
+			}
+		}
+	}
 }
 
 extension PackageService: MCNearbyServiceAdvertiserDelegate{
@@ -100,7 +113,7 @@ extension PackageService: MCSessionDelegate{
         NSLog("%@", "didReceiveData: \(data)")
         let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary
         action.setValue(peerID.displayName, forKey: "sender")
-        self.delegate?.recieved(action, manager: self)
+        self.delegate?.recieved(action,from: peerID, manager: self)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -121,7 +134,7 @@ protocol PackageServiceDelegate {
     func connectedDevicesChanged(manager : PackageService, connectedDevices: [String])
     func lost(_ peer: MCPeerID)
     func found(_ peer: MCPeerID)
-    func recieved(_ action: NSMutableDictionary, manager: PackageService)
+    func recieved(_ action: NSMutableDictionary,from sender: MCPeerID, manager: PackageService)
 }
 
 enum ActionType: Int {
@@ -145,6 +158,8 @@ enum ActionType: Int {
 	case removeCharacter
 	case itemHandlerCountChanged
 	case sessionReceived
+	case itemsRequest
+	case itemsRequestResponse
 }
 
 extension Notification.Name{

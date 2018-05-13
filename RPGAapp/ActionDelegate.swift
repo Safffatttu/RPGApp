@@ -14,14 +14,14 @@ import Whisper
 
 class ActionDelegate: NSObject, PackageServiceDelegate{
     
-    func recieved(_ action: NSMutableDictionary, manager: PackageService) {
+    func recieved(_ action: NSMutableDictionary,from sender: MCPeerID, manager: PackageService) {
         DispatchQueue.main.sync{
             let actionType = ActionType(rawValue: action.value(forKey: "action") as! Int)
-            let sender = action.value(forKey: "sender") as? String
+            let senderName = sender.displayName
             print(action)
             
             if actionType == ActionType.applicationDidEnterBackground{
-                let message = sender! + " wyszedł z aplikacji"
+                let message = senderName + " wyszedł z aplikacji"
                 whisper(messege: message)
             }else if actionType == ActionType.itemSend{
                 let characterId = action.value(forKey: "characterId") as? String
@@ -340,7 +340,14 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 			}
         }
     }
-    
+	
+	func recievedLocaly(_ action: NSMutableDictionary){
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		let localId = appDelegate.pack.myPeerID
+		let packServ = appDelegate.pack
+		self.recieved(action, from: localId, manager: packServ)
+	}
+
     func lost(_ peer: MCPeerID) {
         let message = "Utracono połączenie z " + peer.displayName
         whisper(messege: message)
