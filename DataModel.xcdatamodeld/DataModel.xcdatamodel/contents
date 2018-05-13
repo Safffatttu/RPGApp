@@ -17,7 +17,7 @@
         <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="profession" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="abilities" toMany="YES" deletionRule="Nullify" destinationEntity="Ability" inverseName="character" inverseEntity="Ability" syncable="YES"/>
+        <relationship name="abilities" toMany="YES" deletionRule="Cascade" destinationEntity="Ability" inverseName="character" inverseEntity="Ability" syncable="YES"/>
         <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="characters" inverseEntity="Session" syncable="YES"/>
     </entity>
