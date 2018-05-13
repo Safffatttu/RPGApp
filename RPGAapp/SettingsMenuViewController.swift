@@ -233,40 +233,76 @@ class SettingMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section == 2 || (indexPath.section == 1 && indexPath.row != 0)
+		return indexPath.section == 2 || (indexPath.section == 1 && indexPath.row != 0)
     }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            if indexPath.section == 1{
-                let context = CoreDataStack.managedObjectContext
-                let session = sessions[indexPath.row - 1]
-                let sessionId = session.id
-                sessions.remove(at: indexPath.row - 1)
-                
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                
-                context.delete(session)
-                CoreDataStack.saveContext()
-                
-                let action = NSMutableDictionary()
-                let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
-                action.setValue(actionType, forKey: "action")
-                action.setValue(sessionId, forKey: "sessionId")
-//                if sessions.count == 0 {
-//                    action.setValue(false, forKey: "sessionIsActive")
-//                }
-                appDelegate.pack.send(action)
-            }else{
-                let peer = appDelegate.pack.session.connectedPeers[indexPath.row]
-                let action = NSMutableDictionary()
-                let actionType: NSNumber = NSNumber(value: ActionType.disconnectPeer.rawValue)
-                action.setValue(actionType, forKey: "action")
-                action.setValue(peer.displayName, forKey: "peer")
-                appDelegate.pack.send(action)
-            }
-        }
-    }
+	
+	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		var actions: [UITableViewRowAction]?
+		
+		if indexPath.section == 1{
+			actions = []
+			let removeSession = UITableViewRowAction(style: .destructive, title: "Delete", handler: {action,path in
+			
+				let context = CoreDataStack.managedObjectContext
+				let session = self.sessions[path.row - 1]
+				let sessionId = session.id
+				self.sessions.remove(at: path.row - 1)
+				
+				tableView.deleteRows(at: [path], with: .automatic)
+				
+				context.delete(session)
+				CoreDataStack.saveContext()
+				
+				let action = NSMutableDictionary()
+				let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
+				action.setValue(actionType, forKey: "action")
+				action.setValue(sessionId, forKey: "sessionId")
+				self.appDelegate.pack.send(action)
+			})
+				
+			actions?.append(removeSession)
+		
+			let sendSession = UITableViewRowAction(style: .normal, title: "Send", handler: {action,path in
+				
+				let session = self.sessions[path.row - 1]
+				let sessionDict = packSessionForMessage(session)
+				
+				let action = NSMutableDictionary()
+				let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
+				
+				action.setValue(actionType, forKey: "action")
+				action.setValue(sessionDict, forKey: "session")
+				
+				let appDelegate = UIApplication.shared.delegate as! AppDelegate
+				
+				appDelegate.pack.send(action)
+
+				tableView.setEditing(false, animated: true)
+				whisper(messege: "Send session")
+			})
+			
+			actions?.append(sendSession)
+			
+		}else{
+			actions = []
+			let removePeer = UITableViewRowAction(style: .destructive, title: "Remove", handler: {action,path in
+				
+				let peer = self.appDelegate.pack.session.connectedPeers[path.row]
+				let action = NSMutableDictionary()
+				let actionType: NSNumber = NSNumber(value: ActionType.disconnectPeer.rawValue)
+				
+				action.setValue(actionType, forKey: "action")
+				action.setValue(peer.displayName, forKey: "peer")
+				
+				self.appDelegate.pack.send(action)
+				self.appDelegate.pack.session.cancelConnectPeer(peer)
+			})
+			actions?.append(removePeer)
+		}
+		
+		return actions
+	}
+	
 }
 
 extension SettingMenu: settingCellDelegate {
