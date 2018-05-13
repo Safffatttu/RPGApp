@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		newSession.current = true
 		
 		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.sessionReceived.hashValue)
+		let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
 		
 		action.setValue(actionType, forKey: "action")
 		action.setValue(sessionDictionary, forKey: "session")

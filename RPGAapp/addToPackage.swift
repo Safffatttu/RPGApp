@@ -96,7 +96,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
             NotificationCenter.default.post(name: .createdPackage, object: nil)
             
             let action = NSMutableDictionary()
-            let actionType = NSNumber(value: ActionType.packageDeleted.hashValue)
+            let actionType = NSNumber(value: ActionType.packageDeleted.rawValue)
             
             action.setValue(actionType, forKey: "action")
             action.setValue(packageId, forKey: "packageId")
@@ -177,7 +177,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         CoreDataStack.saveContext()
         
         let action = NSMutableDictionary()
-        let actionType = NSNumber(value: ActionType.packageCreated.hashValue)
+        let actionType = NSNumber(value: ActionType.packageCreated.rawValue)
         
         action.setValue(actionType, forKey: "action")
         action.setValue(newPackage.name, forKey: "packageName")
