@@ -115,23 +115,72 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     CoreDataStack.saveContext()
                     NotificationCenter.default.post(name: .createdPackage, object: nil)
                 }
+				
+				var request: ItemRequest? = nil
                 
                 if itemId != nil{
-                    let item = allItems.first(where: {$0.id == itemId})
-                        add(item!, to: package!, count: nil)
+					if let item = allItems.first(where: {$0.id == itemId}){
+                        add(item, to: package!, count: nil)
+					}else{
+						let subAction = NSMutableDictionary()
+						
+						let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+						
+						subAction.setValue(at, forKey: "at")
+						subAction.setValue(packageId, forKey: "packageId")
+						subAction.setValue(itemId, forKey: "itemId")
+						
+						request = ItemRequest(with: [itemId!], sender: sender, action: subAction)
+					}
                 }
                 else if (itemHandlerId != nil){
-                    let item = allItems.first(where: {$0.id == itemHandlerId})
-                    add(item!, to: package!, count: itemHandlerCount)
+					if let item = allItems.first(where: {$0.id == itemHandlerId}){
+						add(item, to: package!, count: itemHandlerCount)
+					}else{
+						let subAction = NSMutableDictionary()
+						
+						let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+						
+						subAction.setValue(at, forKey: "at")
+						subAction.setValue(packageId, forKey: "packageId")
+						subAction.setValue(itemId, forKey: "itemId")
+						subAction.setValue(itemHandlerCount, forKey: "itemsToAdd")
+						
+						request = ItemRequest(with: [itemId!], sender: sender, action: subAction)
+					}
                 }
                 else if(itemsHandlerId != nil){
-                    for i in 0...((itemsHandlerId?.count)! - 1){
-                        let id = itemsHandlerId?[i] as? String
-                        let count = itemsHandlerCount?[i] as? Int64
-                        let item = allItems.first(where: {$0.id == id})
-                        add(item!, to: package!, count: count)
-                    }
-                }
+					let subAction = NSMutableDictionary()
+					var itemsToRequest: [String] = []
+					let itemsToRequestCount = NSArray()
+					
+					
+					for i in 0...((itemsHandlerId?.count)! - 1){
+						guard let id = itemsHandlerId?[i] as? String else { continue }
+						guard let count = itemsHandlerCount?[i] as? Int64 else { continue }
+						if let item = allItems.first(where: {$0.id == id}){
+							add(item, to: package!, count: count)
+						}else{
+							itemsToRequest.append(id)
+							itemsToRequestCount.adding(count)
+						}
+					}
+					
+					let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+					
+					subAction.setValue(at, forKey: "at")
+					subAction.setValue(NSArray(array: itemsToRequest), forKey: "itemsToAdd")
+					subAction.setValue(itemsToRequestCount, forKey: "itemsToAddCount")
+					
+					request = ItemRequest(with: itemsToRequest, sender: sender, action: subAction)
+				}
+				
+				
+				if let req = request{
+					let appDelegate = UIApplication.shared.delegate as! AppDelegate
+					appDelegate.itemRequester.execute(request: req)
+				}
+				
                 NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
             }else if actionType == ActionType.disconnectPeer{
                 if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
@@ -337,6 +386,42 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				}
 				
 				NotificationCenter.default.post(name: .sessionReceived, object: nil)
+				
+			}else if actionType == ActionType.itemsRequest{
+				guard let itemsId = action.value(forKey: "itemsId") as? [String] else { return }
+				let requestId = action.value(forKey: "id")
+				
+				let response = NSMutableDictionary()
+				response.setValue(ActionType.itemsRequestResponse, forKey: "at")
+				
+				let itemsData = NSArray()
+				
+				for itemId in itemsId{
+					
+					guard let item = Load.item(with: itemId) else {
+						continue
+					}
+					
+					itemsData.adding(packItem(item))
+				}
+				
+				response.setValue(itemsData, forKey: "itemsData")
+				response.setValue(requestId, forKey: "requestId")
+				
+				let appDelegate = UIApplication.shared.delegate as! AppDelegate
+				let pack = appDelegate.pack
+				
+				pack.send(response, to: sender)
+				
+			}else if actionType == ActionType.itemsRequestResponse{
+				let itemsData = action.value(forKey: "itemsData") as! [NSDictionary]
+				let requestId = action.value(forKey: "id")
+				
+				for itemData in itemsData{
+					_ = unPackItem(from: itemData)
+				}
+				
+				NotificationCenter.default.post(name: .recievedItemData, object: requestId)
 			}
         }
     }

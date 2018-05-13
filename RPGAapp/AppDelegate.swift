@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     let pack = PackageService()
     let actionDelegate = ActionDelegate()
-    
+	let itemRequester = ItemRequester()
+	
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController

@@ -44,6 +44,8 @@
 		3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF0FEA1F5C946100135252 /* addToPackage.swift */; };
 		3BECB6CC1FBA53BA00A947E9 /* addCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */; };
 		3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */; };
+		3BF5EACB20A71E9C005FD6BC /* ItemRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5EACA20A71E9C005FD6BC /* ItemRequester.swift */; };
+		3BF5EACD20A72507005FD6BC /* DataPacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5EACC20A72507005FD6BC /* DataPacker.swift */; };
 		3BFEFA251F570A69008B0C12 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFEFA241F570A69008B0C12 /* CoreData.framework */; };
 		3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
@@ -120,6 +122,8 @@
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
 		3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCharacter.swift; sourceTree = "<group>"; };
 		3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowInfoPopOver.swift; sourceTree = "<group>"; };
+		3BF5EACA20A71E9C005FD6BC /* ItemRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRequester.swift; sourceTree = "<group>"; };
+		3BF5EACC20A72507005FD6BC /* DataPacker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPacker.swift; sourceTree = "<group>"; };
 		3BFEFA241F570A69008B0C12 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../CoreDataStack.swift; sourceTree = "<group>"; };
 		8AB0BAF53BA80927A2237D45 /* Pods-RPGAapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RPGAapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RPGAapp/Pods-RPGAapp.release.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */,
 				3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */,
 				3BBBBE88201A875800ECA86A /* LoadData.swift */,
+				3BF5EACA20A71E9C005FD6BC /* ItemRequester.swift */,
+				3BF5EACC20A72507005FD6BC /* DataPacker.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,
 				3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */,
 				3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */,
+				3BF5EACB20A71E9C005FD6BC /* ItemRequester.swift in Sources */,
 				3B7D23051F43468D00A86F3E /* catalogeSendPopoverViewController.swift in Sources */,
 				3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */,
 				3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */,
@@ -521,6 +528,7 @@
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */,
+				3BF5EACD20A72507005FD6BC /* DataPacker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
