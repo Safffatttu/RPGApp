@@ -69,10 +69,21 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         }
         return cell
     }
-    
-    func sendItem(_ sender: UIButton) {
-        let playerNum = getCurrentCellIndexPath(sender, tableView: self.tableView)?.row
-        let sendTo = team[playerNum!]
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		sendItem(playerNum: indexPath.row)
+	}
+	
+	func sendButtonPressed(_ sender: UIButton){
+		if let playerNum = getCurrentCellIndexPath(sender, tableView: self.tableView)?.row{
+			sendItem(playerNum: playerNum)
+		}
+	}
+	
+	
+	func sendItem(playerNum: Int) {
+
+        let sendTo = team[playerNum]
         var createdNewHandler = false
         
         if let itemToAdd = item {
@@ -132,7 +143,7 @@ class sendPopoverCell: UITableViewCell{
     weak var cellDelegate: sendPopoverDelegate?
     
     @IBAction func sendButtonAction(_ sender: UIButton){
-        cellDelegate?.sendItem(sender)
+        cellDelegate?.sendButtonPressed(sender)
     }
     
     @IBOutlet var sendButton: UIButton!
@@ -143,5 +154,5 @@ class sendPopoverCell: UITableViewCell{
 
 protocol sendPopoverDelegate: class{
     
-    func sendItem(_ sender: UIButton)
+    func sendButtonPressed(_ sender: UIButton)
 }
