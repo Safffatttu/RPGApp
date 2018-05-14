@@ -69,22 +69,6 @@ class SettingMenu: UITableViewController {
 		tableView.reloadData()
 	}
 	
-	func sendSession(_ sender: UILongPressGestureRecognizer) {
-		guard sender.state == .ended else { return }
-		
-		let touchPoint = sender.location(in: tableView)
-		guard let indexPath = tableView.indexPathForRow(at: touchPoint) else { return }
-		
-		guard sessions.count > indexPath.row - 1 && indexPath.row - 1 >= 0  else { return }
-		
-		let dict = packSessionForMessage(sessions[indexPath.row - 1])
-		let url = save(dictionary: dict)
-			
-		documenController = UIDocumentInteractionController(url: url)
-		
-		let rect = CGRect(origin: touchPoint, size: CGSize(width: 100, height: 100))
-		documenController.presentOptionsMenu(from: rect , in: tableView, animated: true)
-	}
 	
     func addedSession(_ notification: NSNotification){
         let session = notification.object as! Session
@@ -190,9 +174,6 @@ class SettingMenu: UITableViewController {
                 if sessions[indexPath.row - 1].current{
                     cell?.accessoryType = .checkmark
                 }
-				let longPress = UILongPressGestureRecognizer(target: self, action: #selector(sendSession(_:)))
-				
-				cell?.contentView.addGestureRecognizer(longPress)
 				
                 return cell!
             }
@@ -207,8 +188,8 @@ class SettingMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
-            let alert = UIAlertController(title: "?", message: "Czy na pewno chcesz zmienić sesję", preferredStyle: .alert)
-            
+            let alert = UIAlertController(title: nil, message: "Do you want to change session", preferredStyle: .alert)
+			
             let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
                 self.switchedSession(indexPath: indexPath)
                 
@@ -243,21 +224,33 @@ class SettingMenu: UITableViewController {
 			actions = []
 			let removeSession = UITableViewRowAction(style: .destructive, title: "Delete", handler: {action,path in
 			
-				let context = CoreDataStack.managedObjectContext
-				let session = self.sessions[path.row - 1]
-				let sessionId = session.id
-				self.sessions.remove(at: path.row - 1)
+				let alert = UIAlertController(title: nil, message: "Do you want to delet this session?", preferredStyle: .alert)
 				
-				tableView.deleteRows(at: [path], with: .automatic)
+				let alertYes = UIAlertAction(title: "Yes", style: .destructive, handler: { (_) -> Void in
+					
+					let context = CoreDataStack.managedObjectContext
+					let session = self.sessions[path.row - 1]
+					let sessionId = session.id
+					self.sessions.remove(at: path.row - 1)
+					
+					tableView.deleteRows(at: [path], with: .automatic)
+					
+					context.delete(session)
+					CoreDataStack.saveContext()
+					
+					let action = NSMutableDictionary()
+					let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
+					action.setValue(actionType, forKey: "action")
+					action.setValue(sessionId, forKey: "sessionId")
+					self.appDelegate.pack.send(action)
+				})
 				
-				context.delete(session)
-				CoreDataStack.saveContext()
+				let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
 				
-				let action = NSMutableDictionary()
-				let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
-				action.setValue(actionType, forKey: "action")
-				action.setValue(sessionId, forKey: "sessionId")
-				self.appDelegate.pack.send(action)
+				alert.addAction(alertYes)
+				alert.addAction(alertNo)
+				
+				self.present(alert, animated: true, completion: nil)
 			})
 				
 			actions?.append(removeSession)
@@ -282,6 +275,22 @@ class SettingMenu: UITableViewController {
 			})
 			
 			actions?.append(sendSession)
+			
+			let shareSession = UITableViewRowAction(style: .normal, title: "Share", handler: {action,path in
+				guard self.sessions.count > indexPath.row - 1 && indexPath.row - 1 >= 0  else { return }
+				
+				let dict = packSessionForMessage(self.sessions[indexPath.row - 1])
+				let url = save(dictionary: dict)
+				
+				self.documenController = UIDocumentInteractionController(url: url)
+				
+				let touchPoint = tableView.rectForRow(at: path)
+				self.documenController.presentOptionsMenu(from: touchPoint, in: tableView, animated: true)
+			})
+			
+			shareSession.backgroundColor = UIColor.darkGray
+			
+			actions?.append(shareSession)
 			
 		}else{
 			actions = []
