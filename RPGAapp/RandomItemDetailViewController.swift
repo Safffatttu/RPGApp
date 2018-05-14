@@ -57,7 +57,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         return self.diffCalculator?.rows.count ?? 0
     }
     
-    func reloadTableData(_ notification: Notification) {
+    func reloadTableData() {
         setDiffTable()
         diffCalculator?.rows = diffTable
     }
@@ -138,9 +138,11 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             let contex = CoreDataStack.managedObjectContext
             let handlerToRemove = randomlySelected[indexPath.row]
             randomlySelected.remove(at: indexPath.row)
+			
+			reloadTableData()
+			
             contex.delete(handlerToRemove)
             CoreDataStack.saveContext()
-            tableView.deleteRows(at: [indexPath], with: .left)
         }
     }
     
