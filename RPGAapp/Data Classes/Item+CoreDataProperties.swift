@@ -50,6 +50,6 @@ extension Item {
 
 extension Item: Equatable{
     func ==(lhs: Item, rhs: Item) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
 }
