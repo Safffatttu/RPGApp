@@ -23,6 +23,8 @@
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
 		3B3D3CBA1FFAD07B00AA9D0B /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */; };
 		3B3D3CBB1FFAD07B00AA9D0B /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */; };
+		3B48ED6520A9D63600DAA7CC /* TeamViewCellSubCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48ED6420A9D63600DAA7CC /* TeamViewCellSubCells.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
 		3B588E001FF30C0500715440 /* randomUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B588DFF1FF30C0500715440 /* randomUserTests.swift */; };
 		3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */; };
@@ -100,6 +102,8 @@
 		3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDetailViewController.swift; sourceTree = "<group>"; };
 		3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3B3C05301F3BC1D600CFB002 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewCell.swift; sourceTree = "<group>"; };
+		3B48ED6420A9D63600DAA7CC /* TeamViewCellSubCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewCellSubCells.swift; sourceTree = "<group>"; };
 		3B50DC011F40EB6B0040DCCC /* MPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPManager.swift; sourceTree = "<group>"; };
 		3B588DFF1FF30C0500715440 /* randomUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = randomUserTests.swift; sourceTree = "<group>"; };
 		3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,11 +234,13 @@
 		3B3C052F1F3BBE4E00CFB002 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				3BCD737F1F3C4E1400B35D75 /* TeamView.swift */,
 				3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */,
 				3B3C05301F3BC1D600CFB002 /* MapViewController.swift */,
 				3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */,
 				3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */,
+				3BCD737F1F3C4E1400B35D75 /* TeamView.swift */,
+				3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */,
+				3B48ED6420A9D63600DAA7CC /* TeamViewCellSubCells.swift */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -533,6 +539,7 @@
 				3BF5EACB20A71E9C005FD6BC /* ItemRequester.swift in Sources */,
 				3B7D23051F43468D00A86F3E /* catalogeSendPopoverViewController.swift in Sources */,
 				3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */,
+				3B48ED6520A9D63600DAA7CC /* TeamViewCellSubCells.swift in Sources */,
 				3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */,
 				3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */,
 				3B295D8820A8E3C4001DC35D /* DiceRollFunctions.swift in Sources */,
@@ -543,6 +550,7 @@
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
+				3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */,
 				3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */,
 				3BF5EACD20A72507005FD6BC /* DataPacker.swift in Sources */,
 			);

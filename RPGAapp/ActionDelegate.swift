@@ -71,7 +71,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 
                 CoreDataStack.saveContext()
                 
-                NotificationCenter.default.post(name: .itemAddedToCharacter, object: action)
+                NotificationCenter.default.post(name: .equipmentChanged, object: nil)
             }else if actionType == ActionType.characterCreated{
                 let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
                 
@@ -205,7 +205,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 if let handlerToRemove = (character?.equipment?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler){
                     character?.removeFromEquipment(handlerToRemove)
                     
-                    NotificationCenter.default.post(name: .itemDeletedFromCharacter, object: action)
+                    NotificationCenter.default.post(name: .equipmentChanged, object: nil)
                     
                     CoreDataStack.saveContext()
                 }
@@ -307,7 +307,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				CoreDataStack.saveContext()
 				
-				NotificationCenter.default.post(name: .reloadTeam, object: (characterId,abilityId))
+				NotificationCenter.default.post(name: .modifiedAbility, object: nil)
 				
 			}else if actionType == .valueOfAblilityChanged{
 				guard let characterId = action.value(forKey: "characterId") as? String else {return}
@@ -321,7 +321,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 
 				CoreDataStack.saveContext()
 				
-				NotificationCenter.default.post(name: .valueOfAbilityChanged, object: (characterId,abilityId))
+				NotificationCenter.default.post(name: .modifiedAbility, object: nil)
 				
 			}else if actionType == .removeAbility{
 				guard let characterId = action.value(forKey: "characterId") as? String else {return}
@@ -331,8 +331,6 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				guard let ability = character.abilities?.first(where: {($0 as! Ability).id == abilityId}) as? Ability else { return }
 				
-				let index = character.abilities?.sortedArray(using: [.sortAbilityByName]).index(where: {($0 as! Ability) == ability})
-				
 				let contex = CoreDataStack.managedObjectContext
 				
 				character.removeFromAbilities(ability)
@@ -340,7 +338,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				CoreDataStack.saveContext()
 				
-				NotificationCenter.default.post(name: .removedAbility, object: (characterId ,index))
+				NotificationCenter.default.post(name: .modifiedAbility, object: nil)
 				
 			}else if actionType == .removeCharacter{
 				guard let characterId = action.value(forKey: "characterId") as? String else { return }
@@ -368,7 +366,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				CoreDataStack.saveContext()
 				
-				NotificationCenter.default.post(name: .itemHandlerCountChanged, object: (characterId,itemId))
+				NotificationCenter.default.post(name: .equipmentChanged, object: nil)
 			
 			}else if actionType == .sessionReceived{
 				guard let session = action.value(forKey: "session") as? NSDictionary else { return }
