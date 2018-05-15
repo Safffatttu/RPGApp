@@ -65,5 +65,6 @@ extension Notification.Name{
     static let reloadTeam = Notification.Name("reloadTeam")
     static let equipmentChanged = Notification.Name("equipmentChanged")
     static let modifiedAbility = Notification.Name("modifiedAbility")
+	static let valueOfAblitityChanged = Notification.Name("valueOfAblitityChanged")
 
 }

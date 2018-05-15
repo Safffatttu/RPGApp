@@ -175,7 +175,8 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 extension TeamViewCell: AbilityCellDelegate{
 	
 	func modifiedAbility() {
-		
-		self.abilities = character.abilities?.allObjects as! [Ability]
+		if let abs = character.abilities?.allObjects as? [Ability]{
+			self.abilities = abs
+		}
 	}
 }

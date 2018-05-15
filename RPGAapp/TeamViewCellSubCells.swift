@@ -75,9 +75,20 @@ class abilityCell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		
-		let removeAbilityLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeAbility(_:)))
+		NotificationCenter.default.addObserver(self, selector: #selector(valueOfAblitityChanged(_:)), name: .valueOfAblitityChanged, object: nil)
 		
+		let removeAbilityLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeAbility(_:)))
 		self.contentView.addGestureRecognizer(removeAbilityLongPress)
+	}
+	
+	func valueOfAblitityChanged(_ notification: Notification){
+		guard let idOfChanged = notification.object as? String else{
+			return
+		}
+		
+		if ability.id == idOfChanged{
+			self.textLabel?.text = ability.name! + ": " + String(ability.value)
+		}
 	}
 	
 	func removeAbility(_ sender: UILongPressGestureRecognizer){

@@ -322,7 +322,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 
 				CoreDataStack.saveContext()
 				
-				NotificationCenter.default.post(name: .modifiedAbility, object: nil)
+				NotificationCenter.default.post(name: .valueOfAblitityChanged, object: abilityId)
 				
 			}else if actionType == .removeAbility{
 				guard let characterId = action.value(forKey: "characterId") as? String else {return}
