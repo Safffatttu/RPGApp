@@ -245,11 +245,12 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 
                 sessions.first(where: {$0.id == sessionId})?.current = true
             }else if actionType == .sessionDeleted{
-                let sessionId = action.value(forKey: "sessionId") as! String
+				guard UserDefaults.standard.bool(forKey: "syncSessionRemoval") == true else { return }
+				
+				let sessionId = action.value(forKey: "sessionId") as! String
                 
                 let context = CoreDataStack.managedObjectContext
                 let sessions: [Session] = Load.sessions()
-
 				
                 if let session = sessions.first(where: {$0.id == sessionId}){
                     let index = sessions.index(of: session)
