@@ -370,14 +370,33 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				NotificationCenter.default.post(name: .equipmentChanged, object: nil)
 			
 			}else if actionType == .sessionReceived{
-				guard let session = action.value(forKey: "session") as? NSDictionary else { return }
+				guard let sessionData = action.value(forKey: "session") as? NSDictionary else { return }
+				guard let sessionId = sessionData.value(forKey: "id") as? String else { return }
 				
-				
-				guard let newSession =  unPackSession(from: session) else { return }
-				
-				if let setCurrent = action.value(forKey: "setCurrent") as? Bool{
-					Load.sessions().first(where: {$0.current})?.current = false
-					newSession.current = setCurrent
+				if let session = Load.session(with: sessionId){
+					let alert = UIAlertController(title: "Recieved session with id of exising session", message: "Do you want to replace it or keep local version?", preferredStyle: .alert)
+					
+					let alertReplace = UIAlertAction(title: "Replace", style: .default, handler: { (_) in
+						let contex = CoreDataStack.managedObjectContext
+						
+						contex.delete(session)
+						
+					})
+					
+					let alertKeep = UIAlertAction(title: "Keep", style: .default, handler: nil)
+					
+					alert.addAction(alertReplace)
+					alert.addAction(alertKeep)
+					
+					let a = UIApplication.topViewController()
+					a?.present(alert, animated: true, completion: nil)
+				}else{
+					guard let newSession =  unPackSession(from: sessionData) else { return }
+					
+					if let setCurrent = action.value(forKey: "setCurrent") as? Bool{
+						Load.sessions().first(where: {$0.current})?.current = false
+						newSession.current = setCurrent
+					}
 				}
 				
 				NotificationCenter.default.post(name: .sessionReceived, object: nil)
