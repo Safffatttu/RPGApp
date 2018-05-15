@@ -17,13 +17,7 @@ class catalogeMenu: UITableViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
 	
-	var searchMode: Bool = false{
-		didSet{
-			if searchMode == false{
-				deleteTempSubCategory()
-			}
-		}
-	}
+	var searchMode: Bool = false
 	
     var filter: [String: Double?] = [:]
 	

@@ -16,22 +16,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible
     }
-    
-    func baseLoading(){
-        let alert = UIAlertController(title: "Title", message: "Proszę czekać", preferredStyle: .alert)
-        
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 50, y: 10, width: 37, height: 37))
-        loadingIndicator.center = self.view.center;
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        loadingIndicator.startAnimating();
-        
-        alert.setValue(loadingIndicator, forKey: "accessoryView")
-        loadingIndicator.startAnimating()
-        
-        self.show(alert, sender: nil)
-    }
-    
+     
     override func viewDidAppear(_ animated: Bool) {
         splitViewController?.preferredDisplayMode = .allVisible
     }

@@ -70,13 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 	}
     
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        let message = Message(title: "Enter your message here.", backgroundColor: .red)
-        
-        
-        let splitViewController = self.window!.rootViewController as! UISplitViewController
-        let navigationController = splitViewController.viewControllers.last as! UINavigationController
-        
-        Whisper.show(whisper: message, to: navigationController, action: .show)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
