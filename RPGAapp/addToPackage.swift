@@ -129,7 +129,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         if (itemToAdd != nil){
             add((itemToAdd?.item!)!, to: package, count: itemToAdd?.count)
         }
-        else if(itemsToAdd.count == 0){
+        else{
             for item in itemsToAdd{
                 add(item.item!, to: package, count: item.count)
             }
