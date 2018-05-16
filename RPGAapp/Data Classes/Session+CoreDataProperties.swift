@@ -2,7 +2,7 @@
 //  Session+CoreDataProperties.swift
 //  
 //
-//  Created by Jakub on 23.11.2017.
+//  Created by Jakub on 16.05.2018.
 //
 //
 
@@ -16,14 +16,15 @@ extension Session {
         return NSFetchRequest<Session>(entityName: "Session")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var current: Bool
+    @NSManaged public var devices: NSObject?
     @NSManaged public var gameMaster: String?
     @NSManaged public var gameMasterName: String?
-    @NSManaged public var current: Bool
     @NSManaged public var id: String?
-    @NSManaged public var devices: NSSet?
+    @NSManaged public var name: String?
     @NSManaged public var characters: NSSet?
     @NSManaged public var packages: NSSet?
+    @NSManaged public var maps: NSSet?
 
 }
 
@@ -58,5 +59,22 @@ extension Session {
 
     @objc(removePackages:)
     @NSManaged public func removeFromPackages(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for maps
+extension Session {
+
+    @objc(addMapsObject:)
+    @NSManaged public func addToMaps(_ value: Map)
+
+    @objc(removeMapsObject:)
+    @NSManaged public func removeFromMaps(_ value: Map)
+
+    @objc(addMaps:)
+    @NSManaged public func addToMaps(_ values: NSSet)
+
+    @objc(removeMaps:)
+    @NSManaged public func removeFromMaps(_ values: NSSet)
 
 }

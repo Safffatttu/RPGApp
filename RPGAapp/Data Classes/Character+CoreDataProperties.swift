@@ -18,15 +18,15 @@ extension Character {
 
     @NSManaged public var health: Double
     @NSManaged public var id: String
-    @NSManaged public var name: String?
+	@NSManaged public var name: String?
     @NSManaged public var profession: String?
     @NSManaged public var race: String?
+    @NSManaged public var abilities: NSSet?
     @NSManaged public var equipment: NSSet?
     @NSManaged public var session: Session?
-    @NSManaged public var abilities: NSSet?
+    @NSManaged public var mapRepresentation: MapThing?
 
 }
-
 // MARK: Generated accessors for equipment
 extension Character {
 
