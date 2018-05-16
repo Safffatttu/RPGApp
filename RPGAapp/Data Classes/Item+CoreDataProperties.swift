@@ -48,8 +48,3 @@ extension Item {
 
 }
 
-extension Item: Equatable{
-    func ==(lhs: Item, rhs: Item) -> Bool {
-        return lhs.id == rhs.id
-    }
-}

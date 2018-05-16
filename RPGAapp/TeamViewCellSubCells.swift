@@ -29,7 +29,7 @@ class newAbilityCell: UITableViewCell,UITextFieldDelegate{
 			
 			newAbility.name = text
 			newAbility.character = character
-			newAbility.id = String(strHash(newAbility.name! + (newAbility.character?.id)! + String(describing: Date())))
+			newAbility.id = String(strHash(newAbility.name + newAbility.character.id + String(describing: Date())))
 			
 			CoreDataStack.saveContext()
 			
@@ -87,7 +87,7 @@ class abilityCell: UITableViewCell {
 		}
 		
 		if ability.id == idOfChanged{
-			self.textLabel?.text = ability.name! + ": " + String(ability.value)
+			self.textLabel?.text = ability.name + ": " + String(ability.value)
 		}
 	}
 	
@@ -135,7 +135,7 @@ class abilityCell: UITableViewCell {
 		
 		CoreDataStack.saveContext()
 		
-		self.textLabel?.text = (ability.name)! + ": " + String(describing: (ability.value))
+		self.textLabel?.text = ability.name + ": " + String(describing: ability.value)
 		
 		let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.valueOfAblilityChanged.rawValue)

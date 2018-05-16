@@ -78,7 +78,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 newCharacter.name = action.value(forKey: #keyPath(Character.name)) as? String
                 newCharacter.health = action.value(forKey: #keyPath(Character.health)) as! Double
                 newCharacter.race = action.value(forKey: #keyPath(Character.race)) as? String
-                newCharacter.id = action.value(forKey: #keyPath(Character.id)) as? String
+                newCharacter.id = (action.value(forKey: #keyPath(Character.id)) as? String)!
                 newCharacter.profession = action.value(forKey: #keyPath(Character.profession)) as? String
                 
                 let session = getCurrentSession()

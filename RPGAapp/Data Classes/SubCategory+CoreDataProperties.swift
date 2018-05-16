@@ -40,8 +40,3 @@ extension SubCategory {
     
 }
 
-extension SubCategory: Equatable{
-    func ==(lhs: SubCategory, rhs: SubCategory) -> Bool {
-        return lhs.name == rhs.name
-    }
-}
