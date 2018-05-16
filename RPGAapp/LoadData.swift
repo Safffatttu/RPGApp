@@ -208,8 +208,9 @@ public struct Load {
         
         return character
     }
-    
+	
+	public static func currentMap(session: Session) -> Map{
+		return session.maps?.filter({($0 as! Map).current}).first as! Map
+	}
+	
 }
-
-
-

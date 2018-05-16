@@ -29,6 +29,7 @@
 		3B588E001FF30C0500715440 /* randomUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B588DFF1FF30C0500715440 /* randomUserTests.swift */; };
 		3B709CE820ACA29600D5825E /* MapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B709CE720ACA29600D5825E /* MapScene.swift */; };
 		3B709CEA20ACA33E00D5825E /* MapScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3B709CE920ACA33E00D5825E /* MapScene.sks */; };
+		3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B709CEB20ACA9F400D5825E /* MapHelperFunctions.swift */; };
 		3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
 		3B7B159D1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159C1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift */; };
@@ -111,6 +112,7 @@
 		3B588DFF1FF30C0500715440 /* randomUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = randomUserTests.swift; sourceTree = "<group>"; };
 		3B709CE720ACA29600D5825E /* MapScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapScene.swift; sourceTree = "<group>"; };
 		3B709CE920ACA33E00D5825E /* MapScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MapScene.sks; sourceTree = "<group>"; };
+		3B709CEB20ACA9F400D5825E /* MapHelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelperFunctions.swift; sourceTree = "<group>"; };
 		3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B73F9211F8FB04900EA7E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
@@ -254,9 +256,10 @@
 		3B709CE620ACA26B00D5825E /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				3B3C05301F3BC1D600CFB002 /* MapViewController.swift */,
 				3B709CE720ACA29600D5825E /* MapScene.swift */,
 				3B709CE920ACA33E00D5825E /* MapScene.sks */,
+				3B3C05301F3BC1D600CFB002 /* MapViewController.swift */,
+				3B709CEB20ACA9F400D5825E /* MapHelperFunctions.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */,
 				3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */,
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
+				3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */,
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */,
@@ -741,15 +745,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = YES;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SMH62TPPHV;
-				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_PROFILING_CODE = NO;
 				INFOPLIST_FILE = RPGAapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LLVM_LTO = YES;
+				LLVM_LTO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -771,6 +775,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SMH62TPPHV;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;

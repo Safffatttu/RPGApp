@@ -46,7 +46,13 @@ class addCharacter: UIViewController {
         let session = getCurrentSession()
         
         session.addToCharacters(newCharacter)
-        
+		
+		let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
+		
+		newMapEntity.character = newCharacter
+		newMapEntity.id = newCharacter.id
+		newMapEntity.map = Load.currentMap(session: session)
+		
         CoreDataStack.saveContext()
         
         NotificationCenter.default.post(name: .reloadTeam, object: nil)

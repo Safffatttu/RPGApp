@@ -307,7 +307,15 @@ func getCurrentSession(orCreateNew: Bool = true) -> Session{
         session.gameMaster = UIDevice.current.name
         session.current = true
         session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
-        CoreDataStack.saveContext()
+		
+		let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
+		
+		newMap.id = String(strHash(session.id!)) + String(describing: Date())
+		newMap.current = true
+		
+		session.addToMaps(newMap)
+		
+		CoreDataStack.saveContext()
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         

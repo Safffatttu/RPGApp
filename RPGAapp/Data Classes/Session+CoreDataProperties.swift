@@ -23,8 +23,8 @@ extension Session {
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var characters: NSSet?
-    @NSManaged public var packages: NSSet?
     @NSManaged public var maps: NSSet?
+    @NSManaged public var packages: NSSet?
 
 }
 
@@ -45,23 +45,6 @@ extension Session {
 
 }
 
-// MARK: Generated accessors for packages
-extension Session {
-
-    @objc(addPackagesObject:)
-    @NSManaged public func addToPackages(_ value: Package)
-
-    @objc(removePackagesObject:)
-    @NSManaged public func removeFromPackages(_ value: Package)
-
-    @objc(addPackages:)
-    @NSManaged public func addToPackages(_ values: NSSet)
-
-    @objc(removePackages:)
-    @NSManaged public func removeFromPackages(_ values: NSSet)
-
-}
-
 // MARK: Generated accessors for maps
 extension Session {
 
@@ -76,5 +59,22 @@ extension Session {
 
     @objc(removeMaps:)
     @NSManaged public func removeFromMaps(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for packages
+extension Session {
+
+    @objc(addPackagesObject:)
+    @NSManaged public func addToPackages(_ value: Package)
+
+    @objc(removePackagesObject:)
+    @NSManaged public func removeFromPackages(_ value: Package)
+
+    @objc(addPackages:)
+    @NSManaged public func addToPackages(_ values: NSSet)
+
+    @objc(removePackages:)
+    @NSManaged public func removeFromPackages(_ values: NSSet)
 
 }

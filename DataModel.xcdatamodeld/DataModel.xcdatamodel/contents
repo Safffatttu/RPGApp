@@ -19,7 +19,7 @@
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="abilities" toMany="YES" deletionRule="Cascade" destinationEntity="Ability" inverseName="character" inverseEntity="Ability" syncable="YES"/>
         <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
-        <relationship name="mapRepresentation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapThing" inverseName="character" inverseEntity="MapThing" syncable="YES"/>
+        <relationship name="mapRepresentation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapEntity" inverseName="character" inverseEntity="MapEntity" syncable="YES"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="characters" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Currency" representedClassName="Currency" syncable="YES" codeGenerationType="class">
@@ -72,20 +72,21 @@
     </entity>
     <entity name="Map" representedClassName="Map" syncable="YES" codeGenerationType="class">
         <attribute name="background" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="current" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="entities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MapEntity" inverseName="map" inverseEntity="MapEntity" syncable="YES"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="maps" inverseEntity="Session" syncable="YES"/>
-        <relationship name="things" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapThing" inverseName="map" inverseEntity="MapThing" syncable="YES"/>
     </entity>
-    <entity name="MapThing" representedClassName="MapThing" syncable="YES" codeGenerationType="class">
+    <entity name="MapEntity" representedClassName="MapEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="texture" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="mapRepresentation" inverseEntity="Character" syncable="YES"/>
-        <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="things" inverseEntity="Map" syncable="YES"/>
+        <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="entities" inverseEntity="Map" syncable="YES"/>
     </entity>
     <entity name="Package" representedClassName="Package" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -100,9 +101,9 @@
         <attribute name="gameMasterName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
-        <relationship name="maps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Map" inverseName="session" inverseEntity="Map" syncable="YES"/>
-        <relationship name="packages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
+        <relationship name="maps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Map" inverseName="session" inverseEntity="Map" syncable="YES"/>
+        <relationship name="packages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
     </entity>
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
         <attribute name="budget" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -134,9 +135,9 @@
     </entity>
     <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
-        <element name="Ability" positionX="-513" positionY="-9" width="128" height="105"/>
+        <element name="Ability" positionX="-596" positionY="-150" width="128" height="105"/>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
-        <element name="Character" positionX="-425" positionY="72" width="128" height="178"/>
+        <element name="Character" positionX="-585" positionY="74" width="128" height="178"/>
         <element name="Currency" positionX="-270" positionY="-163" width="128" height="88"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="73"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="148"/>
@@ -144,14 +145,14 @@
         <element name="ItemAtribute" positionX="-29" positionY="270" width="128" height="133"/>
         <element name="ItemAtributeHandler" positionX="-191" positionY="225" width="128" height="58"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="88"/>
+        <element name="Map" positionX="-983" positionY="117" width="128" height="163"/>
+        <element name="MapEntity" positionX="-774" positionY="270" width="128" height="133"/>
         <element name="Package" positionX="-452" positionY="-81" width="128" height="105"/>
-        <element name="Session" positionX="-720" positionY="-54" width="128" height="178"/>
+        <element name="Session" positionX="-803" positionY="-126" width="128" height="180"/>
         <element name="Store" positionX="-576" positionY="404" width="126" height="118"/>
         <element name="StoreAvalibleItem" positionX="-450" positionY="261" width="128" height="75"/>
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
         <element name="SubCategory" positionX="153" positionY="-43" width="128" height="105"/>
         <element name="SubCurrency" positionX="-83" positionY="-153" width="128" height="73"/>
-        <element name="Map" positionX="-983" positionY="153" width="128" height="148"/>
-        <element name="MapThing" positionX="-711" positionY="225" width="128" height="135"/>
     </elements>
 </model>
