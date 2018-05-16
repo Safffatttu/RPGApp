@@ -153,7 +153,7 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func done(_ sender: UIBarButtonItem){
-        setting?.name = drawSettingNameField.text
+        setting?.name = drawSettingNameField.text!
         CoreDataStack.saveContext()
         NotificationCenter.default.post(name: .reloadDrawSettings, object: nil)
         dismiss(animated: true, completion: nil)
