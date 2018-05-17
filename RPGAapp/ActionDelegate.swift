@@ -80,9 +80,22 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 newCharacter.race = action.value(forKey: #keyPath(Character.race)) as? String
                 newCharacter.id = action.value(forKey: #keyPath(Character.id)) as? String
                 newCharacter.profession = action.value(forKey: #keyPath(Character.profession)) as? String
-                
+				
+				guard let mapEntityId = action.value(forKey: "mapEntityId") as? String else { return }
+				guard let mapEntityPosX = action.value(forKey: "mapEntityPosX") as? Double else { return }
+				guard let mapEntityPosY = action.value(forKey: "mapEntityPosY") as? Double else { return }
+				guard let mapId = action.value(forKey: "mapId") as? String else { return }
+				
                 let session = getCurrentSession()
-                
+				
+				let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
+				
+				newMapEntity.character = newCharacter
+				newMapEntity.id = mapEntityId
+				newMapEntity.x = mapEntityPosX
+				newMapEntity.y = mapEntityPosY
+				newMapEntity.map = Load.currentMap(session: session)
+				
                 session.addToCharacters(newCharacter)
                 
                 CoreDataStack.saveContext()
@@ -215,6 +228,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 let gameMasterName = action.value(forKey: "gameMasterName") as? String
                 let sessionId = action.value(forKey: "sessionId") as? String
                 let sessionDevices = action.value(forKey: "sessionDevices") as? NSSet
+				let mapId = action.value(forKey: "mapId") as? String
                 let context = CoreDataStack.managedObjectContext
                 
                 let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
@@ -224,7 +238,14 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 session.gameMasterName = gameMasterName
                 session.id = sessionId
                 session.devices = sessionDevices
-                
+				
+				let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
+				
+				newMap.id = mapId
+				newMap.current = true
+				
+				session.addToMaps(newMap)
+				
                 CoreDataStack.saveContext()
                 
                 let sessions: [Session] = Load.sessions()
