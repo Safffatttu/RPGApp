@@ -270,6 +270,7 @@
 				3B3C052F1F3BBE4E00CFB002 /* Detail */,
 				3BF480AD1F44DBC50017169D /* Popover */,
 				3B9D6BDC1FB907E100474C71 /* Networking */,
+				3BDBD9CD20ACD45500E0EB62 /* Data Classes */,
 				3B9D6BDD1FB907F400474C71 /* Data */,
 				3B295D8420A8E303001DC35D /* Utilities */,
 			);
@@ -347,7 +348,6 @@
 		3B9D6BDD1FB907F400474C71 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				3BDBD9CD20ACD45500E0EB62 /* New Group */,
 				3B063D6B1F3A21A800B5271C /* Assets.xcassets */,
 				3B063D701F3A21A800B5271C /* Info.plist */,
 				3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */,
@@ -369,7 +369,7 @@
 			path = RPGAappUITests;
 			sourceTree = "<group>";
 		};
-		3BDBD9CD20ACD45500E0EB62 /* New Group */ = {
+		3BDBD9CD20ACD45500E0EB62 /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
 				3BDBDA0A20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift */,
@@ -405,7 +405,7 @@
 				3BDBD9EA20ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift */,
 				3BDBD9EB20ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift */,
 			);
-			name = "New Group";
+			name = "Data Classes";
 			sourceTree = "<group>";
 		};
 		3BF480AD1F44DBC50017169D /* Popover */ = {
@@ -876,7 +876,7 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SMH62TPPHV;
@@ -890,6 +890,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
