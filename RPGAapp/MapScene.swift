@@ -33,7 +33,6 @@ class MapScene: SKScene{
 	
 	var mapThings: [(MapEntity,SKSpriteNode)] = []
 	
-	
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
 		
@@ -58,6 +57,7 @@ class MapScene: SKScene{
 		print(mapThings.map({$0.1}))
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(mapEntityMoved(_:)) , name: .mapEntityMoved, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadEntities), name: .reloadTeam, object: nil)
 	}
 	
 	func mapEntityMoved(_ sender: Notification){
@@ -71,6 +71,13 @@ class MapScene: SKScene{
 		let moveToAction = SKAction.move(to: newPos, duration: 0.4)
 		
 		sprite.run(moveToAction)
+	}
+	
+	func reloadEntities(){
+		for sprite in mapThings.map({$0.1}){
+			sprite.run(SKAction.hide())
+		}
+		map = Load.currentMap(session: getCurrentSession())
 	}
 	
 	var previousX: CGFloat = 1
@@ -151,7 +158,6 @@ class MapScene: SKScene{
 		for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
 	}
 	
-	
 	func panForTranslation(translation: CGPoint, node: SKSpriteNode) {
 		let position = node.position
 		
@@ -166,6 +172,12 @@ class MapScene: SKScene{
 
 			node.removeAllActions()
 			node.run(scaleBack)
+			
+			let entity = mapThings.filter({$0.1 == node}).first?.0
+			entity?.x = Double(node.position.x)
+			entity?.y = Double(node.position.y)
+			
+			CoreDataStack.saveContext()
 			
 			let action = NSMutableDictionary()
 			let at = NSNumber(value: ActionType.mapEntityMoved.rawValue)
@@ -200,4 +212,3 @@ class MapScene: SKScene{
 extension Notification.Name{
 	static let mapEntityMoved = Notification.Name("mapEntityMoved")
 }
-
