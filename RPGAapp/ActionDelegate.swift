@@ -436,6 +436,21 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				}
 				
 				NotificationCenter.default.post(name: .recievedItemData, object: requestId)
+			}else if actionType == ActionType.mapEntityMoved{
+				guard let entityId = action.value(forKey: "entityId") as? String else { return }
+				guard let posX = action.value(forKey: "posX") as? Double else { return }
+				guard let posY = action.value(forKey: "posY") as? Double else { return }
+				
+				guard let entity = Load.mapEntity(withId: entityId) else { return }
+				
+				entity.x = posX
+				entity.y = posY
+				
+				CoreDataStack.saveContext()
+				
+				let newPos = CGPoint(x: posX, y: posY)
+				
+				NotificationCenter.default.post(name: .mapEntityMoved, object: (entity, newPos))
 			}
         }
     }

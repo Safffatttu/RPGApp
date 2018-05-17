@@ -57,6 +57,20 @@ class MapScene: SKScene{
 		self.view?.addGestureRecognizer(rotation)
 		print(mapThings.map({$0.1}))
 		
+		NotificationCenter.default.addObserver(self, selector: #selector(mapEntityMoved(_:)) , name: .mapEntityMoved, object: nil)
+	}
+	
+	func mapEntityMoved(_ sender: Notification){
+		guard let object = sender.object as? (MapEntity, CGPoint) else { return }
+		
+		let entity = object.0
+		let newPos = object.1
+		
+		guard let sprite = mapThings.filter({$0.0 == entity}).first?.1 else { return }
+		
+		let moveToAction = SKAction.move(to: newPos, duration: 0.4)
+		
+		sprite.run(moveToAction)
 	}
 	
 	var previousX: CGFloat = 1
@@ -148,12 +162,24 @@ class MapScene: SKScene{
 		if let node = selectedNode{
 			let scaleFactor = 30/node.size.width
 			
-			print(scaleFactor)
 			let scaleBack = SKAction.scale(by: scaleFactor, duration: 0.2)
 
 			node.removeAllActions()
 			node.run(scaleBack)
 			
+			let action = NSMutableDictionary()
+			let at = NSNumber(value: ActionType.mapEntityMoved.rawValue)
+			
+			action.setValue(at, forKey: "action")
+			action.setValue(Double(node.position.x), forKey: "posX")
+			action.setValue(Double(node.position.y), forKey: "posY")
+			
+			let entityId = mapThings.filter({$0.1 == node}).first!.0.id!
+			action.setValue(entityId, forKey: "entityId")
+			
+			let appDelegate = UIApplication.shared.delegate as! AppDelegate
+			appDelegate.pack.send(action)
+						
 			selectedNode = nil
 		}
 		
@@ -169,5 +195,9 @@ class MapScene: SKScene{
 		// Called before each frame is rendered
 	}
 	
-	
 }
+
+extension Notification.Name{
+	static let mapEntityMoved = Notification.Name("mapEntityMoved")
+}
+
