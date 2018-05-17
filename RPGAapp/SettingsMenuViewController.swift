@@ -333,7 +333,14 @@ extension SettingMenu: settingCellDelegate {
         session.gameMaster = UIDevice.current.name
         session.current = true
         session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
-        
+		
+		let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
+		
+		newMap.id = String(strHash(session.id!)) + String(describing: Date())
+		newMap.current = true
+		
+		session.addToMaps(newMap)
+		
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         var devices = appDelegate.pack.session.connectedPeers.map{$0.displayName}
@@ -367,6 +374,7 @@ extension SettingMenu: settingCellDelegate {
         action.setValue(session.gameMasterName, forKey: "gameMasterName")
         action.setValue(session.id, forKey: "sessionId")
         action.setValue(session.devices, forKey: "sessionDevices")
+		action.setValue(newMap.id, forKey: "mapId")
         
         appDelegate.pack.send(action)
     }

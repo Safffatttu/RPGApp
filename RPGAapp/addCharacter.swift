@@ -68,7 +68,12 @@ class addCharacter: UIViewController {
         action.setValue(newCharacter.race, forKey: #keyPath(Character.race))
         action.setValue(newCharacter.id, forKey: #keyPath(Character.id))
         action.setValue(newCharacter.profession, forKey: #keyPath(Character.profession))
-     
+		
+		action.setValue(newMapEntity.id, forKey: "mapEntityId")
+		action.setValue(newMapEntity.x, forKey: "mapEntityPosX")
+		action.setValue(newMapEntity.y, forKey: "mapEntityPosY")
+		action.setValue(newMapEntity.map?.id, forKey: "mapId")
+		
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.pack.send(action)
