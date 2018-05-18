@@ -130,8 +130,17 @@ class MapScene: SKScene{
 		
 		selectedNode = touchedNode as? SKSpriteNode
 		
+		let sendPositionAction = SKAction.run {
+				if let node = self.selectedNode{
+					self.sendPositionData(node: node)
+			}
+		}
+		
 		let sequence = SKAction.sequence([SKAction.scale(by: 2, duration: 0.4),
-										  SKAction.scale(by: 2, duration: 0.4).reversed()])
+		                                  sendPositionAction,
+										  SKAction.scale(by: 2, duration: 0.4).reversed(),
+										  sendPositionAction])
+
 		selectedNode?.run(SKAction.repeatForever(sequence))
 	}
 	
@@ -184,18 +193,7 @@ class MapScene: SKScene{
 			
 			CoreDataStack.saveContext()
 			
-			let action = NSMutableDictionary()
-			let at = NSNumber(value: ActionType.mapEntityMoved.rawValue)
-			
-			action.setValue(at, forKey: "action")
-			action.setValue(Double(node.position.x), forKey: "posX")
-			action.setValue(Double(node.position.y), forKey: "posY")
-			
-			let entityId = mapThings.filter({$0.1 == node}).first!.0.id!
-			action.setValue(entityId, forKey: "entityId")
-			
-			let appDelegate = UIApplication.shared.delegate as! AppDelegate
-			appDelegate.pack.send(action)
+			sendPositionData(node: node)
 						
 			selectedNode = nil
 		}
@@ -210,6 +208,21 @@ class MapScene: SKScene{
 	
 	override func update(_ currentTime: TimeInterval) {
 		// Called before each frame is rendered
+	}
+	
+	func sendPositionData(node: SKSpriteNode){
+		let action = NSMutableDictionary()
+		let at = NSNumber(value: ActionType.mapEntityMoved.rawValue)
+		
+		action.setValue(at, forKey: "action")
+		action.setValue(Double(node.position.x), forKey: "posX")
+		action.setValue(Double(node.position.y), forKey: "posY")
+		
+		let entityId = mapThings.filter({$0.1 == node}).first!.0.id!
+		action.setValue(entityId, forKey: "entityId")
+		
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		appDelegate.pack.send(action)
 	}
 	
 }
