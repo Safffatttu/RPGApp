@@ -356,7 +356,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				NotificationCenter.default.post(name: .equipmentChanged, object: nil)
 			
-			}else if actionType == .sessionCreated{
+			}else if actionType == ActionType.sessionReceived{
 				guard let sessionData = action.value(forKey: "session") as? NSDictionary else { return }
 				guard let sessionId = sessionData.value(forKey: "id") as? String else { return }
 				

@@ -74,7 +74,8 @@ class SettingMenu: UITableViewController {
         
         let index = sessions.index(where: {$0.id == sessionId})
         guard index != nil else {
-            return
+			sessionReceived()
+			return
         }
         let indexPath = IndexPath(row: index! + 1, section: 1)
         
