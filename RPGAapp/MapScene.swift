@@ -42,7 +42,7 @@ class MapScene: SKScene{
 		
 		map = Load.currentMap(session: getCurrentSession())
 		
-		let mapa = SKSpriteNode(imageNamed: "mapa")
+		let mapa = SKSpriteNode(imageNamed: "mapaPiraci")
 		mapa.name = "mapa"
 		self.addChild(mapa)
 		print(self.size)
@@ -125,8 +125,8 @@ class MapScene: SKScene{
 		
 		selectedNode = touchedNode as? SKSpriteNode
 		
-		let sequence = SKAction.sequence([SKAction.scale(by: 2, duration: 0.2),
-										  SKAction.scale(by: 2, duration: 0.2).reversed()])
+		let sequence = SKAction.sequence([SKAction.scale(by: 2, duration: 0.4),
+										  SKAction.scale(by: 2, duration: 0.4).reversed()])
 		selectedNode?.run(SKAction.repeatForever(sequence))
 	}
 	
