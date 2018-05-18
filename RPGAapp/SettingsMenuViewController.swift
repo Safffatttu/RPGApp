@@ -147,7 +147,7 @@ class SettingMenu: UITableViewController {
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
-                cell?.textLabel?.text = sessions[indexPath.row - 1].name
+                cell?.textLabel?.text = sessions[indexPath.row - 1].name! + " " + String((sessions[indexPath.row - 1].id?.characters.suffix(4))!)
                 cell?.selectionStyle = .none
                 cell?.accessoryType = .none
                 if sessions[indexPath.row - 1].current{
@@ -308,7 +308,7 @@ extension SettingMenu: settingCellDelegate {
     func pressedButton(_ sender: UIButton) {
         let context = CoreDataStack.managedObjectContext
         let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-        session.name = "Nowa sesja" + String(describing: sessions.count)
+        session.name = "Sesja"
         session.gameMaster = UIDevice.current.name
         session.current = true
         session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
