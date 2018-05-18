@@ -406,12 +406,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/RandomItemMenuViewController.swift"
-                  timestampString = "548286004.461073"
+                  timestampString = "548325485.342532"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "311"
                   endingLineNumber = "311"
-                  offsetFromSymbolStart = "692">
+                  offsetFromSymbolStart = "708">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -421,12 +421,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/RandomItemMenuViewController.swift"
-                  timestampString = "548286004.462216"
+                  timestampString = "548325485.3436069"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "311"
                   endingLineNumber = "311"
-                  offsetFromSymbolStart = "5415">
+                  offsetFromSymbolStart = "5296">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -569,6 +569,15 @@
                </BreakpointActionProxy>
             </Actions>
             <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__clang_call_terminate"
+                  moduleName = "libglInterpose.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "13328">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -603,12 +612,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/addToPackage.swift"
-                  timestampString = "548286004.472743"
+                  timestampString = "548325491.261696"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "111"
                   endingLineNumber = "111"
-                  offsetFromSymbolStart = "26">
+                  offsetFromSymbolStart = "36">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -618,12 +627,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/addToPackage.swift"
-                  timestampString = "548286004.473881"
+                  timestampString = "548325491.262959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "111"
                   endingLineNumber = "111"
-                  offsetFromSymbolStart = "58">
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -683,12 +692,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.481676"
+                  timestampString = "548325491.270507"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
                   endingLineNumber = "110"
-                  offsetFromSymbolStart = "17">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -698,12 +707,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.48279"
+                  timestampString = "548325491.271513"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
                   endingLineNumber = "110"
-                  offsetFromSymbolStart = "390">
+                  offsetFromSymbolStart = "440">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -761,12 +770,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.488766"
+                  timestampString = "548325491.2763849"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
                   endingLineNumber = "61"
-                  offsetFromSymbolStart = "271">
+                  offsetFromSymbolStart = "288">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -776,12 +785,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.489859"
+                  timestampString = "548325491.2774791"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "61"
                   endingLineNumber = "61"
-                  offsetFromSymbolStart = "1731">
+                  offsetFromSymbolStart = "1644">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -809,12 +818,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.492501"
+                  timestampString = "548325491.280154"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
                   endingLineNumber = "63"
-                  offsetFromSymbolStart = "1085">
+                  offsetFromSymbolStart = "1100">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -824,12 +833,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.493502"
+                  timestampString = "548325491.281418"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
                   endingLineNumber = "63"
-                  offsetFromSymbolStart = "1714">
+                  offsetFromSymbolStart = "1628">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -857,12 +866,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.496442"
+                  timestampString = "548325491.285465"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
                   endingLineNumber = "69"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -872,12 +881,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.497485"
+                  timestampString = "548325491.28666"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
                   endingLineNumber = "69"
-                  offsetFromSymbolStart = "52">
+                  offsetFromSymbolStart = "60">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1033,12 +1042,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.5127701"
+                  timestampString = "548325491.298478"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
                   endingLineNumber = "34"
-                  offsetFromSymbolStart = "48">
+                  offsetFromSymbolStart = "80">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1048,12 +1057,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.513759"
+                  timestampString = "548325491.299662"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
                   endingLineNumber = "34"
-                  offsetFromSymbolStart = "73">
+                  offsetFromSymbolStart = "96">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1081,12 +1090,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.516691"
+                  timestampString = "548325491.3021539"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "33"
                   endingLineNumber = "33"
-                  offsetFromSymbolStart = "10">
+                  offsetFromSymbolStart = "16">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1096,12 +1105,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/PackageViewer.swift"
-                  timestampString = "548286004.517766"
+                  timestampString = "548325491.303355"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "33"
                   endingLineNumber = "33"
-                  offsetFromSymbolStart = "23">
+                  offsetFromSymbolStart = "36">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1176,11 +1185,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/SettingsMenuViewController.swift"
-            timestampString = "548016377.923967"
+            timestampString = "548327741.237864"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "switchedSession(indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1192,11 +1201,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/SettingsMenuViewController.swift"
-            timestampString = "548016377.923967"
+            timestampString = "548327741.237864"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "switchedSession(indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1208,11 +1217,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/SettingsMenuViewController.swift"
-            timestampString = "548016377.923967"
+            timestampString = "548327741.237864"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "switchedSession(indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1256,11 +1265,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/ActionDelegate.swift"
-            timestampString = "548282339.415053"
+            timestampString = "548327409.532596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "recieved(_:from:manager:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1272,11 +1281,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/ActionDelegate.swift"
-            timestampString = "548282339.415053"
+            timestampString = "548327409.532596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "363"
+            endingLineNumber = "363"
             landmarkName = "recieved(_:from:manager:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1373,8 +1382,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
             endingLineNumber = "134"
-            landmarkName = "MapScene"
-            landmarkType = "3">
+            landmarkName = "degToRad(degree:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1389,8 +1398,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
             endingLineNumber = "136"
-            landmarkName = "degToRad(degree:)"
-            landmarkType = "7">
+            landmarkName = "MapScene"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1416,12 +1425,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
-                  timestampString = "548286004.5522619"
+                  timestampString = "548325491.321403"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
                   endingLineNumber = "18"
-                  offsetFromSymbolStart = "54">
+                  offsetFromSymbolStart = "56">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1431,12 +1440,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
-                  timestampString = "548286004.553283"
+                  timestampString = "548325491.322536"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
                   endingLineNumber = "18"
-                  offsetFromSymbolStart = "91">
+                  offsetFromSymbolStart = "104">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1446,12 +1455,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
-                  timestampString = "548286004.5542769"
+                  timestampString = "548325491.323526"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
                   endingLineNumber = "18"
-                  offsetFromSymbolStart = "54">
+                  offsetFromSymbolStart = "56">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1461,7 +1470,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
-                  timestampString = "548286004.555379"
+                  timestampString = "548325491.324476"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -1476,12 +1485,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
-                  timestampString = "548286004.556432"
+                  timestampString = "548325491.325469"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
                   endingLineNumber = "18"
-                  offsetFromSymbolStart = "81">
+                  offsetFromSymbolStart = "92">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1491,7 +1500,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
-                  timestampString = "548286004.5574369"
+                  timestampString = "548325491.326609"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -1506,12 +1515,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
-                  timestampString = "548286004.55849"
+                  timestampString = "548325491.327619"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
                   endingLineNumber = "18"
-                  offsetFromSymbolStart = "88">
+                  offsetFromSymbolStart = "96">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1521,12 +1530,12 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
-                  timestampString = "548286004.559693"
+                  timestampString = "548325491.328711"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
                   endingLineNumber = "18"
-                  offsetFromSymbolStart = "49">
+                  offsetFromSymbolStart = "52">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1543,8 +1552,240 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
             endingLineNumber = "82"
-            landmarkName = "reloadEntities()"
-            landmarkType = "7">
+            landmarkName = "MapScene"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPGAapp.MapScene.previousX.getter : CoreGraphics.CGFloat"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.333184"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPGAapp.MapScene.previousX.setter : CoreGraphics.CGFloat"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.334362"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPGAapp.MapScene.init (size : __C.CGSize) -&gt; RPGAapp.MapScene"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.335495"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPGAapp.MapScene.__allocating_init (size : __C.CGSize) -&gt; RPGAapp.MapScene"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.3365771"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "@objc RPGAapp.MapScene.init (size : __C.CGSize) -&gt; RPGAapp.MapScene"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.337682"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPGAapp.MapScene.init () -&gt; RPGAapp.MapScene"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.338798"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPGAapp.MapScene.__allocating_init () -&gt; RPGAapp.MapScene"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.339946"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "@objc RPGAapp.MapScene.init () -&gt; RPGAapp.MapScene"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.340989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RPGAapp.MapScene.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;RPGAapp.MapScene&gt;"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.342028"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed&gt; of RPGAapp.MapScene.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;RPGAapp.MapScene&gt;"
+                  moduleName = "RPGAapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MapScene.swift"
+                  timestampString = "548325491.343151"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPGAapp/DataPacker.swift"
+            timestampString = "548323616.371187"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "packSessionForMessage(_:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPGAapp/DataPacker.swift"
+            timestampString = "548323624.304168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "packSessionForMessage(_:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPGAapp/DataPacker.swift"
+            timestampString = "548327409.532596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "packSessionForMessage(_:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPGAapp/DataPacker.swift"
+            timestampString = "548327409.532596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "unPackSession(from:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPGAapp/DataPacker.swift"
+            timestampString = "548327409.532596"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "unPackSession(from:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

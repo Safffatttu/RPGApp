@@ -222,40 +222,6 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     
                     CoreDataStack.saveContext()
                 }
-            }else if actionType == ActionType.sessionCreated{
-                let sessionName = action.value(forKey: "sessionName") as? String
-                let gameMaster = action.value(forKey: "gameMaster") as? String
-                let gameMasterName = action.value(forKey: "gameMasterName") as? String
-                let sessionId = action.value(forKey: "sessionId") as? String
-                let sessionDevices = action.value(forKey: "sessionDevices") as? NSSet
-				let mapId = action.value(forKey: "mapId") as? String
-                let context = CoreDataStack.managedObjectContext
-                
-                let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-                
-                session.name = sessionName
-                session.gameMaster = gameMaster
-                session.gameMasterName = gameMasterName
-                session.id = sessionId
-                session.devices = sessionDevices
-				
-				let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
-				
-				newMap.id = mapId
-				newMap.current = true
-				
-				session.addToMaps(newMap)
-				
-                CoreDataStack.saveContext()
-                
-                let sessions: [Session] = Load.sessions()
-                
-                sessions.first(where: {$0.current == true})?.current = false
-                session.current = true
-                
-                CoreDataStack.saveContext()
-                
-                NotificationCenter.default.post(name: .addedSession, object: session)
             }else if actionType == ActionType.sessionSwitched{
                 NotificationCenter.default.post(name: .switchedSession, object: action)
                 let sessionId = action.value(forKey: "sessionId") as! String
@@ -390,7 +356,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				NotificationCenter.default.post(name: .equipmentChanged, object: nil)
 			
-			}else if actionType == .sessionReceived{
+			}else if actionType == .sessionCreated{
 				guard let sessionData = action.value(forKey: "session") as? NSDictionary else { return }
 				guard let sessionId = sessionData.value(forKey: "id") as? String else { return }
 				

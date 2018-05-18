@@ -321,21 +321,19 @@ func getCurrentSession(orCreateNew: Bool = true) -> Session{
         
         var devices = appDelegate.pack.session.connectedPeers.map{$0.displayName}
         devices.append(UIDevice.current.name)
-        
-        session.devices = NSSet(array: devices)
-        
+		
         UserDefaults.standard.set(true, forKey: "sessionIsActive")
         
         let action = NSMutableDictionary()
-        let actionType = NSNumber(value: ActionType.sessionCreated.rawValue)
+        let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
         
         action.setValue(actionType, forKey: "action")
-        
-        action.setValue(session.name, forKey: "sessionName")
-        action.setValue(session.gameMaster, forKey: "gameMaster")
-        action.setValue(session.gameMasterName, forKey: "gameMasterName")
-        action.setValue(session.id, forKey: "sessionId")
-        action.setValue(session.devices, forKey: "sessionDevices")
+		
+		let sessionDictionary = packSessionForMessage(session)
+		
+		action.setValue(actionType, forKey: "action")
+		action.setValue(sessionDictionary, forKey: "session")
+		action.setValue(session.current, forKey: "setCurrent")
         
         appDelegate.pack.send(action)
         NotificationCenter.default.post(name: .addedSession, object: session)
