@@ -78,6 +78,34 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		packages.add(packageDict)
 	}
 	
+	let maps = NSMutableArray()
+	
+	for case let map as Map in session.maps!{
+		let mapDict = NSMutableDictionary()
+		
+		let mapEntities = NSMutableArray()
+		
+		for case let mapEnt as MapEntity in map.entities!{
+			let mapEntDict = NSMutableDictionary()
+			
+			mapEntDict.setValue(mapEnt.id, forKey: "id")
+			mapEntDict.setValue(mapEnt.x, forKey: "posX")
+			mapEntDict.setValue(mapEnt.y, forKey: "posY")
+			mapEntDict.setValue(mapEnt.character?.id, forKey: "characterId")
+			
+			mapEntities.add(mapEntDict)
+		}
+		
+		mapDict.setValue(map.id, forKey: "id")
+		mapDict.setValue(map.name, forKey: "name")
+		mapDict.setValue(map.current, forKey: "current")
+		mapDict.setValue(map.x, forKey: "posX")
+		mapDict.setValue(map.y, forKey: "posY")
+		mapDict.setValue(mapEntities, forKey: "mapEntities")
+	
+		maps.add(mapDict)
+	}
+	
 	let dictionary = NSMutableDictionary()
 	dictionary.setValue(current, forKey: "current")
 	//dictionary.setValue(devices, forKey: "devices")
@@ -87,6 +115,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	dictionary.setValue(name, forKey: "name")
 	dictionary.setValue(charactersToSend, forKey: "characters")
 	dictionary.setValue(packages, forKey: "packages")
+	dictionary.setValue(maps, forKey: "maps")
 	
 	return dictionary
 }
@@ -101,6 +130,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	
 	guard let allCharactersDict = dictionary.value(forKey: "characters") as? NSArray else { return nil }
 	guard let allPackagesDict = dictionary.value(forKey: "packages") as? NSArray else { return nil }
+	guard let allMapsDict = dictionary.value(forKey: "maps") as? NSArray else { return nil }
 	
 	let context = CoreDataStack.managedObjectContext
 	
@@ -194,6 +224,46 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		}
 		
 		session.addToPackages(package)
+	}
+	
+	for case let mapDict as NSDictionary in allMapsDict{
+		
+		let mapName = mapDict.value(forKey: "name") as? String
+		guard let mapId = mapDict.value(forKey: "id") as? String else { continue }
+		guard let mapPosX = mapDict.value(forKey: "posX") as? Double else { continue }
+		guard let mapPosY = mapDict.value(forKey: "posY") as? Double else { continue }
+		guard let mapCurrent = mapDict.value(forKey: "current") as? Bool else { continue }
+		
+		guard let allMapEntities = mapDict.value(forKey: "mapEntities") as? NSArray else { continue }
+		
+		let map = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
+		
+		for case let mapEntDict as NSDictionary in allMapEntities{
+			
+			guard let mapEntId = mapEntDict.value(forKey: "id") as? String else { continue }
+			guard let mapEntPosX = mapEntDict.value(forKey: "posX") as? Double else { continue }
+			guard let mapEntPosY = mapEntDict.value(forKey: "posY") as? Double else { continue }
+			guard let mapEntCharacterId = mapEntDict.value(forKey: "characterId") as? String else { continue }
+
+			let mapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: context) as! MapEntity
+			
+			mapEntity.id = mapEntId
+			mapEntity.x = mapEntPosX
+			mapEntity.y = mapEntPosY
+			
+			guard let character = session.characters?.first(where: {($0 as? Character)?.id == mapEntCharacterId}) as? Character else { continue }
+			
+			character.mapRepresentation = mapEntity
+			map.addToEntities(mapEntity)
+		}
+		
+		map.id = mapId
+		map.name = mapName
+		map.x = mapPosX
+		map.y = mapPosY
+		map.current = mapCurrent
+		
+		session.addToMaps(map)
 	}
 	
 	CoreDataStack.saveContext()
