@@ -45,9 +45,14 @@ class MapScene: SKScene{
 		let mapa = SKSpriteNode(imageNamed: "mapaPiraci")
 		mapa.name = "mapa"
 		self.addChild(mapa)
-		print(self.size)
 		mapa.zPosition = -1
-		mapa.size = self.size
+		let imgW = mapa.size.width
+		let viewW = self.size.width
+		
+		let scaleFactor = viewW/imgW
+		
+		mapa.setScale(scaleFactor)
+		
 		mapa.isUserInteractionEnabled = false
 		
 		let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinchRec(sender:)))
