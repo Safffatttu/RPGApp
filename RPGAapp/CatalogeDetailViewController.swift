@@ -11,6 +11,7 @@ import UIKit
 import FontAwesome_swift
 import CoreData
 import Dwifft
+import Former
 
 class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate, UIPopoverPresentationControllerDelegate{
     
@@ -43,6 +44,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         
         self.diffCalculator = TableViewDiffCalculator(tableView: self.tableView, initialSectionedValues: self.items)
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create item", style: .plain, target: self, action: #selector(newItemForm))
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +69,14 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func dismissKeyboard(){
         NotificationCenter.default.post(name: .dismissKeyboard, object: nil)
     }
+	
+	func newItemForm() {
+		let form = NewItemForm()
+		
+		form.modalPresentationStyle = .formSheet
+		
+		self.present(form, animated: true, completion: nil)
+	}
 	
 	func sortModelChange(_ notification: Notification){
 		if let newSortModel = notification.object as? [(String,Bool,NSSortDescriptor)]{

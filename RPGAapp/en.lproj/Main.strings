@@ -1,0 +1,219 @@
+
+/* Class = "UILabel"; text = "Welcome to THE RPG APP"; ObjectID = "0XM-y9-sOw"; */
+"0XM-y9-sOw.text" = "Welcome to THE RPG APP";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2nD-wc-l94"; */
+"2nD-wc-l94.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4QI-ce-UeQ"; */
+"4QI-ce-UeQ.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Edytuj"; ObjectID = "4Qi-ah-FkE"; */
+"4Qi-ah-FkE.normalTitle" = "Edytuj";
+
+/* Class = "UIButton"; normalTitle = "Wyślij"; ObjectID = "4Zq-bY-kqy"; */
+"4Zq-bY-kqy.normalTitle" = "Wyślij";
+
+/* Class = "UIButton"; normalTitle = "Informacje"; ObjectID = "5W7-mS-vmA"; */
+"5W7-mS-vmA.normalTitle" = "Informacje";
+
+/* Class = "UILabel"; text = "Profesja"; ObjectID = "5xc-uA-wXJ"; */
+"5xc-uA-wXJ.text" = "Profesja";
+
+/* Class = "UITableViewController"; title = "Main Menu"; ObjectID = "7bK-jq-Zjz"; */
+"7bK-jq-Zjz.title" = "Main Menu";
+
+/* Class = "UIButton"; normalTitle = "Informacje"; ObjectID = "7yP-jM-hLz"; */
+"7yP-jM-hLz.normalTitle" = "Informacje";
+
+/* Class = "UIButton"; normalTitle = "Paczka"; ObjectID = "83R-r7-GV6"; */
+"83R-r7-GV6.normalTitle" = "Paczka";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Arm-wq-HPj"; */
+"Arm-wq-HPj.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Wyślij"; ObjectID = "AwQ-RQ-FVE"; */
+"AwQ-RQ-FVE.normalTitle" = "Wyślij";
+
+/* Class = "UILabel"; text = "Przedmioty"; ObjectID = "Bhe-v9-1To"; */
+"Bhe-v9-1To.text" = "Przedmioty";
+
+/* Class = "UIButton"; normalTitle = "Informacje"; ObjectID = "BxQ-cH-Shw"; */
+"BxQ-cH-Shw.normalTitle" = "Informacje";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "CLn-VK-9en"; */
+"CLn-VK-9en.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Paczka"; ObjectID = "CiW-VK-2Dt"; */
+"CiW-VK-2Dt.normalTitle" = "Paczka";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "DCC-hM-QQ2"; */
+"DCC-hM-QQ2.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "E1x-nL-GJ2"; */
+"E1x-nL-GJ2.text" = "Title";
+
+/* Class = "UITableViewController"; title = "Settings"; ObjectID = "ERJ-FY-coC"; */
+"ERJ-FY-coC.title" = "Settings";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "I8d-6U-KlB"; */
+"I8d-6U-KlB.text" = "Price";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ie7-5h-h2z"; */
+"Ie7-5h-h2z.text" = "Label";
+
+/* Class = "UIViewController"; title = "Detail"; ObjectID = "JEX-9P-axG"; */
+"JEX-9P-axG.title" = "Detail";
+
+/* Class = "UITableViewController"; title = "Przedmioty"; ObjectID = "KJb-yt-am3"; */
+"KJb-yt-am3.title" = "Przedmioty";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LMv-79-x72"; */
+"LMv-79-x72.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "NL8-FQ-amF"; */
+"NL8-FQ-amF.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "O7S-qC-hom"; */
+"O7S-qC-hom.text" = "Title";
+
+/* Class = "UINavigationController"; title = "MainMenu"; ObjectID = "RMx-3f-FxP"; */
+"RMx-3f-FxP.title" = "MainMenu";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "RUW-it-9Bd"; */
+"RUW-it-9Bd.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "RnY-Oq-htb"; */
+"RnY-Oq-htb.text" = "Detail";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Sa4-Vt-9y8"; */
+"Sa4-Vt-9y8.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TRf-ue-Dza"; */
+"TRf-ue-Dza.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "U82-sT-8Uo"; */
+"U82-sT-8Uo.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Paczka"; ObjectID = "UYk-0V-pbC"; */
+"UYk-0V-pbC.normalTitle" = "Paczka";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "V90-Ni-cWS"; */
+"V90-Ni-cWS.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VVO-8D-Dgj"; */
+"VVO-8D-Dgj.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Paczka"; ObjectID = "WTN-xb-yEe"; */
+"WTN-xb-yEe.normalTitle" = "Paczka";
+
+/* Class = "UILabel"; text = "Label1"; ObjectID = "X3T-oL-sgV"; */
+"X3T-oL-sgV.text" = "Label1";
+
+/* Class = "UIButton"; normalTitle = "Wyślij wszystkie"; ObjectID = "XYD-uY-pde"; */
+"XYD-uY-pde.normalTitle" = "Wyślij wszystkie";
+
+/* Class = "UIButton"; normalTitle = "Edytuj"; ObjectID = "YU3-te-VQc"; */
+"YU3-te-VQc.normalTitle" = "Edytuj";
+
+/* Class = "UIButton"; normalTitle = "Relosuj"; ObjectID = "ZAY-KE-gJU"; */
+"ZAY-KE-gJU.normalTitle" = "Relosuj";
+
+/* Class = "UINavigationItem"; title = "Master"; ObjectID = "Zdf-7t-Un8"; */
+"Zdf-7t-Un8.title" = "Master";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dkh-xs-dba"; */
+"dkh-xs-dba.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "e88-3R-2q0"; */
+"e88-3R-2q0.text" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eHU-gC-Vmn"; */
+"eHU-gC-Vmn.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ekm-57-2wz"; */
+"ekm-57-2wz.text" = "Label";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "fjW-jc-OVT"; */
+"fjW-jc-OVT.text" = "Price";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fyE-DH-S15"; */
+"fyE-DH-S15.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gi9-W1-CC4"; */
+"gi9-W1-CC4.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Edytuj"; ObjectID = "iPF-x3-p5x"; */
+"iPF-x3-p5x.normalTitle" = "Edytuj";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ifz-sj-M7a"; */
+"ifz-sj-M7a.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "izQ-qO-7Ci"; */
+"izQ-qO-7Ci.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Edytuj"; ObjectID = "kvh-Mk-x1p"; */
+"kvh-Mk-x1p.normalTitle" = "Edytuj";
+
+/* Class = "UINavigationItem"; title = "Detail"; ObjectID = "mOI-FS-AaM"; */
+"mOI-FS-AaM.title" = "Detail";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "mP4-xt-oN1"; */
+"mP4-xt-oN1.text" = "Price";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "mam-yB-ULe"; */
+"mam-yB-ULe.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Wyślij"; ObjectID = "mnd-qf-k4v"; */
+"mnd-qf-k4v.normalTitle" = "Wyślij";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nq9-3c-ui3"; */
+"nq9-3c-ui3.text" = "Label";
+
+/* Class = "UILabel"; text = "Rasa"; ObjectID = "pMx-1E-EMe"; */
+"pMx-1E-EMe.text" = "Rasa";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pk4-zz-V63"; */
+"pk4-zz-V63.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ptn-a8-qFA"; */
+"ptn-a8-qFA.text" = "Label";
+
+/* Class = "UILabel"; text = "Umiejętności"; ObjectID = "rBg-zB-eID"; */
+"rBg-zB-eID.text" = "Umiejętności";
+
+/* Class = "UIButton"; normalTitle = "Paczka"; ObjectID = "sDm-5A-zD2"; */
+"sDm-5A-zD2.normalTitle" = "Paczka";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "stI-fm-J0W"; */
+"stI-fm-J0W.text" = "Detail";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "tIA-KJ-5qx"; */
+"tIA-KJ-5qx.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uu0-gj-6UQ"; */
+"uu0-gj-6UQ.normalTitle" = "Button";
+
+/* Class = "UITableViewController"; title = "Losowanie"; ObjectID = "v25-R4-Tyh"; */
+"v25-R4-Tyh.title" = "Losowanie";
+
+/* Class = "UINavigationController"; title = "detail1Nav"; ObjectID = "vC3-pB-5Vb"; */
+"vC3-pB-5Vb.title" = "detail1Nav";
+
+/* Class = "UITextField"; text = "Własne Losowanie"; ObjectID = "wfv-rJ-Af6"; */
+"wfv-rJ-Af6.text" = "Własne Losowanie";
+
+/* Class = "UILabel"; text = "Imie"; ObjectID = "ymL-Do-gkM"; */
+"ymL-Do-gkM.text" = "Imie";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yo2-V6-vnc"; */
+"yo2-V6-vnc.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "10"; ObjectID = "zKq-Mj-Mla"; */
+"zKq-Mj-Mla.placeholder" = "10";
+
+/* Class = "UIButton"; normalTitle = "Informacje"; ObjectID = "zmE-pi-cbd"; */
+"zmE-pi-cbd.normalTitle" = "Informacje";
+
+/* Class = "UIButton"; normalTitle = "Wyślij"; ObjectID = "zsd-YV-HXg"; */
+"zsd-YV-HXg.normalTitle" = "Wyślij";

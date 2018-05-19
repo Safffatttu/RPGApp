@@ -1,18 +1,21 @@
 PODS:
   - FontAwesome.swift (1.2.0)
+  - Former (1.5.1)
   - Popover (1.1.0)
   - Whisper (6.0.2)
 
 DEPENDENCIES:
   - FontAwesome.swift
+  - Former (~> 1.5.1)
   - Popover (~> 1.1.0)
   - Whisper
 
 SPEC CHECKSUMS:
   FontAwesome.swift: 60063e3f19ba4801155d4b0f2334ab7585763ab3
+  Former: 0b48a812c0d93b092b908d1b0574d0fd95c6b6f9
   Popover: 8b4330c16d9e72f1ea8a2f6783d83b8692ae8776
   Whisper: 169760fc4bab0abf24d5529f9276f95c25cf1025
 
-PODFILE CHECKSUM: 862cddd453f5bd8c68db33107f7af89836a2c4c2
+PODFILE CHECKSUM: cc0c917bfc4c50dbcfebc7aba4d8ddbb189319fd
 
 COCOAPODS: 1.2.0

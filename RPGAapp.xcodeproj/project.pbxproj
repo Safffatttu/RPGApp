@@ -13,6 +13,9 @@
 		3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D681F3A21A800B5271C /* Main.storyboard */; };
 		3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D6B1F3A21A800B5271C /* Assets.xcassets */; };
 		3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */; };
+		3B079FDA20AF5B0A00D70BBB /* NewItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B079FD920AF5B0A00D70BBB /* NewItemForm.swift */; };
+		3B079FDF20AF751E00D70BBB /* ProfileFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B079FDE20AF751E00D70BBB /* ProfileFieldCell.xib */; };
+		3B079FE120AF754200D70BBB /* ProfileFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B079FE020AF754200D70BBB /* ProfileFieldCell.swift */; };
 		3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */; };
 		3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */; };
 		3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B295D8520A8E326001DC35D /* DiceRollModels.swift */; };
@@ -129,6 +132,9 @@
 		3B063D6E1F3A21A800B5271C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B063D701F3A21A800B5271C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B063D761F3A259B00B5271C /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Functions.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		3B079FD920AF5B0A00D70BBB /* NewItemForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemForm.swift; sourceTree = "<group>"; };
+		3B079FDE20AF751E00D70BBB /* ProfileFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileFieldCell.xib; sourceTree = "<group>"; };
+		3B079FE020AF754200D70BBB /* ProfileFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileFieldCell.swift; sourceTree = "<group>"; };
 		3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editPackage.swift; sourceTree = "<group>"; };
 		3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDrawSetting.swift; sourceTree = "<group>"; };
 		3B295D8520A8E326001DC35D /* DiceRollModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceRollModels.swift; sourceTree = "<group>"; };
@@ -418,6 +424,9 @@
 				3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */,
 				3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */,
 				3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */,
+				3B079FD920AF5B0A00D70BBB /* NewItemForm.swift */,
+				3B079FDE20AF751E00D70BBB /* ProfileFieldCell.xib */,
+				3B079FE020AF754200D70BBB /* ProfileFieldCell.swift */,
 			);
 			name = Popover;
 			sourceTree = "<group>";
@@ -564,6 +573,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B079FDF20AF751E00D70BBB /* ProfileFieldCell.xib in Resources */,
 				3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */,
 				3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */,
 				3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */,
@@ -684,11 +694,13 @@
 				3BDBD9FA20ACD45D00E0EB62 /* DrawSetting+CoreDataProperties.swift in Sources */,
 				3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */,
 				3B295D8820A8E3C4001DC35D /* DiceRollFunctions.swift in Sources */,
+				3B079FDA20AF5B0A00D70BBB /* NewItemForm.swift in Sources */,
 				3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */,
 				3BDBDA0820ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift in Sources */,
 				3BDBD9F320ACD45D00E0EB62 /* Ability+CoreDataProperties.swift in Sources */,
 				3BDBDA0D20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift in Sources */,
 				3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */,
+				3B079FE120AF754200D70BBB /* ProfileFieldCell.swift in Sources */,
 				3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */,
 				3BDBD9FB20ACD45D00E0EB62 /* DrawSubSetting+CoreDataClass.swift in Sources */,
 				3BDBDA0C20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift in Sources */,

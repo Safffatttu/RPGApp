@@ -146,6 +146,8 @@ func loadItemsFromAsset(){
         itemList.append(columns)
     }
 
+	var rarStack: [Int16] = []
+	
     var item: Item? = nil
     
     for line in itemList{
@@ -191,6 +193,7 @@ func loadItemsFromAsset(){
         item?.setValue(Double(line[4]), forKey: #keyPath(Item.price))
         if let rarity = Int16(line[5]){
             if rarity > 0 && rarity < 5 {
+				rarStack.append(rarity)
                 item?.setValue(rarity, forKey: #keyPath(Item.rarity))
             }
         }
@@ -204,6 +207,8 @@ func loadItemsFromAsset(){
         item?.setValue(id, forKey: #keyPath(Item.id))
     }
 
+	print(rarStack.max())
+	print(rarStack.min())
     CoreDataStack.saveContext()
 }
 
@@ -460,6 +465,10 @@ func getDocumentsDirectory() -> URL {
 	let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 	return paths[0]
 }
+
+
+//let rarityName = ["Dziadostwo", "Normalne", "Rzadkie", "Legendarne"]
+let rarityName = ["Junk", "Common", "Rare", "Legendary"]
 
 extension Int{
     init?(_ bool: Bool?) {
