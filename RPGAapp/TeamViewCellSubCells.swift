@@ -154,15 +154,32 @@ class abilityCell: UITableViewCell {
 	}
 }
 
+protocol CharacterItemCellDelegate {
+	
+	func modifiedItemHandler()
+}
+
 class characterItemCell: UITableViewCell {
 	
 	var itemHandler: ItemHandler!
 	
 	var character: Character!
 	
+	var itemHandlerDelegate: CharacterItemCellDelegate!
+	
 	@IBOutlet weak var detailLabel: UILabel!
 	
 	@IBOutlet weak var stepper: UIStepper!
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
+		
+		let removeAbilityLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeItem(_:)))
+		self.contentView.addGestureRecognizer(removeAbilityLongPress)
+	}
+	
 	
 	@IBAction func valueChanged(_ sender: UIStepper) {
 		
@@ -185,5 +202,47 @@ class characterItemCell: UITableViewCell {
 		
 		appDelegate.pack.send(action)
 	}
+	
+	func equipmentChanged(){
+		detailLabel.text = String(itemHandler.count)
+	}
+	
+	func removeItem(_ sender: UILongPressGestureRecognizer){
+		switch sender.state {
+		case .ended:
+			let contex = CoreDataStack.managedObjectContext
+			
+			let itemId = itemHandler.item?.id
+			
+			character.removeFromEquipment(itemHandler)
+			contex.delete(itemHandler)
+			
+			CoreDataStack.saveContext()
+			
+			itemHandlerDelegate.modifiedItemHandler()
+			
+			self.backgroundColor = UIColor.white
+			
+			let action = NSMutableDictionary()
+			let actionType = NSNumber(value: ActionType.itemDeletedFromCharacter.rawValue)
+			
+			action.setValue(actionType, forKey: "action")
+			
+			action.setValue(itemId, forKey: "itemId")
+			action.setValue(character.id, forKey: "characterId")
+			
+			let appDelegate = UIApplication.shared.delegate as! AppDelegate
+			
+			appDelegate.pack.send(action)
+			
+		case .began:
+			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
+				self.backgroundColor = UIColor.red
+			})
+			
+		default:
+			self.backgroundColor = UIColor.white
+		}
+	}	
 }
 

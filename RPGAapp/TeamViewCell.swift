@@ -23,8 +23,8 @@ class TeamViewCell: UICollectionViewCell {
 	
 	var character: Character!{
 		didSet{
-			abilities = character.abilities?.allObjects as! [Ability]
-			items = character.equipment?.allObjects as! [ItemHandler]
+			abilities = character.abilities?.sortedArray(using: [.sortAbilityByName]) as? [Ability]
+			items = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler]
 		}
 	}
 	
@@ -114,7 +114,9 @@ class TeamViewCell: UICollectionViewCell {
 	}
 	
 	func equipmentChanged(){
-		items = character.equipment?.allObjects as! [ItemHandler]
+		if let newItems = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] {
+			items = newItems
+		}
 	}
 }
 
@@ -135,6 +137,8 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") as? characterItemCell {
 			let cellItem = equipmentDiffCalculator?.rows[indexPath.row]
+			
+			cell.itemHandlerDelegate = self
 			
 			cell.textLabel?.text = cellItem?.item?.name
 			cell.detailLabel.text = String(describing: (cellItem?.count)!)
@@ -179,4 +183,14 @@ extension TeamViewCell: AbilityCellDelegate{
 			self.abilities = abs
 		}
 	}
+}
+
+extension TeamViewCell: CharacterItemCellDelegate{
+	
+	func modifiedItemHandler() {
+		if let newItems = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler]{
+			items = newItems
+		}
+	}
+	
 }
