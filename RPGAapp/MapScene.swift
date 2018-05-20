@@ -42,7 +42,7 @@ class MapScene: SKScene{
 		
 		map = Load.currentMap(session: getCurrentSession())
 		
-		let mapa = SKSpriteNode(imageNamed: "mapaPiraci")
+		let mapa = SKSpriteNode(imageNamed: "mapImperium")
 		mapa.name = "mapa"
 		self.addChild(mapa)
 		mapa.zPosition = -1
