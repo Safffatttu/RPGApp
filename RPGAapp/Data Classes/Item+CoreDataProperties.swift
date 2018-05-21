@@ -26,8 +26,26 @@ extension Item {
     @NSManaged public var quantity: Int16
     @NSManaged public var rarity: Int16
     @NSManaged public var category: Category?
+    @NSManaged public var handelers: NSSet?
     @NSManaged public var itemAtribute: NSSet?
     @NSManaged public var subCategory: SubCategory?
+
+}
+
+// MARK: Generated accessors for handelers
+extension Item {
+
+    @objc(addHandelersObject:)
+    @NSManaged public func addToHandelers(_ value: ItemHandler)
+
+    @objc(removeHandelersObject:)
+    @NSManaged public func removeFromHandelers(_ value: ItemHandler)
+
+    @objc(addHandelers:)
+    @NSManaged public func addToHandelers(_ values: NSSet)
+
+    @objc(removeHandelers:)
+    @NSManaged public func removeFromHandelers(_ values: NSSet)
 
 }
 
