@@ -55,6 +55,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(searchModelChanged(_:)), name: .searchCatalogeModelChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(sortModelChange(_:)), name: .sortModelChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems), name: .createdNewItem, object: nil)
 		
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -76,6 +77,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		form.modalPresentationStyle = .formSheet
 		
 		self.present(form, animated: true, completion: nil)
+	}
+	
+	func reloadItems(){
+		items = SectionedValues(Load.subCategoriesForCatalog())
 	}
 	
 	func sortModelChange(_ notification: Notification){

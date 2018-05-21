@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HCL-KF-5XV" id="BVv-Cs-Jwp">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4y-2W-3tL">
@@ -48,7 +48,7 @@
                 <outlet property="textField" destination="aCp-Q1-gsd" id="B0i-nX-KvM"/>
                 <outlet property="titleLabel" destination="f4y-2W-3tL" id="yGc-IZ-XiR"/>
             </connections>
-            <point key="canvasLocation" x="262" y="258"/>
+            <point key="canvasLocation" x="-14" y="-131"/>
         </tableViewCell>
     </objects>
 </document>
