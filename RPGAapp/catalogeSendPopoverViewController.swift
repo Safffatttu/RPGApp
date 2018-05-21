@@ -82,9 +82,11 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 	
 	
 	func sendItem(playerNum: Int) {
-
-        let sendTo = team[playerNum]
-        var createdNewHandler = false
+		guard team.count >= playerNum - 1 else { return }
+		
+		let sendTo = team[playerNum]
+		
+		var createdNewHandler = false
         
         if let itemToAdd = item {
             createdNewHandler = addToEquipment(item: itemToAdd, to: sendTo)

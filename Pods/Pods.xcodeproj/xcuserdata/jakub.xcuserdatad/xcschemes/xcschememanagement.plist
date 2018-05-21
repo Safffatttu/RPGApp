@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Former.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>Pods-RPGAapp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -82,7 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9EF684CE7D740ACE36CEF6D2751F713A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A49653DE5C178056786C3F4942CA524F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AF5F2544AE04A7AB9B622F5546CB298B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7FC973D599691CFFC60C1CBFBEC9439</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,6 +113,11 @@
 			<true/>
 		</dict>
 		<key>D103BF3EC7F32074D2D3CF76D0D917E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E62E61B56A7181DDE66FC6DA355268F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

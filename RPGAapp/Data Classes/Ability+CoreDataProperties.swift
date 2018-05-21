@@ -16,9 +16,9 @@ extension Ability {
         return NSFetchRequest<Ability>(entityName: "Ability")
     }
 
+    @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var value: Int16
-    @NSManaged public var id: String
     @NSManaged public var character: Character
 
 }

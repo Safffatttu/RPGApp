@@ -18,8 +18,6 @@ class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     var categories: [Category] = Load.categories()
     var subCategories: [SubCategory] = Load.subCategories()
     
-    let rarityName = ["Dziadostwo", "Normalne", "Rzadkie", "Legendarne"]
-    
     @IBOutlet weak var subSettingsTable: UITableView!
     @IBOutlet weak var categoriesTable: UITableView!
     
