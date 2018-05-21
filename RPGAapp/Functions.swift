@@ -131,9 +131,9 @@ func forTailingZero(_ temp: Double) -> String{
 
 func loadItemsFromAsset(){
     let context = CoreDataStack.managedObjectContext
-    var currency: Currency
-    var subCurrency: SubCurrency
-    
+//    var currency: Currency
+//    var subCurrency: SubCurrency
+	
     var currentCategory: Category? = nil
     var currentSubCategory: SubCategory? = nil
     
@@ -150,13 +150,13 @@ func loadItemsFromAsset(){
     
     for line in itemList{
         if line.first == "DATA"{
-            currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency
-            currency.name = "Złoty"
-            currency.globalRate = Double(line[2])!
-            
-            subCurrency = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
-            subCurrency.name = "PLN"
-            subCurrency.rate = 1
+//            currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency
+//            currency.name = "Złoty"
+//            currency.globalRate = Double(line[2])!
+//            
+//            subCurrency = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
+//            subCurrency.name = "PLN"
+//            subCurrency.rate = 1
             
             continue
         }

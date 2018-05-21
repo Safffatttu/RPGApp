@@ -54,8 +54,6 @@
 		3BDBDA2F20ACD5D700E0EB62 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1520ACD5D700E0EB62 /* Category+CoreDataClass.swift */; };
 		3BDBDA3020ACD5D700E0EB62 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1620ACD5D700E0EB62 /* Category+CoreDataProperties.swift */; };
 		3BDBDA3120ACD5D700E0EB62 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1720ACD5D700E0EB62 /* Character+CoreDataClass.swift */; };
-		3BDBDA3220ACD5D700E0EB62 /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1820ACD5D700E0EB62 /* Currency+CoreDataClass.swift */; };
-		3BDBDA3320ACD5D700E0EB62 /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1920ACD5D700E0EB62 /* Currency+CoreDataProperties.swift */; };
 		3BDBDA3420ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1A20ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift */; };
 		3BDBDA3520ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1B20ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift */; };
 		3BDBDA3620ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1C20ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift */; };
@@ -71,8 +69,6 @@
 		3BDBDA4020ACD5D700E0EB62 /* Package+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2620ACD5D700E0EB62 /* Package+CoreDataProperties.swift */; };
 		3BDBDA4120ACD5D700E0EB62 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2720ACD5D700E0EB62 /* Session+CoreDataClass.swift */; };
 		3BDBDA4220ACD5D700E0EB62 /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2820ACD5D700E0EB62 /* SubCategory+CoreDataClass.swift */; };
-		3BDBDA4520ACD5FB00E0EB62 /* SubCurrency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA4320ACD5FB00E0EB62 /* SubCurrency+CoreDataClass.swift */; };
-		3BDBDA4620ACD5FB00E0EB62 /* SubCurrency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA4420ACD5FB00E0EB62 /* SubCurrency+CoreDataProperties.swift */; };
 		3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF0FEA1F5C946100135252 /* addToPackage.swift */; };
 		3BECB6CC1FBA53BA00A947E9 /* addCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */; };
 		3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */; };
@@ -164,8 +160,6 @@
 		3BDBDA1520ACD5D700E0EB62 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataClass.swift"; path = "Data Classes/Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BDBDA1620ACD5D700E0EB62 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataProperties.swift"; path = "Data Classes/Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDBDA1720ACD5D700E0EB62 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataClass.swift"; path = "Data Classes/Character+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA1820ACD5D700E0EB62 /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataClass.swift"; path = "Data Classes/Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA1920ACD5D700E0EB62 /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataProperties.swift"; path = "Data Classes/Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDBDA1A20ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSetting+CoreDataClass.swift"; path = "Data Classes/DrawSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BDBDA1B20ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSetting+CoreDataProperties.swift"; path = "Data Classes/DrawSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDBDA1C20ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSubSetting+CoreDataClass.swift"; path = "Data Classes/DrawSubSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -181,8 +175,6 @@
 		3BDBDA2620ACD5D700E0EB62 /* Package+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Package+CoreDataProperties.swift"; path = "Data Classes/Package+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDBDA2720ACD5D700E0EB62 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataClass.swift"; path = "Data Classes/Session+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BDBDA2820ACD5D700E0EB62 /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCategory+CoreDataClass.swift"; path = "Data Classes/SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA4320ACD5FB00E0EB62 /* SubCurrency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCurrency+CoreDataClass.swift"; path = "Data Classes/SubCurrency+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA4420ACD5FB00E0EB62 /* SubCurrency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCurrency+CoreDataProperties.swift"; path = "Data Classes/SubCurrency+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
 		3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCharacter.swift; sourceTree = "<group>"; };
 		3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowInfoPopOver.swift; sourceTree = "<group>"; };
@@ -347,8 +339,6 @@
 		3BDBDA0E20ACD59F00E0EB62 /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3BDBDA4320ACD5FB00E0EB62 /* SubCurrency+CoreDataClass.swift */,
-				3BDBDA4420ACD5FB00E0EB62 /* SubCurrency+CoreDataProperties.swift */,
 				3BDBDA0F20ACD5D700E0EB62 /* Character+CoreDataProperties.swift */,
 				3BDBDA1020ACD5D700E0EB62 /* Item+CoreDataProperties.swift */,
 				3BDBDA1120ACD5D700E0EB62 /* Session+CoreDataProperties.swift */,
@@ -358,8 +348,6 @@
 				3BDBDA1520ACD5D700E0EB62 /* Category+CoreDataClass.swift */,
 				3BDBDA1620ACD5D700E0EB62 /* Category+CoreDataProperties.swift */,
 				3BDBDA1720ACD5D700E0EB62 /* Character+CoreDataClass.swift */,
-				3BDBDA1820ACD5D700E0EB62 /* Currency+CoreDataClass.swift */,
-				3BDBDA1920ACD5D700E0EB62 /* Currency+CoreDataProperties.swift */,
 				3BDBDA1A20ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift */,
 				3BDBDA1B20ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift */,
 				3BDBDA1C20ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift */,
@@ -619,7 +607,6 @@
 				3BDBDA2F20ACD5D700E0EB62 /* Category+CoreDataClass.swift in Sources */,
 				3BDBDA3720ACD5D700E0EB62 /* DrawSubSetting+CoreDataProperties.swift in Sources */,
 				3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */,
-				3BDBDA4620ACD5FB00E0EB62 /* SubCurrency+CoreDataProperties.swift in Sources */,
 				3BDBDA3020ACD5D700E0EB62 /* Category+CoreDataProperties.swift in Sources */,
 				3BDBDA2A20ACD5D700E0EB62 /* Item+CoreDataProperties.swift in Sources */,
 				3BECB6CC1FBA53BA00A947E9 /* addCharacter.swift in Sources */,
@@ -630,12 +617,10 @@
 				3BDBDA3920ACD5D700E0EB62 /* ItemAtribute+CoreDataClass.swift in Sources */,
 				3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */,
 				3BDBDA2B20ACD5D700E0EB62 /* Session+CoreDataProperties.swift in Sources */,
-				3BDBDA3320ACD5D700E0EB62 /* Currency+CoreDataProperties.swift in Sources */,
 				3BDBDA2D20ACD5D700E0EB62 /* Ability+CoreDataClass.swift in Sources */,
 				3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */,
 				3BDBDA3820ACD5D700E0EB62 /* Item+CoreDataClass.swift in Sources */,
 				3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */,
-				3BDBDA3220ACD5D700E0EB62 /* Currency+CoreDataClass.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
 				3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */,
 				3BDBDA3C20ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */,
@@ -655,7 +640,6 @@
 				3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */,
 				3BDBDA4020ACD5D700E0EB62 /* Package+CoreDataProperties.swift in Sources */,
 				3B295D8820A8E3C4001DC35D /* DiceRollFunctions.swift in Sources */,
-				3BDBDA4520ACD5FB00E0EB62 /* SubCurrency+CoreDataClass.swift in Sources */,
 				3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */,
 				3BDBDA3620ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift in Sources */,
 				3BDBDA4120ACD5D700E0EB62 /* Session+CoreDataClass.swift in Sources */,
