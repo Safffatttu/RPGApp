@@ -59,30 +59,38 @@
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
 		3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */; };
 		3BD335931FF291DC004F70BF /* drawingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD335921FF291DC004F70BF /* drawingTest.swift */; };
-		3BDBDA2920ACD5D700E0EB62 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA0F20ACD5D700E0EB62 /* Character+CoreDataProperties.swift */; };
-		3BDBDA2A20ACD5D700E0EB62 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1020ACD5D700E0EB62 /* Item+CoreDataProperties.swift */; };
-		3BDBDA2B20ACD5D700E0EB62 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1120ACD5D700E0EB62 /* Session+CoreDataProperties.swift */; };
-		3BDBDA2C20ACD5D700E0EB62 /* SubCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1220ACD5D700E0EB62 /* SubCategory+CoreDataProperties.swift */; };
-		3BDBDA2D20ACD5D700E0EB62 /* Ability+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1320ACD5D700E0EB62 /* Ability+CoreDataClass.swift */; };
-		3BDBDA2E20ACD5D700E0EB62 /* Ability+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1420ACD5D700E0EB62 /* Ability+CoreDataProperties.swift */; };
-		3BDBDA2F20ACD5D700E0EB62 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1520ACD5D700E0EB62 /* Category+CoreDataClass.swift */; };
-		3BDBDA3020ACD5D700E0EB62 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1620ACD5D700E0EB62 /* Category+CoreDataProperties.swift */; };
-		3BDBDA3120ACD5D700E0EB62 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1720ACD5D700E0EB62 /* Character+CoreDataClass.swift */; };
-		3BDBDA3420ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1A20ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift */; };
-		3BDBDA3520ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1B20ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift */; };
-		3BDBDA3620ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1C20ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift */; };
-		3BDBDA3720ACD5D700E0EB62 /* DrawSubSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1D20ACD5D700E0EB62 /* DrawSubSetting+CoreDataProperties.swift */; };
-		3BDBDA3820ACD5D700E0EB62 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1E20ACD5D700E0EB62 /* Item+CoreDataClass.swift */; };
-		3BDBDA3920ACD5D700E0EB62 /* ItemAtribute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA1F20ACD5D700E0EB62 /* ItemAtribute+CoreDataClass.swift */; };
-		3BDBDA3A20ACD5D700E0EB62 /* ItemAtribute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2020ACD5D700E0EB62 /* ItemAtribute+CoreDataProperties.swift */; };
-		3BDBDA3B20ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2120ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataClass.swift */; };
-		3BDBDA3C20ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2220ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift */; };
-		3BDBDA3D20ACD5D700E0EB62 /* ItemHandler+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2320ACD5D700E0EB62 /* ItemHandler+CoreDataClass.swift */; };
-		3BDBDA3E20ACD5D700E0EB62 /* ItemHandler+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2420ACD5D700E0EB62 /* ItemHandler+CoreDataProperties.swift */; };
-		3BDBDA3F20ACD5D700E0EB62 /* Package+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2520ACD5D700E0EB62 /* Package+CoreDataClass.swift */; };
-		3BDBDA4020ACD5D700E0EB62 /* Package+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2620ACD5D700E0EB62 /* Package+CoreDataProperties.swift */; };
-		3BDBDA4120ACD5D700E0EB62 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2720ACD5D700E0EB62 /* Session+CoreDataClass.swift */; };
-		3BDBDA4220ACD5D700E0EB62 /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA2820ACD5D700E0EB62 /* SubCategory+CoreDataClass.swift */; };
+		3BDBD9EC20ACD45D00E0EB62 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */; };
+		3BDBD9ED20ACD45D00E0EB62 /* Map+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */; };
+		3BDBD9EE20ACD45D00E0EB62 /* Map+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D020ACD45D00E0EB62 /* Map+CoreDataProperties.swift */; };
+		3BDBD9EF20ACD45D00E0EB62 /* MapEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D120ACD45D00E0EB62 /* MapEntity+CoreDataClass.swift */; };
+		3BDBD9F020ACD45D00E0EB62 /* MapEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D220ACD45D00E0EB62 /* MapEntity+CoreDataProperties.swift */; };
+		3BDBD9F120ACD45D00E0EB62 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D320ACD45D00E0EB62 /* Session+CoreDataProperties.swift */; };
+		3BDBD9F220ACD45D00E0EB62 /* Ability+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D420ACD45D00E0EB62 /* Ability+CoreDataClass.swift */; };
+		3BDBD9F320ACD45D00E0EB62 /* Ability+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D520ACD45D00E0EB62 /* Ability+CoreDataProperties.swift */; };
+		3BDBD9F420ACD45D00E0EB62 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D620ACD45D00E0EB62 /* Category+CoreDataClass.swift */; };
+		3BDBD9F520ACD45D00E0EB62 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D720ACD45D00E0EB62 /* Category+CoreDataProperties.swift */; };
+		3BDBD9F620ACD45D00E0EB62 /* Character+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D820ACD45D00E0EB62 /* Character+CoreDataClass.swift */; };
+		3BDBD9F720ACD45D00E0EB62 /* Currency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9D920ACD45D00E0EB62 /* Currency+CoreDataClass.swift */; };
+		3BDBD9F820ACD45D00E0EB62 /* Currency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9DA20ACD45D00E0EB62 /* Currency+CoreDataProperties.swift */; };
+		3BDBD9F920ACD45D00E0EB62 /* DrawSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9DB20ACD45D00E0EB62 /* DrawSetting+CoreDataClass.swift */; };
+		3BDBD9FA20ACD45D00E0EB62 /* DrawSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9DC20ACD45D00E0EB62 /* DrawSetting+CoreDataProperties.swift */; };
+		3BDBD9FB20ACD45D00E0EB62 /* DrawSubSetting+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9DD20ACD45D00E0EB62 /* DrawSubSetting+CoreDataClass.swift */; };
+		3BDBD9FC20ACD45D00E0EB62 /* DrawSubSetting+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9DE20ACD45D00E0EB62 /* DrawSubSetting+CoreDataProperties.swift */; };
+		3BDBD9FD20ACD45D00E0EB62 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9DF20ACD45D00E0EB62 /* Item+CoreDataClass.swift */; };
+		3BDBD9FE20ACD45D00E0EB62 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E020ACD45D00E0EB62 /* Item+CoreDataProperties.swift */; };
+		3BDBD9FF20ACD45D00E0EB62 /* ItemAtribute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E120ACD45D00E0EB62 /* ItemAtribute+CoreDataClass.swift */; };
+		3BDBDA0020ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E220ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift */; };
+		3BDBDA0120ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E320ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataClass.swift */; };
+		3BDBDA0220ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E420ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift */; };
+		3BDBDA0320ACD45D00E0EB62 /* ItemHandler+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E520ACD45D00E0EB62 /* ItemHandler+CoreDataClass.swift */; };
+		3BDBDA0420ACD45D00E0EB62 /* ItemHandler+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E620ACD45D00E0EB62 /* ItemHandler+CoreDataProperties.swift */; };
+		3BDBDA0520ACD45D00E0EB62 /* Package+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E720ACD45D00E0EB62 /* Package+CoreDataClass.swift */; };
+		3BDBDA0620ACD45D00E0EB62 /* Package+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E820ACD45D00E0EB62 /* Package+CoreDataProperties.swift */; };
+		3BDBDA0720ACD45D00E0EB62 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9E920ACD45D00E0EB62 /* Session+CoreDataClass.swift */; };
+		3BDBDA0820ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9EA20ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift */; };
+		3BDBDA0920ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9EB20ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift */; };
+		3BDBDA0C20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA0A20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift */; };
+		3BDBDA0D20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA0B20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift */; };
 		3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF0FEA1F5C946100135252 /* addToPackage.swift */; };
 		3BECB6CC1FBA53BA00A947E9 /* addCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */; };
 		3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */; };
@@ -179,30 +187,38 @@
 		3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPGAappUITests.swift; sourceTree = "<group>"; };
 		3BD3358C1FF28B2E004F70BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BD335921FF291DC004F70BF /* drawingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = drawingTest.swift; path = ../RPGAapp/drawingTest.swift; sourceTree = "<group>"; };
-		3BDBDA0F20ACD5D700E0EB62 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataProperties.swift"; path = "Data Classes/Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA1020ACD5D700E0EB62 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "Data Classes/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA1120ACD5D700E0EB62 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataProperties.swift"; path = "Data Classes/Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA1220ACD5D700E0EB62 /* SubCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCategory+CoreDataProperties.swift"; path = "Data Classes/SubCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA1320ACD5D700E0EB62 /* Ability+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Ability+CoreDataClass.swift"; path = "Data Classes/Ability+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA1420ACD5D700E0EB62 /* Ability+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Ability+CoreDataProperties.swift"; path = "Data Classes/Ability+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA1520ACD5D700E0EB62 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataClass.swift"; path = "Data Classes/Category+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA1620ACD5D700E0EB62 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataProperties.swift"; path = "Data Classes/Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA1720ACD5D700E0EB62 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataClass.swift"; path = "Data Classes/Character+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA1A20ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSetting+CoreDataClass.swift"; path = "Data Classes/DrawSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA1B20ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSetting+CoreDataProperties.swift"; path = "Data Classes/DrawSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA1C20ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSubSetting+CoreDataClass.swift"; path = "Data Classes/DrawSubSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA1D20ACD5D700E0EB62 /* DrawSubSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSubSetting+CoreDataProperties.swift"; path = "Data Classes/DrawSubSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA1E20ACD5D700E0EB62 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "Data Classes/Item+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA1F20ACD5D700E0EB62 /* ItemAtribute+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemAtribute+CoreDataClass.swift"; path = "Data Classes/ItemAtribute+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA2020ACD5D700E0EB62 /* ItemAtribute+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemAtribute+CoreDataProperties.swift"; path = "Data Classes/ItemAtribute+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA2120ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemAtributeHandler+CoreDataClass.swift"; path = "Data Classes/ItemAtributeHandler+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA2220ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemAtributeHandler+CoreDataProperties.swift"; path = "Data Classes/ItemAtributeHandler+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA2320ACD5D700E0EB62 /* ItemHandler+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemHandler+CoreDataClass.swift"; path = "Data Classes/ItemHandler+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA2420ACD5D700E0EB62 /* ItemHandler+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemHandler+CoreDataProperties.swift"; path = "Data Classes/ItemHandler+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA2520ACD5D700E0EB62 /* Package+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Package+CoreDataClass.swift"; path = "Data Classes/Package+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA2620ACD5D700E0EB62 /* Package+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Package+CoreDataProperties.swift"; path = "Data Classes/Package+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3BDBDA2720ACD5D700E0EB62 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataClass.swift"; path = "Data Classes/Session+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3BDBDA2820ACD5D700E0EB62 /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCategory+CoreDataClass.swift"; path = "Data Classes/SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataProperties.swift"; path = "Data Classes/Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Map+CoreDataClass.swift"; path = "Data Classes/Map+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9D020ACD45D00E0EB62 /* Map+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Map+CoreDataProperties.swift"; path = "Data Classes/Map+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9D120ACD45D00E0EB62 /* MapEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MapEntity+CoreDataClass.swift"; path = "Data Classes/MapEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9D220ACD45D00E0EB62 /* MapEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MapEntity+CoreDataProperties.swift"; path = "Data Classes/MapEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9D320ACD45D00E0EB62 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataProperties.swift"; path = "Data Classes/Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9D420ACD45D00E0EB62 /* Ability+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Ability+CoreDataClass.swift"; path = "Data Classes/Ability+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9D520ACD45D00E0EB62 /* Ability+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Ability+CoreDataProperties.swift"; path = "Data Classes/Ability+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9D620ACD45D00E0EB62 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataClass.swift"; path = "Data Classes/Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9D720ACD45D00E0EB62 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Category+CoreDataProperties.swift"; path = "Data Classes/Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9D820ACD45D00E0EB62 /* Character+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataClass.swift"; path = "Data Classes/Character+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9D920ACD45D00E0EB62 /* Currency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataClass.swift"; path = "Data Classes/Currency+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9DA20ACD45D00E0EB62 /* Currency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Currency+CoreDataProperties.swift"; path = "Data Classes/Currency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9DB20ACD45D00E0EB62 /* DrawSetting+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSetting+CoreDataClass.swift"; path = "Data Classes/DrawSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9DC20ACD45D00E0EB62 /* DrawSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSetting+CoreDataProperties.swift"; path = "Data Classes/DrawSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9DD20ACD45D00E0EB62 /* DrawSubSetting+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSubSetting+CoreDataClass.swift"; path = "Data Classes/DrawSubSetting+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9DE20ACD45D00E0EB62 /* DrawSubSetting+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DrawSubSetting+CoreDataProperties.swift"; path = "Data Classes/DrawSubSetting+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9DF20ACD45D00E0EB62 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "Data Classes/Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9E020ACD45D00E0EB62 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "Data Classes/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9E120ACD45D00E0EB62 /* ItemAtribute+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemAtribute+CoreDataClass.swift"; path = "Data Classes/ItemAtribute+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9E220ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemAtribute+CoreDataProperties.swift"; path = "Data Classes/ItemAtribute+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9E320ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemAtributeHandler+CoreDataClass.swift"; path = "Data Classes/ItemAtributeHandler+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9E420ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemAtributeHandler+CoreDataProperties.swift"; path = "Data Classes/ItemAtributeHandler+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9E520ACD45D00E0EB62 /* ItemHandler+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemHandler+CoreDataClass.swift"; path = "Data Classes/ItemHandler+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9E620ACD45D00E0EB62 /* ItemHandler+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ItemHandler+CoreDataProperties.swift"; path = "Data Classes/ItemHandler+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9E720ACD45D00E0EB62 /* Package+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Package+CoreDataClass.swift"; path = "Data Classes/Package+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9E820ACD45D00E0EB62 /* Package+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Package+CoreDataProperties.swift"; path = "Data Classes/Package+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBD9E920ACD45D00E0EB62 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Session+CoreDataClass.swift"; path = "Data Classes/Session+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9EA20ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCategory+CoreDataClass.swift"; path = "Data Classes/SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBD9EB20ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCategory+CoreDataProperties.swift"; path = "Data Classes/SubCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BDBDA0A20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCurrency+CoreDataClass.swift"; path = "Data Classes/SubCurrency+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BDBDA0B20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCurrency+CoreDataProperties.swift"; path = "Data Classes/SubCurrency+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
 		3BECB6CB1FBA53BA00A947E9 /* addCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addCharacter.swift; sourceTree = "<group>"; };
 		3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowInfoPopOver.swift; sourceTree = "<group>"; };
@@ -276,7 +292,7 @@
 				3B3C052F1F3BBE4E00CFB002 /* Detail */,
 				3BF480AD1F44DBC50017169D /* Popover */,
 				3B9D6BDC1FB907E100474C71 /* Networking */,
-				3BDBDA0E20ACD59F00E0EB62 /* Data Classes */,
+				3BDBD9CD20ACD45500E0EB62 /* Data Classes */,
 				3B9D6BDD1FB907F400474C71 /* Data */,
 				3B295D8420A8E303001DC35D /* Utilities */,
 			);
@@ -375,33 +391,47 @@
 			path = RPGAappUITests;
 			sourceTree = "<group>";
 		};
-		3BDBDA0E20ACD59F00E0EB62 /* Data Classes */ = {
+		3BDBD9CD20ACD45500E0EB62 /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3BDBDA0F20ACD5D700E0EB62 /* Character+CoreDataProperties.swift */,
-				3BDBDA1020ACD5D700E0EB62 /* Item+CoreDataProperties.swift */,
-				3BDBDA1120ACD5D700E0EB62 /* Session+CoreDataProperties.swift */,
-				3BDBDA1220ACD5D700E0EB62 /* SubCategory+CoreDataProperties.swift */,
-				3BDBDA1320ACD5D700E0EB62 /* Ability+CoreDataClass.swift */,
-				3BDBDA1420ACD5D700E0EB62 /* Ability+CoreDataProperties.swift */,
-				3BDBDA1520ACD5D700E0EB62 /* Category+CoreDataClass.swift */,
-				3BDBDA1620ACD5D700E0EB62 /* Category+CoreDataProperties.swift */,
-				3BDBDA1720ACD5D700E0EB62 /* Character+CoreDataClass.swift */,
-				3BDBDA1A20ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift */,
-				3BDBDA1B20ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift */,
-				3BDBDA1C20ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift */,
-				3BDBDA1D20ACD5D700E0EB62 /* DrawSubSetting+CoreDataProperties.swift */,
-				3BDBDA1E20ACD5D700E0EB62 /* Item+CoreDataClass.swift */,
-				3BDBDA1F20ACD5D700E0EB62 /* ItemAtribute+CoreDataClass.swift */,
-				3BDBDA2020ACD5D700E0EB62 /* ItemAtribute+CoreDataProperties.swift */,
-				3BDBDA2120ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataClass.swift */,
-				3BDBDA2220ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift */,
-				3BDBDA2320ACD5D700E0EB62 /* ItemHandler+CoreDataClass.swift */,
-				3BDBDA2420ACD5D700E0EB62 /* ItemHandler+CoreDataProperties.swift */,
-				3BDBDA2520ACD5D700E0EB62 /* Package+CoreDataClass.swift */,
-				3BDBDA2620ACD5D700E0EB62 /* Package+CoreDataProperties.swift */,
-				3BDBDA2720ACD5D700E0EB62 /* Session+CoreDataClass.swift */,
-				3BDBDA2820ACD5D700E0EB62 /* SubCategory+CoreDataClass.swift */,
+				3B88010420B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift */,
+				3B88010520B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift */,
+				3B88010620B2E9A100AB2C62 /* Store+CoreDataClass.swift */,
+				3B88010720B2E9A100AB2C62 /* Store+CoreDataProperties.swift */,
+				3B88010820B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift */,
+				3B88010920B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift */,
+				3BDBDA0A20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift */,
+				3BDBDA0B20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift */,
+				3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */,
+				3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */,
+				3BDBD9D020ACD45D00E0EB62 /* Map+CoreDataProperties.swift */,
+				3BDBD9D120ACD45D00E0EB62 /* MapEntity+CoreDataClass.swift */,
+				3BDBD9D220ACD45D00E0EB62 /* MapEntity+CoreDataProperties.swift */,
+				3BDBD9D320ACD45D00E0EB62 /* Session+CoreDataProperties.swift */,
+				3BDBD9D420ACD45D00E0EB62 /* Ability+CoreDataClass.swift */,
+				3BDBD9D520ACD45D00E0EB62 /* Ability+CoreDataProperties.swift */,
+				3BDBD9D620ACD45D00E0EB62 /* Category+CoreDataClass.swift */,
+				3BDBD9D720ACD45D00E0EB62 /* Category+CoreDataProperties.swift */,
+				3BDBD9D820ACD45D00E0EB62 /* Character+CoreDataClass.swift */,
+				3BDBD9D920ACD45D00E0EB62 /* Currency+CoreDataClass.swift */,
+				3BDBD9DA20ACD45D00E0EB62 /* Currency+CoreDataProperties.swift */,
+				3BDBD9DB20ACD45D00E0EB62 /* DrawSetting+CoreDataClass.swift */,
+				3BDBD9DC20ACD45D00E0EB62 /* DrawSetting+CoreDataProperties.swift */,
+				3BDBD9DD20ACD45D00E0EB62 /* DrawSubSetting+CoreDataClass.swift */,
+				3BDBD9DE20ACD45D00E0EB62 /* DrawSubSetting+CoreDataProperties.swift */,
+				3BDBD9DF20ACD45D00E0EB62 /* Item+CoreDataClass.swift */,
+				3BDBD9E020ACD45D00E0EB62 /* Item+CoreDataProperties.swift */,
+				3BDBD9E120ACD45D00E0EB62 /* ItemAtribute+CoreDataClass.swift */,
+				3BDBD9E220ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift */,
+				3BDBD9E320ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataClass.swift */,
+				3BDBD9E420ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift */,
+				3BDBD9E520ACD45D00E0EB62 /* ItemHandler+CoreDataClass.swift */,
+				3BDBD9E620ACD45D00E0EB62 /* ItemHandler+CoreDataProperties.swift */,
+				3BDBD9E720ACD45D00E0EB62 /* Package+CoreDataClass.swift */,
+				3BDBD9E820ACD45D00E0EB62 /* Package+CoreDataProperties.swift */,
+				3BDBD9E920ACD45D00E0EB62 /* Session+CoreDataClass.swift */,
+				3BDBD9EA20ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift */,
+				3BDBD9EB20ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift */,
 			);
 			name = "Data Classes";
 			sourceTree = "<group>";
@@ -567,6 +597,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B4582AA20B1F09700A07627 /* CenteredLabelCell.xib in Resources */,
+				3B079FDF20AF751E00D70BBB /* ProfileFieldCell.xib in Resources */,
 				3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */,
 				3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */,
 				3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */,
@@ -646,58 +678,55 @@
 				3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */,
 				3BDBD9FC20ACD45D00E0EB62 /* DrawSubSetting+CoreDataProperties.swift in Sources */,
 				3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */,
-				3BDBDA3420ACD5D700E0EB62 /* DrawSetting+CoreDataClass.swift in Sources */,
 				3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */,
 				3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */,
 				3BDBD9EC20ACD45D00E0EB62 /* Character+CoreDataProperties.swift in Sources */,
 				3B7B159D1F3DFDB30055EE5F /* HandlarzeDetailViewController.swift in Sources */,
-				3BDBDA2F20ACD5D700E0EB62 /* Category+CoreDataClass.swift in Sources */,
-				3BDBDA3720ACD5D700E0EB62 /* DrawSubSetting+CoreDataProperties.swift in Sources */,
+				3B88010C20B2E9A100AB2C62 /* Store+CoreDataClass.swift in Sources */,
+				3BDBD9F120ACD45D00E0EB62 /* Session+CoreDataProperties.swift in Sources */,
 				3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */,
-				3BDBDA3020ACD5D700E0EB62 /* Category+CoreDataProperties.swift in Sources */,
-				3BDBDA2A20ACD5D700E0EB62 /* Item+CoreDataProperties.swift in Sources */,
+				3B88010F20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift in Sources */,
+				3BDBD9FE20ACD45D00E0EB62 /* Item+CoreDataProperties.swift in Sources */,
+				3BDBD9F620ACD45D00E0EB62 /* Character+CoreDataClass.swift in Sources */,
+				3BDBDA0320ACD45D00E0EB62 /* ItemHandler+CoreDataClass.swift in Sources */,
+				3BDBDA0620ACD45D00E0EB62 /* Package+CoreDataProperties.swift in Sources */,
+				3BDBD9EF20ACD45D00E0EB62 /* MapEntity+CoreDataClass.swift in Sources */,
+				3BDBD9FF20ACD45D00E0EB62 /* ItemAtribute+CoreDataClass.swift in Sources */,
 				3BECB6CC1FBA53BA00A947E9 /* addCharacter.swift in Sources */,
 				3BDBD9F020ACD45D00E0EB62 /* MapEntity+CoreDataProperties.swift in Sources */,
 				3BDBD9ED20ACD45D00E0EB62 /* Map+CoreDataClass.swift in Sources */,
 				3B31B3E61F3B67A6003526E1 /* KatalogMenuViewController.swift in Sources */,
 				3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */,
-				3BDBDA3A20ACD5D700E0EB62 /* ItemAtribute+CoreDataProperties.swift in Sources */,
-				3BDBDA3120ACD5D700E0EB62 /* Character+CoreDataClass.swift in Sources */,
-				3BDBDA3920ACD5D700E0EB62 /* ItemAtribute+CoreDataClass.swift in Sources */,
 				3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */,
-				3BDBDA2B20ACD5D700E0EB62 /* Session+CoreDataProperties.swift in Sources */,
-				3BDBDA2D20ACD5D700E0EB62 /* Ability+CoreDataClass.swift in Sources */,
 				3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */,
-				3BDBDA3820ACD5D700E0EB62 /* Item+CoreDataClass.swift in Sources */,
+				3BDBD9F220ACD45D00E0EB62 /* Ability+CoreDataClass.swift in Sources */,
+				3BDBD9F920ACD45D00E0EB62 /* DrawSetting+CoreDataClass.swift in Sources */,
 				3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */,
 				3BDBD9F820ACD45D00E0EB62 /* Currency+CoreDataProperties.swift in Sources */,
 				3BDBDA0020ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
 				3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */,
-				3BDBDA3C20ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */,
-				3BDBDA2920ACD5D700E0EB62 /* Character+CoreDataProperties.swift in Sources */,
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,
 				3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */,
-				3BDBDA3E20ACD5D700E0EB62 /* ItemHandler+CoreDataProperties.swift in Sources */,
-				3BDBDA3D20ACD5D700E0EB62 /* ItemHandler+CoreDataClass.swift in Sources */,
 				3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */,
 				3BF5EACB20A71E9C005FD6BC /* ItemRequester.swift in Sources */,
 				3B7D23051F43468D00A86F3E /* catalogeSendPopoverViewController.swift in Sources */,
 				3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */,
-				3BDBDA3F20ACD5D700E0EB62 /* Package+CoreDataClass.swift in Sources */,
-				3BDBDA3B20ACD5D700E0EB62 /* ItemAtributeHandler+CoreDataClass.swift in Sources */,
+				3BDBD9FD20ACD45D00E0EB62 /* Item+CoreDataClass.swift in Sources */,
+				3B88010A20B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift in Sources */,
+				3B709CE820ACA29600D5825E /* MapScene.swift in Sources */,
 				3B48ED6520A9D63600DAA7CC /* TeamViewCellSubCells.swift in Sources */,
 				3BDBDA0920ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift in Sources */,
 				3BDBDA0420ACD45D00E0EB62 /* ItemHandler+CoreDataProperties.swift in Sources */,
 				3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */,
 				3BDBD9FA20ACD45D00E0EB62 /* DrawSetting+CoreDataProperties.swift in Sources */,
 				3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */,
-				3BDBDA4020ACD5D700E0EB62 /* Package+CoreDataProperties.swift in Sources */,
 				3B295D8820A8E3C4001DC35D /* DiceRollFunctions.swift in Sources */,
 				3B079FDA20AF5B0A00D70BBB /* NewItemForm.swift in Sources */,
 				3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */,
-				3BDBDA3620ACD5D700E0EB62 /* DrawSubSetting+CoreDataClass.swift in Sources */,
-				3BDBDA4120ACD5D700E0EB62 /* Session+CoreDataClass.swift in Sources */,
+				3BDBDA0820ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift in Sources */,
+				3BDBD9F320ACD45D00E0EB62 /* Ability+CoreDataProperties.swift in Sources */,
+				3BDBDA0D20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift in Sources */,
 				3B7FCD961F3F784700AC4193 /* HandlarzeMenuViewController.swift in Sources */,
 				3B88010E20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift in Sources */,
 				3B079FE120AF754200D70BBB /* ProfileFieldCell.swift in Sources */,
@@ -708,18 +737,14 @@
 				3BDBDA0520ACD45D00E0EB62 /* Package+CoreDataClass.swift in Sources */,
 				3B4582AC20B1F17600A07627 /* CenteredLabelCell.swift in Sources */,
 				3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */,
-				3BDBDA3520ACD5D700E0EB62 /* DrawSetting+CoreDataProperties.swift in Sources */,
-				3BDBDA2E20ACD5D700E0EB62 /* Ability+CoreDataProperties.swift in Sources */,
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
 				3BDBDA0220ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */,
 				3BDBD9F720ACD45D00E0EB62 /* Currency+CoreDataClass.swift in Sources */,
 				3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */,
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
-				3BDBDA4220ACD5D700E0EB62 /* SubCategory+CoreDataClass.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */,
 				3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */,
-				3BDBDA2C20ACD5D700E0EB62 /* SubCategory+CoreDataProperties.swift in Sources */,
 				3BF5EACD20A72507005FD6BC /* DataPacker.swift in Sources */,
 				3BDBD9F420ACD45D00E0EB62 /* Category+CoreDataClass.swift in Sources */,
 				3B88010D20B2E9A100AB2C62 /* Store+CoreDataProperties.swift in Sources */,

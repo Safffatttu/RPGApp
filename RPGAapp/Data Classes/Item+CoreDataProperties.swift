@@ -65,4 +65,3 @@ extension Item {
     @NSManaged public func removeFromItemAtribute(_ values: NSSet)
 
 }
-
