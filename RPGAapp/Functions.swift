@@ -146,8 +146,6 @@ func loadItemsFromAsset(){
         itemList.append(columns)
     }
 
-	var rarStack: [Int16] = []
-	
     var item: Item? = nil
     
     for line in itemList{
@@ -193,7 +191,6 @@ func loadItemsFromAsset(){
         item?.setValue(Double(line[4]), forKey: #keyPath(Item.price))
         if let rarity = Int16(line[5]){
             if rarity > 0 && rarity < 5 {
-				rarStack.append(rarity)
                 item?.setValue(rarity, forKey: #keyPath(Item.rarity))
             }
         }
@@ -207,8 +204,6 @@ func loadItemsFromAsset(){
         item?.setValue(id, forKey: #keyPath(Item.id))
     }
 
-	print(rarStack.max())
-	print(rarStack.min())
     CoreDataStack.saveContext()
 }
 
