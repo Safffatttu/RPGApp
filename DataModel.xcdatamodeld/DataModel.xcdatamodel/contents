@@ -8,8 +8,8 @@
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="category" inverseEntity="Item" syncable="YES"/>
-        <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
+        <relationship name="items" toMany="YES" deletionRule="Cascade" destinationEntity="Item" inverseName="category" inverseEntity="Item" syncable="YES"/>
+        <relationship name="subCategories" toMany="YES" deletionRule="Cascade" destinationEntity="SubCategory" inverseName="category" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="Character" representedClassName="Character" syncable="YES">
         <attribute name="health" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -18,7 +18,8 @@
         <attribute name="profession" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="abilities" toMany="YES" deletionRule="Cascade" destinationEntity="Ability" inverseName="character" inverseEntity="Ability" syncable="YES"/>
-        <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
+        <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" inverseName="owner" inverseEntity="ItemHandler" syncable="YES"/>
+        <relationship name="mapRepresentation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="MapEntity" inverseName="character" inverseEntity="MapEntity" syncable="YES"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="characters" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Currency" representedClassName="Currency" syncable="YES">
@@ -28,7 +29,7 @@
     </entity>
     <entity name="DrawSetting" representedClassName="DrawSetting" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="subSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrawSubSetting" syncable="YES"/>
+        <relationship name="subSettings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DrawSubSetting" syncable="YES"/>
     </entity>
     <entity name="DrawSubSetting" representedClassName="DrawSubSetting" syncable="YES">
         <attribute name="itemsToDraw" optional="YES" attributeType="Integer 64" defaultValueString="3" usesScalarValueType="YES" syncable="YES"/>
@@ -49,9 +50,10 @@
         <attribute name="propability" optional="YES" transient="YES" attributeType="Integer 64" defaultValueString="100" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rarity" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
-        <relationship name="itemAtribute" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
-        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="items" inverseEntity="SubCategory" syncable="YES"/>
+        <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
+        <relationship name="handelers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ItemHandler" inverseName="item" inverseEntity="ItemHandler" syncable="YES"/>
+        <relationship name="itemAtribute" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ItemAtribute" inverseName="item" inverseEntity="ItemAtribute" syncable="YES"/>
+        <relationship name="subCategory" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="items" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
     <entity name="ItemAtribute" representedClassName="ItemAtribute" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -59,6 +61,7 @@
         <attribute name="priceMod" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rarityMod" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="excludingAtributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
+        <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="itemAtribute" inverseEntity="Item" syncable="YES"/>
         <relationship name="requiredAtributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
     </entity>
     <entity name="ItemAtributeHandler" representedClassName="ItemAtributeHandler" syncable="YES">
@@ -66,14 +69,31 @@
     </entity>
     <entity name="ItemHandler" representedClassName="ItemHandler" syncable="YES">
         <attribute name="count" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Item" syncable="YES"/>
+        <relationship name="item" maxCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="Item" inverseName="handelers" inverseEntity="Item" syncable="YES"/>
         <relationship name="itemAtributesHandler" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ItemAtributeHandler" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="equipment" inverseEntity="Character" syncable="YES"/>
     </entity>
     <entity name="Package" representedClassName="Package" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" syncable="YES"/>
-        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="packages" inverseEntity="Session" syncable="YES"/>
+        <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="entities" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MapEntity" inverseName="map" inverseEntity="MapEntity" syncable="YES"/>
+        <relationship name="session" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="maps" inverseEntity="Session" syncable="YES"/>
+    </entity>
+    <entity name="MapEntity" representedClassName="MapEntity" syncable="YES">
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="texture" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="mapRepresentation" inverseEntity="Character" syncable="YES"/>
+        <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="entities" inverseEntity="Map" syncable="YES"/>
+    </entity>
+    <entity name="Package" representedClassName="Package" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="items" toMany="YES" deletionRule="Cascade" destinationEntity="ItemHandler" syncable="YES"/>
+        <relationship name="session" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="packages" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES">
         <attribute name="current" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -82,8 +102,9 @@
         <attribute name="gameMasterName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
-        <relationship name="packages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
+        <relationship name="maps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Map" inverseName="session" inverseEntity="Map" syncable="YES"/>
+        <relationship name="packages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
     </entity>
     <entity name="Store" representedClassName="Store" syncable="YES">
         <attribute name="budget" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -106,8 +127,8 @@
     <entity name="SubCategory" representedClassName="SubCategory" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="temp" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
-        <relationship name="items" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="subCategory" inverseEntity="Item" syncable="YES"/>
+        <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subCategories" inverseEntity="Category" syncable="YES"/>
+        <relationship name="items" toMany="YES" deletionRule="Cascade" destinationEntity="Item" inverseName="subCategory" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="SubCurrency" representedClassName="SubCurrency" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>

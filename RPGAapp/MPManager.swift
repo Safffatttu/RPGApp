@@ -160,6 +160,7 @@ enum ActionType: Int {
 	case sessionReceived
 	case itemsRequest
 	case itemsRequestResponse
+	case mapEntityMoved
 }
 
 extension Notification.Name{

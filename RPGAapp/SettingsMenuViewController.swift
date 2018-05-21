@@ -56,7 +56,6 @@ class SettingMenu: UITableViewController {
 	
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(connectedDevicesChanged), name: .connectedDevicesChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(addedSession(_:)), name: .addedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchedSessionAction(_:)), name: .switchedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sessionDeleted(_:)), name: .sessionDeleted, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(sessionReceived), name: .sessionReceived, object: nil)
@@ -69,33 +68,14 @@ class SettingMenu: UITableViewController {
 		tableView.reloadData()
 	}
 	
-	
-    func addedSession(_ notification: NSNotification){
-        let session = notification.object as! Session
-        
-        let previous = sessions.index(where: {$0.current == true})
-        if previous != nil{
-            sessions[previous!].current = false
-        }
-        
-        let index = IndexPath(row: tableView(self.tableView, numberOfRowsInSection: 1), section: 1)
-        sessions.append(session)
-        
-        self.tableView.insertRows(at: [index], with: .automatic)
-        
-        if previous != nil{
-            let previousIndex = IndexPath(row: previous! + 1, section: 1)
-            self.tableView.reloadRows(at: [previousIndex], with: .automatic)
-        }
-    }
-    
     func switchedSessionAction(_ notification: Notification){
         let action = notification.object as? NSMutableDictionary
         let sessionId = action?.value(forKey: "sessionId") as? String
         
         let index = sessions.index(where: {$0.id == sessionId})
         guard index != nil else {
-            return
+			sessionReceived()
+			return
         }
         let indexPath = IndexPath(row: index! + 1, section: 1)
         
@@ -168,7 +148,7 @@ class SettingMenu: UITableViewController {
                 return cell
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
-                cell?.textLabel?.text = sessions[indexPath.row - 1].name
+                cell?.textLabel?.text = sessions[indexPath.row - 1].name! + " " + String((sessions[indexPath.row - 1].id?.characters.suffix(4))!)
                 cell?.selectionStyle = .none
                 cell?.accessoryType = .none
                 if sessions[indexPath.row - 1].current{
@@ -329,11 +309,18 @@ extension SettingMenu: settingCellDelegate {
     func pressedButton(_ sender: UIButton) {
         let context = CoreDataStack.managedObjectContext
         let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-        session.name = "Nowa sesja" + String(describing: sessions.count)
+        session.name = "Sesja"
         session.gameMaster = UIDevice.current.name
         session.current = true
         session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
-        
+		
+		let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
+		
+		newMap.id = String(strHash(session.id!)) + String(describing: Date())
+		newMap.current = true
+		
+		session.addToMaps(newMap)
+		
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         var devices = appDelegate.pack.session.connectedPeers.map{$0.displayName}
@@ -358,17 +345,17 @@ extension SettingMenu: settingCellDelegate {
         CoreDataStack.saveContext()
         
         let action = NSMutableDictionary()
-        let actionType = NSNumber(value: ActionType.sessionCreated.rawValue)
-
-        action.setValue(actionType, forKey: "action")
-        
-        action.setValue(session.name, forKey: "sessionName")
-        action.setValue(session.gameMaster, forKey: "gameMaster")
-        action.setValue(session.gameMasterName, forKey: "gameMasterName")
-        action.setValue(session.id, forKey: "sessionId")
-        action.setValue(session.devices, forKey: "sessionDevices")
-        
-        appDelegate.pack.send(action)
+		let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
+		
+		action.setValue(actionType, forKey: "action")
+		
+		let sessionDictionary = packSessionForMessage(session)
+		
+		action.setValue(actionType, forKey: "action")
+		action.setValue(sessionDictionary, forKey: "session")
+		action.setValue(session.current, forKey: "setCurrent")
+		
+		appDelegate.pack.send(action)
     }
 }
 

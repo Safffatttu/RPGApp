@@ -80,9 +80,22 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                 newCharacter.race = action.value(forKey: #keyPath(Character.race)) as? String
                 newCharacter.id = (action.value(forKey: #keyPath(Character.id)) as? String)!
                 newCharacter.profession = action.value(forKey: #keyPath(Character.profession)) as? String
-                
+				
+				guard let mapEntityId = action.value(forKey: "mapEntityId") as? String else { return }
+				guard let mapEntityPosX = action.value(forKey: "mapEntityPosX") as? Double else { return }
+				guard let mapEntityPosY = action.value(forKey: "mapEntityPosY") as? Double else { return }
+				guard let mapId = action.value(forKey: "mapId") as? String else { return }
+				
                 let session = getCurrentSession()
-                
+				
+				let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
+				
+				newMapEntity.character = newCharacter
+				newMapEntity.id = mapEntityId
+				newMapEntity.x = mapEntityPosX
+				newMapEntity.y = mapEntityPosY
+				newMapEntity.map = Load.currentMap(session: session)
+				
                 session.addToCharacters(newCharacter)
                 
                 CoreDataStack.saveContext()
@@ -209,32 +222,6 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
                     
                     CoreDataStack.saveContext()
                 }
-            }else if actionType == ActionType.sessionCreated{
-                let sessionName = action.value(forKey: "sessionName") as? String
-                let gameMaster = action.value(forKey: "gameMaster") as? String
-                let gameMasterName = action.value(forKey: "gameMasterName") as? String
-                let sessionId = action.value(forKey: "sessionId") as? String
-                let sessionDevices = action.value(forKey: "sessionDevices") as? NSSet
-                let context = CoreDataStack.managedObjectContext
-                
-                let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-                
-                session.name = sessionName
-                session.gameMaster = gameMaster
-                session.gameMasterName = gameMasterName
-                session.id = sessionId
-                session.devices = sessionDevices
-                
-                CoreDataStack.saveContext()
-                
-                let sessions: [Session] = Load.sessions()
-                
-                sessions.first(where: {$0.current == true})?.current = false
-                session.current = true
-                
-                CoreDataStack.saveContext()
-                
-                NotificationCenter.default.post(name: .addedSession, object: session)
             }else if actionType == ActionType.sessionSwitched{
                 NotificationCenter.default.post(name: .switchedSession, object: action)
                 let sessionId = action.value(forKey: "sessionId") as! String
@@ -369,7 +356,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				NotificationCenter.default.post(name: .equipmentChanged, object: nil)
 			
-			}else if actionType == .sessionReceived{
+			}else if actionType == ActionType.sessionReceived{
 				guard let sessionData = action.value(forKey: "session") as? NSDictionary else { return }
 				guard let sessionId = sessionData.value(forKey: "id") as? String else { return }
 				
@@ -436,6 +423,21 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				}
 				
 				NotificationCenter.default.post(name: .recievedItemData, object: requestId)
+			}else if actionType == ActionType.mapEntityMoved{
+				guard let entityId = action.value(forKey: "entityId") as? String else { return }
+				guard let posX = action.value(forKey: "posX") as? Double else { return }
+				guard let posY = action.value(forKey: "posY") as? Double else { return }
+				
+				guard let entity = Load.mapEntity(withId: entityId) else { return }
+				
+				entity.x = posX
+				entity.y = posY
+				
+				CoreDataStack.saveContext()
+				
+				let newPos = CGPoint(x: posX, y: posY)
+				
+				NotificationCenter.default.post(name: .mapEntityMoved, object: (entity, newPos))
 			}
         }
     }

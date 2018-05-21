@@ -11,6 +11,7 @@ import UIKit
 import FontAwesome_swift
 import CoreData
 import Dwifft
+import Former
 
 class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate, UIPopoverPresentationControllerDelegate{
     
@@ -43,6 +44,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         
         self.diffCalculator = TableViewDiffCalculator(tableView: self.tableView, initialSectionedValues: self.items)
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create item", style: .plain, target: self, action: #selector(newItemForm))
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +55,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(searchModelChanged(_:)), name: .searchCatalogeModelChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(sortModelChange(_:)), name: .sortModelChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems), name: .createdNewItem, object: nil)
 		
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -67,6 +70,18 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func dismissKeyboard(){
         NotificationCenter.default.post(name: .dismissKeyboard, object: nil)
     }
+	
+	func newItemForm() {
+		let form = NewItemForm()
+		
+		form.modalPresentationStyle = .formSheet
+		
+		self.present(form, animated: true, completion: nil)
+	}
+	
+	func reloadItems(){
+		items = SectionedValues(Load.subCategoriesForCatalog())
+	}
 	
 	func sortModelChange(_ notification: Notification){
 		if let newSortModel = notification.object as? [(String,Bool,NSSortDescriptor)]{
@@ -275,8 +290,23 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
             tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-    
-    
+	
+	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+		return true
+	}
+	
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		if  editingStyle == .delete{
+			guard let item = diffCalculator?.value(atIndexPath: indexPath) else { return }
+			
+			CoreDataStack.managedObjectContext.delete(item)
+			CoreDataStack.saveContext()
+			
+			items = RPGAapp.searchCataloge(searchWith: lastSearchString, using: searchModel, sortBy: sortModel)
+		}
+	}
+	
     //MARK: Cell Delegates
     
     func addToPackageButton(_ sender: UIButton){

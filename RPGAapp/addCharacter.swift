@@ -46,7 +46,13 @@ class addCharacter: UIViewController {
         let session = getCurrentSession()
         
         session.addToCharacters(newCharacter)
-        
+		
+		let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
+		
+		newMapEntity.character = newCharacter
+		newMapEntity.id = newCharacter.id
+		newMapEntity.map = Load.currentMap(session: session)
+		
         CoreDataStack.saveContext()
         
         NotificationCenter.default.post(name: .reloadTeam, object: nil)
@@ -62,7 +68,12 @@ class addCharacter: UIViewController {
         action.setValue(newCharacter.race, forKey: #keyPath(Character.race))
         action.setValue(newCharacter.id, forKey: #keyPath(Character.id))
         action.setValue(newCharacter.profession, forKey: #keyPath(Character.profession))
-     
+		
+		action.setValue(newMapEntity.id, forKey: "mapEntityId")
+		action.setValue(newMapEntity.x, forKey: "mapEntityPosX")
+		action.setValue(newMapEntity.y, forKey: "mapEntityPosY")
+		action.setValue(newMapEntity.map?.id, forKey: "mapId")
+		
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.pack.send(action)

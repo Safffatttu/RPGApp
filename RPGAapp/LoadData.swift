@@ -208,8 +208,23 @@ public struct Load {
         
         return character
     }
-    
+	
+	public static func currentMap(session: Session) -> Map{
+		return session.maps?.filter({($0 as! Map).current}).first as! Map
+	}
+	
+	public static func mapEntity(withId id: String) -> MapEntity?{
+		var mapEntity: MapEntity?
+		let mapEntityFetch: NSFetchRequest<MapEntity> = MapEntity.fetchRequest()
+		
+		mapEntityFetch.predicate = NSPredicate(format: "id == %@", id)
+		
+		do {
+			mapEntity = try context.fetch(mapEntityFetch).first
+		}catch{
+			print("error")
+		}
+		
+		return mapEntity
+	}
 }
-
-
-

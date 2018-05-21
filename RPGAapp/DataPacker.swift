@@ -78,6 +78,34 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		packages.add(packageDict)
 	}
 	
+	let maps = NSMutableArray()
+	
+	for case let map as Map in session.maps!{
+		let mapDict = NSMutableDictionary()
+		
+		let mapEntities = NSMutableArray()
+		
+		for case let mapEnt as MapEntity in map.entities!{
+			let mapEntDict = NSMutableDictionary()
+			
+			mapEntDict.setValue(mapEnt.id, forKey: "id")
+			mapEntDict.setValue(mapEnt.x, forKey: "posX")
+			mapEntDict.setValue(mapEnt.y, forKey: "posY")
+			mapEntDict.setValue(mapEnt.character?.id, forKey: "characterId")
+			
+			mapEntities.add(mapEntDict)
+		}
+		
+		mapDict.setValue(map.id, forKey: "id")
+		mapDict.setValue(map.name, forKey: "name")
+		mapDict.setValue(map.current, forKey: "current")
+		mapDict.setValue(map.x, forKey: "posX")
+		mapDict.setValue(map.y, forKey: "posY")
+		mapDict.setValue(mapEntities, forKey: "mapEntities")
+	
+		maps.add(mapDict)
+	}
+	
 	let dictionary = NSMutableDictionary()
 	dictionary.setValue(current, forKey: "current")
 	//dictionary.setValue(devices, forKey: "devices")
@@ -87,6 +115,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	dictionary.setValue(name, forKey: "name")
 	dictionary.setValue(charactersToSend, forKey: "characters")
 	dictionary.setValue(packages, forKey: "packages")
+	dictionary.setValue(maps, forKey: "maps")
 	
 	return dictionary
 }
@@ -101,6 +130,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	
 	guard let allCharactersDict = dictionary.value(forKey: "characters") as? NSArray else { return nil }
 	guard let allPackagesDict = dictionary.value(forKey: "packages") as? NSArray else { return nil }
+	guard let allMapsDict = dictionary.value(forKey: "maps") as? NSArray else { return nil }
 	
 	let context = CoreDataStack.managedObjectContext
 	
@@ -196,23 +226,63 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		session.addToPackages(package)
 	}
 	
+	for case let mapDict as NSDictionary in allMapsDict{
+		
+		let mapName = mapDict.value(forKey: "name") as? String
+		guard let mapId = mapDict.value(forKey: "id") as? String else { continue }
+		guard let mapPosX = mapDict.value(forKey: "posX") as? Double else { continue }
+		guard let mapPosY = mapDict.value(forKey: "posY") as? Double else { continue }
+		guard let mapCurrent = mapDict.value(forKey: "current") as? Bool else { continue }
+		
+		guard let allMapEntities = mapDict.value(forKey: "mapEntities") as? NSArray else { continue }
+		
+		let map = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
+		
+		for case let mapEntDict as NSDictionary in allMapEntities{
+			
+			guard let mapEntId = mapEntDict.value(forKey: "id") as? String else { continue }
+			guard let mapEntPosX = mapEntDict.value(forKey: "posX") as? Double else { continue }
+			guard let mapEntPosY = mapEntDict.value(forKey: "posY") as? Double else { continue }
+			guard let mapEntCharacterId = mapEntDict.value(forKey: "characterId") as? String else { continue }
+
+			let mapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: context) as! MapEntity
+			
+			mapEntity.id = mapEntId
+			mapEntity.x = mapEntPosX
+			mapEntity.y = mapEntPosY
+			
+			guard let character = session.characters?.first(where: {($0 as? Character)?.id == mapEntCharacterId}) as? Character else { continue }
+			
+			character.mapRepresentation = mapEntity
+			map.addToEntities(mapEntity)
+		}
+		
+		map.id = mapId
+		map.name = mapName
+		map.x = mapPosX
+		map.y = mapPosY
+		map.current = mapCurrent
+		
+		session.addToMaps(map)
+	}
+	
 	CoreDataStack.saveContext()
 	
 	return session
 }
 
 func packItem(_ item: Item) -> NSDictionary {
-	let itemDict = NSDictionary()
+	let itemDict = NSMutableDictionary()
 	
-	itemDict.setValue(item.id, forKey: "id")
+	itemDict.setValue(item.id, forKey: "itemId")
 	itemDict.setValue(item.item_description, forKey: "item_description")
 	itemDict.setValue(item.measure, forKey: "measure")
 	itemDict.setValue(item.name, forKey: "name")
 	itemDict.setValue(item.price, forKey: "price")
 	itemDict.setValue(item.quantity, forKey: "quantity")
 	itemDict.setValue(item.rarity, forKey: "rarity")
-	itemDict.setValue(item.category, forKey: "category")
-	itemDict.setValue(item.subCategory, forKey: "subCategory")
+	itemDict.setValue(item.category?.name, forKey: "categoryName")
+	itemDict.setValue(item.subCategory?.name, forKey: "subCategoryName")
 	
 	if let itemAtributes = item.itemAtribute?.allObjects as? [ItemAtribute]{
 		var atributesDict: [NSDictionary] = []
@@ -232,7 +302,7 @@ func packItem(_ item: Item) -> NSDictionary {
 		
 	}
 	
-	return itemDict
+	return NSDictionary(dictionary: itemDict)
 }
 
 func unPackItem(from itemDictionary: NSDictionary) -> Item{
@@ -243,8 +313,8 @@ func unPackItem(from itemDictionary: NSDictionary) -> Item{
 	let price = itemDictionary.value(forKey: "price") as! Double
 	let quantity = itemDictionary.value(forKey: "quantity") as! Int16
 	let rarity = itemDictionary.value(forKey: "rarity") as! Int16
-	let categoryName = itemDictionary.value(forKey: "category") as? String
-	let subCategoryName = itemDictionary.value(forKey: "subCategory") as? String
+	let categoryName = itemDictionary.value(forKey: "categoryName") as? String
+	let subCategoryName = itemDictionary.value(forKey: "subCategoryName") as? String
 	
 	
 	let category = Load.categories().first(where: {$0.name == categoryName})
