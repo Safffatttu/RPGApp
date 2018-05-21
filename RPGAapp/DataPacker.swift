@@ -272,17 +272,17 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 }
 
 func packItem(_ item: Item) -> NSDictionary {
-	let itemDict = NSDictionary()
+	let itemDict = NSMutableDictionary()
 	
-	itemDict.setValue(item.id, forKey: "id")
+	itemDict.setValue(item.id, forKey: "itemId")
 	itemDict.setValue(item.item_description, forKey: "item_description")
 	itemDict.setValue(item.measure, forKey: "measure")
 	itemDict.setValue(item.name, forKey: "name")
 	itemDict.setValue(item.price, forKey: "price")
 	itemDict.setValue(item.quantity, forKey: "quantity")
 	itemDict.setValue(item.rarity, forKey: "rarity")
-	itemDict.setValue(item.category, forKey: "category")
-	itemDict.setValue(item.subCategory, forKey: "subCategory")
+	itemDict.setValue(item.category?.name, forKey: "categoryName")
+	itemDict.setValue(item.subCategory?.name, forKey: "subCategoryName")
 	
 	if let itemAtributes = item.itemAtribute?.allObjects as? [ItemAtribute]{
 		var atributesDict: [NSDictionary] = []
@@ -302,7 +302,7 @@ func packItem(_ item: Item) -> NSDictionary {
 		
 	}
 	
-	return itemDict
+	return NSDictionary(dictionary: itemDict)
 }
 
 func unPackItem(from itemDictionary: NSDictionary) -> Item{
@@ -313,8 +313,8 @@ func unPackItem(from itemDictionary: NSDictionary) -> Item{
 	let price = itemDictionary.value(forKey: "price") as! Double
 	let quantity = itemDictionary.value(forKey: "quantity") as! Int16
 	let rarity = itemDictionary.value(forKey: "rarity") as! Int16
-	let categoryName = itemDictionary.value(forKey: "category") as? String
-	let subCategoryName = itemDictionary.value(forKey: "subCategory") as? String
+	let categoryName = itemDictionary.value(forKey: "categoryName") as? String
+	let subCategoryName = itemDictionary.value(forKey: "subCategoryName") as? String
 	
 	
 	let category = Load.categories().first(where: {$0.name == categoryName})
