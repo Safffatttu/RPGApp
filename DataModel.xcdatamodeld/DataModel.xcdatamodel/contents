@@ -32,7 +32,7 @@
         <relationship name="subSettings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DrawSubSetting" syncable="YES"/>
     </entity>
     <entity name="DrawSubSetting" representedClassName="DrawSubSetting" syncable="YES">
-        <attribute name="itemsToDraw" optional="YES" attributeType="Integer 64" defaultValueString="3" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="itemsToDraw" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="maxRarity" attributeType="Integer 16" defaultValueString="4" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minRarity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -65,7 +65,7 @@
         <relationship name="requiredAtributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
     </entity>
     <entity name="ItemAtributeHandler" representedClassName="ItemAtributeHandler" syncable="YES">
-        <relationship name="itemAtributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
+        <relationship name="itemAtributes" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
     </entity>
     <entity name="ItemHandler" representedClassName="ItemHandler" syncable="YES">
         <attribute name="count" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
@@ -73,8 +73,10 @@
         <relationship name="itemAtributesHandler" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ItemAtributeHandler" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="equipment" inverseEntity="Character" syncable="YES"/>
     </entity>
-    <entity name="Package" representedClassName="Package" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Map" representedClassName="Map" syncable="YES">
+        <attribute name="background" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="current" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -136,22 +138,24 @@
     </entity>
     <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
-        <element name="Ability" positionX="-513" positionY="-9" width="128" height="103"/>
-        <element name="Category" positionX="360" positionY="45" width="128" height="88"/>
-        <element name="Character" positionX="-425" positionY="72" width="128" height="163"/>
+        <element name="Ability" positionX="-407" positionY="36" width="128" height="103"/>
+        <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
+        <element name="Character" positionX="-603" positionY="99" width="128" height="180"/>
         <element name="Currency" positionX="-270" positionY="-163" width="128" height="88"/>
-        <element name="DrawSetting" positionX="243" positionY="476" width="128" height="73"/>
-        <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="148"/>
-        <element name="Item" positionX="-27" positionY="-19" width="108" height="223"/>
-        <element name="ItemAtribute" positionX="-29" positionY="270" width="128" height="133"/>
-        <element name="ItemAtributeHandler" positionX="-191" positionY="225" width="128" height="58"/>
-        <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="88"/>
-        <element name="Package" positionX="-452" positionY="-81" width="128" height="103"/>
-        <element name="Session" positionX="-720" positionY="-54" width="128" height="163"/>
-        <element name="Store" positionX="-639" positionY="356" width="126" height="118"/>
-        <element name="StoreAvalibleItem" positionX="-450" positionY="261" width="128" height="73"/>
+        <element name="DrawSetting" positionX="243" positionY="476" width="128" height="75"/>
+        <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="150"/>
+        <element name="Item" positionX="-27" positionY="-19" width="108" height="240"/>
+        <element name="ItemAtribute" positionX="-18" positionY="261" width="128" height="150"/>
+        <element name="ItemAtributeHandler" positionX="-191" positionY="225" width="128" height="60"/>
+        <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="105"/>
+        <element name="Map" positionX="-983" positionY="117" width="128" height="165"/>
+        <element name="MapEntity" positionX="-785" positionY="324" width="128" height="133"/>
+        <element name="Package" positionX="-452" positionY="-81" width="128" height="105"/>
+        <element name="Session" positionX="-828" positionY="-124" width="128" height="178"/>
+        <element name="Store" positionX="-576" positionY="404" width="126" height="118"/>
+        <element name="StoreAvalibleItem" positionX="-423" positionY="332" width="128" height="73"/>
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
-        <element name="SubCategory" positionX="153" positionY="-43" width="128" height="103"/>
+        <element name="SubCategory" positionX="153" positionY="-43" width="128" height="105"/>
         <element name="SubCurrency" positionX="-83" positionY="-153" width="128" height="73"/>
     </elements>
 </model>
