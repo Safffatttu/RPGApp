@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-
+import MultipeerConnectivity
 
 func packSessionForMessage(_ session: Session) -> NSDictionary{
 	let current = session.current
@@ -274,7 +274,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 func packItem(_ item: Item) -> NSDictionary {
 	let itemDict = NSMutableDictionary()
 	
-	itemDict.setValue(item.id, forKey: "itemId")
+	itemDict.setValue(item.id, forKey: "id")
 	itemDict.setValue(item.item_description, forKey: "item_description")
 	itemDict.setValue(item.measure, forKey: "measure")
 	itemDict.setValue(item.name, forKey: "name")
@@ -320,7 +320,6 @@ func unPackItem(from itemDictionary: NSDictionary) -> Item{
 	let category = Load.categories().first(where: {$0.name == categoryName})
 	let subCategory = Load.subCategories().first(where: {$0.name == subCategoryName})
 	
-	
 	let context = CoreDataStack.managedObjectContext
 	let item = NSEntityDescription.insertNewObject(forEntityName: String(describing: Item.self), into: context) as! Item
 	
@@ -337,4 +336,67 @@ func unPackItem(from itemDictionary: NSDictionary) -> Item{
 	CoreDataStack.saveContext()
 	
 	return item
+}
+
+func checkSessionDataForNotKnowIds(sessionData: NSDictionary) -> [String]{
+	var requestList: [String] = []
+	
+	guard let allCharactersDict = sessionData.value(forKey: "characters") as? NSArray else { return requestList }
+	
+	let itemsIdList = Load.items().map({$0.id})
+	
+	for case let characterDict as NSDictionary in allCharactersDict{
+		guard let items = characterDict.value(forKey: "items") as? NSArray else { continue }
+		
+		for case let item as NSDictionary in items {
+			
+			guard let itemId = item.value(forKey: "itemId") as? String else { continue }
+			
+			if !itemsIdList.contains(where: {$0 == itemId}){
+				requestList.append(itemId)
+			}
+			
+		}
+	}
+	
+	guard let allPackageDict = sessionData.value(forKey: "packages") as? NSArray else { return  requestList }
+	
+	for case let packgeDict as NSDictionary in allPackageDict{
+		guard let packageItems = packgeDict.value(forKey: "items") as? NSArray else { return requestList }
+		
+		for case let packgeItemHandler as NSDictionary in packageItems{
+ 			guard let itemId = packgeItemHandler.value(forKey: "itemId") as? String else { return requestList }
+			
+			if !itemsIdList.contains(where: {$0 == itemId}){
+					requestList.append(itemId)
+				}
+		}
+	}
+	
+	return requestList
+}
+
+func createSessionUsing(action: NSMutableDictionary, sender: MCPeerID){
+	
+	guard let data = action.value(forKey: "session") as? NSDictionary else { return }
+	
+	let itemsToRequest = checkSessionDataForNotKnowIds(sessionData: data)
+	
+	guard itemsToRequest.count == 0 else {
+		
+		let request = ItemRequest(with: itemsToRequest, sender: sender, action: action)
+		
+		ItemRequester.request(request)
+		
+		return
+	}
+	
+	guard let newSession = unPackSession(from: data) else { return }
+	
+	if let setCurrent = data.value(forKey: "current") as? Bool{
+		if setCurrent {
+			Load.sessions().first(where: {$0.current})?.current = false
+			newSession.current = setCurrent
+		}
+	}
 }

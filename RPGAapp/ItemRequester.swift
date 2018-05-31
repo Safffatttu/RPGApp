@@ -29,7 +29,7 @@ class ItemRequester {
 	}
 	
 	func execute(request: ItemRequest) {
-		requestQueue.add(action: request)
+		requestQueue.add(request)
 		
 		let action = NSMutableDictionary()
 		let at = NSNumber(value: ActionType.itemsRequest.rawValue)
@@ -42,13 +42,18 @@ class ItemRequester {
 		packageService.send(action, to: request.from)
 	}
 	
+	static func request(_ request: ItemRequest){
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
+		appDelegate.itemRequester.execute(request: request)
+	}
+	
 }
 
 class ItemRequestQueue {
 	private var actionsToExecute: [ItemRequest] = []
 	
-	public func add(action: ItemRequest){
-		actionsToExecute.insert(action, at: actionsToExecute.count - 1)
+	public func add(_ request: ItemRequest){
+		actionsToExecute.append(request)
 	}
 	
 	public func getActionWith(id: String) -> ItemRequest?{

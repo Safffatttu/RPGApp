@@ -16,10 +16,11 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
     
     func recieved(_ action: NSMutableDictionary,from sender: MCPeerID, manager: PackageService) {
         DispatchQueue.main.sync{
-            let actionType = ActionType(rawValue: action.value(forKey: "action") as! Int)
+			print(action)
+			guard let actionNumber = action.value(forKey: "action") as? Int else { return }
+			guard let actionType = ActionType(rawValue: actionNumber) else { return }
             let senderName = sender.displayName
-            print(action)
-            
+			            
             if actionType == ActionType.applicationDidEnterBackground{
                 let message = senderName + " wyszedł z aplikacji"
                 whisper(messege: message)
@@ -139,7 +140,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 						
 						let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
 						
-						subAction.setValue(at, forKey: "at")
+						subAction.setValue(at, forKey: "action")
 						subAction.setValue(packageId, forKey: "packageId")
 						subAction.setValue(itemId, forKey: "itemId")
 						
@@ -154,7 +155,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 						
 						let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
 						
-						subAction.setValue(at, forKey: "at")
+						subAction.setValue(at, forKey: "action")
 						subAction.setValue(packageId, forKey: "packageId")
 						subAction.setValue(itemId, forKey: "itemId")
 						subAction.setValue(itemHandlerCount, forKey: "itemsToAdd")
@@ -183,7 +184,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 					
 						let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
 						
-						subAction.setValue(at, forKey: "at")
+						subAction.setValue(at, forKey: "action")
 						subAction.setValue(NSArray(array: itemsToRequest), forKey: "itemsToAdd")
 						subAction.setValue(itemsToRequestCount, forKey: "itemsToAddCount")
 						
@@ -194,8 +195,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				
 				
 				if let req = request{
-					let appDelegate = UIApplication.shared.delegate as! AppDelegate
-					appDelegate.itemRequester.execute(request: req)
+					ItemRequester.request(req)
 				}
 				
                 NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
@@ -368,6 +368,8 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 						
 						contex.delete(session)
 						
+						createSessionUsing(action: action, sender: sender)
+						
 					})
 					
 					let alertKeep = UIAlertAction(title: "Keep", style: .default, handler: nil)
@@ -378,33 +380,30 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 					let a = UIApplication.topViewController()
 					a?.present(alert, animated: true, completion: nil)
 				}else{
-					guard let newSession =  unPackSession(from: sessionData) else { return }
 					
-					if let setCurrent = action.value(forKey: "setCurrent") as? Bool{
-						Load.sessions().first(where: {$0.current})?.current = false
-						newSession.current = setCurrent
-					}
+					createSessionUsing(action: action, sender: sender)
 				}
 				
 				NotificationCenter.default.post(name: .sessionReceived, object: nil)
 				
 			}else if actionType == ActionType.itemsRequest{
-				guard let itemsId = action.value(forKey: "itemsId") as? [String] else { return }
+				guard let itemsId = action.value(forKey: "itemsId") as? NSArray else { return }
 				let requestId = action.value(forKey: "id")
 				
 				let response = NSMutableDictionary()
-				response.setValue(ActionType.itemsRequestResponse, forKey: "at")
+				response.setValue(ActionType.itemsRequestResponse.rawValue, forKey: "action")
 				
-				let itemsData = NSArray()
+				let itemsData = NSMutableArray()
 				
-				for itemId in itemsId{
-					
-					guard let item = Load.item(with: itemId) else {
-						continue
-					}
-					
-					itemsData.adding(packItem(item))
+				for case let itemId as String in itemsId{
+					guard let item = Load.item(with: itemId) else { continue }
+					let itemData = packItem(item)
+					print(itemData)
+					itemsData.add(itemData)
 				}
+				
+				print("data")
+				print(itemsData)
 				
 				response.setValue(itemsData, forKey: "itemsData")
 				response.setValue(requestId, forKey: "requestId")
@@ -415,10 +414,10 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				pack.send(response, to: sender)
 				
 			}else if actionType == ActionType.itemsRequestResponse{
-				let itemsData = action.value(forKey: "itemsData") as! [NSDictionary]
+				guard let itemsData = action.value(forKey: "itemsData") as? NSArray else { return }
 				let requestId = action.value(forKey: "id")
 				
-				for itemData in itemsData{
+				for case let itemData as NSDictionary in itemsData{
 					_ = unPackItem(from: itemData)
 				}
 				
