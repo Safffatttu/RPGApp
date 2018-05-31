@@ -59,7 +59,9 @@ class NewItemForm: FormViewController{
 		
 		let descriptionRow = TextViewRowFormer<FormTextViewCell>()
 			.configure{
-				$0.text = "Description"
+				$0.placeholder = "Description"
+			}.onTextChanged{[unowned self] in
+				self.itemDescription = $0
 		}
 
 		let priceRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
