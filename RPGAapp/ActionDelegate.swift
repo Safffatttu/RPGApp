@@ -14,7 +14,7 @@ import Whisper
 
 class ActionDelegate: NSObject, PackageServiceDelegate{
     
-    func recieved(_ action: NSMutableDictionary,from sender: MCPeerID, manager: PackageService) {
+    func received(_ action: NSMutableDictionary,from sender: MCPeerID, manager: PackageService) {
         DispatchQueue.main.sync{
 			print(action)
 			guard let actionNumber = action.value(forKey: "action") as? Int else { return }
@@ -361,7 +361,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				guard let sessionId = sessionData.value(forKey: "id") as? String else { return }
 				
 				if let session = Load.session(with: sessionId){
-					let alert = UIAlertController(title: "Recieved session with id of exising session", message: "Do you want to replace it or keep local version?", preferredStyle: .alert)
+					let alert = UIAlertController(title: "receive session with id of exising session", message: "Do you want to replace it or keep local version?", preferredStyle: .alert)
 					
 					let alertReplace = UIAlertAction(title: "Replace", style: .default, handler: { (_) in
 						let contex = CoreDataStack.managedObjectContext
@@ -421,7 +421,7 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 					_ = unPackItem(from: itemData)
 				}
 				
-				NotificationCenter.default.post(name: .recievedItemData, object: requestId)
+				NotificationCenter.default.post(name: .receivedItemData, object: requestId)
 			}else if actionType == ActionType.mapEntityMoved{
 				guard let entityId = action.value(forKey: "entityId") as? String else { return }
 				guard let posX = action.value(forKey: "posX") as? Double else { return }
@@ -441,11 +441,11 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
         }
     }
 	
-	func recievedLocaly(_ action: NSMutableDictionary){
+	func receiveLocally(_ action: NSMutableDictionary){
 		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		let localId = appDelegate.pack.myPeerID
 		let packServ = appDelegate.pack
-		self.recieved(action, from: localId, manager: packServ)
+		self.received(action, from: localId, manager: packServ)
 	}
 
     func lost(_ peer: MCPeerID) {

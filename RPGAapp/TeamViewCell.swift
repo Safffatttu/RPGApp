@@ -179,7 +179,7 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 extension TeamViewCell: AbilityCellDelegate{
 	
 	func modifiedAbility() {
-		if let abs = character.abilities?.allObjects as? [Ability]{
+		if let abs = character.abilities?.sortedArray(using: [.sortAbilityByName]) as? [Ability]{
 			self.abilities = abs
 		}
 	}

@@ -17,7 +17,7 @@ class ItemRequester {
 	lazy var appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 	init() {
-		NotificationCenter.default.addObserver(self, selector: #selector(check(_:)), name: .recievedItemData, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(check(_:)), name: .receivedItemData, object: nil)
 	}
 	
 	@objc func check(_ notfication: Notification){
@@ -25,7 +25,7 @@ class ItemRequester {
 		
 		guard let action = requestQueue.getActionWith(id: requestId) else { return }
 		
-		appDelegate.actionDelegate.recievedLocaly(action.localAction)
+		appDelegate.actionDelegate.receiveLocally(action.localAction)
 	}
 	
 	func execute(request: ItemRequest) {
@@ -77,6 +77,6 @@ struct ItemRequest {
 }
 
 extension Notification.Name{
-	static let recievedItemData = Notification.Name("recievedItemData")
+	static let receivedItemData = Notification.Name("receivedItemData")
 }
 
