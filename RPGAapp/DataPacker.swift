@@ -285,17 +285,17 @@ func packItem(_ item: Item) -> NSDictionary {
 	itemDict.setValue(item.subCategory?.name, forKey: "subCategoryName")
 	
 	if let itemAtributes = item.itemAtribute?.allObjects as? [ItemAtribute]{
-		var atributesDict: [NSDictionary] = []
+		let atributesDict = NSMutableArray()
 		
 		for atribute in itemAtributes{
-			let atributeDict = NSDictionary()
+			let atributeDict = NSMutableDictionary()
 			
 			atributeDict.setValue(atribute.name, forKey: "name")
 			atributeDict.setValue(atribute.priceMod, forKey: "priceMod")
 			atributeDict.setValue(atribute.rarityMod, forKey: "rarityMod")
 			atributeDict.setValue(atribute.id, forKey: "id")
 			
-			atributesDict.append(atributeDict)
+			atributesDict.add(atributeDict)
 		}
 		
 		itemDict.setValue(atributesDict, forKey: "atributes")
