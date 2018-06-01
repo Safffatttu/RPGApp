@@ -24,7 +24,7 @@
                   moduleName = "FontAwesome_swift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/Pods/FontAwesome.swift/FontAwesome/Enum.swift"
-                  timestampString = "549492569.147271"
+                  timestampString = "549553729.516091"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -39,7 +39,7 @@
                   moduleName = "FontAwesome_swift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/Pods/FontAwesome.swift/FontAwesome/Enum.swift"
-                  timestampString = "549492569.148818"
+                  timestampString = "549553729.517488"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -84,26 +84,26 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed&gt; of RPGAapp.ActionDelegate.(recieved (__ObjC.NSMutableDictionary, from : __ObjC.MCPeerID, manager : RPGAapp.PackageService) -&gt; ()).(closure #1)"
+                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed&gt; of RPGAapp.ActionDelegate.(received (__ObjC.NSMutableDictionary, from : __ObjC.MCPeerID, manager : RPGAapp.PackageService) -&gt; ()).(closure #1)"
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/ActionDelegate.swift"
-                  timestampString = "549493337.4302419"
+                  timestampString = "549553728.8743581"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "351"
                   endingLineNumber = "351"
-                  offsetFromSymbolStart = "30205">
+                  offsetFromSymbolStart = "29279">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[1] = Owned To Guaranteed and Exploded&gt; of RPGAapp.ActionDelegate.(recieved (__ObjC.NSMutableDictionary, from : __ObjC.MCPeerID, manager : RPGAapp.PackageService) -&gt; ()).(closure #1).(closure #10)"
+                  symbolName = "function signature specialization &lt;Arg[1] = Owned To Guaranteed and Exploded&gt; of RPGAapp.ActionDelegate.(received (__ObjC.NSMutableDictionary, from : __ObjC.MCPeerID, manager : RPGAapp.PackageService) -&gt; ()).(closure #1).(closure #10)"
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/ActionDelegate.swift"
-                  timestampString = "549493337.431432"
+                  timestampString = "549553728.875581"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "351"
@@ -132,7 +132,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/DataPacker.swift"
@@ -189,22 +189,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "276"
             endingLineNumber = "276"
-            landmarkName = "packItem(_:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGAapp/DataPacker.swift"
-            timestampString = "548593762.642287"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
             landmarkName = "packItem(_:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -280,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/NewItemForm.swift"
-            timestampString = "549494434.281934"
+            timestampString = "549576699.8165261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "doneEditing()"
             landmarkType = "7">
          </BreakpointContent>
@@ -296,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RPGAapp/NewItemForm.swift"
-            timestampString = "549494434.281934"
+            timestampString = "549576699.8165261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "doneEditing()"
             landmarkType = "7">
          </BreakpointContent>
@@ -424,7 +408,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MPManager.swift"
-                  timestampString = "549492568.65913"
+                  timestampString = "549553728.909876"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -439,7 +423,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/MPManager.swift"
-                  timestampString = "549492568.660277"
+                  timestampString = "549553728.910884"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -479,6 +463,22 @@
             endingLineNumber = "391"
             landmarkName = "received(_:from:manager:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPGAapp/DataPacker.swift"
+            timestampString = "549553615.852205"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "packItem(_:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

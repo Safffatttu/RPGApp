@@ -55,6 +55,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		NotificationCenter.default.addObserver(self, selector: #selector(searchModelChanged(_:)), name: .searchCatalogeModelChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(sortModelChange(_:)), name: .sortModelChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems), name: .createdNewItem, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems(_:)), name: .editedItem, object: nil)
 		
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -78,8 +79,18 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		self.present(form, animated: true, completion: nil)
 	}
 	
-	func reloadItems(){
-		items = SectionedValues(Load.subCategoriesForCatalog())
+	func reloadItems(_ not: Notification){
+		if let item = not.object as? Item{
+			
+			guard let section = items.sectionsAndValues.index(where: {($0.0.items?.contains(item))!}) else { return }
+			guard let row = items.sectionsAndValues[section].1.index(of: item) else { return }
+			
+			let path = IndexPath(row: row, section: section)
+			
+			tableView.reloadRows(at: [path], with: .fade)
+		}else{
+			items = SectionedValues(Load.subCategoriesForCatalog())
+		}
 	}
 	
 	func sortModelChange(_ notification: Notification){
@@ -143,11 +154,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         })
         return itemsToRet
     }
-    
-    func reloadTableData(_ notification: Notification) {
-        tableView.reloadData()
-    }
-    
+	
     func goToSection(_ notification: Notification) {
         guard items.sectionsAndValues.count > 1  else {
             return
@@ -295,15 +302,36 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	
-	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-		if  editingStyle == .delete{
-			guard let item = diffCalculator?.value(atIndexPath: indexPath) else { return }
+	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+		let removeAction = UITableViewRowAction(style: .destructive, title: "Remove", handler: {_,_ in
+			
+			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
 			
 			CoreDataStack.managedObjectContext.delete(item)
 			CoreDataStack.saveContext()
 			
-			items = RPGAapp.searchCataloge(searchWith: lastSearchString, using: searchModel, sortBy: sortModel)
-		}
+			self.items = RPGAapp.searchCataloge(searchWith: self.lastSearchString, using: self.searchModel, sortBy: self.sortModel)
+		})
+		
+		let sendAction = UITableViewRowAction(style: .normal, title: "Share item", handler: { _,_ in
+			
+			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
+			
+			let action = NSMutableDictionary()
+			let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
+			
+			action.setValue(actionType, forKey: "action")
+			
+			let itemData = packItem(item)
+			
+			action.setValue(itemData, forKey: "itemData")
+			print(action)
+			let appDelegate = UIApplication.shared.delegate as! AppDelegate
+			
+			appDelegate.pack.send(action)
+		})
+		
+		return [sendAction, removeAction]
 	}
 	
     //MARK: Cell Delegates
@@ -329,9 +357,17 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func editItemButton(_ sender: UIButton){
-        if !sessionIsActive(){
-            return
-        }
+		guard let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView) else { return }
+		
+		guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
+		
+		let form = NewItemForm()
+		
+		form.item = item
+		
+		form.modalPresentationStyle = .formSheet
+		
+		self.present(form, animated: true, completion: nil)
     }
     
     func showInfoButton(_ sender: UIButton){
