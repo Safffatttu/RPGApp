@@ -300,7 +300,6 @@ extension SettingMenu: settingCellDelegate {
         if let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView) {
             UserDefaults.standard.set(sender.isOn, forKey: keys[indexPath.row].key)
             if keys[indexPath.row].key == "Show price" {
-                NotificationCenter.default.post(name: .reload, object: nil)
                 NotificationCenter.default.post(name: .reloadRandomItemTable, object: nil)
             }
         }
