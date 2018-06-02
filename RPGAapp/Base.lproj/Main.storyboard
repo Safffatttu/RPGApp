@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Welcome to THE RPG APP" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="367" width="663" height="34"/>
+                                <rect key="frame" x="20" y="367" width="662.5" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -659,18 +659,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zFV-QV-kXR">
-                                <rect key="frame" x="0.0" y="64" width="703" height="704"/>
+                                <rect key="frame" x="0.0" y="64" width="702.5" height="704"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="catalogeDetailCell" id="B00-Jk-FDb" customClass="catalogeDetailCell" customModule="RPGAapp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="703" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="702.5" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B00-Jk-FDb" id="f2G-X0-7EL">
-                                            <rect key="frame" x="0.0" y="0.0" width="703" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="702.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJ9-wb-fd7">
-                                                    <rect key="frame" x="815" y="3" width="205" height="30"/>
+                                                    <rect key="frame" x="473" y="3" width="205" height="30"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CiW-VK-2Dt">
                                                             <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
@@ -738,14 +738,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="catalogDetailExpandedCell" rowHeight="153" id="UtM-lf-mfp" customClass="catalogeDetailExpandedCell" customModule="RPGAapp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="703" height="153"/>
+                                        <rect key="frame" x="0.0" y="72" width="702.5" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UtM-lf-mfp" id="Jhh-U9-nP3">
-                                            <rect key="frame" x="0.0" y="0.0" width="703" height="152.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="702.5" height="152.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1LN-Mz-BFT" userLabel="Button Stack View">
-                                                    <rect key="frame" x="815" y="11" width="205" height="30"/>
+                                                    <rect key="frame" x="473" y="11" width="205" height="30"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYk-0V-pbC">
                                                             <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
@@ -778,10 +778,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9PO-ma-hIG">
-                                                    <rect key="frame" x="8" y="8" width="42" height="46"/>
+                                                    <rect key="frame" x="8" y="8" width="66" height="97.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ie7-5h-h2z">
-                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="66" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="lUn-7a-4bN"/>
                                                             </constraints>
@@ -790,15 +790,34 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjW-jc-OVT">
-                                                            <rect key="frame" x="0.0" y="26" width="42" height="20"/>
+                                                            <rect key="frame" x="0.0" y="26" width="66" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rarity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-rd-hsA">
+                                                            <rect key="frame" x="0.0" y="51.5" width="66" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mD-Is-IRp">
+                                                            <rect key="frame" x="0.0" y="77" width="66" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hNh-0I-IFp">
+                                                    <rect key="frame" x="473" y="49" width="222" height="95"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-Y5-9eh">
-                                                    <rect key="frame" x="188" y="8" width="240" height="136"/>
+                                                    <rect key="frame" x="146" y="8" width="240" height="136"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="240" id="Evj-WV-a5j"/>
@@ -828,20 +847,26 @@
                                                 <constraint firstItem="9PO-ma-hIG" firstAttribute="leading" secondItem="Jhh-U9-nP3" secondAttribute="leadingMargin" id="2Cj-h3-TVM"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="1LN-Mz-BFT" secondAttribute="trailing" constant="17" id="4cZ-pz-h3H"/>
                                                 <constraint firstItem="E5n-Y5-9eh" firstAttribute="centerY" secondItem="Jhh-U9-nP3" secondAttribute="centerY" id="7aP-vJ-WYi"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="9PO-ma-hIG" secondAttribute="bottom" constant="90.5" id="U6F-0q-HS5"/>
-                                                <constraint firstItem="E5n-Y5-9eh" firstAttribute="leading" secondItem="Jhh-U9-nP3" secondAttribute="leading" constant="188" id="bhg-z7-spx"/>
+                                                <constraint firstItem="hNh-0I-IFp" firstAttribute="top" secondItem="1LN-Mz-BFT" secondAttribute="bottom" constant="8" symbolic="YES" id="BhL-XL-b8F"/>
+                                                <constraint firstItem="hNh-0I-IFp" firstAttribute="bottom" secondItem="E5n-Y5-9eh" secondAttribute="bottom" id="K4j-dN-t7n"/>
+                                                <constraint firstItem="hNh-0I-IFp" firstAttribute="leading" secondItem="1LN-Mz-BFT" secondAttribute="leading" id="Zsf-jc-o0L"/>
+                                                <constraint firstItem="E5n-Y5-9eh" firstAttribute="leading" secondItem="Jhh-U9-nP3" secondAttribute="leading" constant="146" id="bhg-z7-spx"/>
                                                 <constraint firstItem="E5n-Y5-9eh" firstAttribute="top" secondItem="9PO-ma-hIG" secondAttribute="top" id="gW8-Yn-367"/>
+                                                <constraint firstAttribute="trailing" secondItem="hNh-0I-IFp" secondAttribute="trailing" constant="7.5" id="rTW-Hj-pvw"/>
                                                 <constraint firstItem="E5n-Y5-9eh" firstAttribute="top" secondItem="Jhh-U9-nP3" secondAttribute="topMargin" id="voU-dC-kZ5"/>
                                                 <constraint firstItem="1LN-Mz-BFT" firstAttribute="top" secondItem="Jhh-U9-nP3" secondAttribute="topMargin" constant="3" id="yRf-sJ-jmv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="atributeTable" destination="E5n-Y5-9eh" id="Fzm-Kp-0oa"/>
+                                            <outlet property="descriptionTextView" destination="hNh-0I-IFp" id="FQD-8j-mbE"/>
                                             <outlet property="editButton" destination="iPF-x3-p5x" id="gLf-QJ-xvR"/>
                                             <outlet property="infoButton" destination="5W7-mS-vmA" id="1vA-qT-D1c"/>
+                                            <outlet property="measureLabel" destination="9mD-Is-IRp" id="goO-AE-Wdk"/>
                                             <outlet property="nameLabel" destination="Ie7-5h-h2z" id="8Si-iV-00J"/>
                                             <outlet property="packageButton" destination="UYk-0V-pbC" id="987-wB-bYS"/>
                                             <outlet property="priceLabel" destination="fjW-jc-OVT" id="f6x-3G-9Ti"/>
+                                            <outlet property="rarityLabel" destination="lbl-rd-hsA" id="UhH-cs-RUU"/>
                                             <outlet property="sendButton" destination="AwQ-RQ-FVE" id="Guc-zm-PWE"/>
                                         </connections>
                                     </tableViewCell>
@@ -868,7 +893,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ab7-Kw-8Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3366" y="2195"/>
+            <point key="canvasLocation" x="3365.625" y="2194.53125"/>
         </scene>
         <!--Show Item Info Popover-->
         <scene sceneID="Tx7-Yc-G7w">
@@ -971,39 +996,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2IQ-wm-Q4N">
-                                <rect key="frame" x="0.0" y="0.0" width="703" height="730"/>
+                                <rect key="frame" x="0.0" y="0.0" width="702.5" height="730"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="randomItemCell" id="sGo-Y8-lBb" customClass="randomItemCell" customModule="RPGAapp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="703" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="702.5" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sGo-Y8-lBb" id="cS8-Wv-fxx">
-                                            <rect key="frame" x="0.0" y="0.0" width="703" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="702.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTN-xb-yEe">
-                                                    <rect key="frame" x="815" y="7" width="49" height="29"/>
+                                                    <rect key="frame" x="473" y="7" width="49" height="29"/>
                                                     <state key="normal" title="Paczka"/>
                                                     <connections>
                                                         <action selector="addToPackage:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="NYS-FE-hVE"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qi-ah-FkE">
-                                                    <rect key="frame" x="869" y="7" width="43" height="29"/>
+                                                    <rect key="frame" x="527" y="7" width="43" height="29"/>
                                                     <state key="normal" title="Edytuj"/>
                                                     <connections>
                                                         <action selector="redrawItem:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="wRg-db-FcW"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmE-pi-cbd">
-                                                    <rect key="frame" x="917" y="7" width="73" height="29"/>
+                                                    <rect key="frame" x="575" y="7" width="73" height="29"/>
                                                     <state key="normal" title="Informacje"/>
                                                     <connections>
                                                         <action selector="showInfo:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="etX-gl-vq6"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsd-YV-HXg">
-                                                    <rect key="frame" x="995" y="7" width="40" height="29"/>
+                                                    <rect key="frame" x="653" y="7" width="40" height="29"/>
                                                     <state key="normal" title="Wyślij"/>
                                                     <connections>
                                                         <action selector="sendItem:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="upi-ZQ-HGR"/>
@@ -1061,7 +1086,7 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fBz-j3-Sbc">
-                                <rect key="frame" x="463" y="730" width="220" height="30"/>
+                                <rect key="frame" x="462.5" y="730" width="220" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZAY-KE-gJU">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
@@ -1119,7 +1144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dtd-FN-cR4">
-                                <rect key="frame" x="463" y="718" width="220" height="30"/>
+                                <rect key="frame" x="462.5" y="718" width="220" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83R-r7-GV6">
                                         <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
@@ -1175,7 +1200,7 @@
         <scene sceneID="2I1-H5-N86">
             <objects>
                 <collectionViewController id="i43-Aj-Vf2" customClass="TeamView" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" id="N43-wO-ILd">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="black" dataMode="prototypes" id="N43-wO-ILd">
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

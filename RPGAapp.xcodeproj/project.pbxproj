@@ -546,7 +546,7 @@
 				TargetAttributes = {
 					3B063D5E1F3A21A800B5271C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = SMH62TPPHV;
+						DevelopmentTeam = JJP5D62AP2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -923,7 +923,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = SMH62TPPHV;
+				DEVELOPMENT_TEAM = JJP5D62AP2;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_PROFILING_CODE = NO;
 				INFOPLIST_FILE = RPGAapp/Info.plist;
@@ -931,7 +931,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -953,7 +953,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = SMH62TPPHV;
+				DEVELOPMENT_TEAM = JJP5D62AP2;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GENERATE_PROFILING_CODE = NO;
@@ -963,7 +963,7 @@
 				LLVM_LTO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

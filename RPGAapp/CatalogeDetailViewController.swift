@@ -212,6 +212,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
             
             cell.nameLabel.text = cellItem.name
             cell.priceLabel.text = String(cellItem.price) + "PLN"
+			cell.rarityLabel.text = rarityName[Int(cellItem.rarity)]
+			cell.measureLabel.text = cellItem.measure
+			
+			cell.descriptionTextView.text = cellItem.item_description
             
             cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
             cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
@@ -452,7 +456,12 @@ class catalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet var packageButton: UIButton!
+	@IBOutlet weak var rarityLabel: UILabel!
+	@IBOutlet weak var measureLabel: UILabel!
+	
+	@IBOutlet weak var descriptionTextView: UITextView!
+	
+	@IBOutlet var packageButton: UIButton!
     @IBOutlet var editButton: UIButton!
     @IBOutlet var infoButton: UIButton!
     @IBOutlet var sendButton: UIButton!
