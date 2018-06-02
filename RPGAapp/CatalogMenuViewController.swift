@@ -51,7 +51,7 @@ class catalogeMenu: UITableViewController {
     }
     
     func setFilters(_ sender: UIBarButtonItem){
-        let filterPopover = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catalogeFilter") as! catalogeFilterPopover
+        let filterPopover = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catalogeFilter") as! CatalogeFilterPopover
         
         filterPopover.modalPresentationStyle = .popover
 

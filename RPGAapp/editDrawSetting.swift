@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class editDrawSetting: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
+class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
     
     var editingMode = false
     var setting: DrawSetting? = nil

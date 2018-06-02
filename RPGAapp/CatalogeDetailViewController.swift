@@ -13,6 +13,8 @@ import CoreData
 import Dwifft
 import Former
 
+let iconSize: CGFloat = 20
+
 class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate, UIPopoverPresentationControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
@@ -26,9 +28,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 	var lastSearchString: String = ""
 	
     var expandedCell: IndexPath? = nil
-    
-    let iconSize: CGFloat = 20
-    
+	
     @IBOutlet weak var catalogTable: UITableView!
     
     var diffCalculator: TableViewDiffCalculator<SubCategory,Item>?
@@ -203,72 +203,21 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath))!
-        if expandedCell == indexPath{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! catalogeDetailExpandedCell
-            cell.item = cellItem
-            cell.loadAtributes()
-            
-            cell.cellDelegate = self
-            
-            cell.nameLabel.text = cellItem.name
-            cell.priceLabel.text = String(cellItem.price) + "PLN"
-			cell.rarityLabel.text = rarityName[Int(cellItem.rarity)]
-			cell.measureLabel.text = cellItem.measure
+		
+		if expandedCell == indexPath{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! CatalogeDetailExpandedCell
 			
-			cell.descriptionTextView.text = cellItem.item_description
-            
-            cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
-            
-            cell.infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
-            
-            cell.editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
-            
-            cell.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
-            
+			cell.item = cellItem
+			cell.cellDelegate = self
+			
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! catalogeDetailCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! CatalogeDetailCell
             
             cell.cellDelegate = self
             cell.item = cellItem
-            
-            cell.nameLabel.text = cellItem.name
-            
-            var priceToShow = String()
-            
-            if  cellItem.price != nil  {
-                if UserDefaults.standard.bool(forKey: "Show price"){
-                    //priceToShow = changeCurrency(price: cellItem.price, currency: listOfItems.currency)
-                    priceToShow = String(cellItem.price) + "PLN"
-                }
-                else{
-                    priceToShow = String(cellItem.price) + "PLN"
-                }
-            }
-            else {
-                priceToShow = "Brak ceny"
-                print(cellItem.price)
-            }
-            
-            cell.priceLabel.text = priceToShow
-            
-            cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
-            
-            cell.infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
-            
-            cell.editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
-            
-            cell.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
-            
-            return cell
+			
+			return cell
         }
     }
     
@@ -409,156 +358,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         (popController as! sendPopover).item = cellItem
 
         self.present(popController, animated: true, completion: nil)
-    }
-}
-
-class catalogeDetailCell: UITableViewCell{
-    
-    var item: Item? = nil
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var priceLabel: UILabel!
-    
-    @IBOutlet var packageButton: UIButton!
-    
-    @IBOutlet var editButton: UIButton!
-    
-    @IBOutlet var infoButton: UIButton!
-    
-    @IBOutlet var sendButton: UIButton!
-    
-    weak var cellDelegate: catalogeDetailCellDelegate?
-    
-    @IBAction func addToPackageButton(_ sender: UIButton) {
-        cellDelegate?.addToPackageButton(sender)
-    }
-    
-    @IBAction func editItemButton(_ sender: UIButton) {
-        cellDelegate?.editItemButton(sender)
-    }
-    
-    @IBAction func showInfoButton(_ sender: UIButton) {
-        cellDelegate?.showInfoButton(sender)
-    }
-    
-    @IBAction func sendItemButton(_ sender: UIButton) {
-        cellDelegate?.sendItemButton(sender)
-    }
-
-}
-
-class catalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate{
-    
-    var item: Item? = nil
-    var atributes: [ItemAtribute]!
-    var atributeHandler: ItemAtributeHandler!
-   
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-	@IBOutlet weak var rarityLabel: UILabel!
-	@IBOutlet weak var measureLabel: UILabel!
-	
-	@IBOutlet weak var descriptionTextView: UITextView!
-	
-	@IBOutlet var packageButton: UIButton!
-    @IBOutlet var editButton: UIButton!
-    @IBOutlet var infoButton: UIButton!
-    @IBOutlet var sendButton: UIButton!
-    
-    @IBOutlet weak var atributeTable: UITableView!
-    
-    weak var cellDelegate: catalogeDetailCellDelegate?
-    
-    @IBAction func addToPackageButton(_ sender: UIButton) {
-        cellDelegate?.addToPackageButton(sender)
-    }
-    
-    @IBAction func editItemButton(_ sender: UIButton) {
-        cellDelegate?.editItemButton(sender)
-    }
-    
-    @IBAction func showInfoButton(_ sender: UIButton) {
-        cellDelegate?.showInfoButton(sender)
-    }
-    
-    @IBAction func sendItemButton(_ sender: UIButton) {
-        cellDelegate?.sendItemButton(sender)
-    }
-    
-    func loadAtributes(){
-        atributeTable.dataSource = self
-        atributeTable.delegate = self
-        atributeHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: CoreDataStack.managedObjectContext) as! ItemAtributeHandler
-        
-        let sortAtributes = NSSortDescriptor(key: #keyPath(ItemAtribute.name), ascending: true)
-        atributes = item?.itemAtribute?.sortedArray(using: [sortAtributes]) as! [ItemAtribute]
-        
-        if atributes != nil{
-            for cellNum in 0...tableView(atributeTable, numberOfRowsInSection: 0){
-                let cell = atributeTable.cellForRow(at: IndexPath(row: cellNum, section: 0))
-                cell?.prepareForReuse()
-                cell?.setSelected(false, animated: true)
-                cell?.accessoryType = .none
-            }
-        }
-        atributeTable.reloadData()
-    }
-    
-    //MARK: CatalogExpandedAtributeTable
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard item != nil else {
-            return 0
-        }
-        if(atributes.count == 0){
-            return 1
-        }else{
-            return atributes.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AtributeCell")
-        if atributes.count == 0{
-            cell?.textLabel?.text = "Brak atrybutów"
-            return cell!
-        }
-        cell?.textLabel?.text = atributes[indexPath.row].name
-        cell?.selectionStyle = .none
-        if (atributeHandler.itemAtributes?.contains(atributes[indexPath.row]))!{
-            cell?.accessoryType = .checkmark
-        }
-        else{
-            cell?.accessoryType = .none
-        }
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard atributes.count != 0 else{
-            return
-        }
-        let newAtribute = atributes[indexPath.row]
-        atributeHandler.addToItemAtributes(newAtribute)
-        
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .checkmark
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard atributes.count != 0 else{
-            return
-        }
-        let atribute = atributes[indexPath.row]
-        atributeHandler.removeFromItemAtributes(atribute)
-        
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.accessoryType = .none
     }
 }
 

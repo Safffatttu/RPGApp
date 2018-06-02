@@ -162,9 +162,9 @@ class randomItemMenu: UITableViewController {
             
             edditDraw.modalPresentationStyle = .pageSheet
             
-            (edditDraw.viewControllers.first as! editDrawSetting).setting = self.drawSettings[indexPath.row]
-            (edditDraw.viewControllers.first as! editDrawSetting).editingMode = true
-            (edditDraw.viewControllers.first as! editDrawSetting).title = "Edytor ustawień"
+            (edditDraw.viewControllers.first as! EditDrawSetting).setting = self.drawSettings[indexPath.row]
+            (edditDraw.viewControllers.first as! EditDrawSetting).editingMode = true
+            (edditDraw.viewControllers.first as! EditDrawSetting).title = "Edytor ustawień"
             self.present(edditDraw, animated: true, completion: nil)
         }
         editAction.backgroundColor = .blue

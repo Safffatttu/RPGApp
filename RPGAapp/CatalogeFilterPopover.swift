@@ -8,7 +8,7 @@
 
 import UIKit
 
-class catalogeFilterPopover: UITableViewController, filterCellDelegate {
+class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
 
     var filter: [String: Double?] = [:]
     var keys: [String] = []
@@ -17,22 +17,14 @@ class catalogeFilterPopover: UITableViewController, filterCellDelegate {
         if filter.count == 0{
             let items = Load.items()
             
-            let maxPrice: Double = {
-                return (items.max { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
-            }()
+			let maxPrice = items.map{$0.price}.max()
+			
+            let minPrice = items.map{$0.price}.min()
             
-            let minPrice: Double = {
-                return (items.min { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
-            }()
-            
-            let maxRarity: Double = {
-                return Double((items.max { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
-            }()
-            
-            let minRarity: Double = {
-                return Double((items.min { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
-            }()
-            
+			let maxRarity = Double(items.map{$0.rarity}.max()!)
+			
+            let minRarity = Double(items.map{$0.rarity}.min()!)
+			
             filter["minPrice"] = minPrice
             filter["maxPrice"] = maxPrice
             filter["minRarity"] = minRarity
