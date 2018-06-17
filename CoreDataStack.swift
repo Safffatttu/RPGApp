@@ -70,7 +70,14 @@ class CoreDataStack {
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-				whisper(messege: String(describing: nserror.userInfo))
+				let murmur = Murmur(title: String(describing: nserror.userInfo),
+				                    backgroundColor: .white,
+				                    titleColor: .black,
+				                    font: .systemFont(ofSize: UIFont.systemFontSize),
+				                    action: nil)
+				
+				Whisper.show(whistle: murmur, action: .show(10))
+				
             }
         } 
     }
