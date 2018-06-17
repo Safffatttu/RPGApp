@@ -162,6 +162,9 @@ enum ActionType: Int {
 	case itemsRequestResponse
 	case mapEntityMoved
 	case itemDataSend
+	case requestedItemList
+	case recievedItemList
+	case syncItemLists
 }
 
 extension Notification.Name{

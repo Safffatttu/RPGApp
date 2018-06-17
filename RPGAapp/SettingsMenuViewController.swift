@@ -112,7 +112,7 @@ class SettingMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count
+            return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count + 1
         }else if section == 1{
             return 1 + sessions.count
         }else{
@@ -132,12 +132,20 @@ class SettingMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "settingSwitchCell") as! settingSwitchCell
-            cell.settingLabel.text = keys[indexPath.row].key
-            cell.settingSwitch.setOn(UserDefaults.standard.bool(forKey: keys[indexPath.row].key), animated: false)
-            cell.delegate = self
-            cell.selectionStyle = .none
-            return cell
+			if indexPath.row < settingValues.count{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "settingSwitchCell") as! settingSwitchCell
+				cell.settingLabel.text = keys[indexPath.row].key
+				cell.settingSwitch.setOn(UserDefaults.standard.bool(forKey: keys[indexPath.row].key), animated: false)
+				cell.delegate = self
+				cell.selectionStyle = .none
+				return cell
+			}else {
+				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
+				
+				cell?.textLabel?.text = "Sync item database"
+				
+				return cell!
+			}
         }else if indexPath.section == 1 {
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
@@ -167,7 +175,17 @@ class SettingMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
+		if indexPath.section == 0 && indexPath.row == settingValues.count{
+			let syncAction = NSMutableDictionary()
+			syncAction.setValue(ActionType.syncItemLists, forKey: "action")
+			
+			let requestAction = NSMutableDictionary()
+			requestAction.setValue(ActionType.requestedItemList.rawValue, forKey: "action")
+			
+			self.appDelegate.pack.send(syncAction)
+			self.appDelegate.pack.send(requestAction)
+		}
+		if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
             let alert = UIAlertController(title: nil, message: "Do you want to change session", preferredStyle: .alert)
 			
             let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in

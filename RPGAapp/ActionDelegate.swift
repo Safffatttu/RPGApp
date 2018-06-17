@@ -12,8 +12,10 @@ import MultipeerConnectivity
 import CoreData
 import Whisper
 
-class ActionDelegate: NSObject, PackageServiceDelegate{
-    
+class ActionDelegate: PackageServiceDelegate{
+	
+	let pack = (UIApplication.shared.delegate as? AppDelegate)?.pack
+	
     func received(_ action: NSMutableDictionary,from sender: MCPeerID, manager: PackageService) {
         DispatchQueue.main.sync{
 			print(action)
@@ -398,20 +400,13 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				for case let itemId as String in itemsId{
 					guard let item = Load.item(with: itemId) else { continue }
 					let itemData = packItem(item)
-					print(itemData)
 					itemsData.add(itemData)
 				}
-				
-				print("data")
-				print(itemsData)
 				
 				response.setValue(itemsData, forKey: "itemsData")
 				response.setValue(requestId, forKey: "requestId")
 				
-				let appDelegate = UIApplication.shared.delegate as! AppDelegate
-				let pack = appDelegate.pack
-				
-				pack.send(response, to: sender)
+				pack?.send(response, to: sender)
 				
 			}else if actionType == ActionType.itemsRequestResponse{
 				guard let itemsData = action.value(forKey: "itemsData") as? NSArray else { return }
@@ -437,6 +432,40 @@ class ActionDelegate: NSObject, PackageServiceDelegate{
 				let newPos = CGPoint(x: posX, y: posY)
 				
 				NotificationCenter.default.post(name: .mapEntityMoved, object: (entity, newPos))
+				
+				
+			}else if actionType == ActionType.syncItemLists{
+				let action = NSMutableDictionary()
+				
+				action.setValue(ActionType.requestedItemList.rawValue, forKey: "action")
+				
+				pack?.send(action)
+				
+				
+			}else if actionType == ActionType.requestedItemList{
+				let response = NSMutableDictionary()
+				response.setValue(ActionType.recievedItemList.rawValue, forKey: "action")
+				
+				let itemList = NSArray(array: Load.items().map{$0.id})
+				
+				response.setValue(itemList, forKey: "itemList")
+				
+				pack?.send(response, to: sender)
+				
+				
+			}else if actionType == ActionType.recievedItemList{
+				let localItemList = Load.items().map{$0.id}
+				
+				let recievedItemList = (action.value(forKey: "itemList") as! NSArray) as! [String]
+				
+				let requestList = recievedItemList.filter{!localItemList.contains($0)}
+				
+				let action = NSMutableDictionary()
+				action.setValue(ActionType.itemsRequest.rawValue, forKey: "action")
+				
+				action.setValue(NSArray(array: requestList), forKey: "itemsId")
+				
+				pack?.send(action, to: sender)
 			}
         }
     }

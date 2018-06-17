@@ -323,7 +323,7 @@ func unPackItem(from itemDictionary: NSDictionary) -> Item{
 	let context = CoreDataStack.managedObjectContext
 	let item = NSEntityDescription.insertNewObject(forEntityName: String(describing: Item.self), into: context) as! Item
 	
-	item.id = id
+	item.id = id!
 	item.item_description = item_description
 	item.measure = measure
 	item.name = name

@@ -17,7 +17,7 @@ extension Item {
     }
 
     @NSManaged public var baseDescription: String?
-    @NSManaged public var id: String?
+    @NSManaged public var id: String
     @NSManaged public var item_description: String?
     @NSManaged public var measure: String?
     @NSManaged public var name: String?
