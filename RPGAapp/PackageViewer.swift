@@ -88,10 +88,8 @@ class PackageViewer: UITableViewController {
             
             action.setValue(actionType, forKey: "action")
             action.setValue(packageId, forKey: "packageId")
-            
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            
-            appDelegate.pack.send(action)
+			
+            PackageService.pack.send(action)
         }
     }
 }

@@ -19,6 +19,8 @@ class PackageService: NSObject{
     let serviceBrowser: MCNearbyServiceBrowser
     
     var delegate: PackageServiceDelegate?
+	
+	static var pack = PackageService()
     
     override init(){
         self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: info, serviceType: serviceType)
@@ -32,6 +34,8 @@ class PackageService: NSObject{
         
         self.serviceBrowser.delegate = self
         self.serviceBrowser.startBrowsingForPeers()
+		
+		self.delegate = ActionDelegate.ad
     }
     
     deinit {

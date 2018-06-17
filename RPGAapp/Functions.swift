@@ -316,10 +316,9 @@ func getCurrentSession(orCreateNew: Bool = true) -> Session{
 		session.addToMaps(newMap)
 		
 		CoreDataStack.saveContext()
+		
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        var devices = appDelegate.pack.session.connectedPeers.map{$0.displayName}
+        var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
         devices.append(UIDevice.current.name)
 		
         UserDefaults.standard.set(true, forKey: "sessionIsActive")
@@ -335,7 +334,7 @@ func getCurrentSession(orCreateNew: Bool = true) -> Session{
 		action.setValue(sessionDictionary, forKey: "session")
 		action.setValue(session.current, forKey: "setCurrent")
         
-        appDelegate.pack.send(action)
+		PackageService.pack.send(action)
         NotificationCenter.default.post(name: .addedSession, object: session)
         return session
     }

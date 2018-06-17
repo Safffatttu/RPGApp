@@ -386,7 +386,7 @@ func createSessionUsing(action: NSMutableDictionary, sender: MCPeerID){
 		
 		let request = ItemRequest(with: itemsToRequest, sender: sender, action: action)
 		
-		ItemRequester.request(request)
+		ItemRequester.rq.request(request)
 		
 		return
 	}

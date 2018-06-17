@@ -45,9 +45,7 @@ class settingButtonCell: UITableViewCell{
 let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false, "Schowaj menu pakietów" : true, "sessionIsActive": true, "syncSessionRemoval": false]
 
 class SettingMenu: UITableViewController {
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+	
     let keys = Array(UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}))
     
     var sessions: [Session] = Load.sessions()
@@ -107,7 +105,7 @@ class SettingMenu: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return appDelegate.pack.session.connectedPeers.count > 0 ? 3 : 2
+        return PackageService.pack.session.connectedPeers.count > 0 ? 3 : 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,7 +114,7 @@ class SettingMenu: UITableViewController {
         }else if section == 1{
             return 1 + sessions.count
         }else{
-            return appDelegate.pack.session.connectedPeers.count
+            return PackageService.pack.session.connectedPeers.count
         }
     }
     
@@ -167,7 +165,7 @@ class SettingMenu: UITableViewController {
             }
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
-            cell?.textLabel?.text = appDelegate.pack.session.connectedPeers[indexPath.row].displayName
+            cell?.textLabel?.text = PackageService.pack.session.connectedPeers[indexPath.row].displayName
             cell?.selectionStyle = .none
             
             return cell!
@@ -182,8 +180,8 @@ class SettingMenu: UITableViewController {
 			let requestAction = NSMutableDictionary()
 			requestAction.setValue(ActionType.requestedItemList.rawValue, forKey: "action")
 			
-			self.appDelegate.pack.send(syncAction)
-			self.appDelegate.pack.send(requestAction)
+			PackageService.pack.send(syncAction)
+			PackageService.pack.send(requestAction)
 		}
 		if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
             let alert = UIAlertController(title: nil, message: "Do you want to change session", preferredStyle: .alert)
@@ -197,9 +195,7 @@ class SettingMenu: UITableViewController {
                 action.setValue(actionType, forKey: "action")
                 action.setValue(self.sessions[indexPath.row - 1].id, forKey: "sessionId")
                 
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                appDelegate.pack.send(action)
+                PackageService.pack.send(action)
             })
             
             let alertNo = UIAlertAction(title: "Nie", style: .cancel, handler: nil)
@@ -240,7 +236,7 @@ class SettingMenu: UITableViewController {
 					let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
 					action.setValue(actionType, forKey: "action")
 					action.setValue(sessionId, forKey: "sessionId")
-					self.appDelegate.pack.send(action)
+					PackageService.pack.send(action)
 				})
 				
 				let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
@@ -264,9 +260,7 @@ class SettingMenu: UITableViewController {
 				action.setValue(actionType, forKey: "action")
 				action.setValue(sessionDict, forKey: "session")
 				
-				let appDelegate = UIApplication.shared.delegate as! AppDelegate
-				
-				appDelegate.pack.send(action)
+				PackageService.pack.send(action)
 
 				tableView.setEditing(false, animated: true)
 				whisper(messege: "Send session")
@@ -294,15 +288,15 @@ class SettingMenu: UITableViewController {
 			actions = []
 			let removePeer = UITableViewRowAction(style: .destructive, title: "Remove", handler: {action,path in
 				
-				let peer = self.appDelegate.pack.session.connectedPeers[path.row]
+				let peer = PackageService.pack.session.connectedPeers[path.row]
 				let action = NSMutableDictionary()
 				let actionType: NSNumber = NSNumber(value: ActionType.disconnectPeer.rawValue)
 				
 				action.setValue(actionType, forKey: "action")
 				action.setValue(peer.displayName, forKey: "peer")
 				
-				self.appDelegate.pack.send(action)
-				self.appDelegate.pack.session.cancelConnectPeer(peer)
+				PackageService.pack.send(action)
+				PackageService.pack.session.cancelConnectPeer(peer)
 			})
 			actions?.append(removePeer)
 		}
@@ -338,9 +332,7 @@ extension SettingMenu: settingCellDelegate {
 		
 		session.addToMaps(newMap)
 		
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        var devices = appDelegate.pack.session.connectedPeers.map{$0.displayName}
+        var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
         devices.append(UIDevice.current.name)
         
         session.devices = NSSet(array: devices)
@@ -372,7 +364,7 @@ extension SettingMenu: settingCellDelegate {
 		action.setValue(sessionDictionary, forKey: "session")
 		action.setValue(session.current, forKey: "setCurrent")
 		
-		appDelegate.pack.send(action)
+		PackageService.pack.send(action)
     }
 }
 

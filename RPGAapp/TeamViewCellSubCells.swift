@@ -45,9 +45,7 @@ class newAbilityCell: UITableViewCell,UITextFieldDelegate{
 			action.setValue(newAbility.value, forKey: "abilityValue")
 			action.setValue(character.id, forKey: "characterId")
 			
-			let appDelegate = UIApplication.shared.delegate as! AppDelegate
-			
-			appDelegate.pack.send(action)
+			PackageService.pack.send(action)
 			
 			textField.text = ""
 		}
@@ -116,9 +114,7 @@ class abilityCell: UITableViewCell {
 			action.setValue(abilityId, forKey: "abilityId")
 			action.setValue(character.id, forKey: "characterId")
 			
-			let appDelegate = UIApplication.shared.delegate as! AppDelegate
-			
-			appDelegate.pack.send(action)
+			PackageService.pack.send(action)
 			
 		case .began:
 			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
@@ -148,9 +144,7 @@ class abilityCell: UITableViewCell {
 		action.setValue(ability.value, forKey: "abilityValue")
 		action.setValue(character.id, forKey: "characterId")
 		
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		
-		appDelegate.pack.send(action)
+		PackageService.pack.send(action)
 	}
 }
 
@@ -198,9 +192,7 @@ class characterItemCell: UITableViewCell {
 		action.setValue(itemHandler.item?.id, forKey: "itemId")
 		action.setValue(character.id, forKey: "characterId")
 		
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		
-		appDelegate.pack.send(action)
+		PackageService.pack.send(action)
 	}
 	
 	func equipmentChanged(){
@@ -231,9 +223,7 @@ class characterItemCell: UITableViewCell {
 			action.setValue(itemId, forKey: "itemId")
 			action.setValue(character.id, forKey: "characterId")
 			
-			let appDelegate = UIApplication.shared.delegate as! AppDelegate
-			
-			appDelegate.pack.send(action)
+			PackageService.pack.send(action)
 			
 		case .began:
 			UIView.animate(withDuration: sender.minimumPressDuration, animations: {

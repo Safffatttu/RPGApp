@@ -14,8 +14,9 @@ import MultipeerConnectivity
 class ItemRequester {
 	
 	let requestQueue = ItemRequestQueue()
-	lazy var appDelegate = UIApplication.shared.delegate as! AppDelegate
 
+	static var rq = ItemRequester()
+	
 	init() {
 		NotificationCenter.default.addObserver(self, selector: #selector(check(_:)), name: .receivedItemData, object: nil)
 	}
@@ -25,7 +26,7 @@ class ItemRequester {
 		
 		guard let action = requestQueue.getActionWith(id: requestId) else { return }
 		
-		appDelegate.actionDelegate.receiveLocally(action.localAction)
+		ActionDelegate.ad.receiveLocally(action.localAction)
 	}
 	
 	func execute(request: ItemRequest) {
@@ -38,13 +39,11 @@ class ItemRequester {
 		action.setValue(request.itemsId, forKey: "itemsId")
 		action.setValue(request.id, forKey: "id")
 		
-		let packageService = (UIApplication.shared.delegate as! AppDelegate).pack
-		packageService.send(action, to: request.from)
+		PackageService.pack.send(action, to: request.from)
 	}
 	
-	static func request(_ request: ItemRequest){
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		appDelegate.itemRequester.execute(request: request)
+	func request(_ request: ItemRequest){
+		ItemRequester.rq.execute(request: request)
 	}
 	
 }

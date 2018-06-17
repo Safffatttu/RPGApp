@@ -14,7 +14,7 @@ import Whisper
 
 class ActionDelegate: PackageServiceDelegate{
 	
-	let pack = (UIApplication.shared.delegate as? AppDelegate)?.pack
+	static var ad = ActionDelegate()	
 	
     func received(_ action: NSMutableDictionary,from sender: MCPeerID, manager: PackageService) {
         DispatchQueue.main.sync{
@@ -195,16 +195,14 @@ class ActionDelegate: PackageServiceDelegate{
 					}
 				}
 				
-				
 				if let req = request{
-					ItemRequester.request(req)
+					ItemRequester.rq.request(req)
 				}
 				
                 NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
             }else if actionType == ActionType.disconnectPeer{
                 if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.pack.session.disconnect()
+                    PackageService.pack.session.disconnect()
                 }
             }else if actionType == ActionType.itemDeletedFromCharacter{
                 let itemId = action.value(forKey: "itemId") as? String
@@ -406,7 +404,7 @@ class ActionDelegate: PackageServiceDelegate{
 				response.setValue(itemsData, forKey: "itemsData")
 				response.setValue(requestId, forKey: "requestId")
 				
-				pack?.send(response, to: sender)
+				PackageService.pack.send(response, to: sender)
 				
 			}else if actionType == ActionType.itemsRequestResponse{
 				guard let itemsData = action.value(forKey: "itemsData") as? NSArray else { return }
@@ -439,7 +437,7 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				action.setValue(ActionType.requestedItemList.rawValue, forKey: "action")
 				
-				pack?.send(action)
+				PackageService.pack.send(action)
 				
 				
 			}else if actionType == ActionType.requestedItemList{
@@ -450,7 +448,7 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				response.setValue(itemList, forKey: "itemList")
 				
-				pack?.send(response, to: sender)
+				PackageService.pack.send(response, to: sender)
 				
 				
 			}else if actionType == ActionType.recievedItemList{
@@ -465,15 +463,16 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				action.setValue(NSArray(array: requestList), forKey: "itemsId")
 				
-				pack?.send(action, to: sender)
+				PackageService.pack.send(action, to: sender)
 			}
         }
     }
 	
 	func receiveLocally(_ action: NSMutableDictionary){
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		let localId = appDelegate.pack.myPeerID
-		let packServ = appDelegate.pack
+		
+		let packServ = PackageService.pack
+		let localId = packServ.myPeerID
+		
 		self.received(action, from: localId, manager: packServ)
 	}
 
@@ -485,8 +484,8 @@ class ActionDelegate: PackageServiceDelegate{
     
     func found(_ peer: MCPeerID) {
         DispatchQueue.main.async{
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            var connectedDevices = appDelegate.pack.session.connectedPeers.map({$0.displayName})
+            let pack = PackageService.pack
+            var connectedDevices = pack.session.connectedPeers.map({$0.displayName})
             connectedDevices.append(UIDevice.current.name)
             
             let devices = NSSet(array: connectedDevices)

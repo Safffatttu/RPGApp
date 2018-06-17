@@ -15,10 +15,6 @@ import Whisper
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     
     var window: UIWindow?
-    
-    let pack = PackageService()
-    let actionDelegate = ActionDelegate()
-	let itemRequester = ItemRequester()
 	
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -41,8 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 defaults.set(setting.value, forKey: setting.key)
             }
         }
-        
-        pack.delegate = actionDelegate
+		
+		_ = PackageService.pack
+		
         return true
     }
 	
@@ -60,9 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		action.setValue(actionType, forKey: "action")
 		action.setValue(sessionDictionary, forKey: "session")
 		action.setValue(newSession.current, forKey: "setCurrent")
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		
-		appDelegate.pack.send(action)
+		PackageService.pack.send(action)
 		
 		NotificationCenter.default.post(name: .sessionReceived, object: nil)
 		

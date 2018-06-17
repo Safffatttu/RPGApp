@@ -91,8 +91,7 @@ class RandomNumberGenerator: UITableViewController, StepperCellDelegate {
         action.setValue(at, forKey: "action")
         action.setValue(number, forKey: "number")
         
-        let packageService = (UIApplication.shared.delegate as! AppDelegate).pack
-        packageService.send(action)
+        PackageService.pack.send(action)
         
         return
     }

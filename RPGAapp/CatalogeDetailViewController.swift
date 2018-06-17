@@ -278,10 +278,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 			let itemData = packItem(item)
 			
 			action.setValue(itemData, forKey: "itemData")
-			print(action)
-			let appDelegate = UIApplication.shared.delegate as! AppDelegate
 			
-			appDelegate.pack.send(action)
+			PackageService.pack.send(action)
 		})
 		
 		return [sendAction, removeAction]

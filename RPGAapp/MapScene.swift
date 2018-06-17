@@ -221,8 +221,7 @@ class MapScene: SKScene{
 		let entityId = mapThings.filter({$0.1 == node}).first!.0.id!
 		action.setValue(entityId, forKey: "entityId")
 		
-		let appDelegate = UIApplication.shared.delegate as! AppDelegate
-		appDelegate.pack.send(action)
+		PackageService.pack.send(action)
 	}
 	
 }

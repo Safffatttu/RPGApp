@@ -101,9 +101,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
             action.setValue(actionType, forKey: "action")
             action.setValue(packageId, forKey: "packageId")
             
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            
-            appDelegate.pack.send(action)
+            PackageService.pack.send(action)
         }
     }
     
@@ -156,10 +154,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let itemsCount = NSArray(array: itemsToAdd.map({$0.count}))
         action.setValue(items, forKey: "itemsToAdd")
         action.setValue(itemsCount, forKey: "itemsToAddCount")
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        appDelegate.pack.send(action)
+		
+        PackageService.pack.send(action)
     }
     
     func newPackage(){
@@ -182,10 +178,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         action.setValue(actionType, forKey: "action")
         action.setValue(newPackage.name, forKey: "packageName")
         action.setValue(newPackage.id, forKey: "packageId")
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        appDelegate.pack.send(action)
+		
+        PackageService.pack.send(action)
         
         NotificationCenter.default.post(name: .createdPackage, object: nil)
     }

@@ -83,9 +83,7 @@ class TeamViewCell: UICollectionViewCell {
 				
 				action.setValue(characterId, forKey: "characterId")
 				
-				let appDelegate = UIApplication.shared.delegate as! AppDelegate
-				
-				appDelegate.pack.send(action)
+				PackageService.pack.send(action)
 			})
 			
 			let alertNo = UIAlertAction(title: "Nie", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in

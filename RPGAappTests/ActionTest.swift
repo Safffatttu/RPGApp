@@ -21,7 +21,7 @@ class ActionTest: XCTestCase{
 	
 	func testTest(){
 		let action = createCharacter()
-		appDelegate.actionDelegate.receiveLocally(action)
+		ActionDelegate.ad.receiveLocally(action)
 	}
 	
 	

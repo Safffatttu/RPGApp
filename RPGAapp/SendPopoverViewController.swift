@@ -133,10 +133,8 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         
         action.setValue(team.index(where: {$0 == sendTo}), forKey: "characterNumber")
         action.setValue(sendTo.equipment?.sortedArray(using: [.sortItemHandlerByName]).index(where: {($0 as! ItemHandler).item == item}), forKey: "itemNumber")
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        appDelegate.pack.send(action)
+		
+        PackageService.pack.send(action)
     }
 }
 
