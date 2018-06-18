@@ -25,7 +25,9 @@ class CatalogeDetailCell: UITableViewCell{
 	var item: Item? = nil{
 		didSet{
 			self.nameLabel.text = item?.name
-			self.priceLabel.text = String(describing: item?.price) + "PLN"
+			if let price = item?.price{
+				self.priceLabel.text = String(describing: price) + "PLN"
+			}
 		}
 	}
 	
