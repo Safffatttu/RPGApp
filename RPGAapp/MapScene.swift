@@ -33,6 +33,8 @@ class MapScene: SKScene{
 	
 	var mapThings: [(MapEntity,SKSpriteNode)] = []
 	
+	var mapa: SKSpriteNode!
+	
 	override func didMove(to view: SKView) {
 		super.didMove(to: view)
 		
@@ -42,7 +44,15 @@ class MapScene: SKScene{
 		
 		map = Load.currentMap(session: getCurrentSession())
 		
-		let mapa = SKSpriteNode(imageNamed: "mapImperium")
+		if let imageData = map.background as Data?{
+			let image = UIImage(data: imageData)
+			let texture = SKTexture(image: image!)
+			mapa = SKSpriteNode(texture: texture)
+		}
+		else{
+			mapa = SKSpriteNode(imageNamed: "mapImperium")
+		}
+		
 		mapa.name = "mapa"
 		self.addChild(mapa)
 		mapa.zPosition = -1
@@ -63,6 +73,7 @@ class MapScene: SKScene{
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(mapEntityMoved(_:)) , name: .mapEntityMoved, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadEntities), name: .reloadTeam, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadBackground), name: .mapBackgroundChanged, object: nil)
 	}
 	
 	func mapEntityMoved(_ sender: Notification){
@@ -83,6 +94,24 @@ class MapScene: SKScene{
 			sprite.run(SKAction.hide())
 		}
 		map = Load.currentMap(session: getCurrentSession())
+	}
+	
+	func reloadBackground(){
+		if let imageData = map.background as NSData?{
+			let image = UIImage(data: imageData as Data)
+			let texture = SKTexture(image: image!)
+			let actionSeq = SKAction.sequence([
+				SKAction.fadeOut(withDuration: 0.4),
+				SKAction.run{
+					self.mapa.texture = texture
+				},
+				SKAction.fadeIn(withDuration: 0.4)
+			])
+			mapa.run(actionSeq)
+		}
+		else{
+			mapa.texture = SKTexture(imageNamed: "mapImperium")
+		}
 	}
 	
 	var previousX: CGFloat = 1
@@ -228,4 +257,5 @@ class MapScene: SKScene{
 
 extension Notification.Name{
 	static let mapEntityMoved = Notification.Name("mapEntityMoved")
+	static let mapBackgroundChanged = Notification.Name("mapBackgroundChanged")
 }

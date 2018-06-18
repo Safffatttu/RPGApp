@@ -74,7 +74,7 @@
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="equipment" inverseEntity="Character" syncable="YES"/>
     </entity>
     <entity name="Map" representedClassName="Map" syncable="YES">
-        <attribute name="background" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="background" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="current" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -149,7 +149,7 @@
         <element name="ItemAtributeHandler" positionX="-191" positionY="225" width="128" height="60"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="105"/>
         <element name="Map" positionX="-983" positionY="117" width="128" height="165"/>
-        <element name="MapEntity" positionX="-785" positionY="324" width="128" height="133"/>
+        <element name="MapEntity" positionX="-821" positionY="450" width="128" height="135"/>
         <element name="Package" positionX="-452" positionY="-81" width="128" height="105"/>
         <element name="Session" positionX="-828" positionY="-124" width="128" height="178"/>
         <element name="Store" positionX="-576" positionY="404" width="126" height="118"/>

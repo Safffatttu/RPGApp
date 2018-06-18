@@ -213,6 +213,21 @@ public struct Load {
 		return session.maps?.filter({($0 as! Map).current}).first as! Map
 	}
 	
+	public static func map(withId id: String) -> Map?{
+		var map: Map?
+		let mapFetch: NSFetchRequest<Map> = Map.fetchRequest()
+		
+		mapFetch.predicate = NSPredicate(format: "id == %@", id)
+		
+		do {
+			map = try context.fetch(mapFetch).first
+		}catch{
+			print("error")
+		}
+		
+		return map
+	}
+	
 	public static func mapEntity(withId id: String) -> MapEntity?{
 		var mapEntity: MapEntity?
 		let mapEntityFetch: NSFetchRequest<MapEntity> = MapEntity.fetchRequest()

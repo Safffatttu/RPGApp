@@ -171,6 +171,7 @@ enum ActionType: Int {
 	case requestedItemList
 	case recievedItemList
 	case syncItemLists
+	case sendImage
 }
 
 extension Notification.Name{

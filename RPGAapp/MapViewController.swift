@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 import SpriteKit
 
-class MapViewController: UIViewController {
+
+class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	
+	let imagePicker = UIImagePickerController()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -27,6 +30,47 @@ class MapViewController: UIViewController {
 			view.showsDrawCount = true
 			view.showsNodeCount = true
 		}
+		
+		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openImagePicker))
 	}
 	
+	func openImagePicker(){
+	
+		imagePicker.delegate = self
+		imagePicker.sourceType = .photoLibrary
+		imagePicker.allowsEditing = false
+		
+		present(imagePicker, animated: true)
+		
+	}
+	
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		imagePicker.dismiss(animated: true)
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+		
+		dismiss(animated:true, completion: nil)
+		
+		guard let imageData = UIImagePNGRepresentation(chosenImage) else { return }
+		
+		let map = Load.currentMap(session: getCurrentSession())
+		
+		map.background = imageData as NSData
+		
+		CoreDataStack.saveContext()
+		
+		NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
+		
+		DispatchQueue.global().async {
+			let action = NSMutableDictionary()
+			action.setValue(ActionType.sendImage.rawValue, forKey: "action")
+			
+			action.setValue(imageData, forKey: "imageData")
+			action.setValue(map.id, forKey: "mapId")
+			
+			PackageService.pack.send(action)
+		}
+	}
 }

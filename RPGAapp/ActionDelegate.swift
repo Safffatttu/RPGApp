@@ -17,7 +17,8 @@ class ActionDelegate: PackageServiceDelegate{
 	static var ad = ActionDelegate()	
 	
     func received(_ action: NSMutableDictionary,from sender: MCPeerID) {
-		print(action)
+		
+//		print(action)
 		guard let actionNumber = action.value(forKey: "action") as? Int else { return }
 		guard let actionType = ActionType(rawValue: actionNumber) else { return }
 		let senderName = sender.displayName
@@ -466,6 +467,21 @@ class ActionDelegate: PackageServiceDelegate{
 			action.setValue(NSArray(array: requestList), forKey: "itemsId")
 			
 			PackageService.pack.send(action, to: sender)
+		}else if actionType == ActionType.sendImage{
+			DispatchQueue.global().async {
+				let imageData = action.value(forKey: "imageData") as? NSData
+				guard let mapId = action.value(forKey: "mapId") as? String else { return }
+				
+				guard let map = Load.map(withId: mapId) else { return }
+				
+				map.background = imageData
+				
+				CoreDataStack.saveContext()
+				
+				DispatchQueue.main.async {
+					NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
+				}
+			}
 		}
     }
 	
