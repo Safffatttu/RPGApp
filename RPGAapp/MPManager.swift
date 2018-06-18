@@ -117,7 +117,9 @@ extension PackageService: MCSessionDelegate{
         NSLog("%@", "didReceiveData: \(data)")
         let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary
         action.setValue(peerID.displayName, forKey: "sender")
-        self.delegate?.received(action,from: peerID, manager: self)
+		DispatchQueue.main.async {
+			self.delegate?.received(action,from: peerID)
+		}
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -138,7 +140,7 @@ protocol PackageServiceDelegate {
     func connectedDevicesChanged(manager : PackageService, connectedDevices: [String])
     func lost(_ peer: MCPeerID)
     func found(_ peer: MCPeerID)
-    func received(_ action: NSMutableDictionary,from sender: MCPeerID, manager: PackageService)
+    func received(_ action: NSMutableDictionary,from sender: MCPeerID)
 }
 
 enum ActionType: Int {

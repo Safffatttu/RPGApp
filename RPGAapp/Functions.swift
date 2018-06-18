@@ -216,28 +216,22 @@ func strHash(_ str: String) -> UInt64 {
     return result
 }
 
-@discardableResult
-func addToEquipment(item: Item, to character: Character, count: Int64 = 1) -> Bool{
+func addToEquipment(item: Item, to character: Character, count: Int64 = 1){
     let context = CoreDataStack.managedObjectContext
-    var newHandler = false
-    
+	
     if let handler = (character.equipment?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler){
         handler.count += count
     }else{
         let handler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
-        newHandler = true
+		
         handler.item = item
         handler.count = count
         character.addToEquipment(handler)
     }
-    
-    return newHandler
 }
 
-@discardableResult
-func addToEquipment(itemHandler: ItemHandler, to character: Character) -> Bool{
+func addToEquipment(itemHandler: ItemHandler, to character: Character){
     let context = CoreDataStack.managedObjectContext
-    var createdNewHandler = false
     
     var newHandler = itemHandler
     
@@ -249,14 +243,11 @@ func addToEquipment(itemHandler: ItemHandler, to character: Character) -> Bool{
         newHandler.count = itemHandler.count
         
         character.addToEquipment(newHandler)
-        createdNewHandler = true
     }
     
     let atribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: context) as! ItemAtributeHandler
     
     itemHandler.addToItemAtributesHandler(atribute)
-    
-    return createdNewHandler
 }
 
 func add(_ item: Item,to package: Package, count: Int64?){
@@ -534,4 +525,14 @@ extension UIApplication {
 		
 		return base
 	}
+}
+
+extension Array{
+	
+	public func random() -> Element?{
+		guard !isEmpty else { return nil }
+		let index = Int(arc4random_uniform(UInt32(count)))
+		return self[index]
+	}
+	
 }

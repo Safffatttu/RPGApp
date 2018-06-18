@@ -86,12 +86,10 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		
 		let sendTo = team[playerNum]
 		
-		var createdNewHandler = false
-        
         if let itemToAdd = item {
-            createdNewHandler = addToEquipment(item: itemToAdd, to: sendTo)
+            addToEquipment(item: itemToAdd, to: sendTo)
         }else if let handlerToAdd = itemHandler {
-            createdNewHandler = addToEquipment(itemHandler: handlerToAdd, to: sendTo)
+            addToEquipment(itemHandler: handlerToAdd, to: sendTo)
         }else {
             for handler in itemHandlers{
                 addToEquipment(itemHandler: handler, to: sendTo)
@@ -105,7 +103,6 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         
         let actionType: NSNumber = NSNumber(value: ActionType.itemSend.rawValue)
         action.setValue(actionType, forKey: "action")
-        action.setValue(createdNewHandler, forKey: "createdNewHandler")
         
         if let itemToSend = item {
             action.setValue(itemToSend.id, forKey: "itemId")
@@ -130,9 +127,6 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         }
 
         action.setValue(sendTo.id, forKey: "characterId")
-        
-        action.setValue(team.index(where: {$0 == sendTo}), forKey: "characterNumber")
-        action.setValue(sendTo.equipment?.sortedArray(using: [.sortItemHandlerByName]).index(where: {($0 as! ItemHandler).item == item}), forKey: "itemNumber")
 		
         PackageService.pack.send(action)
     }
