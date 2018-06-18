@@ -30,12 +30,11 @@ class TeamView: UICollectionViewController {
     }
 	
     func addCharacter(_ sender: Any){
-        if !sessionIsActive(){
-            return
-        }
-        let addCharControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addCharacter")
-        addCharControler.modalPresentationStyle = .formSheet
-        self.present(addCharControler, animated: true, completion: nil)
+        let characterFrom = NewCharacterForm()
+		
+		characterFrom.modalPresentationStyle = .formSheet
+		
+        present(characterFrom, animated: true, completion: nil)
     }
 	
     func reloadTeam(){
