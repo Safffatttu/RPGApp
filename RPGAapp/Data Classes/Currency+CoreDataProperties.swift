@@ -16,8 +16,8 @@ extension Currency {
         return NSFetchRequest<Currency>(entityName: "Currency")
     }
 
-    @NSManaged public var globalRate: Double
     @NSManaged public var name: String?
+    @NSManaged public var rate: Double
     @NSManaged public var subCurrency: NSOrderedSet?
 
 }

@@ -25,6 +25,7 @@ extension Session {
     @NSManaged public var characters: NSSet?
     @NSManaged public var maps: NSSet?
     @NSManaged public var packages: NSSet?
+    @NSManaged public var currency: Currency?
 
 }
 

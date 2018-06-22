@@ -23,8 +23,8 @@
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="characters" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="Currency" representedClassName="Currency" syncable="YES">
-        <attribute name="globalRate" attributeType="Double" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="rate" attributeType="Double" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="subCurrency" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SubCurrency" syncable="YES"/>
     </entity>
     <entity name="DrawSetting" representedClassName="DrawSetting" syncable="YES">
@@ -105,8 +105,9 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" syncable="YES"/>
         <relationship name="maps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Map" inverseName="session" inverseEntity="Map" syncable="YES"/>
-        <relationship name="packages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
+        <relationship name="packages" toMany="YES" deletionRule="No Action" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
     </entity>
     <entity name="Store" representedClassName="Store" syncable="YES">
         <attribute name="budget" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -134,14 +135,14 @@
     </entity>
     <entity name="SubCurrency" representedClassName="SubCurrency" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="rate" attributeType="Double" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rate" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
         <element name="Ability" positionX="-407" positionY="36" width="128" height="103"/>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
         <element name="Character" positionX="-603" positionY="99" width="128" height="180"/>
-        <element name="Currency" positionX="-270" positionY="-163" width="128" height="88"/>
+        <element name="Currency" positionX="-540" positionY="-225" width="128" height="90"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="75"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="150"/>
         <element name="Item" positionX="-27" positionY="-19" width="108" height="240"/>
@@ -151,11 +152,11 @@
         <element name="Map" positionX="-983" positionY="117" width="128" height="165"/>
         <element name="MapEntity" positionX="-821" positionY="450" width="128" height="135"/>
         <element name="Package" positionX="-452" positionY="-81" width="128" height="105"/>
-        <element name="Session" positionX="-828" positionY="-124" width="128" height="178"/>
+        <element name="Session" positionX="-774" positionY="-153" width="128" height="195"/>
         <element name="Store" positionX="-576" positionY="404" width="126" height="118"/>
         <element name="StoreAvalibleItem" positionX="-423" positionY="332" width="128" height="73"/>
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
         <element name="SubCategory" positionX="153" positionY="-43" width="128" height="105"/>
-        <element name="SubCurrency" positionX="-83" positionY="-153" width="128" height="73"/>
+        <element name="SubCurrency" positionX="-360" positionY="-225" width="128" height="75"/>
     </elements>
 </model>
