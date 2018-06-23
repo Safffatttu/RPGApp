@@ -332,6 +332,9 @@ extension SettingMenu: settingCellDelegate {
 		
 		session.addToMaps(newMap)
 		
+		let PLN = Load.currencies().first{$0.name == "PLN"}
+		session.currency = PLN
+		
         var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
         devices.append(UIDevice.current.name)
         

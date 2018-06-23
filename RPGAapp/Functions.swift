@@ -288,6 +288,9 @@ func getCurrentSession(orCreateNew: Bool = true) -> Session{
 		
 		session.addToMaps(newMap)
 		
+		let PLN = Load.currencies().first{$0.name == "PLN"}
+		session.currency = PLN
+		
 		CoreDataStack.saveContext()
 		
         

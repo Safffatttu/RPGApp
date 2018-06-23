@@ -146,6 +146,9 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	session.gameMasterName = gameMasterName
 	//session.devices	= NSSet(array: devices as! [Any])
 	
+	let PLN = Load.currencies().first{$0.name == "PLN"}
+	session.currency = PLN
+	
 	for case let characterDict as NSDictionary in allCharactersDict{
 		
 		guard let characterName = characterDict.value(forKey: "name") as? String else { continue }
