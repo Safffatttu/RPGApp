@@ -107,24 +107,6 @@ func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]]{
     return tableToRet
 }
 
-func changeCurrency(price: Double, currency: [(String,Double)]) -> String{
-    var priceToRet = String()
-
-    var currentPrice = (currency.first?.1)! * price
-    var toAppend = floor(currentPrice)
-    if(toAppend > 0){
-        priceToRet.append(forTailingZero(floor(currentPrice)) + (currency.first?.0)!)
-    }
-    for i in 1...currency.count-1{
-        currentPrice = currentPrice * currency[i].1
-        toAppend = floor(currentPrice.truncatingRemainder(dividingBy: currency[i].1))
-        if( toAppend > 0){
-            priceToRet.append(" " + forTailingZero(toAppend) + currency[i].0)
-        }
-    }
-    return priceToRet
-}
-
 func forTailingZero(_ temp: Double) -> String{
     return String(format: "%g", temp)
 }
@@ -451,6 +433,33 @@ func getDocumentsDirectory() -> URL {
 	return paths[0]
 }
 
+@discardableResult func createCurrencyUsing(name: String, rate: Double, subList: [(String,Int16)]) -> Currency{
+	let context = CoreDataStack.managedObjectContext
+	
+	let currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency
+	
+	currency.name = name
+	
+	currency.rate = rate
+	
+	
+	for sub in subList{
+		let subCurrency = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
+		
+		subCurrency.name = sub.0
+		subCurrency.rate = sub.1
+		
+		currency.insertIntoSubCurrency(subCurrency, at: (currency.subCurrency?.count)!)
+	}
+	
+	return currency
+}
+
+func createBasicCurrency(){
+	createCurrencyUsing(name: "PLN", rate: 0, subList: [("Zł", 1), ("Gr", 100)])
+	createCurrencyUsing(name: "ZkSrM", rate: 0, subList: [("Zk", 1), ("Sr", 12), ("M", 12)])
+	CoreDataStack.saveContext()
+}
 
 //let rarityName = ["Dziadostwo", "Normalne", "Rzadkie", "Legendarne"]
 let rarityName = ["Junk", "Common", "Rare", "Legendary"]

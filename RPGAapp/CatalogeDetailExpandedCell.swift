@@ -39,7 +39,7 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 			self.measureLabel.text = item?.measure
 			
 			if let price = item?.price{
-				self.priceLabel.text = String(describing: price) + "PLN"
+				self.priceLabel.text = showPrice(price)
 			}
 			
 			self.descriptionTextView.text = item?.item_description

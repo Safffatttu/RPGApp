@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             DispatchQueue.main.async {
                 loadItemsFromAsset()
                 defaults.set(true, forKey: "isPreloaded")
+				createBasicCurrency()
             }
         }
         

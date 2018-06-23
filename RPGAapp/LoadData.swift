@@ -242,4 +242,24 @@ public struct Load {
 		
 		return mapEntity
 	}
+	
+	public static func currencies() -> [Currency]{
+		var currencies: [Currency]!
+		let currenciesFetch: NSFetchRequest<Currency> = Currency.fetchRequest()
+		
+		do {
+			currencies = try context.fetch(currenciesFetch)
+		}catch{
+			print("error")
+		}
+		
+		return currencies
+	}
+	
+	public static func currentCurrency() -> Currency?{
+		let session = getCurrentSession()
+		
+		return session.currency		
+	}
+	
 }
