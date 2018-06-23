@@ -32,6 +32,7 @@
 		3B4582AC20B1F17600A07627 /* CenteredLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4582AB20B1F17600A07627 /* CenteredLabelCell.swift */; };
 		3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */; };
 		3B48ED6520A9D63600DAA7CC /* TeamViewCellSubCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48ED6420A9D63600DAA7CC /* TeamViewCellSubCells.swift */; };
+		3B4CE5C020D9991500779532 /* CurrencyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CE5BF20D9991500779532 /* CurrencyExchange.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
 		3B588E001FF30C0500715440 /* randomUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B588DFF1FF30C0500715440 /* randomUserTests.swift */; };
 		3B709CE820ACA29600D5825E /* MapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B709CE720ACA29600D5825E /* MapScene.swift */; };
@@ -159,6 +160,7 @@
 		3B4582AB20B1F17600A07627 /* CenteredLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredLabelCell.swift; sourceTree = "<group>"; };
 		3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamViewCell.swift; path = RPGAapp/TeamViewCell.swift; sourceTree = "<group>"; };
 		3B48ED6420A9D63600DAA7CC /* TeamViewCellSubCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamViewCellSubCells.swift; path = RPGAapp/TeamViewCellSubCells.swift; sourceTree = "<group>"; };
+		3B4CE5BF20D9991500779532 /* CurrencyExchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyExchange.swift; sourceTree = "<group>"; };
 		3B50DC011F40EB6B0040DCCC /* MPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPManager.swift; sourceTree = "<group>"; };
 		3B588DFF1FF30C0500715440 /* randomUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = randomUserTests.swift; sourceTree = "<group>"; };
 		3B709CE720ACA29600D5825E /* MapScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapScene.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				3B063D761F3A259B00B5271C /* Functions.swift */,
 				3B295D8520A8E326001DC35D /* DiceRollModels.swift */,
 				3B295D8720A8E3C4001DC35D /* DiceRollFunctions.swift */,
+				3B4CE5BF20D9991500779532 /* CurrencyExchange.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				AA67172CAE17E32BD0F151D2 /* [CP] Embed Pods Frameworks */,
 				FAA1336C59A3703269C6978F /* [CP] Copy Pods Resources */,
 				3B3D3CBC1FFAD07B00AA9D0B /* Embed Frameworks */,
+				3BFD566D20DDB03900E6F167 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -654,6 +658,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3BFD566D20DDB03900E6F167 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			showEnvVarsInLog = 0;
+		};
 		8C38864759148D99E6708452 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -737,6 +756,7 @@
 				3BDBDA0020ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
 				3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */,
+				3B4CE5C020D9991500779532 /* CurrencyExchange.swift in Sources */,
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,
 				3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */,
 				3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */,
@@ -968,9 +988,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
 			};
 			name = Debug;
 		};
@@ -980,6 +1001,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				CLANG_STATIC_ANALYZER_MODE = shallow;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";
@@ -987,21 +1009,27 @@
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SMH62TPPHV;
+				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GENERATE_PROFILING_CODE = NO;
 				INFOPLIST_FILE = RPGAapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_NO_PIE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				LLVM_LTO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_CLANG_STATIC_ANALYZER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
 			};
 			name = Release;
 		};

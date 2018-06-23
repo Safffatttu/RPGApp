@@ -50,6 +50,8 @@ class SettingMenu: UITableViewController {
     
     var sessions: [Session] = Load.sessions()
 	
+	var currencies: [Currency] = Load.currencies()
+	
 	var documenController:UIDocumentInteractionController!
 	
     override func viewWillAppear(_ animated: Bool) {
@@ -84,12 +86,26 @@ class SettingMenu: UITableViewController {
         let previousIndex = self.sessions.index(where: {$0.current == true})
         var indexesToReload = [indexPath]
         if previousIndex != nil{
-            sessions[previousIndex!].current = false
+			for session in sessions{
+				session.current = false
+			}
+			
             indexesToReload.append(IndexPath(row: previousIndex! + 1, section: 1))
         }
         sessions[indexPath.row - 1].current = true
-        
-        self.tableView.reloadRows(at: indexesToReload, with: .automatic)
+		
+		let currencySection = IndexSet(integer: 2)
+		
+		tableView.beginUpdates()
+		
+		tableView.reloadRows(at: indexesToReload, with: .fade)
+		tableView.reloadSections(currencySection, with: .fade)
+		
+		tableView.endUpdates()
+		
+		CoreDataStack.saveContext()
+
+		sessions = Load.sessions()
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
     }
@@ -105,7 +121,7 @@ class SettingMenu: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return PackageService.pack.session.connectedPeers.count > 0 ? 3 : 2
+        return PackageService.pack.session.connectedPeers.count > 0 ? 4 : 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -113,7 +129,9 @@ class SettingMenu: UITableViewController {
             return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count + 1
         }else if section == 1{
             return 1 + sessions.count
-        }else{
+		}else if section == 2{
+			return currencies.count
+		}else{
             return PackageService.pack.session.connectedPeers.count
         }
     }
@@ -123,7 +141,9 @@ class SettingMenu: UITableViewController {
             return "Ustawienia"
         }else if section == 1{
             return "Sesje"
-        }else {
+		}else if section == 2{
+			return "Waluty"
+		}else {
             return "Połączone urządzenia"
         }
     }
@@ -163,7 +183,19 @@ class SettingMenu: UITableViewController {
 				
                 return cell!
             }
-        }else{
+		}else if indexPath.section == 2{
+			let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
+			let cellCurrency = currencies[indexPath.row]
+			cell?.textLabel?.text =	cellCurrency.name
+			cell?.selectionStyle = .none
+			cell?.accessoryType = .none
+			
+			if cellCurrency == Load.currentCurrency(){
+				cell?.accessoryType = .checkmark
+			}
+			
+			return cell!
+		}else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
             cell?.textLabel?.text = PackageService.pack.session.connectedPeers[indexPath.row].displayName
             cell?.selectionStyle = .none
@@ -174,6 +206,7 @@ class SettingMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.section == 0 && indexPath.row == settingValues.count{
+			
 			let syncAction = NSMutableDictionary()
 			syncAction.setValue(ActionType.syncItemLists, forKey: "action")
 			
@@ -182,8 +215,7 @@ class SettingMenu: UITableViewController {
 			
 			PackageService.pack.send(syncAction)
 			PackageService.pack.send(requestAction)
-		}
-		if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
+		}else if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
             let alert = UIAlertController(title: nil, message: "Do you want to change session", preferredStyle: .alert)
 			
             let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
@@ -204,11 +236,21 @@ class SettingMenu: UITableViewController {
             alert.addAction(alertNo)
             
             present(alert, animated: true, completion: nil)
-        }
+		}else if indexPath.section == 2{
+			let session = getCurrentSession()
+			
+			let previousCurrencyIndex = currencies.index(of: session.currency!)
+			
+			session.currency = currencies[indexPath.row]
+			
+			let rowsToReload = [indexPath, IndexPath(row: previousCurrencyIndex!, section: indexPath.section)]
+			
+			tableView.reloadRows(at: rowsToReload, with: .fade)
+		}
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		return indexPath.section == 2 || (indexPath.section == 1 && indexPath.row != 0)
+		return indexPath.section == 3 || (indexPath.section == 1 && indexPath.row != 0)
     }
 	
 	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -284,7 +326,7 @@ class SettingMenu: UITableViewController {
 			
 			actions?.append(shareSession)
 			
-		}else{
+		}else if indexPath.section == 3{
 			actions = []
 			let removePeer = UITableViewRowAction(style: .destructive, title: "Remove", handler: {action,path in
 				
@@ -332,6 +374,8 @@ extension SettingMenu: settingCellDelegate {
 		
 		session.addToMaps(newMap)
 		
+		let previousSessionIndex = sessions.index(where: {$0.current == true})
+		
 		let PLN = Load.currencies().first{$0.name == "PLN"}
 		session.currency = PLN
 		
@@ -339,23 +383,28 @@ extension SettingMenu: settingCellDelegate {
         devices.append(UIDevice.current.name)
         
         session.devices = NSSet(array: devices)
-        
-        let previous = sessions.index(where: {$0.current == true})
-        if previous != nil{
-            sessions[previous!].current = false
-        }
-        
+		
         let index = IndexPath(row: tableView(self.tableView, numberOfRowsInSection: 1), section: 1)
         sessions.append(session)
         
-        self.tableView.insertRows(at: [index], with: .automatic)
-        
-        if previous != nil{
-            let previousIndex = IndexPath(row: previous! + 1, section: 1)
-            self.tableView.reloadRows(at: [previousIndex], with: .automatic)
-        }
         CoreDataStack.saveContext()
-        
+
+		tableView.beginUpdates()
+		
+		tableView.insertRows(at: [index], with: .automatic)
+		
+		if previousSessionIndex != nil{
+			sessions[previousSessionIndex!].current = false
+			
+			let previousIndex = IndexPath(row: previousSessionIndex! + 1, section: 1)
+			let currencySection = IndexSet(integer: 2)
+			
+			tableView.reloadRows(at: [previousIndex], with: .automatic)
+			tableView.reloadSections(currencySection, with: .fade)
+		}
+		
+		tableView.endUpdates()
+		
         let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
 		
