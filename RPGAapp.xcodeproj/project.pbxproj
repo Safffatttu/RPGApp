@@ -22,6 +22,7 @@
 		3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */; };
 		3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B295D8520A8E326001DC35D /* DiceRollModels.swift */; };
 		3B295D8820A8E3C4001DC35D /* DiceRollFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B295D8720A8E3C4001DC35D /* DiceRollFunctions.swift */; };
+		3B31039B20E00D1100CECAAB /* DrawSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31039A20E00D1100CECAAB /* DrawSettingCell.swift */; };
 		3B31B3E61F3B67A6003526E1 /* CatalogMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E51F3B67A6003526E1 /* CatalogMenuViewController.swift */; };
 		3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */; };
 		3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */; };
@@ -45,6 +46,7 @@
 		3B7D23051F43468D00A86F3E /* SendPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D23041F43468D00A86F3E /* SendPopoverViewController.swift */; };
 		3B7FCD961F3F784700AC4193 /* StoreMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD951F3F784700AC4193 /* StoreMenuViewController.swift */; };
 		3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */; };
+		3B7FD39E20DFFA530052EDDB /* ItemDrawManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FD39D20DFFA530052EDDB /* ItemDrawManager.swift */; };
 		3B806C931F3B497400A75CAA /* ItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */; };
 		3B88010A20B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010420B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift */; };
 		3B88010B20B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010520B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift */; };
@@ -152,6 +154,7 @@
 		3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDrawSetting.swift; sourceTree = "<group>"; };
 		3B295D8520A8E326001DC35D /* DiceRollModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceRollModels.swift; sourceTree = "<group>"; };
 		3B295D8720A8E3C4001DC35D /* DiceRollFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceRollFunctions.swift; sourceTree = "<group>"; };
+		3B31039A20E00D1100CECAAB /* DrawSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawSettingCell.swift; sourceTree = "<group>"; };
 		3B31B3E51F3B67A6003526E1 /* CatalogMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogMenuViewController.swift; sourceTree = "<group>"; };
 		3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDetailViewController.swift; sourceTree = "<group>"; };
 		3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -175,6 +178,7 @@
 		3B7D23041F43468D00A86F3E /* SendPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendPopoverViewController.swift; sourceTree = "<group>"; };
 		3B7FCD951F3F784700AC4193 /* StoreMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMenuViewController.swift; sourceTree = "<group>"; };
 		3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemMenuViewController.swift; sourceTree = "<group>"; };
+		3B7FD39D20DFFA530052EDDB /* ItemDrawManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDrawManager.swift; sourceTree = "<group>"; };
 		3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemMenuViewController.swift; sourceTree = "<group>"; };
 		3B88010420B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StorePurchases+CoreDataClass.swift"; path = "Data Classes/StorePurchases+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3B88010520B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StorePurchases+CoreDataProperties.swift"; path = "Data Classes/StorePurchases+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -342,9 +346,12 @@
 		3B11312820C2C9CD00F95088 /* RandomItem */ = {
 			isa = PBXGroup;
 			children = (
-				3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */,
+				3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */,
 				3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */,
+				3B7FD39D20DFFA530052EDDB /* ItemDrawManager.swift */,
 				3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */,
+				3B31039A20E00D1100CECAAB /* DrawSettingCell.swift */,
+				3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */,
 			);
 			name = RandomItem;
 			sourceTree = "<group>";
@@ -374,7 +381,6 @@
 			children = (
 				3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */,
 				3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */,
-				3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */,
 				3B8F06AF1F9792F100611C34 /* PackageViewer.swift */,
 			);
 			name = Menu;
@@ -725,6 +731,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B31039B20E00D1100CECAAB /* DrawSettingCell.swift in Sources */,
 				3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */,
 				3BDBD9FC20ACD45D00E0EB62 /* DrawSubSetting+CoreDataProperties.swift in Sources */,
 				3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */,
@@ -759,6 +766,7 @@
 				3B4CE5C020D9991500779532 /* CurrencyExchange.swift in Sources */,
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,
 				3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */,
+				3B7FD39E20DFFA530052EDDB /* ItemDrawManager.swift in Sources */,
 				3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */,
 				3BF5EACB20A71E9C005FD6BC /* ItemRequester.swift in Sources */,
 				3B7D23051F43468D00A86F3E /* SendPopoverViewController.swift in Sources */,

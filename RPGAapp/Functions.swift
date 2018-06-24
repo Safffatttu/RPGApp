@@ -520,6 +520,8 @@ extension NSSortDescriptor{
 	
 	static let sortAbilityByName = NSSortDescriptor(key: #keyPath(Ability.name), ascending: true)
 	
+	static let sortSubSettingByName = NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)
+	
 }
 
 extension UIApplication {

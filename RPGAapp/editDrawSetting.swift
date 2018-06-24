@@ -13,8 +13,14 @@ import CoreData
 class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
     
     var editingMode = false
-    var setting: DrawSetting? = nil
-    
+	var setting: DrawSetting? = nil{
+		didSet{
+			subSettings = setting?.subSettings?.sortedArray(using: [.sortSubSettingByName]) as! [DrawSubSetting]
+		}
+	}
+	
+	var subSettings: [DrawSubSetting] = []
+	
     var categories: [Category] = Load.categories()
     var subCategories: [SubCategory] = Load.subCategories()
     
@@ -78,7 +84,7 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         if tableView == categoriesTable{
             return (categories[section].subCategories?.count)! + 1
         }else{
-            return (setting?.subSettings?.count)!
+            return subSettings.count
         }
     }
     
@@ -104,7 +110,7 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             cell?.detailTextLabel?.text = String.fontAwesomeIcon(name: .send)
         }else{
             cell = tableView.dequeueReusableCell(withIdentifier: "drawSubSettingCell")
-            let subSetting = setting?.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)])[indexPath.row] as! DrawSubSetting
+            let subSetting = subSettings[indexPath.row]
             
             let min = subSetting.minRarity > 0 ? "Min: " + rarityName[Int(subSetting.minRarity)] + " " : ""
             let max = subSetting.maxRarity < 3 ? "Max: " + rarityName[Int(subSetting.maxRarity)] + " " : ""
@@ -140,10 +146,37 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             subDraw.minRarity = Int16(minRaritySlider.value.rounded(.toNearestOrEven))
             subDraw.maxRarity = Int16(maxRaritySlider.value.rounded(.toNearestOrEven))
             setting?.addToSubSettings(subDraw)
-            subSettingsTable.reloadData()
+			
+			
+			let newSubSettingIndex = IndexPath(row: subSettings.count, section: 0)
+			
+			subSettings.append(subDraw)
+			
+			subSettingsTable.insertRows(at: [newSubSettingIndex], with: .left)
         }
     }
-    
+	
+	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+		if tableView == subSettingsTable{
+			return true
+		}else{
+			return false
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete{
+			let subToRemove = subSettings[indexPath.row]
+			
+			setting?.removeFromSubSettings(subToRemove)
+			
+			subSettings.remove(at: indexPath.row)
+			
+			tableView.deleteRows(at: [indexPath], with: .left)
+		}
+	}
+	
+	
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)

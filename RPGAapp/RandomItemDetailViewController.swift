@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import Dwifft
 
-class randomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate, UIPopoverPresentationControllerDelegate{
+class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate, UIPopoverPresentationControllerDelegate{
     
     let iconSize: CGFloat = 20
     
@@ -23,7 +23,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         var name: String
         var count: Int64
         
-        static func ==(lhs: randomItemDetailView.val, rhs: randomItemDetailView.val) -> Bool {
+        static func ==(lhs: RandomItemDetailView.val, rhs: RandomItemDetailView.val) -> Bool {
             return lhs.count == rhs.count && lhs.name == rhs.name
         }
     }
@@ -32,7 +32,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     func setDiffTable(){
         diffTable = []
-        for han in randomlySelected{
+        for han in ItemDrawManager.randomlySelected{
             let newVal = val(name: (han.item?.name)!, count: han.count)
             diffTable.append(newVal)
         }
@@ -69,8 +69,8 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell") as! randomItemCell
         
-        if randomlySelected.count > 0{
-            let cellItem = randomlySelected[indexPath.row]
+        if ItemDrawManager.randomlySelected.count > 0{
+            let cellItem = ItemDrawManager.randomlySelected[indexPath.row]
             
             if cellItem.count > 1 {
                 cell.nameLabel.text = (cellItem.item?.name)! + ": " + String(describing: cellItem.count)
@@ -136,8 +136,8 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let contex = CoreDataStack.managedObjectContext
-            let handlerToRemove = randomlySelected[indexPath.row]
-            randomlySelected.remove(at: indexPath.row)
+            let handlerToRemove = ItemDrawManager.randomlySelected[indexPath.row]
+            ItemDrawManager.randomlySelected.remove(at: indexPath.row)
 			
 			reloadTableData()
 			
@@ -159,14 +159,19 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         
-        (popController as! addToPackage).itemToAdd = randomlySelected[(indexPath?.row)!]
+        (popController as! addToPackage).itemToAdd = ItemDrawManager.randomlySelected[(indexPath?.row)!]
         
         self.present(popController, animated: true, completion: nil)
     }
     
     func reDrawItem(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
-        NotificationCenter.default.post(name: .reDrawItem, object: (randomlySelected[(indexPath?.row)!],indexPath))
+		guard let indexPath = getCurrentCellIndexPath(sender, tableView: tableView) else { return }
+		
+		let handlerToReDraw = ItemDrawManager.randomlySelected[indexPath.row]
+		
+		ItemDrawManager.drawManager.reDrawItem(handler: handlerToReDraw)
+		
+		reloadTableData()
     }
     
     func showInfo(_ sender: UIButton){
@@ -177,7 +182,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        (popController as! showItemInfoPopover).item = randomlySelected[(indexPath?.row)!].item
+        (popController as! showItemInfoPopover).item = ItemDrawManager.randomlySelected[(indexPath?.row)!].item
         
         self.present(popController, animated: true, completion: nil)
     }
@@ -193,13 +198,14 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        (popController as! sendPopover).itemHandler = randomlySelected[(indexPath?.row)!]
+        (popController as! sendPopover).itemHandler = ItemDrawManager.randomlySelected[(indexPath?.row)!]
         
         self.present(popController, animated: true, completion: nil)
     }
     
     @IBAction func reDrawAllItems(_ sender: UIButton){
-        NotificationCenter.default.post(name: .reDrawAllItems, object: nil)
+        ItemDrawManager.drawManager.reDrawAllItems()
+		reloadTableData()
     }
     
     @IBAction func addAllToPackage(_ sender: UIView) {
@@ -213,7 +219,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         
-        (popController as! addToPackage).itemsToAdd = randomlySelected
+        (popController as! addToPackage).itemsToAdd = ItemDrawManager.randomlySelected
         
         self.present(popController, animated: true, completion: nil)
     }
@@ -230,7 +236,7 @@ class randomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        (popController as! sendPopover).itemHandlers = randomlySelected
+        (popController as! sendPopover).itemHandlers = ItemDrawManager.randomlySelected
         
         self.present(popController, animated: true, completion: nil)
     }
