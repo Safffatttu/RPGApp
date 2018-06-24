@@ -88,7 +88,7 @@ class ActionDelegate: PackageServiceDelegate{
 			guard let mapEntityPosX = action.value(forKey: "mapEntityPosX") as? Double else { return }
 			guard let mapEntityPosY = action.value(forKey: "mapEntityPosY") as? Double else { return }
 			
-			let session = getCurrentSession()
+			let session = Load.currentSession()
 			
 			let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
 			
@@ -129,7 +129,7 @@ class ActionDelegate: PackageServiceDelegate{
 				package?.name = packageName
 				package?.id = packageId
 				
-				let session = getCurrentSession()
+				let session = Load.currentSession()
 				session.addToPackages(package!)
 				CoreDataStack.saveContext()
 				NotificationCenter.default.post(name: .createdPackage, object: nil)
@@ -258,7 +258,7 @@ class ActionDelegate: PackageServiceDelegate{
 			newPackage.name = packageName
 			newPackage.id = packageId
 			
-			let session = getCurrentSession()
+			let session = Load.currentSession()
 			
 			session.addToPackages(newPackage)
 			
@@ -268,7 +268,7 @@ class ActionDelegate: PackageServiceDelegate{
 		}else if actionType == .packageDeleted{
 			if let packageId = action.value(forKey: "packageId") as? String{
 				if let package = Load.packages(with: packageId){
-					let session = getCurrentSession()
+					let session = Load.currentSession()
 					session.removeFromPackages(package)
 					CoreDataStack.saveContext()
 					NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
@@ -507,7 +507,7 @@ class ActionDelegate: PackageServiceDelegate{
             
             let devices = NSSet(array: connectedDevices)
             
-            let session = getCurrentSession()
+            let session = Load.currentSession()
             
             let sessionDevices = session.devices as? NSSet
             

@@ -85,7 +85,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let packageId = packages[indexPath.row].id
-            let session = getCurrentSession()
+            let session = Load.currentSession()
             session.removeFromPackages(packages[indexPath.row])
             CoreDataStack.managedObjectContext.delete(packages[indexPath.row])
             CoreDataStack.saveContext()
@@ -164,7 +164,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         
         newPackage.name = "Paczka nr." + String(number + 1)
         newPackage.id = newPackage.name! + String(describing: Date())
-        let session = getCurrentSession()
+        let session = Load.currentSession()
         
         session.addToPackages(newPackage)
         

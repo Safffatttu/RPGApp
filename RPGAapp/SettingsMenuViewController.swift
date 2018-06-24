@@ -237,7 +237,7 @@ class SettingMenu: UITableViewController {
             
             present(alert, animated: true, completion: nil)
 		}else if indexPath.section == 2{
-			let session = getCurrentSession()
+			let session = Load.currentSession()
 			
 			let previousCurrencyIndex = currencies.index(of: session.currency!)
 			

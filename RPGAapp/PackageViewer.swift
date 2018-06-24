@@ -25,7 +25,7 @@ class PackageViewer: UITableViewController {
     }
     
     func loadPackages(){
-        let session = getCurrentSession()
+        let session = Load.currentSession()
         packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
     }
     

@@ -42,7 +42,7 @@ class MapScene: SKScene{
 		self.camera = cam
 		self.addChild(cam)
 		
-		map = Load.currentMap(session: getCurrentSession())
+		map = Load.currentMap(session: Load.currentSession())
 		
 		if let imageData = map.background as Data?{
 			let image = UIImage(data: imageData)
@@ -93,7 +93,7 @@ class MapScene: SKScene{
 		for sprite in mapThings.map({$0.1}){
 			sprite.run(SKAction.hide())
 		}
-		map = Load.currentMap(session: getCurrentSession())
+		map = Load.currentMap(session: Load.currentSession())
 	}
 	
 	func reloadBackground(){

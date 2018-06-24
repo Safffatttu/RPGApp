@@ -134,7 +134,7 @@ class NewCharacterForm: FormViewController {
 		newCharacter.setValue(id, forKey: #keyPath(Character.id))
         newCharacter.setValue(profession, forKey: #keyPath(Character.profession))
         
-        let session = getCurrentSession()
+        let session = Load.currentSession()
 		
         session.addToCharacters(newCharacter)
 		

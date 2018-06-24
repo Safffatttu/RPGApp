@@ -264,67 +264,6 @@ func getCurrentCellIndexPath(_ sender: Any,tableView: UITableView) -> IndexPath?
     return nil
 }
 
-func getCurrentSession(orCreateNew: Bool = true) -> Session{
-    let context = CoreDataStack.managedObjectContext
-    let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
-    sessionFetch.sortDescriptors = [.sortSessionByName]
-    var sessions: [Session] = []
-    do{
-        sessions = try context.fetch(sessionFetch)
-    }catch{
-        print(error)
-    }
-    if sessions.count == 0 && orCreateNew{
-        let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-        session.name = "Sesja"
-        session.gameMaster = UIDevice.current.name
-        session.current = true
-        session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
-		
-		let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
-		
-		newMap.id = String(strHash(session.id!)) + String(describing: Date())
-		newMap.current = true
-		
-		session.addToMaps(newMap)
-		
-		let PLN = Load.currencies().first{$0.name == "PLN"}
-		session.currency = PLN
-		
-		CoreDataStack.saveContext()
-		
-        
-        var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
-        devices.append(UIDevice.current.name)
-		
-        UserDefaults.standard.set(true, forKey: "sessionIsActive")
-        
-        let action = NSMutableDictionary()
-        let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
-        
-        action.setValue(actionType, forKey: "action")
-		
-		let sessionDictionary = packSessionForMessage(session)
-		
-		action.setValue(actionType, forKey: "action")
-		action.setValue(sessionDictionary, forKey: "session")
-		action.setValue(session.current, forKey: "setCurrent")
-        
-		PackageService.pack.send(action)
-        NotificationCenter.default.post(name: .addedSession, object: session)
-        return session
-    }
-    
-    var currentSession = sessions.first(where: {$0.current == true})
-    
-    if currentSession == nil{
-        currentSession = sessions.first
-        currentSession?.current = true
-    }
-    
-    return currentSession!
-}
-
 func whisper(messege: String){
     let murmur = Murmur(title: messege, backgroundColor: .white, titleColor: .black, font: .systemFont(ofSize: UIFont.systemFontSize), action: nil)
     Whisper.show(whistle: murmur, action: .show(3))

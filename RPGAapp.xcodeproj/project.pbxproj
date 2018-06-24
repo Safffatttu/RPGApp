@@ -528,7 +528,7 @@
 				AA67172CAE17E32BD0F151D2 /* [CP] Embed Pods Frameworks */,
 				FAA1336C59A3703269C6978F /* [CP] Copy Pods Resources */,
 				3B3D3CBC1FFAD07B00AA9D0B /* Embed Frameworks */,
-				3BFD566D20DDB03900E6F167 /* Run Script */,
+				3BFD566D20DDB03900E6F167 /* Run Linter */,
 			);
 			buildRules = (
 			);
@@ -664,14 +664,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3BFD566D20DDB03900E6F167 /* Run Script */ = {
+		3BFD566D20DDB03900E6F167 /* Run Linter */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Run Linter";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;

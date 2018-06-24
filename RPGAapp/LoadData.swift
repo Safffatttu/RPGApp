@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 public struct Load {
     static let context = CoreDataStack.managedObjectContext
@@ -116,10 +117,67 @@ public struct Load {
 		return sessions.first(where: {$0.id == Id})
 	}
 	
+	public static func currentSession() -> Session{
+		
+		let sessions = Load.sessions().filter{$0.current}
+		
+		if sessions.count == 0{
+			let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
+			session.name = "Sesja"
+			session.gameMaster = UIDevice.current.name
+			session.current = true
+			session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
+			
+			let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
+			
+			newMap.id = String(strHash(session.id!)) + String(describing: Date())
+			newMap.current = true
+			
+			session.addToMaps(newMap)
+			
+			let PLN = Load.currencies().first{$0.name == "PLN"}
+			session.currency = PLN
+			
+			CoreDataStack.saveContext()
+			
+			var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
+			devices.append(UIDevice.current.name)
+			
+			UserDefaults.standard.set(true, forKey: "sessionIsActive")
+			
+			let action = NSMutableDictionary()
+			let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
+			
+			action.setValue(actionType, forKey: "action")
+			
+			let sessionDictionary = packSessionForMessage(session)
+			
+			action.setValue(actionType, forKey: "action")
+			action.setValue(sessionDictionary, forKey: "session")
+			action.setValue(session.current, forKey: "setCurrent")
+			
+			PackageService.pack.send(action)
+			NotificationCenter.default.post(name: .addedSession, object: session)
+			return session
+		}
+		
+		var currentSession = sessions.first(where: {$0.current == true})
+		
+		if currentSession == nil{
+			currentSession = sessions.first
+			currentSession?.current = true
+		}
+		
+		return currentSession!
+		
+	}
+	
     public static func packages(fromCurrentSession: Bool = true) -> [Package]{
         var packages: [Package] = []
-        if fromCurrentSession{
-            let session = getCurrentSession()
+		
+		if fromCurrentSession{
+            let session = Load.currentSession()
+			
             packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
         }else{
             let packagesFetch: NSFetchRequest<Package> = Package.fetchRequest()
@@ -174,7 +232,7 @@ public struct Load {
         var characters: [Character] = []
         
         if fromCurrentSession {
-            let currentSession = getCurrentSession()
+            let currentSession = Load.currentSession()
             characters = currentSession.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
         }else{
             let charactersFetch: NSFetchRequest<Character> = Character.fetchRequest()
@@ -257,7 +315,7 @@ public struct Load {
 	}
 	
 	public static func currentCurrency() -> Currency?{
-		let session = getCurrentSession()
+		let session = Load.currentSession()
 		
 		return session.currency		
 	}

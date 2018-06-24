@@ -25,7 +25,7 @@ class drawingTest: XCTestCase {
     
     func testDrawItem(){
         
-        let toTest = randomItemMenu()
+        let toTest = ItemDrawManager()
 
         let categories: [RPGAapp.Category] = Load.categories()
         
@@ -33,23 +33,23 @@ class drawingTest: XCTestCase {
         
         self.measure {
             for cat in categories{
-                toTest.drawItems(drawSetting: nil, subCategory: nil, category: cat, reDraw: .not)
+                toTest.drawItems(using: cat)
             }
             
             for sub in subCategoires{
                 print(sub.name)
-                toTest.drawItems(drawSetting: nil, subCategory: sub, category: nil, reDraw: .not)
+                toTest.drawItems(using: sub)
             }
             
             for _ in 0...10{
                 let setting = self.createRandomDrawSettin(categories: categories, subCategories: subCategoires)
-                toTest.drawItems(drawSetting: setting, subCategory: nil, category: nil, reDraw: .not)
+                toTest.drawItems(using: setting)
             }
         }
     }
     
     func testStressDraw(){
-        let toTest = randomItemMenu()
+        let toTest = ItemDrawManager()
         
         let categories: [RPGAapp.Category] = Load.categories()
         
@@ -59,16 +59,16 @@ class drawingTest: XCTestCase {
             print("test nr:" + String(describing: i))
             
             for cat in categories{
-                toTest.drawItems(drawSetting: nil, subCategory: nil, category: cat, reDraw: .not)
+                toTest.drawItems(using: cat)
             }
             
             for sub in subCategoires{
-                toTest.drawItems(drawSetting: nil, subCategory: sub, category: nil, reDraw: .not)
+                toTest.drawItems(using: sub)
             }
             
             for _ in 0...10{
                 let setting = createRandomDrawSettin(categories: categories, subCategories: subCategoires)
-                toTest.drawItems(drawSetting: setting, subCategory: nil, category: nil, reDraw: .not)
+                toTest.drawItems(using: setting)
             }
         }
     }
@@ -118,18 +118,9 @@ class drawingTest: XCTestCase {
     
     func testDrawSettings(){
         var drawSettings: [DrawSetting] = []
-        let context = CoreDataStack.managedObjectContext
-        let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
         
-        drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
-        do{
-            drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
-        }
-        catch{
-            print("error")
-        }
-        
-        
+        drawSettings = Load.drawSettings()
+		
         for sett in drawSettings {
             let asd = sett.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)]) as! [DrawSubSetting]
             for i in 0...(asd.count-1) {

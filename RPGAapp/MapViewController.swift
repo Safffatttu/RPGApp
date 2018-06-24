@@ -55,7 +55,7 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		
 		guard let imageData = UIImagePNGRepresentation(chosenImage) else { return }
 		
-		let map = Load.currentMap(session: getCurrentSession())
+		let map = Load.currentMap(session: Load.currentSession())
 		
 		map.background = imageData as NSData
 		
