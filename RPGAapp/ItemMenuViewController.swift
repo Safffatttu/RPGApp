@@ -35,7 +35,7 @@ class ItemMenu: UITableViewController {
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
         if segue.identifier == "showRandomItemDetailView"{
-            let controller = (segue.destination as! UINavigationController).topViewController as! randomItemDetailView
+            let controller = (segue.destination as! UINavigationController).topViewController as! RandomItemDetailView
             controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }

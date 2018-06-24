@@ -19,7 +19,6 @@
 		3B11312B20C2CAAF00F95088 /* CatalogeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11312A20C2CAAF00F95088 /* CatalogeDetailCell.swift */; };
 		3B11312D20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11312C20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift */; };
 		3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */; };
-		3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */; };
 		3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B295D8520A8E326001DC35D /* DiceRollModels.swift */; };
 		3B295D8820A8E3C4001DC35D /* DiceRollFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B295D8720A8E3C4001DC35D /* DiceRollFunctions.swift */; };
 		3B31039B20E00D1100CECAAB /* DrawSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31039A20E00D1100CECAAB /* DrawSettingCell.swift */; };
@@ -58,6 +57,7 @@
 		3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
 		3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
+		3BADCC9C20E04F04005A5B89 /* EditDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BADCC9B20E04F04005A5B89 /* EditDrawSetting.swift */; };
 		3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3BB0F9A020AB2DC100729947 /* ActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0F99F20AB2DC100729947 /* ActionTest.swift */; };
 		3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBBBE88201A875800ECA86A /* LoadData.swift */; };
@@ -151,7 +151,6 @@
 		3B11312A20C2CAAF00F95088 /* CatalogeDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDetailCell.swift; sourceTree = "<group>"; };
 		3B11312C20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDetailExpandedCell.swift; sourceTree = "<group>"; };
 		3B2367DB1F5DE2C800A9EF70 /* editPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editPackage.swift; sourceTree = "<group>"; };
-		3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editDrawSetting.swift; sourceTree = "<group>"; };
 		3B295D8520A8E326001DC35D /* DiceRollModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceRollModels.swift; sourceTree = "<group>"; };
 		3B295D8720A8E3C4001DC35D /* DiceRollFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiceRollFunctions.swift; sourceTree = "<group>"; };
 		3B31039A20E00D1100CECAAB /* DrawSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawSettingCell.swift; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 		3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionDelegate.swift; sourceTree = "<group>"; };
 		3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		3BADCC9B20E04F04005A5B89 /* EditDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDrawSetting.swift; sourceTree = "<group>"; };
 		3BB0F99F20AB2DC100729947 /* ActionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTest.swift; sourceTree = "<group>"; };
 		3BBBBE88201A875800ECA86A /* LoadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamView.swift; path = RPGAapp/TeamView.swift; sourceTree = "<group>"; };
@@ -348,8 +348,8 @@
 			children = (
 				3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */,
 				3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */,
+				3BADCC9B20E04F04005A5B89 /* EditDrawSetting.swift */,
 				3B7FD39D20DFFA530052EDDB /* ItemDrawManager.swift */,
-				3B2367DD1F5DE3A900A9EF70 /* editDrawSetting.swift */,
 				3B31039A20E00D1100CECAAB /* DrawSettingCell.swift */,
 				3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */,
 			);
@@ -743,6 +743,7 @@
 				3BDBD9F120ACD45D00E0EB62 /* Session+CoreDataProperties.swift in Sources */,
 				3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */,
 				3B88010F20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift in Sources */,
+				3BADCC9C20E04F04005A5B89 /* EditDrawSetting.swift in Sources */,
 				3BDBD9FE20ACD45D00E0EB62 /* Item+CoreDataProperties.swift in Sources */,
 				3BDBD9F620ACD45D00E0EB62 /* Character+CoreDataClass.swift in Sources */,
 				3BDBDA0320ACD45D00E0EB62 /* ItemHandler+CoreDataClass.swift in Sources */,
@@ -762,7 +763,6 @@
 				3BDBD9F820ACD45D00E0EB62 /* Currency+CoreDataProperties.swift in Sources */,
 				3BDBDA0020ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
-				3B2367DE1F5DE3A900A9EF70 /* editDrawSetting.swift in Sources */,
 				3B4CE5C020D9991500779532 /* CurrencyExchange.swift in Sources */,
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,
 				3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */,
