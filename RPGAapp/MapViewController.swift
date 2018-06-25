@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import SpriteKit
-
+import CoreData
 
 class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
@@ -57,7 +57,12 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		
 		let map = Load.currentMap(session: Load.currentSession())
 		
-		map.background = imageData as NSData
+		let contex = CoreDataStack.managedObjectContext
+		let texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
+		
+		texture.data = imageData as NSData
+		
+		map.background = texture
 		
 		CoreDataStack.saveContext()
 		

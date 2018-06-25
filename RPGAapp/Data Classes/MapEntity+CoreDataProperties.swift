@@ -17,10 +17,10 @@ extension MapEntity {
     }
 
     @NSManaged public var id: String?
-    @NSManaged public var texture: NSData?
     @NSManaged public var x: Double
     @NSManaged public var y: Double
     @NSManaged public var character: Character?
     @NSManaged public var map: Map?
+    @NSManaged public var texture: Texture?
 
 }

@@ -44,8 +44,8 @@ class MapScene: SKScene{
 		
 		map = Load.currentMap(session: Load.currentSession())
 		
-		if let imageData = map.background as Data?{
-			let image = UIImage(data: imageData)
+		if let backgroundTexture = map.background{
+			let image = UIImage(data: backgroundTexture.data! as Data)
 			let texture = SKTexture(image: image!)
 			mapa = SKSpriteNode(texture: texture)
 		}
@@ -97,8 +97,8 @@ class MapScene: SKScene{
 	}
 	
 	func reloadBackground(){
-		if let imageData = map.background as NSData?{
-			let image = UIImage(data: imageData as Data)
+		if let backgroundTexture = map.background{
+			let image = UIImage(data: backgroundTexture.data! as Data)
 			let texture = SKTexture(image: image!)
 			let actionSeq = SKAction.sequence([
 				SKAction.fadeOut(withDuration: 0.4),

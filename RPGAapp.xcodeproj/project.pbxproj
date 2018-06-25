@@ -97,6 +97,8 @@
 		3BDBDA0C20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA0A20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift */; };
 		3BDBDA0D20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBDA0B20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift */; };
 		3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF0FEA1F5C946100135252 /* addToPackage.swift */; };
+		3BEBCDFA20E10EB600F31732 /* Texture+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCDF820E10EB600F31732 /* Texture+CoreDataClass.swift */; };
+		3BEBCDFB20E10EB600F31732 /* Texture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCDF920E10EB600F31732 /* Texture+CoreDataProperties.swift */; };
 		3BECB6CC1FBA53BA00A947E9 /* NewCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BECB6CB1FBA53BA00A947E9 /* NewCharacter.swift */; };
 		3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */; };
 		3BF5EACB20A71E9C005FD6BC /* ItemRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5EACA20A71E9C005FD6BC /* ItemRequester.swift */; };
@@ -230,6 +232,8 @@
 		3BDBDA0A20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCurrency+CoreDataClass.swift"; path = "Data Classes/SubCurrency+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BDBDA0B20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SubCurrency+CoreDataProperties.swift"; path = "Data Classes/SubCurrency+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
+		3BEBCDF820E10EB600F31732 /* Texture+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Texture+CoreDataClass.swift"; path = "Data Classes/Texture+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BEBCDF920E10EB600F31732 /* Texture+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Texture+CoreDataProperties.swift"; path = "Data Classes/Texture+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BECB6CB1FBA53BA00A947E9 /* NewCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewCharacter.swift; path = RPGAapp/NewCharacter.swift; sourceTree = "<group>"; };
 		3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowInfoPopOver.swift; sourceTree = "<group>"; };
 		3BF5EACA20A71E9C005FD6BC /* ItemRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRequester.swift; sourceTree = "<group>"; };
@@ -443,6 +447,8 @@
 		3BDBD9CD20ACD45500E0EB62 /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3BEBCDF820E10EB600F31732 /* Texture+CoreDataClass.swift */,
+				3BEBCDF920E10EB600F31732 /* Texture+CoreDataProperties.swift */,
 				3B88010420B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift */,
 				3B88010520B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift */,
 				3B88010620B2E9A100AB2C62 /* Store+CoreDataClass.swift */,
@@ -733,6 +739,7 @@
 			files = (
 				3B31039B20E00D1100CECAAB /* DrawSettingCell.swift in Sources */,
 				3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */,
+				3BEBCDFA20E10EB600F31732 /* Texture+CoreDataClass.swift in Sources */,
 				3BDBD9FC20ACD45D00E0EB62 /* DrawSubSetting+CoreDataProperties.swift in Sources */,
 				3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */,
 				3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */,
@@ -804,6 +811,7 @@
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B11312D20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift in Sources */,
+				3BEBCDFB20E10EB600F31732 /* Texture+CoreDataProperties.swift in Sources */,
 				3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */,
 				3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */,
 				3BF5EACD20A72507005FD6BC /* DataPacker.swift in Sources */,

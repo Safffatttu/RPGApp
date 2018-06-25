@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:RPGAapp/Data Classes/Texture+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:RPGAapp.xcodeproj">
    </FileRef>
    <FileRef

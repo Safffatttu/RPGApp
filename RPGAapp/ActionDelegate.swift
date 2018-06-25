@@ -484,7 +484,12 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				guard let map = Load.map(withId: mapId) else { return }
 				
-				map.background = imageData
+				let contex = CoreDataStack.managedObjectContext
+				let texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
+				
+				texture.data = imageData!
+				
+				map.background = texture
 				
 				CoreDataStack.saveContext()
 				

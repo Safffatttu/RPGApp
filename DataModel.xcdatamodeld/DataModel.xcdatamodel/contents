@@ -74,22 +74,22 @@
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="equipment" inverseEntity="Character" syncable="YES"/>
     </entity>
     <entity name="Map" representedClassName="Map" syncable="YES">
-        <attribute name="background" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="current" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="background" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" syncable="YES"/>
         <relationship name="entities" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MapEntity" inverseName="map" inverseEntity="MapEntity" syncable="YES"/>
         <relationship name="session" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="maps" inverseEntity="Session" syncable="YES"/>
     </entity>
     <entity name="MapEntity" representedClassName="MapEntity" syncable="YES">
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="texture" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="mapRepresentation" inverseEntity="Character" syncable="YES"/>
         <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="entities" inverseEntity="Map" syncable="YES"/>
+        <relationship name="texture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" syncable="YES"/>
     </entity>
     <entity name="Package" representedClassName="Package" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -137,6 +137,9 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="rate" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="Texture" representedClassName="Texture" syncable="YES">
+        <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+    </entity>
     <fetchRequest name="FetchRequest" entity="Item" predicateString="quantity == 0"/>
     <elements>
         <element name="Ability" positionX="-407" positionY="36" width="128" height="103"/>
@@ -149,8 +152,8 @@
         <element name="ItemAtribute" positionX="-18" positionY="261" width="128" height="150"/>
         <element name="ItemAtributeHandler" positionX="-191" positionY="225" width="128" height="60"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="105"/>
-        <element name="Map" positionX="-983" positionY="117" width="128" height="165"/>
-        <element name="MapEntity" positionX="-821" positionY="450" width="128" height="135"/>
+        <element name="Map" positionX="-1035" positionY="108" width="128" height="165"/>
+        <element name="MapEntity" positionX="-785" positionY="342" width="128" height="135"/>
         <element name="Package" positionX="-452" positionY="-81" width="128" height="105"/>
         <element name="Session" positionX="-774" positionY="-153" width="128" height="195"/>
         <element name="Store" positionX="-576" positionY="404" width="126" height="118"/>
@@ -158,5 +161,6 @@
         <element name="StorePurchases" positionX="-432" positionY="530" width="128" height="118"/>
         <element name="SubCategory" positionX="153" positionY="-43" width="128" height="105"/>
         <element name="SubCurrency" positionX="-360" positionY="-225" width="128" height="75"/>
+        <element name="Texture" positionX="-1008" positionY="450" width="128" height="60"/>
     </elements>
 </model>
