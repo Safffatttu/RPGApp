@@ -33,7 +33,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var diffCalculator: TableViewDiffCalculator<SubCategory,Item>?
     
-    var items: SectionedValues<SubCategory,Item> = SectionedValues(Load.subCategoriesForCatalog()){
+    var items: SectionedValues<SubCategory,Item> = SectionedValues(Load.itemsForCataloge()){
         didSet{
             self.diffCalculator?.sectionedValues = items
         }
@@ -90,7 +90,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			tableView.reloadRows(at: [path], with: .fade)
 		}else{
-			items = SectionedValues(Load.subCategoriesForCatalog())
+			items = SectionedValues(Load.itemsForCataloge())
 		}
 	}
 	
@@ -129,7 +129,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
             DispatchQueue.global(qos: .default).sync {
                 self.filter = newFilter
                 var newSubCategoriesList: [(SubCategory,[Item])] = []
-                for sub in Load.subCategoriesForCatalog(){
+                for sub in Load.itemsForCataloge(){
                     let filteredList = self.filterItemList(sub.1)
                     newSubCategoriesList.append((sub.0),filteredList)
                 }

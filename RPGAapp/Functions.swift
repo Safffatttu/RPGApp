@@ -331,7 +331,7 @@ func searchCataloge(searchWith string: String = "",using searchModel: [(String,B
 	let sortModel = sortModel.filter({$0.1}).map({$0.2})
 	
 	if searchString == ""{
-		return SectionedValues(Load.subCategoriesForCatalog())
+		return SectionedValues(Load.itemsForCataloge())
 		
 	}else{
 		var itemsToSearch = Load.items()

@@ -41,7 +41,6 @@ class catalogeMenu: UITableViewController {
         searchBar.endEditing(true)
     }
     
-    
     func reloadFilter(_ notification: Notification){
         let newFilter = notification.object as? [String: Double?]
         if newFilter != nil{
@@ -157,9 +156,9 @@ class catalogeMenu: UITableViewController {
 			cell?.accessoryType = .checkmark
 			
 		}else{
-			let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
+			let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row] as! SubCategory
 			
-			let goToLocation = subCategories.index(where: {$0.name == cellSubCategory.name})!
+			let goToLocation = Load.subCategoriesForCataloge().index(where: {$0 == cellSubCategory})!
 			
 			NotificationCenter.default.post(name: .goToSectionCataloge, object: goToLocation)
 		}
