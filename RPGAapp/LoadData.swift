@@ -61,14 +61,17 @@ public struct Load {
     }
     
     public static func subCategoriesForCatalog() -> [(SubCategory,[Item])] {
-        let subCats: [SubCategory] = subCategories()
-        
+		let subCats: [SubCategory] = categories().flatMap{
+			$0.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
+		}
+		
         var subCategoriesToReturn: [(SubCategory,[Item])] = []
-        
+		
         for sub in subCats{
             let subCategory = (sub,sub.items?.sortedArray(using: [.sortItemByName]) as! [Item])
             subCategoriesToReturn.append(subCategory)
         }
+		
         return subCategoriesToReturn
     }
     
