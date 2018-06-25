@@ -86,29 +86,38 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .equipmentChanged, object: nil)
 			
 		}else if actionType == ActionType.characterCreated{
-			let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
+			guard let characterId = action.value(forKey: #keyPath(Character.id)) as? String else { return }
+			
+			var newCharacter: Character
+			
+			let session = Load.currentSession()
+			
+			if let character = Load.character(with: characterId){
+				newCharacter = character
+				
+			}else {
+				newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
+			
+				session.addToCharacters(newCharacter)
+				
+				let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
+			
+				guard let mapEntityId = action.value(forKey: "mapEntityId") as? String else { return }
+				guard let mapEntityPosX = action.value(forKey: "mapEntityPosX") as? Double else { return }
+				guard let mapEntityPosY = action.value(forKey: "mapEntityPosY") as? Double else { return }
+				
+				newMapEntity.character = newCharacter
+				newMapEntity.id = mapEntityId
+				newMapEntity.x = mapEntityPosX
+				newMapEntity.y = mapEntityPosY
+				newMapEntity.map = Load.currentMap(session: session)
+			}
 			
 			newCharacter.name = action.value(forKey: #keyPath(Character.name)) as? String
 			newCharacter.health = (action.value(forKey: #keyPath(Character.health)) as? Double) ?? 0
 			newCharacter.race = action.value(forKey: #keyPath(Character.race)) as? String
 			newCharacter.id = action.value(forKey: #keyPath(Character.id)) as? String
 			newCharacter.profession = action.value(forKey: #keyPath(Character.profession)) as? String
-			
-			guard let mapEntityId = action.value(forKey: "mapEntityId") as? String else { return }
-			guard let mapEntityPosX = action.value(forKey: "mapEntityPosX") as? Double else { return }
-			guard let mapEntityPosY = action.value(forKey: "mapEntityPosY") as? Double else { return }
-			
-			let session = Load.currentSession()
-			
-			let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
-			
-			newMapEntity.character = newCharacter
-			newMapEntity.id = mapEntityId
-			newMapEntity.x = mapEntityPosX
-			newMapEntity.y = mapEntityPosY
-			newMapEntity.map = Load.currentMap(session: session)
-			
-			session.addToCharacters(newCharacter)
 			
 			CoreDataStack.saveContext()
 			

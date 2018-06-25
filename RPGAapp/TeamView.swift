@@ -23,9 +23,13 @@ class TeamView: UICollectionViewController {
 	
     override func viewDidLoad() {
 		self.diffCalculator = SingleSectionCollectionViewDiffCalculator(collectionView: self.collectionView, initialItems: team, sectionIndex: 0)
+		
         let addButton =  UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.rightBarButtonItem = addButton
+		
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(editCharacter(_:)), name: .modifyCharacter, object: nil)
+		
         super.viewDidLoad()
     }
 	
@@ -36,6 +40,18 @@ class TeamView: UICollectionViewController {
 		
         present(characterFrom, animated: true, completion: nil)
     }
+	
+	func editCharacter(_ notification: Notification){
+		guard let character = notification.object as? Character else { return }
+		
+		let characterFrom = NewCharacterForm()
+		
+		characterFrom.character = character
+		
+		characterFrom.modalPresentationStyle = .formSheet
+		
+		present(characterFrom, animated: true, completion: nil)
+	}
 	
     func reloadTeam(){
         team = Load.characters()
@@ -52,9 +68,9 @@ class TeamView: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TeamViewCell
 		
-		let person = (self.diffCalculator?.items[indexPath.row])!
-        cell.nameLabel.text = person.name
-		cell.character = person
+		let character = (self.diffCalculator?.items[indexPath.row])!
+        cell.character = character
+		
         return cell
     }
     
@@ -65,5 +81,5 @@ extension Notification.Name{
     static let equipmentChanged = Notification.Name("equipmentChanged")
     static let modifiedAbility = Notification.Name("modifiedAbility")
 	static let valueOfAblitityChanged = Notification.Name("valueOfAblitityChanged")
-
+	static let modifyCharacter = Notification.Name("modifyCharacter")
 }

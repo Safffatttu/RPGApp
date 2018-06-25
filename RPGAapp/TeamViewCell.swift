@@ -10,13 +10,17 @@
 import Foundation
 import UIKit
 import Dwifft
+import FontAwesome_swift
+
 class TeamViewCell: UICollectionViewCell {
 	
-
 	@IBOutlet weak var abilityTable: UITableView!
 	@IBOutlet weak var equipmentTable: UITableView!
 	
 	@IBOutlet weak var nameLabel: UILabel!
+	
+	@IBOutlet weak var deleteButton: UIButton!
+	@IBOutlet weak var editButton: UIButton!
 	
 	var abilityDiffCalculator: SingleSectionTableViewDiffCalculator<Ability>?
 	var equipmentDiffCalculator: SingleSectionTableViewDiffCalculator<ItemHandler>?
@@ -25,6 +29,8 @@ class TeamViewCell: UICollectionViewCell {
 		didSet{
 			abilities = character.abilities?.sortedArray(using: [.sortAbilityByName]) as? [Ability]
 			items = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler]
+			
+			reloadLabels()
 		}
 	}
 	
@@ -33,6 +39,7 @@ class TeamViewCell: UICollectionViewCell {
 			abilityDiffCalculator?.rows = abilities
 		}
 	}
+	
 	var items: [ItemHandler]!{
 		didSet{
 			equipmentDiffCalculator?.rows = items
@@ -46,75 +53,71 @@ class TeamViewCell: UICollectionViewCell {
 		equipmentDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: equipmentTable)
 		abilityDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: abilityTable, initialRows: [], sectionIndex: 0)
 		
+		let iconSize: CGFloat = 25
+		
+		deleteButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+		deleteButton.setTitle(String.fontAwesomeIcon(name: .times), for: .normal)
+		
+		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+		editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(modifiedAbility), name: .modifiedAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
-		
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadLabels) , name: .reloadTeam, object: nil)
 		super.awakeFromNib()
-		
-		let removeCharacterLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeCharacter(_:)))
-		
-		self.contentView.addGestureRecognizer(removeCharacterLongPress)
-	}
-	
-	func removeCharacter(_ sender: UILongPressGestureRecognizer){
-		
-		switch sender.state {
-		case .ended:
-			let alert = UIAlertController(title: "Na pewno chcesz usunąć postać?", message: "", preferredStyle: .alert)
-			
-			let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
-				let context = CoreDataStack.managedObjectContext
-				
-				let characterId = self.character.id
-				context.delete(self.character)
-				
-				CoreDataStack.saveContext()
-				
-				self.equipmentTable.backgroundColor = .white
-				self.abilityTable.backgroundColor = .white
-				self.backgroundColor = .white
-				
-				NotificationCenter.default.post(name: .reloadTeam, object: nil)
-				
-				let action = NSMutableDictionary()
-				let actionType = NSNumber(value: ActionType.removeCharacter.rawValue)
-				
-				action.setValue(actionType, forKey: "action")
-				
-				action.setValue(characterId, forKey: "characterId")
-				
-				PackageService.pack.send(action)
-			})
-			
-			let alertNo = UIAlertAction(title: "Nie", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
-				self.equipmentTable.backgroundColor = .red
-				self.abilityTable.backgroundColor = .red
-				self.backgroundColor = .red
-			})
-			
-			alert.addAction(alertNo)
-			alert.addAction(alertYes)
-			
-			next(UICollectionViewController.self)?.present(alert, animated: true, completion: nil)
-		case .began:
-			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
-				self.equipmentTable.backgroundColor = .red
-				self.abilityTable.backgroundColor = .red
-				self.backgroundColor = .red
-			})
-			
-		default:
-			self.equipmentTable.backgroundColor = .white
-			self.abilityTable.backgroundColor = .white
-			self.backgroundColor = .white
-			
-		}
 	}
 	
 	func equipmentChanged(){
 		if let newItems = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] {
 			items = newItems
 		}
+	}
+	
+	func reloadLabels(){
+		nameLabel.text = character.name
+	}
+	
+	@IBAction func removeCharacter() {
+		let alert = UIAlertController(title: "Na pewno chcesz usunąć postać?", message: "", preferredStyle: .alert)
+		
+		let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
+			let context = CoreDataStack.managedObjectContext
+			
+			let characterId = self.character.id
+			context.delete(self.character)
+			
+			CoreDataStack.saveContext()
+			
+			self.equipmentTable.backgroundColor = .white
+			self.abilityTable.backgroundColor = .white
+			self.backgroundColor = .white
+			
+			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			
+			let action = NSMutableDictionary()
+			let actionType = NSNumber(value: ActionType.removeCharacter.rawValue)
+			
+			action.setValue(actionType, forKey: "action")
+			
+			action.setValue(characterId, forKey: "characterId")
+			
+			PackageService.pack.send(action)
+		})
+		
+		let alertNo = UIAlertAction(title: "Nie", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
+			self.equipmentTable.backgroundColor = .red
+			self.abilityTable.backgroundColor = .red
+			self.backgroundColor = .red
+		})
+		
+		alert.addAction(alertNo)
+		alert.addAction(alertYes)
+		
+		next(UICollectionViewController.self)?.present(alert, animated: true, completion: nil)
+	}
+
+	@IBAction func editCharacter() {
+		NotificationCenter.default.post(name: .modifyCharacter, object: character)
 	}
 }
 
