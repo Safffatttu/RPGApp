@@ -26,55 +26,65 @@ class ActionDelegate: PackageServiceDelegate{
 		if actionType == ActionType.applicationDidEnterBackground{
 			let message = senderName + " wyszedł z aplikacji"
 			whisper(messege: message)
+			
 		}else if actionType == ActionType.itemSend{
-			let characterId = action.value(forKey: "characterId") as? String
+			guard let characterId = action.value(forKey: "characterId") as? String else { return }
 			let itemId = action.value(forKey: "itemId") as? String
 			let itemCount = action.value(forKey: "itemCount") as? Int64
 			
 			let itemsId: [String]? = action.value(forKey: "itemsId") as? [String]
 			let itemsCount: [Int64]? = action.value(forKey: "itemsCount") as? [Int64]
 			
-			guard characterId != nil else{
-				return
-			}
+			guard let character: Character = Load.character(with: characterId) else { return }
 			
-			let character: Character? = Load.character(with: characterId!)
-			var item: Item? = nil
-			
-
-			guard character != nil else{
-				return
-			}
+			var request: ItemRequest? = nil
 			
 			if let id = itemId{
 			
-				item = Load.item(with: id)
-			
-				guard item != nil else {
-					return
-				}
-				
-				if let count = itemCount{
-					addToEquipment(item: item!, to: character!, count: count)
-				}else{
-					addToEquipment(item: item!, to: character!)
-				}
-			}else if let count = itemsId?.count{
-				for itemNum in 0...count - 1{
-					if let id = itemsId?[itemNum]{
-						item = Load.item(with: id)
-					}
-					guard item != nil else {
-						return
+				if let item = Load.item(with: id){
+					
+					if let count = itemCount{
+						addToEquipment(item: item, to: character, count: count)
+					}else{
+						addToEquipment(item: item, to: character)
 					}
 					
-					addToEquipment(item: item!, to: character!, count: (itemsCount?[itemNum])!)
+				}else {
+					request = ItemRequest(with: [id], sender: sender, action: action)
 				}
+				
+			}else if let count = itemsId?.count{
+				var itemsToRequest: [String] = []
+				
+				for id in itemsId!{
+					if Load.item(with: id) == nil{
+						itemsToRequest.append(id)
+					}
+				}
+				
+				if itemsToRequest.count == 0{
+					
+					for itemNum in 0...count - 1{
+						let id = itemsId![itemNum]
+						
+						if let item = Load.item(with: id){
+							addToEquipment(item: item, to: character, count: (itemsCount?[itemNum])!)
+						}
+					}
+					
+				}else{
+					request = ItemRequest(with: itemsToRequest, sender: sender, action: action)
+				}
+			}
+			
+			if let req = request {
+				ItemRequester.rq.request(req)
 			}
 			
 			CoreDataStack.saveContext()
 			
 			NotificationCenter.default.post(name: .equipmentChanged, object: nil)
+			
 		}else if actionType == ActionType.characterCreated{
 			let newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
 			
@@ -171,7 +181,7 @@ class ActionDelegate: PackageServiceDelegate{
 			else if(itemsHandlerId != nil){
 				let subAction = NSMutableDictionary()
 				var itemsToRequest: [String] = []
-				let itemsToRequestCount = NSArray()
+				var itemsToRequestCount: [Int64] = []
 				
 				
 				for i in 0...((itemsHandlerId?.count)! - 1){
@@ -181,7 +191,7 @@ class ActionDelegate: PackageServiceDelegate{
 						add(item, to: package!, count: count)
 					}else{
 						itemsToRequest.append(id)
-						itemsToRequestCount.adding(count)
+						itemsToRequestCount.append(count)
 					}
 				}
 				
@@ -191,7 +201,7 @@ class ActionDelegate: PackageServiceDelegate{
 					
 					subAction.setValue(at, forKey: "action")
 					subAction.setValue(NSArray(array: itemsToRequest), forKey: "itemsToAdd")
-					subAction.setValue(itemsToRequestCount, forKey: "itemsToAddCount")
+					subAction.setValue(NSArray(array: itemsToRequestCount), forKey: "itemsToAddCount")
 					
 					request = ItemRequest(with: itemsToRequest, sender: sender, action: subAction)
 					
