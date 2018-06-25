@@ -37,6 +37,7 @@ class TeamView: UICollectionViewController {
         let characterFrom = NewCharacterForm()
 		
 		characterFrom.modalPresentationStyle = .formSheet
+		characterFrom.preferredContentSize = CGSize(width: 440, height: 310)
 		
         present(characterFrom, animated: true, completion: nil)
     }

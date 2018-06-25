@@ -166,6 +166,8 @@ class NewItemForm: FormViewController{
 		let secondSection = SectionFormer(rowFormers: [createItemRow,dissmissRow])
 		former.append(sectionFormer: secondSection)
 		
+		tableView.isScrollEnabled = false 
+		
 		super.viewDidLoad()
 	}
 	

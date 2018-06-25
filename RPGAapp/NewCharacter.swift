@@ -106,6 +106,8 @@ class NewCharacterForm: FormViewController {
 	
 		former.add(sectionFormers: [section, secondSection])
 		
+		tableView.isScrollEnabled = false
+		
 		super.viewDidLoad()
 	}
 	
