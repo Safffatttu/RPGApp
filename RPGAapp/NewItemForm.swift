@@ -121,7 +121,7 @@ class NewItemForm: FormViewController{
 		}
 		
 		let quantityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-			$0.titleLabel.text = "Quantiy"
+			$0.titleLabel.text = "Quantity"
 			}.configure{
 				$0.text = String(quantity)
 			}.onTextChanged{[unowned self] in
@@ -139,7 +139,7 @@ class NewItemForm: FormViewController{
 				}
 		}
 		
-		let section = SectionFormer(rowFormers: [nameRow, catergoryRow, subCatergoryRow, descriptionRow, priceRow, rarityRow, quantityRow])
+		let section = SectionFormer(rowFormers: [nameRow, catergoryRow, subCatergoryRow, descriptionRow, priceRow, quantityRow, rarityRow])
 			.set(headerViewFormer: header)
 		
 		former.append(sectionFormer: section)
