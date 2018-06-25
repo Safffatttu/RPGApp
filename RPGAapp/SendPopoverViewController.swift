@@ -97,6 +97,9 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         }
         
         CoreDataStack.saveContext()
+		
+		NotificationCenter.default.post(name: .equipmentChanged, object: nil)
+		
         dismiss(animated: true, completion: nil)
         
         let action =  NSMutableDictionary()

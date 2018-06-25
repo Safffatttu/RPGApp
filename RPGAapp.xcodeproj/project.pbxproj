@@ -99,6 +99,7 @@
 		3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF0FEA1F5C946100135252 /* addToPackage.swift */; };
 		3BEBCDFA20E10EB600F31732 /* Texture+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCDF820E10EB600F31732 /* Texture+CoreDataClass.swift */; };
 		3BEBCDFB20E10EB600F31732 /* Texture+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCDF920E10EB600F31732 /* Texture+CoreDataProperties.swift */; };
+		3BEBCDFE20E15A2F00F31732 /* PackageViewerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCDFD20E15A2F00F31732 /* PackageViewerCell.swift */; };
 		3BECB6CC1FBA53BA00A947E9 /* NewCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BECB6CB1FBA53BA00A947E9 /* NewCharacter.swift */; };
 		3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */; };
 		3BF5EACB20A71E9C005FD6BC /* ItemRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5EACA20A71E9C005FD6BC /* ItemRequester.swift */; };
@@ -234,6 +235,7 @@
 		3BDF0FEA1F5C946100135252 /* addToPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addToPackage.swift; sourceTree = "<group>"; };
 		3BEBCDF820E10EB600F31732 /* Texture+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Texture+CoreDataClass.swift"; path = "Data Classes/Texture+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BEBCDF920E10EB600F31732 /* Texture+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Texture+CoreDataProperties.swift"; path = "Data Classes/Texture+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BEBCDFD20E15A2F00F31732 /* PackageViewerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageViewerCell.swift; sourceTree = "<group>"; };
 		3BECB6CB1FBA53BA00A947E9 /* NewCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewCharacter.swift; path = RPGAapp/NewCharacter.swift; sourceTree = "<group>"; };
 		3BF480AE1F44DBF50017169D /* ShowInfoPopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowInfoPopOver.swift; sourceTree = "<group>"; };
 		3BF5EACA20A71E9C005FD6BC /* ItemRequester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRequester.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				3B11312720C2C99700F95088 /* TeamView */,
 				3B709CE620ACA26B00D5825E /* Map */,
 				3B3C052E1F3BBE3E00CFB002 /* Menu */,
+				3BEBCDFC20E15A0200F31732 /* PackageViewer */,
 				3B11312620C2C90E00F95088 /* Cataloge */,
 				3BF480AD1F44DBC50017169D /* Popover */,
 				3B9D6BDC1FB907E100474C71 /* Networking */,
@@ -385,7 +388,6 @@
 			children = (
 				3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */,
 				3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */,
-				3B8F06AF1F9792F100611C34 /* PackageViewer.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -489,6 +491,15 @@
 				3BDBD9EB20ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift */,
 			);
 			name = "Data Classes";
+			sourceTree = "<group>";
+		};
+		3BEBCDFC20E15A0200F31732 /* PackageViewer */ = {
+			isa = PBXGroup;
+			children = (
+				3B8F06AF1F9792F100611C34 /* PackageViewer.swift */,
+				3BEBCDFD20E15A2F00F31732 /* PackageViewerCell.swift */,
+			);
+			name = PackageViewer;
 			sourceTree = "<group>";
 		};
 		3BF480AD1F44DBC50017169D /* Popover */ = {
@@ -765,6 +776,7 @@
 				3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */,
 				3B2367DC1F5DE2C800A9EF70 /* editPackage.swift in Sources */,
 				3BDBD9F220ACD45D00E0EB62 /* Ability+CoreDataClass.swift in Sources */,
+				3BEBCDFE20E15A2F00F31732 /* PackageViewerCell.swift in Sources */,
 				3BDBD9F920ACD45D00E0EB62 /* DrawSetting+CoreDataClass.swift in Sources */,
 				3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */,
 				3BDBD9F820ACD45D00E0EB62 /* Currency+CoreDataProperties.swift in Sources */,
