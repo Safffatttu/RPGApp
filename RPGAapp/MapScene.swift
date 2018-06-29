@@ -17,17 +17,23 @@ class MapScene: SKScene{
 		
 	var map: Map!{
 		didSet{
-			let things = map.entities?.allObjects as! [MapEntity]
+			DispatchQueue.global().sync {
 			
-			var newMapEntities: [(MapEntity,SKSpriteNode)] = []
+			let entities = self.map.entities?.allObjects as! [MapEntity]
 			
-			for t in things{
-				let newSprite = SKSpriteNode(entity: t, parent: self)
-				newSprite.name = t.character?.name
-				newMapEntities.append((t,newSprite))
+			var newMapThings: [(MapEntity,SKSpriteNode)] = []
+			
+			for e in entities{
+				let newSprite = SKSpriteNode(entity: e)
+				newSprite.name = e.character?.name
+				newMapThings.append((e,newSprite))
+				
+				self.addChild(newSprite)
 			}
 			
-			mapThings = newMapEntities
+			self.mapThings = newMapThings
+			
+			}
 		}
 	}
 	
@@ -74,6 +80,7 @@ class MapScene: SKScene{
 		NotificationCenter.default.addObserver(self, selector: #selector(mapEntityMoved(_:)) , name: .mapEntityMoved, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadEntities), name: .reloadTeam, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadBackground), name: .mapBackgroundChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(textureChanged(_:)), name: .mapEntityTextureChanged, object: nil)
 	}
 	
 	func mapEntityMoved(_ sender: Notification){
@@ -87,6 +94,28 @@ class MapScene: SKScene{
 		let moveToAction = SKAction.move(to: newPos, duration: 0.4)
 		
 		sprite.run(moveToAction)
+	}
+	
+	func textureChanged(_ sender: Notification){
+		guard let entity = sender.object as? MapEntity else { return }
+		
+		guard let sprite = mapThings.first(where: {$0.0 == entity})?.1	else { return }
+		
+		guard let textureData = entity.texture?.data as Data? else { return }
+		
+		guard let image = UIImage(data: textureData) else { return }
+		
+		let texture = SKTexture(image: image)
+		
+		let textureReloadSeq = SKAction.sequence([
+			SKAction.fadeOut(withDuration: 0.4),
+			SKAction.run{
+				self.mapa.texture = texture
+			},
+			SKAction.fadeIn(withDuration: 0.4)
+			])
+		
+		sprite.run(textureReloadSeq)
 	}
 	
 	func reloadEntities(){
@@ -258,4 +287,5 @@ class MapScene: SKScene{
 extension Notification.Name{
 	static let mapEntityMoved = Notification.Name("mapEntityMoved")
 	static let mapBackgroundChanged = Notification.Name("mapBackgroundChanged")
+	static let mapEntityTextureChanged = Notification.Name("mapEntityTextureChanged")
 }

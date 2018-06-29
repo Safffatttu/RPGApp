@@ -57,6 +57,8 @@
 		3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
 		3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
+		3BA95E1C20E63AF500F90FB4 /* ImageRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */; };
+		3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */; };
 		3BADCC9C20E04F04005A5B89 /* EditDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BADCC9B20E04F04005A5B89 /* EditDrawSetting.swift */; };
 		3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3BB0F9A020AB2DC100729947 /* ActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0F99F20AB2DC100729947 /* ActionTest.swift */; };
@@ -192,6 +194,8 @@
 		3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionDelegate.swift; sourceTree = "<group>"; };
 		3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageRowCell.xib; path = RPGAapp/ImageRowCell.xib; sourceTree = "<group>"; };
+		3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageRowFormer.swift; path = RPGAapp/ImageRowFormer.swift; sourceTree = "<group>"; };
 		3BADCC9B20E04F04005A5B89 /* EditDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDrawSetting.swift; sourceTree = "<group>"; };
 		3BB0F99F20AB2DC100729947 /* ActionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTest.swift; sourceTree = "<group>"; };
 		3BBBBE88201A875800ECA86A /* LoadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
@@ -345,6 +349,8 @@
 				3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */,
 				3B48ED6420A9D63600DAA7CC /* TeamViewCellSubCells.swift */,
 				3BECB6CB1FBA53BA00A947E9 /* NewCharacter.swift */,
+				3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */,
+				3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */,
 			);
 			name = TeamView;
 			path = ..;
@@ -660,6 +666,7 @@
 				3B063D6F1F3A21A800B5271C /* LaunchScreen.storyboard in Resources */,
 				3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */,
 				3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */,
+				3BA95E1C20E63AF500F90FB4 /* ImageRowCell.xib in Resources */,
 				3B709CEA20ACA33E00D5825E /* MapScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -821,6 +828,7 @@
 				3BDBD9F720ACD45D00E0EB62 /* Currency+CoreDataClass.swift in Sources */,
 				3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */,
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
+				3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B11312D20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift in Sources */,
 				3BEBCDFB20E10EB600F31732 /* Texture+CoreDataProperties.swift in Sources */,

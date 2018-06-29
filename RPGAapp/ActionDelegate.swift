@@ -489,22 +489,37 @@ class ActionDelegate: PackageServiceDelegate{
 		}else if actionType == ActionType.sendImage{
 			DispatchQueue.global().async {
 				let imageData = action.value(forKey: "imageData") as? NSData
-				guard let mapId = action.value(forKey: "mapId") as? String else { return }
-				
-				guard let map = Load.map(withId: mapId) else { return }
 				
 				let contex = CoreDataStack.managedObjectContext
 				let texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
 				
 				texture.data = imageData!
 				
-				map.background = texture
+				if let mapId = action.value(forKey: "mapId") as? String{
+					
+					if let map = Load.map(withId: mapId){
+						map.background = texture
+						
+						DispatchQueue.main.async {
+							NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
+						}
+					}
+					
+				}else if let entityId = action.value(forKey: "entityId") as? String{
+					
+					if let entity = Load.mapEntity(withId: entityId){
+						entity.texture = texture
+						
+						DispatchQueue.main.async {
+							NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
+						}
+					}
+					
+				}else{
+					contex.delete(texture)
+				}
 				
 				CoreDataStack.saveContext()
-				
-				DispatchQueue.main.async {
-					NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
-				}
 			}
 		}
     }
