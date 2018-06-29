@@ -144,6 +144,7 @@ class NewCharacterForm: FormViewController {
 	
 	func addCharacter(){
 		guard name != "" else {
+			shakeView(self.view)
 			return
 		}
 		
