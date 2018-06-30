@@ -59,6 +59,7 @@ class SettingMenu: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(switchedSessionAction(_:)), name: .switchedSession, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sessionDeleted(_:)), name: .sessionDeleted, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(sessionReceived), name: .sessionReceived, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(currencyCreated), name: .currencyCreated, object: nil)
 		
         super.viewWillAppear(animated)
     }
@@ -66,6 +67,12 @@ class SettingMenu: UITableViewController {
 	func sessionReceived() {
 		sessions = Load.sessions()
 		tableView.reloadData()
+	}
+	
+	func currencyCreated(){
+		currencies = Load.currencies()
+		let index = IndexSet(integer: 2)
+		tableView.reloadSections(index, with: .automatic)
 	}
 	
     func switchedSessionAction(_ notification: Notification){
@@ -128,9 +135,9 @@ class SettingMenu: UITableViewController {
         if section == 0{
             return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count + 1
         }else if section == 1{
-            return 1 + sessions.count
+            return sessions.count + 1
 		}else if section == 2{
-			return currencies.count
+			return currencies.count + 1
 		}else{
             return PackageService.pack.session.connectedPeers.count
         }
@@ -184,17 +191,27 @@ class SettingMenu: UITableViewController {
                 return cell!
             }
 		}else if indexPath.section == 2{
-			let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
-			let cellCurrency = currencies[indexPath.row]
-			cell?.textLabel?.text =	cellCurrency.name
-			cell?.selectionStyle = .none
-			cell?.accessoryType = .none
-			
-			if cellCurrency == Load.currentCurrency(){
-				cell?.accessoryType = .checkmark
+			if indexPath.row == 0{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
+				cell.settingLabel?.text = "New Currency"
+				cell.selectionStyle = .none
+				cell.settingButton.setTitle("Create", for: .normal)
+				cell.delegate = self
+				
+				return cell
+			}else {
+				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
+				let cellCurrency = currencies[indexPath.row - 1]
+				cell?.textLabel?.text =	cellCurrency.name
+				cell?.selectionStyle = .none
+				cell?.accessoryType = .none
+				
+				if cellCurrency == Load.currentCurrency(){
+					cell?.accessoryType = .checkmark
+				}
+				
+				return cell!
 			}
-			
-			return cell!
 		}else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
             cell?.textLabel?.text = PackageService.pack.session.connectedPeers[indexPath.row].displayName
@@ -237,15 +254,19 @@ class SettingMenu: UITableViewController {
             
             present(alert, animated: true, completion: nil)
 		}else if indexPath.section == 2{
-			let session = Load.currentSession()
-			
-			let previousCurrencyIndex = currencies.index(of: session.currency!)
-			
-			session.currency = currencies[indexPath.row]
-			
-			let rowsToReload = [indexPath, IndexPath(row: previousCurrencyIndex!, section: indexPath.section)]
-			
-			tableView.reloadRows(at: rowsToReload, with: .fade)
+			if indexPath.row == 0{
+				createCurrency()
+			}else{
+				let session = Load.currentSession()
+				
+				let previousCurrencyIndex = currencies.index(of: session.currency!)! + 1
+				
+				session.currency = currencies[indexPath.row - 1]
+				
+				let rowsToReload = [indexPath, IndexPath(row: previousCurrencyIndex, section: indexPath.section)]
+				
+				tableView.reloadRows(at: rowsToReload, with: .fade)
+			}
 		}
     }
     
@@ -360,12 +381,31 @@ extension SettingMenu: settingCellDelegate {
     }
     
     func pressedButton(_ sender: UIButton) {
-        let context = CoreDataStack.managedObjectContext
-        let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-        session.name = "Sesja"
-        session.gameMaster = UIDevice.current.name
-        session.current = true
-        session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
+		guard let index = getCurrentCellIndexPath(sender, tableView: self.tableView) else { return } 
+		
+		if index.section == 1{
+			createSeesion()
+		}else if index.section == 2{
+			createCurrency()
+		}
+    }
+	
+	func createCurrency(){
+		let currencyForm = NewCurrencyForm()
+		
+		currencyForm.modalPresentationStyle = .formSheet
+		
+		present(currencyForm, animated: true)
+
+	}
+	
+	func createSeesion(){
+		let context = CoreDataStack.managedObjectContext
+		let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
+		session.name = "Sesja"
+		session.gameMaster = UIDevice.current.name
+		session.current = true
+		session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
 		
 		let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
 		
@@ -426,4 +466,5 @@ extension Notification.Name{
     static let switchedSession = Notification.Name("switchedSession")
     static let sessionDeleted = Notification.Name("sessionDeleted")
 	static let sessionReceived = Notification.Name("sessionReceived")
+	static let currencyCreated = Notification.Name("currencyCreated")
 }

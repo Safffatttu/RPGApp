@@ -35,6 +35,9 @@
 		3B4CE5C020D9991500779532 /* CurrencyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CE5BF20D9991500779532 /* CurrencyExchange.swift */; };
 		3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B50DC011F40EB6B0040DCCC /* MPManager.swift */; };
 		3B588E001FF30C0500715440 /* randomUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B588DFF1FF30C0500715440 /* randomUserTests.swift */; };
+		3B63958520E7AED6001336A8 /* NewCurrencyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63958420E7AED6001336A8 /* NewCurrencyForm.swift */; };
+		3B63958720E7CCB9001336A8 /* NumberFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63958620E7CCB9001336A8 /* NumberFieldCell.swift */; };
+		3B63958920E7CD48001336A8 /* NumberFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B63958820E7CD48001336A8 /* NumberFieldCell.xib */; };
 		3B709CE820ACA29600D5825E /* MapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B709CE720ACA29600D5825E /* MapScene.swift */; };
 		3B709CEA20ACA33E00D5825E /* MapScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3B709CE920ACA33E00D5825E /* MapScene.sks */; };
 		3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B709CEB20ACA9F400D5825E /* MapHelperFunctions.swift */; };
@@ -170,6 +173,9 @@
 		3B4CE5BF20D9991500779532 /* CurrencyExchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyExchange.swift; sourceTree = "<group>"; };
 		3B50DC011F40EB6B0040DCCC /* MPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPManager.swift; sourceTree = "<group>"; };
 		3B588DFF1FF30C0500715440 /* randomUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = randomUserTests.swift; sourceTree = "<group>"; };
+		3B63958420E7AED6001336A8 /* NewCurrencyForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCurrencyForm.swift; sourceTree = "<group>"; };
+		3B63958620E7CCB9001336A8 /* NumberFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFieldCell.swift; sourceTree = "<group>"; };
+		3B63958820E7CD48001336A8 /* NumberFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberFieldCell.xib; sourceTree = "<group>"; };
 		3B709CE720ACA29600D5825E /* MapScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapScene.swift; sourceTree = "<group>"; };
 		3B709CE920ACA33E00D5825E /* MapScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MapScene.sks; sourceTree = "<group>"; };
 		3B709CEB20ACA9F400D5825E /* MapHelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelperFunctions.swift; sourceTree = "<group>"; };
@@ -394,6 +400,9 @@
 			children = (
 				3B806C921F3B497400A75CAA /* ItemMenuViewController.swift */,
 				3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */,
+				3B63958420E7AED6001336A8 /* NewCurrencyForm.swift */,
+				3B63958620E7CCB9001336A8 /* NumberFieldCell.swift */,
+				3B63958820E7CD48001336A8 /* NumberFieldCell.xib */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -667,6 +676,7 @@
 				3B063D6C1F3A21A800B5271C /* Assets.xcassets in Resources */,
 				3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */,
 				3BA95E1C20E63AF500F90FB4 /* ImageRowCell.xib in Resources */,
+				3B63958920E7CD48001336A8 /* NumberFieldCell.xib in Resources */,
 				3B709CEA20ACA33E00D5825E /* MapScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -757,6 +767,7 @@
 			files = (
 				3B31039B20E00D1100CECAAB /* DrawSettingCell.swift in Sources */,
 				3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */,
+				3B63958720E7CCB9001336A8 /* NumberFieldCell.swift in Sources */,
 				3BEBCDFA20E10EB600F31732 /* Texture+CoreDataClass.swift in Sources */,
 				3BDBD9FC20ACD45D00E0EB62 /* DrawSubSetting+CoreDataProperties.swift in Sources */,
 				3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */,
@@ -831,6 +842,7 @@
 				3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B11312D20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift in Sources */,
+				3B63958520E7AED6001336A8 /* NewCurrencyForm.swift in Sources */,
 				3BEBCDFB20E10EB600F31732 /* Texture+CoreDataProperties.swift in Sources */,
 				3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */,
 				3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */,

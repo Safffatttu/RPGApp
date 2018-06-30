@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Popover
 import MultipeerConnectivity
 import CoreData
 import Whisper
@@ -521,6 +520,12 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				CoreDataStack.saveContext()
 			}
+		}else if actionType == ActionType.currencyCreated{
+			guard let currencyData = action.value(forKey: "currencyData") as? NSMutableDictionary else { return }
+
+			_ = unPackCurrency(currencyData: currencyData)
+
+			NotificationCenter.default.post(name: .currencyCreated, object: nil)
 		}
     }
 	
