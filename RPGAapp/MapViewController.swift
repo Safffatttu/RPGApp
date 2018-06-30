@@ -13,7 +13,7 @@ import CoreData
 
 class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
-	let imagePicker = UIImagePickerController()
+	var imagePicker: UIImagePickerController!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -36,6 +36,8 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 	
 	func openImagePicker(){
 	
+		imagePicker = UIImagePickerController()
+		
 		imagePicker.delegate = self
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = false
