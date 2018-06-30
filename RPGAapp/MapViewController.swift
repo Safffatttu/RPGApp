@@ -40,7 +40,8 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		
 		imagePicker.delegate = self
 		imagePicker.sourceType = .photoLibrary
-		imagePicker.allowsEditing = false
+		imagePicker.allowsEditing = true
+		imagePicker.modalPresentationStyle = .overCurrentContext
 		
 		present(imagePicker, animated: true)
 		
