@@ -391,7 +391,7 @@ func getDocumentsDirectory() -> URL {
 		subCurrency.name = sub.0
 		subCurrency.rate = sub.1
 		
-		currency.insertIntoSubCurrency(subCurrency, at: (currency.subCurrency?.count)!)
+		currency.addToSubCurrency(subCurrency)
 	}
 	
 	return currency
