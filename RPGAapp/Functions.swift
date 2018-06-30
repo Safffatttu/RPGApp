@@ -256,7 +256,7 @@ func add(_ item: Item,to package: Package, count: Int64?){
     NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
 }
 
-func getCurrentCellIndexPath(_ sender: Any,tableView: UITableView) -> IndexPath? {
+func getCurrentCellIndexPath<T: UIView>(_ sender: T, tableView: UITableView) -> IndexPath? {
     let buttonPosition = (sender as AnyObject).convert(CGPoint.zero, to: tableView)
     if let indexPath: IndexPath = tableView.indexPathForRow(at: buttonPosition) {
         return indexPath

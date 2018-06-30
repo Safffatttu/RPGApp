@@ -44,7 +44,7 @@ class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
     }
 
     func valueChanged(_ sender: Any) {
-        var index = getCurrentCellIndexPath(sender, tableView: self.tableView)
+        var index = getCurrentCellIndexPath(sender as! UIControl, tableView: self.tableView)
         var val: Double! = 0
         if let slider = sender as? UISlider {
             val = Double(slider.value).rounded()
