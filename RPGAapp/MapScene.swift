@@ -72,7 +72,9 @@ class MapScene: SKScene{
 		mapa.isUserInteractionEnabled = false
 		
 		let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinchRec(sender:)))
+		pinch.cancelsTouchesInView = false
 		self.view?.addGestureRecognizer(pinch)
+		
 		let rotation = UIRotationGestureRecognizer(target: self, action: #selector(rotationRec(sender:)))
 		self.view?.addGestureRecognizer(rotation)
 		print(mapThings.map({$0.1}))
@@ -143,14 +145,17 @@ class MapScene: SKScene{
 		}
 	}
 	
-	var previousX: CGFloat = 1
+	var previousScale: CGFloat = 1
+	
 	func pinchRec(sender: UIPinchGestureRecognizer){
 		
+		if sender.state == .began{
+			previousScale = cam.xScale
+		}
 		
-		cam.xScale += previousX - sender.scale
+		cam.xScale = previousScale * 1 / sender.scale
 		cam.yScale = cam.xScale
 		
-		previousX = sender.scale
 	}
 	
 	func rotationRec(sender: UIRotationGestureRecognizer){
