@@ -271,7 +271,9 @@ class SettingMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		return indexPath.section == 3 || (indexPath.section == 1 && indexPath.row != 0)
+		return indexPath.section == 3
+			|| (indexPath.section == 1 && indexPath.row != 0)
+			|| (indexPath.section == 2 && indexPath.row != 0)
     }
 	
 	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -347,6 +349,22 @@ class SettingMenu: UITableViewController {
 			
 			actions?.append(shareSession)
 			
+		}else if indexPath.section == 2{
+			let deleteCurrency = UITableViewRowAction(style: .destructive, title: "Remove", handler: { action, path in
+				
+				let currencyToDelete = self.currencies[indexPath.row - 1]
+				
+				self.currencies.remove(at: indexPath.row - 1)
+				
+				tableView.deleteRows(at: [indexPath], with: .automatic)
+				
+				let context = CoreDataStack.managedObjectContext
+				context.delete(currencyToDelete)
+				
+				CoreDataStack.saveContext()
+			})
+			
+			actions = [deleteCurrency]
 		}else if indexPath.section == 3{
 			actions = []
 			let removePeer = UITableViewRowAction(style: .destructive, title: "Remove", handler: {action,path in
