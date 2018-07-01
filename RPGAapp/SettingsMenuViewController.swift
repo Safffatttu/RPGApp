@@ -62,6 +62,7 @@ class SettingMenu: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(sessionDeleted(_:)), name: .sessionDeleted, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(sessionReceived), name: .sessionReceived, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(currencyCreated), name: .currencyCreated, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(visibilityCreated), name: .visibilityCreated, object: nil)
 		
         super.viewWillAppear(animated)
     }
@@ -76,6 +77,13 @@ class SettingMenu: UITableViewController {
 		let index = IndexSet(integer: 2)
 		tableView.reloadSections(index, with: .automatic)
 	}
+	
+	func visibilityCreated(){
+		visibilities = Load.visibilities()
+		let index = IndexSet(integer: 3)
+		tableView.reloadSections(index, with: .automatic)
+	}
+	
 	
     func switchedSessionAction(_ notification: Notification){
         let action = notification.object as? NSMutableDictionary
@@ -533,6 +541,16 @@ extension SettingMenu: settingCellDelegate {
 		tableView.endUpdates()
 		
 		CoreDataStack.saveContext()
+		
+		let action = NSMutableDictionary()
+		let actionType = NSNumber(value: ActionType.visibilityCreated.rawValue)
+		
+		action.setValue(actionType, forKey: "action")
+		
+		action.setValue(newVisability.name, forKey: "name")
+		action.setValue(newVisability.id, forKey: "id")
+		
+		PackageService.pack.send(action)
 	}
 	
 	func createSeesion(){
@@ -603,4 +621,5 @@ extension Notification.Name{
     static let sessionDeleted = Notification.Name("sessionDeleted")
 	static let sessionReceived = Notification.Name("sessionReceived")
 	static let currencyCreated = Notification.Name("currencyCreated")
+	static let visibilityCreated = Notification.Name("visibilityCreated")
 }

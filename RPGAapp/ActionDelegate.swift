@@ -532,6 +532,20 @@ class ActionDelegate: PackageServiceDelegate{
 			_ = unPackCurrency(currencyData: currencyData)
 
 			NotificationCenter.default.post(name: .currencyCreated, object: nil)
+		}else if actionType == ActionType.visibilityCreated{
+			guard let name = action.value(forKey: "name") as? String else { return }
+			guard let id = action.value(forKey: "id") as? String else { return }
+			
+			let context = CoreDataStack.managedObjectContext
+			let visibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
+			
+			visibility.name = name
+			visibility.id = id
+			visibility.session = Load.currentSession()
+			
+			CoreDataStack.saveContext()
+			
+			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
 		}
     }
 	

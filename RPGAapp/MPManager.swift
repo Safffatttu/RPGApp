@@ -173,6 +173,7 @@ enum ActionType: Int {
 	case syncItemLists
 	case sendImage
 	case currencyCreated
+	case visibilityCreated
 }
 
 extension Notification.Name{
