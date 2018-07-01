@@ -209,6 +209,17 @@ class TeamViewCell: UICollectionViewCell {
 		
 		setVisibilityLabel()
 		
+		let action = NSMutableDictionary()
+		let actionType = NSNumber(value: ActionType.characterVisibilityChanged.rawValue)
+		
+		action.setValue(actionType, forKey: "action")
+		
+		action.setValue(newVisibility?.id, forKey: "visibilityNameId")
+		action.setValue(newVisibility?.name, forKey: "visibilityName")
+		
+		action.setValue(character.id, forKey: "characterId")
+		
+		PackageService.pack.send(action)
 	}
 	
 }

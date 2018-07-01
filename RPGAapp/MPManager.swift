@@ -174,6 +174,7 @@ enum ActionType: Int {
 	case sendImage
 	case currencyCreated
 	case visibilityCreated
+	case characterVisibilityChanged
 }
 
 extension Notification.Name{
