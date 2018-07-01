@@ -496,7 +496,7 @@ extension SettingMenu: settingCellDelegate {
 		}else if index.section == 2{
 			createCurrency()
 		}else if index.section == 3{
-			createVisability()
+			createVisibility()
 		}
     }
 	
@@ -509,19 +509,19 @@ extension SettingMenu: settingCellDelegate {
 
 	}
 	
-	func createVisability(){
+	func createVisibility(){
 		let context = CoreDataStack.managedObjectContext
-		let newVisability = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
+		let newVisibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
 		
 		let visibilityToReload = visibilities.index(where: {$0.current})
 		
 		
-		newVisability.name = NameGenerator.createVisibilityData().0
-		newVisability.current = true
-		newVisability.id = String(describing: Date()) + newVisability.name!
-		newVisability.session = Load.currentSession()
+		newVisibility.name = NameGenerator.createVisibilityData().0
+		newVisibility.current = true
+		newVisibility.id = String(describing: Date()) + newVisibility.name!
+		newVisibility.session = Load.currentSession()
 		
-		visibilities.append(newVisability)
+		visibilities.append(newVisibility)
 		
 		tableView.beginUpdates()
 		
@@ -547,8 +547,8 @@ extension SettingMenu: settingCellDelegate {
 		
 		action.setValue(actionType, forKey: "action")
 		
-		action.setValue(newVisability.name, forKey: "name")
-		action.setValue(newVisability.id, forKey: "id")
+		action.setValue(newVisibility.name, forKey: "name")
+		action.setValue(newVisibility.id, forKey: "id")
 		
 		PackageService.pack.send(action)
 	}
