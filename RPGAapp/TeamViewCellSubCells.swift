@@ -161,8 +161,6 @@ class characterItemCell: UITableViewCell {
 	
 	var itemHandlerDelegate: CharacterItemCellDelegate!
 	
-	@IBOutlet weak var detailLabel: UILabel!
-	
 	@IBOutlet weak var stepper: UIStepper!
 	
 	override func awakeFromNib() {
@@ -177,9 +175,9 @@ class characterItemCell: UITableViewCell {
 	
 	@IBAction func valueChanged(_ sender: UIStepper) {
 		
-		detailLabel.text = String(Int(sender.value))
-		
 		itemHandler.count = Int64(sender.value)
+		
+		self.textLabel?.text = (itemHandler.item?.name)! + " " + String(itemHandler.count)
 		
 		CoreDataStack.saveContext()
 		
@@ -196,7 +194,7 @@ class characterItemCell: UITableViewCell {
 	}
 	
 	func equipmentChanged(){
-		detailLabel.text = String(itemHandler.count)
+		self.textLabel?.text = (itemHandler.item?.name)! + String(itemHandler.count)
 	}
 	
 	func removeItem(_ sender: UILongPressGestureRecognizer){

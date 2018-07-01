@@ -175,8 +175,7 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 			
 			cell.itemHandlerDelegate = self
 			
-			cell.textLabel?.text = cellItem?.item?.name
-			cell.detailLabel.text = String(describing: (cellItem?.count)!)
+			cell.textLabel?.text = (cellItem?.item?.name)! + " " + String((cellItem?.count)!)
 			
 			cell.stepper.value = Double((cellItem?.count)!)
 			cell.itemHandler = cellItem
