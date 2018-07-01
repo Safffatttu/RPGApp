@@ -171,7 +171,7 @@
 		3B3C05301F3BC1D600CFB002 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3B4582A920B1F09700A07627 /* CenteredLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenteredLabelCell.xib; sourceTree = "<group>"; };
 		3B4582AB20B1F17600A07627 /* CenteredLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredLabelCell.swift; sourceTree = "<group>"; };
-		3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamViewCell.swift; path = RPGAapp/TeamViewCell.swift; sourceTree = "<group>"; };
+		3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamViewCell.swift; path = RPGAapp/TeamViewCell.swift; sourceTree = "<group>"; usesTabs = 1; wrapsLines = 1; };
 		3B48ED6420A9D63600DAA7CC /* TeamViewCellSubCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamViewCellSubCells.swift; path = RPGAapp/TeamViewCellSubCells.swift; sourceTree = "<group>"; };
 		3B4CE5BF20D9991500779532 /* CurrencyExchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyExchange.swift; sourceTree = "<group>"; };
 		3B50DC011F40EB6B0040DCCC /* MPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPManager.swift; sourceTree = "<group>"; };

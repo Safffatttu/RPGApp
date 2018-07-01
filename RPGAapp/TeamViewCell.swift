@@ -18,6 +18,11 @@ class TeamViewCell: UICollectionViewCell {
 	@IBOutlet weak var equipmentTable: UITableView!
 	
 	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var raceLabel: UILabel!
+	@IBOutlet weak var professionLabel: UILabel!
+	
+	@IBOutlet weak var moneyLabel: UILabel!
+	@IBOutlet weak var moneyTextField: UITextField!
 	
 	@IBOutlet weak var abilityLabel: UILabel!
 	@IBOutlet weak var equipmentLabel: UILabel!
@@ -66,6 +71,8 @@ class TeamViewCell: UICollectionViewCell {
 		
 		abilityLabel.text = "Abilities"
 		equipmentLabel.text = "Equipment"
+		moneyLabel.text = "Money"
+		
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(modifiedAbility), name: .modifiedAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
@@ -80,7 +87,19 @@ class TeamViewCell: UICollectionViewCell {
 	}
 	
 	func reloadLabels(){
-		nameLabel.text = character.name
+		if let name = character.name{
+			nameLabel.text = "Name: \(name)"
+		}
+		
+		if let race = character.race{
+			raceLabel.text = "Race: \(race)"
+		}
+		
+		if let profession = character.profession{
+			professionLabel.text = "Profession \(profession)"
+		}
+		
+		moneyTextField.text = showPrice(character.money)
 	}
 	
 	@IBAction func removeCharacter() {
@@ -124,6 +143,15 @@ class TeamViewCell: UICollectionViewCell {
 
 	@IBAction func editCharacter() {
 		NotificationCenter.default.post(name: .modifyCharacter, object: character)
+	}
+	
+	@IBAction func changedPlayerMoney(_ sender: UITextField) {
+		guard let text = sender.text else { return }
+		let value = convertCurrencyToValue(text)
+		
+		character.money = value
+		
+		CoreDataStack.saveContext()
 	}
 }
 
@@ -200,4 +228,20 @@ extension TeamViewCell: CharacterItemCellDelegate{
 		}
 	}
 	
+}
+
+extension TeamViewCell: UITextFieldDelegate{
+	
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		let stringWithoutSeparators = string.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: ".", with: "")
+		
+		let numberSeparators = CharacterSet.init(charactersIn: ".,")
+		let digits = CharacterSet.decimalDigits
+		let allowedCharacters = digits.union(numberSeparators)
+		
+		let containsOnlyAllowedCharacters = stringWithoutSeparators.rangeOfCharacter(from: allowedCharacters.inverted) == nil
+		
+		return containsOnlyAllowedCharacters
+	}
+
 }
