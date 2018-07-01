@@ -20,6 +20,7 @@ extension Package {
     @NSManaged public var name: String?
     @NSManaged public var items: NSSet?
     @NSManaged public var session: Session?
+    @NSManaged public var visibility: Visibility?
 
 }
 

@@ -23,9 +23,10 @@ extension Session {
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var characters: NSSet?
+    @NSManaged public var currency: Currency?
     @NSManaged public var maps: NSSet?
     @NSManaged public var packages: NSSet?
-    @NSManaged public var currency: Currency?
+    @NSManaged public var visibility: NSSet?
 
 }
 
@@ -77,5 +78,22 @@ extension Session {
 
     @objc(removePackages:)
     @NSManaged public func removeFromPackages(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for visibility
+extension Session {
+
+    @objc(addVisibilityObject:)
+    @NSManaged public func addToVisibility(_ value: Visibility)
+
+    @objc(removeVisibilityObject:)
+    @NSManaged public func removeFromVisibility(_ value: Visibility)
+
+    @objc(addVisibility:)
+    @NSManaged public func addToVisibility(_ values: NSSet)
+
+    @objc(removeVisibility:)
+    @NSManaged public func removeFromVisibility(_ values: NSSet)
 
 }

@@ -25,6 +25,7 @@ extension Character {
     @NSManaged public var equipment: NSSet?
     @NSManaged public var mapRepresentation: MapEntity?
     @NSManaged public var session: Session?
+    @NSManaged public var visibility: Visibility?
 
 }
 
