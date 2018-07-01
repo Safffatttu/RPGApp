@@ -237,7 +237,8 @@ public struct Load {
 		
 		if usingVisibility {
 			if let visibility = self.currentVisibility(){
-				characters = characters.filter{$0.visibility == visibility}
+				characters = characters.filter{$0.visibility == nil
+											|| $0.visibility == visibility}
 			}
 		}
 		

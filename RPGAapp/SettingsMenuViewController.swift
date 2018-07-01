@@ -304,15 +304,23 @@ class SettingMenu: UITableViewController {
 		}else if indexPath.section == 3{
 			if indexPath.row != 0{
 				var rowsToReload = [indexPath]
+
+				let previousVisibilityIndex = visibilities.index(where: {$0.current})
 				
-				visibilities[indexPath.row - 1].current = true
-				
-				if let previousVisibilityIndex = visibilities.index(where: {$0.current}){
-					visibilities[previousVisibilityIndex - 1].current = false
+				if let previousVisibilityIndex = previousVisibilityIndex{
 					
 					let previousRow = IndexPath(row: previousVisibilityIndex + 1, section: 3)
 					
-					rowsToReload.append(previousRow)
+					if previousRow == indexPath{
+						visibilities[previousVisibilityIndex].current = !visibilities[previousVisibilityIndex].current
+					}else{
+						visibilities[previousVisibilityIndex].current = false
+						rowsToReload.append(previousRow)
+					}
+				}
+				
+				if rowsToReload.count == 2 || previousVisibilityIndex == nil{
+					visibilities[indexPath.row - 1].current = true
 				}
 				
 				CoreDataStack.saveContext()

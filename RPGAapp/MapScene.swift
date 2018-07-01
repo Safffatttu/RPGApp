@@ -23,7 +23,8 @@ class MapScene: SKScene{
 			
 			let visibility = Load.currentVisibility()
 			
-			entities = entities.filter{$0.character?.visibility == visibility}
+				entities = entities.filter{$0.character?.visibility == nil
+										|| $0.character?.visibility == visibility}
 				
 			var newMapThings: [(MapEntity,SKSpriteNode)] = []
 			
