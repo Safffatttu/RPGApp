@@ -237,25 +237,18 @@ public struct Load {
         return drawSettings
     }
     
-    public static func characters(fromCurrentSession: Bool = true) -> [Character]{
+	public static func characters(usingVisibility: Bool = false) -> [Character]{
         var characters: [Character] = []
         
-        if fromCurrentSession {
-            let currentSession = Load.currentSession()
-            characters = currentSession.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
-        }else{
-            let charactersFetch: NSFetchRequest<Character> = Character.fetchRequest()
-            
-            charactersFetch.sortDescriptors = [.sortCharacterById]
-            
-            do{
-                characters = try context.fetch(charactersFetch)
-            }
-            catch{
-                print("error")
-            }
-        }
-        
+		let currentSession = Load.currentSession()
+		characters = currentSession.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
+		
+		if usingVisibility {
+			if let visibility = self.currentVisibility(){
+				characters = characters.filter{$0.visibility == visibility}
+			}
+		}
+		
         return characters
     }
     
@@ -327,6 +320,18 @@ public struct Load {
 		let session = Load.currentSession()
 		
 		return session.currency		
+	}
+	
+	public static func visibilities() -> [Visibility]{
+		let session = Load.currentSession()
+		
+		return session.visibility?.allObjects as! [Visibility]
+	}
+	
+	public static func currentVisibility() -> Visibility?{
+		let visibilities = Load.visibilities()
+		
+		return visibilities.first(where: {$0.current})
 	}
 	
 }

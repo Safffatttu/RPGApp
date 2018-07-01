@@ -48,9 +48,11 @@ class SettingMenu: UITableViewController {
 	
     let keys = Array(UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}))
     
-    var sessions: [Session] = Load.sessions()
+	var sessions: [Session] = Load.sessions()
 	
 	var currencies: [Currency] = Load.currencies()
+	
+	var visibilities: [Visibility] = Load.visibilities()
 	
 	var documenController:UIDocumentInteractionController!
 	
@@ -92,6 +94,7 @@ class SettingMenu: UITableViewController {
     func switchedSession(indexPath: IndexPath){
         let previousIndex = self.sessions.index(where: {$0.current == true})
         var indexesToReload = [indexPath]
+		
         if previousIndex != nil{
 			for session in sessions{
 				session.current = false
@@ -99,19 +102,24 @@ class SettingMenu: UITableViewController {
 			
             indexesToReload.append(IndexPath(row: previousIndex! + 1, section: 1))
         }
+		
         sessions[indexPath.row - 1].current = true
 		
+		CoreDataStack.saveContext()
+		
+		visibilities = Load.visibilities()
+		
 		let currencySection = IndexSet(integer: 2)
+		let visiblitySection = IndexSet(integer: 3)
 		
 		tableView.beginUpdates()
 		
 		tableView.reloadRows(at: indexesToReload, with: .fade)
 		tableView.reloadSections(currencySection, with: .fade)
+		tableView.reloadSections(visiblitySection, with: .automatic)
 		
 		tableView.endUpdates()
 		
-		CoreDataStack.saveContext()
-
 		sessions = Load.sessions()
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
@@ -128,7 +136,7 @@ class SettingMenu: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return PackageService.pack.session.connectedPeers.count > 0 ? 4 : 3
+        return PackageService.pack.session.connectedPeers.count > 0 ? 5 : 4
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -138,6 +146,8 @@ class SettingMenu: UITableViewController {
             return sessions.count + 1
 		}else if section == 2{
 			return currencies.count + 1
+		}else if section == 3{
+			return visibilities.count + 1
 		}else{
             return PackageService.pack.session.connectedPeers.count
         }
@@ -150,9 +160,11 @@ class SettingMenu: UITableViewController {
             return "Sesje"
 		}else if section == 2{
 			return "Waluty"
-		}else {
-            return "Połączone urządzenia"
-        }
+		}else if section == 3{
+			return "Visibilities"
+		}else{
+			return "Połączone urządzenia"
+		}
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -212,6 +224,28 @@ class SettingMenu: UITableViewController {
 				
 				return cell!
 			}
+		}else if indexPath.section == 3{
+			if indexPath.row == 0{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
+				cell.settingLabel?.text = "New Visibility"
+				cell.selectionStyle = .none
+				cell.settingButton.setTitle("Create", for: .normal)
+				cell.delegate = self
+				
+				return cell
+			}else {
+				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
+				let cellVisibility = visibilities[indexPath.row - 1]
+				cell?.textLabel?.text =	cellVisibility.name
+				cell?.selectionStyle = .none
+				cell?.accessoryType = .none
+				
+				if cellVisibility.current{
+					cell?.accessoryType = .checkmark
+				}
+			
+				return cell!
+			}
 		}else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
             cell?.textLabel?.text = PackageService.pack.session.connectedPeers[indexPath.row].displayName
@@ -267,13 +301,32 @@ class SettingMenu: UITableViewController {
 				
 				tableView.reloadRows(at: rowsToReload, with: .fade)
 			}
+		}else if indexPath.section == 3{
+			if indexPath.row != 0{
+				var rowsToReload = [indexPath]
+				
+				visibilities[indexPath.row - 1].current = true
+				
+				if let previousVisibilityIndex = visibilities.index(where: {$0.current}){
+					visibilities[previousVisibilityIndex - 1].current = false
+					
+					let previousRow = IndexPath(row: previousVisibilityIndex + 1, section: 3)
+					
+					rowsToReload.append(previousRow)
+				}
+				
+				CoreDataStack.saveContext()
+				
+				tableView.reloadRows(at: rowsToReload, with: .automatic)
+			}
 		}
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		return indexPath.section == 3
-			|| (indexPath.section == 1 && indexPath.row != 0)
+		return (indexPath.section == 1 && indexPath.row != 0)
 			|| (indexPath.section == 2 && indexPath.row != 0)
+			|| (indexPath.section == 3 && indexPath.row != 0)
+			||  indexPath.section == 4
     }
 	
 	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -366,6 +419,22 @@ class SettingMenu: UITableViewController {
 			
 			actions = [deleteCurrency]
 		}else if indexPath.section == 3{
+			let deleteVisibility = UITableViewRowAction(style: .destructive, title: "Remove", handler: { action, path in
+				
+				let visibilityToDelete = self.visibilities[indexPath.row - 1]
+				
+				self.visibilities.remove(at: indexPath.row - 1)
+				
+				tableView.deleteRows(at: [indexPath], with: .automatic)
+				
+				let context = CoreDataStack.managedObjectContext
+				context.delete(visibilityToDelete)
+				
+				CoreDataStack.saveContext()
+			})
+			
+			actions = [deleteVisibility]
+		}else if indexPath.section == 4{
 			actions = []
 			let removePeer = UITableViewRowAction(style: .destructive, title: "Remove", handler: {action,path in
 				
@@ -405,6 +474,8 @@ extension SettingMenu: settingCellDelegate {
 			createSeesion()
 		}else if index.section == 2{
 			createCurrency()
+		}else if index.section == 3{
+			createVisability()
 		}
     }
 	
@@ -415,6 +486,40 @@ extension SettingMenu: settingCellDelegate {
 		
 		present(currencyForm, animated: true)
 
+	}
+	
+	func createVisability(){
+		let context = CoreDataStack.managedObjectContext
+		let newVisability = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
+		
+		let visibilityToReload = visibilities.index(where: {$0.current})
+		
+		
+		newVisability.name = "Vis1"
+		newVisability.current = true
+		newVisability.id = String(describing: Date()) + newVisability.name!
+		newVisability.session = Load.currentSession()
+		
+		visibilities.append(newVisability)
+		
+		tableView.beginUpdates()
+		
+		let indexToInsert = IndexPath(row: visibilities.count, section: 3)
+		
+		tableView.insertRows(at: [indexToInsert], with: .automatic)
+		
+		if let visibilityToReload = visibilityToReload{
+			
+			visibilities[visibilityToReload].current = false
+			let indexToReload = IndexPath(row: visibilityToReload + 1, section: 3)
+			
+			tableView.reloadRows(at: [indexToReload], with: .automatic)
+			
+		}
+		
+		tableView.endUpdates()
+		
+		CoreDataStack.saveContext()
 	}
 	
 	func createSeesion(){

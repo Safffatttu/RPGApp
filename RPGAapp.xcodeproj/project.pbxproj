@@ -65,6 +65,8 @@
 		3BADCC9C20E04F04005A5B89 /* EditDrawSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BADCC9B20E04F04005A5B89 /* EditDrawSetting.swift */; };
 		3BAE89BE1F3F490C002B3FF3 /* Pods_RPGAapp.framework in Sources */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3BB0F9A020AB2DC100729947 /* ActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB0F99F20AB2DC100729947 /* ActionTest.swift */; };
+		3BB70E9520E8DCE00044847B /* Visibility+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB70E9320E8DCE00044847B /* Visibility+CoreDataClass.swift */; };
+		3BB70E9620E8DCE00044847B /* Visibility+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB70E9420E8DCE00044847B /* Visibility+CoreDataProperties.swift */; };
 		3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBBBE88201A875800ECA86A /* LoadData.swift */; };
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
 		3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */; };
@@ -204,6 +206,8 @@
 		3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageRowFormer.swift; path = RPGAapp/ImageRowFormer.swift; sourceTree = "<group>"; };
 		3BADCC9B20E04F04005A5B89 /* EditDrawSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDrawSetting.swift; sourceTree = "<group>"; };
 		3BB0F99F20AB2DC100729947 /* ActionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionTest.swift; sourceTree = "<group>"; };
+		3BB70E9320E8DCE00044847B /* Visibility+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Visibility+CoreDataClass.swift"; path = "Data Classes/Visibility+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BB70E9420E8DCE00044847B /* Visibility+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Visibility+CoreDataProperties.swift"; path = "Data Classes/Visibility+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BBBBE88201A875800ECA86A /* LoadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadData.swift; sourceTree = "<group>"; };
 		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamView.swift; path = RPGAapp/TeamView.swift; sourceTree = "<group>"; };
 		3BD335881FF28B2E004F70BF /* RPGAappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -504,6 +508,8 @@
 				3BDBD9E920ACD45D00E0EB62 /* Session+CoreDataClass.swift */,
 				3BDBD9EA20ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift */,
 				3BDBD9EB20ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift */,
+				3BB70E9320E8DCE00044847B /* Visibility+CoreDataClass.swift */,
+				3BB70E9420E8DCE00044847B /* Visibility+CoreDataProperties.swift */,
 			);
 			name = "Data Classes";
 			sourceTree = "<group>";
@@ -800,6 +806,7 @@
 				3BDBD9F820ACD45D00E0EB62 /* Currency+CoreDataProperties.swift in Sources */,
 				3BDBDA0020ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
+				3BB70E9620E8DCE00044847B /* Visibility+CoreDataProperties.swift in Sources */,
 				3B4CE5C020D9991500779532 /* CurrencyExchange.swift in Sources */,
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,
 				3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */,
@@ -814,6 +821,7 @@
 				3B709CE820ACA29600D5825E /* MapScene.swift in Sources */,
 				3B48ED6520A9D63600DAA7CC /* TeamViewCellSubCells.swift in Sources */,
 				3BDBDA0920ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift in Sources */,
+				3BB70E9520E8DCE00044847B /* Visibility+CoreDataClass.swift in Sources */,
 				3BDBDA0420ACD45D00E0EB62 /* ItemHandler+CoreDataProperties.swift in Sources */,
 				3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */,
 				3BDBD9FA20ACD45D00E0EB62 /* DrawSetting+CoreDataProperties.swift in Sources */,
