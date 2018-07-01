@@ -81,8 +81,8 @@ class MapScene: SKScene{
 		self.view?.addGestureRecognizer(pinch)
 		
 		let rotation = UIRotationGestureRecognizer(target: self, action: #selector(rotationRec(sender:)))
+		rotation.cancelsTouchesInView = false
 		self.view?.addGestureRecognizer(rotation)
-		print(mapThings.map({$0.1}))
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(mapEntityMoved(_:)) , name: .mapEntityMoved, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadEntities), name: .reloadTeam, object: nil)
