@@ -228,19 +228,3 @@ extension TeamViewCell: CharacterItemCellDelegate{
 	}
 	
 }
-
-extension TeamViewCell: UITextFieldDelegate{
-	
-	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-		let stringWithoutSeparators = string.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: ".", with: "")
-		
-		let numberSeparators = CharacterSet.init(charactersIn: ".,")
-		let digits = CharacterSet.decimalDigits
-		let allowedCharacters = digits.union(numberSeparators)
-		
-		let containsOnlyAllowedCharacters = stringWithoutSeparators.rangeOfCharacter(from: allowedCharacters.inverted) == nil
-		
-		return containsOnlyAllowedCharacters
-	}
-
-}
