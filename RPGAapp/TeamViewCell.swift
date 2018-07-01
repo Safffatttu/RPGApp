@@ -30,6 +30,9 @@ class TeamViewCell: UICollectionViewCell {
 	@IBOutlet weak var deleteButton: UIButton!
 	@IBOutlet weak var editButton: UIButton!
 	
+	@IBOutlet weak var visibilityLabel: UILabel!
+	@IBOutlet weak var visibilitySegController: UISegmentedControl!
+	
 	var abilityDiffCalculator: SingleSectionTableViewDiffCalculator<Ability>?
 	var equipmentDiffCalculator: SingleSectionTableViewDiffCalculator<ItemHandler>?
 	
@@ -54,6 +57,8 @@ class TeamViewCell: UICollectionViewCell {
 		}
 	}
 	
+	var visibilities: [Visibility]!
+	
 	override func awakeFromNib() {
 		equipmentTable.dataSource = self
 		abilityTable.dataSource = self
@@ -72,7 +77,6 @@ class TeamViewCell: UICollectionViewCell {
 		abilityLabel.text = "Abilities"
 		equipmentLabel.text = "Equipment"
 		moneyLabel.text = "Money"
-		
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(modifiedAbility), name: .modifiedAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
@@ -100,6 +104,42 @@ class TeamViewCell: UICollectionViewCell {
 		}
 		
 		moneyTextField.text = showPrice(character.money)
+		
+		if Load.currentVisibility() == nil{
+			visibilities = Load.visibilities()
+			
+			setupSegmentControl(visibilitySegController)
+			
+			setVisibilityLabel()
+			
+		}else {
+			visibilityLabel.isHidden = true
+			visibilitySegController.isHidden = true
+		}
+	}
+	
+	func setVisibilityLabel(){
+		if let visibility = character.visibility{
+			visibilityLabel.text = "Visibility: \(visibility.name!)"
+		}else{
+			visibilityLabel.text = "Always visible"
+		}
+	}
+	
+	func setupSegmentControl(_ control: UISegmentedControl){
+		control.removeAllSegments()
+		
+		for visNum in 0...visibilities.count - 1{
+			let vis = visibilities[visNum]
+			
+			control.insertSegment(withTitle: vis.name, at: visNum, animated: false)
+			
+			if character.visibility == vis{
+				control.selectedSegmentIndex = visNum
+			}
+		}
+		
+		control.insertSegment(withTitle: "Always visable", at: 0, animated: false)
 	}
 	
 	@IBAction func removeCharacter() {
@@ -153,6 +193,24 @@ class TeamViewCell: UICollectionViewCell {
 		
 		CoreDataStack.saveContext()
 	}
+	
+	@IBAction func changeVisibility(_ sender: UISegmentedControl) {
+		let index = sender.selectedSegmentIndex
+		
+		var newVisibility: Visibility? = nil
+		
+		if index > 0 && index <= visibilities.count{
+			newVisibility = visibilities[index - 1]
+		}
+		
+		character.visibility = newVisibility
+		
+		CoreDataStack.saveContext()
+		
+		setVisibilityLabel()
+		
+	}
+	
 }
 
 extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
