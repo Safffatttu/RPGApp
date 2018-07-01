@@ -181,26 +181,18 @@ public struct Load {
 		
 	}
 	
-    public static func packages(fromCurrentSession: Bool = true) -> [Package]{
+	public static func packages(usingVisiblitiy: Bool = false) -> [Package]{
         var packages: [Package] = []
 		
-		if fromCurrentSession{
-            let session = Load.currentSession()
+	    let session = Load.currentSession()
 			
-            packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
-        }else{
-            let packagesFetch: NSFetchRequest<Package> = Package.fetchRequest()
-            
-            packagesFetch.sortDescriptors = [.sortPackageById]
-            
-            do{
-                packages = try context.fetch(packagesFetch)
-            }
-            catch{
-                print("error")
-            }
-        }
-        
+		packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
+		
+		if usingVisiblitiy {
+			let visiblity = Load.currentVisibility()
+			packages = packages.filter{$0.visibility == visiblity}
+		}
+		
         return packages
     }
     

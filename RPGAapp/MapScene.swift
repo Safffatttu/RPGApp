@@ -19,8 +19,12 @@ class MapScene: SKScene{
 		didSet{
 			DispatchQueue.global().sync {
 			
-			let entities = self.map.entities?.allObjects as! [MapEntity]
+			var entities = self.map.entities?.allObjects as! [MapEntity]
 			
+			let visibility = Load.currentVisibility()
+			
+			entities = entities.filter{$0.character?.visibility == visibility}
+				
 			var newMapThings: [(MapEntity,SKSpriteNode)] = []
 			
 			for e in entities{

@@ -12,8 +12,9 @@ import CoreData
 
 class PackageViewer: UITableViewController {
     
-    var packages: [Package] = Load.packages()
-    @IBOutlet var packagesTable: UITableView!
+    var packages: [Package] = Load.packages(usingVisiblitiy: true)
+	
+	@IBOutlet var packagesTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

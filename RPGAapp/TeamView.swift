@@ -13,7 +13,7 @@ import Dwifft
 
 class TeamView: UICollectionViewController {
     
-	var team: [Character] = Load.characters(){
+	var team: [Character] = Load.characters(usingVisibility: true){
 		didSet{
 			diffCalculator?.items = team
 		}

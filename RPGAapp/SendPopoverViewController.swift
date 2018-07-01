@@ -17,11 +17,9 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     var itemHandler: ItemHandler? = nil
     var itemHandlers: [ItemHandler] = []
     
-    var team: [Character] = []
+    var team: [Character] = Load.characters(usingVisibility: true)
         
     override func viewWillAppear(_ animated: Bool) {
-        let session = Load.currentSession()
-        team = session.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
         
         var height =  Int()
         var y = Int()
