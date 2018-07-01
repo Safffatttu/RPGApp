@@ -237,6 +237,11 @@ class SettingMenu: UITableViewController {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
 				let cellVisibility = visibilities[indexPath.row - 1]
 				cell?.textLabel?.text =	cellVisibility.name
+				
+				if let color = NameGenerator.colors.first(where: {$0.0 == cellVisibility.name})?.1{
+					cell?.textLabel?.textColor = color
+				}
+				
 				cell?.selectionStyle = .none
 				cell?.accessoryType = .none
 				
@@ -503,7 +508,7 @@ extension SettingMenu: settingCellDelegate {
 		let visibilityToReload = visibilities.index(where: {$0.current})
 		
 		
-		newVisability.name = "Vis1"
+		newVisability.name = NameGenerator.createVisibilityData().0
 		newVisability.current = true
 		newVisability.id = String(describing: Date()) + newVisability.name!
 		newVisability.session = Load.currentSession()
