@@ -21,6 +21,7 @@ extension Character {
     @NSManaged public var name: String?
     @NSManaged public var profession: String?
     @NSManaged public var race: String?
+    @NSManaged public var money: Double
     @NSManaged public var abilities: NSSet?
     @NSManaged public var equipment: NSSet?
     @NSManaged public var mapRepresentation: MapEntity?

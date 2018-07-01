@@ -14,6 +14,7 @@
     <entity name="Character" representedClassName="Character" syncable="YES">
         <attribute name="health" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="money" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="profession" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
@@ -153,7 +154,7 @@
     <elements>
         <element name="Ability" positionX="-380" positionY="41" width="128" height="103"/>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
-        <element name="Character" positionX="-558" positionY="95" width="128" height="193"/>
+        <element name="Character" positionX="-567" positionY="90" width="128" height="208"/>
         <element name="Currency" positionX="-1062" positionY="-225" width="128" height="90"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="75"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="150"/>
