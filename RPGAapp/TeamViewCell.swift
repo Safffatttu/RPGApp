@@ -19,6 +19,9 @@ class TeamViewCell: UICollectionViewCell {
 	
 	@IBOutlet weak var nameLabel: UILabel!
 	
+	@IBOutlet weak var abilityLabel: UILabel!
+	@IBOutlet weak var equipmentLabel: UILabel!
+	
 	@IBOutlet weak var deleteButton: UIButton!
 	@IBOutlet weak var editButton: UIButton!
 	
@@ -60,6 +63,9 @@ class TeamViewCell: UICollectionViewCell {
 		
 		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
+		
+		abilityLabel.text = "Abilities"
+		equipmentLabel.text = "Equipment"
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(modifiedAbility), name: .modifiedAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
