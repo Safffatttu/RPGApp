@@ -165,7 +165,9 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         newPackage.name = "Paczka nr." + String(number + 1)
         newPackage.id = newPackage.name! + String(describing: Date())
         let session = Load.currentSession()
-        
+
+		newPackage.visibility = Load.currentVisibility()
+		
         session.addToPackages(newPackage)
         
         reloadPackages()

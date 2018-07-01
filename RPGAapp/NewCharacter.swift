@@ -160,6 +160,8 @@ class NewCharacterForm: FormViewController {
 			let context = CoreDataStack.managedObjectContext
 			newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: context) as! Character
 			
+			newCharacter.visibility = Load.currentVisibility()
+			
 			id = name + String((name + UIDevice.current.name + String(describing: Date())).hash)
 			
 			let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity

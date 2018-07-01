@@ -98,6 +98,8 @@ class ActionDelegate: PackageServiceDelegate{
 				newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
 			
 				session.addToCharacters(newCharacter)
+			
+				newCharacter.visibility = Load.currentVisibility()
 				
 				let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
 			
@@ -146,6 +148,8 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				package?.name = packageName
 				package?.id = packageId
+				
+				package?.visibility = Load.currentVisibility()
 				
 				let session = Load.currentSession()
 				session.addToPackages(package!)
@@ -275,6 +279,8 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			newPackage.name = packageName
 			newPackage.id = packageId
+			
+			newPackage.visibility = Load.currentVisibility()
 			
 			let session = Load.currentSession()
 			

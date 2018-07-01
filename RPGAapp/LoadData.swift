@@ -334,4 +334,21 @@ public struct Load {
 		return visibilities.first(where: {$0.current})
 	}
 	
+	public static func visibility(with id: String) -> Visibility?{
+		var visibility: Visibility?
+		
+		let visibilityFetch: NSFetchRequest<Visibility> = Visibility.fetchRequest()
+		
+		visibilityFetch.predicate = NSPredicate(format: "id == %@", id)
+		
+		do{
+			visibility = try context.fetch(visibilityFetch).first
+		}
+		catch{
+			print("error")
+		}
+		
+		return visibility
+	}
+	
 }
