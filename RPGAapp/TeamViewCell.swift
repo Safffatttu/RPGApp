@@ -221,7 +221,7 @@ class TeamViewCell: UICollectionViewCell {
 		
 		action.setValue(actionType, forKey: "action")
 		
-		action.setValue(newVisibility?.id, forKey: "visibilityNameId")
+		action.setValue(newVisibility?.id, forKey: "visibilityId")
 		action.setValue(newVisibility?.name, forKey: "visibilityName")
 		
 		action.setValue(character.id, forKey: "characterId")
