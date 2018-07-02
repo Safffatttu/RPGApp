@@ -31,7 +31,11 @@ class NameGenerator{
 		if colorsLeft.count == 0{
 			return colors.random()!
 		}else{
-			return colors.first(where: {$0.0 == Array(colorsLeft).random()})!
+			if let new =  Array(colorsLeft).random(){
+				return colors.first(where: {$0.0 == new})!
+			}else{
+				return colors.random()!
+			}
 		}
 	}
 	
