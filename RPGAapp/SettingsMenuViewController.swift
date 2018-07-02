@@ -339,6 +339,8 @@ class SettingMenu: UITableViewController {
 				CoreDataStack.saveContext()
 				
 				tableView.reloadRows(at: rowsToReload, with: .automatic)
+				
+				NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			}
 		}
     }
