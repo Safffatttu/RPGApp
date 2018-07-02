@@ -108,7 +108,14 @@ class TeamViewCell: UICollectionViewCell {
 		if Load.currentVisibility() == nil{
 			visibilities = Load.visibilities()
 			
-			setupSegmentControl(visibilitySegController)
+			if visibilities.count > 0{
+				setupSegmentControl(visibilitySegController)
+				visibilitySegController.isHidden = false
+			}else{
+				visibilitySegController.isHidden = true
+			}
+			
+			visibilityLabel.isHidden = false
 			
 			setVisibilityLabel()
 			
