@@ -104,11 +104,18 @@ class MapScene: SKScene{
 	}
 	
 	func textureChanged(_ sender: Notification){
-		guard let entity = sender.object as? MapEntity else { return }
+		var sprite: SKSpriteNode!
 		
-		guard let sprite = mapThings.first(where: {$0.0 == entity})?.1	else { return }
+		var textureData: Data!
 		
-		guard let textureData = entity.texture?.data as Data? else { return }
+		if let entity = sender.object as? MapEntity{
+			sprite = mapThings.first(where: {$0.0 == entity})?.1
+			
+			textureData = entity.texture?.data as Data?
+		}else{
+			sprite = self.mapa
+			textureData = map.background?.data as Data?
+		}
 		
 		guard let image = UIImage(data: textureData) else { return }
 		
@@ -117,7 +124,7 @@ class MapScene: SKScene{
 		let textureReloadSeq = SKAction.sequence([
 			SKAction.fadeOut(withDuration: 0.4),
 			SKAction.run{
-				self.mapa.texture = texture
+				sprite.texture = texture
 			},
 			SKAction.fadeIn(withDuration: 0.4)
 			])

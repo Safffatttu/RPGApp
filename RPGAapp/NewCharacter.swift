@@ -148,8 +148,9 @@ class NewCharacterForm: FormViewController {
 			return
 		}
 		
-		let action = NSMutableDictionary()
+		let context = CoreDataStack.managedObjectContext
 		
+		let action = NSMutableDictionary()
 		let session = Load.currentSession()
 		
 		let newCharacter: Character!
@@ -157,7 +158,6 @@ class NewCharacterForm: FormViewController {
 		if let char = character{
 			newCharacter = char
 		}else{
-			let context = CoreDataStack.managedObjectContext
 			newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: context) as! Character
 			
 			newCharacter.visibility = Load.currentVisibility()
@@ -174,25 +174,6 @@ class NewCharacterForm: FormViewController {
 			action.setValue(newMapEntity.x, forKey: "mapEntityPosX")
 			action.setValue(newMapEntity.y, forKey: "mapEntityPosY")
 			action.setValue(newMapEntity.map?.id, forKey: "mapId")
-			
-			if let textureImage = textureImage{
-				let textureData = UIImagePNGRepresentation(textureImage)! as NSData
-				
-				let texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
-				
-				texture.data = textureData
-				
-				newMapEntity.texture = texture
-				
-				DispatchQueue.global(qos: .utility).async {
-					let textureAction = NSMutableDictionary()
-					
-					action.setValue(textureData, forKey: "imageData")
-					action.setValue(newMapEntity.id, forKey: "entityId")
-					
-					PackageService.pack.send(textureAction)
-				}
-			}
 		}
 		
 		newCharacter.name = name
@@ -205,7 +186,6 @@ class NewCharacterForm: FormViewController {
 		CoreDataStack.saveContext()
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
-		dismiss(animated: true, completion: nil)
 		
 		let actionType: NSNumber = NSNumber(value: ActionType.characterCreated.rawValue)
 		action.setValue(actionType, forKey: "action")
@@ -218,6 +198,33 @@ class NewCharacterForm: FormViewController {
 		
 		PackageService.pack.send(action)
 		
+		print(textureImage.debugDescription)
+		
+		if let textureImage = textureImage{
+			let textureData = UIImageJPEGRepresentation(textureImage, 0.5)! as NSData
+			let texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			
+			texture.data = textureData
+			
+			newCharacter.mapRepresentation?.texture = texture
+			
+			CoreDataStack.saveContext()
+			
+			DispatchQueue.global(qos: .utility).async {
+				let textureAction = NSMutableDictionary()
+				
+				let actionType: NSNumber = NSNumber(value: ActionType.sendImage.rawValue)
+				textureAction.setValue(actionType, forKey: "action")
+				
+				textureAction.setValue(textureData, forKey: "imageData")
+				textureAction.setValue((newCharacter.mapRepresentation?.id)!, forKey: "entityId")
+				
+				print(action)
+				PackageService.pack.send(textureAction)
+			}
+		}
+		
+		dismiss(animated: true, completion: nil)
 	}
 }
 
