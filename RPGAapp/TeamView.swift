@@ -55,7 +55,7 @@ class TeamView: UICollectionViewController {
 	}
 	
     func reloadTeam(){
-        team = Load.characters()
+        team = Load.characters(usingVisibility: true)
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

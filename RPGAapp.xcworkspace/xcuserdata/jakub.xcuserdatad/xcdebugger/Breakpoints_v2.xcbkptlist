@@ -24,7 +24,7 @@
                   moduleName = "FontAwesome_swift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/Pods/FontAwesome.swift/FontAwesome/Enum.swift"
-                  timestampString = "552176153.097948"
+                  timestampString = "552240516.294834"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -39,7 +39,7 @@
                   moduleName = "FontAwesome_swift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/Pods/FontAwesome.swift/FontAwesome/Enum.swift"
-                  timestampString = "552176153.099227"
+                  timestampString = "552240516.296164"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -200,7 +200,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/DataPacker.swift"
-                  timestampString = "552176153.1160769"
+                  timestampString = "552240516.312881"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "290"
@@ -215,7 +215,7 @@
                   moduleName = "RPGAapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jakub/Dysk%20Google/Xcode/RPGAapp/RPGAapp/DataPacker.swift"
-                  timestampString = "552176153.1171089"
+                  timestampString = "552240516.314014"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "290"
@@ -231,45 +231,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RPGAapp/TeamViewCell.swift"
-            timestampString = "552174200.105101"
+            filePath = "RPGAapp/ActionDelegate.swift"
+            timestampString = "552236076.593354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "awakeFromNib()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGAapp/TeamViewCell.swift"
-            timestampString = "552174200.105101"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "awakeFromNib()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGAapp/TeamViewCell.swift"
-            timestampString = "552174200.105101"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "awakeFromNib()"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
+            landmarkName = "received(_:from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
