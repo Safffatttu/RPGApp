@@ -80,7 +80,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 	
 	
 	func sendItem(playerNum: Int) {
-		guard team.count >= playerNum - 1 else { return }
+		guard team.count > 0 && team.count > playerNum else { return }
 		
 		let sendTo = team[playerNum]
 		

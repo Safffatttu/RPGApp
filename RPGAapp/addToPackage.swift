@@ -13,7 +13,7 @@ import FontAwesome_swift
 
 class addToPackage: UITableViewController, addToPackageDelegate {
 
-    var packages: [Package] = Load.packages()
+    var packages: [Package] = Load.packages(usingVisiblitiy: true)
     
     var item: Item? = nil
     var itemToAdd: ItemHandler? = nil
@@ -43,7 +43,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     func reloadPackages(){
-        packages = Load.packages()
+        packages = Load.packages(usingVisiblitiy: true)
         tableView.reloadData()
         viewDidLoad()
     }
@@ -114,8 +114,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     func addToPackageButton(_ sender: UIButton) {
-        let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
-        addToPackage(indexPath!)
+		guard let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView) else { return }
+        addToPackage(indexPath)
     }
     
     func addToPackage(_ indexPath: IndexPath){
@@ -169,11 +169,11 @@ class addToPackage: UITableViewController, addToPackageDelegate {
 		newPackage.visibility = Load.currentVisibility()
 		
         session.addToPackages(newPackage)
-        
-        reloadPackages()
-        
+		
         CoreDataStack.saveContext()
-        
+		
+		reloadPackages()
+		
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.packageCreated.rawValue)
         
