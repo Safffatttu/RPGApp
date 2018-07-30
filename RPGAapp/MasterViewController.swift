@@ -11,7 +11,15 @@ import Foundation
 
 class MasterViewController: UITableViewController {
     
-    var menuItems = [("Items","showItemMenu"), ("TeamView","showTeamView"), ("Map", "showMap"), ("Losowanie","showRNG"), ("Settings" ,"showSettings")]
+    var menuItems = [("Katalog"             ,"showCatalogeView","showCatalogeDetailView"),
+					 ("TeamView"            ,"showTeamView", ""),
+                     ("Map"                 ,"showMap", ""),
+                     ("Losowanie Przedmiotu","showRandomItemView","showRandomItemDetailView"),
+					 ("Paczki"              ,"showPackageViewer",""),
+					 ("Losowanie"           ,"showRNG", ""),
+					 ("Settings"            ,"showSettings", ""),
+		
+	]
     
     override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible
@@ -22,21 +30,14 @@ class MasterViewController: UITableViewController {
     }
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "showMap"{
-            let controller = (segue.destination as!UINavigationController).topViewController as! MapViewController
-            
-            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            controller.navigationItem.leftItemsSupplementBackButton = true
-            if UserDefaults.standard.bool(forKey: "Auto hide menu"){
-                self.splitViewController?.preferredDisplayMode = .primaryHidden
-            }
-        }
-        else if segue.identifier == "showTeamView"{
-            let controller = (segue.destination as!UINavigationController).topViewController as! TeamView
-            
-            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            controller.navigationItem.leftItemsSupplementBackButton = true
+		
+		let controller = (segue.destination as?UINavigationController)?.topViewController
+		
+		controller?.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+		controller?.navigationItem.leftItemsSupplementBackButton = true
+		
+		if segue.identifier == "showMap" || segue.identifier == "showTeamView"{
+			
             if UserDefaults.standard.bool(forKey: "Auto hide menu"){
                 self.splitViewController?.preferredDisplayMode = .primaryHidden
             }
@@ -61,7 +62,12 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(menuItems[indexPath.row].1)
-        self.performSegue(withIdentifier: menuItems[indexPath.row].1, sender: self)
+		let segue = menuItems[indexPath.row]
+		
+		self.performSegue(withIdentifier: segue.1, sender: self)
+		
+		if segue.2 != ""{
+			self.performSegue(withIdentifier: segue.2, sender: self)
+		}
     }
 }
