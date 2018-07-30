@@ -353,7 +353,7 @@ func searchCataloge(searchWith string: String = "",using searchModel: [(String,B
 		
 		itemsToSearch = Array(NSArray(array: itemsToSearch).sortedArray(using: sortModel)) as! [Item]
 		
-		let searchSubCategory = createTempSubCategory(with: "Wyszukane")
+		let searchSubCategory = createTempSubCategory(with: "Search results")
 		
 		let newSubList: [(SubCategory,[Item])] = [(searchSubCategory,itemsToSearch)]
 

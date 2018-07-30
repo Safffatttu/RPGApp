@@ -1,0 +1,123 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Jakub on 30.07.2018.
+
+*/
+
+"Cataloge" = "Cataloge";
+"TeamView" = "Team View";
+"Map" = "Map";
+"Draw Items" = "Draw Items";
+"Packages" = "Packages";
+"Dice" = "Dice";
+"Setting" = "Setting";
+
+"Custom draw presets" = "Custom draw presets";
+"All items" = "All items";
+"Whole category " = "Whole category ";
+"Preset editor" = "Preset Editor";
+"Missing price" = "Missing price";
+"Have not draw items yet" = " Have not draw items yet";
+
+"Number of items" = "Number of items";
+"Minimal rarity" = "Minimal rarity";
+"Maximal rarity" = "Maximal rarity";
+"Amount" = "Amount";
+
+"d" = "d";
+"Drawn" = "Drawn";
+
+"Abilities" = "Abilities";
+"Equipment" = "Equipment";
+"Money" = "Money";
+"Race" = "Race";
+"Profession" = "Profession";
+"Visibility" = "Visibility";
+"Always visable" = "Always visable";
+"Are you sure you want to remove character?" = "Are you sure you want to remove character?";
+"Yes" = "Yes";
+"No" = "No";
+
+"Health" = "Health";
+"Name" = "Name";
+"Select player texture" = "Select player texture";
+"Create character" = "Create character";
+"Create new character" = "Create new character";
+"Edit character" = "Edit character";
+"Dismiss changes" = "Dismiss changes";
+
+"Auto hide menu" = "Auto hide menu";
+"Show price" = "Show price";
+"Dodawaj do listy wylosowanych" = "Dodawaj do listy wylosowanych";
+"Schowaj menu pakietów" = "Hide package menu";
+"sessionIsActive" = "Session is active";
+"syncSessionRemoval" = "Synchronise session removal";
+
+"Settings" = "Settings";
+"Sessions" = "Sessions";
+"Session" = "Session";
+"Currencies" = "Currencies";
+"Visibilities" = "Visibilities";
+"Sync item database" = "Sync item database";
+"New session" = "New session";
+"Add" = "Add";
+"New Currency" = "New Currency";
+"Create" = "New Currency";
+"New visibility" = "New visibility";
+"Do you want to change session" = "Do you want to change session";
+"Delete" = "Delete";
+"Do you want to delete this session?" = "Do you want to delete this session?";
+"Send" = "Send";
+"Send session" = "Send session";
+"Share" = "Share";
+"Remove" = "Remove";
+
+"Global rate" = "Global rate";
+"Add new SubCurrency" = "Add new SubCurrency";
+"Create new currency" = "Create new currency";
+"Edit currency" = "Edit currency";
+"Rate" = "Rate";
+
+"Search in description" = "Search in description";
+"Search in category name" = "Search in category name";
+"Search in sub category name" = "Search in sub category name";
+"Search by price" = "Search by price";
+"Search by atribute name" = "Search by atribute name";
+
+"Sort by name" = "Sort by name";
+"Sort by rarity" = "Sort by name";
+"Sort by price" = "Sort by price";
+
+"Create item" = "Create item";
+
+"minRarity" = "Minimal rarity";
+"maxRarity" = "Maximal rarity";
+"minPrice" = "Minimal price";
+"maxPrice" = "Maximal  price";
+
+"Share item" = "Share item";
+
+"Subcategory" = "Subcategory";
+"Category" = "Category";
+"Description" = "Description";
+"Price" = "Price";
+"Rarity" = "Rarity";
+"Quantity" = "Quantity";
+
+"Create new item" = "Create new item";
+"Edit item" = "Edit item";
+"No atributes" = "No atributes";
+
+"No characters" = "No characters";
+
+"Package nr." = "Package nr.";
+
+"Search results" = "Search results";
+
+
+"Junk" = "Junk";
+"Common" = "Common";
+"Rare" = "Rare";
+"Legendary" = "Legendary";

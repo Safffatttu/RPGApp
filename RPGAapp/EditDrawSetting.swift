@@ -53,9 +53,9 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             setting = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSetting.self), into: context) as? DrawSetting
         }
         
-        numberLabel.text = "Liczba przedmiotów"
-        minRarityLabelName.text = "Minimalna rzakdość"
-        maxRarityLabelName.text = "Maksymalna rzakdość"
+        numberLabel.text = "Number of items"
+        minRarityLabelName.text = "Minimal rarity"
+        maxRarityLabelName.text = "Maximal rarity"
         
         minRarityLabel.text = rarityName.first
         maxRarityLabel.text = rarityName.last
@@ -100,7 +100,7 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         if tableView == categoriesTable{
             cell = tableView.dequeueReusableCell(withIdentifier: "categoriesCell")
             if indexPath.row == 0{
-                cell?.textLabel?.text = "Cała Kategoria " + categories[indexPath.section].name!
+                cell?.textLabel?.text = "Whole category " + categories[indexPath.section].name!
             }else{
                 let cellCategory = categories[indexPath.section]
                 let cellSubCategories = cellCategory.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
@@ -121,7 +121,7 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
                 cell?.textLabel?.text = ""
             }
             
-            cell?.detailTextLabel?.text = min + max + "Ilość: " + String(subSetting.itemsToDraw)
+            cell?.detailTextLabel?.text = min + max + "Amount: " + String(subSetting.itemsToDraw)
         }
         return cell!
     }

@@ -150,9 +150,9 @@ class TeamViewCell: UICollectionViewCell {
 	}
 	
 	@IBAction func removeCharacter() {
-		let alert = UIAlertController(title: "Na pewno chcesz usunąć postać?", message: "", preferredStyle: .alert)
+		let alert = UIAlertController(title: "Are you sure you want to remove character?", message: "", preferredStyle: .alert)
 		
-		let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
+		let alertYes = UIAlertAction(title: "Yes", style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
 			let context = CoreDataStack.managedObjectContext
 			
 			let characterId = self.character.id
@@ -176,7 +176,7 @@ class TeamViewCell: UICollectionViewCell {
 			PackageService.pack.send(action)
 		})
 		
-		let alertNo = UIAlertAction(title: "Nie", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
+		let alertNo = UIAlertAction(title: "No", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
 			self.equipmentTable.backgroundColor = .red
 			self.abilityTable.backgroundColor = .red
 			self.backgroundColor = .red

@@ -162,7 +162,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext) as! Package
         let number = packages.count
         
-        newPackage.name = "Paczka nr." + String(number + 1)
+        newPackage.name = "Package nr." + String(number + 1)
         newPackage.id = newPackage.name! + String(describing: Date())
         let session = Load.currentSession()
 

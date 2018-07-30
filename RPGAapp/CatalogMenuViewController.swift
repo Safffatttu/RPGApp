@@ -21,9 +21,18 @@ class catalogeMenu: UITableViewController {
 	
     var filter: [String: Double?] = [:]
 	
-	var searchModel: [(String, Bool)] = [("Search by name",true),("Search in description",true),("Search in category name ",false),("Search in sub category name",false),("Search by price",false),("Search by atribute name",false)]
+	var searchModel: [(String, Bool)] = [("Search by name",true),
+	                                     ("Search in description",true),
+	                                     ("Search in category name ",false),
+	                                     ("Search in sub category name",false),
+	                                     ("Search by price",false),
+	                                     ("Search by atribute name",false)]
 	
-	var sortModel: [(String,Bool,NSSortDescriptor)] = [("Sort by name",true, .sortItemByName),("Sort by rarity",false, .sortItemByRarity),("Sort by price",false, .sortItemByPrice)]
+	var sortModel: [(String,Bool,NSSortDescriptor)] = [
+		("Sort by name",true, .sortItemByName),
+		("Sort by rarity",false, .sortItemByRarity),
+		("Sort by price",false, .sortItemByPrice)
+	]
 	
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(setFilters(_:)))

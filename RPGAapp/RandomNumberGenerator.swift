@@ -82,7 +82,7 @@ class RandomNumberGenerator: UITableViewController, StepperCellDelegate {
 			number = models[indexPath.row].0(numOfDices)
 		}
 		
-        let message = "Wylosowano " + String(number)
+        let message = "Drawn " + String(number)
         whisper(messege: message)
         
         let action = NSMutableDictionary()

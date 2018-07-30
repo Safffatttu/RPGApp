@@ -91,7 +91,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
                 }
             }
             else {
-                priceToShow = "Brak ceny"
+                priceToShow = "Missing price"
                 print(cellItem)
             }
             cell.priceLabel.text = priceToShow
@@ -117,7 +117,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             
         }
         else{
-            cell.nameLabel?.text = "Jeszcze nie wylosowano przedmiotów"
+            cell.nameLabel?.text = "Have not draw items yet"
             cell.priceLabel?.text = ""
             
             cell.sendButton.isHidden = true

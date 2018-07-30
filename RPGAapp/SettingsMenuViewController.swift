@@ -163,15 +163,15 @@ class SettingMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
-            return "Ustawienia"
+            return "Settings"
         }else if section == 1{
-            return "Sesje"
+            return "Sessions"
 		}else if section == 2{
-			return "Waluty"
+			return "Currencies"
 		}else if section == 3{
 			return "Visibilities"
 		}else{
-			return "Połączone urządzenia"
+			return "Connected devices"
 		}
     }
     
@@ -194,9 +194,9 @@ class SettingMenu: UITableViewController {
         }else if indexPath.section == 1 {
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
-                cell.settingLabel?.text = "Nowa sesja"
+                cell.settingLabel?.text = "New session"
                 cell.selectionStyle = .none
-                cell.settingButton.setTitle("Dodaj", for: .normal)
+                cell.settingButton.setTitle("Add", for: .normal)
                 cell.delegate = self
                 return cell
             }else{
@@ -235,7 +235,7 @@ class SettingMenu: UITableViewController {
 		}else if indexPath.section == 3{
 			if indexPath.row == 0{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
-				cell.settingLabel?.text = "New Visibility"
+				cell.settingLabel?.text = "New visibility"
 				cell.selectionStyle = .none
 				cell.settingButton.setTitle("Create", for: .normal)
 				cell.delegate = self
@@ -282,7 +282,7 @@ class SettingMenu: UITableViewController {
 		}else if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
             let alert = UIAlertController(title: nil, message: "Do you want to change session", preferredStyle: .alert)
 			
-            let alertYes = UIAlertAction(title: "Tak", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
+            let alertYes = UIAlertAction(title: "Yes", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
                 self.switchedSession(indexPath: indexPath)
                 
                 let action = NSMutableDictionary()
@@ -294,7 +294,7 @@ class SettingMenu: UITableViewController {
                 PackageService.pack.send(action)
             })
             
-            let alertNo = UIAlertAction(title: "Nie", style: .cancel, handler: nil)
+            let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
             
             alert.addAction(alertYes)
             alert.addAction(alertNo)
@@ -359,7 +359,7 @@ class SettingMenu: UITableViewController {
 			actions = []
 			let removeSession = UITableViewRowAction(style: .destructive, title: "Delete", handler: {action,path in
 			
-				let alert = UIAlertController(title: nil, message: "Do you want to delet this session?", preferredStyle: .alert)
+				let alert = UIAlertController(title: nil, message: "Do you want to delete this session?", preferredStyle: .alert)
 				
 				let alertYes = UIAlertAction(title: "Yes", style: .destructive, handler: { (_) -> Void in
 					
@@ -558,7 +558,7 @@ extension SettingMenu: settingCellDelegate {
 	func createSeesion(){
 		let context = CoreDataStack.managedObjectContext
 		let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-		session.name = "Sesja"
+		session.name = "Session"
 		session.gameMaster = UIDevice.current.name
 		session.current = true
 		session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))

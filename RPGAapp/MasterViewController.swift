@@ -11,12 +11,12 @@ import Foundation
 
 class MasterViewController: UITableViewController {
     
-    var menuItems = [("Katalog"             ,"showCatalogeView","showCatalogeDetailView"),
+    var menuItems = [("Cataloge"            ,"showCatalogeView","showCatalogeDetailView"),
 					 ("TeamView"            ,"showTeamView", ""),
                      ("Map"                 ,"showMap", ""),
-                     ("Losowanie Przedmiotu","showRandomItemView","showRandomItemDetailView"),
-					 ("Paczki"              ,"showPackageViewer",""),
-					 ("Losowanie"           ,"showRNG", ""),
+                     ("Draw Item"           ,"showRandomItemView","showRandomItemDetailView"),
+					 ("Packages"            ,"showPackageViewer",""),
+					 ("Dice"                ,"showRNG", ""),
 					 ("Settings"            ,"showSettings", ""),
 		
 	]

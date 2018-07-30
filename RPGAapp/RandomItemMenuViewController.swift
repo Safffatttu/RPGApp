@@ -60,14 +60,14 @@ class RandomItemMenu: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if drawSettings.count > 0{
             if section == 0{
-                return "Własne losowania"
+                return "Custom draw presets"
             }else if section == 1{
-                return "Wszystkie przedmioty"
+                return "All items"
             }else{
                 return categories[section-2].name
             }
         }else if section == 0{
-            return "Wszystkie przedmioty"
+            return "All items"
         }else{
             return categories[section-1].name
         }
@@ -100,12 +100,12 @@ class RandomItemMenu: UITableViewController {
         let cellName: String
         
         if section == -1{
-            cell?.textLabel?.text = "Wszystkie przedmioty"
+            cell?.textLabel?.text = "All items"
             return cell!
         }
         
         if indexPath.row == 0{
-            cellName = "Cała kategoria " + categories[section].name!
+            cellName = "Whole category " + categories[section].name!
             cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
         }else{
             cell?.textLabel?.font = UIFont.systemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
@@ -152,7 +152,7 @@ class RandomItemMenu: UITableViewController {
             
             (edditDraw.viewControllers.first as! EditDrawSetting).setting = self.drawSettings[indexPath.row]
             (edditDraw.viewControllers.first as! EditDrawSetting).editingMode = true
-            (edditDraw.viewControllers.first as! EditDrawSetting).title = "Edytor ustawień"
+            (edditDraw.viewControllers.first as! EditDrawSetting).title = "Preset Editor"
             self.present(edditDraw, animated: true, completion: nil)
         }
         editAction.backgroundColor = .blue
