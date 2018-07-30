@@ -19,10 +19,10 @@ class ItemDrawManager{
 	
 	static var drawManager: ItemDrawManager = ItemDrawManager()
 	
-	func drawItems(using: Any?, reDraw: Bool = false){
+	func drawItems(using: Any?){
 		var itemsToDraw: [Item] = []
 		
-		if !(UserDefaults.standard.bool(forKey: "Dodawaj do listy wylosowanych")) || reDraw {
+		if !(UserDefaults.standard.bool(forKey: "Dodawaj do listy wylosowanych")){
 			ItemDrawManager.randomlySelected = []
 		}
 		
@@ -120,7 +120,9 @@ class ItemDrawManager{
 	
 	func reDrawAllItems(){
 		
+		ItemDrawManager.randomlySelected = []
 		
+		drawItems(using: lastDrawSetting)
 		
 	}
 	
