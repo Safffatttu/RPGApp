@@ -139,7 +139,10 @@ class NewCurrencyForm: FormViewController {
     }
 
     func createCurrency(){
-        guard currencyName != "", currencyRate != 0, currencyData.count != 0 else { return }
+        guard currencyName != "", currencyRate != 0, currencyData.count != 0 else {
+			shakeView(self.view)
+			return
+		}
 
 		let context = CoreDataStack.managedObjectContext
 		

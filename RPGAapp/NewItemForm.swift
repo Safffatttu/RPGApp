@@ -172,8 +172,10 @@ class NewItemForm: FormViewController{
 	}
 	
 	func doneEditing(){
-		guard itemName != "" else { return }
-		guard price >= 0 else { return }
+		guard itemName != "", price >= 0 else {
+			shakeView(self.view)
+			return
+		}
 		
 		let newItem: Item!
 		
