@@ -8,23 +8,29 @@
 
 import UIKit
 
-class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
+class CatalogeFilterPopover: UITableViewController {
 
     var filter: [String: Double?] = [:]
     var keys: [String] = []
-    
+	
+	var items: [Item]!{
+		didSet{
+			maxPrice = items.lazy.map{$0.price}.max()
+			minPrice = items.lazy.map{$0.price}.min()
+			maxRarity = Double(items.lazy.map{$0.rarity}.max()!)
+			minRarity = Double(items.lazy.map{$0.rarity}.min()!)
+		}
+	}
+	
+	var maxPrice: Double!
+	var minPrice: Double!
+	var maxRarity: Double!
+	var minRarity: Double!
+	
     override func viewDidLoad() {
-        if filter.count == 0{
-            let items = Load.items()
-            
-			let maxPrice = items.map{$0.price}.max()
-			
-            let minPrice = items.map{$0.price}.min()
-            
-			let maxRarity = Double(items.map{$0.rarity}.max()!)
-			
-            let minRarity = Double(items.map{$0.rarity}.min()!)
-			
+		items = Load.items()
+		
+		if filter.count == 0{
             filter["minPrice"] = minPrice
             filter["maxPrice"] = maxPrice
             filter["minRarity"] = minRarity
@@ -43,26 +49,34 @@ class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
         super.viewWillAppear(animated)
     }
 
-    func valueChanged(_ sender: Any) {
-        var index = getCurrentCellIndexPath(sender as! UIControl, tableView: self.tableView)
-        var val: Double! = 0
-        if let slider = sender as? UISlider {
-            val = Double(slider.value).rounded()
-        }else if let stepper = sender as? UIStepper{
-            val = stepper.value
-        }
-        filter[keys[(index?.row)!]] = val
-        
-        let label = keys[(index?.row)!] + " " + String(format: "%g", filter[keys[(index?.row)!]]!!)
-        
-        if keys[(index?.row)!].contains("Rarity"){
-            (self.tableView.visibleCells[(index?.row)!] as! catalogeFilterStepper).nameLabel.text = label
-        }else{
-            (self.tableView.visibleCells[(index?.row)!] as! catalogeFilterSlider).nameLabel.text = label
-        }
-        
-        NotificationCenter.default.post(name: .reloadCatalogeFilter, object: filter)
-    }
+	@IBAction func valueChanged(_ sender: Any) {
+		guard let indexPath = getCurrentCellIndexPath(sender as! UIControl, tableView: self.tableView) else { return }
+		
+		let cellKey = keys[indexPath.row]
+		
+		var val: Double! = 0
+		
+		if let slider = sender as? UISlider {
+			val = Double(slider.value).rounded()
+		}else if let stepper = sender as? UIStepper{
+			val = stepper.value
+		}
+		
+		filter[cellKey] = val
+		
+		let localizedCellName = NSLocalizedString(cellKey, comment: "")
+		let labelText = localizedCellName + " " + String(format: "%g", filter[cellKey]!!)
+		
+		if cellKey.contains("Rarity"){
+			(self.tableView.visibleCells[indexPath.row] as! catalogeFilterStepper).nameLabel.text = labelText
+		}else{
+			(self.tableView.visibleCells[indexPath.row] as! catalogeFilterSlider).nameLabel.text = labelText
+		}
+	}
+	
+	@IBAction func editingDidEnd(_ sender: Any) {
+		NotificationCenter.default.post(name: .reloadCatalogeFilter, object: filter)
+	}
         
     // MARK: - Table view data source
 
@@ -77,23 +91,12 @@ class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if keys[indexPath.row].contains("Rarity"){
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeFilterStepper", for: indexPath) as! catalogeFilterStepper
-            
-            cell.delegate = self as filterCellDelegate
 			
 			let cellKey = keys[indexPath.row]
 			let localizedCellName = NSLocalizedString(cellKey, comment: "")
-            cell.nameLabel.text = localizedCellName + " " + String(format: "%g", filter[cellKey]!!)
-            
-            let items = Load.items()
-            
-            let maxRarity: Double = {
-                return Double((items.max { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
-            }()
-            
-            let minRarity: Double = {
-                return Double((items.min { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
-            }()
-            
+			let labelText = localizedCellName + " " + String(format: "%g", filter[cellKey]!!)
+            cell.nameLabel.text = labelText
+			
             cell.stepper.maximumValue = maxRarity
             cell.stepper.minimumValue = minRarity
             
@@ -102,25 +105,13 @@ class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeFilterSlider", for: indexPath) as! catalogeFilterSlider
-        
-            cell.delegate = self as filterCellDelegate
 			
+			cell.slider.isContinuous = true
 			let cellKey = keys[indexPath.row]
 			let localizedCellName = NSLocalizedString(cellKey, comment: "")
             cell.nameLabel.text = localizedCellName + " " + String(format: "%g", filter[cellKey]!!)
             
-            if (keys[indexPath.row].contains("Price")){
-                let items = Load.items()
-                
-                let maxPrice: Double = {
-                    return (items.max { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
-                }()
-                
-                
-                let minPrice: Double = {
-                    return (items.min { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
-                }()
-                
+            if (keys[indexPath.row].contains("Price")){				
                 cell.slider.maximumValue = Float(maxPrice)
                 cell.slider.minimumValue = Float(minPrice)
             }
@@ -133,31 +124,14 @@ class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
 
 class catalogeFilterSlider: UITableViewCell {
     
-    var delegate: filterCellDelegate?
-    
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var slider: UISlider!
-    
-    @IBAction func sliderMoved(_ sender: Any) {
-        delegate?.valueChanged(sender)
-    }
 }
 
 class catalogeFilterStepper: UITableViewCell {
     
-    var delegate: filterCellDelegate?
-    
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var stepper: UIStepper!
-    
-    @IBAction func valueChanged(_ sender: Any) {
-        delegate?.valueChanged(sender)
-    }
-}
-
-protocol filterCellDelegate {
-    
-    func valueChanged(_ sender: Any)
 }
