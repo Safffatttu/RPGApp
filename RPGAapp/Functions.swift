@@ -403,8 +403,11 @@ func createBasicCurrency(){
 	CoreDataStack.saveContext()
 }
 
-//let rarityName = ["Dziadostwo", "Normalne", "Rzadkie", "Legendarne"]
-let rarityName = ["Junk", "Common", "Rare", "Legendary"]
+let rarityName = [NSLocalizedString("Junk", comment: ""),
+                  NSLocalizedString("Common", comment: ""),
+                  NSLocalizedString("Rare", comment: ""),
+				  NSLocalizedString("Legendary", comment: "")
+	]
 
 extension Int{
     init?(_ bool: Bool?) {

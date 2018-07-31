@@ -21,17 +21,17 @@ class catalogeMenu: UITableViewController {
 	
     var filter: [String: Double?] = [:]
 	
-	var searchModel: [(String, Bool)] = [("Search by name",true),
-	                                     ("Search in description",true),
-	                                     ("Search in category name ",false),
-	                                     ("Search in sub category name",false),
-	                                     ("Search by price",false),
-	                                     ("Search by atribute name",false)]
+	var searchModel: [(String, Bool)] = [(NSLocalizedString("Search by name", comment: "")			   ,true),
+	                                     (NSLocalizedString("Search in description", comment: "")	   ,true),
+	                                     (NSLocalizedString("Search in category name", comment: "")    ,false),
+	                                     (NSLocalizedString("Search in sub category name", comment: ""),false),
+	                                     (NSLocalizedString("Search by price", comment: "")			   ,false),
+	                                     (NSLocalizedString("Search by atribute name", comment: "")    ,false)]
 	
 	var sortModel: [(String,Bool,NSSortDescriptor)] = [
-		("Sort by name",true, .sortItemByName),
-		("Sort by rarity",false, .sortItemByRarity),
-		("Sort by price",false, .sortItemByPrice)
+		(NSLocalizedString("Sort by name", comment: "")   ,true , .sortItemByName),
+		(NSLocalizedString("Sort by rarity", comment: "") ,false, .sortItemByRarity),
+		(NSLocalizedString("Sort by price", comment: "")  ,false, .sortItemByPrice)
 	]
 	
     override func viewWillAppear(_ animated: Bool) {

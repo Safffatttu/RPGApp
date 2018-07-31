@@ -50,7 +50,7 @@ class NewItemForm: FormViewController{
 	
 	override func viewDidLoad() {
 		let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-				$0.titleLabel.text = "Name"
+				$0.titleLabel.text = NSLocalizedString("Name", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.itemName = $0
 			}.configure{
@@ -58,7 +58,7 @@ class NewItemForm: FormViewController{
 		}
 		
 		let subCatergoryRow = InlinePickerRowFormer<FormInlinePickerCell,SubCategory>(){
-			$0.titleLabel.text = "Subcategory"
+			$0.titleLabel.text = NSLocalizedString("Subcategory", comment: "")
 			}.configure{ row in
 				row.pickerItems = subCategories.map{
 					InlinePickerItem(title: $0.name!, value: $0)
@@ -70,7 +70,7 @@ class NewItemForm: FormViewController{
 		}
 		
 		let catergoryRow = InlinePickerRowFormer<FormInlinePickerCell,Category>(){
-			$0.titleLabel.text = "Category"
+			$0.titleLabel.text = NSLocalizedString("Category", comment: "")
 			}.configure{ row in
 				row.pickerItems = categories.map({
 					InlinePickerItem(title: $0.name!, value: $0)
@@ -96,13 +96,13 @@ class NewItemForm: FormViewController{
 				if itemDescription != ""{
 					$0.text = itemDescription
 				}
-				$0.placeholder = "Description"
+				$0.placeholder = NSLocalizedString("Description", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.itemDescription = $0
 		}
 
 		let priceRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-			$0.titleLabel.text = "Price"
+			$0.titleLabel.text = NSLocalizedString("Price", comment: "")
 			}.configure{
 				$0.text = String(price)
 			}.onTextChanged{[unowned self] in
@@ -112,7 +112,7 @@ class NewItemForm: FormViewController{
 		}
 		
 		let rarityRow = SegmentedRowFormer<FormSegmentedCell>(){
-			$0.titleLabel.text = "Rarity"
+			$0.titleLabel.text = NSLocalizedString("Rarity", comment: "")
 			}.configure{
 				$0.segmentTitles = rarityName
 				$0.selectedIndex = Int(rarity)
@@ -121,7 +121,7 @@ class NewItemForm: FormViewController{
 		}
 		
 		let quantityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-			$0.titleLabel.text = "Quantity"
+			$0.titleLabel.text = NSLocalizedString("Quantity", comment: "")
 			}.configure{
 				$0.text = String(quantity)
 			}.onTextChanged{[unowned self] in
@@ -133,9 +133,9 @@ class NewItemForm: FormViewController{
 		let header = LabelViewFormer<FormLabelHeaderView>()
 			.configure{
 				if item == nil{
-					$0.text = "Create new item"
+					$0.text = NSLocalizedString("Create new item", comment: "")
 				}else{
-					$0.text = "Edit item"
+					$0.text = NSLocalizedString("Edit item", comment: "")
 				}
 		}
 		
@@ -147,9 +147,9 @@ class NewItemForm: FormViewController{
 		let createItemRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
 			.configure{
 				if item == nil{
-					$0.text = "Create new item"
+					$0.text = NSLocalizedString("Create new item", comment: "")
 				}else{
-					$0.text = "Edit item"
+					$0.text = NSLocalizedString("Edit item", comment: "")
 				}
 			}.onSelected{_ in
 				self.doneEditing()
@@ -158,7 +158,7 @@ class NewItemForm: FormViewController{
 		let dissmissRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
 				$0.centerTextLabel.textColor = .red
 			}.configure{
-			$0.text	= "Dismiss changes"
+			$0.text	= NSLocalizedString("Dismiss changes", comment: "")
 			}.onSelected{_ in
 				self.dismissView()
 		}

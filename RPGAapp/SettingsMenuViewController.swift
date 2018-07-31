@@ -163,15 +163,15 @@ class SettingMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
-            return "Settings"
+            return NSLocalizedString("Settings", comment: "")
         }else if section == 1{
-            return "Sessions"
+            return NSLocalizedString("Sessions", comment: "")
 		}else if section == 2{
-			return "Currencies"
+			return NSLocalizedString("Currencies", comment: "")
 		}else if section == 3{
-			return "Visibilities"
+			return NSLocalizedString("Visibilities", comment: "")
 		}else{
-			return "Connected devices"
+			return NSLocalizedString("Connected devices", comment: "")
 		}
     }
     
@@ -179,7 +179,8 @@ class SettingMenu: UITableViewController {
         if indexPath.section == 0{
 			if indexPath.row < settingValues.count{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingSwitchCell") as! settingSwitchCell
-				cell.settingLabel.text = keys[indexPath.row].key
+				let cellSetting = keys[indexPath.row].key
+				cell.settingLabel.text = NSLocalizedString(cellSetting, comment: "")
 				cell.settingSwitch.setOn(UserDefaults.standard.bool(forKey: keys[indexPath.row].key), animated: false)
 				cell.delegate = self
 				cell.selectionStyle = .none
@@ -187,16 +188,17 @@ class SettingMenu: UITableViewController {
 			}else {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
 				
-				cell?.textLabel?.text = "Sync item database"
+				cell?.textLabel?.text = NSLocalizedString("Sync item database", comment: "")
 				
 				return cell!
 			}
         }else if indexPath.section == 1 {
             if indexPath.row == 0{
                 let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
-                cell.settingLabel?.text = "New session"
+                cell.settingLabel?.text = NSLocalizedString("New session", comment: "")
                 cell.selectionStyle = .none
-                cell.settingButton.setTitle("Add", for: .normal)
+				let localizedAdd = NSLocalizedString("Add", comment: "")
+                cell.settingButton.setTitle(localizedAdd, for: .normal)
                 cell.delegate = self
                 return cell
             }else{
@@ -213,9 +215,10 @@ class SettingMenu: UITableViewController {
 		}else if indexPath.section == 2{
 			if indexPath.row == 0{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
-				cell.settingLabel?.text = "New Currency"
+				cell.settingLabel?.text = NSLocalizedString("New Currency", comment: "")
 				cell.selectionStyle = .none
-				cell.settingButton.setTitle("Create", for: .normal)
+				let localizedCreate = NSLocalizedString("Create", comment: "")
+				cell.settingButton.setTitle(localizedCreate, for: .normal)
 				cell.delegate = self
 				
 				return cell
@@ -235,9 +238,10 @@ class SettingMenu: UITableViewController {
 		}else if indexPath.section == 3{
 			if indexPath.row == 0{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
-				cell.settingLabel?.text = "New visibility"
+				cell.settingLabel?.text = NSLocalizedString("New visibility", comment: "")
 				cell.selectionStyle = .none
-				cell.settingButton.setTitle("Create", for: .normal)
+				let localizedCreate = NSLocalizedString("Create", comment: "")
+				cell.settingButton.setTitle(localizedCreate, for: .normal)
 				cell.delegate = self
 				
 				return cell
@@ -280,9 +284,11 @@ class SettingMenu: UITableViewController {
 			PackageService.pack.send(syncAction)
 			PackageService.pack.send(requestAction)
 		}else if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
-            let alert = UIAlertController(title: nil, message: "Do you want to change session", preferredStyle: .alert)
+			let localizedMessage = NSLocalizedString("Do you want to change session", comment: "")
+            let alert = UIAlertController(title: nil, message: localizedMessage, preferredStyle: .alert)
 			
-            let alertYes = UIAlertAction(title: "Yes", style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
+			let localizedYes = NSLocalizedString("Yes", comment: "")
+            let alertYes = UIAlertAction(title: localizedYes, style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
                 self.switchedSession(indexPath: indexPath)
                 
                 let action = NSMutableDictionary()
@@ -293,8 +299,9 @@ class SettingMenu: UITableViewController {
                 
                 PackageService.pack.send(action)
             })
-            
-            let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
+			
+			let localizedNo = NSLocalizedString("No", comment: "")
+            let alertNo = UIAlertAction(title: localizedNo, style: .cancel, handler: nil)
             
             alert.addAction(alertYes)
             alert.addAction(alertNo)
@@ -354,14 +361,20 @@ class SettingMenu: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		var actions: [UITableViewRowAction]?
+		let localizedYes = NSLocalizedString("Yes", comment: "")
+		let localizedNo = NSLocalizedString("No", comment: "")
+		let localizedRemove = NSLocalizedString("Remove", comment: "")
 		
 		if indexPath.section == 1{
 			actions = []
-			let removeSession = UITableViewRowAction(style: .destructive, title: "Delete", handler: {action,path in
 			
-				let alert = UIAlertController(title: nil, message: "Do you want to delete this session?", preferredStyle: .alert)
+			let localizedDelete = NSLocalizedString("Delete", comment: "")
+			let removeSession = UITableViewRowAction(style: .destructive, title: localizedDelete, handler: {action,path in
+			
+				let localizedMessage = NSLocalizedString("Do you want to delete this session?", comment: "")
+				let alert = UIAlertController(title: nil, message: localizedMessage, preferredStyle: .alert)
 				
-				let alertYes = UIAlertAction(title: "Yes", style: .destructive, handler: { (_) -> Void in
+				let alertYes = UIAlertAction(title: localizedYes, style: .destructive, handler: { (_) -> Void in
 					
 					let context = CoreDataStack.managedObjectContext
 					let session = self.sessions[path.row - 1]
@@ -380,7 +393,7 @@ class SettingMenu: UITableViewController {
 					PackageService.pack.send(action)
 				})
 				
-				let alertNo = UIAlertAction(title: "No", style: .cancel, handler: nil)
+				let alertNo = UIAlertAction(title: localizedNo, style: .cancel, handler: nil)
 				
 				alert.addAction(alertYes)
 				alert.addAction(alertNo)
@@ -390,7 +403,9 @@ class SettingMenu: UITableViewController {
 				
 			actions?.append(removeSession)
 		
-			let sendSession = UITableViewRowAction(style: .normal, title: "Send", handler: {action,path in
+			let localizedSendTitle = NSLocalizedString("Send", comment: "")
+			
+			let sendSession = UITableViewRowAction(style: .normal, title: localizedSendTitle, handler: {action,path in
 				
 				let session = self.sessions[path.row - 1]
 				let sessionDict = packSessionForMessage(session)
@@ -404,12 +419,15 @@ class SettingMenu: UITableViewController {
 				PackageService.pack.send(action)
 
 				tableView.setEditing(false, animated: true)
-				whisper(messege: "Send session")
+				
+				let localizedSendSessionString = NSLocalizedString("Send session", comment: "")
+				whisper(messege: localizedSendSessionString)
 			})
 			
 			actions?.append(sendSession)
 			
-			let shareSession = UITableViewRowAction(style: .normal, title: "Share", handler: {action,path in
+			let localizedSharedTitle = NSLocalizedString("Share", comment: "")
+			let shareSession = UITableViewRowAction(style: .normal, title: localizedSharedTitle, handler: {action,path in
 				guard self.sessions.count > indexPath.row - 1 && indexPath.row - 1 >= 0  else { return }
 				
 				let dict = packSessionForMessage(self.sessions[indexPath.row - 1])
@@ -426,7 +444,7 @@ class SettingMenu: UITableViewController {
 			actions?.append(shareSession)
 			
 		}else if indexPath.section == 2{
-			let deleteCurrency = UITableViewRowAction(style: .destructive, title: "Remove", handler: { action, path in
+			let deleteCurrency = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: { action, path in
 				
 				let currencyToDelete = self.currencies[indexPath.row - 1]
 				
@@ -442,7 +460,7 @@ class SettingMenu: UITableViewController {
 			
 			actions = [deleteCurrency]
 		}else if indexPath.section == 3{
-			let deleteVisibility = UITableViewRowAction(style: .destructive, title: "Remove", handler: { action, path in
+			let deleteVisibility = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: { action, path in
 				
 				let visibilityToDelete = self.visibilities[indexPath.row - 1]
 				
@@ -459,7 +477,7 @@ class SettingMenu: UITableViewController {
 			actions = [deleteVisibility]
 		}else if indexPath.section == 4{
 			actions = []
-			let removePeer = UITableViewRowAction(style: .destructive, title: "Remove", handler: {action,path in
+			let removePeer = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {action,path in
 				
 				let peer = PackageService.pack.session.connectedPeers[path.row]
 				let action = NSMutableDictionary()
@@ -558,7 +576,7 @@ extension SettingMenu: settingCellDelegate {
 	func createSeesion(){
 		let context = CoreDataStack.managedObjectContext
 		let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-		session.name = "Session"
+		session.name = NSLocalizedString("Session", comment: "")
 		session.gameMaster = UIDevice.current.name
 		session.current = true
 		session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))

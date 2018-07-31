@@ -17,7 +17,7 @@
 "Custom draw presets" = "Custom draw presets";
 "All items" = "All items";
 "Whole category " = "Whole category ";
-"Preset editor" = "Preset Editor";
+"Preset editor" = "Preset editor";
 "Missing price" = "Missing price";
 "Have not draw items yet" = " Have not draw items yet";
 
@@ -26,7 +26,7 @@
 "Maximal rarity" = "Maximal rarity";
 "Amount" = "Amount";
 
-"d" = "d";
+"D" = "D";
 "Drawn" = "Drawn";
 
 "Abilities" = "Abilities";
@@ -50,7 +50,7 @@
 
 "Auto hide menu" = "Auto hide menu";
 "Show price" = "Show price";
-"Dodawaj do listy wylosowanych" = "Dodawaj do listy wylosowanych";
+"Dodawaj do listy wylosowanych" = "Add to randomly selected list";
 "Schowaj menu pakietów" = "Hide package menu";
 "sessionIsActive" = "Session is active";
 "syncSessionRemoval" = "Synchronise session removal";
@@ -87,7 +87,7 @@
 "Search by atribute name" = "Search by atribute name";
 
 "Sort by name" = "Sort by name";
-"Sort by rarity" = "Sort by name";
+"Sort by rarity" = "Sort by rarity";
 "Sort by price" = "Sort by price";
 
 "Create item" = "Create item";
@@ -115,9 +115,14 @@
 "Package nr." = "Package nr.";
 
 "Search results" = "Search results";
-
+"Edit" = "Edit";
+"Number Of Dices" = "Number Of Dices";
 
 "Junk" = "Junk";
 "Common" = "Common";
 "Rare" = "Rare";
 "Legendary" = "Legendary";
+
+"Added new character" = "Added new character";
+"Lost connection with" = "Lost connection with";
+"Reconneced with" = "Reconneced with";

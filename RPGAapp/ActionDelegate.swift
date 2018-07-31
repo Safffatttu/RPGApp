@@ -124,7 +124,8 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
-			whisper(messege: "Dodano nową postać")
+			let localizedNewCharacterString = NSLocalizedString("Added new character", comment: "")
+			whisper(messege: localizedNewCharacterString)
 			
 			return
 		}else if actionType == ActionType.itemAddedToPackge{
@@ -300,7 +301,7 @@ class ActionDelegate: PackageServiceDelegate{
 			}
 		}else if actionType == .generatedRandomNumber{
 			let number = action.value(forKey: "number") as! Int
-			let message = "Wylosowano " + String(number)
+			let message = NSLocalizedString("Drawn", comment: "") + " " + String(number)
 			
 			whisper(messege: message)
 			
@@ -583,7 +584,7 @@ class ActionDelegate: PackageServiceDelegate{
 	}
 
     func lost(_ peer: MCPeerID) {
-        let message = "Utracono połączenie z " + peer.displayName
+        let message = NSLocalizedString("Lost connection with", comment: "") + " " + peer.displayName
         whisper(messege: message)
         UserDefaults.standard.set(false, forKey: "sessionIsActive")
     }
@@ -607,7 +608,7 @@ class ActionDelegate: PackageServiceDelegate{
                 
                 UserDefaults.standard.set(true, forKey: "sessionIsActive")
             }else{
-                let message = "Ponownie połączono z " + peer.displayName
+                let message = NSLocalizedString("Reconneced with", comment: "") + " " + peer.displayName
                 whisper(messege: message)
             }
         }

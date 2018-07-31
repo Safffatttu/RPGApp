@@ -98,7 +98,7 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "AtributeCell")
 		if atributes.count == 0{
-			cell?.textLabel?.text = "No atributes"
+			cell?.textLabel?.text = NSLocalizedString("No atributes", comment: "")
 			return cell!
 		}
 		cell?.textLabel?.text = atributes[indexPath.row].name

@@ -44,7 +44,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         
         self.diffCalculator = TableViewDiffCalculator(tableView: self.tableView, initialSectionedValues: self.items)
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create item", style: .plain, target: self, action: #selector(newItemForm))
+		let localizedCreateItem = NSLocalizedString("Create item", comment: "")
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedCreateItem, style: .plain, target: self, action: #selector(newItemForm))
     }
         
     override func viewWillAppear(_ animated: Bool) {

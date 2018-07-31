@@ -43,7 +43,7 @@ class NewCurrencyForm: FormViewController {
     override func viewDidLoad(){
 
         let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-			$0.titleLabel.text = "Name"
+			$0.titleLabel.text = NSLocalizedString("Name", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.currencyName = $0
 			}.configure{
@@ -51,7 +51,7 @@ class NewCurrencyForm: FormViewController {
 		}
 
         let globalRateRow = TextFieldRowFormer<NumberFieldCell>(instantiateType: .Nib(nibName: "NumberFieldCell")){
-			$0.titleLabel.text = "Global Rate"
+			$0.titleLabel.text = NSLocalizedString("Global Rate", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.currencyName = $0
 			}.configure{
@@ -72,7 +72,7 @@ class NewCurrencyForm: FormViewController {
 		}
         let addSubCurrencyRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
 			.configure{
-				$0.text = "Add new SubCurrency"
+				$0.text = NSLocalizedString("Add new SubCurrency", comment: "")
 			}.onSelected{_ in
 				self.addNewSubCurrencySection()
         }
@@ -84,9 +84,9 @@ class NewCurrencyForm: FormViewController {
         let createRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
 			.configure{
 				if currency == nil{
-					$0.text = "Create new currency"
+					$0.text = NSLocalizedString("Create new currency", comment: "")
 				}else{
-					$0.text = "Edit currency"
+					$0.text = NSLocalizedString("Edit currency", comment: "")
 				}
 			}.onSelected{_ in
 				self.createCurrency()
@@ -95,7 +95,7 @@ class NewCurrencyForm: FormViewController {
         let dismissRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
 			$0.centerTextLabel.textColor = .red
 			}.configure{
-				$0.text	= "Dismiss changes"
+				$0.text	= NSLocalizedString("Dismiss changes", comment: "")
 			}.onSelected{_ in
 				self.dismissView()
 		} 
@@ -118,7 +118,7 @@ class NewCurrencyForm: FormViewController {
 	
     func createSubSection(rate: Int16 = 1, name: String, number: Int) -> SectionFormer{
         let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-			$0.titleLabel.text = "Name"
+			$0.titleLabel.text = NSLocalizedString("Name", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.currencyData[number].0 = $0
 			}.configure{
@@ -126,7 +126,7 @@ class NewCurrencyForm: FormViewController {
 		}
 
         let ratioRow = TextFieldRowFormer<NumberFieldCell>(instantiateType: .Nib(nibName: "NumberFieldCell")){
-			$0.titleLabel.text = "Rate"
+			$0.titleLabel.text = NSLocalizedString("Rate", comment: "")
 			}.onTextChanged{
 				self.currencyData[number].1 = Int16($0)!
 			}.configure{

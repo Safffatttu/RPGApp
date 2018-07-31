@@ -26,7 +26,7 @@ class RandomNumberGenerator: UITableViewController, StepperCellDelegate {
 	func valueChaged(_ sender: UIStepper) {
 		numOfDices = Int(sender.value)
 		UserDefaults.standard.set(numOfDices, forKey: "numberOfDices")
-		let text = "Number Of Dices: " + String(numOfDices)
+		let text = NSLocalizedString("Number Of Dices", comment: "") + ": " + String(numOfDices)
 		tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.textLabel?.text = text
 	}
 	
@@ -52,13 +52,13 @@ class RandomNumberGenerator: UITableViewController, StepperCellDelegate {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "stepperCell") as! StepperCell
 			cell.delegate = self
 			cell.stepper.value = Double(numOfDices)
-			cell.textLabel?.text = "Number Of Dices: " + String(numOfDices)
+			cell.textLabel?.text = NSLocalizedString("Number Of Dices", comment: "") + ": " + String(numOfDices)
 			return cell
 		}
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
 		if indexPath.section == 1{
-			cell.textLabel?.text = "d" + String(draw[indexPath.row])
+			cell.textLabel?.text = NSLocalizedString("D", comment: "") + String(draw[indexPath.row])
 		}else{
 			cell.textLabel?.text = models[indexPath.row].1
 		}
@@ -82,7 +82,7 @@ class RandomNumberGenerator: UITableViewController, StepperCellDelegate {
 			number = models[indexPath.row].0(numOfDices)
 		}
 		
-        let message = "Drawn " + String(number)
+        let message = NSLocalizedString("Drawn", comment: "") + " " + String(number)
         whisper(messege: message)
         
         let action = NSMutableDictionary()

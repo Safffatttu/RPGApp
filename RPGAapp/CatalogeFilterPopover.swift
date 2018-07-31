@@ -79,8 +79,10 @@ class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeFilterStepper", for: indexPath) as! catalogeFilterStepper
             
             cell.delegate = self as filterCellDelegate
-            
-            cell.nameLabel.text = keys[indexPath.row] + " " + String(format: "%g", filter[keys[indexPath.row]]!!)
+			
+			let cellKey = keys[indexPath.row]
+			let localizedCellName = NSLocalizedString(cellKey, comment: "")
+            cell.nameLabel.text = localizedCellName + " " + String(format: "%g", filter[cellKey]!!)
             
             let items = Load.items()
             
@@ -95,15 +97,17 @@ class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
             cell.stepper.maximumValue = maxRarity
             cell.stepper.minimumValue = minRarity
             
-            cell.stepper.value = filter[keys[indexPath.row]]!!
+            cell.stepper.value = filter[cellKey]!!
             
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeFilterSlider", for: indexPath) as! catalogeFilterSlider
         
             cell.delegate = self as filterCellDelegate
-            
-            cell.nameLabel.text = keys[indexPath.row] + " " + String(format: "%g", filter[keys[indexPath.row]]!!)
+			
+			let cellKey = keys[indexPath.row]
+			let localizedCellName = NSLocalizedString(cellKey, comment: "")
+            cell.nameLabel.text = localizedCellName + " " + String(format: "%g", filter[cellKey]!!)
             
             if (keys[indexPath.row].contains("Price")){
                 let items = Load.items()
@@ -119,7 +123,6 @@ class CatalogeFilterPopover: UITableViewController, filterCellDelegate {
                 
                 cell.slider.maximumValue = Float(maxPrice)
                 cell.slider.minimumValue = Float(minPrice)
-                print(cell.slider.maximumValue)
             }
             cell.slider.setValue(Float(filter[keys[indexPath.row]]!!), animated: true)
 

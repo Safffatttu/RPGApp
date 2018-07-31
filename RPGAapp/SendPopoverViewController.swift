@@ -62,7 +62,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
             cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
         }
         else{
-            cell.playerName.text = "No characters"
+            cell.playerName.text = NSLocalizedString("No characters", comment: "")
             cell.sendButton.isHidden = true
         }
         return cell

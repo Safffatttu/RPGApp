@@ -74,9 +74,9 @@ class TeamViewCell: UICollectionViewCell {
 		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
 		
-		abilityLabel.text = "Abilities"
-		equipmentLabel.text = "Equipment"
-		moneyLabel.text = "Money"
+		abilityLabel.text = NSLocalizedString("Abilities", comment: "")
+		equipmentLabel.text = NSLocalizedString("Equipment", comment: "")
+		moneyLabel.text = NSLocalizedString("Money", comment: "")
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(modifiedAbility), name: .modifiedAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
@@ -92,15 +92,15 @@ class TeamViewCell: UICollectionViewCell {
 	
 	func reloadLabels(){
 		if let name = character.name{
-			nameLabel.text = "Name: \(name)"
+			nameLabel.text = NSLocalizedString("Name", comment: "") + ": \(name)"
 		}
 		
 		if let race = character.race{
-			raceLabel.text = "Race: \(race)"
+			raceLabel.text = NSLocalizedString("Character", comment: "") + ": \(race)"
 		}
 		
 		if let profession = character.profession{
-			professionLabel.text = "Profession \(profession)"
+			professionLabel.text = NSLocalizedString("Profession", comment: "") + ": \(profession)"
 		}
 		
 		moneyTextField.text = showPrice(character.money)
@@ -127,9 +127,9 @@ class TeamViewCell: UICollectionViewCell {
 	
 	func setVisibilityLabel(){
 		if let visibility = character.visibility{
-			visibilityLabel.text = "Visibility: \(visibility.name!)"
+			visibilityLabel.text = NSLocalizedString("Profession", comment: "") + ": \(visibility.name!)"
 		}else{
-			visibilityLabel.text = "Always visible"
+			visibilityLabel.text = NSLocalizedString("Always visible", comment: "")
 		}
 	}
 	
@@ -150,9 +150,11 @@ class TeamViewCell: UICollectionViewCell {
 	}
 	
 	@IBAction func removeCharacter() {
-		let alert = UIAlertController(title: "Are you sure you want to remove character?", message: "", preferredStyle: .alert)
+		let alertTitle = NSLocalizedString("Are you sure you want to remove character?", comment: "")
+		let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .alert)
 		
-		let alertYes = UIAlertAction(title: "Yes", style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
+		let localizedYes = NSLocalizedString("Yes", comment: "")
+		let alertYes = UIAlertAction(title: localizedYes, style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
 			let context = CoreDataStack.managedObjectContext
 			
 			let characterId = self.character.id
@@ -176,7 +178,8 @@ class TeamViewCell: UICollectionViewCell {
 			PackageService.pack.send(action)
 		})
 		
-		let alertNo = UIAlertAction(title: "No", style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
+		let localizedNo = NSLocalizedString("No", comment: "")
+		let alertNo = UIAlertAction(title: localizedNo, style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
 			self.equipmentTable.backgroundColor = .red
 			self.abilityTable.backgroundColor = .red
 			self.backgroundColor = .red

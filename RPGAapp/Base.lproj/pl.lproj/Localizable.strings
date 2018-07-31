@@ -5,3 +5,124 @@
   Created by Jakub on 30.07.2018.
 
 */
+
+"Cataloge" = "Katalog";
+"TeamView" = "Widok drużyny";
+"Map" = "Mapa";
+"Draw Items" = "Losowanie przedmiotów";
+"Packages" = "Paczki";
+"Dice" = "Kostki";
+"Setting" = "Ustawienia";
+
+"Custom draw presets" = "Własne ustawienia losowania";
+"All items" = "Wszystkie przedmioty";
+"Whole category " = "Cała kategoria ";
+"Preset editor" = "Edytor ustawień";
+"Missing price" = "Brak ceny";
+"Have not draw items yet" = "Jeszcze nie wylosowano przedmiotów";
+
+"Number of items" = "Liczba przedmiotów";
+"Minimal rarity" = "Minimalna rzadkość";
+"Maximal rarity" = "Minimalna rzadkość";
+"Amount" = "Ilość";
+
+"D" = "K";
+"Drawn" = "Wylosowano";
+
+"Abilities" = "Zdolności";
+"Equipment" = "Ekwipunek";
+"Money" = "Pieniądze";
+"Race" = "Rasa";
+"Profession" = "Profesja";
+"Visibility" = "Widoczność";
+"Always visable" = "Zawsze widoczny";
+"Are you sure you want to remove character?" = "Na pewno chcesz usunąć postać?";
+"Yes" = "Tak";
+"No" = "Nie";
+
+"Health" = "Zdrowie";
+"Name" = "Imie";
+"Select player texture" = "Wybierz teksturę postaci";
+"Create character" = "Utwórz postać";
+"Create new character" = "Utwórz nową postać";
+"Edit character" = "Edytuj postać";
+"Dismiss changes" = "Usuń zmiany";
+
+"Auto hide menu" = "Automatycznie chowaj menu";
+"Show price" = "Pokaż ceny";
+"Dodawaj do listy wylosowanych" = "Dodawaj do listy wylosowanych";
+"Schowaj menu pakietów" = "Ukryj menu pakietów";
+"sessionIsActive" = "Sessja jest aktywna";
+"syncSessionRemoval" = "Zsynchronizuj usuwanie sesji";
+
+"Settings" = "Ustawienia";
+"Sessions" = "Sesje";
+"Session" = "Sesja";
+"Currencies" = "Waluty";
+"Visibilities" = "Widoczności";
+"Sync item database" = "Zsynchronizuj bazę przedmiotów";
+"New session" = "Nowa sesja";
+"Add" = "Dodaj";
+"New Currency" = "Nowa waluta";
+"Create" = "Utwórz";
+"New visibility" = "Nowa widoczność";
+"Do you want to change session" = "Na pewno chcesz zmienić sesję?";
+"Delete" = "Usuń";
+"Do you want to delete this session?" = "Na pewno chcesz usunąć tą sesję";
+"Send" = "Wyślij";
+"Send session" = "Wyślij sesję";
+"Share" = "Udostępnij sesję";
+"Remove" = "Usuń";
+
+"Global rate" = "Kurs";
+"Add new SubCurrency" = "Dodaj nową podwalutę";
+"Create new currency" = "Utwórz nową walutę";
+"Edit currency" = "Edytuj walutę";
+"Rate" = "Stosunek";
+
+"Search in description" = "Szukaj w opisach";
+"Search in category name" = "Szukaj w nazwach kategori";
+"Search in sub category name" = "Szukaj w nazwach podkategorii";
+"Search by price" = "Szukaj według ceny";
+"Search by atribute name" = "Szukaj według atrybutów";
+
+"Sort by name" = "Sortuj według nazwy";
+"Sort by rarity" = "Sortuj według rzadkości";
+"Sort by price" = "Sortuj według ceny";
+
+"Create item" = "Stwórz przedmiot";
+
+"minRarity" = "Minimalna rzadkość";
+"maxRarity" = "Maksymalna rzadkość";
+"minPrice" = "Minimalna cena";
+"maxPrice" = "Maksymalna cena";
+
+"Share item" = "Udostępnij przedmiot";
+
+"Subcategory" = "Podkategoria";
+"Category" = "Kategoria";
+"Description" = "Opis";
+"Price" = "Cena";
+"Rarity" = "Rzadkość";
+"Quantity" = "Ilość";
+
+"Create new item" = "Utwórz nowy przedmiot";
+"Edit item" = "Edytuj przedmiot";
+"No atributes" = "Brak atyrybutów";
+
+"No characters" = "Brak postaci";
+
+"Package nr." = "Paczka nr.";
+
+"Search results" = "Wyniki wyszukiwania ";
+"Edit" = "Edytuj";
+"Number Of Dices" = "Liczba kości";
+
+"Junk" = "Rupieć";
+"Common" = "Pospolity";
+"Rare" = "Rzadki";
+"Legendary" = "Legendarny";
+
+"Added new character" = "Dodano nową postać";
+"Lost connection with" = "Utracono połączenie z";
+"Reconneced with" = "Ponownie połączono z";

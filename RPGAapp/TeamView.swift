@@ -24,7 +24,8 @@ class TeamView: UICollectionViewController {
     override func viewDidLoad() {
 		self.diffCalculator = SingleSectionCollectionViewDiffCalculator(collectionView: self.collectionView, initialItems: team, sectionIndex: 0)
 		
-        let addButton =  UIBarButtonItem.init(title: "Add", style: .plain, target: self, action: #selector(addCharacter(_:)))
+		let buttonLable = NSLocalizedString("Add", comment: "")
+        let addButton =  UIBarButtonItem.init(title: buttonLable, style: .plain, target: self, action: #selector(addCharacter(_:)))
         self.navigationItem.rightBarButtonItem = addButton
 		
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)

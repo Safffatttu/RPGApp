@@ -60,14 +60,14 @@ class RandomItemMenu: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if drawSettings.count > 0{
             if section == 0{
-                return "Custom draw presets"
+                return NSLocalizedString("Custom draw presets", comment: "")
             }else if section == 1{
-                return "All items"
+                return NSLocalizedString("All items", comment: "")
             }else{
                 return categories[section-2].name
             }
         }else if section == 0{
-            return "All items"
+            return NSLocalizedString("All items", comment: "")
         }else{
             return categories[section-1].name
         }
@@ -100,12 +100,12 @@ class RandomItemMenu: UITableViewController {
         let cellName: String
         
         if section == -1{
-            cell?.textLabel?.text = "All items"
+            cell?.textLabel?.text = NSLocalizedString("All items", comment: "")
             return cell!
         }
         
         if indexPath.row == 0{
-            cellName = "Whole category " + categories[section].name!
+            cellName = NSLocalizedString("Whole category", comment: "") + " " + categories[section].name!
             cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
         }else{
             cell?.textLabel?.font = UIFont.systemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
@@ -145,19 +145,19 @@ class RandomItemMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: .normal, title: "Edytuj") { (action, path) in
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, path) in
             let edditDraw = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor") as! UINavigationController
             
             edditDraw.modalPresentationStyle = .pageSheet
             
             (edditDraw.viewControllers.first as! EditDrawSetting).setting = self.drawSettings[indexPath.row]
             (edditDraw.viewControllers.first as! EditDrawSetting).editingMode = true
-            (edditDraw.viewControllers.first as! EditDrawSetting).title = "Preset Editor"
+			(edditDraw.viewControllers.first as! EditDrawSetting).title = NSLocalizedString("Preset Editor", comment: "")
             self.present(edditDraw, animated: true, completion: nil)
         }
         editAction.backgroundColor = .blue
         
-        let deleteAction = UITableViewRowAction(style: .normal, title: "Usuń") { (rowAction, indexPath) in
+        let deleteAction = UITableViewRowAction(style: .normal, title: "Remove") { (rowAction, indexPath) in
             CoreDataStack.managedObjectContext.delete(self.drawSettings[indexPath.row])
             self.drawSettings.remove(at: indexPath.row)
             CoreDataStack.saveContext()

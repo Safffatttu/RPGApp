@@ -48,7 +48,7 @@ class NewCharacterForm: FormViewController {
 	override func viewDidLoad() {
 		
 		let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-			$0.titleLabel.text = "Name"
+			$0.titleLabel.text = NSLocalizedString("Name", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.name = $0
 			}.configure{
@@ -56,7 +56,7 @@ class NewCharacterForm: FormViewController {
 		}
 		
 		let raceRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-			$0.titleLabel.text = "Race"
+			$0.titleLabel.text = NSLocalizedString("Race", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.race = $0
 			}.configure{
@@ -64,7 +64,7 @@ class NewCharacterForm: FormViewController {
 		}
 		
 		let professionRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-			$0.titleLabel.text = "Profession"
+			$0.titleLabel.text = NSLocalizedString("Profession", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.profession = $0
 			}.configure{
@@ -72,7 +72,7 @@ class NewCharacterForm: FormViewController {
 		}
 		
 		let healthRow = StepperRowFormer<FormStepperCell>(){
-			$0.titleLabel.text = "Health"
+			$0.titleLabel.text = NSLocalizedString("Health", comment: "")
 			$0.stepper.maximumValue = 100000000
 			$0.stepper.minimumValue = 0
 			}.onValueChanged{[unowned self] in
@@ -83,7 +83,7 @@ class NewCharacterForm: FormViewController {
 		
 		let selectImageRow = LabelRowFormer<FormLabelCell>()
 			.configure{
-				$0.text = "Select player texture"
+				$0.text = NSLocalizedString("Select player texture", comment: "")
 			}.onSelected{ _ in
 				self.imagePicker.delegate = self
 				self.imagePicker.sourceType = .photoLibrary
@@ -106,7 +106,7 @@ class NewCharacterForm: FormViewController {
 		
 		let header = LabelViewFormer<FormLabelHeaderView>()
 			.configure{
-				$0.text = "Create character"
+				$0.text = NSLocalizedString("Create character", comment: "")
 		}
 		
 		let section = SectionFormer(rowFormers: [nameRow, raceRow, professionRow, healthRow, selectImageRow, imageRow])
@@ -115,9 +115,9 @@ class NewCharacterForm: FormViewController {
 		let createCharacterRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
 			.configure{
 				if character == nil{
-					$0.text = "Create new character"
+					$0.text = NSLocalizedString("Create new character", comment: "")
 				}else{
-					$0.text = "Edit character"
+					$0.text = NSLocalizedString("Edit character", comment: "")
 				}
 			}.onSelected{_ in
 				self.addCharacter()
@@ -126,7 +126,7 @@ class NewCharacterForm: FormViewController {
 		let dismissRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
 			$0.centerTextLabel.textColor = .red
 			}.configure{
-				$0.text	= "Dismiss changes"
+				$0.text	= NSLocalizedString("Dismiss changes", comment: "")
 			}.onSelected{_ in
 				self.dismissView()
 		}

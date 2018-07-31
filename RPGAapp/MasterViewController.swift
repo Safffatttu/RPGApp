@@ -11,14 +11,13 @@ import Foundation
 
 class MasterViewController: UITableViewController {
     
-    var menuItems = [("Cataloge"            ,"showCatalogeView","showCatalogeDetailView"),
-					 ("TeamView"            ,"showTeamView", ""),
-                     ("Map"                 ,"showMap", ""),
-                     ("Draw Item"           ,"showRandomItemView","showRandomItemDetailView"),
-					 ("Packages"            ,"showPackageViewer",""),
-					 ("Dice"                ,"showRNG", ""),
-					 ("Settings"            ,"showSettings", ""),
-		
+    var menuItems = [(NSLocalizedString("Cataloge"  ,comment: "") ,"showCatalogeView","showCatalogeDetailView"),
+                     (NSLocalizedString("TeamView"  ,comment: "") ,"showTeamView", ""),
+                     (NSLocalizedString("Map"       ,comment: "") ,"showMap", ""),
+                     (NSLocalizedString("Draw Items",comment: "") ,"showRandomItemView","showRandomItemDetailView"),
+					 (NSLocalizedString("Packages"  ,comment: "") ,"showPackageViewer",""),
+					 (NSLocalizedString("Dice"      ,comment: "") ,"showRNG", ""),
+					 (NSLocalizedString("Settings"  ,comment: "") ,"showSettings", "")
 	]
     
     override func viewDidLoad() {
@@ -42,6 +41,7 @@ class MasterViewController: UITableViewController {
                 self.splitViewController?.preferredDisplayMode = .primaryHidden
             }
         }
+		
     }
 
     // MARK: - Table View
@@ -63,7 +63,6 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let segue = menuItems[indexPath.row]
-		
 		self.performSegue(withIdentifier: segue.1, sender: self)
 		
 		if segue.2 != ""{

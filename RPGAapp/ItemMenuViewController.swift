@@ -11,7 +11,10 @@ import UIKit
 
 class ItemMenu: UITableViewController {
 
-    let itemMenuItems = [("Katalog","showCatalogeView","showCatalogeDetailView"),("Losowanie Przedmiotu","showRandomItemView","showRandomItemDetailView"),("Handlarze","showHandlarzeView","showHandlarzeDetailView"),("Paczki","showPackageViewer","")]
+    let itemMenuItems = [("Katalog","showCatalogeView","showCatalogeDetailView"),
+                         ("Losowanie Przedmiotu","showRandomItemView","showRandomItemDetailView"),
+                         ("Handlarze","showHandlarzeView","showHandlarzeDetailView"),
+                         ("Paczki","showPackageViewer","")]
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -91,7 +91,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
                 }
             }
             else {
-                priceToShow = "Missing price"
+                priceToShow = NSLocalizedString("Missing price", comment: "")
                 print(cellItem)
             }
             cell.priceLabel.text = priceToShow
@@ -117,7 +117,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             
         }
         else{
-            cell.nameLabel?.text = "Have not draw items yet"
+            cell.nameLabel?.text = NSLocalizedString("Have not draw items yet", comment: "")
             cell.priceLabel?.text = ""
             
             cell.sendButton.isHidden = true
