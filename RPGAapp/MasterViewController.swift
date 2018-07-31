@@ -19,7 +19,9 @@ class MasterViewController: UITableViewController {
 					 (NSLocalizedString("Dice"      ,comment: "") ,"showRNG", ""),
 					 (NSLocalizedString("Settings"  ,comment: "") ,"showSettings", "")
 	]
-    
+	
+	static var currentDetail: String = ""
+	
     override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible
     }
@@ -65,8 +67,11 @@ class MasterViewController: UITableViewController {
 		let segue = menuItems[indexPath.row]
 		self.performSegue(withIdentifier: segue.1, sender: self)
 		
-		if segue.2 != ""{
+		if segue.2 != "" && segue.2	!= MasterViewController.currentDetail{
 			self.performSegue(withIdentifier: segue.2, sender: self)
+			MasterViewController.currentDetail = segue.2
+		}else{
+			MasterViewController.currentDetail = segue.1
 		}
     }
 }
