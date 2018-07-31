@@ -28,6 +28,8 @@ class ItemDrawManager{
 		
 		let numberOf: Int = 10
 		
+		lastDrawSetting = using
+		
 		if let drawSetting = using as? DrawSetting{
 			
 			let lists = listOfListToDrawFrom(drawSetting)
