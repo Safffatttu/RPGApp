@@ -53,6 +53,18 @@ class MapScene: SKScene{
 		self.camera = cam
 		self.addChild(cam)
 		
+		let background = SKSpriteNode(imageNamed: "oldBookPaper")
+			
+		let xScaleFactor = self.size.width  / background.size.width
+		let yScaleFactor = self.size.height / background.size.height
+		
+		let backgroundScale = [xScaleFactor, yScaleFactor].max()
+		
+		background.setScale(backgroundScale!)
+		background.zPosition = -2
+		
+		self.camera?.addChild(background)
+		
 		map = Load.currentMap(session: Load.currentSession())
 		
 		if let backgroundTexture = map.background{
