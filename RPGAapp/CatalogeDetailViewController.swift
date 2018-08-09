@@ -290,9 +290,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK: Cell Delegates
     
     func addToPackageButton(_ sender: UIButton){
-        if !sessionIsActive(){
-            return
-        }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
         let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
@@ -341,9 +338,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func sendItemButton(_ sender: UIButton){
-        if !sessionIsActive(){
-            return
-        }
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
         let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))

@@ -586,7 +586,6 @@ class ActionDelegate: PackageServiceDelegate{
     func lost(_ peer: MCPeerID) {
         let message = NSLocalizedString("Lost connection with", comment: "") + " " + peer.displayName
         whisper(messege: message)
-        UserDefaults.standard.set(false, forKey: "sessionIsActive")
     }
     
     func found(_ peer: MCPeerID) {
@@ -603,9 +602,7 @@ class ActionDelegate: PackageServiceDelegate{
             
             print(devices)
             print(sessionDevices as Any)
-            if sessionDevices != nil && sessionDevices! == devices && devices.count > 0{
-
-                
+            if sessionDevices != nil && sessionDevices! == devices && devices.count > 0{               
                 UserDefaults.standard.set(true, forKey: "sessionIsActive")
             }else{
                 let message = NSLocalizedString("Reconneced with", comment: "") + " " + peer.displayName

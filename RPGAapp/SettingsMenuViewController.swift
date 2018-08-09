@@ -42,7 +42,7 @@ class settingButtonCell: UITableViewCell{
     @IBOutlet weak var settingButton: UIButton!
 }
 
-let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false, "Schowaj menu pakietów" : true, "sessionIsActive": true, "syncSessionRemoval": false]
+let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do listy wylosowanych" : false, "Schowaj menu pakietów" : true, "syncSessionRemoval": false]
 
 class SettingMenu: UITableViewController {
 	

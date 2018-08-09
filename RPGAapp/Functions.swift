@@ -269,18 +269,6 @@ func whisper(messege: String){
     Whisper.show(whistle: murmur, action: .show(3))
 }
 
-func sessionIsActive(show: Bool = true) -> Bool{
-    return true
-    let active = UserDefaults.standard.bool(forKey: "sessionIsActive")
-    
-    if !active && show{
-        let message = "Sesja nie jest aktywna"
-        whisper(messege: message)
-    }
-    
-    return active
-}
-
 func createTempSubCategory(with name: String = "Temp") -> SubCategory {
     let context = CoreDataStack.managedObjectContext
     

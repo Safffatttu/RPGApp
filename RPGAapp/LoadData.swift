@@ -151,9 +151,7 @@ public struct Load {
 			
 			var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
 			devices.append(UIDevice.current.name)
-			
-			UserDefaults.standard.set(true, forKey: "sessionIsActive")
-			
+						
 			let action = NSMutableDictionary()
 			let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
 			
