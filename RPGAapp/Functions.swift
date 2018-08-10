@@ -435,6 +435,8 @@ extension NSSortDescriptor{
     static let sortItemHandlerByCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.category), ascending: true)
     static let sortItemHandlerBySubCategory = NSSortDescriptor(key: #keyPath(ItemHandler.item.subCategory), ascending: true)
     static let sortItemHandlerByName = NSSortDescriptor(key: #keyPath(ItemHandler.item.name), ascending: true)
+	
+	static let sortItemAtributeByName = NSSortDescriptor(key: #keyPath(ItemAtribute.name), ascending: true)
     
     static let sortSubCategoryByName = NSSortDescriptor(key: #keyPath(SubCategory.name), ascending: true)
     static let sortSubCategoryByCategory = NSSortDescriptor(key: #keyPath(SubCategory.category), ascending: true)
@@ -451,6 +453,8 @@ extension NSSortDescriptor{
 	static let sortAbilityByName = NSSortDescriptor(key: #keyPath(Ability.name), ascending: true)
 	
 	static let sortSubSettingByName = NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)
+	
+	static let sortDrawSettingByName = NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)
 	
 }
 

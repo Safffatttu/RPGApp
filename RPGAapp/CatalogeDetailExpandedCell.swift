@@ -48,8 +48,7 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 			atributeTable.delegate = self
 			atributeHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: CoreDataStack.managedObjectContext) as! ItemAtributeHandler
 			
-			let sortAtributes = NSSortDescriptor(key: #keyPath(ItemAtribute.name), ascending: true)
-			atributes = item?.itemAtribute?.sortedArray(using: [sortAtributes]) as! [ItemAtribute]
+			atributes = item?.itemAtribute?.sortedArray(using: [.sortItemAtributeByName]) as! [ItemAtribute]
 			
 			if atributes != nil{
 				for cellNum in 0...tableView(atributeTable, numberOfRowsInSection: 0){

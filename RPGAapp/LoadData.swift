@@ -215,7 +215,7 @@ public struct Load {
         var drawSettings: [DrawSetting] = []
         let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
         
-        drawSettingsFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(DrawSetting.name), ascending: true)]
+        drawSettingsFetch.sortDescriptors = [.sortDrawSettingByName]
         
         do{
             drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
