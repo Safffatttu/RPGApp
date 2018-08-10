@@ -4,35 +4,45 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FontAwesome.swift-FontAwesome.swift.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>FontAwesome.swift.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>Former.xcscheme</key>
+		<key>BetweenKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>Dwifft.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>FontAwesome.swift-FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Former.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>Pods-RPGAapp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Popover.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Whisper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -102,6 +112,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B881263F5FBF1212B32FA2AABEFFB1CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BDA3C6E3850F6D055331CF34E864EEC8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C7FC973D599691CFFC60C1CBFBEC9439</key>
 		<dict>
 			<key>primary</key>
@@ -117,7 +137,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E21D933B15F2DDB0ECC03D0022D8B4B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E62E61B56A7181DDE66FC6DA355268F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3EBDE9B2F7525B0503CA4BA7C6638F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

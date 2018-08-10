@@ -26,8 +26,6 @@
 		3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */; };
 		3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */; };
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
-		3B3D3CBA1FFAD07B00AA9D0B /* Dwifft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */; };
-		3B3D3CBB1FFAD07B00AA9D0B /* Dwifft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B4582AA20B1F09700A07627 /* CenteredLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4582A920B1F09700A07627 /* CenteredLabelCell.xib */; };
 		3B4582AC20B1F17600A07627 /* CenteredLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4582AB20B1F17600A07627 /* CenteredLabelCell.swift */; };
 		3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48ED6220A9CB2900DAA7CC /* TeamViewCell.swift */; };
@@ -133,20 +131,6 @@
 			remoteInfo = RPGAapp;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		3B3D3CBC1FFAD07B00AA9D0B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				3B3D3CBB1FFAD07B00AA9D0B /* Dwifft.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3B063D5F1F3A21A800B5271C /* RPGAapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGAapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,7 +258,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BFEFA251F570A69008B0C12 /* CoreData.framework in Frameworks */,
-				3B3D3CBA1FFAD07B00AA9D0B /* Dwifft.framework in Frameworks */,
 				12F51BB5C46DBD12E46D0BD5 /* Pods_RPGAapp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,7 +557,6 @@
 				3B063D5C1F3A21A800B5271C /* Frameworks */,
 				AA67172CAE17E32BD0F151D2 /* [CP] Embed Pods Frameworks */,
 				FAA1336C59A3703269C6978F /* [CP] Copy Pods Resources */,
-				3B3D3CBC1FFAD07B00AA9D0B /* Embed Frameworks */,
 				3BFD566D20DDB03900E6F167 /* Run Linter */,
 			);
 			buildRules = (

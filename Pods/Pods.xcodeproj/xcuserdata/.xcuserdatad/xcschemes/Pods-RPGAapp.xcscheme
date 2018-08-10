@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C7FC973D599691CFFC60C1CBFBEC9439'
+               BlueprintIdentifier = 'E21D933B15F2DDB0ECC03D0022D8B4B7'
                BlueprintName = 'Pods-RPGAapp'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods-RPGAapp.framework'>

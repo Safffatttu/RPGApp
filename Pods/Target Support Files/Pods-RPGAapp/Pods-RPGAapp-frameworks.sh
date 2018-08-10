@@ -89,12 +89,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Dwifft/Dwifft.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FontAwesome.swift/FontAwesome_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Former/Former.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Popover/Popover.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Whisper/Whisper.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Dwifft/Dwifft.framework"
   install_framework "$BUILT_PRODUCTS_DIR/FontAwesome.swift/FontAwesome_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Former/Former.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Popover/Popover.framework"

@@ -5,9 +5,6 @@
       location = "group:RPGAapp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Dwifft/Dwifft.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
