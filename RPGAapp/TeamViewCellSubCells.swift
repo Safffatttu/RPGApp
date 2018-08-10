@@ -162,6 +162,7 @@ class characterItemCell: UITableViewCell {
 	var itemHandlerDelegate: CharacterItemCellDelegate!
 	
 	@IBOutlet weak var stepper: UIStepper!
+	@IBOutlet weak var sendButton: UIButton!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -170,9 +171,24 @@ class characterItemCell: UITableViewCell {
 		
 		let removeAbilityLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeItem(_:)))
 		self.contentView.addGestureRecognizer(removeAbilityLongPress)
+		
+		sendButton.setTitle(NSLocalizedString("Send to character", comment: ""), for: .normal)
 	}
 	
-	
+	@IBAction func sendItem(_ sender: UIButton){
+		let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop") as! sendPopover
+		
+		popController.modalPresentationStyle = .popover
+		popController.popoverPresentationController?.sourceView = sender
+		
+		popController.from = character
+		popController.itemHandler = itemHandler
+		
+		let topView = UIApplication.topViewController()
+		
+		topView?.present(popController, animated: true, completion: nil)		
+	}
+
 	@IBAction func valueChanged(_ sender: UIStepper) {
 		
 		itemHandler.count = Int64(sender.value)
