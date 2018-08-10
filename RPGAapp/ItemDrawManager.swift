@@ -61,17 +61,15 @@ class ItemDrawManager{
 
 	func drawItem(items: [Item], numberOf: Int){
 		let weight: Int64
-		var itemsToDraw = items
 		
-		itemsToDraw = items.map{
-			$0.propability = Int64(ItemDrawManager.propabilities[Int($0.rarity) - 1])
-			return $0
+		for item in items{
+			item.propability = Int64(ItemDrawManager.propabilities[Int(item.rarity) - 1])
 		}
 		
-		weight = Int64(itemsToDraw.map{$0.propability}.reduce(0,+))
+		weight = Int64(items.map{$0.propability}.reduce(0,+))
 		
 		for _ in 1...numberOf{
-			let newItem = weightedRandom(items: itemsToDraw, weightTotal: weight)
+			let newItem = weightedRandom(items: items, weightTotal: weight)
 			var itemHandler = ItemDrawManager.randomlySelected.filter({$0.item == newItem}).first
 			
 			itemHandler?.count += 1

@@ -25,7 +25,7 @@ class DrawSettingCell: UITableViewCell, UITableViewDataSource, UITableViewDelega
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "subSettingCell")
-		let cellDrawSubSetting = (drawSetting?.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)])[indexPath.row] as! DrawSubSetting)
+		let cellDrawSubSetting = drawSetting?.subSettings?.sortedArray(using: [.sortSubSettingByName])[indexPath.row] as! DrawSubSetting
 		
 		cell?.textLabel?.text = cellDrawSubSetting.name
 		cell?.detailTextLabel?.text = String(cellDrawSubSetting.itemsToDraw)

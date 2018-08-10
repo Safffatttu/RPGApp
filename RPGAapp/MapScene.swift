@@ -108,7 +108,7 @@ class MapScene: SKScene{
 		let entity = object.0
 		let newPos = object.1
 		
-		guard let sprite = mapThings.filter({$0.0 == entity}).first?.1 else { return }
+		guard let sprite = mapThings.first(where: {$0.0 == entity})?.1 else { return }
 		
 		let moveToAction = SKAction.move(to: newPos, duration: 0.4)
 		

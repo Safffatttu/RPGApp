@@ -184,7 +184,7 @@ class catalogeMenu: UITableViewController {
 			}else{
 				sortModel[indexPath.row].1 = false
 				
-				if sortModel.map({Int($0.1)}).reduce(0, {$0.0 + $0.1!}) == 0{
+				if sortModel.filter({!($0.1)}).count == 0{
 					
 					sortModel[0].1 = true
 					
