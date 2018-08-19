@@ -9,22 +9,30 @@
 import Foundation
 import UIKit
 import CoreData
+import Dwifft
 
 class PackageViewer: UITableViewController {
     
-    var packages: [Package] = Load.packages(usingVisiblitiy: true)
+	var packages: [Package] = Load.packages(usingVisiblitiy: true){
+		didSet{
+			diffCalculator?.rows = packages
+		}
+	}
+	
+	var diffCalculator: SingleSectionTableViewDiffCalculator<Package>?
 	
 	@IBOutlet var packagesTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		diffCalculator = SingleSectionTableViewDiffCalculator(tableView: self.tableView, initialRows: packages, sectionIndex: 0)
+		
         NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .createdPackage, object: nil)
     }
 	
     func reloadPackages(){
         packages = Load.packages()
-        self.tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -32,13 +40,13 @@ class PackageViewer: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return packages.count
+        return (diffCalculator?.rows.count)!
     }
 	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PackageViewerCell") as! PackageViewerCell
 		
-		cell.package = packages[indexPath.row]
+		cell.package = diffCalculator?.rows[indexPath.row]
 		
 		return cell
 	}
@@ -49,7 +57,7 @@ class PackageViewer: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-			let package = packages[indexPath.row]
+			guard let package = diffCalculator?.rows[indexPath.row] else { return }
             let packageId = package.id
             
             CoreDataStack.managedObjectContext.delete(package)
