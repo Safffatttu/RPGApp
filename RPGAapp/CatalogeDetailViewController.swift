@@ -132,7 +132,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
                 var newSubCategoriesList: [(SubCategory,[Item])] = []
                 for sub in Load.itemsForCataloge(){
                     let filteredList = self.filterItemList(sub.1)
-                    newSubCategoriesList.append((sub.0),filteredList)
+					if filteredList.count != 0{
+						newSubCategoriesList.append((sub.0),filteredList)
+					}
                 }
                 
                 DispatchQueue.main.async {
