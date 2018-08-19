@@ -291,14 +291,14 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .createdPackage, object: nil)
 		}else if actionType == .packageDeleted{
-			if let packageId = action.value(forKey: "packageId") as? String{
-				if let package = Load.packages(with: packageId){
-					let session = Load.currentSession()
-					session.removeFromPackages(package)
-					CoreDataStack.saveContext()
-					NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
-				}
-			}
+			guard let packageId = action.value(forKey: "packageId") as? String else { return }
+			guard let package = Load.packages(with: packageId) else { return }
+			
+			CoreDataStack.managedObjectContext.delete(package)
+			
+			CoreDataStack.saveContext()
+			
+			NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
 		}else if actionType == .generatedRandomNumber{
 			let number = action.value(forKey: "number") as! Int
 			let message = NSLocalizedString("Drawn", comment: "") + " " + String(number)
@@ -497,14 +497,21 @@ class ActionDelegate: PackageServiceDelegate{
 				let imageData = action.value(forKey: "imageData") as? NSData
 				
 				let contex = CoreDataStack.managedObjectContext
-				let texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
 				
-				texture.data = imageData!
+				let texture: Texture!
 				
 				if let mapId = action.value(forKey: "mapId") as? String{
 					
 					if let map = Load.map(withId: mapId){
-						map.background = texture
+						
+						if let exisitingTexture = map.background{
+							texture = exisitingTexture
+						}else{
+							texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
+							map.background = texture
+						}
+						
+						texture.data = imageData!
 						
 						DispatchQueue.main.async {
 							NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
@@ -514,15 +521,19 @@ class ActionDelegate: PackageServiceDelegate{
 				}else if let entityId = action.value(forKey: "entityId") as? String{
 					
 					if let entity = Load.mapEntity(withId: entityId){
-						entity.texture = texture
+						
+						if let exisitingTexture = entity.texture{
+							texture = exisitingTexture
+						}else{
+							texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
+							entity.texture = texture
+						}						
 						
 						DispatchQueue.main.async {
 							NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
 						}
 					}
 					
-				}else{
-					contex.delete(texture)
 				}
 				
 				CoreDataStack.saveContext()
