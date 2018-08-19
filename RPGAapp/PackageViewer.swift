@@ -65,8 +65,6 @@ class PackageViewer: UITableViewController {
 			
             packages.remove(at: indexPath.row)
 			
-            tableView.deleteRows(at: [indexPath], with: .left)
-			
             let action = NSMutableDictionary()
             let actionType = NSNumber(value: ActionType.packageDeleted.rawValue)
             
