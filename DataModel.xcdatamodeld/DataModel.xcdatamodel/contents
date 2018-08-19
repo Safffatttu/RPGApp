@@ -19,7 +19,7 @@
         <attribute name="profession" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="abilities" toMany="YES" deletionRule="Cascade" destinationEntity="Ability" inverseName="character" inverseEntity="Ability" syncable="YES"/>
-        <relationship name="equipment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler" inverseName="owner" inverseEntity="ItemHandler" syncable="YES"/>
+        <relationship name="equipment" toMany="YES" deletionRule="Cascade" destinationEntity="ItemHandler" inverseName="owner" inverseEntity="ItemHandler" syncable="YES"/>
         <relationship name="mapRepresentation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="MapEntity" inverseName="character" inverseEntity="MapEntity" syncable="YES"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="characters" inverseEntity="Session" syncable="YES"/>
         <relationship name="visibility" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Visibility" syncable="YES"/>
@@ -154,7 +154,7 @@
     <elements>
         <element name="Ability" positionX="-380" positionY="41" width="128" height="103"/>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
-        <element name="Character" positionX="-567" positionY="90" width="128" height="208"/>
+        <element name="Character" positionX="-567" positionY="90" width="128" height="210"/>
         <element name="Currency" positionX="-1062" positionY="-225" width="128" height="90"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="75"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="150"/>
