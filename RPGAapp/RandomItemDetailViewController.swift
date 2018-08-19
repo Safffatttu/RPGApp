@@ -62,10 +62,6 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         diffCalculator?.rows = diffTable
     }
     
-    override func didReceiveMemoryWarning() {
-        tableView.reloadData()
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell") as! randomItemCell
         
