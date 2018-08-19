@@ -19,6 +19,7 @@ extension ItemHandler {
     @NSManaged public var count: Int64
     @NSManaged public var item: Item?
     @NSManaged public var itemAtributesHandler: NSOrderedSet?
+    @NSManaged public var owner: Character?
 
 }
 

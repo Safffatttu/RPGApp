@@ -254,7 +254,9 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 			
 			cell.itemHandlerDelegate = self
 			
-			cell.textLabel?.text = (cellItem?.item?.name)! + " " + String((cellItem?.count)!)
+			if let name = cellItem?.item?.name, let count = cellItem?.count{
+				cell.textLabel?.text = "\(name) \(count)"
+			}
 			
 			cell.stepper.value = Double((cellItem?.count)!)
 			cell.itemHandler = cellItem

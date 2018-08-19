@@ -85,33 +85,36 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 	func sendActionTrigered(playerNum: Int){
 		guard team.count > 0 && team.count > playerNum else { return }
 		
+		let recipient = team[playerNum]
+		
 		if let from = from{
-			transferItem(playerNum: playerNum, from: from)
+			transferItem(from: from, to: recipient)
 		}else{
-			sendItem(playerNum: playerNum)
+			sendItem(to: recipient)
 		}
 	}
 	
-	func transferItem(playerNum: Int, from: Character){
-		let recipient = team[playerNum]
+	func transferItem(from: Character, to: Character){
 		
-		let itemHandler = self.itemHandler
-
-		addToEquipment(item: (itemHandler?.item!)!, to: recipient)
+		guard let itemHandler = itemHandler else { return }
+		guard let item = itemHandler.item else { return }
 		
-		let itemId = itemHandler?.item?.id
+		addToEquipment(item: item, to: to)
 		
-		itemHandler?.count -= 1
+		itemHandler.count -= 1
 		
-		if (itemHandler?.count)! < 0{
-			from.removeFromEquipment(itemHandler!)
+		var removed = false
+		
+		if itemHandler.count <= 0{
+			from.removeFromEquipment(itemHandler)
+			removed = true
 		}
 		
 		CoreDataStack.saveContext()
 		
 		NotificationCenter.default.post(name: .equipmentChanged, object: nil)
 		
-		dismiss(animated: true)
+		let itemId = item.id
 		
 		let recipientAction = NSMutableDictionary()
 		let recipientActionType = NSNumber(value: ActionType.itemSend.rawValue)
@@ -120,13 +123,14 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		
 		recipientAction.setValue(itemId, forKey: "itemId")
 		recipientAction.setValue(1, forKey: "itemCount")
+		recipientAction.setValue(to.id, forKey: "characterId")
 		
 		PackageService.pack.send(recipientAction)
 		
 		let fromAction = NSMutableDictionary()
 		let fromActionType: NSNumber!
 		
-		if itemHandler == nil{
+		if removed{
 			fromActionType = NSNumber(value: ActionType.itemDeletedFromCharacter.rawValue)
 			
 			fromAction.setValue(itemId, forKey: "itemId")
@@ -138,20 +142,19 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 			fromAction.setValue(itemId, forKey: "itemId")
 			fromAction.setValue(from.id, forKey: "characterId")
 			
-			let count = (recipient.equipment?.first(where: {($0 as! ItemHandler).item?.id == itemId}) as! ItemHandler).count
+			let count = (to.equipment?.first(where: {($0 as? ItemHandler)?.item?.id == itemId}) as? ItemHandler)?.count
 			
 			fromAction.setValue(count, forKey: "count")
-			
 		}
 		
 		fromAction.setValue(fromActionType, forKey: "action")
 		
 		PackageService.pack.send(fromAction)
+		
+		dismiss(animated: true)
 	}
 	
-	func sendItem(playerNum: Int) {
-		let recipient = team[playerNum]
-		
+	func sendItem(to recipient: Character) {
         if let itemToAdd = item {
             addToEquipment(item: itemToAdd, to: recipient)
         }else if let handlerToAdd = itemHandler {

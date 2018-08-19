@@ -193,7 +193,9 @@ class characterItemCell: UITableViewCell {
 		
 		itemHandler.count = Int64(sender.value)
 		
-		self.textLabel?.text = (itemHandler.item?.name)! + " " + String(itemHandler.count)
+		if let name = itemHandler.item?.name{
+			self.textLabel?.text = "\(name) \(itemHandler.count)"
+		}
 		
 		CoreDataStack.saveContext()
 		
@@ -210,7 +212,9 @@ class characterItemCell: UITableViewCell {
 	}
 	
 	func equipmentChanged(){
-		self.textLabel?.text = (itemHandler.item?.name)! + String(itemHandler.count)
+		if let name = itemHandler.item?.name{
+			self.textLabel?.text = "\(name) \(itemHandler.count)"
+		}
 	}
 	
 	func removeItem(_ sender: UILongPressGestureRecognizer){
