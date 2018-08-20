@@ -33,7 +33,8 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     func setDiffTable(){
         diffTable = []
         for han in ItemDrawManager.randomlySelected{
-            let newVal = val(name: (han.item?.name)!, count: han.count)
+			guard let name = han.item?.name else { continue }
+            let newVal = val(name: name, count: han.count)
             diffTable.append(newVal)
         }
     }
