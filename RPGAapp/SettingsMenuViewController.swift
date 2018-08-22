@@ -276,7 +276,7 @@ class SettingMenu: UITableViewController {
 		if indexPath.section == 0 && indexPath.row == settingValues.count{
 			
 			let syncAction = NSMutableDictionary()
-			syncAction.setValue(ActionType.syncItemLists, forKey: "action")
+			syncAction.setValue(ActionType.syncItemLists.rawValue, forKey: "action")
 			
 			let requestAction = NSMutableDictionary()
 			requestAction.setValue(ActionType.requestedItemList.rawValue, forKey: "action")
