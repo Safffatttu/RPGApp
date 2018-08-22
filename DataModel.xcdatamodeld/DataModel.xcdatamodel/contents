@@ -53,7 +53,7 @@
         <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rarity" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category" syncable="YES"/>
-        <relationship name="handelers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ItemHandler" inverseName="item" inverseEntity="ItemHandler" syncable="YES"/>
+        <relationship name="handelers" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ItemHandler" inverseName="item" inverseEntity="ItemHandler" syncable="YES"/>
         <relationship name="itemAtribute" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ItemAtribute" inverseName="item" inverseEntity="ItemAtribute" syncable="YES"/>
         <relationship name="subCategory" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="items" inverseEntity="SubCategory" syncable="YES"/>
     </entity>
@@ -154,18 +154,18 @@
     <elements>
         <element name="Ability" positionX="-380" positionY="41" width="128" height="103"/>
         <element name="Category" positionX="360" positionY="45" width="128" height="90"/>
-        <element name="Character" positionX="-567" positionY="90" width="128" height="210"/>
+        <element name="Character" positionX="-567" positionY="81" width="128" height="210"/>
         <element name="Currency" positionX="-1062" positionY="-225" width="128" height="90"/>
         <element name="DrawSetting" positionX="243" positionY="476" width="128" height="75"/>
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="150"/>
-        <element name="Item" positionX="-9" positionY="-19" width="108" height="240"/>
+        <element name="Item" positionX="-9" positionY="-19" width="108" height="238"/>
         <element name="ItemAtribute" positionX="-18" positionY="261" width="128" height="150"/>
         <element name="ItemAtributeHandler" positionX="-173" positionY="228" width="128" height="60"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="105"/>
         <element name="Map" positionX="-1026" positionY="204" width="128" height="165"/>
         <element name="MapEntity" positionX="-819" positionY="396" width="128" height="135"/>
         <element name="Package" positionX="-452" positionY="-99" width="128" height="118"/>
-        <element name="Session" positionX="-866" positionY="-84" width="128" height="210"/>
+        <element name="Session" positionX="-866" positionY="-84" width="128" height="208"/>
         <element name="Store" positionX="-531" positionY="431" width="126" height="118"/>
         <element name="StoreAvalibleItem" positionX="-378" positionY="359" width="128" height="73"/>
         <element name="StorePurchases" positionX="-387" positionY="557" width="128" height="118"/>
