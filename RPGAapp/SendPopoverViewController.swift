@@ -107,6 +107,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		
 		if itemHandler.count <= 0{
 			from.removeFromEquipment(itemHandler)
+			CoreDataStack.managedObjectContext.delete(itemHandler)
 			removed = true
 		}
 		
@@ -142,9 +143,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 			fromAction.setValue(itemId, forKey: "itemId")
 			fromAction.setValue(from.id, forKey: "characterId")
 			
-			let count = (to.equipment?.first(where: {($0 as? ItemHandler)?.item?.id == itemId}) as? ItemHandler)?.count
-			
-			fromAction.setValue(count, forKey: "count")
+			fromAction.setValue(itemHandler.count, forKey: "itemCount")
 		}
 		
 		fromAction.setValue(fromActionType, forKey: "action")
