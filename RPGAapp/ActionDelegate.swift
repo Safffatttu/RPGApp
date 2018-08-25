@@ -397,7 +397,10 @@ class ActionDelegate: PackageServiceDelegate{
 					contex.delete(session)
 					
 					createSessionUsing(action: action, sender: sender)
+					CoreDataStack.saveContext()
 					
+					NotificationCenter.default.post(name: .sessionReceived, object: nil)
+					NotificationCenter.default.post(name: .reloadTeam, object: nil)
 				})
 				
 				let alertKeep = UIAlertAction(title: "Keep", style: .default, handler: nil)
@@ -406,14 +409,17 @@ class ActionDelegate: PackageServiceDelegate{
 				alert.addAction(alertKeep)
 				
 				let a = UIApplication.topViewController()
-				a?.present(alert, animated: true, completion: nil)
-			}else{
 				
+				a?.present(alert, animated: true, completion: nil)
+				
+			}else{
 				createSessionUsing(action: action, sender: sender)
+				
+				CoreDataStack.saveContext()
+				
+				NotificationCenter.default.post(name: .sessionReceived, object: nil)
+				NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			}
-			
-			NotificationCenter.default.post(name: .sessionReceived, object: nil)
-			
 		}else if actionType == ActionType.itemsRequest{
 			guard let itemsId = action.value(forKey: "itemsId") as? NSArray else { return }
 			let requestId = action.value(forKey: "id")

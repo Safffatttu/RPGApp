@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		PackageService.pack.send(action)
 		
 		NotificationCenter.default.post(name: .sessionReceived, object: nil)
+		NotificationCenter.default.post(name: .reloadTeam, object: nil)
 		
 		return true
 	}
