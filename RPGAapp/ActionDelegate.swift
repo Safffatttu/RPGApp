@@ -570,26 +570,30 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			
 		}else if actionType == ActionType.characterVisibilityChanged{
 			guard let characterId = action.value(forKey: "characterId") as? String else { return }
-			guard let visibilityId = action.value(forKey: "visibilityId") as? String else { return }
-			
 			guard let character = Load.character(with: characterId) else { return }
 			
-			var visibility = Load.visibility(with: visibilityId)
+			if let visibilityId = action.value(forKey: "visibilityId") as? String{
+				var visibility = Load.visibility(with: visibilityId)
+				
+				if visibility == nil{
+					let context = CoreDataStack.managedObjectContext
+					visibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as? Visibility
+					
+					guard let visibilityName = action.value(forKey: "visibilityName") as? String else { return }
+					
+					visibility?.name = visibilityName
+					visibility?.id = visibilityId
+					visibility?.session = Load.currentSession()
+				}
+				
+				character.visibility = visibility
 			
-			if visibility == nil{
-				let context = CoreDataStack.managedObjectContext
-				visibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as? Visibility
-				
-				guard let visibilityName = action.value(forKey: "visibilityName") as? String else { return }
-				
-				visibility?.name = visibilityName
-				visibility?.id = visibilityId
-				visibility?.session = Load.currentSession()
+			}else{
+				character.visibility = nil
 			}
-			
-			character.visibility = visibility
 			
 			CoreDataStack.saveContext()
 			
