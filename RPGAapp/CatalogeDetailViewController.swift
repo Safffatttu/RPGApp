@@ -235,6 +235,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath != expandedCell else {
+			expandedCell = nil
+			tableView.reloadRows(at: [indexPath], with: .automatic)
             return
         }
         
