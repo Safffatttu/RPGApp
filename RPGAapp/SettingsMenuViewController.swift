@@ -562,6 +562,8 @@ extension SettingMenu: settingCellDelegate {
 		
 		CoreDataStack.saveContext()
 		
+		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		
 		let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.visibilityCreated.rawValue)
 		

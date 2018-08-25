@@ -564,6 +564,7 @@ class ActionDelegate: PackageServiceDelegate{
 			CoreDataStack.saveContext()
 			
 			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
+			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 		}else if actionType == ActionType.characterVisibilityChanged{
 			guard let characterId = action.value(forKey: "characterId") as? String else { return }
 			guard let visibilityId = action.value(forKey: "visibilityId") as? String else { return }
