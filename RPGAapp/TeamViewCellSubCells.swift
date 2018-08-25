@@ -85,6 +85,7 @@ class abilityCell: UITableViewCell {
 		}
 		
 		if ability.id == idOfChanged{
+			stepper.value = Double(ability.value)
 			self.textLabel?.text = ability.name + ": " + String(ability.value)
 		}
 	}
@@ -232,6 +233,7 @@ class characterItemCell: UITableViewCell {
 	
 	func equipmentChanged(){
 		if let name = itemHandler.item?.name{
+			stepper.value = Double(itemHandler.count)
 			self.textLabel?.text = "\(name) \(itemHandler.count)"
 		}
 	}
