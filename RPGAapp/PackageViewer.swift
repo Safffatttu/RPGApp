@@ -40,7 +40,11 @@ class PackageViewer: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (diffCalculator?.rows.count)!
+		if let count = diffCalculator?.rows.count{
+			return count
+		}else{
+			return 0
+		}
     }
 	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

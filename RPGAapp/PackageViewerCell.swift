@@ -16,27 +16,42 @@ class PackageViewerCell: UITableViewCell{
 	@IBOutlet var nameLabel: UILabel!
 	@IBOutlet var sendButton: UIButton!
 	
-	var package: Package!{
+	var package: Package?{
 		didSet{
-			items = package.items?.sortedArray(using: [.sortItemHandlerByName]) as! [ItemHandler]
+			guard let it = package?.items?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] else {
+				items = []
+				itemTable.reloadData()
+				return
+			}
+			items = it
 			
-			nameLabel.text = package.name
+			nameLabel.text = package?.name
 			
 			sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 			sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
 		}
 	}
 	
-	var items: [ItemHandler]!
+	var items: [ItemHandler] = []
 	
 	override func awakeFromNib() {
+		super.awakeFromNib()
 		itemTable.dataSource = self
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackage), name: .addedItemToPackage, object: nil)
 	}
 	
+	override func prepareForReuse() {
+		package = nil		
+		super.prepareForReuse()
+	}
+	
+	
 	func reloadPackage(){
-		items = package.items?.sortedArray(using: [.sortItemHandlerByName]) as! [ItemHandler]
+		if let it = package?.items?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler]{
+			items = it
+		}
+		
 		itemTable.reloadData()
 	}
 	
@@ -70,7 +85,12 @@ extension PackageViewerCell: UITableViewDataSource{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "PackageViewerItemCell")!
 		
 		let itemHandler = items[indexPath.row]
-		cell.textLabel?.text = (itemHandler.item?.name)! + ": " + String(describing: itemHandler.count)
+		
+		if let name = itemHandler.item?.name{
+			cell.textLabel?.text = "\(name) \(itemHandler.count)"
+		}else{
+			cell.textLabel?.text = ""
+		}
 		
 		return cell
 	}
