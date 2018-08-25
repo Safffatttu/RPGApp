@@ -50,6 +50,16 @@ class ActionTest: XCTestCase{
 		}
 	}
 	
+	func testLocalAction(){
+		for n in 0...1000 {
+			print("test nr\(n)")
+			
+			guard let randAction = self.actions.random() else { continue }
+			
+			self.ad.receiveLocally(randAction)
+		}
+	}
+	
 	let actions = [ ActionTest.createCharacterAction(),
 					ActionTest.sendItemAction(),
 					ActionTest.createPackgeAction(),
