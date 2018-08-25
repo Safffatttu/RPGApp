@@ -114,11 +114,17 @@ class ActionDelegate: PackageServiceDelegate{
 				newMapEntity.map = Load.currentMap(session: session)
 			}
 			
-			newCharacter.name = action.value(forKey: #keyPath(Character.name)) as? String
-			newCharacter.health = (action.value(forKey: #keyPath(Character.health)) as? Double) ?? 0
-			newCharacter.race = action.value(forKey: #keyPath(Character.race)) as? String
-			newCharacter.id = action.value(forKey: #keyPath(Character.id)) as? String
-			newCharacter.profession = action.value(forKey: #keyPath(Character.profession)) as? String
+			newCharacter.name = action.value(forKey: "name") as? String
+			newCharacter.health = (action.value(forKey: "health") as? Double) ?? 0
+			newCharacter.race = action.value(forKey: "race") as? String
+			newCharacter.id = action.value(forKey: "id") as? String
+			newCharacter.profession = action.value(forKey: "profession") as? String
+			
+			if let visiblityId = action.value(forKey: "visibilityId") as? String{
+				if let visiblity = Load.visibility(with: visiblityId){
+					newCharacter.visibility = visiblity
+				}
+			}
 			
 			CoreDataStack.saveContext()
 			
@@ -127,7 +133,6 @@ class ActionDelegate: PackageServiceDelegate{
 			let localizedNewCharacterString = NSLocalizedString("Added new character", comment: "")
 			whisper(messege: localizedNewCharacterString)
 			
-			return
 		}else if actionType == ActionType.itemAddedToPackge{
 			let itemId = action.value(forKey: "itemId") as? String
 			let itemHandlerId = action.value(forKey: "itemToAdd") as? String

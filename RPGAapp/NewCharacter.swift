@@ -190,11 +190,12 @@ class NewCharacterForm: FormViewController {
 		let actionType: NSNumber = NSNumber(value: ActionType.characterCreated.rawValue)
 		action.setValue(actionType, forKey: "action")
 		
-		action.setValue(newCharacter.name, forKey: #keyPath(Character.name))
-		action.setValue(newCharacter.health, forKey: #keyPath(Character.health))
-		action.setValue(newCharacter.race, forKey: #keyPath(Character.race))
-		action.setValue(newCharacter.id, forKey: #keyPath(Character.id))
-		action.setValue(newCharacter.profession, forKey: #keyPath(Character.profession))
+		action.setValue(newCharacter.name, forKey: "name")
+		action.setValue(newCharacter.health, forKey: "health")
+		action.setValue(newCharacter.race, forKey: "race")
+		action.setValue(newCharacter.id, forKey: "id")
+		action.setValue(newCharacter.profession, forKey: "profession")
+		action.setValue(newCharacter.visibility?.id, forKey: "visiblitiyId")
 		
 		PackageService.pack.send(action)
 		
