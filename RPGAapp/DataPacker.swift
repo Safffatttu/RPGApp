@@ -18,6 +18,18 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	let id = session.id
 	let name = session.name
 	
+	let visibilties = NSMutableArray()
+	
+	for case let visibility as Visibility in session.visibility!{
+		let visibilityDict = NSMutableDictionary()
+		
+		visibilityDict.setValue(visibility.name, forKey: "name")
+		visibilityDict.setValue(visibility.id, forKey: "id")
+		visibilityDict.setValue(visibility.current, forKey: "current")
+		
+		visibilties.add(visibilityDict)
+	}
+	
 	let charactersToSend = NSMutableArray()
 	
 	for case let character as Character in session.characters! {
@@ -27,6 +39,8 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		characterDict.setValue(character.health, forKey: "health")
 		characterDict.setValue(character.profession, forKey: "profession")
 		characterDict.setValue(character.race, forKey: "race")
+		
+		characterDict.setValue(character.visibility?.id, forKey: "visiblityId")
 		
 		let characterItems = NSMutableArray()
 		
@@ -116,6 +130,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	dictionary.setValue(charactersToSend, forKey: "characters")
 	dictionary.setValue(packages, forKey: "packages")
 	dictionary.setValue(maps, forKey: "maps")
+	dictionary.setValue(visibilties, forKey: "visibilties")
 	
 	return dictionary
 }
@@ -131,6 +146,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	guard let allCharactersDict = dictionary.value(forKey: "characters") as? NSArray else { return nil }
 	guard let allPackagesDict = dictionary.value(forKey: "packages") as? NSArray else { return nil }
 	guard let allMapsDict = dictionary.value(forKey: "maps") as? NSArray else { return nil }
+	guard let allVisibilities = dictionary.value(forKey: "visibilties") as? NSArray else { return nil }
 	
 	let context = CoreDataStack.managedObjectContext
 	
@@ -149,6 +165,20 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	let PLN = Load.currencies().first{$0.name == "PLN"}
 	session.currency = PLN
 	
+	for case let visibilityDict as NSDictionary in allVisibilities{
+		guard let visibilityName = visibilityDict.value(forKey: "name") as? String else { continue }
+		guard let visibilityId = visibilityDict.value(forKey: "id") as? String else { continue }
+		guard let visibilityCurrent = visibilityDict.value(forKey: "current") as? Bool else { continue }
+		
+		let newVisibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
+
+		newVisibility.name = visibilityName
+		newVisibility.id = visibilityId
+		newVisibility.current = visibilityCurrent
+		
+		session.addToVisibility(newVisibility)
+	}
+	
 	for case let characterDict as NSDictionary in allCharactersDict{
 		
 		guard let characterName = characterDict.value(forKey: "name") as? String else { continue }
@@ -164,6 +194,12 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		newCharacter.health = characterHealth
 		newCharacter.profession = characterProfession
 		newCharacter.race = characterRace
+		
+		if let visiblity = characterDict.value(forKey: "visiblityId") as? String{
+			if let visiblity = Load.visibility(with: visiblity){
+				newCharacter.visibility = visiblity
+			}
+		}
 		
 		guard let items = characterDict.value(forKey: "items") as? NSArray else { continue }
 		
