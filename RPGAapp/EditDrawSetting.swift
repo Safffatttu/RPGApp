@@ -74,7 +74,7 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == categoriesTable{
-            return categories.count
+            return categories.count + 1
         }else{
             return 1
         }
@@ -82,7 +82,11 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == categoriesTable{
-            return (categories[section].subCategories?.count)! + 1
+			if section == 0{
+				return 1
+			}else{
+				return (categories[section - 1].subCategories?.count)! + 1
+			}
         }else{
             return subSettings.count
         }
@@ -90,24 +94,36 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if tableView == categoriesTable{
-            return categories[section].name
-        }
-        return ""
+			if section == 0{
+				return NSLocalizedString("All items", comment: "")
+			}else{
+				return categories[section - 1].name
+			}
+		}else{
+			return NSLocalizedString("Selected categories", comment: "")
+		}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell?
         if tableView == categoriesTable{
             cell = tableView.dequeueReusableCell(withIdentifier: "categoriesCell")
-            if indexPath.row == 0{
-                cell?.textLabel?.text = NSLocalizedString("Whole category", comment: "") + " " + categories[indexPath.section].name!
-            }else{
-                let cellCategory = categories[indexPath.section]
-                let cellSubCategories = cellCategory.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
-                cell?.textLabel?.text = cellSubCategories[indexPath.row - 1].name
-            }
-            cell?.detailTextLabel?.font = UIFont.fontAwesome(ofSize: CGFloat(20))
-            cell?.detailTextLabel?.text = String.fontAwesomeIcon(name: .send)
+			
+			if indexPath.section == 0{
+				cell?.textLabel?.text = NSLocalizedString("All items", comment: "")
+			}else{
+				if indexPath.row == 0{
+					cell?.textLabel?.text = NSLocalizedString("Whole category", comment: "") + " " + categories[indexPath.section - 1].name!
+				}else{
+					let cellCategory = categories[indexPath.section - 1]
+					let cellSubCategories = cellCategory.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
+					cell?.textLabel?.text = cellSubCategories[indexPath.row - 1].name
+				}
+				
+				cell?.detailTextLabel?.font = UIFont.fontAwesome(ofSize: CGFloat(20))
+				cell?.detailTextLabel?.text = String.fontAwesomeIcon(name: .send)
+			}
+			
         }else{
             cell = tableView.dequeueReusableCell(withIdentifier: "drawSubSettingCell")
             let subSetting = subSettings[indexPath.row]
@@ -123,6 +139,7 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             
             cell?.detailTextLabel?.text = min + max + NSLocalizedString("Amount", comment: "") + ": " + String(subSetting.itemsToDraw)
         }
+		
         return cell!
     }
     
@@ -130,23 +147,28 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         if tableView == categoriesTable{
             let context = CoreDataStack.managedObjectContext
             let subDraw = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
-            if indexPath.row == 0{
-                subDraw.category = categories[indexPath.section]
-                subDraw.name = subDraw.category?.name
-            }else{
-                subDraw.subCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
-                subDraw.name = subDraw.subCategory?.name
-            }
-            
-            if !((numberField.text?.isEmpty)!){
+			
+			if indexPath.section == 0{
+				subDraw.name = NSLocalizedString("All items", comment: "")
+			}else{
+				if indexPath.row == 0{
+					subDraw.category = categories[indexPath.section - 1]
+					subDraw.name = subDraw.category?.name
+				}else{
+					subDraw.subCategory = categories[indexPath.section - 1].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
+					subDraw.name = subDraw.subCategory?.name
+				}
+			}
+			
+			if numberField.text != nil && !(numberField.text?.isEmpty)!{
                 subDraw.itemsToDraw = Int64((numberField?.text)!)!
             }else{
                 subDraw.itemsToDraw = 10
             }
+			
             subDraw.minRarity = Int16(minRaritySlider.value.rounded(.toNearestOrEven))
             subDraw.maxRarity = Int16(maxRaritySlider.value.rounded(.toNearestOrEven))
             setting?.addToSubSettings(subDraw)
-			
 			
 			let newSubSettingIndex = IndexPath(row: subSettings.count, section: 0)
 			
@@ -169,7 +191,6 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
 			let subToRemove = subSettings[indexPath.row]
 			
 			setting?.removeFromSubSettings(subToRemove)
-			
 			subSettings.remove(at: indexPath.row)
 			
 			tableView.deleteRows(at: [indexPath], with: .left)
@@ -180,13 +201,18 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
+		
         return allowedCharacters.isSuperset(of: characterSet)
     }
     
     func done(_ sender: UIBarButtonItem){
+		guard setting?.subSettings?.count != 0 else { return }
+		
         setting?.name = drawSettingNameField.text!
         CoreDataStack.saveContext()
+		
         NotificationCenter.default.post(name: .reloadDrawSettings, object: nil)
+		
         dismiss(animated: true, completion: nil)
     }
     
@@ -194,6 +220,7 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         if !editingMode{
             CoreDataStack.managedObjectContext.delete(setting!)
         }
+		
         dismiss(animated: true, completion: nil)
     }
 }
