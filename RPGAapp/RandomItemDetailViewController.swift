@@ -32,11 +32,16 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     func setDiffTable(){
         diffTable = []
-        for han in ItemDrawManager.randomlySelected{
-			guard let name = han.item?.name else { continue }
-            let newVal = val(name: name, count: han.count)
-            diffTable.append(newVal)
-        }
+		
+		if ItemDrawManager.randomlySelected.count == 0{
+			diffTable = [val(name: "", count: 0)]
+		}else{
+			for han in ItemDrawManager.randomlySelected{
+				guard let name = han.item?.name else { continue }
+				let newVal = val(name: name, count: han.count)
+				diffTable.append(newVal)
+			}
+		}
     }
     
     override func viewDidLoad() {
@@ -122,7 +127,9 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
             cell.redrawButton.isHidden = true
             cell.packageButton.isHidden = true
         }
-    
+		
+		cell.selectionStyle = .none
+		
         return cell
     }
     
