@@ -147,6 +147,10 @@ class TeamViewCell: UICollectionViewCell {
 		}
 		
 		control.insertSegment(withTitle: "Always visable", at: 0, animated: false)
+		
+		if character.visibility == nil{
+			control.selectedSegmentIndex = 0
+		}
 	}
 	
 	@IBAction func removeCharacter() {
