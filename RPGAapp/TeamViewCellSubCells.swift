@@ -89,10 +89,29 @@ class abilityCell: UITableViewCell {
 		}
 	}
 	
+	var removeAbilityCancelled: Bool = false
+	
 	func removeAbility(_ sender: UILongPressGestureRecognizer){
-		
 		switch sender.state {
+		case .changed:
+			removeAbilityCancelled = true
+			
+		case .began:
+			removeAbilityCancelled = false
+			
+			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
+				self.backgroundColor = .red
+			})
+			
 		case .ended:
+			guard !removeAbilityCancelled else {
+				UIView.animate(withDuration: 0.2, animations: {
+					self.backgroundColor = .white
+				})
+				
+				break
+			}
+			
 			let contex = CoreDataStack.managedObjectContext
 			
 			let abilityId = ability.id
@@ -104,7 +123,7 @@ class abilityCell: UITableViewCell {
 			
 			abilityDelgate.modifiedAbility()
 			
-			self.backgroundColor = UIColor.white
+			self.backgroundColor = .white
 			
 			let action = NSMutableDictionary()
 			let actionType = NSNumber(value: ActionType.removeAbility.rawValue)
@@ -116,13 +135,13 @@ class abilityCell: UITableViewCell {
 			
 			PackageService.pack.send(action)
 			
-		case .began:
-			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
-				self.backgroundColor = UIColor.red
-			})
+		case .cancelled:
+			removeAbilityCancelled = true
 			
 		default:
-			self.backgroundColor = UIColor.white
+			UIView.animate(withDuration: 0.2, animations: {
+				self.backgroundColor = .white
+			})
 		}
 	}
 	
@@ -169,8 +188,8 @@ class characterItemCell: UITableViewCell {
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
 		
-		let removeAbilityLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeItem(_:)))
-		self.contentView.addGestureRecognizer(removeAbilityLongPress)
+		let removeItemLongPress = UILongPressGestureRecognizer(target: self, action: #selector(removeItem(_:)))
+		self.contentView.addGestureRecognizer(removeItemLongPress)
 		
 		sendButton.setTitle(NSLocalizedString("Send to character", comment: ""), for: .normal)
 	}
@@ -217,11 +236,30 @@ class characterItemCell: UITableViewCell {
 		}
 	}
 	
+	var removeItemCancelled: Bool = false
+	
 	func removeItem(_ sender: UILongPressGestureRecognizer){
 		switch sender.state {
-		case .ended:
-			let contex = CoreDataStack.managedObjectContext
+		case .changed:
+			removeItemCancelled = true
 			
+		case .began:
+			removeItemCancelled = false
+			
+			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
+				self.backgroundColor = .red
+			})
+			
+		case .ended:
+			guard !removeItemCancelled else {
+				UIView.animate(withDuration: 0.2, animations: {
+					self.backgroundColor = .white
+				})
+				
+				break
+			}
+			
+			let contex = CoreDataStack.managedObjectContext
 			let itemId = itemHandler.item?.id
 			
 			character.removeFromEquipment(itemHandler)
@@ -231,7 +269,7 @@ class characterItemCell: UITableViewCell {
 			
 			itemHandlerDelegate.modifiedItemHandler()
 			
-			self.backgroundColor = UIColor.white
+			self.backgroundColor = .white
 			
 			let action = NSMutableDictionary()
 			let actionType = NSNumber(value: ActionType.itemDeletedFromCharacter.rawValue)
@@ -243,13 +281,15 @@ class characterItemCell: UITableViewCell {
 			
 			PackageService.pack.send(action)
 			
-		case .began:
-			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
-				self.backgroundColor = UIColor.red
-			})
+			removeItemCancelled = false
+			
+		case .cancelled:
+			removeItemCancelled = true
 			
 		default:
-			self.backgroundColor = UIColor.white
+			UIView.animate(withDuration: 0.2, animations: {
+				self.backgroundColor = .white
+			})
 		}
 	}	
 }
