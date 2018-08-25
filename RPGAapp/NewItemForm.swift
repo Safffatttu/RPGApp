@@ -57,44 +57,44 @@ class NewItemForm: FormViewController{
 				$0.text = self.itemName
 		}
 		
-		let subCatergoryRow = InlinePickerRowFormer<FormInlinePickerCell,SubCategory>(){
+		let subCategoryRow = InlinePickerRowFormer<FormInlinePickerCell,SubCategory>(){
 			$0.titleLabel.text = NSLocalizedString("Subcategory", comment: "")
-			}.configure{ row in
-				row.pickerItems = subCategories.map{
+			}.configure{[unowned self] row in
+				row.pickerItems = self.subCategories.map{
 					InlinePickerItem(title: $0.name!, value: $0)
 				}
 				
-				if let index = subCategories.index(of: itemSubCategory){
+				if let index = self.subCategories.index(of: self.itemSubCategory){
 					row.selectedRow = index
 				}
 		}
 		
-		let catergoryRow = InlinePickerRowFormer<FormInlinePickerCell,Category>(){
+		let categoryRow = InlinePickerRowFormer<FormInlinePickerCell,Category>(){
 			$0.titleLabel.text = NSLocalizedString("Category", comment: "")
-			}.configure{ row in
-				row.pickerItems = categories.map({
+			}.configure{[unowned self] row in
+				row.pickerItems = self.categories.map({
 					InlinePickerItem(title: $0.name!, value: $0)
 				})
 				
-				if let index = categories.index(of: itemCategory){
+				if let index = self.categories.index(of: self.itemCategory){
 					row.selectedRow = index
 				}
-			}.onValueChanged{
+			}.onValueChanged{[unowned self] in
 				self.subCategories = $0.value?.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
 
-				subCatergoryRow.configure{ row in
+				subCategoryRow.configure{[unowned self] row in
 					row.pickerItems = self.subCategories.map({
 						InlinePickerItem(title: $0.name!, value: $0)
 					})
 				}
 				
-				subCatergoryRow.update()
+				subCategoryRow.update()
 		}
 		
 		let descriptionRow = TextViewRowFormer<FormTextViewCell>()
-			.configure{
-				if itemDescription != ""{
-					$0.text = itemDescription
+			.configure{[unowned self] in
+				if self.itemDescription != ""{
+					$0.text = self.itemDescription
 				}
 				$0.placeholder = NSLocalizedString("Description", comment: "")
 			}.onTextChanged{[unowned self] in
@@ -103,8 +103,8 @@ class NewItemForm: FormViewController{
 
 		let priceRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
 			$0.titleLabel.text = NSLocalizedString("Price", comment: "")
-			}.configure{
-				$0.text = String(price)
+			}.configure{[unowned self] in
+				$0.text = String(self.price)
 			}.onTextChanged{[unowned self] in
 				if let p = Double($0){
 					self.price = p
@@ -113,17 +113,17 @@ class NewItemForm: FormViewController{
 		
 		let rarityRow = SegmentedRowFormer<FormSegmentedCell>(){
 			$0.titleLabel.text = NSLocalizedString("Rarity", comment: "")
-			}.configure{
+			}.configure{[unowned self] in
 				$0.segmentTitles = rarityName
-				$0.selectedIndex = Int(rarity)
-			}.onSegmentSelected{ r,_ in
+				$0.selectedIndex = Int(self.rarity)
+			}.onSegmentSelected{[unowned self] r,_ in
 				self.rarity = Int16(r)
 		}
 		
 		let quantityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
 			$0.titleLabel.text = NSLocalizedString("Quantity", comment: "")
-			}.configure{
-				$0.text = String(quantity)
+			}.configure{[unowned self] in
+				$0.text = String(self.quantity)
 			}.onTextChanged{[unowned self] in
 				if let q = Int16($0){
 					self.quantity = q
@@ -131,27 +131,27 @@ class NewItemForm: FormViewController{
 		}
 		
 		let header = LabelViewFormer<FormLabelHeaderView>()
-			.configure{
-				if item == nil{
+			.configure{[unowned self] in
+				if self.item == nil{
 					$0.text = NSLocalizedString("Create new item", comment: "")
 				}else{
 					$0.text = NSLocalizedString("Edit item", comment: "")
 				}
 		}
 		
-		let section = SectionFormer(rowFormers: [nameRow, catergoryRow, subCatergoryRow, descriptionRow, priceRow, quantityRow, rarityRow])
+		let section = SectionFormer(rowFormers: [nameRow, categoryRow, subCategoryRow, descriptionRow, priceRow, quantityRow, rarityRow])
 			.set(headerViewFormer: header)
 		
 		former.append(sectionFormer: section)
 		
 		let createItemRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
-			.configure{
-				if item == nil{
+			.configure{[unowned self] in
+				if self.item == nil{
 					$0.text = NSLocalizedString("Create new item", comment: "")
 				}else{
 					$0.text = NSLocalizedString("Edit item", comment: "")
 				}
-			}.onSelected{_ in
+			}.onSelected{[unowned self] _ in
 				self.doneEditing()
 		}
 		
@@ -159,7 +159,7 @@ class NewItemForm: FormViewController{
 				$0.centerTextLabel.textColor = .red
 			}.configure{
 			$0.text	= NSLocalizedString("Dismiss changes", comment: "")
-			}.onSelected{_ in
+			}.onSelected{[unowned self] _ in
 				self.dismissView()
 		}
 	
