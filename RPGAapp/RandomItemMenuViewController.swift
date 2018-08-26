@@ -11,9 +11,7 @@ import UIKit
 import CoreData
 
 class RandomItemMenu: UITableViewController {
-    
-    fileprivate let drawQueue = DispatchQueue(label: "com.SS.RPGAapp")
-    
+	
     var drawSettings: [DrawSetting] = Load.drawSettings()
     var subCategories: [SubCategory] = Load.subCategories()
     var categories: [Category] = Load.categories()
@@ -153,13 +151,23 @@ class RandomItemMenu: UITableViewController {
             (edditDraw.viewControllers.first as! EditDrawSetting).setting = self.drawSettings[indexPath.row]
             (edditDraw.viewControllers.first as! EditDrawSetting).editingMode = true
 			(edditDraw.viewControllers.first as! EditDrawSetting).title = NSLocalizedString("Preset Editor", comment: "")
-            self.present(edditDraw, animated: true, completion: nil)
+			
+			self.present(edditDraw, animated: true, completion: nil)
         }
         editAction.backgroundColor = .blue
         
-        let deleteAction = UITableViewRowAction(style: .normal, title: "Remove") { (rowAction, indexPath) in
-            CoreDataStack.managedObjectContext.delete(self.drawSettings[indexPath.row])
-            self.drawSettings.remove(at: indexPath.row)
+        let deleteAction = UITableViewRowAction(style: .normal, title: "Remove") {[unowned self] (rowAction, indexPath) in
+			let settingToDelete = self.drawSettings[indexPath.row]
+			
+			if (ItemDrawManager.drawManager.lastDrawSetting as? DrawSetting) == settingToDelete{
+				ItemDrawManager.drawManager.lastDrawSetting = nil
+			}
+			
+			self.drawSettings.remove(at: indexPath.row)
+			
+			let context = CoreDataStack.managedObjectContext
+			context.delete(settingToDelete)
+			
             CoreDataStack.saveContext()
             
             if self.drawSettings.count == 0{
@@ -170,6 +178,7 @@ class RandomItemMenu: UITableViewController {
                 tableView.deleteRows(at: [index], with: .automatic)
             }
         }
+		
         deleteAction.backgroundColor = .red
         
         return [deleteAction,editAction]

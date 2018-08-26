@@ -60,13 +60,13 @@ class ItemDrawManager{
 	}
 
 	func drawItem(items: [Item], numberOf: Int){
-		let weight: Int64
-		
 		for item in items{
 			item.propability = Int64(ItemDrawManager.propabilities[Int(item.rarity) - 1])
 		}
 		
-		weight = Int64(items.map{$0.propability}.reduce(0,+))
+		let weight = Int64(items.map{$0.propability}.reduce(0,+))
+		
+		guard weight > 0 else { return }
 		
 		for _ in 1...numberOf{
 			let newItem = weightedRandom(items: items, weightTotal: weight)
@@ -86,7 +86,9 @@ class ItemDrawManager{
 	func listOfListToDrawFrom(_ setting: DrawSetting) -> [([Item], Int)]{
 		var listOfLists: [([Item], Int)] = []
 		
-		let subSettings: [DrawSubSetting] = setting.subSettings?.sortedArray(using: [.sortSubSettingByName]) as! [DrawSubSetting]
+		guard let subSettings: [DrawSubSetting] = setting.subSettings?.sortedArray(using: [.sortSubSettingByName]) as? [DrawSubSetting] else{
+			return []
+		}
 		
 		for setting in subSettings{
 			var itemsToDraw: [Item] = []
@@ -120,8 +122,7 @@ class ItemDrawManager{
 	
 	func reDrawAllItems(){
 		
-		ItemDrawManager.randomlySelected = []
-		
+		ItemDrawManager.randomlySelected = []		
 		drawItems(using: lastDrawSetting)
 		
 	}
