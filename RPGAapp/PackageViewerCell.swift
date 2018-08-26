@@ -91,6 +91,8 @@ extension PackageViewerCell: UITableViewDataSource{
 		}else{
 			cell.textLabel?.text = ""
 		}
+
+		cell.selectionStyle = .none
 		
 		return cell
 	}

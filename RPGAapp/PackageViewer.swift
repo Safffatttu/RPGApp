@@ -51,6 +51,7 @@ class PackageViewer: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PackageViewerCell") as! PackageViewerCell
 		
 		cell.package = diffCalculator?.rows[indexPath.row]
+		cell.selectionStyle = .none
 		
 		return cell
 	}
