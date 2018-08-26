@@ -112,6 +112,9 @@ class ActionDelegate: PackageServiceDelegate{
 				newMapEntity.x = mapEntityPosX
 				newMapEntity.y = mapEntityPosY
 				newMapEntity.map = Load.currentMap(session: session)
+				
+				let localizedNewCharacterString = NSLocalizedString("Added new character", comment: "")
+				whisper(messege: localizedNewCharacterString)
 			}
 			
 			newCharacter.name = action.value(forKey: "name") as? String
@@ -129,9 +132,6 @@ class ActionDelegate: PackageServiceDelegate{
 			CoreDataStack.saveContext()
 			
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
-			
-			let localizedNewCharacterString = NSLocalizedString("Added new character", comment: "")
-			whisper(messege: localizedNewCharacterString)
 			
 		}else if actionType == ActionType.itemAddedToPackge{
 			let itemId = action.value(forKey: "itemId") as? String
