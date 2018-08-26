@@ -63,7 +63,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -73,7 +73,7 @@
       debugXPCServices = "NO"
       debugServiceExtension = "internal"
       allowLocationSimulation = "NO"
-      language = "pl">
+      language = "IDELaunchSchemeLanguageDoubleLocalizedStrings">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
@@ -86,12 +86,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-com.apple.CoreData.SQLDebug 2"
+            argument = "-com.apple.CoreData.SQLDebug 4"
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
+      <DeviceAppData
+         resolvedPath = "../../../../Desktop/com.SS.RPGAapp 2018-08-20 01:52.46.973.xcappdata">
+      </DeviceAppData>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

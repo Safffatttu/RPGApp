@@ -231,10 +231,6 @@ class MapScene: SKScene{
 		selectedNode?.run(SKAction.repeatForever(sequence))
 	}
 	
-	func degToRad(degree: Double) -> CGFloat {
-		return CGFloat(Double(degree) / 180.0 * 3.1415926535)
-	}
-	
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		guard let touch = touches.first else {
 			return
@@ -290,11 +286,6 @@ class MapScene: SKScene{
 	
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-	}
-	
-	
-	override func update(_ currentTime: TimeInterval) {
-		// Called before each frame is rendered
 	}
 	
 	func sendPositionData(node: SKSpriteNode){
