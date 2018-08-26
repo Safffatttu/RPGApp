@@ -47,6 +47,8 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel(_:)))
         
         self.numberField.delegate = self
+		
+		self.navigationController?.title = NSLocalizedString("Preset Editor", comment: "")
         
         if setting == nil{
             let context = CoreDataStack.managedObjectContext

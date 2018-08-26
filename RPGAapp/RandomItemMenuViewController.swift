@@ -144,15 +144,15 @@ class RandomItemMenu: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, path) in
-            let edditDraw = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor") as! UINavigationController
-            
-            edditDraw.modalPresentationStyle = .pageSheet
-            
-            (edditDraw.viewControllers.first as! EditDrawSetting).setting = self.drawSettings[indexPath.row]
-            (edditDraw.viewControllers.first as! EditDrawSetting).editingMode = true
-			(edditDraw.viewControllers.first as! EditDrawSetting).title = NSLocalizedString("Preset Editor", comment: "")
+            let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor") as! UINavigationController
+			let editController = navController.viewControllers.first as! EditDrawSetting
 			
-			self.present(edditDraw, animated: true, completion: nil)
+            navController.modalPresentationStyle = .pageSheet
+            
+            editController.setting = self.drawSettings[indexPath.row]
+            editController.editingMode = true
+			
+			self.present(navController, animated: true, completion: nil)
         }
         editAction.backgroundColor = .blue
         
