@@ -39,6 +39,10 @@ class PackageViewerCell: UITableViewCell{
 		itemTable.dataSource = self
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackage), name: .addedItemToPackage, object: nil)
+		
+		let removeItem = UILongPressGestureRecognizer(target: self, action: #selector(removeItemLongPress))
+		removeItem.delegate = self
+		self.itemTable.addGestureRecognizer(removeItem)
 	}
 	
 	override func prepareForReuse() {
@@ -68,6 +72,83 @@ class PackageViewerCell: UITableViewCell{
 		let topViewController = UIApplication.topViewController()
 		
 		topViewController?.present(popController, animated: true, completion: nil)
+	}
+	
+	var removeItemCancelled: Bool = false
+	var lastCellIndex: IndexPath? = nil
+	
+	func removeItemLongPress(_ sender: UILongPressGestureRecognizer) {
+		let touchPoint = sender.location(in: self.contentView)
+		
+		guard let indexPath = itemTable.indexPathForRow(at: touchPoint) else {
+			guard let index = lastCellIndex else { return }
+			guard let cell = itemTable.cellForRow(at: index) else { return }
+			
+			UIView.animate(withDuration: 0.2, animations: {
+				cell.backgroundColor = .white
+			})
+			
+			return
+		}
+		
+		lastCellIndex = indexPath
+		
+		guard let cell = itemTable.cellForRow(at: indexPath) else { return }
+		
+		switch sender.state {
+		case .changed:
+			removeItemCancelled = true
+			break
+			
+		case .began:
+			removeItemCancelled = false
+			
+			UIView.animate(withDuration: sender.minimumPressDuration, animations: {
+				cell.backgroundColor = .red
+			})
+			break
+			
+		case .ended:
+			guard !removeItemCancelled else {
+				UIView.animate(withDuration: 0.2, animations: {
+					cell.backgroundColor = .white
+				})
+				
+				break
+			}
+			let context = CoreDataStack.managedObjectContext
+			
+			let item = items[indexPath.row]
+			let itemId = item.item?.id
+			
+			package?.removeFromItems(item)
+			
+			context.delete(item)
+			CoreDataStack.saveContext()
+			
+			reloadPackage()
+			
+			cell.backgroundColor = .white
+			
+			let action = NSMutableDictionary()
+			let actionType = NSNumber(value: ActionType.itemDeletedFromPackage.rawValue)
+			
+			action.setValue(actionType, forKey: "action")
+			action.setValue(itemId, forKey: "itemId")
+			action.setValue(package?.id, forKey: "packageId")
+			
+			PackageService.pack.send(action)
+			
+			removeItemCancelled	= false
+			
+		case .cancelled:
+			removeItemCancelled = true
+			
+		default:
+			UIView.animate(withDuration: 0.2, animations: {
+				cell.backgroundColor = .white
+			})
+		}
 	}
 }
 

@@ -175,6 +175,7 @@ enum ActionType: Int {
 	case currencyCreated
 	case visibilityCreated
 	case characterVisibilityChanged
+	case itemDeletedFromPackage
 }
 
 extension Notification.Name{

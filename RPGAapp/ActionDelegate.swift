@@ -599,6 +599,22 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			
+		}else if actionType == ActionType.itemDeletedFromPackage{
+			guard let packageId = action.value(forKey: "packageId") as? String else { return }
+			guard let itemId = action.value(forKey: "itemId") as? String else { return }
+			
+			guard let package = Load.packages(with: packageId) else { return }
+			guard let itemHandlerToRemove = package.items?.first(where: {($0 as! ItemHandler ).item?.id == itemId}) as? ItemHandler else { return }
+			
+			package.removeFromItems(itemHandlerToRemove)
+			
+			let context = CoreDataStack.managedObjectContext
+			context.delete(itemHandlerToRemove)
+			
+			CoreDataStack.saveContext()
+			
+			NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
 		}
     }
 	
