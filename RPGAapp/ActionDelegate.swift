@@ -17,7 +17,7 @@ class ActionDelegate: PackageServiceDelegate{
 	
     func received(_ action: NSMutableDictionary,from sender: MCPeerID) {
 		
-//		print(action)
+		print(action)
 		guard let actionNumber = action.value(forKey: "action") as? Int else { return }
 		guard let actionType = ActionType(rawValue: actionNumber) else { return }
 		let senderName = sender.displayName
@@ -263,19 +263,17 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			sessions.first(where: {$0.id == sessionId})?.current = true
 		}else if actionType == .sessionDeleted{
-			guard UserDefaults.standard.bool(forKey: "syncSessionRemoval") == true else { return }
+			guard UserDefaults.standard.bool(forKey: "syncSessionRemoval") else { return }
 			
 			let sessionId = action.value(forKey: "sessionId") as! String
 			
 			let context = CoreDataStack.managedObjectContext
-			let sessions: [Session] = Load.sessions()
+			guard let session = Load.session(with: sessionId) else { return }
 			
-			if let session = sessions.first(where: {$0.id == sessionId}){
-				let index = sessions.index(of: session)
-				let indexPath = IndexPath(row: index! + 1, section: 1)
-				context.delete(session)
-				NotificationCenter.default.post(name: .sessionDeleted, object: indexPath)
-			}
+			context.delete(session)
+			NotificationCenter.default.post(name: .sessionDeleted, object: nil)
+			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			
 		}else if actionType == .packageCreated{
 			let packageName = action.value(forKey: "packageName") as! String
 			let packageId = action.value(forKey: "packageId") as! String

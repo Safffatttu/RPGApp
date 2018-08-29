@@ -134,9 +134,9 @@ class SettingMenu: UITableViewController {
     }
     
     func sessionDeleted(_ notification: Notification){
-        let index = notification.object as! IndexPath
         sessions = Load.sessions()
-        tableView.deleteRows(at: [index], with: .automatic)
+		let index = IndexSet(integer: 1)
+        tableView.reloadSections(index, with: .automatic)
     }
     
     func connectedDevicesChanged() {
@@ -385,6 +385,8 @@ class SettingMenu: UITableViewController {
 					
 					context.delete(session)
 					CoreDataStack.saveContext()
+					
+					NotificationCenter.default.post(name: .reloadTeam, object: nil)
 					
 					let action = NSMutableDictionary()
 					let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
