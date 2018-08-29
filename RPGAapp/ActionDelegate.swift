@@ -489,7 +489,6 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			PackageService.pack.send(response, to: sender)
 			
-			
 		}else if actionType == ActionType.recievedItemList{
 			let localItemList = Load.items().map{$0.id}
 			
@@ -503,18 +502,17 @@ class ActionDelegate: PackageServiceDelegate{
 			action.setValue(NSArray(array: requestList), forKey: "itemsId")
 			
 			PackageService.pack.send(action, to: sender)
+			
 		}else if actionType == ActionType.sendImage{
-			DispatchQueue.global().async {
-				let imageData = action.value(forKey: "imageData") as? NSData
+				guard let imageData = action.value(forKey: "imageData") as? NSData else { return }
 				
-				let contex = CoreDataStack.managedObjectContext
-				
-				let texture: Texture!
-				
-				if let mapId = action.value(forKey: "mapId") as? String{
+					let texture: Texture
+					let contex = CoreDataStack.managedObjectContext
 					
-					if let map = Load.map(withId: mapId){
+					if let mapId = action.value(forKey: "mapId") as? String{
 						
+						guard let map = Load.map(withId: mapId) else { return }
+							
 						if let exisitingTexture = map.background{
 							texture = exisitingTexture
 						}else{
@@ -522,16 +520,15 @@ class ActionDelegate: PackageServiceDelegate{
 							map.background = texture
 						}
 						
-						texture.data = imageData!
+						texture.data = imageData
 						
-						DispatchQueue.main.async {
-							NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
-						}
-					}
-					
-				}else if let entityId = action.value(forKey: "entityId") as? String{
-					
-					if let entity = Load.mapEntity(withId: entityId){
+						CoreDataStack.saveContext()
+						
+						NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
+						
+					}else if let entityId = action.value(forKey: "entityId") as? String{
+						
+						guard let entity = Load.mapEntity(withId: entityId) else { return }
 						
 						if let exisitingTexture = entity.texture{
 							texture = exisitingTexture
@@ -540,21 +537,20 @@ class ActionDelegate: PackageServiceDelegate{
 							entity.texture = texture
 						}						
 						
-						DispatchQueue.main.async {
-							NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
-						}
+						texture.data = imageData
+						
+						CoreDataStack.saveContext()
+						
+						NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
 					}
-					
-				}
-				
-				CoreDataStack.saveContext()
-			}
+			
 		}else if actionType == ActionType.currencyCreated{
 			guard let currencyData = action.value(forKey: "currencyData") as? NSMutableDictionary else { return }
 
 			_ = unPackCurrency(currencyData: currencyData)
 
 			NotificationCenter.default.post(name: .currencyCreated, object: nil)
+			
 		}else if actionType == ActionType.visibilityCreated{
 			guard let name = action.value(forKey: "name") as? String else { return }
 			guard let id = action.value(forKey: "id") as? String else { return }

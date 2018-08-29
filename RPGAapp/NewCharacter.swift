@@ -42,6 +42,10 @@ class NewCharacterForm: FormViewController {
 			}
 			
 			health = char.health
+			
+			if let textureData = char.mapRepresentation?.texture?.data{
+				textureImage = UIImage(data: textureData as Data)
+			}
 		}
 	}
 	
@@ -199,11 +203,16 @@ class NewCharacterForm: FormViewController {
 		
 		PackageService.pack.send(action)
 		
-		print(textureImage.debugDescription)
-		
 		if let textureImage = textureImage{
-			let textureData = UIImageJPEGRepresentation(textureImage, 0.5)! as NSData
-			let texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			let textureData = UIImageJPEGRepresentation(textureImage, 0.2)! as NSData
+			
+			let texture: Texture!
+			
+			if let exisitingTexture = character?.mapRepresentation?.texture{
+				texture = exisitingTexture
+			}else{
+				texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			}
 			
 			texture.data = textureData
 			
@@ -220,7 +229,6 @@ class NewCharacterForm: FormViewController {
 				textureAction.setValue(textureData, forKey: "imageData")
 				textureAction.setValue((newCharacter.mapRepresentation?.id)!, forKey: "entityId")
 				
-				print(action)
 				PackageService.pack.send(textureAction)
 			}
 		}
@@ -240,12 +248,7 @@ extension NewCharacterForm: UIImagePickerControllerDelegate, UINavigationControl
 		
 		dismiss(animated: true, completion: nil)
 		
-		self.imageRow.image = self.textureImage
 		self.imageRow.update()
 		
-		if let character = character, let textureImage = textureImage{
-			let textureData = UIImagePNGRepresentation(textureImage)
-			character.mapRepresentation?.texture?.data = textureData as NSData?
-		}
 	}
 }

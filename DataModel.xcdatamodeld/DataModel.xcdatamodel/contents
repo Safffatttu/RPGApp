@@ -91,7 +91,7 @@
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="mapRepresentation" inverseEntity="Character" syncable="YES"/>
         <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="entities" inverseEntity="Map" syncable="YES"/>
-        <relationship name="texture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" syncable="YES"/>
+        <relationship name="texture" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Texture" storedInTruthFile="YES" syncable="YES"/>
     </entity>
     <entity name="Package" representedClassName="Package" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
