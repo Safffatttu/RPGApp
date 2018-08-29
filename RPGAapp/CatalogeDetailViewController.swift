@@ -267,6 +267,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		form.item = item
 		
 		form.modalPresentationStyle = .formSheet
+		form.preferredContentSize = CGSize(width: 540, height: 520)
 		
 		self.present(form, animated: true, completion: nil)
     }
