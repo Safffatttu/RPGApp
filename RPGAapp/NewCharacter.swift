@@ -84,7 +84,7 @@ class NewCharacterForm: FormViewController {
 		let selectImageRow = LabelRowFormer<FormLabelCell>()
 			.configure{
 				$0.text = NSLocalizedString("Select player texture", comment: "")
-			}.onSelected{ _ in
+			}.onSelected{[unowned self] _ in
 				self.imagePicker.delegate = self
 				self.imagePicker.sourceType = .photoLibrary
 				self.imagePicker.allowsEditing = true
@@ -94,11 +94,11 @@ class NewCharacterForm: FormViewController {
 		}
 		
 		imageRow = ImageRowFormer<FormImageCell>(instantiateType: .Nib(nibName: "ImageRowCell"))
-			.configure{
-				if let texture = character?.mapRepresentation?.texture{
+			.configure{[unowned self] in
+				if let texture = self.character?.mapRepresentation?.texture{
 					$0.image = UIImage(data: texture.data! as Data)
 				}
-			}.onUpdate{
+			}.onUpdate{[unowned self] in
 				if let texture = self.textureImage{
 					$0.cell._imageView.image = texture
 				}
@@ -113,13 +113,13 @@ class NewCharacterForm: FormViewController {
 			.set(headerViewFormer: header)
 		
 		let createCharacterRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
-			.configure{
-				if character == nil{
+			.configure{[unowned self] in
+				if self.character == nil{
 					$0.text = NSLocalizedString("Create new character", comment: "")
 				}else{
 					$0.text = NSLocalizedString("Edit character", comment: "")
 				}
-			}.onSelected{_ in
+			}.onSelected{[unowned self] _ in
 				self.addCharacter()
 		}
 		
@@ -127,7 +127,7 @@ class NewCharacterForm: FormViewController {
 			$0.centerTextLabel.textColor = .red
 			}.configure{
 				$0.text	= NSLocalizedString("Dismiss changes", comment: "")
-			}.onSelected{_ in
+			}.onSelected{[unowned self] _ in
 				self.dismissView()
 		}
 		
