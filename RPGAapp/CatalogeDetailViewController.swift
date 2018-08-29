@@ -126,60 +126,25 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func reloadFilter(_ notification: Notification){
-        if let newFilter = notification.object as? Dictionary<String, Double?>{
-            DispatchQueue.global(qos: .default).sync {
-                self.filter = newFilter
-                var newSubCategoriesList: [(SubCategory,[Item])] = []
-                for sub in Load.itemsForCataloge(){
-                    let filteredList = self.filterItemList(sub.1)
-					if filteredList.count != 0{
-						newSubCategoriesList.append((sub.0),filteredList)
-					}
-                }
-                
-                DispatchQueue.main.async {
-                    self.items = SectionedValues(newSubCategoriesList)
-                }
-            }
-        }
-    }
-    
-    func filterItemList( _ items: [Item]) -> [Item]{
-        let minRarity = filter["minRarity"]
-        let maxRarity = filter["maxRarity"]
-        let minPrice = filter["minPrice"]
-        let maxPrice = filter["maxPrice"]
-        
-        let itemsToRet = items.filter({
-            $0.rarity >= Int16(minRarity!!) &&
-                $0.rarity <= Int16(maxRarity!!) &&
-                $0.price >= minPrice!! &&
-                $0.price <= maxPrice!!
-        })
-        return itemsToRet
+		guard let newFilter = notification.object as? [String: Double?] else { return }
+
+		DispatchQueue.global(qos: .default).sync {
+			self.filter = newFilter
+			let itemList = FilterHelper.itemList(using: filter)
+			
+			DispatchQueue.main.async {
+				self.items = SectionedValues(itemList)
+			}
+		}
     }
 	
     func goToSection(_ notification: Notification) {
-        guard items.sectionsAndValues.count > 1  else {
-            return
-        }
-        
-        let subCategoryNumber = notification.object as! Int
-        
-        if tableView(self.tableView, numberOfRowsInSection: subCategoryNumber) != 0{
-            let toGo = IndexPath(row: 0, section: subCategoryNumber)
-            tableView.scrollToRow(at: toGo, at: .top, animated: true)
-            
-        }else if subCategoryNumber != 0
-            && tableView(self.tableView, numberOfRowsInSection: subCategoryNumber - 1) != 0{
-            let toGo = IndexPath(row: 0, section: subCategoryNumber - 1)
-            tableView.scrollToRow(at: toGo, at: .top, animated: true)
-            
-        }else if subCategoryNumber != numberOfSections(in: self.tableView)
-            && tableView(self.tableView, numberOfRowsInSection: subCategoryNumber + 1) != 0 {
-            let toGo = IndexPath(row: 0, section: subCategoryNumber + 1)
-            tableView.scrollToRow(at: toGo, at: .top, animated: true)
-        }
+		guard let subCategory = notification.object as? SubCategory else { return }
+		
+		guard let index = items.sectionsAndValues.index(where: {$0.0 == subCategory}) else { return }
+		let indexPath = IndexPath(row: 0, section: index)		
+		
+		tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     //MARK: Table

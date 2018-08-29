@@ -68,6 +68,20 @@ public struct Load {
 		return subCategories
 	}
 	
+	public static func subCategoriesFormCatalogeMenu() -> [(Category, [SubCategory])]{
+		var subCategoryList: [(Category, [SubCategory])] = []
+		
+		let categories = Load.categories()
+		
+		for category in categories{
+			let subCategories = category.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
+			
+			subCategoryList.append((category,subCategories))
+		}
+		
+		return subCategoryList
+	}
+	
     public static func itemsForCataloge() -> [(SubCategory,[Item])] {
 		let subCats = subCategoriesForCataloge()
 		

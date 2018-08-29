@@ -11,10 +11,13 @@ import UIKit
 import CoreData
 
 class catalogeMenu: UITableViewController {
-    
-    var categories: [Category] = Load.categories()
-    var subCategories: [SubCategory] = Load.subCategories()
-    
+	
+	var list: [(Category, [SubCategory])] = Load.subCategoriesFormCatalogeMenu(){
+		didSet{
+			tableView.reloadData()
+		}
+	}
+	
     @IBOutlet weak var searchBar: UISearchBar!
 	
 	var searchMode: Bool = false
@@ -51,11 +54,10 @@ class catalogeMenu: UITableViewController {
     }
     
     func reloadFilter(_ notification: Notification){
-        let newFilter = notification.object as? [String: Double?]
-        if newFilter != nil{
-            filter = newFilter!
-            
-        }
+		guard let newFilter = notification.object as? [String: Double?] else { return }
+
+		filter = newFilter
+		list = FilterHelper.subCategoryList(using: filter)
     }
     
     func setFilters(_ sender: UIBarButtonItem){
@@ -77,7 +79,7 @@ class catalogeMenu: UITableViewController {
 			return 2
 		}
 		
-		return categories.count
+		return list.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,7 +91,7 @@ class catalogeMenu: UITableViewController {
 			}
 		}
 		
-		return (categories[section].subCategories?.count)!
+		return list[section].1.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -122,8 +124,9 @@ class catalogeMenu: UITableViewController {
 			
 				cell?.selectionStyle = .none
 		}else{
-			let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByCategory,.sortSubCategoryByName])[indexPath.row] as! SubCategory
-				cell?.textLabel?.text = cellSubCategory.name?.capitalized
+			let cellSubCategory = list[indexPath.section].1[indexPath.row]
+
+			cell?.textLabel?.text = cellSubCategory.name?.capitalized
 			cell?.accessoryType = .none
 		}
 		
@@ -135,7 +138,7 @@ class catalogeMenu: UITableViewController {
 			return ""
 		}
 		
-		return categories[section].name
+		return list[section].0.name
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -165,11 +168,9 @@ class catalogeMenu: UITableViewController {
 			cell?.accessoryType = .checkmark
 			
 		}else{
-			let cellSubCategory = categories[indexPath.section].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row] as! SubCategory
+			let cellSubCategory = list[indexPath.section].1[indexPath.row]
 			
-			let goToLocation = Load.subCategoriesForCataloge().index(where: {$0 == cellSubCategory})!
-			
-			NotificationCenter.default.post(name: .goToSectionCataloge, object: goToLocation)
+			NotificationCenter.default.post(name: .goToSectionCataloge, object: cellSubCategory)
 		}
     }
 	
@@ -229,7 +230,7 @@ extension catalogeMenu: UISearchBarDelegate{
 				
 				tableView.beginUpdates()
 				
-				let indexSet = IndexSet(integersIn: Range(uncheckedBounds: (2,categories.count)))
+				let indexSet = IndexSet(integersIn: Range(uncheckedBounds: (2, list.count)))
 				tableView.deleteSections(indexSet, with: .automatic)
 				
 				let lastSectionIndex = IndexSet(integersIn: ClosedRange(uncheckedBounds: (0,1)))
@@ -243,7 +244,7 @@ extension catalogeMenu: UISearchBarDelegate{
 			
 			tableView.beginUpdates()
 			
-			let indexSet = IndexSet(integersIn: Range(uncheckedBounds: (2,categories.count)))
+			let indexSet = IndexSet(integersIn: Range(uncheckedBounds: (2, list.count)))
 			tableView.insertSections(indexSet, with: .automatic)
 			
 			let lastSectionIndex = IndexSet(integersIn: ClosedRange(uncheckedBounds: (0,1)))
