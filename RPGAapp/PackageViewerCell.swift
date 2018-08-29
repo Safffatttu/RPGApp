@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Dwifft
 
 class PackageViewerCell: UITableViewCell{
 	
@@ -32,7 +33,13 @@ class PackageViewerCell: UITableViewCell{
 		}
 	}
 	
-	var items: [ItemHandler] = []
+	var items: [ItemHandler] = []{
+		didSet{
+			diffCalculator?.rows = items
+		}
+	}
+	
+	var diffCalculator: SingleSectionTableViewDiffCalculator<ItemHandler>?
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -43,6 +50,8 @@ class PackageViewerCell: UITableViewCell{
 		let removeItem = UILongPressGestureRecognizer(target: self, action: #selector(removeItemLongPress))
 		removeItem.delegate = self
 		self.itemTable.addGestureRecognizer(removeItem)
+		
+		diffCalculator = SingleSectionTableViewDiffCalculator(tableView: itemTable)		
 	}
 	
 	override func prepareForReuse() {
@@ -52,11 +61,8 @@ class PackageViewerCell: UITableViewCell{
 	
 	
 	func reloadPackage(){
-		if let it = package?.items?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler]{
-			items = it
-		}
-		
-		itemTable.reloadData()
+		guard let items = package?.items?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] else { return }
+		self.items = items
 	}
 	
 	@IBAction func sendItems(_ sender: UIButton) {
