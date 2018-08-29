@@ -269,51 +269,7 @@ func whisper(messege: String){
     Whisper.show(whistle: murmur, action: .show(3))
 }
 
-func createTempSubCategory(with name: String = "Temp") -> SubCategory {
-    let context = CoreDataStack.managedObjectContext
-    
-    var tempSubCategory: SubCategory?
-    let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
-    
-    do{
-        tempSubCategory = try context.fetch(subCategoryFetch).first(where: {$0.temp})
-    }
-    catch{
-        print("error fetching")
-    }
-    
-    if let subCategory = tempSubCategory{
-        return subCategory
-        
-    }else{
-        let subCategory = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCategory.self), into: context) as! SubCategory
-        subCategory.name = name
-        subCategory.temp = true
-        
-        CoreDataStack.saveContext()
-        return subCategory
-    }
-}
-
-func deleteTempSubCategory(){
-    let context = CoreDataStack.managedObjectContext
-    
-    var tempSubCategories: [SubCategory] = []
-    let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
-    
-    do{
-        tempSubCategories = try context.fetch(subCategoryFetch).filter({$0.temp})
-    }
-    catch{
-        print("error fetching")
-    }
-    for subCat in tempSubCategories{
-        context.delete(subCat)
-    }
-    CoreDataStack.saveContext()
-}
-
-func searchCataloge(searchWith string: String = "",using searchModel: [(String,Bool)],sortBy sortModel: [(String,Bool,NSSortDescriptor)]) -> SectionedValues<SubCategory,Item>{
+func searchCataloge(searchWith string: String = "",using searchModel: [(String,Bool)],sortBy sortModel: [(String,Bool,NSSortDescriptor)]) -> SectionedValues<String,Item>{
 	let searchString = string.replacingOccurrences(of: " ", with: "")
 	let searchModel = searchModel.map({$0.1})
 	let sortModel = sortModel.filter({$0.1}).map({$0.2})
@@ -341,9 +297,9 @@ func searchCataloge(searchWith string: String = "",using searchModel: [(String,B
 		
 		itemsToSearch = Array(NSArray(array: itemsToSearch).sortedArray(using: sortModel)) as! [Item]
 		
-		let searchSubCategory = createTempSubCategory(with: "Search results")
+		let searchSubCategory = NSLocalizedString("Search results", comment: "")
 		
-		let newSubList: [(SubCategory,[Item])] = [(searchSubCategory,itemsToSearch)]
+		let newSubList: [(String,[Item])] = [(searchSubCategory,itemsToSearch)]
 
 		return SectionedValues(newSubList)
 	}
@@ -384,6 +340,20 @@ func getDocumentsDirectory() -> URL {
 	
 	return currency
 }
+
+func createTitlesForSubCategory() -> [String: String]{
+	var nameDict: [String: String] = [: ]
+	let subCategories = Load.subCategories()
+	
+	for subCategory in subCategories{
+		guard let name = subCategory.name else { continue }
+		guard let categoryName = subCategory.category?.name else { continue }
+		nameDict[name] = categoryName
+	}
+	
+	return nameDict
+}
+
 
 func createBasicCurrency(){
 	createCurrencyUsing(name: "PLN", rate: 0, subList: [("Zł", 1), ("Gr", 100)])

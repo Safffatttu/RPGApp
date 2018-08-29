@@ -26,10 +26,10 @@ public struct FilterHelper{
 		return itemsToRet
 	}
 	
-	public static func itemList(using filter: [String: Double?]) -> [(SubCategory, [Item])]{
+	public static func itemList(using filter: [String: Double?]) -> [(String, [Item])]{
 		let subCategories = Load.itemsForCataloge()
 		
-		var itemList: [(SubCategory, [Item])] = []
+		var itemList: [(String, [Item])] = []
 		
 		for subCategory in subCategories{
 			let subCategoryItems = filterItemList(subCategory.1, using: filter)

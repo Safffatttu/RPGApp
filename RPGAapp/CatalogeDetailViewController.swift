@@ -18,7 +18,9 @@ let iconSize: CGFloat = 20
 class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate, UIPopoverPresentationControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
-    
+	
+	var titleForSubCategory: [String: String] = createTitlesForSubCategory()
+	
     var filter: [String : Double?] = [:]
 
 	var sortModel: [(String,Bool,NSSortDescriptor)] = []
@@ -31,9 +33,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 	
     @IBOutlet weak var catalogTable: UITableView!
     
-    var diffCalculator: TableViewDiffCalculator<SubCategory,Item>?
+    var diffCalculator: TableViewDiffCalculator<String,Item>?
     
-    var items: SectionedValues<SubCategory,Item> = SectionedValues(Load.itemsForCataloge()){
+    var items: SectionedValues<String,Item> = SectionedValues(Load.itemsForCataloge()){
         didSet{
             self.diffCalculator?.sectionedValues = items
         }
@@ -62,12 +64,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        deleteTempSubCategory()
-        super.viewWillDisappear(animated)
-    }
-    
+	
     func dismissKeyboard(){
         NotificationCenter.default.post(name: .dismissKeyboard, object: nil)
     }
@@ -82,17 +79,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 	
 	func reloadItems(_ not: Notification){
-		if let item = not.object as? Item{
-			
-			guard let section = items.sectionsAndValues.index(where: {($0.0.items?.contains(item))!}) else { return }
-			guard let row = items.sectionsAndValues[section].1.index(of: item) else { return }
-			
-			let path = IndexPath(row: row, section: section)
-			
-			tableView.reloadRows(at: [path], with: .fade)
-		}else{
-			items = SectionedValues(Load.itemsForCataloge())
-		}
+		items = SectionedValues(Load.itemsForCataloge())
 	}
 	
 	func sortModelChange(_ notification: Notification){
@@ -141,7 +128,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func goToSection(_ notification: Notification) {
 		guard let subCategory = notification.object as? SubCategory else { return }
 		
-		guard let index = items.sectionsAndValues.index(where: {$0.0 == subCategory}) else { return }
+		guard let index = items.sectionsAndValues.index(where: {$0.0 == subCategory.name}) else { return }
 		let indexPath = IndexPath(row: 0, section: index)		
 		
 		tableView.scrollToRow(at: indexPath, at: .top, animated: true)
@@ -158,16 +145,11 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title = ""
-        
-        if let subCategory = self.diffCalculator?.value(forSection: section).name{
-            if let category = self.diffCalculator?.value(forSection: section).category?.name{
-                title = category.capitalized + " " + subCategory.lowercased()
-            }else{
-                title = subCategory.capitalized
-            }
-        }
-        return title
+		guard let subCategory = self.diffCalculator?.value(forSection: section) else { return "" }
+		
+		guard let category = titleForSubCategory[subCategory] else { return "" }
+		
+        return "\(category.capitalized) \(subCategory.lowercased())"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

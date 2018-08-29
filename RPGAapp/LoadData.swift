@@ -51,7 +51,7 @@ public struct Load {
         subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
         
         do{
-            subCategories = try context.fetch(subCategoryFetch).filter({!$0.temp})
+            subCategories = try context.fetch(subCategoryFetch)
         }
         catch{
             print("error fetching")
@@ -82,13 +82,13 @@ public struct Load {
 		return subCategoryList
 	}
 	
-    public static func itemsForCataloge() -> [(SubCategory,[Item])] {
+    public static func itemsForCataloge() -> [(String,[Item])] {
 		let subCats = subCategoriesForCataloge()
 		
-        var subCategoriesToReturn: [(SubCategory,[Item])] = []
+        var subCategoriesToReturn: [(String,[Item])] = []
 		
         for sub in subCats{
-            let subCategory = (sub,sub.items?.sortedArray(using: [.sortItemByName]) as! [Item])
+            let subCategory = (sub.name!,sub.items?.sortedArray(using: [.sortItemByName]) as! [Item])
             subCategoriesToReturn.append(subCategory)
         }
 		
