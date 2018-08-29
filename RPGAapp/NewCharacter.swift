@@ -43,6 +43,10 @@ class NewCharacterForm: FormViewController {
 			
 			health = char.health
 			
+			if let id = char.id{
+				self.id = id
+			}
+			
 			if let textureData = char.mapRepresentation?.texture?.data{
 				textureImage = UIImage(data: textureData as Data)
 			}
@@ -158,9 +162,11 @@ class NewCharacterForm: FormViewController {
 		let session = Load.currentSession()
 		
 		let newCharacter: Character!
+		let newMapEntity: MapEntity!
 		
-		if let char = character{
+		if let char = character, let entity = character?.mapRepresentation{
 			newCharacter = char
+			newMapEntity = entity
 		}else{
 			newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: context) as! Character
 			
@@ -168,16 +174,11 @@ class NewCharacterForm: FormViewController {
 			
 			id = name + String((name + UIDevice.current.name + String(describing: Date())).hash)
 			
-			let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
+			newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
 			
 			newMapEntity.character = newCharacter
 			newMapEntity.id = id
 			newMapEntity.map = Load.currentMap(session: session)
-			
-			action.setValue(newMapEntity.id, forKey: "mapEntityId")
-			action.setValue(newMapEntity.x, forKey: "mapEntityPosX")
-			action.setValue(newMapEntity.y, forKey: "mapEntityPosY")
-			action.setValue(newMapEntity.map?.id, forKey: "mapId")
 		}
 		
 		newCharacter.name = name
@@ -200,6 +201,11 @@ class NewCharacterForm: FormViewController {
 		action.setValue(newCharacter.id, forKey: "id")
 		action.setValue(newCharacter.profession, forKey: "profession")
 		action.setValue(newCharacter.visibility?.id, forKey: "visiblitiyId")
+		
+		action.setValue(newMapEntity.id, forKey: "mapEntityId")
+		action.setValue(newMapEntity.x, forKey: "mapEntityPosX")
+		action.setValue(newMapEntity.y, forKey: "mapEntityPosY")
+		action.setValue(newMapEntity.map?.id, forKey: "mapId")
 		
 		PackageService.pack.send(action)
 		

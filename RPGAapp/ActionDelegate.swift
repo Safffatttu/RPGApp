@@ -504,45 +504,45 @@ class ActionDelegate: PackageServiceDelegate{
 			PackageService.pack.send(action, to: sender)
 			
 		}else if actionType == ActionType.sendImage{
-				guard let imageData = action.value(forKey: "imageData") as? NSData else { return }
+			guard let imageData = action.value(forKey: "imageData") as? NSData else { return }
 				
-					let texture: Texture
-					let contex = CoreDataStack.managedObjectContext
-					
-					if let mapId = action.value(forKey: "mapId") as? String{
-						
-						guard let map = Load.map(withId: mapId) else { return }
-							
-						if let exisitingTexture = map.background{
-							texture = exisitingTexture
-						}else{
-							texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
-							map.background = texture
-						}
-						
-						texture.data = imageData
-						
-						CoreDataStack.saveContext()
-						
-						NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
-						
-					}else if let entityId = action.value(forKey: "entityId") as? String{
-						
-						guard let entity = Load.mapEntity(withId: entityId) else { return }
-						
-						if let exisitingTexture = entity.texture{
-							texture = exisitingTexture
-						}else{
-							texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
-							entity.texture = texture
-						}						
-						
-						texture.data = imageData
-						
-						CoreDataStack.saveContext()
-						
-						NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
-					}
+			let texture: Texture
+			let contex = CoreDataStack.managedObjectContext
+	
+			if let mapId = action.value(forKey: "mapId") as? String{
+				
+				guard let map = Load.map(withId: mapId) else { return }
+				
+				if let exisitingTexture = map.background{
+					texture = exisitingTexture
+				}else{
+					texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
+					map.background = texture
+				}
+				
+				texture.data = imageData
+				
+				CoreDataStack.saveContext()
+				
+				NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
+				
+			}else if let entityId = action.value(forKey: "entityId") as? String{
+				
+				guard let entity = Load.mapEntity(withId: entityId) else { return }
+				
+				if let exisitingTexture = entity.texture{
+					texture = exisitingTexture
+				}else{
+					texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
+					entity.texture = texture
+				}
+				
+				texture.data = imageData
+		
+				CoreDataStack.saveContext()
+				
+				NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
+			}
 			
 		}else if actionType == ActionType.currencyCreated{
 			guard let currencyData = action.value(forKey: "currencyData") as? NSMutableDictionary else { return }

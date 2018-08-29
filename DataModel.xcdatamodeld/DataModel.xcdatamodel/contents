@@ -91,7 +91,7 @@
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="mapRepresentation" inverseEntity="Character" syncable="YES"/>
         <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="entities" inverseEntity="Map" syncable="YES"/>
-        <relationship name="texture" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Texture" storedInTruthFile="YES" syncable="YES"/>
+        <relationship name="texture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" storedInTruthFile="YES" syncable="YES"/>
     </entity>
     <entity name="Package" representedClassName="Package" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -162,7 +162,7 @@
         <element name="ItemAtributeHandler" positionX="-173" positionY="228" width="128" height="60"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="103"/>
         <element name="Map" positionX="-1026" positionY="204" width="128" height="165"/>
-        <element name="MapEntity" positionX="-819" positionY="396" width="128" height="135"/>
+        <element name="MapEntity" positionX="-819" positionY="405" width="128" height="135"/>
         <element name="Package" positionX="-452" positionY="-99" width="128" height="118"/>
         <element name="Session" positionX="-866" positionY="-84" width="128" height="208"/>
         <element name="Store" positionX="-531" positionY="431" width="126" height="118"/>
