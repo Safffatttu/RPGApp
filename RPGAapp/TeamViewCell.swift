@@ -165,29 +165,20 @@ class TeamViewCell: UICollectionViewCell {
 			context.delete(self.character)
 			
 			CoreDataStack.saveContext()
-			
-			self.equipmentTable.backgroundColor = .white
-			self.abilityTable.backgroundColor = .white
-			self.backgroundColor = .white
-			
+						
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
 			let action = NSMutableDictionary()
 			let actionType = NSNumber(value: ActionType.removeCharacter.rawValue)
 			
 			action.setValue(actionType, forKey: "action")
-			
 			action.setValue(characterId, forKey: "characterId")
 			
 			PackageService.pack.send(action)
 		})
 		
 		let localizedNo = NSLocalizedString("No", comment: "")
-		let alertNo = UIAlertAction(title: localizedNo, style: .cancel, handler: { (alert: UIAlertAction!) -> Void in
-			self.equipmentTable.backgroundColor = .red
-			self.abilityTable.backgroundColor = .red
-			self.backgroundColor = .red
-		})
+		let alertNo = UIAlertAction(title: localizedNo, style: .cancel)
 		
 		alert.addAction(alertNo)
 		alert.addAction(alertYes)
