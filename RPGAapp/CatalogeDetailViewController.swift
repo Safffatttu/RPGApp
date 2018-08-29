@@ -147,9 +147,11 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		guard let subCategory = self.diffCalculator?.value(forSection: section) else { return "" }
 		
-		guard let category = titleForSubCategory[subCategory] else { return "" }
-		
-        return "\(category.capitalized) \(subCategory.lowercased())"
+		if let category = titleForSubCategory[subCategory] {
+			return "\(category.capitalized) \(subCategory.lowercased())"
+		}else{
+			return subCategory.capitalized
+		}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
