@@ -75,33 +75,17 @@ class drawingTest: XCTestCase {
     
     func testFlitering(){
         let itemList = Load.items()
-        let cat = catalogeDetail()
         var newItemList = itemList
-        cat.filter = randomFilter()
         
         self.measure {
             for _ in 0...100{
-                cat.filter = self.randomFilter()
                 newItemList = itemList
-                cat.filterItemList(newItemList)
+				
+				FilterHelper.filterItemList(newItemList, using: self.randomFilter())
             }
         }
     }
-    
-//    func testFlitering2(){
-//        let itemList = loadItems()
-//        let cat = catalogeDetail()
-//        cat.filter = randomFilter()
-//        var newItemList = itemList
-//        self.measure {
-//            for _ in 0...100{
-//                cat.filter = self.randomFilter()
-//                newItemList = itemList
-//                cat.filterItemInoutList(&newItemList)
-//            }
-//        }
-//    }
-    
+        
     func testFlitering3(){
         let itemList = Load.items()
         let cat = catalogeDetail()
