@@ -118,7 +118,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		let itemId = item.id
 		
 		let recipientAction = NSMutableDictionary()
-		let recipientActionType = NSNumber(value: ActionType.itemSend.rawValue)
+		let recipientActionType = NSNumber(value: ActionType.itemCharacterAdded.rawValue)
 		
 		recipientAction.setValue(recipientActionType, forKey: "action")
 		
@@ -132,13 +132,13 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		let fromActionType: NSNumber!
 		
 		if removed{
-			fromActionType = NSNumber(value: ActionType.itemDeletedFromCharacter.rawValue)
+			fromActionType = NSNumber(value: ActionType.itemCharacterDeleted.rawValue)
 			
 			fromAction.setValue(itemId, forKey: "itemId")
 			fromAction.setValue(from.id, forKey: "characterId")
 			
 		}else{
-			fromActionType = NSNumber(value: ActionType.itemHandlerCountChanged.rawValue)
+			fromActionType = NSNumber(value: ActionType.itemCharacterChanged.rawValue)
 			
 			fromAction.setValue(itemId, forKey: "itemId")
 			fromAction.setValue(from.id, forKey: "characterId")
@@ -172,7 +172,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         
         let action =  NSMutableDictionary()
         
-        let actionType: NSNumber = NSNumber(value: ActionType.itemSend.rawValue)
+        let actionType: NSNumber = NSNumber(value: ActionType.itemCharacterAdded.rawValue)
         action.setValue(actionType, forKey: "action")
         
         if let itemToSend = item {

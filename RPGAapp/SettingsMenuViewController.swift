@@ -276,10 +276,10 @@ class SettingMenu: UITableViewController {
 		if indexPath.section == 0 && indexPath.row == settingValues.count{
 			
 			let syncAction = NSMutableDictionary()
-			syncAction.setValue(ActionType.syncItemLists.rawValue, forKey: "action")
+			syncAction.setValue(ActionType.itemListSync.rawValue, forKey: "action")
 			
 			let requestAction = NSMutableDictionary()
-			requestAction.setValue(ActionType.requestedItemList.rawValue, forKey: "action")
+			requestAction.setValue(ActionType.itemListRequested.rawValue, forKey: "action")
 			
 			PackageService.pack.send(syncAction)
 			PackageService.pack.send(requestAction)

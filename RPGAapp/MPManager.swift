@@ -143,42 +143,6 @@ protocol PackageServiceDelegate {
     func received(_ action: NSMutableDictionary,from sender: MCPeerID)
 }
 
-enum ActionType: Int {
-    case applicationWillTerminate = 0
-    case applicationDidEnterBackground
-    case itemSend
-    case packageCreated
-    case packageDeleted
-    case packageSend
-    case itemAddedToPackge
-    case characterCreated
-    case disconnectPeer
-    case itemDeletedFromCharacter
-    case sessionCreated
-    case sessionSwitched
-    case sessionDeleted
-    case generatedRandomNumber
-	case addedAbilityToCharacter
-	case valueOfAblilityChanged
-	case removeAbility
-	case removeCharacter
-	case itemHandlerCountChanged
-	case sessionReceived
-	case itemsRequest
-	case itemsRequestResponse
-	case mapEntityMoved
-	case itemDataSend
-	case requestedItemList
-	case recievedItemList
-	case syncItemLists
-	case sendImage
-	case currencyCreated
-	case visibilityCreated
-	case characterVisibilityChanged
-	case itemDeletedFromPackage
-	case requestedImage
-}
-
 extension Notification.Name{
     static let connectedDevicesChanged = Notification.Name("connectedDevicesChanged")
 }

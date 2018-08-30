@@ -137,7 +137,7 @@ class PackageViewerCell: UITableViewCell{
 			cell.backgroundColor = .white
 			
 			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.itemDeletedFromPackage.rawValue)
+			let actionType = NSNumber(value: ActionType.itemDeletedPackage.rawValue)
 			
 			action.setValue(actionType, forKey: "action")
 			action.setValue(itemId, forKey: "itemId")

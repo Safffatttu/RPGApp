@@ -73,7 +73,7 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		
 		DispatchQueue.global().async {
 			let action = NSMutableDictionary()
-			action.setValue(ActionType.sendImage.rawValue, forKey: "action")
+			action.setValue(ActionType.textureSend.rawValue, forKey: "action")
 			
 			action.setValue(imageData, forKey: "imageData")
 			action.setValue(map.id, forKey: "mapId")

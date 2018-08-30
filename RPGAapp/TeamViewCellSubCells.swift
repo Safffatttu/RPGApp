@@ -36,7 +36,7 @@ class newAbilityCell: UITableViewCell,UITextFieldDelegate{
 			newAbilityDelegate.modifiedAbility()
 			
 			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.addedAbilityToCharacter.rawValue)
+			let actionType = NSNumber(value: ActionType.abilityAdded.rawValue)
 			
 			action.setValue(actionType, forKey: "action")
 			
@@ -127,7 +127,7 @@ class abilityCell: UITableViewCell {
 			self.backgroundColor = .white
 			
 			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.removeAbility.rawValue)
+			let actionType = NSNumber(value: ActionType.abilityRemoved.rawValue)
 			
 			action.setValue(actionType, forKey: "action")
 			
@@ -154,7 +154,7 @@ class abilityCell: UITableViewCell {
 		self.textLabel?.text = ability.name! + ": " + String(describing: ability.value)
 		
 		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.valueOfAblilityChanged.rawValue)
+		let actionType = NSNumber(value: ActionType.abilityValueChanged.rawValue)
 		
 		abilityDelgate.modifiedAbility()
 		
@@ -220,7 +220,7 @@ class characterItemCell: UITableViewCell {
 		CoreDataStack.saveContext()
 		
 		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.itemHandlerCountChanged.rawValue)
+		let actionType = NSNumber(value: ActionType.itemCharacterChanged.rawValue)
 		
 		action.setValue(actionType, forKey: "action")
 		
@@ -274,7 +274,7 @@ class characterItemCell: UITableViewCell {
 			self.backgroundColor = .white
 			
 			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.itemDeletedFromCharacter.rawValue)
+			let actionType = NSNumber(value: ActionType.itemCharacterDeleted.rawValue)
 			
 			action.setValue(actionType, forKey: "action")
 			

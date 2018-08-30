@@ -140,7 +140,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         
         let action = NSMutableDictionary()
         
-        let actionType = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+        let actionType = NSNumber(value: ActionType.itemPackageAdded.rawValue)
         action.setValue(actionType, forKey: "action")
         action.setValue(package.name, forKey: "packageName")
         action.setValue(package.id, forKey: "packageId")

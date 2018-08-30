@@ -26,7 +26,7 @@ class ActionDelegate: PackageServiceDelegate{
 			let message = senderName + " wyszedł z aplikacji"
 			whisper(messege: message)
 			
-		}else if actionType == ActionType.itemSend{
+		}else if actionType == ActionType.itemCharacterAdded{
 			guard let characterId = action.value(forKey: "characterId") as? String else { return }
 			let itemId = action.value(forKey: "itemId") as? String
 			let itemCount = action.value(forKey: "itemCount") as? Int64
@@ -133,7 +133,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
-		}else if actionType == ActionType.itemAddedToPackge{
+		}else if actionType == ActionType.itemPackageAdded{
 			let itemId = action.value(forKey: "itemId") as? String
 			let itemHandlerId = action.value(forKey: "itemToAdd") as? String
 			let itemHandlerCount = action.value(forKey: "itemsToAdd") as? Int64
@@ -171,7 +171,7 @@ class ActionDelegate: PackageServiceDelegate{
 				}else{
 					let subAction = NSMutableDictionary()
 					
-					let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+					let at = NSNumber(value: ActionType.itemPackageAdded.rawValue)
 					
 					subAction.setValue(at, forKey: "action")
 					subAction.setValue(packageId, forKey: "packageId")
@@ -186,7 +186,7 @@ class ActionDelegate: PackageServiceDelegate{
 				}else{
 					let subAction = NSMutableDictionary()
 					
-					let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+					let at = NSNumber(value: ActionType.itemPackageAdded.rawValue)
 					
 					subAction.setValue(at, forKey: "action")
 					subAction.setValue(packageId, forKey: "packageId")
@@ -215,7 +215,7 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				if itemsToRequest.count > 0 {
 				
-					let at = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+					let at = NSNumber(value: ActionType.itemPackageAdded.rawValue)
 					
 					subAction.setValue(at, forKey: "action")
 					subAction.setValue(NSArray(array: itemsToRequest), forKey: "itemsToAdd")
@@ -235,7 +235,7 @@ class ActionDelegate: PackageServiceDelegate{
 			if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
 				PackageService.pack.session.disconnect()
 			}
-		}else if actionType == ActionType.itemDeletedFromCharacter{
+		}else if actionType == ActionType.itemCharacterDeleted{
 			let itemId = action.value(forKey: "itemId") as? String
 			let characterId = action.value(forKey: "characterId") as? String
 			
@@ -308,7 +308,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			whisper(messege: message)
 			
-		}else if actionType == .addedAbilityToCharacter{
+		}else if actionType == .abilityAdded{
 			guard let characterId = action.value(forKey: "characterId") as? String else {return}
 			guard let abilityName = action.value(forKey: "abilityName") as? String else {return}
 			guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
@@ -328,7 +328,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .modifiedAbility, object: nil)
 			
-		}else if actionType == .valueOfAblilityChanged{
+		}else if actionType == .abilityValueChanged{
 			guard let characterId = action.value(forKey: "characterId") as? String else {return}
 			guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
 			guard let abilityValue = action.value(forKey: "abilityValue") as? Int16 else {return}
@@ -342,7 +342,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .valueOfAblitityChanged, object: abilityId)
 			
-		}else if actionType == .removeAbility{
+		}else if actionType == .abilityRemoved{
 			guard let characterId = action.value(forKey: "characterId") as? String else {return}
 			guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
 			
@@ -359,7 +359,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .modifiedAbility, object: nil)
 			
-		}else if actionType == .removeCharacter{
+		}else if actionType == .characterRemoved{
 			guard let characterId = action.value(forKey: "characterId") as? String else { return }
 			
 			guard let character = Load.character(with: characterId) else { return }
@@ -372,7 +372,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
-		}else if actionType == .itemHandlerCountChanged{
+		}else if actionType == .itemCharacterChanged{
 			guard let characterId = action.value(forKey: "characterId") as? String else { return }
 			guard let itemId = action.value(forKey: "itemId") as? String else { return }
 			guard let itemCount = action.value(forKey: "itemCount") as? Int64 else { return }
@@ -478,17 +478,17 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .mapEntityMoved, object: (entity, newPos))
 			
 			
-		}else if actionType == ActionType.syncItemLists{
+		}else if actionType == ActionType.itemListSync{
 			let action = NSMutableDictionary()
 			
-			action.setValue(ActionType.requestedItemList.rawValue, forKey: "action")
+			action.setValue(ActionType.itemListRequested.rawValue, forKey: "action")
 			
 			PackageService.pack.send(action)
 			
 			
-		}else if actionType == ActionType.requestedItemList{
+		}else if actionType == ActionType.itemListRequested{
 			let response = NSMutableDictionary()
-			response.setValue(ActionType.recievedItemList.rawValue, forKey: "action")
+			response.setValue(ActionType.itemListRecieved.rawValue, forKey: "action")
 			
 			let itemList = NSArray(array: Load.items().flatMap{$0.id})
 			
@@ -496,7 +496,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			PackageService.pack.send(response, to: sender)
 			
-		}else if actionType == ActionType.recievedItemList{
+		}else if actionType == ActionType.itemListRecieved{
 			let localItemList = Load.items().map{$0.id!}
 			
 			let recievedItemList = (action.value(forKey: "itemList") as! NSArray) as! [String]
@@ -512,7 +512,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			PackageService.pack.send(action, to: sender)
 			
-		}else if actionType == ActionType.sendImage{
+		}else if actionType == ActionType.textureSend{
 			guard let imageData = action.value(forKey: "imageData") as? NSData else { return }
 				
 			let texture: Texture
@@ -605,7 +605,7 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
-		}else if actionType == ActionType.itemDeletedFromPackage{
+		}else if actionType == ActionType.itemDeletedPackage{
 			guard let packageId = action.value(forKey: "packageId") as? String else { return }
 			guard let itemId = action.value(forKey: "itemId") as? String else { return }
 			
@@ -621,7 +621,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
 			
-		}else if actionType == ActionType.requestedImage{
+		}else if actionType == ActionType.textureRequest{
 			let entityId = action.value(forKey: "entityId") as? String
 			let mapId = action.value(forKey: "mapId") as? String
 			
@@ -638,7 +638,7 @@ class ActionDelegate: PackageServiceDelegate{
 			guard let imageData = texture?.data else { return }
 			
 			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.sendImage.rawValue)
+			let actionType = NSNumber(value: ActionType.textureSend.rawValue)
 			
 			action.setValue(actionType, forKey: "action")
 			action.setValue(imageData, forKey: "imageData")

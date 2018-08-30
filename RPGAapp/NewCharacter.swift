@@ -229,7 +229,7 @@ class NewCharacterForm: FormViewController {
 			DispatchQueue.global(qos: .utility).async {
 				let textureAction = NSMutableDictionary()
 				
-				let actionType: NSNumber = NSNumber(value: ActionType.sendImage.rawValue)
+				let actionType: NSNumber = NSNumber(value: ActionType.textureSend.rawValue)
 				textureAction.setValue(actionType, forKey: "action")
 				
 				textureAction.setValue(textureData, forKey: "imageData")

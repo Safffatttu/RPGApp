@@ -169,7 +169,7 @@ class TeamViewCell: UICollectionViewCell {
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
 			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.removeCharacter.rawValue)
+			let actionType = NSNumber(value: ActionType.characterRemoved.rawValue)
 			
 			action.setValue(actionType, forKey: "action")
 			action.setValue(characterId, forKey: "characterId")
