@@ -74,6 +74,7 @@
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
 		3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */; };
 		3BD335931FF291DC004F70BF /* drawingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD335921FF291DC004F70BF /* drawingTest.swift */; };
+		3BD7779221384A5900A03A88 /* SessionSwitched.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7779121384A5900A03A88 /* SessionSwitched.swift */; };
 		3BD8EB16210F2D6B0066EC76 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3BD8EB18210F2D6B0066EC76 /* Localizable.strings */; };
 		3BDBD9EC20ACD45D00E0EB62 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */; };
 		3BDBD9ED20ACD45D00E0EB62 /* Map+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */; };
@@ -212,6 +213,7 @@
 		3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPGAappUITests.swift; sourceTree = "<group>"; };
 		3BD3358C1FF28B2E004F70BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BD335921FF291DC004F70BF /* drawingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = drawingTest.swift; path = ../RPGAapp/drawingTest.swift; sourceTree = "<group>"; };
+		3BD7779121384A5900A03A88 /* SessionSwitched.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionSwitched.swift; sourceTree = "<group>"; };
 		3BD8EB17210F2D6B0066EC76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataProperties.swift"; path = "Data Classes/Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Map+CoreDataClass.swift"; path = "Data Classes/Map+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				3B94594321380D0F00384F5B /* CharacterCreated.swift */,
 				3B94594521381DEF00384F5B /* ItemCharacterDeleted.swift */,
 				3B9459472138256900384F5B /* ItemPackageAdded.swift */,
+				3BD7779121384A5900A03A88 /* SessionSwitched.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				3B9459482138256900384F5B /* ItemPackageAdded.swift in Sources */,
 				3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */,
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
+				3BD7779221384A5900A03A88 /* SessionSwitched.swift in Sources */,
 				3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B11312D20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift in Sources */,

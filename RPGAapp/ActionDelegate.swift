@@ -46,14 +46,9 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .sessionSwitched{
-			NotificationCenter.default.post(name: .switchedSession, object: actionData)
-			let sessionId = actionData.value(forKey: "sessionId") as! String
+			let action = SessionSwitched(actionData: actionData, sender: sender)
+			action.execute()
 			
-			let sessions: [Session] = Load.sessions()
-			
-			sessions.first(where: {$0.current == true})?.current = false
-			
-			sessions.first(where: {$0.id == sessionId})?.current = true
 		}else if actionType == .sessionDeleted{
 			guard UserDefaults.standard.bool(forKey: "syncSessionRemoval") else { return }
 			

@@ -86,19 +86,9 @@ class SettingMenu: UITableViewController {
 	
 	
     func switchedSessionAction(_ notification: Notification){
-        let action = notification.object as? NSMutableDictionary
-        let sessionId = action?.value(forKey: "sessionId") as? String
-        
-        let index = sessions.index(where: {$0.id == sessionId})
-        guard index != nil else {
-			sessionReceived()
-			return
-        }
-        let indexPath = IndexPath(row: index! + 1, section: 1)
-        
-        switchedSession(indexPath: indexPath)
+		tableView.reloadData()
     }
-    
+	
     func switchedSession(indexPath: IndexPath){
         let previousIndex = self.sessions.index(where: {$0.current == true})
         var indexesToReload = [indexPath]
