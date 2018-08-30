@@ -176,6 +176,7 @@ enum ActionType: Int {
 	case visibilityCreated
 	case characterVisibilityChanged
 	case itemDeletedFromPackage
+	case requestedImage
 }
 
 extension Notification.Name{

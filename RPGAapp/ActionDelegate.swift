@@ -611,6 +611,33 @@ class ActionDelegate: PackageServiceDelegate{
 			CoreDataStack.saveContext()
 			
 			NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
+			
+		}else if actionType == ActionType.requestedImage{
+			let entityId = action.value(forKey: "entityId") as? String
+			let mapId = action.value(forKey: "mapId") as? String
+			
+			var texture: Texture?
+			
+			if let id = entityId {
+				texture = Load.texture(with: id)
+			}else if let id = mapId {
+				texture = Load.map(withId: id)?.background
+			}else{
+				return
+			}
+			
+			guard let imageData = texture?.data else { return }
+			
+			let action = NSMutableDictionary()
+			let actionType = NSNumber(value: ActionType.sendImage.rawValue)
+			
+			action.setValue(actionType, forKey: "action")
+			action.setValue(imageData, forKey: "imageData")
+			
+			action.setValue(entityId, forKey: "entityId")
+			action.setValue(mapId, forKey: "mapId")
+			
+			PackageService.pack.send(action)
 		}
     }
 	

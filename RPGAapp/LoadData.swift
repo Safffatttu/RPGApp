@@ -356,4 +356,12 @@ public struct Load {
 		return visibility
 	}
 	
+	public static func texture(with id: String) -> Texture?{
+		let mapEntity = Load.mapEntity(withId: id)
+		
+		let texture = mapEntity?.texture
+		
+		return texture		
+	}
+	
 }
