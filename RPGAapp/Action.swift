@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MultipeerConnectivity
 
 typealias ActionData = NSMutableDictionary
 
@@ -16,9 +17,12 @@ protocol Action{
 	
 	var dictionary: ActionData { get }
 	
-	init(actionData: ActionData)
+	func execute()
+	
+	init(actionData: ActionData, sender: MCPeerID)
 	
 }
+
 
 enum ActionType: Int {
 	//Utility

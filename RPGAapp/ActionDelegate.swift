@@ -15,77 +15,23 @@ class ActionDelegate: PackageServiceDelegate{
 	
 	static var ad = ActionDelegate()	
 	
-    func received(_ action: NSMutableDictionary,from sender: MCPeerID) {
+    func received(_ actionData: ActionData, from sender: MCPeerID) {
 		
-		print(action)
-		guard let actionNumber = action.value(forKey: "action") as? Int else { return }
+		print(actionData)
+		guard let actionNumber = actionData.value(forKey: "action") as? Int else { return }
 		guard let actionType = ActionType(rawValue: actionNumber) else { return }
 		let senderName = sender.displayName
 					
-		if actionType == ActionType.applicationDidEnterBackground{
+		if actionType == .applicationDidEnterBackground{
 			let message = senderName + " wyszedł z aplikacji"
 			whisper(messege: message)
 			
-		}else if actionType == ActionType.itemCharacterAdded{
-			guard let characterId = action.value(forKey: "characterId") as? String else { return }
-			let itemId = action.value(forKey: "itemId") as? String
-			let itemCount = action.value(forKey: "itemCount") as? Int64
+		}else if actionType == .itemCharacterAdded{
+			let actionData = ItemCharacterAdded(actionData: actionData, sender: sender)
+			actionData.execute()
 			
-			let itemsId: [String]? = action.value(forKey: "itemsId") as? [String]
-			let itemsCount: [Int64]? = action.value(forKey: "itemsCount") as? [Int64]
-			
-			guard let character: Character = Load.character(with: characterId) else { return }
-			
-			var request: ItemRequest? = nil
-			
-			if let id = itemId{
-			
-				if let item = Load.item(with: id){
-					
-					if let count = itemCount{
-						addToEquipment(item: item, to: character, count: count)
-					}else{
-						addToEquipment(item: item, to: character)
-					}
-					
-				}else {
-					request = ItemRequest(with: [id], sender: sender, action: action)
-				}
-				
-			}else if let count = itemsId?.count{
-				var itemsToRequest: [String] = []
-				
-				for id in itemsId!{
-					if Load.item(with: id) == nil{
-						itemsToRequest.append(id)
-					}
-				}
-				
-				if itemsToRequest.count == 0{
-					
-					for itemNum in 0...count - 1{
-						let id = itemsId![itemNum]
-						
-						if let item = Load.item(with: id){
-							addToEquipment(item: item, to: character, count: (itemsCount?[itemNum])!)
-						}
-					}
-					
-				}else{
-					request = ItemRequest(with: itemsToRequest, sender: sender, action: action)
-				}
-			}
-			
-			if let req = request {
-				ItemRequester.rq.request(req)
-			}
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .equipmentChanged, object: nil)
-			
-		}else if actionType == ActionType.characterCreated{
-			guard let characterId = action.value(forKey: #keyPath(Character.id)) as? String else { return }
+		}else if actionType == .characterCreated{
+			guard let characterId = actionData.value(forKey: #keyPath(Character.id)) as? String else { return }
 			
 			var newCharacter: Character
 			
@@ -103,9 +49,9 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
 			
-				guard let mapEntityId = action.value(forKey: "mapEntityId") as? String else { return }
-				guard let mapEntityPosX = action.value(forKey: "mapEntityPosX") as? Double else { return }
-				guard let mapEntityPosY = action.value(forKey: "mapEntityPosY") as? Double else { return }
+				guard let mapEntityId = actionData.value(forKey: "mapEntityId") as? String else { return }
+				guard let mapEntityPosX = actionData.value(forKey: "mapEntityPosX") as? Double else { return }
+				guard let mapEntityPosY = actionData.value(forKey: "mapEntityPosY") as? Double else { return }
 				
 				newMapEntity.character = newCharacter
 				newMapEntity.id = mapEntityId
@@ -117,13 +63,13 @@ class ActionDelegate: PackageServiceDelegate{
 				whisper(messege: localizedNewCharacterString)
 			}
 			
-			newCharacter.name = action.value(forKey: "name") as? String
-			newCharacter.health = (action.value(forKey: "health") as? Double) ?? 0
-			newCharacter.race = action.value(forKey: "race") as? String
-			newCharacter.id = action.value(forKey: "id") as? String
-			newCharacter.profession = action.value(forKey: "profession") as? String
+			newCharacter.name = actionData.value(forKey: "name") as? String
+			newCharacter.health = (actionData.value(forKey: "health") as? Double) ?? 0
+			newCharacter.race = actionData.value(forKey: "race") as? String
+			newCharacter.id = actionData.value(forKey: "id") as? String
+			newCharacter.profession = actionData.value(forKey: "profession") as? String
 			
-			if let visiblityId = action.value(forKey: "visibilityId") as? String{
+			if let visiblityId = actionData.value(forKey: "visibilityId") as? String{
 				if let visiblity = Load.visibility(with: visiblityId){
 					newCharacter.visibility = visiblity
 				}
@@ -133,22 +79,22 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
-		}else if actionType == ActionType.itemPackageAdded{
-			let itemId = action.value(forKey: "itemId") as? String
-			let itemHandlerId = action.value(forKey: "itemToAdd") as? String
-			let itemHandlerCount = action.value(forKey: "itemsToAdd") as? Int64
-			let itemsHandlerId = action.value(forKey: "itemsToAdd") as? NSArray
-			let itemsHandlerCount = action.value(forKey: "itemsToAddCount") as? NSArray
+		}else if actionType == .itemPackageAdded{
+			let itemId = actionData.value(forKey: "itemId") as? String
+			let itemHandlerId = actionData.value(forKey: "itemToAdd") as? String
+			let itemHandlerCount = actionData.value(forKey: "itemsToAdd") as? Int64
+			let itemsHandlerId = actionData.value(forKey: "itemsToAdd") as? NSArray
+			let itemsHandlerCount = actionData.value(forKey: "itemsToAddCount") as? NSArray
 			
 			let context = CoreDataStack.managedObjectContext
 			
-			guard let packageId = action.value(forKey: "packageId") as? String else { return }
+			guard let packageId = actionData.value(forKey: "packageId") as? String else { return }
 			
 			var package = Load.packages(with: packageId)
 			let allItems: [Item] = Load.items()
 			
 			if package == nil{
-				guard let packageName = action.value(forKey: "packageName") as? String else { return }
+				guard let packageName = actionData.value(forKey: "packageName") as? String else { return }
 				
 				package = (NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package)
 				
@@ -169,35 +115,35 @@ class ActionDelegate: PackageServiceDelegate{
 				if let item = allItems.first(where: {$0.id == itemId}){
 					add(item, to: package!, count: nil)
 				}else{
-					let subAction = NSMutableDictionary()
+					let subactionData = NSMutableDictionary()
 					
 					let at = NSNumber(value: ActionType.itemPackageAdded.rawValue)
 					
-					subAction.setValue(at, forKey: "action")
-					subAction.setValue(packageId, forKey: "packageId")
-					subAction.setValue(itemId, forKey: "itemId")
+					subactionData.setValue(at, forKey: "actionData")
+					subactionData.setValue(packageId, forKey: "packageId")
+					subactionData.setValue(itemId, forKey: "itemId")
 					
-					request = ItemRequest(with: [itemId!], sender: sender, action: subAction)
+					request = ItemRequest(with: [itemId!], sender: sender, action: subactionData)
 				}
 			}
 			else if (itemHandlerId != nil){
 				if let item = allItems.first(where: {$0.id == itemHandlerId}){
 					add(item, to: package!, count: itemHandlerCount)
 				}else{
-					let subAction = NSMutableDictionary()
+					let subactionData = NSMutableDictionary()
 					
 					let at = NSNumber(value: ActionType.itemPackageAdded.rawValue)
 					
-					subAction.setValue(at, forKey: "action")
-					subAction.setValue(packageId, forKey: "packageId")
-					subAction.setValue(itemId, forKey: "itemId")
-					subAction.setValue(itemHandlerCount, forKey: "itemsToAdd")
+					subactionData.setValue(at, forKey: "actionData")
+					subactionData.setValue(packageId, forKey: "packageId")
+					subactionData.setValue(itemId, forKey: "itemId")
+					subactionData.setValue(itemHandlerCount, forKey: "itemsToAdd")
 					
-					request = ItemRequest(with: [itemId!], sender: sender, action: subAction)
+					request = ItemRequest(with: [itemId!], sender: sender, action: subactionData)
 				}
 			}
 			else if(itemsHandlerId != nil){
-				let subAction = NSMutableDictionary()
+				let subactionData = NSMutableDictionary()
 				var itemsToRequest: [String] = []
 				var itemsToRequestCount: [Int64] = []
 				
@@ -217,11 +163,11 @@ class ActionDelegate: PackageServiceDelegate{
 				
 					let at = NSNumber(value: ActionType.itemPackageAdded.rawValue)
 					
-					subAction.setValue(at, forKey: "action")
-					subAction.setValue(NSArray(array: itemsToRequest), forKey: "itemsToAdd")
-					subAction.setValue(NSArray(array: itemsToRequestCount), forKey: "itemsToAddCount")
+					subactionData.setValue(at, forKey: "actionData")
+					subactionData.setValue(NSArray(array: itemsToRequest), forKey: "itemsToAdd")
+					subactionData.setValue(NSArray(array: itemsToRequestCount), forKey: "itemsToAddCount")
 					
-					request = ItemRequest(with: itemsToRequest, sender: sender, action: subAction)
+					request = ItemRequest(with: itemsToRequest, sender: sender, action: subactionData)
 					
 				}
 			}
@@ -231,13 +177,13 @@ class ActionDelegate: PackageServiceDelegate{
 			}
 			
 			NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
-		}else if actionType == ActionType.disconnectPeer{
-			if (action.value(forKey: "peer") as? String) == UIDevice.current.name{
+		}else if actionType == .disconnectPeer{
+			if (actionData.value(forKey: "peer") as? String) == UIDevice.current.name{
 				PackageService.pack.session.disconnect()
 			}
-		}else if actionType == ActionType.itemCharacterDeleted{
-			let itemId = action.value(forKey: "itemId") as? String
-			let characterId = action.value(forKey: "characterId") as? String
+		}else if actionType == .itemCharacterDeleted{
+			let itemId = actionData.value(forKey: "itemId") as? String
+			let characterId = actionData.value(forKey: "characterId") as? String
 			
 			guard itemId != nil && characterId != nil else{
 				return
@@ -253,9 +199,9 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				CoreDataStack.saveContext()
 			}
-		}else if actionType == ActionType.sessionSwitched{
-			NotificationCenter.default.post(name: .switchedSession, object: action)
-			let sessionId = action.value(forKey: "sessionId") as! String
+		}else if actionType == .sessionSwitched{
+			NotificationCenter.default.post(name: .switchedSession, object: actionData)
+			let sessionId = actionData.value(forKey: "sessionId") as! String
 			
 			let sessions: [Session] = Load.sessions()
 			
@@ -265,7 +211,7 @@ class ActionDelegate: PackageServiceDelegate{
 		}else if actionType == .sessionDeleted{
 			guard UserDefaults.standard.bool(forKey: "syncSessionRemoval") else { return }
 			
-			let sessionId = action.value(forKey: "sessionId") as! String
+			let sessionId = actionData.value(forKey: "sessionId") as! String
 			
 			let context = CoreDataStack.managedObjectContext
 			guard let session = Load.session(with: sessionId) else { return }
@@ -275,8 +221,8 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
 		}else if actionType == .packageCreated{
-			let packageName = action.value(forKey: "packageName") as! String
-			let packageId = action.value(forKey: "packageId") as! String
+			let packageName = actionData.value(forKey: "packageName") as! String
+			let packageId = actionData.value(forKey: "packageId") as! String
 			
 			let context = CoreDataStack.managedObjectContext
 			let newPackage = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package
@@ -294,7 +240,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .createdPackage, object: nil)
 		}else if actionType == .packageDeleted{
-			guard let packageId = action.value(forKey: "packageId") as? String else { return }
+			guard let packageId = actionData.value(forKey: "packageId") as? String else { return }
 			guard let package = Load.packages(with: packageId) else { return }
 			
 			CoreDataStack.managedObjectContext.delete(package)
@@ -303,16 +249,16 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
 		}else if actionType == .generatedRandomNumber{
-			let number = action.value(forKey: "number") as! Int
+			let number = actionData.value(forKey: "number") as! Int
 			let message = NSLocalizedString("Drawn", comment: "") + " " + String(number)
 			
 			whisper(messege: message)
 			
 		}else if actionType == .abilityAdded{
-			guard let characterId = action.value(forKey: "characterId") as? String else {return}
-			guard let abilityName = action.value(forKey: "abilityName") as? String else {return}
-			guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
-			guard let abilityValue = action.value(forKey: "abilityValue") as? Int16 else {return}
+			guard let characterId = actionData.value(forKey: "characterId") as? String else {return}
+			guard let abilityName = actionData.value(forKey: "abilityName") as? String else {return}
+			guard let abilityId = actionData.value(forKey: "abilityId") as? String else {return}
+			guard let abilityValue = actionData.value(forKey: "abilityValue") as? Int16 else {return}
 			
 			guard let character = Load.character(with: characterId) else {return}
 			
@@ -329,9 +275,9 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .modifiedAbility, object: nil)
 			
 		}else if actionType == .abilityValueChanged{
-			guard let characterId = action.value(forKey: "characterId") as? String else {return}
-			guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
-			guard let abilityValue = action.value(forKey: "abilityValue") as? Int16 else {return}
+			guard let characterId = actionData.value(forKey: "characterId") as? String else {return}
+			guard let abilityId = actionData.value(forKey: "abilityId") as? String else {return}
+			guard let abilityValue = actionData.value(forKey: "abilityValue") as? Int16 else {return}
 			
 			guard let character = Load.character(with: characterId) else {return}
 			
@@ -343,8 +289,8 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .valueOfAblitityChanged, object: abilityId)
 			
 		}else if actionType == .abilityRemoved{
-			guard let characterId = action.value(forKey: "characterId") as? String else {return}
-			guard let abilityId = action.value(forKey: "abilityId") as? String else {return}
+			guard let characterId = actionData.value(forKey: "characterId") as? String else {return}
+			guard let abilityId = actionData.value(forKey: "abilityId") as? String else {return}
 			
 			guard let character = Load.character(with: characterId) else { return }
 			
@@ -360,7 +306,7 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .modifiedAbility, object: nil)
 			
 		}else if actionType == .characterRemoved{
-			guard let characterId = action.value(forKey: "characterId") as? String else { return }
+			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }
 			
 			guard let character = Load.character(with: characterId) else { return }
 			
@@ -373,9 +319,9 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
 		}else if actionType == .itemCharacterChanged{
-			guard let characterId = action.value(forKey: "characterId") as? String else { return }
-			guard let itemId = action.value(forKey: "itemId") as? String else { return }
-			guard let itemCount = action.value(forKey: "itemCount") as? Int64 else { return }
+			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }
+			guard let itemId = actionData.value(forKey: "itemId") as? String else { return }
+			guard let itemCount = actionData.value(forKey: "itemCount") as? Int64 else { return }
 			
 			guard let character = Load.character(with: characterId) else { return }
 			
@@ -387,8 +333,8 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .equipmentChanged, object: nil)
 		
-		}else if actionType == ActionType.sessionReceived{
-			guard let sessionData = action.value(forKey: "session") as? NSDictionary else { return }
+		}else if actionType == .sessionReceived{
+			guard let sessionData = actionData.value(forKey: "session") as? NSDictionary else { return }
 			guard let sessionId = sessionData.value(forKey: "id") as? String else { return }
 			
 			if let session = Load.session(with: sessionId){
@@ -399,7 +345,7 @@ class ActionDelegate: PackageServiceDelegate{
 					
 					contex.delete(session)
 					
-					guard let newSession = createSessionUsing(action: action, sender: sender) else { return }
+					guard let newSession = createSessionUsing(action: actionData, sender: sender) else { return }
 					
 					let textureToRequest = getTextureId(from: newSession)
 					requestTexuturesFrom(id: textureToRequest)
@@ -420,7 +366,7 @@ class ActionDelegate: PackageServiceDelegate{
 				a?.present(alert, animated: true, completion: nil)
 				
 			}else{
-				guard let newSession = createSessionUsing(action: action, sender: sender) else { return }
+				guard let newSession = createSessionUsing(action: actionData, sender: sender) else { return }
 				
 				CoreDataStack.saveContext()
 				
@@ -432,12 +378,12 @@ class ActionDelegate: PackageServiceDelegate{
 				
 			}
 		
-		}else if actionType == ActionType.itemsRequest{
-			guard let itemsId = action.value(forKey: "itemsId") as? NSArray else { return }
-			let requestId = action.value(forKey: "id")
+		}else if actionType == .itemsRequest{
+			guard let itemsId = actionData.value(forKey: "itemsId") as? NSArray else { return }
+			let requestId = actionData.value(forKey: "id")
 			
 			let response = NSMutableDictionary()
-			response.setValue(ActionType.itemsRequestResponse.rawValue, forKey: "action")
+			response.setValue(ActionType.itemsRequestResponse.rawValue, forKey: "actionData")
 			
 			let itemsData = NSMutableArray()
 			
@@ -452,9 +398,9 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			PackageService.pack.send(response, to: sender)
 			
-		}else if actionType == ActionType.itemsRequestResponse{
-			guard let itemsData = action.value(forKey: "itemsData") as? NSArray else { return }
-			let requestId = action.value(forKey: "id")
+		}else if actionType == .itemsRequestResponse{
+			guard let itemsData = actionData.value(forKey: "itemsData") as? NSArray else { return }
+			let requestId = actionData.value(forKey: "id")
 			
 			for case let itemData as NSDictionary in itemsData{
 				_ = unPackItem(from: itemData)
@@ -462,9 +408,9 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .receivedItemData, object: requestId)
 		}else if actionType == ActionType.mapEntityMoved{
-			guard let entityId = action.value(forKey: "entityId") as? String else { return }
-			guard let posX = action.value(forKey: "posX") as? Double else { return }
-			guard let posY = action.value(forKey: "posY") as? Double else { return }
+			guard let entityId = actionData.value(forKey: "entityId") as? String else { return }
+			guard let posX = actionData.value(forKey: "posX") as? Double else { return }
+			guard let posY = actionData.value(forKey: "posY") as? Double else { return }
 			
 			guard let entity = Load.mapEntity(withId: entityId) else { return }
 			
@@ -478,17 +424,17 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .mapEntityMoved, object: (entity, newPos))
 			
 			
-		}else if actionType == ActionType.itemListSync{
-			let action = NSMutableDictionary()
+		}else if actionType == .itemListSync{
+			let actionData = NSMutableDictionary()
 			
-			action.setValue(ActionType.itemListRequested.rawValue, forKey: "action")
+			actionData.setValue(ActionType.itemListRequested.rawValue, forKey: "actionData")
 			
-			PackageService.pack.send(action)
+			PackageService.pack.send(actionData)
 			
 			
-		}else if actionType == ActionType.itemListRequested{
+		}else if actionType == .itemListRequested{
 			let response = NSMutableDictionary()
-			response.setValue(ActionType.itemListRecieved.rawValue, forKey: "action")
+			response.setValue(ActionType.itemListRecieved.rawValue, forKey: "actionData")
 			
 			let itemList = NSArray(array: Load.items().flatMap{$0.id})
 			
@@ -496,29 +442,29 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			PackageService.pack.send(response, to: sender)
 			
-		}else if actionType == ActionType.itemListRecieved{
+		}else if actionType == .itemListRecieved{
 			let localItemList = Load.items().map{$0.id!}
 			
-			let recievedItemList = (action.value(forKey: "itemList") as! NSArray) as! [String]
+			let recievedItemList = (actionData.value(forKey: "itemList") as! NSArray) as! [String]
 			
 			let requestList = recievedItemList.filter{itemId in
 				!localItemList.contains(itemId)
 			}
 			
-			let action = NSMutableDictionary()
-			action.setValue(ActionType.itemsRequest.rawValue, forKey: "action")
+			let actionData = NSMutableDictionary()
+			actionData.setValue(ActionType.itemsRequest.rawValue, forKey: "actionData")
 			
-			action.setValue(NSArray(array: requestList), forKey: "itemsId")
+			actionData.setValue(NSArray(array: requestList), forKey: "itemsId")
 			
-			PackageService.pack.send(action, to: sender)
+			PackageService.pack.send(actionData, to: sender)
 			
-		}else if actionType == ActionType.textureSend{
-			guard let imageData = action.value(forKey: "imageData") as? NSData else { return }
+		}else if actionType == .textureSend{
+			guard let imageData = actionData.value(forKey: "imageData") as? NSData else { return }
 				
 			let texture: Texture
 			let contex = CoreDataStack.managedObjectContext
 	
-			if let mapId = action.value(forKey: "mapId") as? String{
+			if let mapId = actionData.value(forKey: "mapId") as? String{
 				
 				guard let map = Load.map(withId: mapId) else { return }
 				
@@ -535,7 +481,7 @@ class ActionDelegate: PackageServiceDelegate{
 				
 				NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
 				
-			}else if let entityId = action.value(forKey: "entityId") as? String{
+			}else if let entityId = actionData.value(forKey: "entityId") as? String{
 				
 				guard let entity = Load.mapEntity(withId: entityId) else { return }
 				
@@ -553,16 +499,16 @@ class ActionDelegate: PackageServiceDelegate{
 				NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
 			}
 			
-		}else if actionType == ActionType.currencyCreated{
-			guard let currencyData = action.value(forKey: "currencyData") as? NSMutableDictionary else { return }
+		}else if actionType == .currencyCreated{
+			guard let currencyData = actionData.value(forKey: "currencyData") as? NSMutableDictionary else { return }
 
 			_ = unPackCurrency(currencyData: currencyData)
 
 			NotificationCenter.default.post(name: .currencyCreated, object: nil)
 			
-		}else if actionType == ActionType.visibilityCreated{
-			guard let name = action.value(forKey: "name") as? String else { return }
-			guard let id = action.value(forKey: "id") as? String else { return }
+		}else if actionType == .visibilityCreated{
+			guard let name = actionData.value(forKey: "name") as? String else { return }
+			guard let id = actionData.value(forKey: "id") as? String else { return }
 			
 			let context = CoreDataStack.managedObjectContext
 			let visibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
@@ -576,18 +522,18 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
-		}else if actionType == ActionType.characterVisibilityChanged{
-			guard let characterId = action.value(forKey: "characterId") as? String else { return }
+		}else if actionType == .characterVisibilityChanged{
+			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }
 			guard let character = Load.character(with: characterId) else { return }
 			
-			if let visibilityId = action.value(forKey: "visibilityId") as? String{
+			if let visibilityId = actionData.value(forKey: "visibilityId") as? String{
 				var visibility = Load.visibility(with: visibilityId)
 				
 				if visibility == nil{
 					let context = CoreDataStack.managedObjectContext
 					visibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as? Visibility
 					
-					guard let visibilityName = action.value(forKey: "visibilityName") as? String else { return }
+					guard let visibilityName = actionData.value(forKey: "visibilityName") as? String else { return }
 					
 					visibility?.name = visibilityName
 					visibility?.id = visibilityId
@@ -605,9 +551,9 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
-		}else if actionType == ActionType.itemDeletedPackage{
-			guard let packageId = action.value(forKey: "packageId") as? String else { return }
-			guard let itemId = action.value(forKey: "itemId") as? String else { return }
+		}else if actionType == .itemDeletedPackage{
+			guard let packageId = actionData.value(forKey: "packageId") as? String else { return }
+			guard let itemId = actionData.value(forKey: "itemId") as? String else { return }
 			
 			guard let package = Load.packages(with: packageId) else { return }
 			guard let itemHandlerToRemove = package.items?.first(where: {($0 as! ItemHandler ).item?.id == itemId}) as? ItemHandler else { return }
@@ -621,9 +567,9 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
 			
-		}else if actionType == ActionType.textureRequest{
-			let entityId = action.value(forKey: "entityId") as? String
-			let mapId = action.value(forKey: "mapId") as? String
+		}else if actionType == .textureRequest{
+			let entityId = actionData.value(forKey: "entityId") as? String
+			let mapId = actionData.value(forKey: "mapId") as? String
 			
 			var texture: Texture?
 			
@@ -637,25 +583,25 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			guard let imageData = texture?.data else { return }
 			
-			let action = NSMutableDictionary()
+			let actionData = NSMutableDictionary()
 			let actionType = NSNumber(value: ActionType.textureSend.rawValue)
 			
-			action.setValue(actionType, forKey: "action")
-			action.setValue(imageData, forKey: "imageData")
+			actionData.setValue(actionType, forKey: "actionData")
+			actionData.setValue(imageData, forKey: "imageData")
 			
-			action.setValue(entityId, forKey: "entityId")
-			action.setValue(mapId, forKey: "mapId")
+			actionData.setValue(entityId, forKey: "entityId")
+			actionData.setValue(mapId, forKey: "mapId")
 			
-			PackageService.pack.send(action)
+			PackageService.pack.send(actionData)
 		}
     }
 	
-	func receiveLocally(_ action: NSMutableDictionary){
+	func receiveLocally(_ actionData: NSMutableDictionary){
 		
 		let packServ = PackageService.pack
 		let localId = packServ.myPeerID
 		
-		received(action, from: localId)
+		received(actionData, from: localId)
 	}
 
     func lost(_ peer: MCPeerID) {

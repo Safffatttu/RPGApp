@@ -51,7 +51,7 @@ class PackageService: NSObject{
         return session
     }()
     
-    func send(_ action: NSMutableDictionary){
+    func send(_ action: ActionData){
         NSLog("%@", "send")
             if session.connectedPeers.count > 0{
             do{
@@ -64,7 +64,7 @@ class PackageService: NSObject{
         }
     }
 	
-	func send(_ action: NSMutableDictionary,to peer: MCPeerID){
+	func send(_ action: ActionData,to peer: MCPeerID){
 		NSLog("%@", "sendTo")
 		if session.connectedPeers.count > 0{
 			do{
@@ -115,7 +115,7 @@ extension PackageService: MCSessionDelegate{
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
-        let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! NSMutableDictionary
+        let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! ActionData
         action.setValue(peerID.displayName, forKey: "sender")
 		DispatchQueue.main.async {
 			self.delegate?.received(action,from: peerID)
@@ -140,7 +140,7 @@ protocol PackageServiceDelegate {
     func connectedDevicesChanged(manager : PackageService, connectedDevices: [String])
     func lost(_ peer: MCPeerID)
     func found(_ peer: MCPeerID)
-    func received(_ action: NSMutableDictionary,from sender: MCPeerID)
+    func received(_ actionData: ActionData,from sender: MCPeerID)
 }
 
 extension Notification.Name{
