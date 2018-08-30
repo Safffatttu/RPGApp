@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		12F51BB5C46DBD12E46D0BD5 /* Pods_RPGAapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
+		3B01662A213858D10074A747 /* AbilityAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B016629213858D10074A747 /* AbilityAdded.swift */; };
 		3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D621F3A21A800B5271C /* AppDelegate.swift */; };
 		3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D641F3A21A800B5271C /* MasterViewController.swift */; };
 		3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D681F3A21A800B5271C /* Main.storyboard */; };
@@ -141,6 +142,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B016629213858D10074A747 /* AbilityAdded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityAdded.swift; sourceTree = "<group>"; };
 		3B063D5F1F3A21A800B5271C /* RPGAapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGAapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B063D621F3A21A800B5271C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B063D641F3A21A800B5271C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				3BD777932138506300A03A88 /* PackageCreated.swift */,
 				3BD777952138521200A03A88 /* PackageDeleted.swift */,
 				3BD77797213853B700A03A88 /* SessionDeleted.swift */,
+				3B016629213858D10074A747 /* AbilityAdded.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -809,6 +812,7 @@
 				3B88010C20B2E9A100AB2C62 /* Store+CoreDataClass.swift in Sources */,
 				3BDBD9F120ACD45D00E0EB62 /* Session+CoreDataProperties.swift in Sources */,
 				3BC2CE83213708F0003AD8D5 /* Filter Helper.swift in Sources */,
+				3B01662A213858D10074A747 /* AbilityAdded.swift in Sources */,
 				3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */,
 				3B88010F20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift in Sources */,
 				3BADCC9C20E04F04005A5B89 /* EditDrawSetting.swift in Sources */,

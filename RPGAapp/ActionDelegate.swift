@@ -68,24 +68,8 @@ class ActionDelegate: PackageServiceDelegate{
 			whisper(messege: message)
 			
 		}else if actionType == .abilityAdded{
-			guard let characterId = actionData.value(forKey: "characterId") as? String else {return}
-			guard let abilityName = actionData.value(forKey: "abilityName") as? String else {return}
-			guard let abilityId = actionData.value(forKey: "abilityId") as? String else {return}
-			guard let abilityValue = actionData.value(forKey: "abilityValue") as? Int16 else {return}
-			
-			guard let character = Load.character(with: characterId) else {return}
-			
-			let context = CoreDataStack.managedObjectContext
-			let newAbility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Ability.self), into: context) as! Ability
-			
-			newAbility.name = abilityName
-			newAbility.id = abilityId
-			newAbility.value = abilityValue
-			newAbility.character = character
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .modifiedAbility, object: nil)
+			let action = AbilityAdded(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .abilityValueChanged{
 			guard let characterId = actionData.value(forKey: "characterId") as? String else {return}

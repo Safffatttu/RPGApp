@@ -35,19 +35,10 @@ class newAbilityCell: UITableViewCell,UITextFieldDelegate{
 			
 			newAbilityDelegate.modifiedAbility()
 			
-			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.abilityAdded.rawValue)
-			
-			action.setValue(actionType, forKey: "action")
-			
-			action.setValue(newAbility.name, forKey: "abilityName")
-			action.setValue(newAbility.id, forKey: "abilityId")
-			action.setValue(newAbility.value, forKey: "abilityValue")
-			action.setValue(character.id, forKey: "characterId")
-			
-			PackageService.pack.send(action)
-			
 			textField.text = ""
+			
+			let action = AbilityAdded(ability: newAbility)
+			PackageService.pack.send(action: action)
 		}
 		
 		return true
