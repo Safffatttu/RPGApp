@@ -193,16 +193,8 @@ class characterItemCell: UITableViewCell {
 		
 		CoreDataStack.saveContext()
 		
-		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.itemCharacterChanged.rawValue)
-		
-		action.setValue(actionType, forKey: "action")
-		
-		action.setValue(itemHandler.count, forKey: "itemCount")
-		action.setValue(itemHandler.item?.id, forKey: "itemId")
-		action.setValue(character.id, forKey: "characterId")
-		
-		PackageService.pack.send(action)
+		let action = ItemCharacterChanged(characterId: character.id!, itemId: (itemHandler.item?.id)!, itemCount: itemHandler.count)
+		PackageService.pack.send(action: action)
 	}
 	
 	func equipmentChanged(){

@@ -82,19 +82,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .itemCharacterChanged{
-			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }
-			guard let itemId = actionData.value(forKey: "itemId") as? String else { return }
-			guard let itemCount = actionData.value(forKey: "itemCount") as? Int64 else { return }
-			
-			guard let character = Load.character(with: characterId) else { return }
-			
-			guard let handler = character.equipment?.first(where: {($0 as? ItemHandler)?.item?.id == itemId}) as? ItemHandler else { return }
-			
-			handler.count = itemCount
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .equipmentChanged, object: nil)
+			let action = ItemCharacterChanged(actionData: actionData, sender: sender)
+			action.execute()
 		
 		}else if actionType == .sessionReceived{
 			guard let sessionData = actionData.value(forKey: "session") as? NSDictionary else { return }
