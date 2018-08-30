@@ -354,6 +354,17 @@ func createTitlesForSubCategory() -> [String: String]{
 	return nameDict
 }
 
+func requestTexuturesFrom(id: [String]){
+	for textureId in id{
+		let action = NSMutableDictionary()
+		let actionType = NSNumber(value: ActionType.requestedImage.rawValue)
+		
+		action.setValue(actionType, forKey: "action")
+		action.setValue(textureId, forKey: "entityId")
+		
+		PackageService.pack.send(action)
+	}
+}
 
 func createBasicCurrency(){
 	createCurrencyUsing(name: "PLN", rate: 0, subList: [("Zł", 1), ("Gr", 100)])

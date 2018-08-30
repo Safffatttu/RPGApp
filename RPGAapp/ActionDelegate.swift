@@ -399,7 +399,11 @@ class ActionDelegate: PackageServiceDelegate{
 					
 					contex.delete(session)
 					
-					createSessionUsing(action: action, sender: sender)
+					guard let newSession = createSessionUsing(action: action, sender: sender) else { return }
+					
+					let textureToRequest = getTextureId(from: newSession)
+					requestTexuturesFrom(id: textureToRequest)
+					
 					CoreDataStack.saveContext()
 					
 					NotificationCenter.default.post(name: .sessionReceived, object: nil)
@@ -416,13 +420,18 @@ class ActionDelegate: PackageServiceDelegate{
 				a?.present(alert, animated: true, completion: nil)
 				
 			}else{
-				createSessionUsing(action: action, sender: sender)
+				guard let newSession = createSessionUsing(action: action, sender: sender) else { return }
 				
 				CoreDataStack.saveContext()
 				
 				NotificationCenter.default.post(name: .sessionReceived, object: nil)
 				NotificationCenter.default.post(name: .reloadTeam, object: nil)
+				
+				let textureToRequest = getTextureId(from: newSession)
+				requestTexuturesFrom(id: textureToRequest)
+				
 			}
+		
 		}else if actionType == ActionType.itemsRequest{
 			guard let itemsId = action.value(forKey: "itemsId") as? NSArray else { return }
 			let requestId = action.value(forKey: "id")

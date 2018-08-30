@@ -415,9 +415,9 @@ func checkSessionDataForNotKnowIds(sessionData: NSDictionary) -> [String]{
 	return requestList
 }
 
-func createSessionUsing(action: NSMutableDictionary, sender: MCPeerID){
+func createSessionUsing(action: NSMutableDictionary, sender: MCPeerID) -> Session?{
 	
-	guard let data = action.value(forKey: "session") as? NSDictionary else { return }
+	guard let data = action.value(forKey: "session") as? NSDictionary else { return nil }
 	
 	let itemsToRequest = checkSessionDataForNotKnowIds(sessionData: data)
 	
@@ -427,10 +427,10 @@ func createSessionUsing(action: NSMutableDictionary, sender: MCPeerID){
 		
 		ItemRequester.rq.request(request)
 		
-		return
+		return nil
 	}
 	
-	guard let newSession = unPackSession(from: data) else { return }
+	guard let newSession = unPackSession(from: data) else { return nil}
 	
 	if let setCurrent = data.value(forKey: "current") as? Bool{
 		if setCurrent {
@@ -438,6 +438,23 @@ func createSessionUsing(action: NSMutableDictionary, sender: MCPeerID){
 			newSession.current = setCurrent
 		}
 	}
+	
+	return newSession
+}
+
+func getTextureId(from session: Session) -> [String]{
+	let map = Load.currentMap(session: session)
+	guard let mapEntities = map.entities?.allObjects as? [MapEntity] else { return [] }
+	
+	var list: [String] = []
+	
+	for entity in mapEntities{
+		guard entity.texture?.data != nil else { continue }
+		guard let id = entity.id else { continue }
+		list.append(id)
+	}
+	
+	return list
 }
 
 func packCurrency(_ currency: Currency) -> NSMutableDictionary{
