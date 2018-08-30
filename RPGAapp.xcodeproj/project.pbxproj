@@ -75,6 +75,7 @@
 		3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */; };
 		3BD335931FF291DC004F70BF /* drawingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD335921FF291DC004F70BF /* drawingTest.swift */; };
 		3BD7779221384A5900A03A88 /* SessionSwitched.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7779121384A5900A03A88 /* SessionSwitched.swift */; };
+		3BD777942138506300A03A88 /* PackageCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD777932138506300A03A88 /* PackageCreated.swift */; };
 		3BD8EB16210F2D6B0066EC76 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3BD8EB18210F2D6B0066EC76 /* Localizable.strings */; };
 		3BDBD9EC20ACD45D00E0EB62 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */; };
 		3BDBD9ED20ACD45D00E0EB62 /* Map+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */; };
@@ -214,6 +215,7 @@
 		3BD3358C1FF28B2E004F70BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BD335921FF291DC004F70BF /* drawingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = drawingTest.swift; path = ../RPGAapp/drawingTest.swift; sourceTree = "<group>"; };
 		3BD7779121384A5900A03A88 /* SessionSwitched.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionSwitched.swift; sourceTree = "<group>"; };
+		3BD777932138506300A03A88 /* PackageCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageCreated.swift; sourceTree = "<group>"; };
 		3BD8EB17210F2D6B0066EC76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataProperties.swift"; path = "Data Classes/Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Map+CoreDataClass.swift"; path = "Data Classes/Map+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				3B94594521381DEF00384F5B /* ItemCharacterDeleted.swift */,
 				3B9459472138256900384F5B /* ItemPackageAdded.swift */,
 				3BD7779121384A5900A03A88 /* SessionSwitched.swift */,
+				3BD777932138506300A03A88 /* PackageCreated.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				3BDBD9F820ACD45D00E0EB62 /* Currency+CoreDataProperties.swift in Sources */,
 				3BDBDA0020ACD45D00E0EB62 /* ItemAtribute+CoreDataProperties.swift in Sources */,
 				3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */,
+				3BD777942138506300A03A88 /* PackageCreated.swift in Sources */,
 				3BB70E9620E8DCE00044847B /* Visibility+CoreDataProperties.swift in Sources */,
 				3B4CE5C020D9991500779532 /* CurrencyExchange.swift in Sources */,
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,

@@ -62,24 +62,9 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
 		}else if actionType == .packageCreated{
-			let packageName = actionData.value(forKey: "packageName") as! String
-			let packageId = actionData.value(forKey: "packageId") as! String
+			let action = PackageCreated(actionData: actionData, sender: sender)
+			action.execute()
 			
-			let context = CoreDataStack.managedObjectContext
-			let newPackage = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package
-			
-			newPackage.name = packageName
-			newPackage.id = packageId
-			
-			newPackage.visibility = Load.currentVisibility()
-			
-			let session = Load.currentSession()
-			
-			session.addToPackages(newPackage)
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .createdPackage, object: nil)
 		}else if actionType == .packageDeleted{
 			guard let packageId = actionData.value(forKey: "packageId") as? String else { return }
 			guard let package = Load.packages(with: packageId) else { return }

@@ -167,14 +167,9 @@ class addToPackage: UITableViewController, addToPackageDelegate {
 		
 		reloadPackages()
 		
-        let action = NSMutableDictionary()
-        let actionType = NSNumber(value: ActionType.packageCreated.rawValue)
-        
-        action.setValue(actionType, forKey: "action")
-        action.setValue(newPackage.name, forKey: "packageName")
-        action.setValue(newPackage.id, forKey: "packageId")
+        let action = PackageCreated(package: newPackage)
 		
-        PackageService.pack.send(action)
+		PackageService.pack.send(action: action)
         
         NotificationCenter.default.post(name: .createdPackage, object: nil)
     }
