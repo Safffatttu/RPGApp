@@ -8,11 +8,10 @@
 
 import Foundation
 import MultipeerConnectivity
-import Whisper
 
 struct CharacterRemoved: Action {
 	
-	var actionType: ActionType = ActionType.abilityRemoved
+	var actionType: ActionType = ActionType.CharacterRemoved
 	var data: ActionData{
 		get{
 			let data = ActionData(dictionary: [
