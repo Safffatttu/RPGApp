@@ -18,5 +18,6 @@ extension SubCurrency {
 
     @NSManaged public var name: String?
     @NSManaged public var rate: Int16
+    @NSManaged public var currency: Currency?
 
 }

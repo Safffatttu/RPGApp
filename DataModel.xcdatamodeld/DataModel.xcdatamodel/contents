@@ -22,12 +22,12 @@
         <relationship name="equipment" toMany="YES" deletionRule="Cascade" destinationEntity="ItemHandler" inverseName="owner" inverseEntity="ItemHandler" syncable="YES"/>
         <relationship name="mapRepresentation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="MapEntity" inverseName="character" inverseEntity="MapEntity" syncable="YES"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="characters" inverseEntity="Session" syncable="YES"/>
-        <relationship name="visibility" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Visibility" syncable="YES"/>
+        <relationship name="visibility" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Visibility" inverseName="characters" inverseEntity="Visibility" syncable="YES"/>
     </entity>
     <entity name="Currency" representedClassName="Currency" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="rate" attributeType="Double" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="subCurrency" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SubCurrency" syncable="YES"/>
+        <relationship name="subCurrency" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SubCurrency" inverseName="currency" inverseEntity="SubCurrency" syncable="YES"/>
     </entity>
     <entity name="DrawSetting" representedClassName="DrawSetting" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -68,11 +68,12 @@
     </entity>
     <entity name="ItemAtributeHandler" representedClassName="ItemAtributeHandler" syncable="YES">
         <relationship name="itemAtributes" toMany="YES" deletionRule="Nullify" destinationEntity="ItemAtribute" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemHandler" inverseName="itemAtributesHandler" inverseEntity="ItemHandler" syncable="YES"/>
     </entity>
     <entity name="ItemHandler" representedClassName="ItemHandler" syncable="YES">
         <attribute name="count" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="item" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Item" inverseName="handelers" inverseEntity="Item" syncable="YES"/>
-        <relationship name="itemAtributesHandler" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ItemAtributeHandler" syncable="YES"/>
+        <relationship name="itemAtributesHandler" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ItemAtributeHandler" inverseName="owner" inverseEntity="ItemAtributeHandler" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="equipment" inverseEntity="Character" syncable="YES"/>
     </entity>
     <entity name="Map" representedClassName="Map" syncable="YES">
@@ -81,7 +82,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="background" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" syncable="YES"/>
+        <relationship name="background" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" inverseName="map" inverseEntity="Texture" syncable="YES"/>
         <relationship name="entities" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MapEntity" inverseName="map" inverseEntity="MapEntity" syncable="YES"/>
         <relationship name="session" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="maps" inverseEntity="Session" syncable="YES"/>
     </entity>
@@ -91,14 +92,14 @@
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="mapRepresentation" inverseEntity="Character" syncable="YES"/>
         <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="entities" inverseEntity="Map" syncable="YES"/>
-        <relationship name="texture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" storedInTruthFile="YES" syncable="YES"/>
+        <relationship name="texture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" inverseName="mapEntity" inverseEntity="Texture" storedInTruthFile="YES" syncable="YES"/>
     </entity>
     <entity name="Package" representedClassName="Package" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="items" toMany="YES" deletionRule="Cascade" destinationEntity="ItemHandler" syncable="YES"/>
         <relationship name="session" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="packages" inverseEntity="Session" syncable="YES"/>
-        <relationship name="visibility" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Visibility" syncable="YES"/>
+        <relationship name="visibility" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Visibility" inverseName="packages" inverseEntity="Visibility" syncable="YES"/>
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES">
         <attribute name="current" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -110,7 +111,7 @@
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
         <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" syncable="YES"/>
         <relationship name="maps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Map" inverseName="session" inverseEntity="Map" syncable="YES"/>
-        <relationship name="packages" toMany="YES" deletionRule="No Action" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
+        <relationship name="packages" toMany="YES" deletionRule="Cascade" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
         <relationship name="visibility" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Visibility" inverseName="session" inverseEntity="Visibility" syncable="YES"/>
     </entity>
     <entity name="Store" representedClassName="Store" syncable="YES">
@@ -139,14 +140,19 @@
     <entity name="SubCurrency" representedClassName="SubCurrency" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="rate" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="currency" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="subCurrency" inverseEntity="Currency" syncable="YES"/>
     </entity>
     <entity name="Texture" representedClassName="Texture" syncable="YES">
         <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="background" inverseEntity="Map" syncable="YES"/>
+        <relationship name="mapEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MapEntity" inverseName="texture" inverseEntity="MapEntity" syncable="YES"/>
     </entity>
     <entity name="Visibility" representedClassName="Visibility" syncable="YES">
         <attribute name="current" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="visibility" inverseEntity="Character" syncable="YES"/>
+        <relationship name="packages" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Package" inverseName="visibility" inverseEntity="Package" syncable="YES"/>
         <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="visibility" inverseEntity="Session" syncable="YES"/>
     </entity>
     <fetchRequest name="FetchRequest" entity="Item"/>
@@ -159,18 +165,18 @@
         <element name="DrawSubSetting" positionX="223" positionY="269" width="128" height="150"/>
         <element name="Item" positionX="-9" positionY="-19" width="108" height="238"/>
         <element name="ItemAtribute" positionX="-18" positionY="261" width="128" height="150"/>
-        <element name="ItemAtributeHandler" positionX="-173" positionY="228" width="128" height="60"/>
-        <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="103"/>
+        <element name="ItemAtributeHandler" positionX="-173" positionY="228" width="128" height="75"/>
+        <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="105"/>
         <element name="Map" positionX="-1026" positionY="204" width="128" height="165"/>
         <element name="MapEntity" positionX="-819" positionY="405" width="128" height="135"/>
-        <element name="Package" positionX="-452" positionY="-99" width="128" height="118"/>
-        <element name="Session" positionX="-866" positionY="-84" width="128" height="208"/>
+        <element name="Package" positionX="-452" positionY="-99" width="128" height="120"/>
+        <element name="Session" positionX="-866" positionY="-84" width="128" height="210"/>
         <element name="Store" positionX="-531" positionY="431" width="126" height="118"/>
         <element name="StoreAvalibleItem" positionX="-378" positionY="359" width="128" height="73"/>
         <element name="StorePurchases" positionX="-387" positionY="557" width="128" height="118"/>
         <element name="SubCategory" positionX="153" positionY="-43" width="128" height="90"/>
-        <element name="SubCurrency" positionX="-882" positionY="-225" width="128" height="75"/>
-        <element name="Texture" positionX="-1062" positionY="453" width="128" height="60"/>
-        <element name="Visibility" positionX="-657" positionY="-189" width="128" height="103"/>
+        <element name="SubCurrency" positionX="-830" positionY="-205" width="128" height="88"/>
+        <element name="Texture" positionX="-1062" positionY="453" width="128" height="90"/>
+        <element name="Visibility" positionX="-657" positionY="-189" width="128" height="135"/>
     </elements>
 </model>

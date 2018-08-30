@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  
 //
-//  Created by Jakub on 16.09.2017.
+//  Created by Jakub on 30.08.2018.
 //
 //
 
@@ -17,7 +17,7 @@ extension Item {
     }
 
     @NSManaged public var baseDescription: String?
-    @NSManaged public var id: String
+    @NSManaged public var id: String?
     @NSManaged public var item_description: String?
     @NSManaged public var measure: String?
     @NSManaged public var name: String?

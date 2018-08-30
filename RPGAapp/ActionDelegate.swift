@@ -481,18 +481,20 @@ class ActionDelegate: PackageServiceDelegate{
 			let response = NSMutableDictionary()
 			response.setValue(ActionType.recievedItemList.rawValue, forKey: "action")
 			
-			let itemList = NSArray(array: Load.items().map{$0.id})
+			let itemList = NSArray(array: Load.items().flatMap{$0.id})
 			
 			response.setValue(itemList, forKey: "itemList")
 			
 			PackageService.pack.send(response, to: sender)
 			
 		}else if actionType == ActionType.recievedItemList{
-			let localItemList = Load.items().map{$0.id}
+			let localItemList = Load.items().map{$0.id!}
 			
 			let recievedItemList = (action.value(forKey: "itemList") as! NSArray) as! [String]
 			
-			let requestList = recievedItemList.filter{!localItemList.contains($0)}
+			let requestList = recievedItemList.filter{itemId in
+				!localItemList.contains(itemId)
+			}
 			
 			let action = NSMutableDictionary()
 			action.setValue(ActionType.itemsRequest.rawValue, forKey: "action")

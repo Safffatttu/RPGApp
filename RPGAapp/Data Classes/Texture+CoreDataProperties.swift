@@ -17,5 +17,7 @@ extension Texture {
     }
 
     @NSManaged public var data: NSData?
+    @NSManaged public var mapEntity: MapEntity?
+    @NSManaged public var map: Map?
 
 }

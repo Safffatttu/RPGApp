@@ -141,7 +141,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	
 	let gameMaster = dictionary.value(forKey: "gameMaster") as? String
 	let gameMasterName = dictionary.value(forKey: "gameMasterName") as? String
-	let devices = dictionary.value(forKey: "devices") as? NSArray
+	_ = dictionary.value(forKey: "devices") as? NSArray
 	
 	guard let allCharactersDict = dictionary.value(forKey: "characters") as? NSArray else { return nil }
 	guard let allPackagesDict = dictionary.value(forKey: "packages") as? NSArray else { return nil }
