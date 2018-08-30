@@ -77,6 +77,7 @@
 		3BD7779221384A5900A03A88 /* SessionSwitched.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7779121384A5900A03A88 /* SessionSwitched.swift */; };
 		3BD777942138506300A03A88 /* PackageCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD777932138506300A03A88 /* PackageCreated.swift */; };
 		3BD777962138521200A03A88 /* PackageDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD777952138521200A03A88 /* PackageDeleted.swift */; };
+		3BD77798213853B700A03A88 /* SessionDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD77797213853B700A03A88 /* SessionDeleted.swift */; };
 		3BD8EB16210F2D6B0066EC76 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3BD8EB18210F2D6B0066EC76 /* Localizable.strings */; };
 		3BDBD9EC20ACD45D00E0EB62 /* Character+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */; };
 		3BDBD9ED20ACD45D00E0EB62 /* Map+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */; };
@@ -218,6 +219,7 @@
 		3BD7779121384A5900A03A88 /* SessionSwitched.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionSwitched.swift; sourceTree = "<group>"; };
 		3BD777932138506300A03A88 /* PackageCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageCreated.swift; sourceTree = "<group>"; };
 		3BD777952138521200A03A88 /* PackageDeleted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageDeleted.swift; sourceTree = "<group>"; };
+		3BD77797213853B700A03A88 /* SessionDeleted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDeleted.swift; sourceTree = "<group>"; };
 		3BD8EB17210F2D6B0066EC76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3BDBD9CE20ACD45D00E0EB62 /* Character+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Character+CoreDataProperties.swift"; path = "Data Classes/Character+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3BDBD9CF20ACD45D00E0EB62 /* Map+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Map+CoreDataClass.swift"; path = "Data Classes/Map+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				3BD7779121384A5900A03A88 /* SessionSwitched.swift */,
 				3BD777932138506300A03A88 /* PackageCreated.swift */,
 				3BD777952138521200A03A88 /* PackageDeleted.swift */,
+				3BD77797213853B700A03A88 /* SessionDeleted.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -848,6 +851,7 @@
 				3BDBDA0920ACD45D00E0EB62 /* SubCategory+CoreDataProperties.swift in Sources */,
 				3BB70E9520E8DCE00044847B /* Visibility+CoreDataClass.swift in Sources */,
 				3BDBDA0420ACD45D00E0EB62 /* ItemHandler+CoreDataProperties.swift in Sources */,
+				3BD77798213853B700A03A88 /* SessionDeleted.swift in Sources */,
 				3B94593C2137F09F00384F5B /* Action.swift in Sources */,
 				3BDF0FEB1F5C946100135252 /* addToPackage.swift in Sources */,
 				3BDBD9FA20ACD45D00E0EB62 /* DrawSetting+CoreDataProperties.swift in Sources */,

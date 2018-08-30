@@ -50,16 +50,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .sessionDeleted{
-			guard UserDefaults.standard.bool(forKey: "syncSessionRemoval") else { return }
-			
-			let sessionId = actionData.value(forKey: "sessionId") as! String
-			
-			let context = CoreDataStack.managedObjectContext
-			guard let session = Load.session(with: sessionId) else { return }
-			
-			context.delete(session)
-			NotificationCenter.default.post(name: .sessionDeleted, object: nil)
-			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			let action = SessionDeleted(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .packageCreated{
 			let action = PackageCreated(actionData: actionData, sender: sender)

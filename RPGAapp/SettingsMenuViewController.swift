@@ -378,11 +378,8 @@ class SettingMenu: UITableViewController {
 					
 					NotificationCenter.default.post(name: .reloadTeam, object: nil)
 					
-					let action = NSMutableDictionary()
-					let actionType: NSNumber = NSNumber(value: ActionType.sessionDeleted.rawValue)
-					action.setValue(actionType, forKey: "action")
-					action.setValue(sessionId, forKey: "sessionId")
-					PackageService.pack.send(action)
+					let action = SessionDeleted(sessionId: sessionId!)
+					PackageService.pack.send(action: action)
 				})
 				
 				let alertNo = UIAlertAction(title: localizedNo, style: .cancel, handler: nil)
