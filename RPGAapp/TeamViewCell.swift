@@ -168,13 +168,8 @@ class TeamViewCell: UICollectionViewCell {
 						
 			NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			
-			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.characterRemoved.rawValue)
-			
-			action.setValue(actionType, forKey: "action")
-			action.setValue(characterId, forKey: "characterId")
-			
-			PackageService.pack.send(action)
+			let action = CharacterRemoved(characterId: characterId!)			
+			PackageService.pack.send(action: action)
 		})
 		
 		let localizedNo = NSLocalizedString("No", comment: "")

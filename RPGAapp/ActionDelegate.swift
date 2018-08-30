@@ -78,17 +78,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .characterRemoved{
-			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }
-			
-			guard let character = Load.character(with: characterId) else { return }
-			
-			let context = CoreDataStack.managedObjectContext
-			
-			context.delete(character)
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			let action = CharacterRemoved(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .itemCharacterChanged{
 			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }
