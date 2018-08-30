@@ -15,7 +15,7 @@ protocol Action{
 	
 	var actionType: ActionType { get }
 	
-	var dictionary: ActionData { get }
+	var data: ActionData { get }
 	
 	func execute()
 	

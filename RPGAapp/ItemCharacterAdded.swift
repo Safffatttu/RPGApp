@@ -12,22 +12,28 @@ import MultipeerConnectivity
 struct ItemCharacterAdded: Action {
 	
 	var actionType: ActionType = ActionType.itemCharacterAdded
-	var dictionary: ActionData{
+	var data: ActionData{
 		get{
-			return ActionData()
+			let data = ActionData(dictionary: [
+					"itemId": itemId,
+					"itemCount" : itemCount,
+					"itemsId" : itemsId,
+					"itemsCount" : itemsCount
+				])
+			return data
 		}
 	}
 	
-	let from: MCPeerID
+	var from: MCPeerID?
 	
-	let itemId: String?
-	let itemCount: Int64?
-	let itemsId: [String]?
-	let itemsCount: [Int64]?
+	var itemId: String?
+	var itemCount: Int64?
+	var itemsId: [String]?
+	var itemsCount: [Int64]?
 	
-	let characterId: String?
+	var characterId: String?
 	
-	let actionData: ActionData
+	var actionData: ActionData?
 	
 	init(actionData: ActionData, sender: MCPeerID) {
 		from = sender
@@ -41,6 +47,20 @@ struct ItemCharacterAdded: Action {
 		characterId = actionData.value(forKey: "characterId") as? String
 		
 		self.actionData = actionData
+	}
+	
+	init(itemId: String){
+		self.itemId = itemId
+	}
+	
+	init(itemId: String, itemCount: Int64){
+		self.itemId = itemId
+		self.itemCount = itemCount
+	}
+	
+	init(itemsId: [String], itemsCount: [Int64]){
+		self.itemsId = itemsId
+		self.itemsCount = itemsCount
 	}
 	
 	func execute(){
@@ -60,7 +80,7 @@ struct ItemCharacterAdded: Action {
 				}
 				
 			}else {
-				request = ItemRequest(with: [id], sender: from, action: actionData)
+				request = ItemRequest(with: [id], sender: from!, action: actionData!)
 			}
 			
 		}else if let count = itemsId?.count{
@@ -83,7 +103,7 @@ struct ItemCharacterAdded: Action {
 				}
 				
 			}else{
-				request = ItemRequest(with: itemsToRequest, sender: from, action: actionData)
+				request = ItemRequest(with: itemsToRequest, sender: from!, action: actionData!)
 			}
 		}
 		

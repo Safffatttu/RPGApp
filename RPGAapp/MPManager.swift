@@ -64,6 +64,11 @@ class PackageService: NSObject{
         }
     }
 	
+	func send<T: Action>(action: T){
+		let data = action.data
+		send(data)
+	}
+	
 	func send(_ action: ActionData,to peer: MCPeerID){
 		NSLog("%@", "sendTo")
 		if session.connectedPeers.count > 0{

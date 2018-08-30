@@ -170,36 +170,29 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		
         dismiss(animated: true, completion: nil)
         
-        let action =  NSMutableDictionary()
-        
-        let actionType: NSNumber = NSNumber(value: ActionType.itemCharacterAdded.rawValue)
-        action.setValue(actionType, forKey: "action")
-        
+		let action: ItemCharacterAdded
+		
         if let itemToSend = item {
-            action.setValue(itemToSend.id, forKey: "itemId")
-            
+            action = ItemCharacterAdded(itemId: itemToSend.id!)
+			
         }else if let handlerToSend = itemHandler {
-            action.setValue(handlerToSend.item?.id, forKey: "itemId")
-            action.setValue(handlerToSend.count, forKey: "itemCount")
+			action = ItemCharacterAdded(itemId: (handlerToSend.item?.id)!, itemCount: handlerToSend.count)
+			
         }else {
             var itemsId: [String] = []
             var itemsCount: [Int64] = []
-            for handler in itemHandlers{
+
+			for handler in itemHandlers{
                 let itemId = handler.item?.id
                 itemsId.append(itemId!)
                 let itemCount = handler.count
                 itemsCount.append(itemCount)
             }
-            let itemsIdToSend = NSArray(array: itemsId)
-            let itemsCountToSend = NSArray(array: itemsCount)
-            
-            action.setValue(itemsIdToSend, forKey: "itemsId")
-            action.setValue(itemsCountToSend, forKey: "itemsCount")
+			
+			action = ItemCharacterAdded(itemsId: itemsId, itemsCount: itemsCount)
         }
-
-        action.setValue(recipient.id, forKey: "characterId")
 		
-        PackageService.pack.send(action)
+        PackageService.pack.send(action: action)
     }
 }
 
