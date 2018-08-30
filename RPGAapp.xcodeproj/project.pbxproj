@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		12F51BB5C46DBD12E46D0BD5 /* Pods_RPGAapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3B01662A213858D10074A747 /* AbilityAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B016629213858D10074A747 /* AbilityAdded.swift */; };
+		3B01662C213859DE0074A747 /* AbilityValueChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01662B213859DE0074A747 /* AbilityValueChanged.swift */; };
 		3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D621F3A21A800B5271C /* AppDelegate.swift */; };
 		3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D641F3A21A800B5271C /* MasterViewController.swift */; };
 		3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D681F3A21A800B5271C /* Main.storyboard */; };
@@ -143,6 +144,7 @@
 
 /* Begin PBXFileReference section */
 		3B016629213858D10074A747 /* AbilityAdded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityAdded.swift; sourceTree = "<group>"; };
+		3B01662B213859DE0074A747 /* AbilityValueChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityValueChanged.swift; sourceTree = "<group>"; };
 		3B063D5F1F3A21A800B5271C /* RPGAapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGAapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B063D621F3A21A800B5271C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B063D641F3A21A800B5271C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				3BD777952138521200A03A88 /* PackageDeleted.swift */,
 				3BD77797213853B700A03A88 /* SessionDeleted.swift */,
 				3B016629213858D10074A747 /* AbilityAdded.swift */,
+				3B01662B213859DE0074A747 /* AbilityValueChanged.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				3B4CE5C020D9991500779532 /* CurrencyExchange.swift in Sources */,
 				3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */,
 				3BBBBE89201A875800ECA86A /* LoadData.swift in Sources */,
+				3B01662C213859DE0074A747 /* AbilityValueChanged.swift in Sources */,
 				3B7FD39E20DFFA530052EDDB /* ItemDrawManager.swift in Sources */,
 				3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */,
 				3BF5EACB20A71E9C005FD6BC /* ItemRequester.swift in Sources */,

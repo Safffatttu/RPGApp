@@ -72,18 +72,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .abilityValueChanged{
-			guard let characterId = actionData.value(forKey: "characterId") as? String else {return}
-			guard let abilityId = actionData.value(forKey: "abilityId") as? String else {return}
-			guard let abilityValue = actionData.value(forKey: "abilityValue") as? Int16 else {return}
-			
-			guard let character = Load.character(with: characterId) else {return}
-			
-			guard let ability = character.abilities?.first(where: {($0 as! Ability).id == abilityId}) as? Ability else {return}
-			ability.value = abilityValue
-
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .valueOfAblitityChanged, object: abilityId)
+			let action = AbilityValueChanged(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .abilityRemoved{
 			guard let characterId = actionData.value(forKey: "characterId") as? String else {return}
