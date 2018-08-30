@@ -70,6 +70,12 @@ class PackageService: NSObject{
 		send(data)
 	}
 	
+	func send<T: Action>(action: T, to peer: MCPeerID){
+		let data = action.data
+		data.setValue(action.actionType.rawValue, forKey: "action")
+		send(data, to: peer)
+	}
+	
 	func send(_ action: ActionData,to peer: MCPeerID){
 		NSLog("%@", "sendTo")
 		if session.connectedPeers.count > 0{
@@ -122,7 +128,6 @@ extension PackageService: MCSessionDelegate{
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
         let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! ActionData
-        action.setValue(peerID.displayName, forKey: "sender")
 		DispatchQueue.main.async {
 			self.delegate?.received(action,from: peerID)
 		}
