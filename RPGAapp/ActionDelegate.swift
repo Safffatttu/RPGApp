@@ -66,14 +66,9 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .packageDeleted{
-			guard let packageId = actionData.value(forKey: "packageId") as? String else { return }
-			guard let package = Load.packages(with: packageId) else { return }
+			let action = PackageDeleted(actionData: actionData, sender: sender)
+			action.execute()
 			
-			CoreDataStack.managedObjectContext.delete(package)
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .createdPackage, object: nil) //same as deletePackage
 		}else if actionType == .generatedRandomNumber{
 			let number = actionData.value(forKey: "number") as! Int
 			let message = NSLocalizedString("Drawn", comment: "") + " " + String(number)
