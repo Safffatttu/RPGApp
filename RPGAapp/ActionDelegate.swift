@@ -62,10 +62,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .generatedRandomNumber{
-			let number = actionData.value(forKey: "number") as! Int
-			let message = NSLocalizedString("Drawn", comment: "") + " " + String(number)
-			
-			whisper(messege: message)
+			let action = GeneratedRandomNumber(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .abilityAdded{
 			let action = AbilityAdded(actionData: actionData, sender: sender)
