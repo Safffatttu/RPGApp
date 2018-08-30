@@ -128,3 +128,9 @@
 "Lost connection with" = "Utracono połączenie z";
 "Reconneced with" = "Ponownie połączono z";
 "exited application" = "wyszedł z aplikacji";
+
+"Replace" = "Zamień";
+"Keep" = "Zatrzymaj";
+
+"receive session with id of exising session" = "otrzymano sesję z id już istniejącej sesji";
+"Do you want to replace it or keep local version?" = "Chcesz ją zamienić czy wolisz zostawić lokalną wersje?";

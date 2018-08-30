@@ -14,6 +14,7 @@
 		3B01663021385DF90074A747 /* AbilityRemoved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01662F21385DF90074A747 /* AbilityRemoved.swift */; };
 		3B01663221385FBF0074A747 /* CharacterRemoved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01663121385FBF0074A747 /* CharacterRemoved.swift */; };
 		3B016634213864380074A747 /* ItemCharacterChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B016633213864380074A747 /* ItemCharacterChanged.swift */; };
+		3B062551213889A500501994 /* SessionReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B062550213889A500501994 /* SessionReceived.swift */; };
 		3B063D631F3A21A800B5271C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D621F3A21A800B5271C /* AppDelegate.swift */; };
 		3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D641F3A21A800B5271C /* MasterViewController.swift */; };
 		3B063D6A1F3A21A800B5271C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B063D681F3A21A800B5271C /* Main.storyboard */; };
@@ -153,6 +154,7 @@
 		3B01662F21385DF90074A747 /* AbilityRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbilityRemoved.swift; sourceTree = "<group>"; };
 		3B01663121385FBF0074A747 /* CharacterRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterRemoved.swift; sourceTree = "<group>"; };
 		3B016633213864380074A747 /* ItemCharacterChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCharacterChanged.swift; sourceTree = "<group>"; };
+		3B062550213889A500501994 /* SessionReceived.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionReceived.swift; sourceTree = "<group>"; };
 		3B063D5F1F3A21A800B5271C /* RPGAapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGAapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B063D621F3A21A800B5271C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B063D641F3A21A800B5271C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				3B01662D21385B390074A747 /* GeneratedRandomNumber.swift */,
 				3B01662F21385DF90074A747 /* AbilityRemoved.swift */,
 				3B01663121385FBF0074A747 /* CharacterRemoved.swift */,
+				3B062550213889A500501994 /* SessionReceived.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -903,6 +906,7 @@
 				3BD7779221384A5900A03A88 /* SessionSwitched.swift in Sources */,
 				3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */,
 				3B016634213864380074A747 /* ItemCharacterChanged.swift in Sources */,
+				3B062551213889A500501994 /* SessionReceived.swift in Sources */,
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B11312D20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift in Sources */,
 				3B63958520E7AED6001336A8 /* NewCurrencyForm.swift in Sources */,

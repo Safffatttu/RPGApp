@@ -415,24 +415,26 @@ func checkSessionDataForNotKnowIds(sessionData: NSDictionary) -> [String]{
 	return requestList
 }
 
-func createSessionUsing(action: NSMutableDictionary, sender: MCPeerID) -> Session?{
+func createSessionUsing(sessionData: NSDictionary, sender: MCPeerID) -> Session?{
 	
-	guard let data = action.value(forKey: "session") as? NSDictionary else { return nil }
-	
-	let itemsToRequest = checkSessionDataForNotKnowIds(sessionData: data)
+	let itemsToRequest = checkSessionDataForNotKnowIds(sessionData: sessionData)
 	
 	guard itemsToRequest.count == 0 else {
 		
-		let request = ItemRequest(with: itemsToRequest, sender: sender, action: action)
+		let action = SessionReceived(sessionData: sessionData)
+		let actionData = action.data
+		actionData.setValue(action.actionType.rawValue, forKey: "action")
+		
+		let request = ItemRequest(with: itemsToRequest, sender: sender, action: actionData)
 		
 		ItemRequester.rq.request(request)
 		
 		return nil
 	}
 	
-	guard let newSession = unPackSession(from: data) else { return nil}
+	guard let newSession = unPackSession(from: sessionData) else { return nil}
 	
-	if let setCurrent = data.value(forKey: "current") as? Bool{
+	if let setCurrent = sessionData.value(forKey: "current") as? Bool{
 		if setCurrent {
 			Load.sessions().first(where: {$0.current})?.current = false
 			newSession.current = setCurrent

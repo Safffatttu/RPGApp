@@ -166,18 +166,9 @@ public struct Load {
 			var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
 			devices.append(UIDevice.current.name)
 						
-			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
+			let action = SessionReceived(session: session)			
+			PackageService.pack.send(action: action)
 			
-			action.setValue(actionType, forKey: "action")
-			
-			let sessionDictionary = packSessionForMessage(session)
-			
-			action.setValue(actionType, forKey: "action")
-			action.setValue(sessionDictionary, forKey: "session")
-			action.setValue(session.current, forKey: "setCurrent")
-			
-			PackageService.pack.send(action)
 			NotificationCenter.default.post(name: .addedSession, object: session)
 			return session
 		}

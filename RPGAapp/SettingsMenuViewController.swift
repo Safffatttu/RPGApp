@@ -397,15 +397,9 @@ class SettingMenu: UITableViewController {
 			let sendSession = UITableViewRowAction(style: .normal, title: localizedSendTitle, handler: {action,path in
 				
 				let session = self.sessions[path.row - 1]
-				let sessionDict = packSessionForMessage(session)
 				
-				let action = NSMutableDictionary()
-				let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
-				
-				action.setValue(actionType, forKey: "action")
-				action.setValue(sessionDict, forKey: "session")
-				
-				PackageService.pack.send(action)
+				let action = SessionReceived(session: session)
+				PackageService.pack.send(action: action)
 
 				tableView.setEditing(false, animated: true)
 				
@@ -610,18 +604,8 @@ extension SettingMenu: settingCellDelegate {
 		
 		tableView.endUpdates()
 		
-        let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
-		
-		action.setValue(actionType, forKey: "action")
-		
-		let sessionDictionary = packSessionForMessage(session)
-		
-		action.setValue(actionType, forKey: "action")
-		action.setValue(sessionDictionary, forKey: "session")
-		action.setValue(session.current, forKey: "setCurrent")
-		
-		PackageService.pack.send(action)
+        let action = SessionReceived(session: session, setCurrent: session.current)
+		PackageService.pack.send(action: action)
     }
 }
 

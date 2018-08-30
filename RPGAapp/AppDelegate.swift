@@ -47,19 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
 		guard let sessionDictionary = NSDictionary(contentsOf: url) else { return false }
 		
-		
 		guard let newSession = unPackSession(from: sessionDictionary) else { return false }
+		
 		Load.sessions().first(where: {$0.current})?.current = false
 		newSession.current = true
 		
-		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
-		
-		action.setValue(actionType, forKey: "action")
-		action.setValue(sessionDictionary, forKey: "session")
-		action.setValue(newSession.current, forKey: "setCurrent")
-		
-		PackageService.pack.send(action)
+		let action = SessionReceived(session: newSession, setCurrent: true)
+		PackageService.pack.send(action: action)
 		
 		NotificationCenter.default.post(name: .sessionReceived, object: nil)
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)

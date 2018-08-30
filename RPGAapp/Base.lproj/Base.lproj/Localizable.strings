@@ -128,3 +128,9 @@
 "Lost connection with" = "Lost connection with";
 "Reconneced with" = "Reconneced with";
 "exited application" = "exited application";
+
+"Replace" = "Replace";
+"Keep" = "Keep";
+
+"receive session with id of exising session" = "receive session with id of exising session";
+"Do you want to replace it or keep local version?" = "Do you want to replace it or keep local version?";

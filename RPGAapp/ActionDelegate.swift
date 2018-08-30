@@ -86,50 +86,9 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 		
 		}else if actionType == .sessionReceived{
-			guard let sessionData = actionData.value(forKey: "session") as? NSDictionary else { return }
-			guard let sessionId = sessionData.value(forKey: "id") as? String else { return }
+			let action = SessionReceived(actionData: actionData, sender: sender)
+			action.execute()
 			
-			if let session = Load.session(with: sessionId){
-				let alert = UIAlertController(title: "receive session with id of exising session", message: "Do you want to replace it or keep local version?", preferredStyle: .alert)
-				
-				let alertReplace = UIAlertAction(title: "Replace", style: .default, handler: { (_) in
-					let contex = CoreDataStack.managedObjectContext
-					
-					contex.delete(session)
-					
-					guard let newSession = createSessionUsing(action: actionData, sender: sender) else { return }
-					
-					let textureToRequest = getTextureId(from: newSession)
-					requestTexuturesFrom(id: textureToRequest)
-					
-					CoreDataStack.saveContext()
-					
-					NotificationCenter.default.post(name: .sessionReceived, object: nil)
-					NotificationCenter.default.post(name: .reloadTeam, object: nil)
-				})
-				
-				let alertKeep = UIAlertAction(title: "Keep", style: .default, handler: nil)
-				
-				alert.addAction(alertReplace)
-				alert.addAction(alertKeep)
-				
-				let a = UIApplication.topViewController()
-				
-				a?.present(alert, animated: true, completion: nil)
-				
-			}else{
-				guard let newSession = createSessionUsing(action: actionData, sender: sender) else { return }
-				
-				CoreDataStack.saveContext()
-				
-				NotificationCenter.default.post(name: .sessionReceived, object: nil)
-				NotificationCenter.default.post(name: .reloadTeam, object: nil)
-				
-				let textureToRequest = getTextureId(from: newSession)
-				requestTexuturesFrom(id: textureToRequest)
-				
-			}
-		
 		}else if actionType == .itemsRequest{
 			guard let itemsId = actionData.value(forKey: "itemsId") as? NSArray else { return }
 			let requestId = actionData.value(forKey: "id")
