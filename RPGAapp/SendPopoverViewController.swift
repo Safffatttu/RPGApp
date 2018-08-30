@@ -128,27 +128,23 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		
 		PackageService.pack.send(recipientAction)
 		
-		let fromAction = NSMutableDictionary()
-		let fromActionType: NSNumber!
-		
 		if removed{
-			fromActionType = NSNumber(value: ActionType.itemCharacterDeleted.rawValue)
+			let removeAction = ItemCharacterDeleted(characterId: from.id!, itemId: itemId!)
 			
-			fromAction.setValue(itemId, forKey: "itemId")
-			fromAction.setValue(from.id, forKey: "characterId")
+			PackageService.pack.send(action: removeAction)
 			
 		}else{
-			fromActionType = NSNumber(value: ActionType.itemCharacterChanged.rawValue)
+			let fromAction = NSMutableDictionary()
+			let fromActionType = NSNumber(value: ActionType.itemCharacterChanged.rawValue)
+			fromAction.setValue(fromActionType, forKey: "action")
 			
 			fromAction.setValue(itemId, forKey: "itemId")
 			fromAction.setValue(from.id, forKey: "characterId")
 			
 			fromAction.setValue(itemHandler.count, forKey: "itemCount")
+			
+			PackageService.pack.send(fromAction)
 		}
-		
-		fromAction.setValue(fromActionType, forKey: "action")
-		
-		PackageService.pack.send(fromAction)
 		
 		dismiss(animated: true)
 	}

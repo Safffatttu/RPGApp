@@ -273,15 +273,10 @@ class characterItemCell: UITableViewCell {
 			
 			self.backgroundColor = .white
 			
-			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.itemCharacterDeleted.rawValue)
-			
-			action.setValue(actionType, forKey: "action")
-			
-			action.setValue(itemId, forKey: "itemId")
-			action.setValue(character.id, forKey: "characterId")
-			
-			PackageService.pack.send(action)
+			if let characterId = character.id, let itemId = itemId{
+				let action = ItemCharacterDeleted(characterId: characterId, itemId: itemId)
+				PackageService.pack.send(action: action)
+			}
 			
 			removeItemCancelled = false
 			

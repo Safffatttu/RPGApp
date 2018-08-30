@@ -136,23 +136,9 @@ class ActionDelegate: PackageServiceDelegate{
 				PackageService.pack.session.disconnect()
 			}
 		}else if actionType == .itemCharacterDeleted{
-			let itemId = actionData.value(forKey: "itemId") as? String
-			let characterId = actionData.value(forKey: "characterId") as? String
+			let action = ItemCharacterDeleted(actionData: actionData, sender: sender)
+			action.execute()
 			
-			guard itemId != nil && characterId != nil else{
-				return
-			}
-			
-			let item: Item? = Load.item(with: itemId!)
-			let character: Character? = Load.character(with: characterId!)
-			
-			if let handlerToRemove = (character?.equipment?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler){
-				character?.removeFromEquipment(handlerToRemove)
-				
-				NotificationCenter.default.post(name: .equipmentChanged, object: nil)
-				
-				CoreDataStack.saveContext()
-			}
 		}else if actionType == .sessionSwitched{
 			NotificationCenter.default.post(name: .switchedSession, object: actionData)
 			let sessionId = actionData.value(forKey: "sessionId") as! String
