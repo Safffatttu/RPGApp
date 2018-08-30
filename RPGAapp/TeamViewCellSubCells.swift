@@ -117,7 +117,7 @@ class abilityCell: UITableViewCell {
 			
 			self.backgroundColor = .white
 			
-			let action = AbilityRemoved(characterId: character.id!, abilityId: abilityId!)			
+			let action = AbilityRemoved(characterId: character.id!, abilityId: abilityId!)
 			PackageService.pack.send(action: action)
 			
 		case .cancelled:
@@ -135,20 +135,10 @@ class abilityCell: UITableViewCell {
 		
 		CoreDataStack.saveContext()
 		
-		self.textLabel?.text = ability.name! + ": " + String(describing: ability.value)
+		self.textLabel?.text = "\(ability.name!): \(ability.value)"
 		
-		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.abilityValueChanged.rawValue)
-		
-		abilityDelgate.modifiedAbility()
-		
-		action.setValue(actionType, forKey: "action")
-		
-		action.setValue(ability.id, forKey: "abilityId")
-		action.setValue(ability.value, forKey: "abilityValue")
-		action.setValue(character.id, forKey: "characterId")
-		
-		PackageService.pack.send(action)
+		let action = AbilityValueChanged(ability: ability)
+		PackageService.pack.send(action: action)
 	}
 }
 
