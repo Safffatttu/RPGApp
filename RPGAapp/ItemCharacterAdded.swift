@@ -15,100 +15,80 @@ struct ItemCharacterAdded: Action {
 	var data: ActionData{
 		get{
 			let data = ActionData(dictionary: [
-					"itemId": itemId as Any as Any,
-					"itemCount" : itemCount as Any,
-					"itemsId" : itemsId as Any,
-					"itemsCount" : itemsCount as Any
+					"itemsId" : itemsId,
+					"itemsCount" : itemsCount,
+					
+					"characterId" : characterId
 				])
 			return data
 		}
 	}
 	
-	var from: MCPeerID?
+	var sender: MCPeerID?
 	
-	var itemId: String?
-	var itemCount: Int64?
-	var itemsId: [String]?
-	var itemsCount: [Int64]?
+	var itemsId: [String]
+	var itemsCount: [Int64]
 	
-	var characterId: String?
+	var characterId: String
 	
 	var actionData: ActionData?
 	
 	init(actionData: ActionData, sender: MCPeerID) {
-		from = sender
+		self.sender = sender
 		
-		itemId = actionData.value(forKey: "itemId") as? String
-		itemCount = actionData.value(forKey: "itemCount") as? Int64
+		itemsId = actionData.value(forKey: "itemsId") as! [String]
+		itemsCount = actionData.value(forKey: "itemsCount") as! [Int64]
 		
-		itemsId = actionData.value(forKey: "itemsId") as? [String]
-		itemsCount = actionData.value(forKey: "itemsCount") as? [Int64]
-		
-		characterId = actionData.value(forKey: "characterId") as? String
+		characterId = actionData.value(forKey: "characterId") as! String
 		
 		self.actionData = actionData
 	}
 	
-	init(itemId: String){
-		self.itemId = itemId
+	init(characterId: String, itemId: String){
+		self.itemsId = [itemId]
+		self.itemsCount = [1]
+		self.characterId = characterId
 	}
 	
-	init(itemId: String, itemCount: Int64){
-		self.itemId = itemId
-		self.itemCount = itemCount
+	init(characterId: String, itemId: String, itemCount: Int64){
+		self.itemsId = [itemId]
+		self.itemsCount = [itemCount]
+		self.characterId = characterId
 	}
 	
-	init(itemsId: [String], itemsCount: [Int64]){
+	init(characterId: String, itemsId: [String], itemsCount: [Int64]){
 		self.itemsId = itemsId
 		self.itemsCount = itemsCount
+		self.characterId = characterId
 	}
 	
 	func execute(){
-		guard let characterId = characterId else { return }
 		guard let character: Character = Load.character(with: characterId) else { return }
 		
-		var request: ItemRequest? = nil
+		let itemList = zip(self.itemsId, self.itemsCount)
 		
-		if let id = itemId{
-			
-			if let item = Load.item(with: id){
-				
-				if let count = itemCount{
-					addToEquipment(item: item, to: character, count: count)
-				}else{
-					addToEquipment(item: item, to: character)
-				}
-				
-			}else {
-				request = ItemRequest(with: [id], sender: from!, action: actionData!)
+		var requestList: [(String, Int64)] = []
+		
+		for itemData in itemList{
+			guard let item =  Load.item(with: itemData.0) else {
+				requestList.append(itemData)
+				continue
 			}
+			let count = itemData.1
 			
-		}else if let count = itemsId?.count{
-			var itemsToRequest: [String] = []
-			
-			for id in itemsId!{
-				if Load.item(with: id) == nil{
-					itemsToRequest.append(id)
-				}
-			}
-			
-			if itemsToRequest.count == 0{
-				
-				for itemNum in 0...count - 1{
-					let id = itemsId![itemNum]
-					
-					if let item = Load.item(with: id){
-						addToEquipment(item: item, to: character, count: (itemsCount?[itemNum])!)
-					}
-				}
-				
-			}else{
-				request = ItemRequest(with: itemsToRequest, sender: from!, action: actionData!)
-			}
+			addToEquipment(item: item, to: character, count: count)
 		}
 		
-		if let req = request {
-			ItemRequester.rq.request(req)
+		if requestList.count != 0{
+			
+			let requestAction = ItemCharacterAdded(characterId: characterId,itemsId: requestList.map{$0.0}, itemsCount: requestList.map{$0.1})
+			
+			let data = requestAction.data
+			data.setValue(requestAction.actionType.rawValue, forKey: "action")
+			
+			let request = ItemRequest(with: requestList.map{$0.0}, sender: sender!, action: data)
+			
+			ItemRequester.rq.request(request)
 		}
 		
 		CoreDataStack.saveContext()

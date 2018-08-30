@@ -117,16 +117,9 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		
 		let itemId = item.id
 		
-		let recipientAction = NSMutableDictionary()
-		let recipientActionType = NSNumber(value: ActionType.itemCharacterAdded.rawValue)
+		let recipientAction = ItemCharacterAdded(characterId: to.id!, itemId: itemId!)
 		
-		recipientAction.setValue(recipientActionType, forKey: "action")
-		
-		recipientAction.setValue(itemId, forKey: "itemId")
-		recipientAction.setValue(1, forKey: "itemCount")
-		recipientAction.setValue(to.id, forKey: "characterId")
-		
-		PackageService.pack.send(recipientAction)
+		PackageService.pack.send(action: recipientAction)
 		
 		if removed{
 			let removeAction = ItemCharacterDeleted(characterId: from.id!, itemId: itemId!)
@@ -162,10 +155,10 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		let action: ItemCharacterAdded
 		
         if let itemToSend = item {
-            action = ItemCharacterAdded(itemId: itemToSend.id!)
+			action = ItemCharacterAdded(characterId: recipient.id!, itemId: itemToSend.id!)
 			
         }else if let handlerToSend = itemHandler {
-			action = ItemCharacterAdded(itemId: (handlerToSend.item?.id)!, itemCount: handlerToSend.count)
+			action = ItemCharacterAdded(characterId: recipient.id!, itemId: (handlerToSend.item?.id)!, itemCount: handlerToSend.count)
 			
         }else {
             var itemsId: [String] = []
@@ -178,7 +171,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
                 itemsCount.append(itemCount)
             }
 			
-			action = ItemCharacterAdded(itemsId: itemsId, itemsCount: itemsCount)
+			action = ItemCharacterAdded(characterId: recipient.id!, itemsId: itemsId, itemsCount: itemsCount)
         }
 		
         PackageService.pack.send(action: action)
