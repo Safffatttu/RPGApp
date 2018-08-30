@@ -20,10 +20,9 @@ class ActionDelegate: PackageServiceDelegate{
 		print(actionData)
 		guard let actionNumber = actionData.value(forKey: "action") as? Int else { return }
 		guard let actionType = ActionType(rawValue: actionNumber) else { return }
-		let senderName = sender.displayName
-					
+		
 		if actionType == .applicationDidEnterBackground{
-			let message = senderName + " wyszedł z aplikacji"
+			let message = "\(sender.displayName) \(NSLocalizedString("exited application", comment: ""))"
 			whisper(messege: message)
 			
 		}else if actionType == .itemCharacterAdded{
