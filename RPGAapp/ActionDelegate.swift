@@ -26,57 +26,12 @@ class ActionDelegate: PackageServiceDelegate{
 			whisper(messege: message)
 			
 		}else if actionType == .itemCharacterAdded{
-			let actionData = ItemCharacterAdded(actionData: actionData, sender: sender)
-			actionData.execute()
+			let action = ItemCharacterAdded(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .characterCreated{
-			guard let characterId = actionData.value(forKey: #keyPath(Character.id)) as? String else { return }
-			
-			var newCharacter: Character
-			
-			let session = Load.currentSession()
-			
-			if let character = Load.character(with: characterId){
-				newCharacter = character
-				
-			}else {
-				newCharacter = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
-			
-				session.addToCharacters(newCharacter)
-			
-				newCharacter.visibility = Load.currentVisibility()
-				
-				let newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
-			
-				guard let mapEntityId = actionData.value(forKey: "mapEntityId") as? String else { return }
-				guard let mapEntityPosX = actionData.value(forKey: "mapEntityPosX") as? Double else { return }
-				guard let mapEntityPosY = actionData.value(forKey: "mapEntityPosY") as? Double else { return }
-				
-				newMapEntity.character = newCharacter
-				newMapEntity.id = mapEntityId
-				newMapEntity.x = mapEntityPosX
-				newMapEntity.y = mapEntityPosY
-				newMapEntity.map = Load.currentMap(session: session)
-				
-				let localizedNewCharacterString = NSLocalizedString("Added new character", comment: "")
-				whisper(messege: localizedNewCharacterString)
-			}
-			
-			newCharacter.name = actionData.value(forKey: "name") as? String
-			newCharacter.health = (actionData.value(forKey: "health") as? Double) ?? 0
-			newCharacter.race = actionData.value(forKey: "race") as? String
-			newCharacter.id = actionData.value(forKey: "id") as? String
-			newCharacter.profession = actionData.value(forKey: "profession") as? String
-			
-			if let visiblityId = actionData.value(forKey: "visibilityId") as? String{
-				if let visiblity = Load.visibility(with: visiblityId){
-					newCharacter.visibility = visiblity
-				}
-			}
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			let action = CharacterCreated(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .itemPackageAdded{
 			let itemId = actionData.value(forKey: "itemId") as? String
@@ -89,7 +44,7 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			guard let packageId = actionData.value(forKey: "packageId") as? String else { return }
 			
-			var package = Load.packages(with: packageId)
+			var package = Load.packages(with:  packageId)
 			let allItems: [Item] = Load.items()
 			
 			if package == nil{

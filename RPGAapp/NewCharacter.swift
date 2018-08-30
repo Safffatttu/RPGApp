@@ -157,8 +157,6 @@ class NewCharacterForm: FormViewController {
 		}
 		
 		let context = CoreDataStack.managedObjectContext
-		
-		let action = NSMutableDictionary()
 		let session = Load.currentSession()
 		
 		let newCharacter: Character!
@@ -192,22 +190,8 @@ class NewCharacterForm: FormViewController {
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
 		
-		let actionType: NSNumber = NSNumber(value: ActionType.characterCreated.rawValue)
-		action.setValue(actionType, forKey: "action")
-		
-		action.setValue(newCharacter.name, forKey: "name")
-		action.setValue(newCharacter.health, forKey: "health")
-		action.setValue(newCharacter.race, forKey: "race")
-		action.setValue(newCharacter.id, forKey: "id")
-		action.setValue(newCharacter.profession, forKey: "profession")
-		action.setValue(newCharacter.visibility?.id, forKey: "visiblitiyId")
-		
-		action.setValue(newMapEntity.id, forKey: "mapEntityId")
-		action.setValue(newMapEntity.x, forKey: "mapEntityPosX")
-		action.setValue(newMapEntity.y, forKey: "mapEntityPosY")
-		action.setValue(newMapEntity.map?.id, forKey: "mapId")
-		
-		PackageService.pack.send(action)
+		let action = CharacterCreated(character: newCharacter)
+		PackageService.pack.send(action: action)
 		
 		if let textureImage = textureImage{
 			let textureData = UIImageJPEGRepresentation(textureImage, 0.2)! as NSData
