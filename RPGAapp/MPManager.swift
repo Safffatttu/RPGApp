@@ -66,6 +66,7 @@ class PackageService: NSObject{
 	
 	func send<T: Action>(action: T){
 		let data = action.data
+		data.setValue(action.actionType.rawValue, forKey: "action")
 		send(data)
 	}
 	

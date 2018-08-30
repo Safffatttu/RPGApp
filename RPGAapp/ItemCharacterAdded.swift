@@ -15,10 +15,10 @@ struct ItemCharacterAdded: Action {
 	var data: ActionData{
 		get{
 			let data = ActionData(dictionary: [
-					"itemId": itemId,
-					"itemCount" : itemCount,
-					"itemsId" : itemsId,
-					"itemsCount" : itemsCount
+					"itemId": itemId as Any as Any,
+					"itemCount" : itemCount as Any,
+					"itemsId" : itemsId as Any,
+					"itemsCount" : itemsCount as Any
 				])
 			return data
 		}

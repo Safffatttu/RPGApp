@@ -23,7 +23,6 @@ protocol Action{
 	
 }
 
-
 enum ActionType: Int {
 	//Utility
 	case applicationWillTerminate = 0
