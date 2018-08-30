@@ -120,16 +120,24 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     func addToPackage(_ indexPath: IndexPath){
         let package = packages[indexPath.row]
-        
+		
+		var itemsId: [String] = []
+		var itemsCount: [Int64] = []
+		
         if item != nil{
             add(item!, to: package, count: nil)
-        }
-        if (itemToAdd != nil){
+			itemsId = [(item?.id)!]
+			itemsCount = [1]
+        }else if (itemToAdd != nil){
             add((itemToAdd?.item!)!, to: package, count: itemToAdd?.count)
-        }
-        else{
+			itemsId = [(item?.id)!]
+			itemsCount = [(itemToAdd?.count)!]
+			
+        }else{
             for item in itemsToAdd{
                 add(item.item!, to: package, count: item.count)
+				itemsId.append((item.item?.id)!)
+				itemsCount.append(item.count)
             }
         }
         
@@ -137,25 +145,10 @@ class addToPackage: UITableViewController, addToPackageDelegate {
             dismiss(animated: true, completion: nil)
         }
         CoreDataStack.saveContext()
-        
-        let action = NSMutableDictionary()
-        
-        let actionType = NSNumber(value: ActionType.itemPackageAdded.rawValue)
-        action.setValue(actionType, forKey: "action")
-        action.setValue(package.name, forKey: "packageName")
-        action.setValue(package.id, forKey: "packageId")
-        
-        action.setValue(item?.id, forKey: "itemId")
-        
-        action.setValue(itemToAdd?.item?.id, forKey: "itemToAdd")
-        action.setValue(itemToAdd?.count, forKey: "itemToAddCount")
-        
-        let items = NSArray(array: itemsToAdd.map({$0.item?.id as Any}))
-        let itemsCount = NSArray(array: itemsToAdd.map({$0.count}))
-        action.setValue(items, forKey: "itemsToAdd")
-        action.setValue(itemsCount, forKey: "itemsToAddCount")
 		
-        PackageService.pack.send(action)
+		let action = ItemPackageAdded(package: package, itemsId: itemsId, itemsCount: itemsCount)
+		
+		PackageService.pack.send(action: action)
     }
     
     func newPackage(){

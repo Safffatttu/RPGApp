@@ -58,6 +58,7 @@
 		3B9459422137F8F700384F5B /* ItemCharacterAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9459412137F8F700384F5B /* ItemCharacterAdded.swift */; };
 		3B94594421380D0F00384F5B /* CharacterCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94594321380D0F00384F5B /* CharacterCreated.swift */; };
 		3B94594621381DEF00384F5B /* ItemCharacterDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94594521381DEF00384F5B /* ItemCharacterDeleted.swift */; };
+		3B9459482138256900384F5B /* ItemPackageAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9459472138256900384F5B /* ItemPackageAdded.swift */; };
 		3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
 		3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
@@ -191,6 +192,7 @@
 		3B9459412137F8F700384F5B /* ItemCharacterAdded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCharacterAdded.swift; sourceTree = "<group>"; };
 		3B94594321380D0F00384F5B /* CharacterCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreated.swift; sourceTree = "<group>"; };
 		3B94594521381DEF00384F5B /* ItemCharacterDeleted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCharacterDeleted.swift; sourceTree = "<group>"; };
+		3B9459472138256900384F5B /* ItemPackageAdded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPackageAdded.swift; sourceTree = "<group>"; };
 		3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionDelegate.swift; sourceTree = "<group>"; };
 		3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				3B9459412137F8F700384F5B /* ItemCharacterAdded.swift */,
 				3B94594321380D0F00384F5B /* CharacterCreated.swift */,
 				3B94594521381DEF00384F5B /* ItemCharacterDeleted.swift */,
+				3B9459472138256900384F5B /* ItemPackageAdded.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 				3BDBDA0220ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */,
 				3BDBD9F720ACD45D00E0EB62 /* Currency+CoreDataClass.swift in Sources */,
 				3B94594421380D0F00384F5B /* CharacterCreated.swift in Sources */,
+				3B9459482138256900384F5B /* ItemPackageAdded.swift in Sources */,
 				3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */,
 				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
 				3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */,

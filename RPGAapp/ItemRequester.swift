@@ -65,9 +65,9 @@ struct ItemRequest {
 	let id: String
 	var itemsId: [String]
 	let from: MCPeerID
-	var localAction = NSMutableDictionary()
+	var localAction = ActionData()
 	
-	init(with Ids: [String], sender: MCPeerID, action: NSMutableDictionary) {
+	init(with Ids: [String], sender: MCPeerID, action: ActionData) {
 		itemsId = Ids
 		from = sender
 		localAction = action
