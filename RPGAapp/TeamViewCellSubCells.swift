@@ -117,15 +117,8 @@ class abilityCell: UITableViewCell {
 			
 			self.backgroundColor = .white
 			
-			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.abilityRemoved.rawValue)
-			
-			action.setValue(actionType, forKey: "action")
-			
-			action.setValue(abilityId, forKey: "abilityId")
-			action.setValue(character.id, forKey: "characterId")
-			
-			PackageService.pack.send(action)
+			let action = AbilityRemoved(characterId: character.id!, abilityId: abilityId!)			
+			PackageService.pack.send(action: action)
 			
 		case .cancelled:
 			removeAbilityCancelled = true

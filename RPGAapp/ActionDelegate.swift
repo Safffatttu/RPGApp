@@ -74,21 +74,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .abilityRemoved{
-			guard let characterId = actionData.value(forKey: "characterId") as? String else {return}
-			guard let abilityId = actionData.value(forKey: "abilityId") as? String else {return}
-			
-			guard let character = Load.character(with: characterId) else { return }
-			
-			guard let ability = character.abilities?.first(where: {($0 as! Ability).id == abilityId}) as? Ability else { return }
-			
-			let contex = CoreDataStack.managedObjectContext
-			
-			character.removeFromAbilities(ability)
-			contex.delete(ability)
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .modifiedAbility, object: nil)
+			let action = AbilityRemoved(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .characterRemoved{
 			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }
