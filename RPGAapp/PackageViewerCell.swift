@@ -136,14 +136,8 @@ class PackageViewerCell: UITableViewCell{
 			
 			cell.backgroundColor = .white
 			
-			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.itemDeletedPackage.rawValue)
-			
-			action.setValue(actionType, forKey: "action")
-			action.setValue(itemId, forKey: "itemId")
-			action.setValue(package?.id, forKey: "packageId")
-			
-			PackageService.pack.send(action)
+			let action = ItemDeletedPackage(package: package!, itemId: itemId!)
+			PackageService.pack.send(action: action)
 			
 			removeItemCancelled	= false
 			

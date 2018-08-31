@@ -133,20 +133,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .itemDeletedPackage{
-			guard let packageId = actionData.value(forKey: "packageId") as? String else { return }
-			guard let itemId = actionData.value(forKey: "itemId") as? String else { return }
-			
-			guard let package = Load.packages(with: packageId) else { return }
-			guard let itemHandlerToRemove = package.items?.first(where: {($0 as! ItemHandler ).item?.id == itemId}) as? ItemHandler else { return }
-			
-			package.removeFromItems(itemHandlerToRemove)
-			
-			let context = CoreDataStack.managedObjectContext
-			context.delete(itemHandlerToRemove)
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
+			let action = ItemDeletedPackage(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .textureRequest{
 			let action = TextureRequest(actionData: actionData, sender: sender)
