@@ -90,34 +90,13 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .itemsRequest{
-			guard let itemsId = actionData.value(forKey: "itemsId") as? NSArray else { return }
-			let requestId = actionData.value(forKey: "id")
-			
-			let response = NSMutableDictionary()
-			response.setValue(ActionType.itemsRequestResponse.rawValue, forKey: "actionData")
-			
-			let itemsData = NSMutableArray()
-			
-			for case let itemId as String in itemsId{
-				guard let item = Load.item(with: itemId) else { continue }
-				let itemData = packItem(item)
-				itemsData.add(itemData)
-			}
-			
-			response.setValue(itemsData, forKey: "itemsData")
-			response.setValue(requestId, forKey: "requestId")
-			
-			PackageService.pack.send(response, to: sender)
+			let action = ItemsRequest(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .itemsRequestResponse{
-			guard let itemsData = actionData.value(forKey: "itemsData") as? NSArray else { return }
-			let requestId = actionData.value(forKey: "id")
+			let action = ItemsRequestResponse(actionData: actionData, sender: sender)
+			action.execute()
 			
-			for case let itemData as NSDictionary in itemsData{
-				_ = unPackItem(from: itemData)
-			}
-			
-			NotificationCenter.default.post(name: .receivedItemData, object: requestId)
 		}else if actionType == ActionType.mapEntityMoved{
 			guard let entityId = actionData.value(forKey: "entityId") as? String else { return }
 			guard let posX = actionData.value(forKey: "posX") as? Double else { return }

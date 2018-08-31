@@ -32,14 +32,8 @@ class ItemRequester {
 	func execute(request: ItemRequest) {
 		requestQueue.add(request)
 		
-		let action = NSMutableDictionary()
-		let at = NSNumber(value: ActionType.itemsRequest.rawValue)
-		
-		action.setValue(at, forKey: "action")
-		action.setValue(request.itemsId, forKey: "itemsId")
-		action.setValue(request.id, forKey: "id")
-		
-		PackageService.pack.send(action, to: request.from)
+		let action = ItemsRequest(itemsId: request.itemsId, requestId: request.id)
+		PackageService.pack.send(action: action, to: request.from)
 	}
 	
 	func request(_ request: ItemRequest){

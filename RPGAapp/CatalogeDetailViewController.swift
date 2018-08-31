@@ -226,7 +226,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
 			
 			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
+			let actionType = NSNumber(value: ActionType.itemDataSend.rawValue)
 			
 			action.setValue(actionType, forKey: "action")
 			
