@@ -33,13 +33,34 @@ class PackageViewerCell: UITableViewCell{
 		}
 	}
 	
-	var items: [ItemHandler] = []{
-		didSet{
-			diffCalculator?.rows = items
+	struct val: Equatable {
+		var name: String
+		var count: Int64
+		
+		static func ==(lhs: PackageViewerCell.val, rhs: PackageViewerCell.val) -> Bool {
+			return lhs.count == rhs.count && lhs.name == rhs.name
 		}
 	}
 	
-	var diffCalculator: SingleSectionTableViewDiffCalculator<ItemHandler>?
+	var diffTable : [val] = []
+	
+	func setDiffTable(){
+		diffTable = []
+		for han in items{
+			guard let name = han.item?.id else { continue }
+			let newVal = val(name: name, count: han.count)
+			diffTable.append(newVal)
+		}
+	}
+	
+	var items: [ItemHandler] = []{
+		didSet{
+			setDiffTable()
+			diffCalculator?.rows = diffTable
+		}
+	}
+	
+	var diffCalculator: SingleSectionTableViewDiffCalculator<val>?
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -51,7 +72,7 @@ class PackageViewerCell: UITableViewCell{
 		removeItem.delegate = self
 		self.itemTable.addGestureRecognizer(removeItem)
 		
-		diffCalculator = SingleSectionTableViewDiffCalculator(tableView: itemTable)		
+		diffCalculator = SingleSectionTableViewDiffCalculator(tableView: itemTable)
 	}
 	
 	override func prepareForReuse() {
