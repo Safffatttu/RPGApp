@@ -50,33 +50,27 @@ class PackageService: NSObject{
         session.delegate = self
         return session
     }()
-    
-    func send(_ action: ActionData){
-        NSLog("%@", "send")
-            if session.connectedPeers.count > 0{
-            do{
-                let data = NSKeyedArchiver.archivedData(withRootObject: action)
-                try self.session.send(data, toPeers: session.connectedPeers, with: .reliable)
-            }
-            catch let error{
-                NSLog("Error: \(error)")
-            }
-        }
-    }
 	
 	func send<T: Action>(action: T){
 		let data = action.data
 		data.setValue(action.actionType.rawValue, forKey: "action")
-		send(data)
+		
+		NSLog("%@", "send")
+		if session.connectedPeers.count > 0{
+			do{
+				let data = NSKeyedArchiver.archivedData(withRootObject: action)
+				try self.session.send(data, toPeers: session.connectedPeers, with: .reliable)
+			}
+			catch let error{
+				NSLog("Error: \(error)")
+			}
+		}
 	}
 	
 	func send<T: Action>(action: T, to peer: MCPeerID){
 		let data = action.data
 		data.setValue(action.actionType.rawValue, forKey: "action")
-		send(data, to: peer)
-	}
-	
-	func send(_ action: ActionData,to peer: MCPeerID){
+		
 		NSLog("%@", "sendTo")
 		if session.connectedPeers.count > 0{
 			do{
