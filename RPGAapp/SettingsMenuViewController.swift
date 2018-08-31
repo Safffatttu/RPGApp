@@ -265,14 +265,12 @@ class SettingMenu: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.section == 0 && indexPath.row == settingValues.count{
 			
-			let syncAction = NSMutableDictionary()
-			syncAction.setValue(ActionType.itemListSync.rawValue, forKey: "action")
+			let syncAction = ItemListSync()
+			let requestAction = ItemListRequested()
 			
-			let requestAction = NSMutableDictionary()
-			requestAction.setValue(ActionType.itemListRequested.rawValue, forKey: "action")
+			PackageService.pack.send(action: syncAction)
+			PackageService.pack.send(action: requestAction)
 			
-			PackageService.pack.send(syncAction)
-			PackageService.pack.send(requestAction)
 		}else if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
 			let localizedMessage = NSLocalizedString("Do you want to change session", comment: "")
             let alert = UIAlertController(title: nil, message: localizedMessage, preferredStyle: .alert)

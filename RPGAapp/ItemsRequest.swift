@@ -43,6 +43,10 @@ struct ItemsRequest: Action {
 		self.requestId = requestId
 	}
 	
+	init(itemsId: [String]){
+		self.itemsId = itemsId
+		self.requestId = ""
+	}
 	
 	func execute(){
 		var itemsData: [NSDictionary] = []

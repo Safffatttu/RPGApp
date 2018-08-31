@@ -102,38 +102,16 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .itemListSync{
-			let actionData = NSMutableDictionary()
-			
-			actionData.setValue(ActionType.itemListRequested.rawValue, forKey: "actionData")
-			
-			PackageService.pack.send(actionData)
-			
+			let action = ItemListSync(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .itemListRequested{
-			let response = NSMutableDictionary()
-			response.setValue(ActionType.itemListRecieved.rawValue, forKey: "actionData")
-			
-			let itemList = NSArray(array: Load.items().flatMap{$0.id})
-			
-			response.setValue(itemList, forKey: "itemList")
-			
-			PackageService.pack.send(response, to: sender)
+			let action = ItemListRequested(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .itemListRecieved{
-			let localItemList = Load.items().map{$0.id!}
-			
-			let recievedItemList = (actionData.value(forKey: "itemList") as! NSArray) as! [String]
-			
-			let requestList = recievedItemList.filter{itemId in
-				!localItemList.contains(itemId)
-			}
-			
-			let actionData = NSMutableDictionary()
-			actionData.setValue(ActionType.itemsRequest.rawValue, forKey: "actionData")
-			
-			actionData.setValue(NSArray(array: requestList), forKey: "itemsId")
-			
-			PackageService.pack.send(actionData, to: sender)
+			let action = ItemListRecieved(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .textureSend{
 			guard let imageData = actionData.value(forKey: "imageData") as? NSData else { return }
