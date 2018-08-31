@@ -25,9 +25,7 @@ protocol Action{
 
 enum ActionType: Int {
 	//Utility
-	case applicationWillTerminate = 0
-	case applicationDidEnterBackground
-	case disconnectPeer
+	case disconnectPeer = 0
 	case generatedRandomNumber
 	
 	//Item
