@@ -43,8 +43,8 @@ struct ItemPackageAdded: Action {
 	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
-		self.packageId = actionData.value(forKey: "packgeId") as! String
-		self.packageName = actionData.value(forKey: "packgeName") as! String
+		self.packageId = actionData.value(forKey: "packageId") as! String
+		self.packageName = actionData.value(forKey: "packageName") as! String
 		
 		self.itemsId = actionData.value(forKey: "itemsId") as! [String]
 		self.itemsCount = actionData.value(forKey: "itemsCount") as! [Int64]
