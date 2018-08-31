@@ -211,7 +211,8 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	
 	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-		let removeAction = UITableViewRowAction(style: .destructive, title: "Remove", handler: {_,_ in
+		let localizedRemove = NSLocalizedString("Remove", comment: "")
+		let removeAction = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {_,_ in
 			
 			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
 			
@@ -220,8 +221,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			self.items = RPGAapp.searchCataloge(searchWith: self.lastSearchString, using: self.searchModel, sortBy: self.sortModel)
 		})
-		
-		let sendAction = UITableViewRowAction(style: .normal, title: "Share item", handler: { _,_ in
+
+		let localizedShare = NSLocalizedString("Share item", comment: "")
+		let sendAction = UITableViewRowAction(style: .normal, title: localizedShare, handler: { _,_ in
 			
 			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
 			
