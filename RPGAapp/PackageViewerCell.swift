@@ -68,7 +68,7 @@ class PackageViewerCell: UITableViewCell{
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackage), name: .addedItemToPackage, object: nil)
 		
-		let removeItem = UILongPressGestureRecognizer(target: self, action: #selector(removeItemLongPress))
+		let removeItem = UILongPressGestureRecognizer(target: self, action: #selector(removeItemLongPress(_:)))
 		removeItem.delegate = self
 		self.itemTable.addGestureRecognizer(removeItem)
 		
