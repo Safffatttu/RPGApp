@@ -227,16 +227,10 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
 			
-			let action = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.itemDataSend.rawValue)
-			
-			action.setValue(actionType, forKey: "action")
-			
 			let itemData = packItem(item)
 			
-			action.setValue(itemData, forKey: "itemData")
-			
-			PackageService.pack.send(action)
+			let action = ItemsRequestResponse(itemsData: [itemData], requestId: "")
+			PackageService.pack.send(action: action)
 		})
 		
 		return [sendAction, removeAction]

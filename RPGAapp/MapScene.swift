@@ -289,17 +289,10 @@ class MapScene: SKScene{
 	}
 	
 	func sendPositionData(node: SKSpriteNode){
-		let action = NSMutableDictionary()
-		let at = NSNumber(value: ActionType.mapEntityMoved.rawValue)
+		guard let entity = mapThings.filter({$0.1 == node}).first?.0 else { return }
 		
-		action.setValue(at, forKey: "action")
-		action.setValue(Double(node.position.x), forKey: "posX")
-		action.setValue(Double(node.position.y), forKey: "posY")
-		
-		let entityId = mapThings.filter({$0.1 == node}).first!.0.id!
-		action.setValue(entityId, forKey: "entityId")
-		
-		PackageService.pack.send(action)
+		let action = MapEntityMoved(mapEntity: entity)		
+		PackageService.pack.send(action: action)
 	}
 	
 }

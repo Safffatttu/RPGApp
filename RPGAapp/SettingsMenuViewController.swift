@@ -278,14 +278,11 @@ class SettingMenu: UITableViewController {
 			let localizedYes = NSLocalizedString("Yes", comment: "")
             let alertYes = UIAlertAction(title: localizedYes, style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
                 self.switchedSession(indexPath: indexPath)
-                
-                let action = NSMutableDictionary()
-                let actionType = NSNumber(value: ActionType.sessionSwitched.rawValue)
-                
-                action.setValue(actionType, forKey: "action")
-                action.setValue(self.sessions[indexPath.row - 1].id, forKey: "sessionId")
-                
-                PackageService.pack.send(action)
+				
+				let session = self.sessions[indexPath.row - 1]
+				
+                let action = SessionSwitched(session: session)
+				PackageService.pack.send(action: action)
             })
 			
 			let localizedNo = NSLocalizedString("No", comment: "")
