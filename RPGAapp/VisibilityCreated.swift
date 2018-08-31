@@ -40,8 +40,8 @@ struct VisibilityCreated: Action {
 	}
 	
 	init(visibility: Visibility){
-		self.visibilityName = visibility.id!
-		self.visibilityId = visibility.name!
+		self.visibilityName = visibility.name!
+		self.visibilityId = visibility.id!
 	}
 	
 	func execute(){
