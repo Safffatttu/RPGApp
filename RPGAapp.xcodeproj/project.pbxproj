@@ -70,6 +70,8 @@
 		3B9459482138256900384F5B /* ItemPackageAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9459472138256900384F5B /* ItemPackageAdded.swift */; };
 		3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
 		3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */; };
+		3BA749A3213945AC002E09A1 /* TextureSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A2213945AC002E09A1 /* TextureSend.swift */; };
+		3BA749A5213951D0002E09A1 /* TextureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A4213951D0002E09A1 /* TextureRequest.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
 		3BA95E1C20E63AF500F90FB4 /* ImageRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */; };
 		3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */; };
@@ -221,6 +223,8 @@
 		3B9459472138256900384F5B /* ItemPackageAdded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPackageAdded.swift; sourceTree = "<group>"; };
 		3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionDelegate.swift; sourceTree = "<group>"; };
 		3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BA749A2213945AC002E09A1 /* TextureSend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureSend.swift; sourceTree = "<group>"; };
+		3BA749A4213951D0002E09A1 /* TextureRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureRequest.swift; sourceTree = "<group>"; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageRowCell.xib; path = RPGAapp/ImageRowCell.xib; sourceTree = "<group>"; };
 		3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageRowFormer.swift; path = RPGAapp/ImageRowFormer.swift; sourceTree = "<group>"; };
@@ -468,6 +472,8 @@
 		3B94593A2137F08D00384F5B /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				3BA749A4213951D0002E09A1 /* TextureRequest.swift */,
+				3BA749A2213945AC002E09A1 /* TextureSend.swift */,
 				3BBD22E421393F3000DDE572 /* ItemListSync.swift */,
 				3BBD22E621393FE500DDE572 /* ItemListRequested.swift */,
 				3BBD22E82139412C00DDE572 /* ItemListRecieved.swift */,
@@ -848,9 +854,11 @@
 				3B88010C20B2E9A100AB2C62 /* Store+CoreDataClass.swift in Sources */,
 				3BDBD9F120ACD45D00E0EB62 /* Session+CoreDataProperties.swift in Sources */,
 				3BC2CE83213708F0003AD8D5 /* Filter Helper.swift in Sources */,
+				3BA749A5213951D0002E09A1 /* TextureRequest.swift in Sources */,
 				3B01662A213858D10074A747 /* AbilityAdded.swift in Sources */,
 				3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */,
 				3B88010F20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift in Sources */,
+				3BA749A3213945AC002E09A1 /* TextureSend.swift in Sources */,
 				3BADCC9C20E04F04005A5B89 /* EditDrawSetting.swift in Sources */,
 				3BDBD9FE20ACD45D00E0EB62 /* Item+CoreDataProperties.swift in Sources */,
 				3BDBD9F620ACD45D00E0EB62 /* Character+CoreDataClass.swift in Sources */,

@@ -72,13 +72,8 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
 		
 		DispatchQueue.global().async {
-			let action = NSMutableDictionary()
-			action.setValue(ActionType.textureSend.rawValue, forKey: "action")
-			
-			action.setValue(imageData, forKey: "imageData")
-			action.setValue(map.id, forKey: "mapId")
-			
-			PackageService.pack.send(action)
+			let action = TextureSend(imageData: imageData as NSData, mapId: map.id!)
+			PackageService.pack.send(action: action)
 		}
 	}
 }

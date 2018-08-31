@@ -211,15 +211,8 @@ class NewCharacterForm: FormViewController {
 			CoreDataStack.saveContext()
 			
 			DispatchQueue.global(qos: .utility).async {
-				let textureAction = NSMutableDictionary()
-				
-				let actionType: NSNumber = NSNumber(value: ActionType.textureSend.rawValue)
-				textureAction.setValue(actionType, forKey: "action")
-				
-				textureAction.setValue(textureData, forKey: "imageData")
-				textureAction.setValue((newCharacter.mapRepresentation?.id)!, forKey: "entityId")
-				
-				PackageService.pack.send(textureAction)
+				let textureAction = TextureSend(imageData: textureData, entityId: (newCharacter.mapRepresentation?.id)!)
+				PackageService.pack.send(action: textureAction)
 			}
 		}
 		

@@ -114,45 +114,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .textureSend{
-			guard let imageData = actionData.value(forKey: "imageData") as? NSData else { return }
-				
-			let texture: Texture
-			let contex = CoreDataStack.managedObjectContext
-	
-			if let mapId = actionData.value(forKey: "mapId") as? String{
-				
-				guard let map = Load.map(withId: mapId) else { return }
-				
-				if let exisitingTexture = map.background{
-					texture = exisitingTexture
-				}else{
-					texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
-					map.background = texture
-				}
-				
-				texture.data = imageData
-				
-				CoreDataStack.saveContext()
-				
-				NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
-				
-			}else if let entityId = actionData.value(forKey: "entityId") as? String{
-				
-				guard let entity = Load.mapEntity(withId: entityId) else { return }
-				
-				if let exisitingTexture = entity.texture{
-					texture = exisitingTexture
-				}else{
-					texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
-					entity.texture = texture
-				}
-				
-				texture.data = imageData
-		
-				CoreDataStack.saveContext()
-				
-				NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
-			}
+			let action = TextureSend(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .currencyCreated{
 			guard let currencyData = actionData.value(forKey: "currencyData") as? NSMutableDictionary else { return }
@@ -223,31 +186,9 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
 			
 		}else if actionType == .textureRequest{
-			let entityId = actionData.value(forKey: "entityId") as? String
-			let mapId = actionData.value(forKey: "mapId") as? String
+			let action = TextureRequest(actionData: actionData, sender: sender)
+			action.execute()
 			
-			var texture: Texture?
-			
-			if let id = entityId {
-				texture = Load.texture(with: id)
-			}else if let id = mapId {
-				texture = Load.map(withId: id)?.background
-			}else{
-				return
-			}
-			
-			guard let imageData = texture?.data else { return }
-			
-			let actionData = NSMutableDictionary()
-			let actionType = NSNumber(value: ActionType.textureSend.rawValue)
-			
-			actionData.setValue(actionType, forKey: "actionData")
-			actionData.setValue(imageData, forKey: "imageData")
-			
-			actionData.setValue(entityId, forKey: "entityId")
-			actionData.setValue(mapId, forKey: "mapId")
-			
-			PackageService.pack.send(actionData)
 		}
     }
 	

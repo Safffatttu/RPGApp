@@ -356,13 +356,8 @@ func createTitlesForSubCategory() -> [String: String]{
 
 func requestTexuturesFrom(id: [String]){
 	for textureId in id{
-		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.textureRequest.rawValue)
-		
-		action.setValue(actionType, forKey: "action")
-		action.setValue(textureId, forKey: "entityId")
-		
-		PackageService.pack.send(action)
+		let action = TextureRequest(mapId: "", entityId: textureId)
+		PackageService.pack.send(action: action)
 	}
 }
 
