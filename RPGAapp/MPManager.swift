@@ -58,7 +58,7 @@ class PackageService: NSObject{
 		NSLog("%@", "send")
 		if session.connectedPeers.count > 0{
 			do{
-				let data = NSKeyedArchiver.archivedData(withRootObject: action)
+				let data = NSKeyedArchiver.archivedData(withRootObject: data)
 				try self.session.send(data, toPeers: session.connectedPeers, with: .reliable)
 			}
 			catch let error{
@@ -74,7 +74,7 @@ class PackageService: NSObject{
 		NSLog("%@", "sendTo")
 		if session.connectedPeers.count > 0{
 			do{
-				let data = NSKeyedArchiver.archivedData(withRootObject: action)
+				let data = NSKeyedArchiver.archivedData(withRootObject: data)
 				try self.session.send(data, toPeers: [peer], with: .reliable)
 			}
 			catch let error{
