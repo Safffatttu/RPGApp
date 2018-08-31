@@ -75,6 +75,7 @@
 		3BA749A72139559A002E09A1 /* VisibilityCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A62139559A002E09A1 /* VisibilityCreated.swift */; };
 		3BA749A9213956C9002E09A1 /* CharacterVisibilityChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A8213956C9002E09A1 /* CharacterVisibilityChanged.swift */; };
 		3BA749AB21395AC7002E09A1 /* ItemDeletedPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749AA21395AC7002E09A1 /* ItemDeletedPackage.swift */; };
+		3BA749AD21395C5C002E09A1 /* DisconnectPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749AC21395C5C002E09A1 /* DisconnectPeer.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
 		3BA95E1C20E63AF500F90FB4 /* ImageRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */; };
 		3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */; };
@@ -231,6 +232,7 @@
 		3BA749A62139559A002E09A1 /* VisibilityCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibilityCreated.swift; sourceTree = "<group>"; };
 		3BA749A8213956C9002E09A1 /* CharacterVisibilityChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterVisibilityChanged.swift; sourceTree = "<group>"; };
 		3BA749AA21395AC7002E09A1 /* ItemDeletedPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDeletedPackage.swift; sourceTree = "<group>"; };
+		3BA749AC21395C5C002E09A1 /* DisconnectPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectPeer.swift; sourceTree = "<group>"; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageRowCell.xib; path = RPGAapp/ImageRowCell.xib; sourceTree = "<group>"; };
 		3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageRowFormer.swift; path = RPGAapp/ImageRowFormer.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 		3B94593A2137F08D00384F5B /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				3BA749AC21395C5C002E09A1 /* DisconnectPeer.swift */,
 				3BA749AA21395AC7002E09A1 /* ItemDeletedPackage.swift */,
 				3BA749A8213956C9002E09A1 /* CharacterVisibilityChanged.swift */,
 				3BA749A62139559A002E09A1 /* VisibilityCreated.swift */,
@@ -879,6 +882,7 @@
 				3BDBD9EF20ACD45D00E0EB62 /* MapEntity+CoreDataClass.swift in Sources */,
 				3BDBD9FF20ACD45D00E0EB62 /* ItemAtribute+CoreDataClass.swift in Sources */,
 				3BECB6CC1FBA53BA00A947E9 /* NewCharacter.swift in Sources */,
+				3BA749AD21395C5C002E09A1 /* DisconnectPeer.swift in Sources */,
 				3BDBD9F020ACD45D00E0EB62 /* MapEntity+CoreDataProperties.swift in Sources */,
 				3BDBD9ED20ACD45D00E0EB62 /* Map+CoreDataClass.swift in Sources */,
 				3B31B3E61F3B67A6003526E1 /* CatalogMenuViewController.swift in Sources */,

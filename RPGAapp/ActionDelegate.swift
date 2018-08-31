@@ -21,11 +21,7 @@ class ActionDelegate: PackageServiceDelegate{
 		guard let actionNumber = actionData.value(forKey: "action") as? Int else { return }
 		guard let actionType = ActionType(rawValue: actionNumber) else { return }
 		
-		if actionType == .applicationDidEnterBackground{
-			let message = "\(sender.displayName) \(NSLocalizedString("exited application", comment: ""))"
-			whisper(messege: message)
-			
-		}else if actionType == .itemCharacterAdded{
+		if actionType == .itemCharacterAdded{
 			let action = ItemCharacterAdded(actionData: actionData, sender: sender)
 			action.execute()
 			
@@ -38,9 +34,9 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .disconnectPeer{
-			if (actionData.value(forKey: "peer") as? String) == UIDevice.current.name{
-				PackageService.pack.session.disconnect()
-			}
+			let action = DisconnectPeer(actionData: actionData, sender: sender)
+			action.execute()
+			
 		}else if actionType == .itemCharacterDeleted{
 			let action = ItemCharacterDeleted(actionData: actionData, sender: sender)
 			action.execute()

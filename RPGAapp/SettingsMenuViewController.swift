@@ -461,13 +461,9 @@ class SettingMenu: UITableViewController {
 			let removePeer = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {action,path in
 				
 				let peer = PackageService.pack.session.connectedPeers[path.row]
-				let action = NSMutableDictionary()
-				let actionType: NSNumber = NSNumber(value: ActionType.disconnectPeer.rawValue)
+				let action = DisconnectPeer(peer: peer.displayName)
 				
-				action.setValue(actionType, forKey: "action")
-				action.setValue(peer.displayName, forKey: "peer")
-				
-				PackageService.pack.send(action)
+				PackageService.pack.send(action: action)
 				PackageService.pack.session.cancelConnectPeer(peer)
 			})
 			actions?.append(removePeer)
