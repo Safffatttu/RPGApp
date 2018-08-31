@@ -465,17 +465,18 @@ func packCurrency(_ currency: Currency) -> NSMutableDictionary{
 	currencyData.setValue(currency.name, forKey: "name")
 	currencyData.setValue(currency.rate, forKey: "globalRate")
 	
-	var subCurrencyData: [(String, Int16)] = []
+	var subCurrencyNames: [String] = []
+	var subCurrencyRates: [Int16] = []
 	
 	let subCurrencies = currency.subCurrency?.array as! [SubCurrency]
 	
 	for subCur in subCurrencies{
-		let subCurData = (subCur.name!, subCur.rate)
-		
-		subCurrencyData.append(subCurData)
+		subCurrencyNames.append(subCur.name!)
+		subCurrencyRates.append(subCur.rate)
 	}
 	
-	currencyData.setValue(NSArray(array: subCurrencyData), forKey: "subCurrenciesData")
+	currencyData.setValue(subCurrencyNames, forKey: "subCurrencyNames")
+	currencyData.setValue(subCurrencyRates, forKey: "subCurrencyRates")
 	
 	return currencyData
 }
@@ -483,7 +484,11 @@ func packCurrency(_ currency: Currency) -> NSMutableDictionary{
 func unPackCurrency(currencyData: NSMutableDictionary) -> Currency{
 	let currencyName = currencyData.value(forKey: "name") as? String
 	let currencyGlobalRate = currencyData.value(forKey: "globalRate") as! Double
-	let subCurrencyData = currencyData.value(forKey: "subCurrenciesData") as! [(String, Int16)]
+	
+	let subCurrencyNames = currencyData.value(forKey: "subCurrencyNames") as! [String]
+	let subCurrencyRates = currencyData.value(forKey: "subCurrencyRates") as! [Int16]
+	
+	let subCurrencyData = zip(subCurrencyNames, subCurrencyRates)
 	
 	let context = CoreDataStack.managedObjectContext
 	
