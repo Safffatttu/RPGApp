@@ -129,33 +129,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .characterVisibilityChanged{
-			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }
-			guard let character = Load.character(with: characterId) else { return }
-			
-			if let visibilityId = actionData.value(forKey: "visibilityId") as? String{
-				var visibility = Load.visibility(with: visibilityId)
-				
-				if visibility == nil{
-					let context = CoreDataStack.managedObjectContext
-					visibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as? Visibility
-					
-					guard let visibilityName = actionData.value(forKey: "visibilityName") as? String else { return }
-					
-					visibility?.name = visibilityName
-					visibility?.id = visibilityId
-					visibility?.session = Load.currentSession()
-				}
-				
-				character.visibility = visibility
-			
-			}else{
-				character.visibility = nil
-			}
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
-			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			let action = CharacterVisibilityChanged(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .itemDeletedPackage{
 			guard let packageId = actionData.value(forKey: "packageId") as? String else { return }
