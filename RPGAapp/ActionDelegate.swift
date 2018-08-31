@@ -114,11 +114,8 @@ class ActionDelegate: PackageServiceDelegate{
 			action.execute()
 			
 		}else if actionType == .currencyCreated{
-			guard let currencyData = actionData.value(forKey: "currencyData") as? NSMutableDictionary else { return }
-
-			_ = unPackCurrency(currencyData: currencyData)
-
-			NotificationCenter.default.post(name: .currencyCreated, object: nil)
+			let action = CurrencyCreated(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .visibilityCreated{
 			let action = VisibilityCreated(actionData: actionData, sender: sender)

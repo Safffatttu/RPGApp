@@ -187,15 +187,8 @@ class NewCurrencyForm: FormViewController {
 
         dismissView()
 
-        let action = NSMutableDictionary()
-
-        let actionType = NSNumber(value: ActionType.currencyCreated.rawValue)
-        action.setValue(actionType, forKey: "action")
-    
-        let currencyDict = packCurrency(newCurrency)
-        action.setValue(currencyDict, forKey: "currencyData")
-    
-        PackageService.pack.send(action)
+		let action = CurrencyCreated(currency: newCurrency)
+		PackageService.pack.send(action: action)
     }
 
     func dismissView(){
