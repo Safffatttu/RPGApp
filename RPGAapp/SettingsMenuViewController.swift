@@ -545,15 +545,8 @@ extension SettingMenu: settingCellDelegate {
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
 		
-		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.visibilityCreated.rawValue)
-		
-		action.setValue(actionType, forKey: "action")
-		
-		action.setValue(newVisibility.name, forKey: "name")
-		action.setValue(newVisibility.id, forKey: "id")
-		
-		PackageService.pack.send(action)
+		let action = VisibilityCreated(visibility: newVisibility)
+		PackageService.pack.send(action: action)
 	}
 	
 	func createSeesion(){

@@ -125,20 +125,8 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .currencyCreated, object: nil)
 			
 		}else if actionType == .visibilityCreated{
-			guard let name = actionData.value(forKey: "name") as? String else { return }
-			guard let id = actionData.value(forKey: "id") as? String else { return }
-			
-			let context = CoreDataStack.managedObjectContext
-			let visibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
-			
-			visibility.name = name
-			visibility.id = id
-			visibility.session = Load.currentSession()
-			
-			CoreDataStack.saveContext()
-			
-			NotificationCenter.default.post(name: .visibilityCreated, object: nil)
-			NotificationCenter.default.post(name: .reloadTeam, object: nil)
+			let action = VisibilityCreated(actionData: actionData, sender: sender)
+			action.execute()
 			
 		}else if actionType == .characterVisibilityChanged{
 			guard let characterId = actionData.value(forKey: "characterId") as? String else { return }

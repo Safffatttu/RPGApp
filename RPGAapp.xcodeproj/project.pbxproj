@@ -72,6 +72,7 @@
 		3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */; };
 		3BA749A3213945AC002E09A1 /* TextureSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A2213945AC002E09A1 /* TextureSend.swift */; };
 		3BA749A5213951D0002E09A1 /* TextureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A4213951D0002E09A1 /* TextureRequest.swift */; };
+		3BA749A72139559A002E09A1 /* VisibilityCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A62139559A002E09A1 /* VisibilityCreated.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
 		3BA95E1C20E63AF500F90FB4 /* ImageRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */; };
 		3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */; };
@@ -225,6 +226,7 @@
 		3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA749A2213945AC002E09A1 /* TextureSend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureSend.swift; sourceTree = "<group>"; };
 		3BA749A4213951D0002E09A1 /* TextureRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureRequest.swift; sourceTree = "<group>"; };
+		3BA749A62139559A002E09A1 /* VisibilityCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibilityCreated.swift; sourceTree = "<group>"; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		3BA95E1B20E63AF500F90FB4 /* ImageRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageRowCell.xib; path = RPGAapp/ImageRowCell.xib; sourceTree = "<group>"; };
 		3BA95E1F20E63B5C00F90FB4 /* ImageRowFormer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageRowFormer.swift; path = RPGAapp/ImageRowFormer.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 		3B94593A2137F08D00384F5B /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				3BA749A62139559A002E09A1 /* VisibilityCreated.swift */,
 				3BA749A4213951D0002E09A1 /* TextureRequest.swift */,
 				3BA749A2213945AC002E09A1 /* TextureSend.swift */,
 				3BBD22E421393F3000DDE572 /* ItemListSync.swift */,
@@ -877,6 +880,7 @@
 				3BD777962138521200A03A88 /* PackageDeleted.swift in Sources */,
 				3BDBD9F220ACD45D00E0EB62 /* Ability+CoreDataClass.swift in Sources */,
 				3BEBCDFE20E15A2F00F31732 /* PackageViewerCell.swift in Sources */,
+				3BA749A72139559A002E09A1 /* VisibilityCreated.swift in Sources */,
 				3BDBD9F920ACD45D00E0EB62 /* DrawSetting+CoreDataClass.swift in Sources */,
 				3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */,
 				3B87467520E91B7F00A5527E /* NameGenerator.swift in Sources */,
