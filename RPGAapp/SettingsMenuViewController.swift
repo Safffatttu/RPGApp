@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import Dwifft
 
 protocol settingCellDelegate {
     
@@ -64,98 +65,120 @@ class SettingMenu: UITableViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(currencyCreated), name: .currencyCreated, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(visibilityCreated), name: .visibilityCreated, object: nil)
 		
-        super.viewWillAppear(animated)
-    }
+		diffCalculator = TableViewDiffCalculator(tableView: tableView, initialSectionedValues: SectionedValues(createDiffTable()))
+		
+		super.viewWillAppear(animated)
+	}
+	
+	var diffCalculator: TableViewDiffCalculator<String, String>?
+	
+	func createDiffTable() -> [(String, [String])]{
+		var settingList = keys.map{$0.key}
+		settingList.insert("Sync item database", at: 0)
+		let settingSection = ("Settings", settingList)
+		
+		var sessionList = sessions.flatMap{$0.id! + String($0.current)}
+		sessionList.insert("CreateSessions", at: 0)
+		let sessionsSection = ("Sessions", sessionList)
+		
+		var currencyList = currencies.flatMap{ curr -> String in
+			let current = (curr == Load.currentSession().currency)
+			return String(current) + curr.name!
+		}
+		currencyList.insert("CreateCurrency", at: 0)
+		let currenciesSection = ("Currencies", currencyList)
+		
+		var visibilitiesList = visibilities.flatMap{String($0.current) + $0.id!}
+		visibilitiesList.insert("CreateVisibility", at: 0)
+		let visibilitySeciont = ("Visibilities", visibilitiesList)
+		
+		var sectionList = [settingSection, sessionsSection, currenciesSection, visibilitySeciont]
+		
+		if PackageService.pack.session.connectedPeers.count > 0{
+			let connectedDevices  = ("Devices", PackageService.pack.session.connectedPeers.map{$0.displayName})
+			sectionList.append(connectedDevices)
+		}
+		
+		return sectionList
+	}
+	
+	func updateDiffTable(){
+		let newDiffTable = createDiffTable()
+		diffCalculator?.sectionedValues = SectionedValues(newDiffTable)
+	}
+	
 	
 	func sessionReceived() {
 		sessions = Load.sessions()
-		tableView.reloadData()
+		visibilities = Load.visibilities()
+		updateDiffTable()
 	}
 	
 	func currencyCreated(){
 		currencies = Load.currencies()
-		let index = IndexSet(integer: 2)
-		tableView.reloadSections(index, with: .automatic)
+		updateDiffTable()
 	}
 	
 	func visibilityCreated(){
 		visibilities = Load.visibilities()
-		let index = IndexSet(integer: 3)
-		tableView.reloadSections(index, with: .automatic)
+		updateDiffTable()
 	}
 	
+	func switchedSessionAction(_ notification: Notification){
+		updateDiffTable()
+	}
 	
-    func switchedSessionAction(_ notification: Notification){
-		tableView.reloadData()
-    }
-	
-    func switchedSession(indexPath: IndexPath){
-        let previousIndex = self.sessions.index(where: {$0.current == true})
-        var indexesToReload = [indexPath]
+	func switchedSession(indexPath: IndexPath){
+		for session in sessions{
+			session.current = false
+		}
 		
-        if previousIndex != nil{
-			for session in sessions{
-				session.current = false
-			}
-			
-            indexesToReload.append(IndexPath(row: previousIndex! + 1, section: 1))
-        }
-		
-        sessions[indexPath.row - 1].current = true
+		sessions[indexPath.row - 1].current = true
 		
 		CoreDataStack.saveContext()
 		
 		visibilities = Load.visibilities()
 		
-		let currencySection = IndexSet(integer: 2)
-		let visiblitySection = IndexSet(integer: 3)
-		
-		tableView.beginUpdates()
-		
-		tableView.reloadRows(at: indexesToReload, with: .fade)
-		tableView.reloadSections(currencySection, with: .fade)
-		tableView.reloadSections(visiblitySection, with: .automatic)
-		
-		tableView.endUpdates()
-		
 		sessions = Load.sessions()
 		
+		updateDiffTable()
+		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
-    }
-    
-    func sessionDeleted(_ notification: Notification){
-        sessions = Load.sessions()
-		let index = IndexSet(integer: 1)
-        tableView.reloadSections(index, with: .automatic)
-    }
-    
-    func connectedDevicesChanged() {
-        self.tableView.reloadData()
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return PackageService.pack.session.connectedPeers.count > 0 ? 5 : 4
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
-            return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count + 1
-        }else if section == 1{
-            return sessions.count + 1
+	}
+	
+	func sessionDeleted(_ notification: Notification){
+		sessions = Load.sessions()
+		
+		updateDiffTable()
+	}
+	
+	func connectedDevicesChanged() {
+		updateDiffTable()
+	}
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return PackageService.pack.session.connectedPeers.count > 0 ? 5 : 4
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if section == 0{
+			return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count + 1
+		}else if section == 1{
+			return sessions.count + 1
 		}else if section == 2{
 			return currencies.count + 1
 		}else if section == 3{
 			return visibilities.count + 1
 		}else{
-            return PackageService.pack.session.connectedPeers.count
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0{
-            return NSLocalizedString("Settings", comment: "")
-        }else if section == 1{
-            return NSLocalizedString("Sessions", comment: "")
+			return PackageService.pack.session.connectedPeers.count
+		}
+	}
+
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if section == 0{
+			return NSLocalizedString("Settings", comment: "")
+		}else if section == 1{
+			return NSLocalizedString("Sessions", comment: "")
 		}else if section == 2{
 			return NSLocalizedString("Currencies", comment: "")
 		}else if section == 3{
@@ -163,10 +186,10 @@ class SettingMenu: UITableViewController {
 		}else{
 			return NSLocalizedString("Connected devices", comment: "")
 		}
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		if indexPath.section == 0{
 			if indexPath.row < settingValues.count{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingSwitchCell") as! settingSwitchCell
 				let cellSetting = keys[indexPath.row].key
@@ -182,26 +205,26 @@ class SettingMenu: UITableViewController {
 				
 				return cell!
 			}
-        }else if indexPath.section == 1 {
-            if indexPath.row == 0{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
-                cell.settingLabel?.text = NSLocalizedString("New session", comment: "")
-                cell.selectionStyle = .none
+		}else if indexPath.section == 1 {
+			if indexPath.row == 0{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
+				cell.settingLabel?.text = NSLocalizedString("New session", comment: "")
+				cell.selectionStyle = .none
 				let localizedAdd = NSLocalizedString("Add", comment: "")
-                cell.settingButton.setTitle(localizedAdd, for: .normal)
-                cell.delegate = self
-                return cell
-            }else{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
-                cell?.textLabel?.text = sessions[indexPath.row - 1].name! + " " + String((sessions[indexPath.row - 1].id?.characters.suffix(4))!)
-                cell?.selectionStyle = .none
-                cell?.accessoryType = .none
-                if sessions[indexPath.row - 1].current{
-                    cell?.accessoryType = .checkmark
-                }
+				cell.settingButton.setTitle(localizedAdd, for: .normal)
+				cell.delegate = self
+				return cell
+			}else{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
+				cell?.textLabel?.text = sessions[indexPath.row - 1].name! + " " + String((sessions[indexPath.row - 1].id?.characters.suffix(4))!)
+				cell?.selectionStyle = .none
+				cell?.accessoryType = .none
+				if sessions[indexPath.row - 1].current{
+					cell?.accessoryType = .checkmark
+				}
 				
-                return cell!
-            }
+				return cell!
+			}
 		}else if indexPath.section == 2{
 			if indexPath.row == 0{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
@@ -298,18 +321,14 @@ class SettingMenu: UITableViewController {
 			}else{
 				let session = Load.currentSession()
 				
-				let previousCurrencyIndex = currencies.index(of: session.currency!)! + 1
-				
 				session.currency = currencies[indexPath.row - 1]
 				
-				let rowsToReload = [indexPath, IndexPath(row: previousCurrencyIndex, section: indexPath.section)]
-				
-				tableView.reloadRows(at: rowsToReload, with: .fade)
+				updateDiffTable()
 			}
 		}else if indexPath.section == 3{
 			if indexPath.row != 0{
 				var rowsToReload = [indexPath]
-
+				
 				let previousVisibilityIndex = visibilities.index(where: {$0.current})
 				
 				if let previousVisibilityIndex = previousVisibilityIndex{
@@ -330,7 +349,7 @@ class SettingMenu: UITableViewController {
 				
 				CoreDataStack.saveContext()
 				
-				tableView.reloadRows(at: rowsToReload, with: .automatic)
+				updateDiffTable()
 				
 				NotificationCenter.default.post(name: .reloadTeam, object: nil)
 			}
@@ -366,10 +385,10 @@ class SettingMenu: UITableViewController {
 					let sessionId = session.id
 					self.sessions.remove(at: path.row - 1)
 					
-					tableView.deleteRows(at: [path], with: .automatic)
-					
 					context.delete(session)
 					CoreDataStack.saveContext()
+					
+					self.updateDiffTable()
 					
 					NotificationCenter.default.post(name: .reloadTeam, object: nil)
 					
@@ -428,12 +447,12 @@ class SettingMenu: UITableViewController {
 				
 				self.currencies.remove(at: indexPath.row - 1)
 				
-				tableView.deleteRows(at: [indexPath], with: .automatic)
-				
 				let context = CoreDataStack.managedObjectContext
 				context.delete(currencyToDelete)
 				
 				CoreDataStack.saveContext()
+				
+				self.updateDiffTable()
 			})
 			
 			actions = [deleteCurrency]
@@ -444,12 +463,12 @@ class SettingMenu: UITableViewController {
 				
 				self.visibilities.remove(at: indexPath.row - 1)
 				
-				tableView.deleteRows(at: [indexPath], with: .automatic)
-				
 				let context = CoreDataStack.managedObjectContext
 				context.delete(visibilityToDelete)
 				
 				CoreDataStack.saveContext()
+				
+				self.updateDiffTable()
 			})
 			
 			actions = [deleteVisibility]
@@ -507,34 +526,24 @@ extension SettingMenu: settingCellDelegate {
 		let context = CoreDataStack.managedObjectContext
 		let newVisibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
 		
-		let visibilityToReload = visibilities.index(where: {$0.current})
-		
-		
 		newVisibility.name = NameGenerator.createVisibilityData().0
 		newVisibility.current = true
 		newVisibility.id = String(describing: Date()) + newVisibility.name!
 		newVisibility.session = Load.currentSession()
 		
-		visibilities.append(newVisibility)
+		let cur = visibilities.filter({$0.current})
 		
-		tableView.beginUpdates()
-		
-		let indexToInsert = IndexPath(row: visibilities.count, section: 3)
-		
-		tableView.insertRows(at: [indexToInsert], with: .automatic)
-		
-		if let visibilityToReload = visibilityToReload{
-			
-			visibilities[visibilityToReload].current = false
-			let indexToReload = IndexPath(row: visibilityToReload + 1, section: 3)
-			
-			tableView.reloadRows(at: [indexToReload], with: .automatic)
-			
+		for i in cur{
+			i.current = false
 		}
 		
-		tableView.endUpdates()
+		newVisibility.current = true
+		
+		visibilities = Load.visibilities()
 		
 		CoreDataStack.saveContext()
+		
+		updateDiffTable()
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
 		
@@ -557,38 +566,26 @@ extension SettingMenu: settingCellDelegate {
 		
 		session.addToMaps(newMap)
 		
-		let previousSessionIndex = sessions.index(where: {$0.current == true})
-		
 		let PLN = Load.currencies().first{$0.name == "PLN"}
 		session.currency = PLN
 		
-        var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
-        devices.append(UIDevice.current.name)
-        
-        session.devices = NSSet(array: devices)
+		var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
+		devices.append(UIDevice.current.name)
 		
-        let index = IndexPath(row: tableView(self.tableView, numberOfRowsInSection: 1), section: 1)
-        sessions.append(session)
-        
-        CoreDataStack.saveContext()
-
-		tableView.beginUpdates()
+		session.devices = NSSet(array: devices)
 		
-		tableView.insertRows(at: [index], with: .automatic)
+		sessions.append(session)
 		
-		if previousSessionIndex != nil{
-			sessions[previousSessionIndex!].current = false
-			
-			let previousIndex = IndexPath(row: previousSessionIndex! + 1, section: 1)
-			let currencySection = IndexSet(integer: 2)
-			
-			tableView.reloadRows(at: [previousIndex], with: .automatic)
-			tableView.reloadSections(currencySection, with: .fade)
+		CoreDataStack.saveContext()
+		
+		for sessio in sessions.filter({$0.current}){
+			sessio.current = false
 		}
+		session.current = true
 		
-		tableView.endUpdates()
+		updateDiffTable()
 		
-        let action = SessionReceived(session: session, setCurrent: session.current)
+		let action = SessionReceived(session: session, setCurrent: session.current)
 		PackageService.pack.send(action: action)
     }
 }
