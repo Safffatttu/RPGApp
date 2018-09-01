@@ -548,7 +548,7 @@ extension SettingMenu: settingCellDelegate {
 		session.name = NSLocalizedString("Session", comment: "")
 		session.gameMaster = UIDevice.current.name
 		session.current = true
-		session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
+		session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date()) + String(myRand(100000))))
 		
 		let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
 		
