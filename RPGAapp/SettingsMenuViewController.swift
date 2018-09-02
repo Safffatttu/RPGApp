@@ -66,6 +66,8 @@ class SettingMenu: UITableViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(visibilityCreated), name: .visibilityCreated, object: nil)
 		
 		diffCalculator = TableViewDiffCalculator(tableView: tableView, initialSectionedValues: SectionedValues(createDiffTable()))
+		diffCalculator?.insertionAnimation = .fade
+		diffCalculator?.deletionAnimation = .fade
 		
 		super.viewWillAppear(animated)
 	}
