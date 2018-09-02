@@ -203,6 +203,10 @@ class SettingMenu: UITableViewController {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
 				
 				cell?.textLabel?.text = NSLocalizedString("Sync item database", comment: "")
+
+				cell?.selectionStyle = .none
+				cell?.accessoryType = .none
+				cell?.textLabel?.textColor = .black
 				
 				return cell!
 			}
@@ -218,8 +222,11 @@ class SettingMenu: UITableViewController {
 			}else{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
 				cell?.textLabel?.text = sessions[indexPath.row - 1].name! + " " + String((sessions[indexPath.row - 1].id?.characters.suffix(4))!)
+				
 				cell?.selectionStyle = .none
 				cell?.accessoryType = .none
+				cell?.textLabel?.textColor = .black
+				
 				if sessions[indexPath.row - 1].current{
 					cell?.accessoryType = .checkmark
 				}
@@ -240,8 +247,10 @@ class SettingMenu: UITableViewController {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
 				let cellCurrency = currencies[indexPath.row - 1]
 				cell?.textLabel?.text =	cellCurrency.name
+				
 				cell?.selectionStyle = .none
 				cell?.accessoryType = .none
+				cell?.textLabel?.textColor = .black
 				
 				if cellCurrency == Load.currentCurrency(){
 					cell?.accessoryType = .checkmark
@@ -280,8 +289,11 @@ class SettingMenu: UITableViewController {
 		}else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
             cell?.textLabel?.text = PackageService.pack.session.connectedPeers[indexPath.row].displayName
-            cell?.selectionStyle = .none
-            
+			
+			cell?.selectionStyle = .none
+			cell?.accessoryType = .none
+			cell?.textLabel?.textColor = .black
+			
             return cell!
         }
     }
