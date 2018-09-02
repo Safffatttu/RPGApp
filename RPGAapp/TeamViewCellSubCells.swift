@@ -29,7 +29,7 @@ class newAbilityCell: UITableViewCell,UITextFieldDelegate{
 			
 			newAbility.name = text
 			newAbility.character = character
-			newAbility.id = String(strHash(newAbility.name! + (newAbility.character?.id!)! + String(describing: Date())) + String(myRand(1000)))
+			newAbility.id = String(strHash(newAbility.name! + (newAbility.character?.id!)! + String(describing: Date()))) + String(myRand(1000))
 			
 			CoreDataStack.saveContext()
 			
