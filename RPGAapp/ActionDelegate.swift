@@ -133,6 +133,10 @@ class ActionDelegate: PackageServiceDelegate{
 			let action = TextureRequest(actionData: actionData, sender: sender)
 			action.execute()
 			
+		}else if actionType == .visibilityRemoved{
+			let action = VisibilityRemoved(actionData: actionData, sender: sender)
+			action.execute()
+			
 		}
     }
 	

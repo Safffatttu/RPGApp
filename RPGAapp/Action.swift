@@ -76,6 +76,7 @@ enum ActionType: Int {
 	
 	//Visibility
 	case visibilityCreated
+	case visibilityRemoved
 	case characterVisibilityChanged
 	
 	

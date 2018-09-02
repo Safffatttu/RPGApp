@@ -484,6 +484,7 @@ class SettingMenu: UITableViewController {
 			let deleteVisibility = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: { action, path in
 				
 				let visibilityToDelete = self.visibilities[indexPath.row - 1]
+				let visibilityId = visibilityToDelete.id
 				
 				self.visibilities.remove(at: indexPath.row - 1)
 				
@@ -493,6 +494,9 @@ class SettingMenu: UITableViewController {
 				CoreDataStack.saveContext()
 				
 				self.updateDiffTable()
+				
+				let action = VisibilityRemoved(visibilityId: visibilityId!)
+				PackageService.pack.send(action: action)
 			})
 			
 			actions = [deleteVisibility]
