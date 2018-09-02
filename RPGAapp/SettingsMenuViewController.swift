@@ -134,7 +134,8 @@ class SettingMenu: UITableViewController {
 			session.current = false
 		}
 		
-		sessions[indexPath.row - 1].current = true
+		let session = sessions[indexPath.row - 1]
+		session.current = true
 		
 		CoreDataStack.saveContext()
 		
@@ -145,6 +146,9 @@ class SettingMenu: UITableViewController {
 		updateDiffTable()
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		
+		let action = SessionSwitched(session: session)
+		PackageService.pack.send(action: action)
 	}
 	
 	func sessionDeleted(_ notification: Notification){
@@ -319,11 +323,6 @@ class SettingMenu: UITableViewController {
 			let localizedYes = NSLocalizedString("Yes", comment: "")
             let alertYes = UIAlertAction(title: localizedYes, style: .destructive, handler: {(alert: UIAlertAction!) -> Void in
                 self.switchedSession(indexPath: indexPath)
-				
-				let session = self.sessions[indexPath.row - 1]
-				
-                let action = SessionSwitched(session: session)
-				PackageService.pack.send(action: action)
             })
 			
 			let localizedNo = NSLocalizedString("No", comment: "")
