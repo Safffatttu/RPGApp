@@ -126,6 +126,8 @@ class SettingMenu: UITableViewController {
 	}
 	
 	func switchedSessionAction(_ notification: Notification){
+		sessions = Load.sessions()
+		visibilities = Load.visibilities()
 		updateDiffTable()
 	}
 	

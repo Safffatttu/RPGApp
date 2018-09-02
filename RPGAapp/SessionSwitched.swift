@@ -48,5 +48,6 @@ struct SessionSwitched: Action {
 		sessions.first(where: {$0.id == sessionId})?.current = true
 		
 		NotificationCenter.default.post(name: .switchedSession, object: nil)
+		NotificationCenter.default.post(name: .reloadTeam, object: nil)
 	}
 }
