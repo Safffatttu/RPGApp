@@ -296,6 +296,11 @@ class SettingMenu: UITableViewController {
 			PackageService.pack.send(action: requestAction)
 			
 		}else if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
+			guard sessions.filter({$0.current}).count != 0 else {
+				switchedSession(indexPath: indexPath)
+				return
+			}
+			
 			let localizedMessage = NSLocalizedString("Do you want to change session", comment: "")
             let alert = UIAlertController(title: nil, message: localizedMessage, preferredStyle: .alert)
 			
