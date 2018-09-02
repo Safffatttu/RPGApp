@@ -151,7 +151,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let number = packages.count
         
         newPackage.name = "Package nr." + String(number + 1)
-        newPackage.id = newPackage.name! + String(describing: Date())
+        newPackage.id = "\(newPackage.name!) \(Date()) \(myRand(10000)))"
         let session = Load.currentSession()
 
 		newPackage.visibility = Load.currentVisibility()

@@ -556,7 +556,7 @@ extension SettingMenu: settingCellDelegate {
 		
 		newVisibility.name = NameGenerator.createVisibilityData().0
 		newVisibility.current = true
-		newVisibility.id = String(describing: Date()) + newVisibility.name!
+		newVisibility.id = String(describing: Date()) + newVisibility.name! + String(myRand(10000))
 		newVisibility.session = Load.currentSession()
 		
 		let cur = visibilities.filter({$0.current})

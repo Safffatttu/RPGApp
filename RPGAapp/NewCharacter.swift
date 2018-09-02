@@ -170,7 +170,7 @@ class NewCharacterForm: FormViewController {
 			
 			newCharacter.visibility = Load.currentVisibility()
 			
-			id = name + String((name + UIDevice.current.name + String(describing: Date())).hash)
+			id = name + String((name + UIDevice.current.name + String(describing: Date())).hash + String(myRand(10000)))
 			
 			newMapEntity = NSEntityDescription.insertNewObject(forEntityName: String(describing: MapEntity.self), into: CoreDataStack.managedObjectContext) as! MapEntity
 			
