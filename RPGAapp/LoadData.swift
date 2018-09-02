@@ -152,7 +152,7 @@ public struct Load {
 		
 		if sessions.count == 0{
 			let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-			session.name = "Sesja"
+			session.name = NSLocalizedString("Session", comment: "")
 			session.gameMaster = UIDevice.current.name
 			session.current = true
 			session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date()) + String(myRand(100000))))
