@@ -30,7 +30,6 @@ class TeamViewCell: UICollectionViewCell {
 	@IBOutlet weak var deleteButton: UIButton!
 	@IBOutlet weak var editButton: UIButton!
 	
-	@IBOutlet weak var visibilityLabel: UILabel!
 	@IBOutlet weak var visibilitySegController: UISegmentedControl!
 	
 	var abilityDiffCalculator: SingleSectionTableViewDiffCalculator<Ability>?
@@ -93,14 +92,28 @@ class TeamViewCell: UICollectionViewCell {
 	func reloadLabels(){
 		if let name = character.name{
 			nameLabel.text = NSLocalizedString("Name", comment: "") + ": \(name)"
+		}else{
+			nameLabel.text = ""
 		}
 		
 		if let race = character.race{
-			raceLabel.text = NSLocalizedString("Character", comment: "") + ": \(race)"
+			if race.characters.count > 0{
+				raceLabel.text = NSLocalizedString("Character", comment: "") + ": \(race)"
+			}else{
+				raceLabel.text = ""
+			}
+		}else{
+			raceLabel.text = ""
 		}
 		
 		if let profession = character.profession{
-			professionLabel.text = NSLocalizedString("Profession", comment: "") + ": \(profession)"
+			if profession.characters.count > 0{
+				professionLabel.text = NSLocalizedString("Profession", comment: "") + ": \(profession)"
+			}else{
+				professionLabel.text = ""
+			}
+		}else{
+			professionLabel.text = ""
 		}
 		
 		moneyTextField.text = showPrice(character.money)
@@ -115,21 +128,8 @@ class TeamViewCell: UICollectionViewCell {
 				visibilitySegController.isHidden = true
 			}
 			
-			visibilityLabel.isHidden = false
-			
-			setVisibilityLabel()
-			
 		}else {
-			visibilityLabel.isHidden = true
 			visibilitySegController.isHidden = true
-		}
-	}
-	
-	func setVisibilityLabel(){
-		if let visibility = character.visibility{
-			visibilityLabel.text = NSLocalizedString("Profession", comment: "") + ": \(visibility.name!)"
-		}else{
-			visibilityLabel.text = NSLocalizedString("Always visible", comment: "")
 		}
 	}
 	
@@ -206,8 +206,6 @@ class TeamViewCell: UICollectionViewCell {
 		character.visibility = newVisibility
 		
 		CoreDataStack.saveContext()
-		
-		setVisibilityLabel()
 		
 		let action = CharacterVisibilityChanged(character: character, visibility: newVisibility)
 		PackageService.pack.send(action: action)

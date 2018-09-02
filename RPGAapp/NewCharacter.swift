@@ -184,6 +184,7 @@ class NewCharacterForm: FormViewController {
 		newCharacter.health = health
 		newCharacter.id = id
 		newCharacter.profession	= profession
+		newCharacter.race = race
 		
 		session.addToCharacters(newCharacter)
 		
