@@ -81,9 +81,10 @@ class SettingMenu: UITableViewController {
 		sessionList.insert("CreateSessions", at: 0)
 		let sessionsSection = ("Sessions", sessionList)
 		
-		var currencyList = currencies.flatMap{ curr -> String in
-			let current = (curr == Load.currentSession().currency)
-			return String(current) + curr.name!
+		var currencyList = currencies.flatMap{ currency -> String? in
+			guard let currentCurrency = Load.currentCurrency() else { return "false\(currency.name!)" }
+			let isCurrent = (currency === currentCurrency)
+			return String(isCurrent) + currency.name!
 		}
 		currencyList.insert("CreateCurrency", at: 0)
 		let currenciesSection = ("Currencies", currencyList)
@@ -320,8 +321,11 @@ class SettingMenu: UITableViewController {
 				createCurrency()
 			}else{
 				let session = Load.currentSession()
-				
+				sessions = Load.sessions()
+				visibilities = Load.visibilities()
 				session.currency = currencies[indexPath.row - 1]
+				
+				CoreDataStack.saveContext()
 				
 				updateDiffTable()
 			}
