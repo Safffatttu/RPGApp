@@ -409,6 +409,8 @@ class SettingMenu: UITableViewController {
 					context.delete(session)
 					CoreDataStack.saveContext()
 					
+					self.visibilities = Load.visibilities()
+					
 					self.updateDiffTable()
 					
 					NotificationCenter.default.post(name: .reloadTeam, object: nil)
@@ -561,6 +563,7 @@ extension SettingMenu: settingCellDelegate {
 		newVisibility.current = true
 		
 		visibilities = Load.visibilities()
+		sessions = Load.sessions()
 		
 		CoreDataStack.saveContext()
 		
