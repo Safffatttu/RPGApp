@@ -140,6 +140,12 @@ public struct Load {
 		return sessions.first(where: {$0.id == Id})
 	}
 	
+	public static func currentExistingSession() -> Session?{
+		let session = Load.sessions().first(where: {$0.current})
+		
+		return session
+	}
+	
 	public static func currentSession() -> Session{
 		
 		let sessions = Load.sessions().filter{$0.current}
@@ -313,13 +319,13 @@ public struct Load {
 	}
 	
 	public static func currentCurrency() -> Currency?{
-		let session = Load.currentSession()
+		let session = Load.currentExistingSession()
 		
-		return session.currency		
+		return session?.currency
 	}
 	
 	public static func visibilities() -> [Visibility]{
-		let session = Load.currentSession()
+		guard let session = Load.currentExistingSession() else { return [] }
 		
 		return session.visibility?.allObjects as! [Visibility]
 	}
