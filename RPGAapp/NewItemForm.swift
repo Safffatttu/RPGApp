@@ -117,7 +117,7 @@ class NewItemForm: FormViewController{
 				$0.segmentTitles = rarityName
 				$0.selectedIndex = Int(self.rarity)
 			}.onSegmentSelected{[unowned self] r,_ in
-				self.rarity = Int16(r)
+				self.rarity = Int16(r + 1)
 		}
 		
 		let quantityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){

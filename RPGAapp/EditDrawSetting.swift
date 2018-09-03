@@ -66,12 +66,12 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     @IBAction func minRaritySliderChanged(_ sender: UISlider) {
         let rarity = Int(minRaritySlider.value.rounded(.toNearestOrEven))
-        minRarityLabel.text = rarityName[rarity]
+        minRarityLabel.text = rarityName[rarity - 1]
     }
     
     @IBAction func maxRaritySliderChanged(_ sender: UISlider) {
         let rarity = Int(maxRaritySlider.value.rounded(.toNearestOrEven))
-        maxRarityLabel.text = rarityName[rarity]
+        maxRarityLabel.text = rarityName[rarity - 1]
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -130,8 +130,8 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
             cell = tableView.dequeueReusableCell(withIdentifier: "drawSubSettingCell")
             let subSetting = subSettings[indexPath.row]
             
-            let min = subSetting.minRarity > 0 ? "Min: " + rarityName[Int(subSetting.minRarity)] + " " : ""
-            let max = subSetting.maxRarity < 3 ? "Max: " + rarityName[Int(subSetting.maxRarity)] + " " : ""
+            let min = subSetting.minRarity > 0 ? "Min: " + rarityName[Int(subSetting.minRarity) - 1] + " " : ""
+            let max = subSetting.maxRarity < 3 ? "Max: " + rarityName[Int(subSetting.maxRarity) - 1] + " " : ""
             
             if let subName = subSetting.name {
                 cell?.textLabel?.text = subName

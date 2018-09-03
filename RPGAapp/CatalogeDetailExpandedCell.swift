@@ -35,7 +35,7 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 	var item: Item? = nil{
 		didSet{
 			self.nameLabel.text = item?.name
-			self.rarityLabel.text = rarityName[Int((item?.rarity)!)]
+			self.rarityLabel.text = rarityName[Int((item?.rarity)!) - 1]
 			self.measureLabel.text = item?.measure
 			
 			if let price = item?.price{
