@@ -75,7 +75,7 @@
 		3BA749A5213951D0002E09A1 /* TextureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A4213951D0002E09A1 /* TextureRequest.swift */; };
 		3BA749A72139559A002E09A1 /* VisibilityCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A62139559A002E09A1 /* VisibilityCreated.swift */; };
 		3BA749A9213956C9002E09A1 /* CharacterVisibilityChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A8213956C9002E09A1 /* CharacterVisibilityChanged.swift */; };
-		3BA749AB21395AC7002E09A1 /* ItemDeletedPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749AA21395AC7002E09A1 /* ItemDeletedPackage.swift */; };
+		3BA749AB21395AC7002E09A1 /* ItemPackageDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749AA21395AC7002E09A1 /* ItemPackageDeleted.swift */; };
 		3BA749AD21395C5C002E09A1 /* DisconnectPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749AC21395C5C002E09A1 /* DisconnectPeer.swift */; };
 		3BA749AF21395F0E002E09A1 /* CurrencyCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749AE21395F0E002E09A1 /* CurrencyCreated.swift */; };
 		3BA8867D1F49A17D00C27542 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8867B1F49A17D00C27542 /* DataModel.xcdatamodeld */; };
@@ -234,7 +234,7 @@
 		3BA749A4213951D0002E09A1 /* TextureRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureRequest.swift; sourceTree = "<group>"; };
 		3BA749A62139559A002E09A1 /* VisibilityCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibilityCreated.swift; sourceTree = "<group>"; };
 		3BA749A8213956C9002E09A1 /* CharacterVisibilityChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterVisibilityChanged.swift; sourceTree = "<group>"; };
-		3BA749AA21395AC7002E09A1 /* ItemDeletedPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDeletedPackage.swift; sourceTree = "<group>"; };
+		3BA749AA21395AC7002E09A1 /* ItemPackageDeleted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPackageDeleted.swift; sourceTree = "<group>"; };
 		3BA749AC21395C5C002E09A1 /* DisconnectPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectPeer.swift; sourceTree = "<group>"; };
 		3BA749AE21395F0E002E09A1 /* CurrencyCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyCreated.swift; sourceTree = "<group>"; };
 		3BA8867C1F49A17D00C27542 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -484,36 +484,35 @@
 		3B94593A2137F08D00384F5B /* Action */ = {
 			isa = PBXGroup;
 			children = (
-				3B10695E213C63D20075B4A7 /* VisibilityRemoved.swift */,
+				3B016629213858D10074A747 /* AbilityAdded.swift */,
+				3B01662F21385DF90074A747 /* AbilityRemoved.swift */,
+				3B01662B213859DE0074A747 /* AbilityValueChanged.swift */,
+				3B94594321380D0F00384F5B /* CharacterCreated.swift */,
+				3B01663121385FBF0074A747 /* CharacterRemoved.swift */,
+				3BA749A8213956C9002E09A1 /* CharacterVisibilityChanged.swift */,
 				3BA749AE21395F0E002E09A1 /* CurrencyCreated.swift */,
 				3BA749AC21395C5C002E09A1 /* DisconnectPeer.swift */,
-				3BA749AA21395AC7002E09A1 /* ItemDeletedPackage.swift */,
-				3BA749A8213956C9002E09A1 /* CharacterVisibilityChanged.swift */,
-				3BA749A62139559A002E09A1 /* VisibilityCreated.swift */,
-				3BA749A4213951D0002E09A1 /* TextureRequest.swift */,
-				3BA749A2213945AC002E09A1 /* TextureSend.swift */,
-				3BBD22E421393F3000DDE572 /* ItemListSync.swift */,
+				3B01662D21385B390074A747 /* GeneratedRandomNumber.swift */,
+				3B9459472138256900384F5B /* ItemPackageAdded.swift */,
+				3BA749AA21395AC7002E09A1 /* ItemPackageDeleted.swift */,
 				3BBD22E621393FE500DDE572 /* ItemListRequested.swift */,
 				3BBD22E82139412C00DDE572 /* ItemListRecieved.swift */,
-				3BBD22E221393DA100DDE572 /* MapEntityMoved.swift */,
-				3B94593B2137F09F00384F5B /* Action.swift */,
-				3B94594321380D0F00384F5B /* CharacterCreated.swift */,
+				3BBD22E421393F3000DDE572 /* ItemListSync.swift */,
+				3B062552213894FE00501994 /* ItemsRequest.swift */,
+				3B0625542138954D00501994 /* ItemsRequestResponse.swift */,
 				3B9459412137F8F700384F5B /* ItemCharacterAdded.swift */,
 				3B94594521381DEF00384F5B /* ItemCharacterDeleted.swift */,
 				3B016633213864380074A747 /* ItemCharacterChanged.swift */,
-				3B9459472138256900384F5B /* ItemPackageAdded.swift */,
-				3BD7779121384A5900A03A88 /* SessionSwitched.swift */,
+				3BBD22E221393DA100DDE572 /* MapEntityMoved.swift */,
 				3BD777932138506300A03A88 /* PackageCreated.swift */,
 				3BD777952138521200A03A88 /* PackageDeleted.swift */,
 				3BD77797213853B700A03A88 /* SessionDeleted.swift */,
-				3B016629213858D10074A747 /* AbilityAdded.swift */,
-				3B01662B213859DE0074A747 /* AbilityValueChanged.swift */,
-				3B01662D21385B390074A747 /* GeneratedRandomNumber.swift */,
-				3B01662F21385DF90074A747 /* AbilityRemoved.swift */,
-				3B01663121385FBF0074A747 /* CharacterRemoved.swift */,
 				3B062550213889A500501994 /* SessionReceived.swift */,
-				3B062552213894FE00501994 /* ItemsRequest.swift */,
-				3B0625542138954D00501994 /* ItemsRequestResponse.swift */,
+				3BD7779121384A5900A03A88 /* SessionSwitched.swift */,
+				3BA749A4213951D0002E09A1 /* TextureRequest.swift */,
+				3BA749A2213945AC002E09A1 /* TextureSend.swift */,
+				3B10695E213C63D20075B4A7 /* VisibilityRemoved.swift */,
+				3BA749A62139559A002E09A1 /* VisibilityCreated.swift */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -522,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				3B94593A2137F08D00384F5B /* Action */,
+				3B94593B2137F09F00384F5B /* Action.swift */,
 				3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */,
 				3B50DC011F40EB6B0040DCCC /* MPManager.swift */,
 			);
@@ -977,7 +977,7 @@
 				3B88010B20B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift in Sources */,
 				3B01663221385FBF0074A747 /* CharacterRemoved.swift in Sources */,
 				3B94594621381DEF00384F5B /* ItemCharacterDeleted.swift in Sources */,
-				3BA749AB21395AC7002E09A1 /* ItemDeletedPackage.swift in Sources */,
+				3BA749AB21395AC7002E09A1 /* ItemPackageDeleted.swift in Sources */,
 				3BDBD9F520ACD45D00E0EB62 /* Category+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

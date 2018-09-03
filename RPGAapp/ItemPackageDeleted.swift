@@ -1,5 +1,5 @@
 //
-//  ItemDeletedPackage.swift
+//  ItemPackageDeleted.swift
 //  RPGAapp
 //
 //  Created by Jakub on 31.08.2018.
@@ -9,9 +9,9 @@
 import Foundation
 import MultipeerConnectivity
 
-struct ItemDeletedPackage: Action {
+struct ItemPackageDeleted: Action {
 	
-	var actionType: ActionType = ActionType.itemDeletedPackage
+	var actionType: ActionType = ActionType.itemPackageDeleted
 	var data: ActionData{
 		get{
 			let data = ActionData(dictionary: [

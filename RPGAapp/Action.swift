@@ -34,7 +34,7 @@ enum ActionType: Int {
 	case itemCharacterChanged
 	
 	case itemPackageAdded
-	case itemDeletedPackage
+	case itemPackageDeleted
 	
 	//Package
 	case packageCreated
