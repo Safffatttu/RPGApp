@@ -79,19 +79,26 @@ class SettingMenu: UITableViewController {
 		settingList.insert("Sync item database", at: 0)
 		let settingSection = ("Settings", settingList)
 		
-		var sessionList = sessions.flatMap{$0.id! + String($0.current)}
+		var sessionList = sessions.flatMap{ session -> String? in
+			guard let id = session.id else { return nil }
+			return "\(id)\(session.current)"			
+			}
 		sessionList.insert("CreateSessions", at: 0)
 		let sessionsSection = ("Sessions", sessionList)
 		
 		var currencyList = currencies.flatMap{ currency -> String? in
-			guard let currentCurrency = Load.currentCurrency() else { return "false\(currency.name!)" }
+			guard let name = currency.name else { return nil }
+			guard let currentCurrency = Load.currentCurrency() else { return "false\(name)" }
 			let isCurrent = (currency === currentCurrency)
-			return String(isCurrent) + currency.name!
+			return "\(isCurrent)\(name)"
 		}
 		currencyList.insert("CreateCurrency", at: 0)
 		let currenciesSection = ("Currencies", currencyList)
 		
-		var visibilitiesList = visibilities.flatMap{String($0.current) + $0.id!}
+		var visibilitiesList = visibilities.flatMap{ visibility -> String? in
+			guard let id = visibility.id else { return nil }
+			return "\(visibility.current)\(id)"
+		}
 		visibilitiesList.insert("CreateVisibility", at: 0)
 		let visibilitySeciont = ("Visibilities", visibilitiesList)
 		
