@@ -125,8 +125,8 @@ class ActionDelegate: PackageServiceDelegate{
 			let action = CharacterVisibilityChanged(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemDeletedPackage{
-			let action = ItemDeletedPackage(actionData: actionData, sender: sender)
+		}else if actionType == .itemPackageDeleted{
+			let action = ItemPackageDeleted(actionData: actionData, sender: sender)
 			action.execute()
 			
 		}else if actionType == .textureRequest{

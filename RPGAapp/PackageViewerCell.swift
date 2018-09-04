@@ -157,7 +157,7 @@ class PackageViewerCell: UITableViewCell{
 			
 			cell.backgroundColor = .white
 			
-			let action = ItemDeletedPackage(package: package!, itemId: itemId!)
+			let action = ItemPackageDeleted(package: package!, itemId: itemId!)
 			PackageService.pack.send(action: action)
 			
 			removeItemCancelled	= false
