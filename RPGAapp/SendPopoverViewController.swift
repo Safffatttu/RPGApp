@@ -42,8 +42,14 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         self.popoverPresentationController?.permittedArrowDirections = .right
         
         super.viewWillAppear(animated)
-    }
-    
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
+	}
+	
+	func reloadTeam(){
+		team = Load.characters(usingVisibility: true)
+		self.viewWillAppear(true)
+	}
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
