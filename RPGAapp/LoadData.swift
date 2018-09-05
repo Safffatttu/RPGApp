@@ -175,7 +175,7 @@ public struct Load {
 			let action = SessionReceived(session: session)			
 			PackageService.pack.send(action: action)
 			
-			NotificationCenter.default.post(name: .addedSession, object: session)
+			NotificationCenter.default.post(name: .sessionReceived, object: nil)
 			return session
 		}
 		
