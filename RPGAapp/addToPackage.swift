@@ -147,20 +147,17 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     func newPackage(){
-        let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext) as! Package
+		let session = Load.currentSession()
+		
+		let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext) as! Package
         let number = packages.count
         
         newPackage.name = "Package nr." + String(number + 1)
         newPackage.id = "\(newPackage.name!) \(Date()) \(myRand(10000)))"
-        let session = Load.currentSession()
-
 		newPackage.visibility = Load.currentVisibility()
-		
-        session.addToPackages(newPackage)
+        newPackage.session = session
 		
         CoreDataStack.saveContext()
-		
-		reloadPackages()
 		
         let action = PackageCreated(package: newPackage)
 		
