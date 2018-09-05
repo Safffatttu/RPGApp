@@ -193,7 +193,7 @@ public struct Load {
 	public static func packages(usingVisiblitiy: Bool = false) -> [Package]{
         var packages: [Package] = []
 		
-	    let session = Load.currentSession()
+		guard let session = Load.currentExistingSession() else { return [] }
 			
 		packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
 		
@@ -241,7 +241,7 @@ public struct Load {
 	public static func characters(usingVisibility: Bool = false) -> [Character]{
         var characters: [Character] = []
         
-		let currentSession = Load.currentSession()
+		guard let currentSession = Load.currentExistingSession() else { return [] }
 		characters = currentSession.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
 		
 		if usingVisibility {

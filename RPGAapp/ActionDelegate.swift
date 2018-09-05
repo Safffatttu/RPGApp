@@ -192,8 +192,8 @@ class ActionDelegate: PackageServiceDelegate{
             
             let devices = NSSet(array: connectedDevices)
             
-            let session = Load.currentSession()
-            
+			guard let session = Load.currentExistingSession() else { return } 
+				
             let sessionDevices = session.devices as? NSSet
             
             print(devices)

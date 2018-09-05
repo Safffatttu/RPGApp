@@ -15,29 +15,30 @@ class MapScene: SKScene{
 	
 	var selectedNode: SKSpriteNode? = nil
 		
-	var map: Map!{
+	var map: Map?{
 		didSet{
 			DispatchQueue.global().sync {
 			
-			var entities = self.map.entities?.allObjects as! [MapEntity]
-			
-			let visibility = Load.currentVisibility()
-			
-				entities = entities.filter{$0.character?.visibility == nil
-										|| $0.character?.visibility == visibility}
+				guard let map = self.map else { return }
+					
+				var entities = map.entities?.allObjects as! [MapEntity]
 				
-			var newMapThings: [(MapEntity,SKSpriteNode)] = []
-			
-			for e in entities{
-				let newSprite = SKSpriteNode(entity: e)
-				newSprite.name = e.character?.name
-				newMapThings.append((e,newSprite))
+				let visibility = Load.currentVisibility()
 				
-				self.addChild(newSprite)
-			}
-			
-			self.mapThings = newMapThings
-			
+					entities = entities.filter{$0.character?.visibility == nil
+											|| $0.character?.visibility == visibility}
+					
+				var newMapThings: [(MapEntity,SKSpriteNode)] = []
+				
+				for e in entities{
+					let newSprite = SKSpriteNode(entity: e)
+					newSprite.name = e.character?.name
+					newMapThings.append((e,newSprite))
+					
+					self.addChild(newSprite)
+				}
+				
+				self.mapThings = newMapThings
 			}
 		}
 	}
@@ -64,10 +65,9 @@ class MapScene: SKScene{
 		background.zPosition = -2
 		
 		self.camera?.addChild(background)
+		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
 		
-		map = Load.currentMap(session: Load.currentSession())
-		
-		if let backgroundTexture = map.background{
+		if let backgroundTexture = map?.background{
 			let image = UIImage(data: backgroundTexture.data! as Data)
 			let texture = SKTexture(image: image!)
 			mapa = SKSpriteNode(texture: texture)
@@ -126,7 +126,7 @@ class MapScene: SKScene{
 			textureData = entity.texture?.data as Data?
 		}else{
 			sprite = self.mapa
-			textureData = map.background?.data as Data?
+			textureData = map?.background?.data as Data?
 		}
 		
 		guard let image = UIImage(data: textureData) else { return }
@@ -148,11 +148,11 @@ class MapScene: SKScene{
 		for sprite in mapThings.map({$0.1}){
 			sprite.run(SKAction.hide())
 		}
-		map = Load.currentMap(session: Load.currentSession())
+		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
 	}
 	
 	func reloadBackground(){
-		if let backgroundTexture = map.background{
+		if let backgroundTexture = map?.background{
 			let image = UIImage(data: backgroundTexture.data! as Data)
 			let texture = SKTexture(image: image!)
 			let actionSeq = SKAction.sequence([
