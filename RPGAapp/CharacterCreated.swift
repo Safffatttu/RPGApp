@@ -119,5 +119,8 @@ struct CharacterCreated: Action {
 		CoreDataStack.saveContext()
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		
+		let request = TextureRequest(mapId: "", entityId: (character.mapRepresentation?.id)!)
+		PackageService.pack.send(action: request, to: from!)
 	}
 }

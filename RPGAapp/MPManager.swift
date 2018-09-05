@@ -82,6 +82,11 @@ class PackageService: NSObject{
 			}
 		}
 	}
+	
+	func sendResourceAt(url: URL, with name: String, to peer: MCPeerID, completionHandler: ((Error?) -> Void)? = nil){
+		self.session.sendResource(at: url, withName: name, toPeer: peer, withCompletionHandler: completionHandler)
+	}
+	
 }
 
 extension PackageService: MCNearbyServiceAdvertiserDelegate{
@@ -136,7 +141,8 @@ extension PackageService: MCSessionDelegate{
     }
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
-        NSLog("%@", "didFinishReceivingResourceWithName")
+		NSLog("%@", "didFinishReceivingResourceWithName")
+		self.delegate?.finishedReciveingResource(withName: resourceName, from: peerID, url: localURL)
     }
 }
 
@@ -146,6 +152,7 @@ protocol PackageServiceDelegate {
     func lost(_ peer: MCPeerID)
     func found(_ peer: MCPeerID)
     func received(_ actionData: ActionData,from sender: MCPeerID)
+	func finishedReciveingResource(withName: String, from: MCPeerID, url: URL)
 }
 
 extension Notification.Name{

@@ -82,11 +82,11 @@ struct SessionReceived: Action {
 		}
 	}
 	
-	internal func createSession(){
+	private func createSession(){
 		guard let newSession = createSessionUsing(sessionData: self.sessionData, sender: self.sender!) else { return }
 		
 		let textureToRequest = getTextureId(from: newSession)
-		requestTexuturesFrom(id: textureToRequest)
+		requestTexutures(id: textureToRequest, from: sender!)
 		
 		CoreDataStack.saveContext()
 		
@@ -94,4 +94,13 @@ struct SessionReceived: Action {
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
 		
 	}
+	
+	
+	private func requestTexutures(id: [String], from: MCPeerID){
+		for textureId in id{
+			let action = TextureRequest(mapId: "", entityId: textureId)
+			PackageService.pack.send(action: action, to: from)
+		}
+	}
+
 }

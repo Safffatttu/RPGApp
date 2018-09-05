@@ -211,11 +211,6 @@ class NewCharacterForm: FormViewController {
 			newCharacter.mapRepresentation?.texture = texture
 			
 			CoreDataStack.saveContext()
-			
-			DispatchQueue.global(qos: .utility).async {
-				let textureAction = TextureSend(imageData: textureData, entityId: (newCharacter.mapRepresentation?.id)!)
-				PackageService.pack.send(action: textureAction)
-			}
 		}
 		
 		dismiss(animated: true, completion: nil)

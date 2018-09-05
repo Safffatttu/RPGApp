@@ -46,16 +46,30 @@ struct TextureRequest: Action {
 	
 	func execute(){
 		var imageData: NSData?
+		var textureId: String = ""
 		
 		if let texture = Load.texture(with: entityId) {
 			imageData = texture.data
+			textureId = (texture.mapEntity?.id)!
 		}else if let data = Load.map(withId: mapId)?.background?.data{
 			imageData = data
+			textureId = mapId
 		}
 		
 		guard let data = imageData else { return }		
+
+		var path = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+		path.appendPathComponent(textureId)
+		path = path.appendingPathExtension("texture")
+
+		data.write(to: path, atomically: true)
 		
-		let action = TextureSend(imageData: data, mapId: mapId, entityId: entityId)
-		PackageService.pack.send(action: action, to: sender!)
+		PackageService.pack.sendResourceAt(url: path, with: textureId, to: sender!, completionHandler: { e -> Void in
+			do{
+				try FileManager.default.removeItem(at: path)
+			}catch{
+				print(error)
+			}
+		})
 	}
 }

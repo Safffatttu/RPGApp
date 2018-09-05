@@ -147,6 +147,37 @@ class ActionDelegate: PackageServiceDelegate{
 		
 		received(actionData, from: localId)
 	}
+	
+	func finishedReciveingResource(withName: String, from: MCPeerID, url: URL) {
+		
+		let data: Data
+		
+		do {
+			data = try Data(contentsOf: url)
+		} catch {
+			print(error)
+			return
+		}
+		
+		guard let entity = Load.mapEntity(withId: withName) else { return }
+		
+		let context = CoreDataStack.managedObjectContext
+		let texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+		
+		texture.data = data as NSData
+		entity.texture = texture
+		
+		CoreDataStack.saveContext()
+		
+		NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
+		
+		do{
+			try FileManager.default.removeItem(at: url)
+		}catch{
+			print(error)
+		}
+		
+	}
 
     func lost(_ peer: MCPeerID) {
         let message = NSLocalizedString("Lost connection with", comment: "") + " " + peer.displayName

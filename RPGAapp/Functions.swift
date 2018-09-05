@@ -354,13 +354,6 @@ func createTitlesForSubCategory() -> [String: String]{
 	return nameDict
 }
 
-func requestTexuturesFrom(id: [String]){
-	for textureId in id{
-		let action = TextureRequest(mapId: "", entityId: textureId)
-		PackageService.pack.send(action: action)
-	}
-}
-
 func createBasicCurrency(){
 	createCurrencyUsing(name: "PLN", rate: 0, subList: [("Zł", 1), ("Gr", 100)])
 	createCurrencyUsing(name: "ZkSrM", rate: 0, subList: [("Zk", 1), ("Sr", 12), ("M", 12)])
