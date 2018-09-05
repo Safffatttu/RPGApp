@@ -29,6 +29,7 @@ class PackageViewer: UITableViewController {
 		diffCalculator = SingleSectionTableViewDiffCalculator(tableView: self.tableView, initialRows: packages, sectionIndex: 0)
 		
         NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .createdPackage, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .reloadTeam, object: nil)
     }
 	
     func reloadPackages(){
