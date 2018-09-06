@@ -61,7 +61,14 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		let map = Load.currentMap(session: Load.currentSession())
 		
 		let contex = CoreDataStack.managedObjectContext
-		let texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
+		
+		let texture: Texture!
+		
+		if let existingTexture = map.background{
+			texture = existingTexture
+		}else{
+			texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
+		}
 		
 		texture.data = imageData as NSData
 		

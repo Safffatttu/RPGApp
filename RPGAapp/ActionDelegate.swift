@@ -165,7 +165,14 @@ class ActionDelegate: PackageServiceDelegate{
 		let context = CoreDataStack.managedObjectContext
 		
 		if let entity = Load.mapEntity(withId: withName) {
-			let texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			
+			let texture: Texture!
+			
+			if let existingTexture = entity.texture{
+				texture = existingTexture
+			}else{
+				texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			}
 			
 			texture.data = data as NSData
 			entity.texture = texture
@@ -174,7 +181,14 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
 		}else if let map = Load.map(withId: withName) {
-			let texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			
+			let texture: Texture!
+			
+			if let existingTexture = map.background{
+				texture = existingTexture
+			}else{
+				texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			}
 			
 			texture.data = data as NSData
 			map.background = texture
