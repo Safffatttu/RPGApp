@@ -107,6 +107,9 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 			mapEntDict.setValue(mapEnt.y, forKey: "posY")
 			mapEntDict.setValue(mapEnt.character?.id, forKey: "characterId")
 			
+			let hasTexture = (mapEnt.texture != nil)
+			mapEntDict.setValue(hasTexture, forKey: "hasTexture")
+			
 			mapEntities.add(mapEntDict)
 		}
 		
@@ -116,6 +119,9 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		mapDict.setValue(map.x, forKey: "posX")
 		mapDict.setValue(map.y, forKey: "posY")
 		mapDict.setValue(mapEntities, forKey: "mapEntities")
+		
+		let hasBackground = (map.background?.data != nil)
+		mapDict.setValue(hasBackground, forKey: "hasBackground")
 	
 		maps.add(mapDict)
 	}
@@ -444,21 +450,29 @@ func createSessionUsing(sessionData: NSDictionary, sender: MCPeerID) -> Session?
 	return newSession
 }
 
-func getTextureId(from session: Session) -> [String]{
-	let map = Load.currentMap(session: session)
-	guard let mapEntities = map.entities?.allObjects as? [MapEntity] else { return [] }
-	
+func getTextureId(from sessionData: NSDictionary) -> [String]{
 	var list: [String] = []
 	
-	for entity in mapEntities{
-		guard entity.texture?.data != nil else { continue }
-		guard let id = entity.id else { continue }
-		list.append(id)
-	}
+	guard let mapsDict = sessionData.value(forKey: "maps") as? NSArray else { return list }
 	
-	if map.background != nil{
-		guard let id = map.id else { return list }
-		list.append(id)
+	for case let mapDict as NSDictionary in mapsDict{
+		guard let mapId = mapDict.value(forKey: "id") as? String else { continue }
+		guard let hasBackground = mapDict.value(forKey: "hasBackground") as? Bool else { continue }
+		
+		if hasBackground{
+			list.append(mapId)
+		}
+		
+		guard let allMapEntities = mapDict.value(forKey: "mapEntities") as? NSArray else { continue }
+		
+		for case let mapEntDict as NSDictionary in allMapEntities{
+			guard let mapEntId = mapEntDict.value(forKey: "id") as? String else { continue }
+			guard let hasTexture = mapEntDict.value(forKey: "hasTexture") as? Bool else { continue }
+			
+			if hasTexture{
+				list.append(mapEntId)
+			}
+		}
 	}
 	
 	return list

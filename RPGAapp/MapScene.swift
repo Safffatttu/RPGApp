@@ -118,7 +118,7 @@ class MapScene: SKScene{
 	func textureChanged(_ sender: Notification){
 		var sprite: SKSpriteNode!
 		
-		var textureData: Data!
+		var textureData: Data? = nil
 		
 		if let entity = sender.object as? MapEntity{
 			sprite = mapThings.first(where: {$0.0 == entity})?.1
@@ -128,8 +128,8 @@ class MapScene: SKScene{
 			sprite = self.mapa
 			textureData = map?.background?.data as Data?
 		}
-		
-		guard let image = UIImage(data: textureData) else { return }
+		guard let data = textureData else { return }
+		guard let image = UIImage(data: data) else { return }
 		
 		let texture = SKTexture(image: image)
 		

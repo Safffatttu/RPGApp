@@ -85,7 +85,7 @@ struct SessionReceived: Action {
 	private func createSession(){
 		guard let newSession = createSessionUsing(sessionData: self.sessionData, sender: self.sender!) else { return }
 		
-		let textureToRequest = getTextureId(from: newSession)
+		let textureToRequest = getTextureId(from: sessionData)
 		requestTexutures(id: textureToRequest, from: sender!)
 		
 		CoreDataStack.saveContext()
