@@ -943,71 +943,66 @@
                                         <rect key="frame" x="0.0" y="28" width="703" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sGo-Y8-lBb" id="cS8-Wv-fxx">
-                                            <rect key="frame" x="0.0" y="0.0" width="703" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="703" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTN-xb-yEe">
-                                                    <rect key="frame" x="473" y="7" width="49" height="29"/>
-                                                    <state key="normal" title="Paczka"/>
-                                                    <connections>
-                                                        <action selector="addToPackage:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="NYS-FE-hVE"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qi-ah-FkE">
-                                                    <rect key="frame" x="527" y="7" width="43" height="29"/>
-                                                    <state key="normal" title="Edytuj"/>
-                                                    <connections>
-                                                        <action selector="redrawItem:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="wRg-db-FcW"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmE-pi-cbd">
-                                                    <rect key="frame" x="575" y="7" width="73" height="29"/>
-                                                    <state key="normal" title="Informacje"/>
-                                                    <connections>
-                                                        <action selector="showInfo:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="etX-gl-vq6"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsd-YV-HXg">
-                                                    <rect key="frame" x="653" y="7" width="40" height="29"/>
-                                                    <state key="normal" title="Wyślij"/>
-                                                    <connections>
-                                                        <action selector="sendItem:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="upi-ZQ-HGR"/>
-                                                    </connections>
-                                                </button>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7v4-3t-9UG">
-                                                    <rect key="frame" x="8" y="13" width="86" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptn-a8-qFA">
+                                                    <rect key="frame" x="8" y="12.5" width="42" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP4-xt-oN1">
+                                                    <rect key="frame" x="375" y="13" width="90" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="dGv-38-Yk1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ylk-qU-Fpg">
+                                                    <rect key="frame" x="490" y="6" width="205" height="30"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptn-a8-qFA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP4-xt-oN1">
-                                                            <rect key="frame" x="47" y="0.0" width="39" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTN-xb-yEe">
+                                                            <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
+                                                            <state key="normal" title="Paczka"/>
+                                                            <connections>
+                                                                <action selector="addToPackage:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="NYS-FE-hVE"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qi-ah-FkE">
+                                                            <rect key="frame" x="49" y="0.0" width="43" height="30"/>
+                                                            <state key="normal" title="Edytuj"/>
+                                                            <connections>
+                                                                <action selector="redrawItem:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="wRg-db-FcW"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmE-pi-cbd">
+                                                            <rect key="frame" x="92" y="0.0" width="73" height="30"/>
+                                                            <state key="normal" title="Informacje"/>
+                                                            <connections>
+                                                                <action selector="showInfo:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="etX-gl-vq6"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsd-YV-HXg">
+                                                            <rect key="frame" x="165" y="0.0" width="40" height="30"/>
+                                                            <state key="normal" title="Wyślij"/>
+                                                            <connections>
+                                                                <action selector="sendItem:" destination="sGo-Y8-lBb" eventType="touchUpInside" id="upi-ZQ-HGR"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zmE-pi-cbd" firstAttribute="top" secondItem="cS8-Wv-fxx" secondAttribute="top" constant="7" id="01n-hp-gxa"/>
-                                                <constraint firstItem="7v4-3t-9UG" firstAttribute="top" secondItem="cS8-Wv-fxx" secondAttribute="topMargin" constant="5" id="37Y-k2-MHJ"/>
-                                                <constraint firstItem="4Qi-ah-FkE" firstAttribute="leading" secondItem="WTN-xb-yEe" secondAttribute="trailing" constant="5" id="9go-g3-7h1"/>
-                                                <constraint firstItem="zmE-pi-cbd" firstAttribute="leading" secondItem="4Qi-ah-FkE" secondAttribute="trailing" constant="5" id="PDd-E0-1JI"/>
-                                                <constraint firstAttribute="bottom" secondItem="zmE-pi-cbd" secondAttribute="bottom" constant="7" id="Rba-md-xff"/>
-                                                <constraint firstItem="zsd-YV-HXg" firstAttribute="top" secondItem="cS8-Wv-fxx" secondAttribute="top" constant="7" id="SGK-Xb-etD"/>
-                                                <constraint firstAttribute="bottom" secondItem="4Qi-ah-FkE" secondAttribute="bottom" constant="7" id="SZF-oW-y3F"/>
-                                                <constraint firstItem="WTN-xb-yEe" firstAttribute="top" secondItem="cS8-Wv-fxx" secondAttribute="top" constant="7" id="Wrl-cD-Ta0"/>
-                                                <constraint firstItem="4Qi-ah-FkE" firstAttribute="top" secondItem="cS8-Wv-fxx" secondAttribute="top" constant="7" id="ZEv-w9-jco"/>
-                                                <constraint firstItem="zsd-YV-HXg" firstAttribute="leading" secondItem="zmE-pi-cbd" secondAttribute="trailing" constant="5" id="dq9-eC-HEZ"/>
-                                                <constraint firstItem="7v4-3t-9UG" firstAttribute="leading" secondItem="cS8-Wv-fxx" secondAttribute="leadingMargin" id="mDu-6p-YHN"/>
-                                                <constraint firstAttribute="trailing" secondItem="zsd-YV-HXg" secondAttribute="trailing" constant="10" id="msv-as-4Md"/>
-                                                <constraint firstAttribute="bottom" secondItem="WTN-xb-yEe" secondAttribute="bottom" constant="7" id="nx0-YO-3HO"/>
-                                                <constraint firstAttribute="bottom" secondItem="zsd-YV-HXg" secondAttribute="bottom" constant="7" id="s1c-JU-FcU"/>
-                                                <constraint firstItem="7v4-3t-9UG" firstAttribute="centerY" secondItem="cS8-Wv-fxx" secondAttribute="centerY" id="vLP-EN-YLp"/>
+                                                <constraint firstItem="Ylk-qU-Fpg" firstAttribute="trailing" secondItem="cS8-Wv-fxx" secondAttribute="trailingMargin" id="2vo-H8-G4A"/>
+                                                <constraint firstItem="Ylk-qU-Fpg" firstAttribute="leading" secondItem="mP4-xt-oN1" secondAttribute="trailing" constant="25" id="8bh-BM-Z0Q"/>
+                                                <constraint firstItem="ptn-a8-qFA" firstAttribute="leading" secondItem="cS8-Wv-fxx" secondAttribute="leadingMargin" id="QK7-kR-CjA"/>
+                                                <constraint firstItem="mP4-xt-oN1" firstAttribute="top" secondItem="cS8-Wv-fxx" secondAttribute="topMargin" constant="5" id="STv-eU-cWH"/>
+                                                <constraint firstItem="mP4-xt-oN1" firstAttribute="centerY" secondItem="cS8-Wv-fxx" secondAttribute="centerY" id="YO5-vR-sdQ"/>
+                                                <constraint firstItem="ptn-a8-qFA" firstAttribute="centerY" secondItem="mP4-xt-oN1" secondAttribute="centerY" id="gNp-Ha-1IO"/>
+                                                <constraint firstItem="Ylk-qU-Fpg" firstAttribute="centerY" secondItem="cS8-Wv-fxx" secondAttribute="centerY" id="xun-Xb-0rX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1166,7 +1161,7 @@
                                                     <rect key="frame" x="0.0" y="28" width="260" height="85"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Teh-TV-Ise" id="2xe-EP-2mM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="85"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="84.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="s3f-to-MHp">
@@ -1209,7 +1204,7 @@
                                                     <rect key="frame" x="0.0" y="28" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5cL-fY-Is4" id="N25-N7-Zlb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XJx-WF-FYm">
@@ -1233,7 +1228,7 @@
                                                     <rect key="frame" x="0.0" y="72" width="250" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DSo-Cq-zsV" id="TAk-1E-h7W">
-                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1b1-FW-gw8">
