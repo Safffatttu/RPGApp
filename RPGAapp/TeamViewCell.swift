@@ -61,6 +61,7 @@ class TeamViewCell: UICollectionViewCell {
 	override func awakeFromNib() {
 		equipmentTable.dataSource = self
 		abilityTable.dataSource = self
+		moneyTextField.delegate = self
 		
 		equipmentDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: equipmentTable)
 		abilityDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: abilityTable, initialRows: [], sectionIndex: 0)
@@ -267,6 +268,21 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 				return cell!
 			}
 		}
+	}
+}
+
+extension TeamViewCell: UITextFieldDelegate{
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+		guard let text = moneyTextField.text else { return true }
+
+		let money = convertCurrencyToValue(text)
+		character.money = money
+		
+		textField.resignFirstResponder()
+		
+		CoreDataStack.saveContext()
+		
+		return true
 	}
 }
 

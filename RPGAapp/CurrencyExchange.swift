@@ -59,15 +59,17 @@ extension Currency{
 	func valueFrom(string: String)-> Double{
 		let subCurrencies = self.subCurrency?.array as! [SubCurrency]
 		
+		let stringWithoutSpaces = string.replacingOccurrences(of: " ", with: "")
+		
 		var value: Double = 0.0
 		
 		for sub in subCurrencies{
 			
-			let regex = "\\d+.?\\d* \(sub.name!)"
+			let regex = "\\d+.?\\d*\(sub.name!)"
 			
-			guard let range = string.range(of: regex, options: .regularExpression) else { continue }
+			guard let range = stringWithoutSpaces.range(of: regex, options: .regularExpression) else { continue }
 			
-			let subString = String(string[range].characters.dropLast((sub.name?.characters.count)!))
+			let subString = String(stringWithoutSpaces[range].characters.dropLast((sub.name?.characters.count)!))
 			guard let subValue = Double(subString) else { continue }
 			
 			guard let divNumber = subCurrencies.index(where: {$0 === sub}) else { continue }
