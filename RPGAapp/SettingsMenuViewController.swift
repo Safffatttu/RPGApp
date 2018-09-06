@@ -491,8 +491,20 @@ class SettingMenu: UITableViewController {
 				
 				self.updateDiffTable()
 			})
+			let localizedEdit = NSLocalizedString("Edit", comment: "")
 			
-			actions = [deleteCurrency]
+			let editCurrency = UITableViewRowAction(style: .normal, title: localizedEdit, handler: { action, path in
+				let currency = self.currencies[indexPath.row - 1]
+				
+				let currencyForm = NewCurrencyForm()
+				currencyForm.modalPresentationStyle = .formSheet
+				
+				currencyForm.currency = currency
+				
+				self.present(currencyForm, animated: true, completion: nil)
+			})
+			
+			actions = [deleteCurrency, editCurrency]
 		}else if indexPath.section == 3{
 			let deleteVisibility = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: { action, path in
 				
