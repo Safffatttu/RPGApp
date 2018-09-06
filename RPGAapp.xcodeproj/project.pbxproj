@@ -71,6 +71,7 @@
 		3B94594621381DEF00384F5B /* ItemCharacterDeleted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94594521381DEF00384F5B /* ItemCharacterDeleted.swift */; };
 		3B9459482138256900384F5B /* ItemPackageAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9459472138256900384F5B /* ItemPackageAdded.swift */; };
 		3B96583A214198510016B593 /* CharacterMoneyChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B965839214198510016B593 /* CharacterMoneyChanged.swift */; };
+		3B96583C21419E640016B593 /* RandomItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B96583B21419E640016B593 /* RandomItemCell.swift */; };
 		3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B063D761F3A259B00B5271C /* Functions.swift */; };
 		3B9D6BD91FB8F89900474C71 /* ActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */; };
 		3BA749A3213945AC002E09A1 /* TextureSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA749A2213945AC002E09A1 /* TextureSend.swift */; };
@@ -232,6 +233,7 @@
 		3B94594521381DEF00384F5B /* ItemCharacterDeleted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCharacterDeleted.swift; sourceTree = "<group>"; };
 		3B9459472138256900384F5B /* ItemPackageAdded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPackageAdded.swift; sourceTree = "<group>"; };
 		3B965839214198510016B593 /* CharacterMoneyChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterMoneyChanged.swift; sourceTree = "<group>"; };
+		3B96583B21419E640016B593 /* RandomItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemCell.swift; sourceTree = "<group>"; };
 		3B9D6BD81FB8F89900474C71 /* ActionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionDelegate.swift; sourceTree = "<group>"; };
 		3BA35D0F1FF59E8F00FB40AC /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA749A2213945AC002E09A1 /* TextureSend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureSend.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 		3B11312820C2C9CD00F95088 /* RandomItem */ = {
 			isa = PBXGroup;
 			children = (
+				3B96583B21419E640016B593 /* RandomItemCell.swift */,
 				3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */,
 				3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */,
 				3BADCC9B20E04F04005A5B89 /* EditDrawSetting.swift */,
@@ -972,6 +975,7 @@
 				3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */,
 				3B11312D20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift in Sources */,
 				3B63958520E7AED6001336A8 /* NewCurrencyForm.swift in Sources */,
+				3B96583C21419E640016B593 /* RandomItemCell.swift in Sources */,
 				3BEBCDFB20E10EB600F31732 /* Texture+CoreDataProperties.swift in Sources */,
 				3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */,
 				3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */,

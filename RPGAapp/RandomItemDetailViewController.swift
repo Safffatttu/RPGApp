@@ -73,50 +73,9 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         if ItemDrawManager.randomlySelected.count > 0{
             let cellItem = ItemDrawManager.randomlySelected[indexPath.row]
-            
-            if cellItem.count > 1 {
-                cell.nameLabel.text = (cellItem.item?.name)! + ": " + String(describing: cellItem.count)
-            }
-            else{
-                cell.nameLabel.text = (cellItem.item?.name)!
-            }
-            
-            var priceToShow = String()
-            
-            if  cellItem.item?.price != nil  {
-                if UserDefaults.standard.bool(forKey: "Show price"){
-                    //priceToShow = changeCurrency(price: (cellItem.item?.price)!, currency: listOfItems.currency)
-                    priceToShow = String(describing: (cellItem.item?.price)!) + "PLN"
-                }
-                else{
-                    priceToShow = String(describing: (cellItem.item?.price)!) + "PLN"
-                }
-            }
-            else {
-                priceToShow = NSLocalizedString("Missing price", comment: "")
-                print(cellItem)
-            }
-            cell.priceLabel.text = priceToShow
-            
-            cell.sendButton.isHidden = false
-            cell.infoButton.isHidden = false
-            cell.redrawButton.isHidden = false
-            cell.packageButton.isHidden = false
-
-            cell.cellDelegate = self
-            
-            cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
-            
-            cell.infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
-            
-            cell.redrawButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.redrawButton.setTitle(String.fontAwesomeIcon(name: .refresh), for: .normal)
-            
-            cell.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-            cell.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
-            
+			
+			cell.itemHandler = cellItem
+			cell.cellDelegate = self
         }
         else{
             cell.nameLabel?.text = NSLocalizedString("Have not draw items yet", comment: "")
@@ -231,49 +190,4 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         self.present(popController, animated: true, completion: nil)
     }
-}
-
-class randomItemCell: UITableViewCell{
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var priceLabel: UILabel!
-    
-    @IBOutlet var packageButton: UIButton!
-    
-    @IBOutlet var redrawButton: UIButton!
-    
-    @IBOutlet var infoButton: UIButton!
-    
-    @IBOutlet var sendButton: UIButton!
-    
-    weak var cellDelegate: randomItemCellDelegate?
-    
-    @IBAction func addToPackage(_ sender: UIButton) {
-        cellDelegate?.addToPackage(sender)
-    }
-    
-    @IBAction func redrawItem(_ sender: UIButton) {
-        cellDelegate?.reDrawItem(sender)
-    }
-    
-    @IBAction func showInfo(_ sender: UIButton) {
-        cellDelegate?.showInfo(sender)
-    }
-    
-    @IBAction func sendItem(_ sender: UIButton) {
-        cellDelegate?.sendItem(sender)
-    }
-}
-
-protocol randomItemCellDelegate: class{
-    
-    func addToPackage(_ sender: UIButton)
-    
-    func reDrawItem(_ sender: UIButton)
-    
-    func showInfo(_ sender: UIButton)
-    
-    func sendItem(_ sender: UIButton)
-    
 }
