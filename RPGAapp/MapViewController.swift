@@ -52,7 +52,7 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+		let chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
 		
 		dismiss(animated:true, completion: nil)
 		
@@ -71,9 +71,9 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		
 		NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
 		
-		DispatchQueue.global().async {
-			let action = TextureSend(imageData: imageData as NSData, mapId: map.id!)
-			PackageService.pack.send(action: action)
-		}
+		guard let mapId = map.id else { return }
+		
+		let action = MapTextureChanged(mapId: mapId)
+		PackageService.pack.send(action: action)
 	}
 }

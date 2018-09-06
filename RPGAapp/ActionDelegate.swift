@@ -137,6 +137,9 @@ class ActionDelegate: PackageServiceDelegate{
 			let action = VisibilityRemoved(actionData: actionData, sender: sender)
 			action.execute()
 			
+		}else if actionType == .mapTextureChanged{
+			let action = MapTextureChanged(actionData: actionData, sender: sender)
+			action.execute()
 		}
     }
 	
@@ -159,17 +162,27 @@ class ActionDelegate: PackageServiceDelegate{
 			return
 		}
 		
-		guard let entity = Load.mapEntity(withId: withName) else { return }
-		
 		let context = CoreDataStack.managedObjectContext
-		let texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
 		
-		texture.data = data as NSData
-		entity.texture = texture
-		
-		CoreDataStack.saveContext()
-		
-		NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
+		if let entity = Load.mapEntity(withId: withName) {
+			let texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			
+			texture.data = data as NSData
+			entity.texture = texture
+			
+			CoreDataStack.saveContext()
+			
+			NotificationCenter.default.post(name: .mapEntityTextureChanged, object: entity)
+		}else if let map = Load.map(withId: withName) {
+			let texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
+			
+			texture.data = data as NSData
+			map.background = texture
+			
+			CoreDataStack.saveContext()
+			
+			NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
+		}
 		
 		do{
 			try FileManager.default.removeItem(at: url)

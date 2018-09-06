@@ -16,8 +16,7 @@ struct TextureRequest: Action {
 	var data: ActionData{
 		get{
 			let data = ActionData(dictionary: [
-				"mapId"    : mapId,
-				"entityId" : entityId
+				"id"    : id,
 				])
 			return data
 		}
@@ -25,46 +24,40 @@ struct TextureRequest: Action {
 	
 	var sender: MCPeerID?
 	
-	var mapId: String
-	var entityId: String
+	var id: String
 	
 	var actionData: ActionData?
 	
 	init(actionData: ActionData, sender: MCPeerID){
 		self.sender = sender
 		
-		self.mapId = actionData.value(forKeyPath: "mapId") as! String
-		self.entityId = actionData.value(forKeyPath: "entityId") as! String
+		self.id = actionData.value(forKeyPath: "id") as! String
 		
 		self.actionData = actionData
 	}
 	
-	init(mapId: String, entityId: String){
-		self.mapId = mapId
-		self.entityId = entityId
+	init(id: String){
+		self.id = id
 	}
 	
 	func execute(){
 		var imageData: NSData?
-		var textureId: String = ""
 		
-		if let texture = Load.texture(with: entityId) {
+		if let texture = Load.texture(with: id) {
 			imageData = texture.data
-			textureId = (texture.mapEntity?.id)!
-		}else if let data = Load.map(withId: mapId)?.background?.data{
+		}else if let data = Load.map(withId: id)?.background?.data{
 			imageData = data
-			textureId = mapId
 		}
 		
 		guard let data = imageData else { return }		
 
 		var path = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-		path.appendPathComponent(textureId)
+		path.appendPathComponent(id)
 		path = path.appendingPathExtension("texture")
 
 		data.write(to: path, atomically: true)
 		
-		PackageService.pack.sendResourceAt(url: path, with: textureId, to: sender!, completionHandler: { e -> Void in
+		PackageService.pack.sendResourceAt(url: path, with: id, to: sender!, completionHandler: { e -> Void in
 			do{
 				try FileManager.default.removeItem(at: path)
 			}catch{

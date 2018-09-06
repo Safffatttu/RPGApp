@@ -1,4 +1,4 @@
-//
+ //
 //  MapScene.swift
 //  RPGAapp
 //
@@ -152,9 +152,10 @@ class MapScene: SKScene{
 	}
 	
 	func reloadBackground(){
-		if let backgroundTexture = map?.background{
-			let image = UIImage(data: backgroundTexture.data! as Data)
-			let texture = SKTexture(image: image!)
+		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
+		if let backgroundData = map?.background?.data{
+			guard let image = UIImage(data: backgroundData as Data) else { return }
+			let texture = SKTexture(image: image)
 			let actionSeq = SKAction.sequence([
 				SKAction.fadeOut(withDuration: 0.4),
 				SKAction.run{

@@ -456,6 +456,11 @@ func getTextureId(from session: Session) -> [String]{
 		list.append(id)
 	}
 	
+	if map.background != nil{
+		guard let id = map.id else { return list }
+		list.append(id)
+	}
+	
 	return list
 }
 

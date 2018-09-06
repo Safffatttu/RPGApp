@@ -47,6 +47,7 @@ enum ActionType: Int {
 	
 	// Map
 	case mapEntityMoved
+	case mapTextureChanged
 	
 	//Session
 	case sessionCreated

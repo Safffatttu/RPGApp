@@ -95,10 +95,9 @@ struct SessionReceived: Action {
 		
 	}
 	
-	
 	private func requestTexutures(id: [String], from: MCPeerID){
 		for textureId in id{
-			let action = TextureRequest(mapId: "", entityId: textureId)
+			let action = TextureRequest(id: textureId)
 			PackageService.pack.send(action: action, to: from)
 		}
 	}
