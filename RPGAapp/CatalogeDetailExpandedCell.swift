@@ -75,6 +75,21 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 		
 		self.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		self.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(changedCurrency), name: .currencyChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(itemEdited(_:)), name: .editedItem, object: nil)
+	}
+	
+	func changedCurrency(){
+		guard let price = self.item?.price else { return }
+		self.priceLabel.text = showPrice(price)
+	}
+	
+	func itemEdited(_ notification: Notification){
+		guard let newItem = notification.object as? Item else { return }
+		guard self.item == newItem else { return	}
+		
+		self.item = newItem
 	}
 	
 	//MARK: CatalogExpandedAtributeTable
