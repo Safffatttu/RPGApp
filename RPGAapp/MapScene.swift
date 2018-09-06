@@ -148,7 +148,7 @@ class MapScene: SKScene{
 		for sprite in mapThings.map({$0.1}){
 			sprite.run(SKAction.hide())
 		}
-		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
+		reloadBackground()
 	}
 	
 	func reloadBackground(){
@@ -160,13 +160,34 @@ class MapScene: SKScene{
 				SKAction.fadeOut(withDuration: 0.4),
 				SKAction.run{
 					self.mapa.texture = texture
+					
+					let imgW = self.mapa.size.width
+					let viewW = self.size.width
+					
+					let scaleFactor = viewW/imgW
+					
+					self.mapa.setScale(scaleFactor)
 				},
 				SKAction.fadeIn(withDuration: 0.4)
 			])
 			mapa.run(actionSeq)
 		}
 		else{
-			mapa.texture = SKTexture(imageNamed: "mapImperium")
+			let actionSeq = SKAction.sequence([
+				SKAction.fadeOut(withDuration: 0.4),
+				SKAction.run{
+					self.mapa.texture = SKTexture(imageNamed: "mapImperium")
+
+					let imgW = self.mapa.size.width
+					let viewW = self.size.width
+					
+					let scaleFactor = viewW/imgW
+					
+					self.mapa.setScale(scaleFactor)
+				},
+				SKAction.fadeIn(withDuration: 0.4)
+				])
+			mapa.run(actionSeq)
 		}
 	}
 	
