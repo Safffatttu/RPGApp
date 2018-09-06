@@ -623,6 +623,8 @@ extension SettingMenu: settingCellDelegate {
 		
 		updateDiffTable()
 		
+		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		
 		let action = SessionReceived(session: session, setCurrent: session.current)
 		PackageService.pack.send(action: action)
     }
