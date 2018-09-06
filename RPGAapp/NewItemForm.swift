@@ -115,7 +115,7 @@ class NewItemForm: FormViewController{
 			$0.titleLabel.text = NSLocalizedString("Rarity", comment: "")
 			}.configure{[unowned self] in
 				$0.segmentTitles = rarityName
-				$0.selectedIndex = Int(self.rarity)
+				$0.selectedIndex = Int(self.rarity - 1)
 			}.onSegmentSelected{[unowned self] r,_ in
 				self.rarity = Int16(r + 1)
 		}
