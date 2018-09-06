@@ -48,5 +48,6 @@ struct SessionDeleted: Action {
 		
 		NotificationCenter.default.post(name: .sessionDeleted, object: nil)
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		NotificationCenter.default.post(name: .currencyChanged, object: nil)
 	}
 }

@@ -92,6 +92,7 @@ struct SessionReceived: Action {
 		
 		NotificationCenter.default.post(name: .sessionReceived, object: nil)
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		NotificationCenter.default.post(name: .currencyChanged, object: nil)
 		
 	}
 	

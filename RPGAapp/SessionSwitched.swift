@@ -49,5 +49,6 @@ struct SessionSwitched: Action {
 		
 		NotificationCenter.default.post(name: .switchedSession, object: nil)
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		NotificationCenter.default.post(name: .currencyChanged, object: nil)
 	}
 }

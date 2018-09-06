@@ -157,6 +157,7 @@ class SettingMenu: UITableViewController {
 		updateDiffTable()
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		NotificationCenter.default.post(name: .currencyChanged, object: nil)
 		
 		let action = SessionSwitched(session: session)
 		PackageService.pack.send(action: action)
@@ -355,6 +356,8 @@ class SettingMenu: UITableViewController {
 				CoreDataStack.saveContext()
 				
 				updateDiffTable()
+				
+				NotificationCenter.default.post(name: .currencyChanged, object: nil)
 			}
 		}else if indexPath.section == 3{
 			if indexPath.row != 0{
@@ -424,6 +427,7 @@ class SettingMenu: UITableViewController {
 					self.updateDiffTable()
 					
 					NotificationCenter.default.post(name: .reloadTeam, object: nil)
+					NotificationCenter.default.post(name: .currencyChanged, object: nil)
 					
 					let action = SessionDeleted(sessionId: sessionId!)
 					PackageService.pack.send(action: action)
@@ -624,6 +628,7 @@ extension SettingMenu: settingCellDelegate {
 		updateDiffTable()
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		NotificationCenter.default.post(name: .currencyChanged, object: nil)
 		
 		let action = SessionReceived(session: session, setCurrent: session.current)
 		PackageService.pack.send(action: action)
@@ -636,5 +641,6 @@ extension Notification.Name{
     static let sessionDeleted = Notification.Name("sessionDeleted")
 	static let sessionReceived = Notification.Name("sessionReceived")
 	static let currencyCreated = Notification.Name("currencyCreated")
+	static let currencyChanged = Notification.Name("currencyChanged")
 	static let visibilityCreated = Notification.Name("visibilityCreated")
 }

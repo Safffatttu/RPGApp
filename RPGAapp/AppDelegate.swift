@@ -57,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		
 		NotificationCenter.default.post(name: .sessionReceived, object: nil)
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
+		NotificationCenter.default.post(name: .currencyChanged, object: nil)
 		
 		return true
 	}

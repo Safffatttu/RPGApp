@@ -43,8 +43,14 @@ class CatalogeDetailCell: UITableViewCell{
 		
 		packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(changedCurrency), name: .currencyChanged, object: nil)
 	}
 	
+	func changedCurrency(){
+		guard let price = self.item?.price else { return }
+		self.priceLabel.text = showPrice(price)
+	}
 	
 	@IBAction func addToPackageButton(_ sender: UIButton) {
 		cellDelegate?.addToPackageButton(sender)
