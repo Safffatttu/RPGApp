@@ -224,7 +224,7 @@ extension NewCharacterForm: UIImagePickerControllerDelegate, UINavigationControl
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		textureImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+		textureImage = info[UIImagePickerControllerEditedImage] as? UIImage
 		
 		dismiss(animated: true, completion: nil)
 		
