@@ -282,6 +282,9 @@ extension TeamViewCell: UITextFieldDelegate{
 		
 		CoreDataStack.saveContext()
 		
+		let action = CharacterMoneyChanged(character: character)
+		PackageService.pack.send(action: action)
+		
 		return true
 	}
 }

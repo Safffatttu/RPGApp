@@ -140,6 +140,9 @@ class ActionDelegate: PackageServiceDelegate{
 		}else if actionType == .mapTextureChanged{
 			let action = MapTextureChanged(actionData: actionData, sender: sender)
 			action.execute()
+		}else if actionType == .characterMoneyChanged{
+			let action = CharacterMoneyChanged(actionData: actionData, sender: sender)
+			action.execute()
 		}
     }
 	
