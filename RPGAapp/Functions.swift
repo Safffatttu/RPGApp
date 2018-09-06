@@ -355,8 +355,8 @@ func createTitlesForSubCategory() -> [String: String]{
 }
 
 func createBasicCurrency(){
-	createCurrencyUsing(name: "PLN", rate: 0, subList: [("Zł", 1), ("Gr", 100)])
-	createCurrencyUsing(name: "ZkSrM", rate: 0, subList: [("Zk", 1), ("Sr", 12), ("M", 12)])
+	createCurrencyUsing(name: "PLN", rate: 1, subList: [("Zł", 1), ("Gr", 100)])
+	createCurrencyUsing(name: "ZkSrM", rate: 1, subList: [("Zk", 1), ("Sr", 12), ("M", 12)])
 	CoreDataStack.saveContext()
 }
 

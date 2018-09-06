@@ -9,27 +9,25 @@
 import Foundation
 
 extension Currency{
-	
-	
+		
 	func show(value: Double) -> String{
 		let subCurrencies = self.subCurrency?.array as! [SubCurrency]
-		
 		let ratedValue = value * self.rate
 		
-		var valueToShow = " \(Int(floor(ratedValue))) \((subCurrencies.first)!.name!)"
+		var valueToShow = "\(Int(floor(ratedValue))) \((subCurrencies.first)!.name!)"
 		
 		var reminding = ratedValue - floor(ratedValue)
 		
 		for sub in subCurrencies.dropFirst().dropLast(){
-			let subValueToShow = Int16(floor(reminding)) * sub.rate
+			let subValueToShow = Int(floor(reminding * Double(sub.rate)))
 			
 			if subValueToShow != 0{
-				let subStrToShow = "  \(subValueToShow) \(sub.name!)"
+				let subStrToShow = " \(subValueToShow) \(sub.name!)"
 				
 				valueToShow += subStrToShow
 			}
 			
-			reminding = (reminding - floor(reminding * Double(sub.rate)) / Double(sub.rate)) * 10
+			reminding = (reminding - floor(reminding * Double(sub.rate)) / Double(sub.rate)) * Double(sub.rate)
 		}
 		
 		if subCurrencies.last != nil && subCurrencies.count > 1{
