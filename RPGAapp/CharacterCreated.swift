@@ -120,7 +120,9 @@ struct CharacterCreated: Action {
 		
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
 		
-		let request = TextureRequest(mapId: "", entityId: (character.mapRepresentation?.id)!)
+		guard let mapEntityId = character.mapRepresentation?.id else { return }
+		
+		let request = TextureRequest(id: mapEntityId)
 		PackageService.pack.send(action: request, to: from!)
 	}
 }
