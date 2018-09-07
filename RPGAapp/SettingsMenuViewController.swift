@@ -348,10 +348,10 @@ class SettingMenu: UITableViewController {
 			if indexPath.row == 0{
 				createCurrency()
 			}else{
-				let session = Load.currentExistingSession()
+				let session = Load.currentSession()
 				sessions = Load.sessions()
 				visibilities = Load.visibilities()
-				session?.currency = currencies[indexPath.row - 1]
+				session.currency = currencies[indexPath.row - 1]
 				
 				CoreDataStack.saveContext()
 				
