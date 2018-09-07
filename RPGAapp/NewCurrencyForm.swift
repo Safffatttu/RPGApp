@@ -70,14 +70,22 @@ class NewCurrencyForm: FormViewController {
 				former.add(sectionFormers: [subSection])
 			} 
 		}
-        let addSubCurrencyRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
+		let addSubCurrencyRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
 			.configure{
 				$0.text = NSLocalizedString("Add new SubCurrency", comment: "")
 			}.onSelected{_ in
 				self.addNewSubCurrencySection()
         }
 
-        let createSubCurrencySection = SectionFormer(rowFormers: [addSubCurrencyRow])
+		let removeSubCurrencyRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
+				$0.centerTextLabel.textColor = .red
+			}.configure{
+				$0.text = NSLocalizedString("Remove SubCurrency", comment: "")
+			}.onSelected{[unowned self] _ in
+				self.removeSubCurrency()
+		}
+		
+        let createSubCurrencySection = SectionFormer(rowFormers: [addSubCurrencyRow, removeSubCurrencyRow])
 
         former.add(sectionFormers: [createSubCurrencySection])
 
@@ -113,6 +121,14 @@ class NewCurrencyForm: FormViewController {
 		
 		let newSubSection = createSubSection(name: "", number: currencyData.count - 1)
 		former.insert(sectionFormer: newSubSection, above: createCurrencySection)
+		former.reload()
+	}
+	
+	func removeSubCurrency(){
+		guard currencyData.count > 0 else { return }
+		let lastSubCurrency = currencyData.count
+		currencyData.removeLast()
+		former.remove(section: lastSubCurrency)
 		former.reload()
 	}
 	
@@ -157,6 +173,8 @@ class NewCurrencyForm: FormViewController {
 
             let subCurrencies = currency?.subCurrency?.array as! [SubCurrency]
 
+			let numOfSubCurennciesToDelete = subCurrencies.count - currencyData.count
+			
             for curDataNum in 0...currencyData.count - 1{
                 let subCur: SubCurrency!
                 let subData = currencyData[curDataNum]
@@ -166,14 +184,15 @@ class NewCurrencyForm: FormViewController {
                 }else{
                     subCur = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
                 }
-                    subCur.name = subData.0
-                    subCur.rate = subData.1
+				
+				subCur.name = subData.0
+				subCur.rate = subData.1
+				
+				currency?.addToSubCurrency(subCur)
             }
-
-            let numOfSubCurennciesToDelete = subCurrencies.count - currencyData.count
-
+			
             if numOfSubCurennciesToDelete > 0{
-                let toDelete = subCurrencies.dropLast(3)
+                let toDelete = subCurrencies.dropLast(numOfSubCurennciesToDelete)
 
                 for del in toDelete{
                     context.delete(del)
