@@ -25,16 +25,18 @@ final class NumberFieldCell: UITableViewCell, TextFieldFormableRow, UITextFieldD
 	
 	func updateWithRowFormer(_ rowFormer: RowFormer) {}
 
-	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-		let stringWithoutSeparators = string.replacingOccurrences(of: ",", with: "").replacingOccurrences(of: ".", with: "")
-		
-		let numberSeparators = CharacterSet.init(charactersIn: ".,")
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {		
+		let separators = CharacterSet.init(charactersIn: ".,")
 		let digits = CharacterSet.decimalDigits
-		let allowedCharacters = digits.union(numberSeparators)
+		let allowedCharacters = digits.union(separators)
 		
-		let containsOnlyAllowedCharacters = stringWithoutSeparators.rangeOfCharacter(from: allowedCharacters.inverted) == nil
+		let containsOnlyAllowedCharacters = string.rangeOfCharacter(from: allowedCharacters.inverted) == nil
+		let numberOfSeparators = textField.text?.characters.filter{$0 == "," || $0 == "."}.count
+		let isSeparator = string.rangeOfCharacter(from: separators) != nil
+		let allowedNumberOfSeparators = numberOfSeparators! == 1
+		let allowedSeparators = !(allowedNumberOfSeparators && isSeparator)
 		
-		return containsOnlyAllowedCharacters
+		return containsOnlyAllowedCharacters && allowedSeparators
 	}
 	
 }
