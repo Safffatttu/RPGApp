@@ -63,20 +63,19 @@ class EditDrawSetting: UIViewController {
     
     @IBAction func minRaritySegmentedChanged(_ sender: UISegmentedControl) {
 		let rarity = sender.selectedSegmentIndex
-
-		for index in 0...rarityName.count - 1{
-			let setEnable = rarity <= index
-			maxRaritySegmented.setEnabled(setEnable, forSegmentAt: index)
-		}
+		enableSegments(in: maxRaritySegmented, from: rarity, to: maxRaritySegmented.numberOfSegments - 1)
 	}
     
-    @IBAction func maxRaritySegementedtChanged(_ sender: UISegmentedControl) {
-		
-        let rarity = sender.selectedSegmentIndex
-		
-		for index in 0...rarityName.count - 1{
-			let setEnable = rarity >= index
-			minRaritySegmented.setEnabled(setEnable, forSegmentAt: index)
+    @IBAction func maxRaritySegementedtChanged(_ sender: UISegmentedControl){
+		let rarity = sender.selectedSegmentIndex
+		enableSegments(in: minRaritySegmented, from: 0, to: rarity)
+	}
+	
+	func enableSegments(in segmentControl: UISegmentedControl, from: Int, to: Int){
+		let numberOfSegments = segmentControl.numberOfSegments
+		for index in 0...numberOfSegments - 1{
+			let enabled = (from <= index && to >= index)
+			segmentControl.setEnabled(enabled, forSegmentAt: index)
 		}
     }
 	
