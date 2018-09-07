@@ -65,6 +65,7 @@
 		3B88010E20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010820B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift */; };
 		3B88010F20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010920B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift */; };
 		3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F06AF1F9792F100611C34 /* PackageViewer.swift */; };
+		3B8FB3BA2142EA5A004916BD /* CatalogeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */; };
 		3B94593C2137F09F00384F5B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94593B2137F09F00384F5B /* Action.swift */; };
 		3B9459422137F8F700384F5B /* ItemCharacterAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9459412137F8F700384F5B /* ItemCharacterAdded.swift */; };
 		3B94594421380D0F00384F5B /* CharacterCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94594321380D0F00384F5B /* CharacterCreated.swift */; };
@@ -227,6 +228,7 @@
 		3B88010820B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StoreAvalibleItem+CoreDataClass.swift"; path = "Data Classes/StoreAvalibleItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3B88010920B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StoreAvalibleItem+CoreDataProperties.swift"; path = "Data Classes/StoreAvalibleItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3B8F06AF1F9792F100611C34 /* PackageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageViewer.swift; sourceTree = "<group>"; };
+		3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDataSource.swift; sourceTree = "<group>"; };
 		3B94593B2137F09F00384F5B /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		3B9459412137F8F700384F5B /* ItemCharacterAdded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCharacterAdded.swift; sourceTree = "<group>"; };
 		3B94594321380D0F00384F5B /* CharacterCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreated.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 		3B063D561F3A21A800B5271C = {
 			isa = PBXGroup;
 			children = (
+				3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */,
 				3B063D611F3A21A800B5271C /* RPGAapp */,
 				3B73F91E1F8FB04900EA7E6A /* RPGAappTests */,
 				3BD335891FF28B2E004F70BF /* RPGAappUITests */,
@@ -954,6 +957,7 @@
 				3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */,
 				3BDBD9FB20ACD45D00E0EB62 /* DrawSubSetting+CoreDataClass.swift in Sources */,
 				3BDBDA0C20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift in Sources */,
+				3B8FB3BA2142EA5A004916BD /* CatalogeDataSource.swift in Sources */,
 				3BDBDA0120ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataClass.swift in Sources */,
 				3BDBDA0520ACD45D00E0EB62 /* Package+CoreDataClass.swift in Sources */,
 				3B062553213894FE00501994 /* ItemsRequest.swift in Sources */,

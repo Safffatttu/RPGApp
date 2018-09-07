@@ -21,21 +21,13 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
 	
 	var titleForSubCategory: [String: String] = createTitlesForSubCategory()
 	
-    var filter: [String : Double?] = [:]
-
-	var sortModel: [(String,Bool,NSSortDescriptor)] = []
-	
-	var searchModel: [(String, Bool)] = []
-	
-	var lastSearchString: String = ""
-	
     var expandedCell: IndexPath? = nil
 	
     @IBOutlet weak var catalogTable: UITableView!
     
     var diffCalculator: TableViewDiffCalculator<String,Item>?
     
-    var items: SectionedValues<String,Item> = SectionedValues(Load.itemsForCataloge()){
+    var items: SectionedValues<String,Item> = SectionedValues(CatalogeDataSource.source.items){
         didSet{
             self.diffCalculator?.sectionedValues = items
         }
@@ -44,7 +36,6 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
-        
         self.diffCalculator = TableViewDiffCalculator(tableView: self.tableView, initialSectionedValues: self.items)
 		let localizedCreateItem = NSLocalizedString("Create item", comment: "")
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedCreateItem, style: .plain, target: self, action: #selector(newItemForm))
@@ -53,12 +44,9 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(goToSection(_:)), name: .goToSectionCataloge, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(searchModelChanged(_:)), name: .searchCatalogeModelChanged, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(sortModelChange(_:)), name: .sortModelChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems), name: .createdNewItem, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems(_:)), name: .editedItem, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems(_:)), name: .reloadCataloge, object: nil)
 		
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -79,51 +67,8 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
 	}
 	
 	func reloadItems(_ not: Notification){
-		items = SectionedValues(Load.itemsForCataloge())
+		items = SectionedValues(CatalogeDataSource.source.items)
 	}
-	
-	func sortModelChange(_ notification: Notification){
-		if let newSortModel = notification.object as? [(String,Bool,NSSortDescriptor)]{
-			sortModel = newSortModel
-			
-			items = RPGAapp.searchCataloge(searchWith: lastSearchString, using: searchModel, sortBy: sortModel)
-		}
-	}
-	
-	func searchModelChanged(_ notification: Notification){
-		if let newSearchModel = notification.object as? [(String, Bool)]{
-			searchModel = newSearchModel
-			items = RPGAapp.searchCataloge(searchWith: lastSearchString, using: searchModel,sortBy: sortModel)
-		}
-	}
-	
-	func searchCataloge(_ notification: Notification){
-		if let data = (notification.object as? (String,[(String, Bool)],[(String,Bool,NSSortDescriptor)])){
-			let enteredString = data.0
-			lastSearchString = enteredString
-			
-			let newSearchModel = data.1
-			searchModel = newSearchModel
-			
-			let newSortModel = data.2
-			sortModel = newSortModel
-		
-			items = RPGAapp.searchCataloge(searchWith: enteredString, using: searchModel,sortBy: sortModel)
-		}
-    }
-    
-    func reloadFilter(_ notification: Notification){
-		guard let newFilter = notification.object as? [String: Double?] else { return }
-
-		DispatchQueue.global(qos: .default).sync {
-			self.filter = newFilter
-			let itemList = FilterHelper.itemList(using: filter)
-			
-			DispatchQueue.main.async {
-				self.items = SectionedValues(itemList)
-			}
-		}
-    }
 	
     func goToSection(_ notification: Notification) {
 		guard let subCategory = notification.object as? SubCategory else { return }
@@ -223,7 +168,7 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 			CoreDataStack.managedObjectContext.delete(item)
 			CoreDataStack.saveContext()
 			
-			self.items = RPGAapp.searchCataloge(searchWith: self.lastSearchString, using: self.searchModel, sortBy: self.sortModel)
+//			self.items = RPGAapp.searchCataloge(searchWith: self.lastSearchString, using: self.searchModel, sortBy: self.sortModel)
 		})
 		
 		let localizedShare = NSLocalizedString("Share item", comment: "")
