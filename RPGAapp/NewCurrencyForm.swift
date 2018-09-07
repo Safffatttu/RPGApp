@@ -129,11 +129,10 @@ class NewCurrencyForm: FormViewController {
 			$0.titleLabel.text = NSLocalizedString("Rate", comment: "")
 			$0.allowFloatingPoint = false
 			}.onTextChanged{
-				self.currencyData[number].1 = Int16($0)!
-
+				guard let num = Int16($0) else { return }
+				self.currencyData[number].1 = num
 			}.configure{
-				$0.text = self.self.currencyData[number].0
-
+				$0.text = String(self.currencyData[number].1)
 		}
 
         let section = SectionFormer(rowFormers: [nameRow, ratioRow])
@@ -151,8 +150,8 @@ class NewCurrencyForm: FormViewController {
 		
         var newCurrency: Currency!
 
-        if let newCurrency = currency{
-
+        if let editedCurrency = currency{
+			newCurrency = editedCurrency
             newCurrency.name = currencyName
             newCurrency.rate = currencyRate
 
@@ -180,8 +179,6 @@ class NewCurrencyForm: FormViewController {
                     context.delete(del)
                 }
             }
-
-
         }else{
             newCurrency = createCurrencyUsing(name: currencyName, rate: currencyRate, subList: currencyData)
         }
