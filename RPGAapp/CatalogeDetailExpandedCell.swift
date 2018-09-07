@@ -25,7 +25,6 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 	
 	@IBOutlet var packageButton: UIButton!
 	@IBOutlet var editButton: UIButton!
-	@IBOutlet var infoButton: UIButton!
 	@IBOutlet var sendButton: UIButton!
 	
 	@IBOutlet weak var atributeTable: UITableView!
@@ -67,14 +66,14 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 		self.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		self.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
 		
-		self.infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-		self.infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
-		
 		self.editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		self.editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)	
 		
 		self.packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		self.packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
+		
+		let longPress = UILongPressGestureRecognizer(target: self, action: #selector(sendAllItems(_:)))
+		sendButton.addGestureRecognizer(longPress)
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(changedCurrency), name: .currencyChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(itemEdited(_:)), name: .editedItem, object: nil)
@@ -157,13 +156,14 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 	@IBAction func editItemButton(_ sender: UIButton) {
 		cellDelegate?.editItemButton(sender)
 	}
-	
-	@IBAction func showInfoButton(_ sender: UIButton) {
-		cellDelegate?.showInfoButton(sender)
-	}
-	
+		
 	@IBAction func sendItemButton(_ sender: UIButton) {
 		cellDelegate?.sendItemButton(sender)
+	}
+	
+	func sendAllItems(_ sender: UILongPressGestureRecognizer){
+		guard sender.state == .ended else { return }
+		cellDelegate?.sendItemToAllButton(sendButton)
 	}
 	
 }

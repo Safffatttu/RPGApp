@@ -273,23 +273,6 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		self.present(form, animated: true, completion: nil)
     }
     
-    func showInfoButton(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
-        
-        let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
-        
-        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
-        
-        popController.modalPresentationStyle = .popover
-        
-        popController.popoverPresentationController?.delegate = self
-        popController.popoverPresentationController?.sourceView = sender
-        
-        (popController as! showItemInfoPopover).item = cellItem
-        
-        self.present(popController, animated: true, completion: nil)
-    }
-    
     func sendItemButton(_ sender: UIButton){
         let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
         
@@ -306,6 +289,20 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 
         self.present(popController, animated: true, completion: nil)
     }
+	
+	func sendItemToAllButton(_ sender: UIButton) {
+		guard let index = getCurrentCellIndexPath(sender, tableView: tableView) else { return }
+		guard let item = diffCalculator?.value(atIndexPath: index) else { return }
+		
+		let characters = Load.characters()
+		
+		for character in characters{
+			addToEquipment(item: item, to: character)
+			let action = ItemCharacterAdded(characterId: character.id!, itemId: item.id!)
+			PackageService.pack.send(action: action)
+		}
+	}
+	
 }
 
 protocol catalogeDetailCellDelegate: class{
@@ -313,9 +310,8 @@ protocol catalogeDetailCellDelegate: class{
     func addToPackageButton(_ sender: UIButton)
     
     func editItemButton(_ sender: UIButton)
-    
-    func showInfoButton(_ sender: UIButton)
-    
+	
     func sendItemButton(_ sender: UIButton)
-    
+	
+	func sendItemToAllButton( _ sender: UIButton)
 }

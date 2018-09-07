@@ -17,7 +17,6 @@ class CatalogeDetailCell: UITableViewCell{
 	
 	@IBOutlet var packageButton: UIButton!
 	@IBOutlet var editButton: UIButton!
-	@IBOutlet var infoButton: UIButton!
 	@IBOutlet var sendButton: UIButton!
 	
 	weak var cellDelegate: catalogeDetailCellDelegate?
@@ -35,14 +34,14 @@ class CatalogeDetailCell: UITableViewCell{
 		sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
 		
-		infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-		infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
-		
 		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
 		
 		packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
+		
+		let longPress = UILongPressGestureRecognizer(target: self, action: #selector(sendAllItems(_:)))
+		sendButton.addGestureRecognizer(longPress)
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(changedCurrency), name: .currencyChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(itemEdited(_:)), name: .editedItem, object: nil)
@@ -68,12 +67,12 @@ class CatalogeDetailCell: UITableViewCell{
 		cellDelegate?.editItemButton(sender)
 	}
 	
-	@IBAction func showInfoButton(_ sender: UIButton) {
-		cellDelegate?.showInfoButton(sender)
-	}
-	
 	@IBAction func sendItemButton(_ sender: UIButton) {
 		cellDelegate?.sendItemButton(sender)
 	}
 	
+	func sendAllItems(_ sender: UILongPressGestureRecognizer){
+		guard sender.state == .ended else { return }
+		cellDelegate?.sendItemToAllButton(sendButton)
+	}
 }
