@@ -321,7 +321,11 @@ public struct Load {
 	public static func currentCurrency() -> Currency?{
 		let session = Load.currentExistingSession()
 		
-		return session?.currency
+		if let currency = session?.currency{
+			return currency
+		}else{
+			return currencies().first(where: {$0.name == "PLN"})
+		}
 	}
 	
 	public static func visibilities() -> [Visibility]{
