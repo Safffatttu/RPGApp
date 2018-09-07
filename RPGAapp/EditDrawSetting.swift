@@ -292,6 +292,10 @@ extension EditDrawSetting: UITableViewDataSource, UITableViewDelegate{
 			subSettings.remove(at: indexPath.row)
 			
 			tableView.deleteRows(at: [indexPath], with: .left)
+			
+			selectedSubSetting = nil
+			numberField.text = ""
+			setupSegmentControll()
 		}
 	}
 }
