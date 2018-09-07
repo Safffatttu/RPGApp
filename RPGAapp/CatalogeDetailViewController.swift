@@ -213,6 +213,9 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		let localizedRemove = NSLocalizedString("Remove", comment: "")
 		let removeAction = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {_,_ in
+			if indexPath == self.expandedCell{
+				self.expandedCell = nil
+			}
 			
 			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
 			
