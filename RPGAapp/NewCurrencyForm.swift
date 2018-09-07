@@ -127,10 +127,13 @@ class NewCurrencyForm: FormViewController {
 
         let ratioRow = TextFieldRowFormer<NumberFieldCell>(instantiateType: .Nib(nibName: "NumberFieldCell")){
 			$0.titleLabel.text = NSLocalizedString("Rate", comment: "")
+			$0.allowFloatingPoint = false
 			}.onTextChanged{
 				self.currencyData[number].1 = Int16($0)!
+
 			}.configure{
 				$0.text = self.self.currencyData[number].0
+
 		}
 
         let section = SectionFormer(rowFormers: [nameRow, ratioRow])
@@ -149,6 +152,7 @@ class NewCurrencyForm: FormViewController {
         var newCurrency: Currency!
 
         if let newCurrency = currency{
+
             newCurrency.name = currencyName
             newCurrency.rate = currencyRate
 
@@ -177,6 +181,7 @@ class NewCurrencyForm: FormViewController {
                 }
             }
 
+
         }else{
             newCurrency = createCurrencyUsing(name: currencyName, rate: currencyRate, subList: currencyData)
         }
@@ -186,6 +191,7 @@ class NewCurrencyForm: FormViewController {
         NotificationCenter.default.post(name: .currencyCreated, object: nil)
 
         dismissView()
+
 
 		let action = CurrencyCreated(currency: newCurrency)
 		PackageService.pack.send(action: action)

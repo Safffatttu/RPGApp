@@ -23,14 +23,22 @@ final class NumberFieldCell: UITableViewCell, TextFieldFormableRow, UITextFieldD
 		return titleLabel
 	}
 	
+	var allowFloatingPoint: Bool = true
+	
 	func updateWithRowFormer(_ rowFormer: RowFormer) {}
 
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {		
 		let separators = CharacterSet.init(charactersIn: ".,")
 		let digits = CharacterSet.decimalDigits
-		let allowedCharacters = digits.union(separators)
+		
+		var allowedCharacters = digits
+		
+		if allowFloatingPoint{
+			allowedCharacters = allowedCharacters.union(separators)
+		}
 		
 		let containsOnlyAllowedCharacters = string.rangeOfCharacter(from: allowedCharacters.inverted) == nil
+		
 		let numberOfSeparators = textField.text?.characters.filter{$0 == "," || $0 == "."}.count
 		let isSeparator = string.rangeOfCharacter(from: separators) != nil
 		let allowedNumberOfSeparators = numberOfSeparators! == 1
