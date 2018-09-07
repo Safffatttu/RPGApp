@@ -23,7 +23,9 @@ class EditDrawSetting: UIViewController {
 	
     var categories: [Category] = Load.categories()
     var subCategories: [SubCategory] = Load.subCategories()
-    
+	
+	var selectedSubSetting: DrawSubSetting? = nil
+	
     @IBOutlet weak var subSettingsTable: UITableView!
     @IBOutlet weak var categoriesTable: UITableView!
     
@@ -64,11 +66,29 @@ class EditDrawSetting: UIViewController {
     @IBAction func minRaritySegmentedChanged(_ sender: UISegmentedControl) {
 		let rarity = sender.selectedSegmentIndex
 		enableSegments(in: maxRaritySegmented, from: rarity, to: maxRaritySegmented.numberOfSegments - 1)
+		
+		guard let selectedSubSetting = selectedSubSetting else { return }
+		selectedSubSetting.minRarity = Int16(rarity + 1)
+		
+		reloadSelectedSubSetting()
 	}
     
     @IBAction func maxRaritySegementedtChanged(_ sender: UISegmentedControl){
 		let rarity = sender.selectedSegmentIndex
 		enableSegments(in: minRaritySegmented, from: 0, to: rarity)
+		
+		guard let selectedSubSetting = selectedSubSetting else { return }
+		selectedSubSetting.maxRarity = Int16(rarity + 1)
+		
+		reloadSelectedSubSetting()
+	}
+	
+	func reloadSelectedSubSetting(){
+		guard let selectedSubSetting = selectedSubSetting else { return }
+		guard let index = subSettings.index(of: selectedSubSetting) else { return }
+		
+		let indexPath = IndexPath(row: index, section: 0)
+		subSettingsTable.reloadRows(at: [indexPath], with: .automatic)
 	}
 	
 	func enableSegments(in segmentControl: UISegmentedControl, from: Int, to: Int){
@@ -102,6 +122,8 @@ class EditDrawSetting: UIViewController {
 	}
 	
 	func addSubSetting(at indexPath: IndexPath){
+		selectedSubSetting = nil
+		
 		let context = CoreDataStack.managedObjectContext
 		let subDraw = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
 		
@@ -123,8 +145,8 @@ class EditDrawSetting: UIViewController {
 			subDraw.itemsToDraw = 10
 		}
 		
-		subDraw.minRarity = Int16(minRaritySegmented.selectedSegmentIndex)
-		subDraw.maxRarity = Int16(maxRaritySegmented.selectedSegmentIndex)
+		subDraw.minRarity = Int16(minRaritySegmented.selectedSegmentIndex + 1)
+		subDraw.maxRarity = Int16(maxRaritySegmented.selectedSegmentIndex + 1)
 		setting?.addToSubSettings(subDraw)
 		
 		let newSubSettingIndex = IndexPath(row: subSettings.count, section: 0)
@@ -137,7 +159,19 @@ class EditDrawSetting: UIViewController {
 	}
 	
 	func selectSubSetting(at indexPath: IndexPath){
+		selectedSubSetting = subSettings[indexPath.row]
 		
+		numberField.text = String((selectedSubSetting?.itemsToDraw)!)
+		
+		if let minRarity = selectedSubSetting?.minRarity{
+			minRaritySegmented.selectedSegmentIndex = Int(minRarity - 1)
+			enableSegments(in: maxRaritySegmented, from: Int(minRarity - 1), to: maxRaritySegmented.numberOfSegments - 1)
+		}
+		
+		if let maxRarity = selectedSubSetting?.maxRarity{
+			maxRaritySegmented.selectedSegmentIndex = Int(maxRarity - 1)
+			enableSegments(in: minRaritySegmented, from: 0, to: Int(maxRarity - 1))
+		}
 	}
 	
     func done(_ sender: UIBarButtonItem){
@@ -219,8 +253,8 @@ extension EditDrawSetting: UITableViewDataSource, UITableViewDelegate{
 			cell = tableView.dequeueReusableCell(withIdentifier: "drawSubSettingCell")
 			let subSetting = subSettings[indexPath.row]
 			
-			let min = subSetting.minRarity > 0 ? "Min: " + rarityName[Int(subSetting.minRarity) - 1] + " " : ""
-			let max = subSetting.maxRarity < 3 ? "Max: " + rarityName[Int(subSetting.maxRarity) - 1] + " " : ""
+			let min = subSetting.minRarity > 1 ? "Min: " + rarityName[Int(subSetting.minRarity) - 1] + " " : ""
+			let max = subSetting.maxRarity < 4 ? "Max: " + rarityName[Int(subSetting.maxRarity) - 1] + " " : ""
 			
 			if let subName = subSetting.name {
 				cell?.textLabel?.text = subName
@@ -269,5 +303,17 @@ extension EditDrawSetting: UITextFieldDelegate{
 		let characterSet = CharacterSet(charactersIn: string)
 		
 		return allowedCharacters.isSuperset(of: characterSet)
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		guard let text = textField.text else { return true }
+		guard let value = Int64(text) else { return true }
+		
+		guard let selectedSubSetting = selectedSubSetting else { return true }
+		selectedSubSetting.itemsToDraw = value
+		
+		reloadSelectedSubSetting()
+		
+		return true
 	}
 }
