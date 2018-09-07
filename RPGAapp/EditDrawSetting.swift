@@ -1,3 +1,4 @@
+
 //
 //  editDrawSetting.swift
 //  RPGAapp
@@ -31,16 +32,13 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var numberField: UITextField!
-    
-    @IBOutlet weak var minRarityLabelName: UILabel!
+	
     @IBOutlet weak var minRarityLabel: UILabel!
-    @IBOutlet weak var minRaritySlider: UISlider!
+	@IBOutlet weak var minRaritySegmented: UISegmentedControl!
     
-    
-    @IBOutlet weak var maxRarityLabelName: UILabel!
     @IBOutlet weak var maxRarityLabel: UILabel!
-    @IBOutlet weak var maxRaritySlider: UISlider!
-    
+	@IBOutlet weak var maxRaritySegmented: UISegmentedControl!
+	
     override func viewWillAppear(_ animated: Bool) {
         self.preferredContentSize = CGSize(width: 400, height: 400)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done(_:)))
@@ -56,24 +54,55 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
         
         numberLabel.text = NSLocalizedString("Number of items", comment: "")
-        minRarityLabelName.text = NSLocalizedString("Minimal rarity", comment: "")
-        maxRarityLabelName.text = NSLocalizedString("Maximal rarity", comment: "")
-        
-        minRarityLabel.text = rarityName.first
-        maxRarityLabel.text = rarityName.last
+        minRarityLabel.text = NSLocalizedString("Minimal rarity", comment: "")
+        maxRarityLabel.text = NSLocalizedString("Maximal rarity", comment: "")
+		
+		setupSegmentControll()
+		
         super.viewWillAppear(animated)
     }
     
-    @IBAction func minRaritySliderChanged(_ sender: UISlider) {
-        let rarity = Int(minRaritySlider.value.rounded(.toNearestOrEven))
-        minRarityLabel.text = rarityName[rarity - 1]
-    }
+    @IBAction func minRaritySegmentedChanged(_ sender: UISegmentedControl) {
+		let rarity = sender.selectedSegmentIndex
+
+		for index in 0...rarityName.count - 1{
+			let setEnable = rarity <= index
+			maxRaritySegmented.setEnabled(setEnable, forSegmentAt: index)
+		}
+	}
     
-    @IBAction func maxRaritySliderChanged(_ sender: UISlider) {
-        let rarity = Int(maxRaritySlider.value.rounded(.toNearestOrEven))
-        maxRarityLabel.text = rarityName[rarity - 1]
+    @IBAction func maxRaritySegementedtChanged(_ sender: UISegmentedControl) {
+		
+        let rarity = sender.selectedSegmentIndex
+		
+		for index in 0...rarityName.count - 1{
+			let setEnable = rarity >= index
+			minRaritySegmented.setEnabled(setEnable, forSegmentAt: index)
+		}
     }
-    
+	
+	func setupSegmentControll(){
+		let segmentWidth = minRaritySegmented.frame.width
+		
+		minRaritySegmented.removeAllSegments()
+		for (index, rarity) in rarityName.enumerated(){
+			minRaritySegmented.insertSegment(withTitle: rarity, at: index, animated: false)
+			let width = segmentWidth * widthForSegmentOfRarityName(num: index)
+			minRaritySegmented.setWidth(width, forSegmentAt: index)
+			minRaritySegmented.setEnabled(true, forSegmentAt: index)
+		}
+		minRaritySegmented.selectedSegmentIndex = 0
+		
+		maxRaritySegmented.removeAllSegments()
+		for (index, rarity) in rarityName.enumerated(){
+			maxRaritySegmented.insertSegment(withTitle: rarity, at: index, animated: false)
+			let width = segmentWidth * widthForSegmentOfRarityName(num: index)
+			maxRaritySegmented.setWidth(width, forSegmentAt: index)
+			maxRaritySegmented.setEnabled(true, forSegmentAt: index)
+		}
+		maxRaritySegmented.selectedSegmentIndex = rarityName.count - 1
+	}
+	
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == categoriesTable{
             return categories.count + 1
@@ -168,8 +197,8 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
                 subDraw.itemsToDraw = 10
             }
 			
-            subDraw.minRarity = Int16(minRaritySlider.value.rounded(.toNearestOrEven))
-            subDraw.maxRarity = Int16(maxRaritySlider.value.rounded(.toNearestOrEven))
+            subDraw.minRarity = Int16(minRaritySegmented.selectedSegmentIndex)
+            subDraw.maxRarity = Int16(maxRaritySegmented.selectedSegmentIndex)
             setting?.addToSubSettings(subDraw)
 			
 			let newSubSettingIndex = IndexPath(row: subSettings.count, section: 0)
@@ -177,6 +206,8 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
 			subSettings.append(subDraw)
 			
 			subSettingsTable.insertRows(at: [newSubSettingIndex], with: .left)
+			
+			setupSegmentControll()
         }
     }
 	

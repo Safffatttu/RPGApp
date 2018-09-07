@@ -366,6 +366,14 @@ let rarityName = [NSLocalizedString("Junk", comment: ""),
 				  NSLocalizedString("Legendary", comment: "")
 	]
 
+func widthForSegmentOfRarityName(num: Int) -> CGFloat{
+	guard num < rarityName.count else { return 0.0 }
+	let count = rarityName.reduce("", +).characters.count
+	let rarityCount = rarityName[num].characters.count
+	
+	return CGFloat(rarityCount) / CGFloat(count)
+}
+
 extension Int{
     init?(_ bool: Bool?) {
         guard bool != nil else {
