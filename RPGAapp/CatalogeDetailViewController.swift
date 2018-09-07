@@ -15,7 +15,7 @@ import Former
 
 let iconSize: CGFloat = 20
 
-class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelegate, catalogeDetailCellDelegate, UIPopoverPresentationControllerDelegate{
+class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
 	
@@ -133,18 +133,20 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
-    
-    //MARK: Table
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.diffCalculator?.numberOfSections() ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.diffCalculator?.numberOfObjects(inSection: section) ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	
+}
+
+extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return self.diffCalculator?.numberOfSections() ?? 0
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return self.diffCalculator?.numberOfObjects(inSection: section) ?? 0
+	}
+	
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		guard let subCategory = self.diffCalculator?.value(forSection: section) else { return "" }
 		
 		if let category = titleForSubCategory[subCategory] {
@@ -152,63 +154,62 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		}else{
 			return subCategory.capitalized
 		}
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath))!
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath))!
 		
 		if expandedCell == indexPath{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! CatalogeDetailExpandedCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! CatalogeDetailExpandedCell
 			
 			cell.item = cellItem
 			cell.cellDelegate = self
 			
-            return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! CatalogeDetailCell
-            
-            cell.cellDelegate = self
-            cell.item = cellItem
+			return cell
+		}else{
+			let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! CatalogeDetailCell
+			
+			cell.cellDelegate = self
+			cell.item = cellItem
 			
 			return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if expandedCell != nil && indexPath == expandedCell{
-            return 150
-        }else{
-            return  44
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath != expandedCell else {
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		if expandedCell != nil && indexPath == expandedCell{
+			return 150
+		}else{
+			return  44
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		guard indexPath != expandedCell else {
 			expandedCell = nil
 			tableView.reloadRows(at: [indexPath], with: .automatic)
-            return
-        }
-        
-        if expandedCell != nil{
-            let tmpIndex = expandedCell
-            expandedCell = nil
-            tableView.reloadRows(at: [tmpIndex!], with: .automatic)
-        }
-        expandedCell = indexPath
-        
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-        
-        if tableView.cellForRow(at: indexPath) == tableView.visibleCells.first {
-            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-        }else if tableView.cellForRow(at: indexPath) == tableView.visibleCells.last {
-            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
-    }
+			return
+		}
+		
+		if expandedCell != nil{
+			let tmpIndex = expandedCell
+			expandedCell = nil
+			tableView.reloadRows(at: [tmpIndex!], with: .automatic)
+		}
+		expandedCell = indexPath
+		
+		tableView.reloadRows(at: [indexPath], with: .automatic)
+		
+		if tableView.cellForRow(at: indexPath) == tableView.visibleCells.first {
+			tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+		}else if tableView.cellForRow(at: indexPath) == tableView.visibleCells.last {
+			tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+		}
+	}
 	
 	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
 		return true
 	}
-	
 	
 	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		let localizedRemove = NSLocalizedString("Remove", comment: "")
@@ -224,7 +225,7 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			self.items = RPGAapp.searchCataloge(searchWith: self.lastSearchString, using: self.searchModel, sortBy: self.sortModel)
 		})
-
+		
 		let localizedShare = NSLocalizedString("Share item", comment: "")
 		let sendAction = UITableViewRowAction(style: .normal, title: localizedShare, handler: { _,_ in
 			
@@ -238,27 +239,27 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		
 		return [sendAction, removeAction]
 	}
+}
+
+extension catalogeDetail: catalogeDetailCellDelegate{
+	func addToPackageButton(_ sender: UIButton){
+		let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
+		
+		let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
+		
+		let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
+		
+		popController.modalPresentationStyle = .popover
+		
+		popController.popoverPresentationController?.delegate = self
+		popController.popoverPresentationController?.sourceView = sender
+		
+		(popController as! addToPackage).item = cellItem
+		
+		self.present(popController, animated: true, completion: nil)
+	}
 	
-    //MARK: Cell Delegates
-    
-    func addToPackageButton(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
-        
-        let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
-        
-        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
-        
-        popController.modalPresentationStyle = .popover
-        
-        popController.popoverPresentationController?.delegate = self
-        popController.popoverPresentationController?.sourceView = sender
-        
-        (popController as! addToPackage).item = cellItem
-        
-        self.present(popController, animated: true, completion: nil)
-    }
-    
-    func editItemButton(_ sender: UIButton){
+	func editItemButton(_ sender: UIButton){
 		guard let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView) else { return }
 		
 		guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
@@ -271,24 +272,24 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 		form.preferredContentSize = CGSize(width: 540, height: 520)
 		
 		self.present(form, animated: true, completion: nil)
-    }
-    
-    func sendItemButton(_ sender: UIButton){
-        let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
-        
-        let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
-        
-        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
-        
-        popController.modalPresentationStyle = .popover
-        
-        popController.popoverPresentationController?.delegate = self
-        popController.popoverPresentationController?.sourceView = sender
-        
-        (popController as! sendPopover).item = cellItem
-
-        self.present(popController, animated: true, completion: nil)
-    }
+	}
+	
+	func sendItemButton(_ sender: UIButton){
+		let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
+		
+		let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
+		
+		let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
+		
+		popController.modalPresentationStyle = .popover
+		
+		popController.popoverPresentationController?.delegate = self
+		popController.popoverPresentationController?.sourceView = sender
+		
+		(popController as! sendPopover).item = cellItem
+		
+		self.present(popController, animated: true, completion: nil)
+	}
 	
 	func sendItemToAllButton(_ sender: UIButton) {
 		guard let index = getCurrentCellIndexPath(sender, tableView: tableView) else { return }
@@ -302,13 +303,13 @@ class catalogeDetail: UIViewController, UITableViewDataSource, UITableViewDelega
 			PackageService.pack.send(action: action)
 		}
 	}
-	
 }
 
+
 protocol catalogeDetailCellDelegate: class{
-    
+	
     func addToPackageButton(_ sender: UIButton)
-    
+	
     func editItemButton(_ sender: UIButton)
 	
     func sendItemButton(_ sender: UIButton)
