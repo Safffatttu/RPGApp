@@ -1,4 +1,3 @@
-
 //
 //  editDrawSetting.swift
 //  RPGAapp
@@ -11,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
+class EditDrawSetting: UIViewController {
     
     var editingMode = false
 	var setting: DrawSetting? = nil{
@@ -103,16 +102,78 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
 		maxRaritySegmented.selectedSegmentIndex = rarityName.count - 1
 	}
 	
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if tableView == categoriesTable{
-            return categories.count + 1
-        }else{
-            return 1
-        }
+	func addSubSetting(at indexPath: IndexPath){
+		let context = CoreDataStack.managedObjectContext
+		let subDraw = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
+		
+		if indexPath.section == 0{
+			subDraw.name = NSLocalizedString("All items", comment: "")
+		}else{
+			if indexPath.row == 0{
+				subDraw.category = categories[indexPath.section - 1]
+				subDraw.name = subDraw.category?.name
+			}else{
+				subDraw.subCategory = categories[indexPath.section - 1].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
+				subDraw.name = subDraw.subCategory?.name
+			}
+		}
+		
+		if numberField.text != nil && !(numberField.text?.isEmpty)!{
+			subDraw.itemsToDraw = Int64((numberField?.text)!)!
+		}else{
+			subDraw.itemsToDraw = 10
+		}
+		
+		subDraw.minRarity = Int16(minRaritySegmented.selectedSegmentIndex)
+		subDraw.maxRarity = Int16(maxRaritySegmented.selectedSegmentIndex)
+		setting?.addToSubSettings(subDraw)
+		
+		let newSubSettingIndex = IndexPath(row: subSettings.count, section: 0)
+		
+		subSettings.append(subDraw)
+		
+		subSettingsTable.insertRows(at: [newSubSettingIndex], with: .left)
+		
+		setupSegmentControll()
+	}
+	
+	func selectSubSetting(at indexPath: IndexPath){
+		
+	}
+	
+    func done(_ sender: UIBarButtonItem){
+		guard setting?.subSettings?.count != 0 else { return }
+		
+        setting?.name = drawSettingNameField.text!
+        CoreDataStack.saveContext()
+		
+        NotificationCenter.default.post(name: .reloadDrawSettings, object: nil)
+		
+        dismiss(animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == categoriesTable{
+    func cancel(_ sender: UIBarButtonItem){
+        if !editingMode{
+            CoreDataStack.managedObjectContext.delete(setting!)
+			
+		}
+		
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension EditDrawSetting: UITableViewDataSource, UITableViewDelegate{
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		if tableView == categoriesTable{
+			return categories.count + 1
+		}else{
+			return 1
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if tableView == categoriesTable{
 			if section == 0{
 				return 1
 			}else{
@@ -155,61 +216,32 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
 				cell?.detailTextLabel?.text = String.fontAwesomeIcon(name: .send)
 			}
 			
-        }else{
-            cell = tableView.dequeueReusableCell(withIdentifier: "drawSubSettingCell")
-            let subSetting = subSettings[indexPath.row]
-            
-            let min = subSetting.minRarity > 0 ? "Min: " + rarityName[Int(subSetting.minRarity) - 1] + " " : ""
-            let max = subSetting.maxRarity < 3 ? "Max: " + rarityName[Int(subSetting.maxRarity) - 1] + " " : ""
-            
-            if let subName = subSetting.name {
-                cell?.textLabel?.text = subName
-            }else{
-                cell?.textLabel?.text = ""
-            }
-            
-            cell?.detailTextLabel?.text = min + max + NSLocalizedString("Amount", comment: "") + ": " + String(subSetting.itemsToDraw)
-        }
-		
-        return cell!
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == categoriesTable{
-            let context = CoreDataStack.managedObjectContext
-            let subDraw = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
+		}else{
+			cell = tableView.dequeueReusableCell(withIdentifier: "drawSubSettingCell")
+			let subSetting = subSettings[indexPath.row]
 			
-			if indexPath.section == 0{
-				subDraw.name = NSLocalizedString("All items", comment: "")
+			let min = subSetting.minRarity > 0 ? "Min: " + rarityName[Int(subSetting.minRarity) - 1] + " " : ""
+			let max = subSetting.maxRarity < 3 ? "Max: " + rarityName[Int(subSetting.maxRarity) - 1] + " " : ""
+			
+			if let subName = subSetting.name {
+				cell?.textLabel?.text = subName
 			}else{
-				if indexPath.row == 0{
-					subDraw.category = categories[indexPath.section - 1]
-					subDraw.name = subDraw.category?.name
-				}else{
-					subDraw.subCategory = categories[indexPath.section - 1].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
-					subDraw.name = subDraw.subCategory?.name
-				}
+				cell?.textLabel?.text = ""
 			}
 			
-			if numberField.text != nil && !(numberField.text?.isEmpty)!{
-                subDraw.itemsToDraw = Int64((numberField?.text)!)!
-            }else{
-                subDraw.itemsToDraw = 10
-            }
-			
-            subDraw.minRarity = Int16(minRaritySegmented.selectedSegmentIndex)
-            subDraw.maxRarity = Int16(maxRaritySegmented.selectedSegmentIndex)
-            setting?.addToSubSettings(subDraw)
-			
-			let newSubSettingIndex = IndexPath(row: subSettings.count, section: 0)
-			
-			subSettings.append(subDraw)
-			
-			subSettingsTable.insertRows(at: [newSubSettingIndex], with: .left)
-			
-			setupSegmentControll()
-        }
-    }
+			cell?.detailTextLabel?.text = min + max + NSLocalizedString("Amount", comment: "") + ": " + String(subSetting.itemsToDraw)
+		}
+		
+		return cell!
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if tableView == categoriesTable{
+			addSubSetting(at: indexPath)
+		}else{
+			selectSubSetting(at: indexPath)
+		}
+	}
 	
 	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
 		if tableView == subSettingsTable{
@@ -229,31 +261,14 @@ class EditDrawSetting: UIViewController, UITableViewDataSource, UITableViewDeleg
 			tableView.deleteRows(at: [indexPath], with: .left)
 		}
 	}
+}
+
+extension EditDrawSetting: UITextFieldDelegate{
 	
-	
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let allowedCharacters = CharacterSet.decimalDigits
-        let characterSet = CharacterSet(charactersIn: string)
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+		let allowedCharacters = CharacterSet.decimalDigits
+		let characterSet = CharacterSet(charactersIn: string)
 		
-        return allowedCharacters.isSuperset(of: characterSet)
-    }
-    
-    func done(_ sender: UIBarButtonItem){
-		guard setting?.subSettings?.count != 0 else { return }
-		
-        setting?.name = drawSettingNameField.text!
-        CoreDataStack.saveContext()
-		
-        NotificationCenter.default.post(name: .reloadDrawSettings, object: nil)
-		
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func cancel(_ sender: UIBarButtonItem){
-        if !editingMode{
-            CoreDataStack.managedObjectContext.delete(setting!)
-        }
-		
-        dismiss(animated: true, completion: nil)
-    }
+		return allowedCharacters.isSuperset(of: characterSet)
+	}
 }
