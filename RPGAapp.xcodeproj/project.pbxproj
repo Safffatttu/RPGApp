@@ -46,6 +46,7 @@
 		3B63958520E7AED6001336A8 /* NewCurrencyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63958420E7AED6001336A8 /* NewCurrencyForm.swift */; };
 		3B63958720E7CCB9001336A8 /* NumberFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B63958620E7CCB9001336A8 /* NumberFieldCell.swift */; };
 		3B63958920E7CD48001336A8 /* NumberFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B63958820E7CD48001336A8 /* NumberFieldCell.xib */; };
+		3B6C6FC421452C3800A11954 /* CatalogeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C6FC321452C3800A11954 /* CatalogeDataModel.swift */; };
 		3B709CE820ACA29600D5825E /* MapScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B709CE720ACA29600D5825E /* MapScene.swift */; };
 		3B709CEA20ACA33E00D5825E /* MapScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3B709CE920ACA33E00D5825E /* MapScene.sks */; };
 		3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B709CEB20ACA9F400D5825E /* MapHelperFunctions.swift */; };
@@ -207,6 +208,7 @@
 		3B63958420E7AED6001336A8 /* NewCurrencyForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCurrencyForm.swift; sourceTree = "<group>"; };
 		3B63958620E7CCB9001336A8 /* NumberFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFieldCell.swift; sourceTree = "<group>"; };
 		3B63958820E7CD48001336A8 /* NumberFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumberFieldCell.xib; sourceTree = "<group>"; };
+		3B6C6FC321452C3800A11954 /* CatalogeDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDataModel.swift; sourceTree = "<group>"; };
 		3B709CE720ACA29600D5825E /* MapScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapScene.swift; sourceTree = "<group>"; };
 		3B709CE920ACA33E00D5825E /* MapScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MapScene.sks; sourceTree = "<group>"; };
 		3B709CEB20ACA9F400D5825E /* MapHelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHelperFunctions.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 		3B11312620C2C90E00F95088 /* Cataloge */ = {
 			isa = PBXGroup;
 			children = (
+				3B6C6FC321452C3800A11954 /* CatalogeDataModel.swift */,
 				3B31B3E51F3B67A6003526E1 /* CatalogMenuViewController.swift */,
 				3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */,
 				3B079FD920AF5B0A00D70BBB /* NewItemForm.swift */,
@@ -981,6 +984,7 @@
 				3B63958520E7AED6001336A8 /* NewCurrencyForm.swift in Sources */,
 				3B96583C21419E640016B593 /* RandomItemCell.swift in Sources */,
 				3BEBCDFB20E10EB600F31732 /* Texture+CoreDataProperties.swift in Sources */,
+				3B6C6FC421452C3800A11954 /* CatalogeDataModel.swift in Sources */,
 				3B48ED6320A9CB2900DAA7CC /* TeamViewCell.swift in Sources */,
 				3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */,
 				3BF5EACD20A72507005FD6BC /* DataPacker.swift in Sources */,

@@ -13,21 +13,29 @@ class CatalogeDataSource{
 	static var source: CatalogeDataSource = CatalogeDataSource()
 	
 	init() {
-//		NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
-//		NotificationCenter.default.addObserver(self, selector: #selector(searchModelChanged(_:)), name: .searchCatalogeModelChanged, object: nil)
-//		NotificationCenter.default.addObserver(self, selector: #selector(sortModelChange(_:)), name: .sortModelChanged, object: nil)
-//		NotificationCenter.default.addObserver(self, selector: #selector(modelChanged), name: .catalogeModelChanged, object: nil)
 	}
 	
 	private var filter: [String : Double?] = [:]
-	private var sortModel: SortType = SortType.name
-	private var searchModel: [(String, Bool)] = [(NSLocalizedString("Search by name", comment: "")			   ,true),
-	                                             (NSLocalizedString("Search in description", comment: "")	   ,true),
-	                                             (NSLocalizedString("Search in category name", comment: "")    ,false),
-	                                             (NSLocalizedString("Search in sub category name", comment: ""),false),
-	                                             (NSLocalizedString("Search by price", comment: "")			   ,false),
-	                                             (NSLocalizedString("Search by atribute name", comment: "")    ,false)]
+	private var sortModel: SortType = SortType.categories
+	
+	var model = CatalogeModel(
+		CatalogeSortSection(list: [
+			CatelogeSortItem(name: NSLocalizedString("Sort by categories", comment: ""), selected: true, type: .categories),
+			CatelogeSortItem(name: NSLocalizedString("Sort by name", comment: "")      , selected: false, type: .name),
+			CatelogeSortItem(name: NSLocalizedString("Sort by price", comment: "")     , selected: false, type: .price),
+			CatelogeSortItem(name: NSLocalizedString("Sort by rarity", comment: "")    , selected: false, type: .rarity)
+			]),
+		CatalogeSearchSection(list: [
+			CatalogeSearchItem(name: NSLocalizedString("Search by name", comment: "")			  , selected: true),
+			CatalogeSearchItem(name: NSLocalizedString("Search in description", comment: "")	  , selected: true),
+			CatalogeSearchItem(name: NSLocalizedString("Search in category name", comment: "")    , selected: false),
+			CatalogeSearchItem(name: NSLocalizedString("Search in sub category name", comment: ""), selected: false),
+			CatalogeSearchItem(name: NSLocalizedString("Search by price", comment: "")			  , selected: false),
+			CatalogeSearchItem(name: NSLocalizedString("Search by atribute name", comment: "")    , selected: false),
+			])
+	)
+	
 	
 	private var searchString: String = ""{
 		didSet{
@@ -41,9 +49,7 @@ class CatalogeDataSource{
 		}
 	}
 	
-	var menuItems: [String]{
-		return items.map{$0.0}
-	}
+	var menuItems: [(String, [String])] = []
 	
 	private var searchedItems: [Item] = []
 	private var filteredItems: [Item] = []
@@ -62,14 +68,15 @@ class CatalogeDataSource{
 	
 	private func searchItems(_ list: [Item]) -> [Item]{
 		guard searchString != "" else { return list }
+		let searchModel = model[1]
 		
 		let searchedItems = list.filter({
-				   ( searchModel[0].1 && ($0.name?.containsIgnoringCase(searchString))!)
-				|| ( searchModel[1].1 && ($0.item_description?.containsIgnoringCase(searchString))!)
-				|| ( searchModel[2].1 && ($0.category?.name?.containsIgnoringCase(searchString))!)
-				|| ( searchModel[3].1 && ($0.subCategory?.name?.containsIgnoringCase(searchString))!)
-				|| ( searchModel[4].1 && forTailingZero($0.price) == searchString)
-				|| ( searchModel[5].1 && $0.itemAtribute?.filter(
+				   ( searchModel[0].selected && ($0.name?.containsIgnoringCase(searchString))!)
+				|| ( searchModel[1].selected && ($0.item_description?.containsIgnoringCase(searchString))!)
+				|| ( searchModel[2].selected && ($0.category?.name?.containsIgnoringCase(searchString))!)
+				|| ( searchModel[3].selected && ($0.subCategory?.name?.containsIgnoringCase(searchString))!)
+				|| ( searchModel[4].selected && forTailingZero($0.price) == searchString)
+				|| ( searchModel[5].selected && $0.itemAtribute?.filter(
 						{(($0 as! ItemAtribute).name?.containsIgnoringCase(searchString))!}).count != 0)
 		})
 		return searchedItems
@@ -96,7 +103,24 @@ class CatalogeDataSource{
 				}
 			}
 			
+			subCategoryList.sort(by: { !(($0.0.category?.name)! > ($1.0.category?.name)! && ($0.0.name)! > ($1.0.name)! )})
+			
 			let namedSubCategoryList = subCategoryList.map{($0.0.name!, $0.1)}
+			
+			let subCategories = subCategoryList.map{$0.0}
+			
+			var categories: [(Category, [String])] = []
+			
+			for subCategory in subCategories {
+				if let index = categories.index(where: { $0.0 === subCategory.category}){
+					categories[index].1.append(subCategory.name!)
+				}else{
+					categories.append((subCategory.category!, [subCategory.name!]))
+				}
+			}
+
+			self.menuItems = categories.map{($0.0.name!, $0.1)}
+			
 			return namedSubCategoryList
 			
 		case .name:
@@ -113,19 +137,18 @@ class CatalogeDataSource{
 				alphabetDict[itemName]?.append(item)
 			}
 			
-			return Array(alphabetDict).sorted(by: {$0.key < $1.key})
+			let alphabetArray = Array(alphabetDict).sorted(by: {$0.key < $1.key})
+			
+			let localizedAlphabet = NSLocalizedString("Alphabet", comment: "")
+			self.menuItems = [(localizedAlphabet, alphabetArray.map{$0.key})]
+			
+			return alphabetArray
 			
 		default:
 			let localizedSearchResults = NSLocalizedString("Search results", comment: "")
 			return [(localizedSearchResults, list)]
 		}
 	}
-}
-
-enum SortType{
-	case categories
-	case name
-	case price
 }
 
 extension Notification.Name{

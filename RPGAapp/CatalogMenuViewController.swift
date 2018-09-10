@@ -10,45 +10,36 @@ import Foundation
 import UIKit
 import CoreData
 
-class catalogeMenu: UITableViewController {
+class catalogeMenu: UIViewController {
 	
-	var list: [(Category, [SubCategory])] = Load.subCategoriesFormCatalogeMenu(){
-		didSet{
-			tableView.reloadData()
-		}
-	}
+	var list: [(String, [String])] = CatalogeDataSource.source.menuItems
+	var model: CatalogeModel = CatalogeDataSource.source.model
 	
     @IBOutlet weak var searchBar: UISearchBar!
+	@IBOutlet weak var tableView: UITableView!
 	
-	var searchMode: Bool = false
+	var showModel: Bool = false
 	
     var filter: [String: Double?] = [:]
-	
-	var searchModel: [(String, Bool)] = [(NSLocalizedString("Search by name", comment: "")			   ,true),
-	                                     (NSLocalizedString("Search in description", comment: "")	   ,true),
-	                                     (NSLocalizedString("Search in category name", comment: "")    ,false),
-	                                     (NSLocalizedString("Search in sub category name", comment: ""),false),
-	                                     (NSLocalizedString("Search by price", comment: "")			   ,false),
-	                                     (NSLocalizedString("Search by atribute name", comment: "")    ,false)]
-	
-	var sortModel: [(String,Bool,NSSortDescriptor)] = [
-		(NSLocalizedString("Sort by name", comment: "")   ,true , .sortItemByName),
-		(NSLocalizedString("Sort by rarity", comment: "") ,false, .sortItemByRarity),
-		(NSLocalizedString("Sort by price", comment: "")  ,false, .sortItemByPrice)
-	]
 	
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(setFilters(_:)))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(dismissKeyboard), name: .dismissKeyboard, object: nil)
-        
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: .reloadCataloge, object: nil)
+		
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
         super.viewWillAppear(animated)
     }
-    
+	
+	func reloadTableView(){
+		list = CatalogeDataSource.source.menuItems
+		tableView.reloadData()
+	}
+	
     func dismissKeyboard() {
         searchBar.endEditing(true)
     }
@@ -57,14 +48,12 @@ class catalogeMenu: UITableViewController {
 		guard let newFilter = notification.object as? [String: Double?] else { return }
 
 		filter = newFilter
-		list = FilterHelper.subCategoryList(using: filter)
     }
     
     func setFilters(_ sender: UIBarButtonItem){
         let filterPopover = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catalogeFilter") as! CatalogeFilterPopover
         
         filterPopover.modalPresentationStyle = .popover
-
         filterPopover.popoverPresentationController?.sourceView = self.view
             //UIView(frame: CGRect(x: 500, y: 100, width: 300, height: 300))
         if filter.count != 0{
@@ -73,147 +62,72 @@ class catalogeMenu: UITableViewController {
         
         self.present(filterPopover, animated: true, completion: nil)
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-		if searchMode {
+	
+}
+
+extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		if showModel {
 			return 2
 		}
 		
 		return list.count
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if searchMode{
-			if section == 0{
-				return searchModel.count
-			}else if section == 1{
-				return sortModel.count
-			}
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if showModel{
+			return model[section].count
+		}else{
+			return list[section].1.count
 		}
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
 		
-		return list[section].1.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
-		
-		if searchMode{
+		if showModel{
+			let modelItem = model[indexPath.section][indexPath.row]
 			
-			if indexPath.section == 0{
-				cell?.textLabel?.text = searchModel[indexPath.row].0
-				
-				cell?.setSelected(searchModel[indexPath.row].1, animated: true)
-				
-				if searchModel[indexPath.row].1{
-					cell?.accessoryType = .checkmark
-				}else{
-					cell?.accessoryType = .none
-				}
-				
-			}else{
-				cell?.textLabel?.text = sortModel[indexPath.row].0
+			cell?.textLabel?.text = modelItem.name
+			cell?.accessoryType = modelItem.selected ? .checkmark : .none
 			
-				cell?.setSelected(sortModel[indexPath.row].1, animated: true)
-				
-				if sortModel[indexPath.row].1{
-					cell?.accessoryType = .checkmark
-				}else{
-					cell?.accessoryType = .none
-				}
-			}
-			
-				cell?.selectionStyle = .none
 		}else{
 			let cellSubCategory = list[indexPath.section].1[indexPath.row]
-
-			cell?.textLabel?.text = cellSubCategory.name?.capitalized
+			
+			cell?.textLabel?.text = cellSubCategory.capitalized
 			cell?.accessoryType = .none
 		}
 		
 		return cell!
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		if searchMode{
-			return ""
+	}
+	
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if showModel{
+			return model[section].name
+		}else{
+			return list[section].0
 		}
-		
-		return list[section].0.name
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if searchMode{
-			if indexPath.section == 0{
-				searchModel[indexPath.row].1 = true
-				
-				if searchModel.filter({$0.1}).count == 0 && indexPath.row != 0{
-					searchModel[0].1 = true
-					tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-				}
-				
-				NotificationCenter.default.post(name: .searchCatalogeModelChanged, object: searchModel)
-				
-			}else{
-				let index = sortModel.index(where: {$0.1})!
-				sortModel[index].1 = false
-				
-				tableView.reloadRows(at: [IndexPath(row: index, section: 1)], with: .automatic)
-				
-				sortModel[indexPath.row].1 = true
-				
-				NotificationCenter.default.post(name: .sortModelChanged, object: sortModel)
-			}
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if showModel{
+			model[indexPath.section].select(index: indexPath.row)
 			
-			let cell = tableView.cellForRow(at: indexPath)
-			cell?.accessoryType = .checkmark
-			
+			tableView.reloadData()
 		}else{
 			let cellSubCategory = list[indexPath.section].1[indexPath.row]
 			
 			NotificationCenter.default.post(name: .goToSectionCataloge, object: cellSubCategory)
 		}
-    }
-	
-	override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-		if searchMode{
-			
-			if indexPath.section == 0{
-				searchModel[indexPath.row].1 = false
-				
-				NotificationCenter.default.post(name: .searchCatalogeModelChanged, object: searchModel)
-		
-			}else{
-				sortModel[indexPath.row].1 = false
-				
-				if sortModel.filter({!($0.1)}).count == 0{
-					
-					sortModel[0].1 = true
-					
-					tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
-				}
-				
-				NotificationCenter.default.post(name: .sortModelChanged, object: sortModel)
-			}
-			
-			let cell = tableView.cellForRow(at: indexPath)
-			cell?.accessoryType = .none
-		}
 	}
 	
-	override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-		if searchMode && indexPath.section == 1 && sortModel[indexPath.row].1  {
-			return nil
+	func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+		if showModel {
+			model[indexPath.section].select(index: indexPath.row)
+			tableView.reloadData()
 		}
-		return indexPath
 	}
-
-	override func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-		if searchMode && indexPath.section == 1 && sortModel[indexPath.row].1{
-			return nil
-		}
-		return indexPath
-	}
-	
 }
 
 extension catalogeMenu: UISearchBarDelegate{
@@ -224,33 +138,17 @@ extension catalogeMenu: UISearchBarDelegate{
 		NotificationCenter.default.post(name: .searchCataloge, object: searchText)
 		
 		if searchFieldIsFull {
-			if searchMode == false{
+			if showModel == false{
 				
-				searchMode = true
+				showModel = true
 				
-				tableView.beginUpdates()
-				
-				let indexSet = IndexSet(integersIn: Range(uncheckedBounds: (2, list.count)))
-				tableView.deleteSections(indexSet, with: .automatic)
-				
-				let lastSectionIndex = IndexSet(integersIn: ClosedRange(uncheckedBounds: (0,1)))
-				tableView.reloadSections(lastSectionIndex, with: .automatic)
-				
-				tableView.endUpdates()
+				tableView.reloadData()
 			}
 			
 		}else{
-			searchMode = false
+			showModel = false
 			
-			tableView.beginUpdates()
-			
-			let indexSet = IndexSet(integersIn: Range(uncheckedBounds: (2, list.count)))
-			tableView.insertSections(indexSet, with: .automatic)
-			
-			let lastSectionIndex = IndexSet(integersIn: ClosedRange(uncheckedBounds: (0,1)))
-			tableView.reloadSections(lastSectionIndex, with: .automatic)
-			
-			tableView.endUpdates()
+			tableView.reloadData()
 		}
     }
 }
