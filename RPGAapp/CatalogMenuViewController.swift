@@ -108,9 +108,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 			
 			tableView.reloadData()
 		}else{
-			let cellSubCategory = list[indexPath.section].1[indexPath.row]
-			
-			NotificationCenter.default.post(name: .goToSectionCataloge, object: cellSubCategory)
+			NotificationCenter.default.post(name: .goToSectionCataloge, object: indexPath)
 		}
 	}
 	
