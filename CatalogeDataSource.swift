@@ -152,6 +152,42 @@ class CatalogeDataSource{
 			
 			return alphabetArray
 			
+		case .price:
+			var priceList: [(String, [Item])] = []
+			var newList = list
+			
+			var priceThreshold = 1.0
+			
+			let thresholdRate: Double
+		
+			if let currencyRate = Load.currentCurrency()?.rate{
+				thresholdRate = currencyRate * 10
+			}else{
+				thresholdRate = 10
+			}
+			
+			while newList.count > 1{
+				
+				priceThreshold *= thresholdRate
+				
+				let itemsLowerThan = newList.filter({$0.price < priceThreshold}).sorted(by: {$0.0.price < $0.1.price})
+				newList = newList.filter({$0.price >= priceThreshold})
+				
+				let sectionName: String
+				
+				if priceList.count == 0{
+					sectionName = "< \(showPrice(thresholdRate))"
+				}else if newList.count == 0{
+					sectionName = "< \(showPrice(priceThreshold))"
+				}else{
+					sectionName = "\(showPrice(priceThreshold/thresholdRate)) - \(showPrice(priceThreshold))"
+				}
+				
+				priceList.append((sectionName, itemsLowerThan))
+			}
+			
+			menuItems = [(NSLocalizedString("Price segment", comment: ""), priceList.map{$0.0})]
+			return priceList
 		default:
 			let localizedSearchResults = NSLocalizedString("Search results", comment: "")
 			return [(localizedSearchResults, list)]
