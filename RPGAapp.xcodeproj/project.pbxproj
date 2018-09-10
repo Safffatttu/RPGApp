@@ -53,11 +53,11 @@
 		3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
 		3B7B159D1F3DFDB30055EE5F /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159C1F3DFDB30055EE5F /* StoreDetailViewController.swift */; };
-		3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */; };
 		3B7D23051F43468D00A86F3E /* SendPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D23041F43468D00A86F3E /* SendPopoverViewController.swift */; };
 		3B7FCD961F3F784700AC4193 /* StoreMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD951F3F784700AC4193 /* StoreMenuViewController.swift */; };
 		3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */; };
 		3B7FD39E20DFFA530052EDDB /* ItemDrawManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FD39D20DFFA530052EDDB /* ItemDrawManager.swift */; };
+		3B85B4E92146C41500D637B2 /* CatalogeFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85B4E82146C41500D637B2 /* CatalogeFilterCell.swift */; };
 		3B87467520E91B7F00A5527E /* NameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B87467420E91B7F00A5527E /* NameGenerator.swift */; };
 		3B88010A20B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010420B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift */; };
 		3B88010B20B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010520B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift */; };
@@ -217,11 +217,11 @@
 		3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemDetailViewController.swift; sourceTree = "<group>"; };
 		3B7B159C1F3DFDB30055EE5F /* StoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
-		3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeFilterPopover.swift; sourceTree = "<group>"; };
 		3B7D23041F43468D00A86F3E /* SendPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendPopoverViewController.swift; sourceTree = "<group>"; };
 		3B7FCD951F3F784700AC4193 /* StoreMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMenuViewController.swift; sourceTree = "<group>"; };
 		3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemMenuViewController.swift; sourceTree = "<group>"; };
 		3B7FD39D20DFFA530052EDDB /* ItemDrawManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDrawManager.swift; sourceTree = "<group>"; };
+		3B85B4E82146C41500D637B2 /* CatalogeFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeFilterCell.swift; sourceTree = "<group>"; };
 		3B87467420E91B7F00A5527E /* NameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameGenerator.swift; sourceTree = "<group>"; };
 		3B88010420B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StorePurchases+CoreDataClass.swift"; path = "Data Classes/StorePurchases+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3B88010520B2E9A100AB2C62 /* StorePurchases+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StorePurchases+CoreDataProperties.swift"; path = "Data Classes/StorePurchases+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -230,7 +230,7 @@
 		3B88010820B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StoreAvalibleItem+CoreDataClass.swift"; path = "Data Classes/StoreAvalibleItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3B88010920B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StoreAvalibleItem+CoreDataProperties.swift"; path = "Data Classes/StoreAvalibleItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3B8F06AF1F9792F100611C34 /* PackageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageViewer.swift; sourceTree = "<group>"; };
-		3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDataSource.swift; sourceTree = "<group>"; };
+		3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatalogeDataSource.swift; path = ../CatalogeDataSource.swift; sourceTree = "<group>"; };
 		3B94593B2137F09F00384F5B /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		3B9459412137F8F700384F5B /* ItemCharacterAdded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCharacterAdded.swift; sourceTree = "<group>"; };
 		3B94594321380D0F00384F5B /* CharacterCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterCreated.swift; sourceTree = "<group>"; };
@@ -350,7 +350,6 @@
 		3B063D561F3A21A800B5271C = {
 			isa = PBXGroup;
 			children = (
-				3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */,
 				3B063D611F3A21A800B5271C /* RPGAapp */,
 				3B73F91E1F8FB04900EA7E6A /* RPGAappTests */,
 				3BD335891FF28B2E004F70BF /* RPGAappUITests */,
@@ -396,7 +395,9 @@
 		3B11312620C2C90E00F95088 /* Cataloge */ = {
 			isa = PBXGroup;
 			children = (
+				3B85B4E82146C41500D637B2 /* CatalogeFilterCell.swift */,
 				3B6C6FC321452C3800A11954 /* CatalogeDataModel.swift */,
+				3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */,
 				3B31B3E51F3B67A6003526E1 /* CatalogMenuViewController.swift */,
 				3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */,
 				3B079FD920AF5B0A00D70BBB /* NewItemForm.swift */,
@@ -407,7 +408,6 @@
 				3B4582AB20B1F17600A07627 /* CenteredLabelCell.swift */,
 				3B11312A20C2CAAF00F95088 /* CatalogeDetailCell.swift */,
 				3B11312C20C2CAE800F95088 /* CatalogeDetailExpandedCell.swift */,
-				3B7CE6241FC180A800A28DC8 /* CatalogeFilterPopover.swift */,
 				3BC2CE82213708F0003AD8D5 /* Filter Helper.swift */,
 			);
 			name = Cataloge;
@@ -969,11 +969,11 @@
 				3B4582AC20B1F17600A07627 /* CenteredLabelCell.swift in Sources */,
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
 				3BDBDA0220ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */,
+				3B85B4E92146C41500D637B2 /* CatalogeFilterCell.swift in Sources */,
 				3BDBD9F720ACD45D00E0EB62 /* Currency+CoreDataClass.swift in Sources */,
 				3B94594421380D0F00384F5B /* CharacterCreated.swift in Sources */,
 				3B9459482138256900384F5B /* ItemPackageAdded.swift in Sources */,
 				3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */,
-				3B7CE6251FC180A800A28DC8 /* CatalogeFilterPopover.swift in Sources */,
 				3BD7779221384A5900A03A88 /* SessionSwitched.swift in Sources */,
 				3BA95E2020E63B5C00F90FB4 /* ImageRowFormer.swift in Sources */,
 				3B016634213864380074A747 /* ItemCharacterChanged.swift in Sources */,

@@ -20,11 +20,8 @@ class catalogeMenu: UIViewController {
 	
 	var showModel: Bool = false
 	
-    var filter: [String: Double?] = [:]
-	
-    override func viewWillAppear(_ animated: Bool) {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(setFilters(_:)))
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadFilter(_:)), name: .reloadCatalogeFilter, object: nil)
+    override func viewWillAppear(_ animated: Bool){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(showModelView))
         NotificationCenter.default.addObserver(self, selector: #selector(dismissKeyboard), name: .dismissKeyboard, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: .reloadCataloge, object: nil)
 		
@@ -40,27 +37,13 @@ class catalogeMenu: UIViewController {
 		tableView.reloadData()
 	}
 	
-    func dismissKeyboard() {
+    func dismissKeyboard(){
         searchBar.endEditing(true)
     }
     
-    func reloadFilter(_ notification: Notification){
-		guard let newFilter = notification.object as? [String: Double?] else { return }
-
-		filter = newFilter
-    }
-    
-    func setFilters(_ sender: UIBarButtonItem){
-        let filterPopover = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catalogeFilter") as! CatalogeFilterPopover
-        
-        filterPopover.modalPresentationStyle = .popover
-        filterPopover.popoverPresentationController?.sourceView = self.view
-            //UIView(frame: CGRect(x: 500, y: 100, width: 300, height: 300))
-        if filter.count != 0{
-            filterPopover.filter = filter
-        }
-        
-        self.present(filterPopover, animated: true, completion: nil)
+    func showModelView(){
+        showModel = !showModel
+		tableView.reloadData()
     }
 	
 }
@@ -69,7 +52,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		if showModel {
-			return 2
+			return model.sectionCount
 		}
 		
 		return list.count
@@ -77,6 +60,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if showModel{
+			print(section, model[section].count)
 			return model[section].count
 		}else{
 			return list[section].1.count
@@ -84,22 +68,30 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
-		
 		if showModel{
 			let modelItem = model[indexPath.section][indexPath.row]
 			
-			cell?.textLabel?.text = modelItem.name
-			cell?.accessoryType = modelItem.selected ? .checkmark : .none
+			let cell = tableView.dequeueReusableCell(withIdentifier: modelItem.cellName)
 			
+			if let filterItem = modelItem as? CatalogeFilterItem, let filterCell = cell as? CatalogeFilterCell{
+				filterCell.setup(using: filterItem)
+			}else{
+				cell?.textLabel?.text = modelItem.name
+				cell?.accessoryType = modelItem.selected ? .checkmark : .none
+			}
+			
+			return cell!
 		}else{
+			let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
 			let cellSubCategory = list[indexPath.section].1[indexPath.row]
 			
 			cell?.textLabel?.text = cellSubCategory.capitalized
 			cell?.accessoryType = .none
+			
+			return cell!
 		}
 		
-		return cell!
+		
 	}
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

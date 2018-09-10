@@ -365,4 +365,8 @@ public struct Load {
 		return texture		
 	}
 	
+	public static var priceRange: (Double, Double){
+		let priceList = Load.items().map{$0.price}
+		return (priceList.min() ?? 0, priceList.max() ?? 0)
+	}
 }

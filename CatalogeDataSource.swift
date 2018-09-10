@@ -34,6 +34,12 @@ class CatalogeDataSource{
 			CatalogeSearchItem(name: NSLocalizedString("Search in sub category name", comment: ""), selected: false),
 			CatalogeSearchItem(name: NSLocalizedString("Search by price", comment: "")			  , selected: false),
 			CatalogeSearchItem(name: NSLocalizedString("Search by atribute name", comment: "")    , selected: false),
+			]),
+		filterSection: CatalogeFilterSection(list: [
+			CatalogeFilterItem(type: .rarity, mode: .min, range: (1.0, 4.0)),
+			CatalogeFilterItem(type: .rarity, mode: .max, range: (1.0, 4.0)),
+			CatalogeFilterItem(type: .price,  mode: .min, range: Load.priceRange),
+			CatalogeFilterItem(type: .price,  mode: .max, range: Load.priceRange)
 			])
 	)
 	

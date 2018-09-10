@@ -382,103 +382,6 @@
             </objects>
             <point key="canvasLocation" x="4876.5625" y="-734.765625"/>
         </scene>
-        <!--Cataloge Filter Popover-->
-        <scene sceneID="Dr3-JN-HPk">
-            <objects>
-                <tableViewController storyboardIdentifier="catalogeFilter" title="" modalPresentationStyle="formSheet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XJP-mY-qRs" customClass="CatalogeFilterPopover" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gZy-cy-rmv">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="catalogeFilterSlider" id="DVK-1C-PrA" customClass="catalogeFilterSlider" customModule="RPGAapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="1024" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DVK-1C-PrA" id="mKV-Sh-cJb">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="KcU-y5-Kfr">
-                                            <rect key="frame" x="900" y="3" width="118" height="31"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="114" id="MdE-Ks-a1e"/>
-                                            </constraints>
-                                            <connections>
-                                                <action selector="editingDidEnd:" destination="XJP-mY-qRs" eventType="touchUpInside" id="IGH-8H-FsS"/>
-                                                <action selector="valueChanged:" destination="XJP-mY-qRs" eventType="valueChanged" id="tmm-tt-3LQ"/>
-                                            </connections>
-                                        </slider>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4QI-ce-UeQ">
-                                            <rect key="frame" x="8" y="10" width="225" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="225" id="44Z-AI-4YM"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="KcU-y5-Kfr" firstAttribute="trailing" secondItem="mKV-Sh-cJb" secondAttribute="trailingMargin" id="9fb-Yd-Gqp"/>
-                                        <constraint firstItem="4QI-ce-UeQ" firstAttribute="leading" secondItem="mKV-Sh-cJb" secondAttribute="leadingMargin" id="MiS-iX-W0W"/>
-                                        <constraint firstItem="KcU-y5-Kfr" firstAttribute="top" secondItem="mKV-Sh-cJb" secondAttribute="topMargin" constant="-5" id="dGG-88-Odn"/>
-                                        <constraint firstItem="4QI-ce-UeQ" firstAttribute="top" secondItem="mKV-Sh-cJb" secondAttribute="topMargin" constant="2" id="hho-TQ-Luj"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="nameLabel" destination="4QI-ce-UeQ" id="rWX-qN-7Rr"/>
-                                    <outlet property="slider" destination="KcU-y5-Kfr" id="nv1-li-A5z"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="catalogeFilterStepper" id="A7r-rz-llb" customClass="catalogeFilterStepper" customModule="RPGAapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="1024" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A7r-rz-llb" id="dKg-ya-rUN">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMv-79-x72">
-                                            <rect key="frame" x="8" y="10" width="225" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="225" id="pjR-7q-Ioq"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="OfA-AP-12S">
-                                            <rect key="frame" x="922" y="6" width="94" height="29"/>
-                                            <connections>
-                                                <action selector="editingDidEnd:" destination="XJP-mY-qRs" eventType="touchUpInside" id="z4s-Wf-bGa"/>
-                                                <action selector="valueChanged:" destination="XJP-mY-qRs" eventType="valueChanged" id="lnK-yx-qOi"/>
-                                            </connections>
-                                        </stepper>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="LMv-79-x72" firstAttribute="top" secondItem="dKg-ya-rUN" secondAttribute="topMargin" constant="2" id="08k-DK-3rN"/>
-                                        <constraint firstItem="OfA-AP-12S" firstAttribute="centerY" secondItem="LMv-79-x72" secondAttribute="centerY" id="9PH-e0-oAH"/>
-                                        <constraint firstItem="OfA-AP-12S" firstAttribute="trailing" secondItem="dKg-ya-rUN" secondAttribute="trailingMargin" id="VGR-Az-kwE"/>
-                                        <constraint firstItem="LMv-79-x72" firstAttribute="leading" secondItem="dKg-ya-rUN" secondAttribute="leadingMargin" id="bcX-3m-Mul"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="nameLabel" destination="LMv-79-x72" id="rsZ-Cb-Sl2"/>
-                                    <outlet property="stepper" destination="OfA-AP-12S" id="ITU-k5-w8v"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="XJP-mY-qRs" id="Gu7-iQ-nEN"/>
-                            <outlet property="delegate" destination="XJP-mY-qRs" id="vH8-8z-tSh"/>
-                        </connections>
-                    </tableView>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="1024" height="768"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sKi-Ox-uHD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6607" y="-1435"/>
-        </scene>
         <!--Handlarze Menu-->
         <scene sceneID="4u2-Ne-hu8">
             <objects>
@@ -540,6 +443,79 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="catalogeFilterStepper" id="i7Z-vD-1tO" customClass="CatalogeFilterStepper" customModule="RPGAapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="143.5" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i7Z-vD-1tO" id="AOn-h9-qZb">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-iR-LCx">
+                                            <rect key="frame" x="8" y="10" width="225" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="225" id="cym-vu-l8b"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Ukq-Hy-rTg">
+                                            <rect key="frame" x="218" y="6" width="94" height="29"/>
+                                            <connections>
+                                                <action selector="valueChanged" destination="i7Z-vD-1tO" eventType="valueChanged" id="Pry-AH-a9F"/>
+                                            </connections>
+                                        </stepper>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LUf-iR-LCx" firstAttribute="top" secondItem="AOn-h9-qZb" secondAttribute="topMargin" constant="2" id="58l-I5-RzL"/>
+                                        <constraint firstItem="Ukq-Hy-rTg" firstAttribute="trailing" secondItem="AOn-h9-qZb" secondAttribute="trailingMargin" id="9ux-oS-Ms4"/>
+                                        <constraint firstItem="Ukq-Hy-rTg" firstAttribute="centerY" secondItem="LUf-iR-LCx" secondAttribute="centerY" id="bvX-kM-Uj2"/>
+                                        <constraint firstItem="LUf-iR-LCx" firstAttribute="leading" secondItem="AOn-h9-qZb" secondAttribute="leadingMargin" id="mhD-5l-YMJ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="LUf-iR-LCx" id="NnT-Nw-dBQ"/>
+                                    <outlet property="stepper" destination="Ukq-Hy-rTg" id="BtJ-ED-yc0"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="catalogeFilterSlider" id="VDa-8O-P7h" customClass="CatalogeFilterSlider" customModule="RPGAapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="187.5" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VDa-8O-P7h" id="nG0-Gv-p1w">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="Rdv-iz-hlx">
+                                            <rect key="frame" x="196" y="3" width="118" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="114" id="afz-dw-gwX"/>
+                                            </constraints>
+                                            <connections>
+                                                <action selector="valueChanged" destination="VDa-8O-P7h" eventType="valueChanged" id="Y6N-iD-tUh"/>
+                                            </connections>
+                                        </slider>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l28-2u-8UA">
+                                            <rect key="frame" x="8" y="10" width="225" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="225" id="bUD-ct-2dx"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Rdv-iz-hlx" firstAttribute="top" secondItem="nG0-Gv-p1w" secondAttribute="topMargin" constant="-5" id="5Yv-vQ-m1X"/>
+                                        <constraint firstItem="l28-2u-8UA" firstAttribute="top" secondItem="nG0-Gv-p1w" secondAttribute="topMargin" constant="2" id="8d8-9I-eMa"/>
+                                        <constraint firstItem="l28-2u-8UA" firstAttribute="leading" secondItem="nG0-Gv-p1w" secondAttribute="leadingMargin" id="SUX-n3-ncO"/>
+                                        <constraint firstItem="Rdv-iz-hlx" firstAttribute="trailing" secondItem="nG0-Gv-p1w" secondAttribute="trailingMargin" id="ZGA-n1-lgR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="l28-2u-8UA" id="tw4-cX-VuM"/>
+                                    <outlet property="slider" destination="Rdv-iz-hlx" id="SaP-Np-C3c"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

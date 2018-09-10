@@ -15,6 +15,16 @@ enum SortType{
 	case rarity
 }
 
+enum FilterType{
+	case rarity
+	case price
+}
+
+enum FilterMode{
+	case min
+	case max
+}
+
 protocol CatalogeModelSection: class{
 	var name: String { get }
 	subscript(index: Int) -> CatalogeModelItem { get }
@@ -25,11 +35,13 @@ protocol CatalogeModelSection: class{
 
 protocol CatalogeModelItem: class{
 	var name: String { get }
+	var cellName: String { get }
 	var selected: Bool { get }
 }
 
 final class CatalogeSearchItem: CatalogeModelItem{
 	fileprivate(set) var name: String
+	fileprivate(set) var cellName: String = "catalogeMenuCell"
 	fileprivate(set) var selected: Bool
 	
 	init(name: String, selected: Bool){
@@ -40,7 +52,9 @@ final class CatalogeSearchItem: CatalogeModelItem{
 
 final class CatelogeSortItem: CatalogeModelItem{
 	fileprivate(set) var name: String
+	fileprivate(set) var cellName: String = "catalogeMenuCell"
 	fileprivate(set) var selected: Bool
+	
 	fileprivate(set) var type: SortType
 	
 	init(name: String, selected: Bool, type: SortType){
@@ -48,6 +62,54 @@ final class CatelogeSortItem: CatalogeModelItem{
 		self.selected = selected
 		self.type = type
 	}
+}
+
+final class CatalogeFilterItem: CatalogeModelItem{
+	var name: String{
+		switch (filterType, filterMode){
+		case (.rarity, .min):
+			return NSLocalizedString("Min rarity", comment: "")
+		case (.rarity, .max):
+			return NSLocalizedString("Max rarity", comment: "")
+		case (.price, .min):
+			return NSLocalizedString("Min price", comment: "")
+		case (.price, .max):
+			return NSLocalizedString("Max price", comment: "")
+		}
+	}
+	
+	fileprivate(set) var selected: Bool = false
+	fileprivate(set) var filterType: FilterType
+	fileprivate(set) var filterMode: FilterMode
+	fileprivate(set) var range: (Double, Double)
+	var value: Double{
+		didSet{
+			NotificationCenter.default.post(name: .catalogeModelChanged, object: nil)
+		}
+	}
+	
+	var cellName: String{
+		switch filterType {
+		case .price:
+			return "catalogeFilterSlider"
+		case .rarity:
+			return "catalogeFilterStepper"
+		}
+		
+	}
+	
+	init(type: FilterType, mode: FilterMode, range: (Double, Double)){
+		self.filterType = type
+		self.filterMode = mode
+		self.range = range
+		
+		if filterMode == .min{
+			self.value = range.0
+		}else{
+			self.value = range.1
+		}
+	}
+	
 }
 
 final class CatalogeSortSection: CatalogeModelSection{
@@ -107,22 +169,49 @@ final class CatalogeSearchSection: CatalogeModelSection{
 	}
 }
 
-final class CatalogeModel{
+final class CatalogeFilterSection: CatalogeModelSection{
+	var name: String = "Filter"
+	private var store: [CatalogeModelItem]
 
+	init(list: [CatalogeModelItem]){
+		self.store = list
+	}
+	
+	subscript(index: Int) -> CatalogeModelItem{
+		get{
+			return store[index]
+		}
+	}
+	
+	var count: Int{
+		return store.count
+	}
+	
+	func select(index: Int){
+		return
+	}
+}
+
+final class CatalogeModel{
 	private var sections: [CatalogeModelSection]{
-		return [sortModel, searchModel]
+		return [sortModel, searchModel, filterModel]
 	}
 	
 	private(set) var sortModel: CatalogeSortSection
 	private(set) var searchModel: CatalogeSearchSection
+	private(set) var filterModel: CatalogeFilterSection
 	
-	init(sortSection: CatalogeSortSection, searchSection: CatalogeSearchSection) {
+	init(sortSection: CatalogeSortSection, searchSection: CatalogeSearchSection, filterSection: CatalogeFilterSection) {
 		self.sortModel = sortSection
 		self.searchModel = searchSection
+		self.filterModel = filterSection
 	}
 	
 	subscript(index: Int) -> CatalogeModelSection{
 		return sections[index]
 	}
 	
+	var sectionCount: Int{
+		return sections.count
+	}
 }
