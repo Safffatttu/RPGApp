@@ -71,6 +71,7 @@ final class CatalogeSortSection: CatalogeModelSection{
 		for (number, item) in self.store.enumerated(){
 			item.selected = (number == index)
 		}
+		NotificationCenter.default.post(name: .catalogeModelChanged, object: nil)
 	}
 	
 	var sortBy: SortType{
@@ -102,6 +103,7 @@ final class CatalogeSearchSection: CatalogeModelSection{
 	
 	func select(index: Int){
 		store[index].selected = !(store[index].selected)
+		NotificationCenter.default.post(name: .catalogeModelChanged, object: nil)
 	}
 }
 

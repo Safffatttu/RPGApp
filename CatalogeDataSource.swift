@@ -14,6 +14,8 @@ class CatalogeDataSource{
 	
 	init() {
 		NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(modelChanged), name: .catalogeModelChanged, object: nil)
+		self.modelChanged()
 	}
 	
 	private var filter: [String : Double?] = [:]
@@ -40,9 +42,9 @@ class CatalogeDataSource{
 		didSet{
 			modelChanged()
 		}
-	
 	}
-	var items: [(String, [Item])] = Load.itemsForCataloge(){
+	
+	var items: [(String, [Item])] = []{
 		didSet{
 			NotificationCenter.default.post(name: .reloadCataloge, object: nil)
 		}
@@ -53,7 +55,7 @@ class CatalogeDataSource{
 	private var searchedItems: [Item] = []
 	private var filteredItems: [Item] = []
 	
-	private func modelChanged(){
+	@objc private func modelChanged(){
 		let allItems = Load.items()
 		searchedItems = searchItems(allItems)
 		filteredItems = filterItems(searchedItems)
