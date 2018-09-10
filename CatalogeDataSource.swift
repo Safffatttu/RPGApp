@@ -17,16 +17,15 @@ class CatalogeDataSource{
 	}
 	
 	private var filter: [String : Double?] = [:]
-	private var sortModel: SortType = SortType.categories
 	
-	var model = CatalogeModel(
-		CatalogeSortSection(list: [
+	private(set) var model = CatalogeModel(
+		sortSection:   CatalogeSortSection(list: [
 			CatelogeSortItem(name: NSLocalizedString("Sort by categories", comment: ""), selected: true, type: .categories),
 			CatelogeSortItem(name: NSLocalizedString("Sort by name", comment: "")      , selected: false, type: .name),
 			CatelogeSortItem(name: NSLocalizedString("Sort by price", comment: "")     , selected: false, type: .price),
 			CatelogeSortItem(name: NSLocalizedString("Sort by rarity", comment: "")    , selected: false, type: .rarity)
 			]),
-		CatalogeSearchSection(list: [
+		searchSection: CatalogeSearchSection(list: [
 			CatalogeSearchItem(name: NSLocalizedString("Search by name", comment: "")			  , selected: true),
 			CatalogeSearchItem(name: NSLocalizedString("Search in description", comment: "")	  , selected: true),
 			CatalogeSearchItem(name: NSLocalizedString("Search in category name", comment: "")    , selected: false),
@@ -68,7 +67,7 @@ class CatalogeDataSource{
 	
 	private func searchItems(_ list: [Item]) -> [Item]{
 		guard searchString != "" else { return list }
-		let searchModel = model[1]
+		let searchModel = model.searchModel
 		
 		let searchedItems = list.filter({
 				   ( searchModel[0].selected && ($0.name?.containsIgnoringCase(searchString))!)
@@ -89,6 +88,7 @@ class CatalogeDataSource{
 	}
 	
 	private func sortItems(_ list: [Item]) -> [(String, [Item])]{
+		let sortModel = model.sortModel.sortBy
 		switch sortModel {
 		case .categories:
 			var subCategoryList: [(SubCategory, [Item])] = []

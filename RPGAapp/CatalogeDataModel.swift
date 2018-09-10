@@ -107,10 +107,16 @@ final class CatalogeSearchSection: CatalogeModelSection{
 
 final class CatalogeModel{
 
-	private var sections: [CatalogeModelSection]
+	private var sections: [CatalogeModelSection]{
+		return [sortModel, searchModel]
+	}
 	
-	init(_ sections: CatalogeModelSection...) {
-		self.sections = sections
+	private(set) var sortModel: CatalogeSortSection
+	private(set) var searchModel: CatalogeSearchSection
+	
+	init(sortSection: CatalogeSortSection, searchSection: CatalogeSearchSection) {
+		self.sortModel = sortSection
+		self.searchModel = searchSection
 	}
 	
 	subscript(index: Int) -> CatalogeModelSection{
