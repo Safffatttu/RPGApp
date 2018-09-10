@@ -45,6 +45,10 @@ class CatalogeFilterStepper: UITableViewCell, CatalogeFilterCell {
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var stepper: UIStepper!
 	
+	override func awakeFromNib() {
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadRange), name: .reloadFilterRange, object: nil)
+	}
+	
 	var filterItem: CatalogeFilterItem?
 	
 	func setup(using filterItem: CatalogeFilterItem){
@@ -60,8 +64,19 @@ class CatalogeFilterStepper: UITableViewCell, CatalogeFilterCell {
 		self.stepper.value = filterItem.value
 	}
 	
+	func reloadRange(){
+		guard let range = filterItem?.range else { return }
+		
+		self.stepper.minimumValue = range.0
+		self.stepper.maximumValue = range.1
+	}
+	
 	@IBAction func valueChanged(){
 		filterItem?.value = stepper.value
 		self.nameLabel.text = "\(NSLocalizedString((filterItem?.name)!, comment: "")): \(rarityName[Int((filterItem?.value)!) - 1])"
 	}
+}
+
+extension Notification.Name{
+	static let reloadFilterRange = Notification.Name(rawValue: "reloadFilterRange")
 }

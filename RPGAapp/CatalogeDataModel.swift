@@ -175,6 +175,9 @@ final class CatalogeFilterSection: CatalogeModelSection{
 
 	init(list: [CatalogeModelItem]){
 		self.store = list
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadPriceRange), name: .createdNewItem, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadPriceRange), name: .editedItem, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadPriceRange), name: .receivedItemData, object: nil)
 	}
 	
 	subscript(index: Int) -> CatalogeModelItem{
@@ -189,6 +192,15 @@ final class CatalogeFilterSection: CatalogeModelSection{
 	
 	func select(index: Int){
 		return
+	}
+	
+	@objc private func reloadPriceRange(){
+		let range = Load.priceRange
+		let priceFilters = store.filter({($0 as? CatalogeFilterItem)?.filterType == FilterType.price})
+		for case let filter as CatalogeFilterItem in priceFilters{
+			filter.range = range
+		}
+		NotificationCenter.default.post(name: .reloadFilterRange, object: nil)
 	}
 }
 
