@@ -188,6 +188,28 @@ class CatalogeDataSource{
 			
 			menuItems = [(NSLocalizedString("Price segment", comment: ""), priceList.map{$0.0})]
 			return priceList
+			
+		case .rarity:
+			var rarityList: [(String, [Item])] = []
+			var newList = list
+			
+			var rarityThreshold: Int16 = 1
+			
+			while newList.count > 1{
+				
+				let itemsLowerThan = newList.filter({$0.rarity == rarityThreshold}).sorted(by: {$0.0.name! < $0.1.name!})
+				newList = newList.filter({$0.rarity != rarityThreshold})
+				
+				let sectionName = rarityName[Int(rarityThreshold) - 1]
+				
+				rarityList.append((sectionName, itemsLowerThan))
+				
+				rarityThreshold += 1
+			}
+			
+			menuItems = [(NSLocalizedString("Rarity segment", comment: ""), rarityList.map{$0.0})]
+			return rarityList
+			
 		default:
 			let localizedSearchResults = NSLocalizedString("Search results", comment: "")
 			return [(localizedSearchResults, list)]
