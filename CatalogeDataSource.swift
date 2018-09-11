@@ -248,4 +248,5 @@ class CatalogeDataSource{
 extension Notification.Name{
 	static let reloadCataloge = Notification.Name(rawValue: "reloadCataloge")
 	static let catalogeModelChanged = Notification.Name(rawValue: "catalogeModelChanged")
+	static let filterItemChanged = Notification.Name(rawValue: "filterItemChanged")
 }

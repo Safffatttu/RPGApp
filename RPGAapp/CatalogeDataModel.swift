@@ -84,6 +84,7 @@ final class CatalogeFilterItem: CatalogeModelItem{
 	fileprivate(set) var range: (Double, Double)
 	var value: Double{
 		didSet{
+			NotificationCenter.default.post(name: .filterItemChanged, object: (value, filterType, filterMode))
 			NotificationCenter.default.post(name: .catalogeModelChanged, object: nil)
 		}
 	}
@@ -108,8 +109,22 @@ final class CatalogeFilterItem: CatalogeModelItem{
 		}else{
 			self.value = range.1
 		}
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(otherFilterValueChanged(_:)), name: .filterItemChanged, object: nil)
 	}
 	
+	@objc func otherFilterValueChanged(_ notification: Notification){
+		guard let (newValue, type, mode) = notification.object as? (Double, FilterType, FilterMode) else { return }
+		guard type == self.filterType, mode != filterMode else { return }
+		
+		if filterMode == .min{
+			guard newValue < self.value else { return }
+		}else{
+			guard newValue > self.value else { return }
+		}
+		
+		self.value = newValue
+	}
 }
 
 final class CatalogeSortSection: CatalogeModelSection{
