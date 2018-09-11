@@ -60,7 +60,6 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if showModel{
-			print(section, model[section].count)
 			return model[section].count
 		}else{
 			return list[section].1.count
@@ -90,8 +89,6 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 			
 			return cell!
 		}
-		
-		
 	}
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -127,14 +124,10 @@ extension catalogeMenu: UISearchBarDelegate{
 		
 		NotificationCenter.default.post(name: .searchCataloge, object: searchText)
 		
-		if searchFieldIsFull {
-			if showModel == false{
-				
-				showModel = true
-				
-				tableView.reloadData()
-			}
+		if searchFieldIsFull && !showModel {
+			showModel = true
 			
+			tableView.reloadData()
 		}else{
 			showModel = false
 			

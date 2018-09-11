@@ -75,13 +75,10 @@ public struct DiceModel {
 		let countOf1 = countOccurances(roll, 1)
 		
 		var wynik: Int
-		print(roll)
 		
 		removeItems(&roll, 1, countOf1)
 		
 		decrementHighest(&roll, times: countOf1/2)
-		
-		print(roll)
 		
 		if numOf6 > 1{
 			wynik = numOf6 + 5

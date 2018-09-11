@@ -147,7 +147,6 @@ class ActionDelegate: PackageServiceDelegate{
     }
 	
 	func receiveLocally(_ actionData: NSMutableDictionary){
-		
 		let packServ = PackageService.pack
 		let localId = packServ.myPeerID
 		
@@ -155,7 +154,6 @@ class ActionDelegate: PackageServiceDelegate{
 	}
 	
 	func finishedReciveingResource(withName: String, from: MCPeerID, url: URL) {
-		
 		let data: Data
 		
 		do {
@@ -206,34 +204,19 @@ class ActionDelegate: PackageServiceDelegate{
 		}catch{
 			print(error)
 		}
-		
 	}
 
     func lost(_ peer: MCPeerID) {
-        let message = NSLocalizedString("Lost connection with", comment: "") + " " + peer.displayName
-        whisper(messege: message)
+		DispatchQueue.main.async{
+			let message = NSLocalizedString("Lost connection with", comment: "") + " " + peer.displayName
+			whisper(messege: message)
+		}
     }
     
     func found(_ peer: MCPeerID) {
-        DispatchQueue.main.async{
-            let pack = PackageService.pack
-            var connectedDevices = pack.session.connectedPeers.map({$0.displayName})
-            connectedDevices.append(UIDevice.current.name)
-            
-            let devices = NSSet(array: connectedDevices)
-            
-			guard let session = Load.currentExistingSession() else { return } 
-				
-            let sessionDevices = session.devices as? NSSet
-            
-            print(devices)
-            print(sessionDevices as Any)
-            if sessionDevices != nil && sessionDevices! == devices && devices.count > 0{               
-                UserDefaults.standard.set(true, forKey: "sessionIsActive")
-            }else{
-                let message = NSLocalizedString("Reconneced with", comment: "") + " " + peer.displayName
-                whisper(messege: message)
-            }
+		DispatchQueue.main.async{
+			let message = NSLocalizedString("Reconneced with", comment: "") + " " + peer.displayName
+			whisper(messege: message)
         }
     }
     

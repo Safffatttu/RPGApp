@@ -27,8 +27,7 @@ class PackageService: NSObject{
         self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType)
         
         super.init()
-        print("initialized")
-        
+		
         self.serviceAdvertiser.delegate = self
         self.serviceAdvertiser.startAdvertisingPeer()
         
@@ -41,10 +40,8 @@ class PackageService: NSObject{
     deinit {
         self.serviceAdvertiser.stopAdvertisingPeer()
         self.serviceBrowser.stopBrowsingForPeers()
-        print("deinit")
-    }
-    
-    
+	}
+	
     lazy var session: MCSession = {
         let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self

@@ -29,7 +29,6 @@ func stack(_ array: [Int], _ n: Int) -> [Int]{
 	if ocurances == 0{
 		return a
 	}
-	print(array)
 	
 	while ocurances  >= 2{
 		let indexA = a.index(of: n)
