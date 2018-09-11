@@ -184,6 +184,8 @@ class CatalogeDataSource{
 					sectionName = "\(showPrice(priceThreshold/thresholdRate)) - \(showPrice(priceThreshold))"
 				}
 				
+				guard itemsLowerThan.count > 0 else { continue }
+				
 				priceList.append((sectionName, itemsLowerThan))
 			}
 			
