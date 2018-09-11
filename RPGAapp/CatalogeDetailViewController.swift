@@ -72,7 +72,7 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
 	
     func goToSection(_ notification: Notification) {
 		guard let menuIndexPath = notification.object as? IndexPath else { return }
-		let menuItem = CatalogeDataSource.source.menuItems[menuIndexPath.section].1[menuIndexPath.row]
+		let menuItem = CatalogeDataSource.source.menuItems[menuIndexPath.section].1[menuIndexPath.row].0
 		
 		guard let index = items.sectionsAndValues.index(where: {$0.0 == menuItem}) else { return }
 		let indexPath = IndexPath(row: 0, section: index)		

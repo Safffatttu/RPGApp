@@ -53,7 +53,7 @@ class CatalogeDataSource{
 		}
 	}
 	
-	var menuItems: [(String, [String])] = []
+	var menuItems: [(String, [(String, Int)])] = []
 	
 	private var searchedItems: [Item] = []
 	private var filteredItems: [Item] = []
@@ -134,23 +134,28 @@ class CatalogeDataSource{
 				}
 			}
 			
-			subCategoryList.sort(by: { ($0.0.category?.name)! < ($1.0.category?.name)! || (($0.0.category?.name)! == ($1.0.category?.name)! && ($0.0.name)! < ($1.0.name)! )})
+			subCategoryList.sort(by: { ($0.0.category?.name)! < ($1.0.category?.name)!
+				|| (($0.0.category?.name)! == ($1.0.category?.name)! && ($0.0.name)! < ($1.0.name)! )})
 			
 			let namedSubCategoryList = subCategoryList.map{($0.0.name!, $0.1)}
 			
 			let subCategories = subCategoryList.map{$0.0}
 			
-			var categories: [(Category, [String])] = []
+			var categories: [(Category, [SubCategory])] = []
 			
 			for subCategory in subCategories {
 				if let index = categories.index(where: { $0.0 === subCategory.category}){
-					categories[index].1.append(subCategory.name!)
+					categories[index].1.append(subCategory)
 				}else{
-					categories.append((subCategory.category!, [subCategory.name!]))
+					categories.append((subCategory.category!, [subCategory]))
 				}
 			}
-
-			self.menuItems = categories.map{($0.0.name!, $0.1)}
+			
+			self.menuItems = categories.map{ cat, subCats in
+				let sectionCount = subCats.flatMap{ sub in subCategoryList.first(where: {$0.0 == sub})?.1.count }
+				let sectionTable: [(String, Int)] = zip(subCats.flatMap{$0.name}, sectionCount).map{$0}
+				return (cat.name!, sectionTable)
+				}
 			
 			return namedSubCategoryList
 			
@@ -171,7 +176,9 @@ class CatalogeDataSource{
 			let alphabetArray = Array(alphabetDict).sorted(by: {$0.key < $1.key})
 			
 			let localizedAlphabet = NSLocalizedString("Alphabet", comment: "")
-			self.menuItems = [(localizedAlphabet, alphabetArray.map{$0.key})]
+			self.menuItems = [(localizedAlphabet,
+			                   zip(alphabetArray.map{$0.key}, alphabetArray.map{$0.value.count}).map{$0}
+				)]
 			
 			return alphabetArray
 			
@@ -212,7 +219,8 @@ class CatalogeDataSource{
 				priceList.append((sectionName, itemsLowerThan))
 			}
 			
-			menuItems = [(NSLocalizedString("Price segment", comment: ""), priceList.map{$0.0})]
+			menuItems = [(NSLocalizedString("Price segment", comment: ""),
+			              zip(priceList.map{$0.0}, priceList.map{$0.1.count}).map{$0})]
 			return priceList
 			
 		case .rarity:
@@ -235,7 +243,9 @@ class CatalogeDataSource{
 				rarityList.append((sectionName, itemsLowerThan))
 			}
 			
-			menuItems = [(NSLocalizedString("Rarity segment", comment: ""), rarityList.map{$0.0})]
+			menuItems = [(NSLocalizedString("Rarity segment", comment: ""),
+					zip(rarityList.map{$0.0}, rarityList.map{$1.count}).map{$0}
+				)]
 			return rarityList
 			
 		default:

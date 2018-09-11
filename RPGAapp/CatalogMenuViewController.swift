@@ -12,7 +12,7 @@ import CoreData
 
 class catalogeMenu: UIViewController {
 	
-	var list: [(String, [String])] = CatalogeDataSource.source.menuItems
+	var list: [(String, [(String, Int)])] = CatalogeDataSource.source.menuItems
 	var model: CatalogeModel = CatalogeDataSource.source.model
 	
     @IBOutlet weak var searchBar: UISearchBar!
@@ -76,6 +76,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 				filterCell.setup(using: filterItem)
 			}else{
 				cell?.textLabel?.text = modelItem.name
+				cell?.detailTextLabel?.text = ""
 				cell?.accessoryType = modelItem.selected ? .checkmark : .none
 			}
 			
@@ -84,7 +85,8 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
 			let cellSubCategory = list[indexPath.section].1[indexPath.row]
 			
-			cell?.textLabel?.text = cellSubCategory.capitalized
+			cell?.textLabel?.text = cellSubCategory.0.capitalized
+			cell?.detailTextLabel?.text = "\(cellSubCategory.1) \(NSLocalizedString("Items", comment: ""))"
 			cell?.accessoryType = .none
 			
 			return cell!
