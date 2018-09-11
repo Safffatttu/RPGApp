@@ -154,7 +154,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
 		let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext) as! Package
         let number = packages.count
         
-        newPackage.name = "Package nr.\(number + 1)"
+		newPackage.name = "\(NSLocalizedString("Package nr.", comment: "")) \(number + 1)"
         newPackage.id = "\(newPackage.name!) \(Date()) \(myRand(10000)))"
 		newPackage.visibility = Load.currentVisibility()
         newPackage.session = session

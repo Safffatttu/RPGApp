@@ -68,13 +68,13 @@ final class CatalogeFilterItem: CatalogeModelItem{
 	var name: String{
 		switch (filterType, filterMode){
 		case (.rarity, .min):
-			return NSLocalizedString("Min rarity", comment: "")
+			return NSLocalizedString("minRarity", comment: "")
 		case (.rarity, .max):
-			return NSLocalizedString("Max rarity", comment: "")
+			return NSLocalizedString("maxRarity", comment: "")
 		case (.price, .min):
-			return NSLocalizedString("Min price", comment: "")
+			return NSLocalizedString("minPrice", comment: "")
 		case (.price, .max):
-			return NSLocalizedString("Max price", comment: "")
+			return NSLocalizedString("maxPrice", comment: "")
 		}
 	}
 	

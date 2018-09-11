@@ -26,8 +26,12 @@
 "Maximal rarity" = "Maximal rarity";
 "Amount" = "Amount";
 
+"Selected categories" = "Selected categories";
+
 "D" = "D";
 "Drawn" = "Drawn";
+
+"Items" = "Items";
 
 "Abilities" = "Abilities";
 "Equipment" = "Equipment";
@@ -81,12 +85,14 @@
 "Edit currency" = "Edit currency";
 "Rate" = "Rate";
 
+"Search by name" = "Search by name";
 "Search in description" = "Search in description";
 "Search in category name" = "Search in category name";
 "Search in sub category name" = "Search in sub category name";
 "Search by price" = "Search by price";
 "Search by atribute name" = "Search by atribute name";
 
+"Sort by categories" = "Sort by categories";
 "Sort by name" = "Sort by name";
 "Sort by rarity" = "Sort by rarity";
 "Sort by price" = "Sort by price";

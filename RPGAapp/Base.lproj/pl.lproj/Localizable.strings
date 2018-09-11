@@ -26,8 +26,12 @@
 "Maximal rarity" = "Minimalna rzadkość";
 "Amount" = "Ilość";
 
+"Selected categories" = "Wybrane kategorie";
+
 "D" = "K";
 "Drawn" = "Wylosowano";
+
+"Items" = "Przedmioty";
 
 "Abilities" = "Zdolności";
 "Equipment" = "Ekwipunek";
@@ -81,20 +85,22 @@
 "Edit currency" = "Edytuj walutę";
 "Rate" = "Stosunek";
 
+"Search by name" = "Szukaj po imieniu";
 "Search in description" = "Szukaj w opisach";
 "Search in category name" = "Szukaj w nazwach kategori";
 "Search in sub category name" = "Szukaj w nazwach podkategorii";
 "Search by price" = "Szukaj według ceny";
 "Search by atribute name" = "Szukaj według atrybutów";
 
+"Sort by categories" = "Sortuj według kategori";
 "Sort by name" = "Sortuj według nazwy";
 "Sort by rarity" = "Sortuj według rzadkości";
 "Sort by price" = "Sortuj według ceny";
 
 "Create item" = "Stwórz przedmiot";
 
-"minRarity" = "Minimalna rzadkość";
-"maxRarity" = "Maksymalna rzadkość";
+"minRarity" = "Min rzadkość";
+"maxRarity" = "Max rzadkość";
 "minPrice" = "Minimalna cena";
 "maxPrice" = "Maksymalna cena";
 
