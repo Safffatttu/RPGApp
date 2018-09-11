@@ -111,7 +111,7 @@ class CatalogeDataSource{
 				}
 			}
 			
-			subCategoryList.sort(by: { !(($0.0.category?.name)! > ($1.0.category?.name)! && ($0.0.name)! > ($1.0.name)! )})
+			subCategoryList.sort(by: { ($0.0.category?.name)! < ($1.0.category?.name)! || (($0.0.category?.name)! == ($1.0.category?.name)! && ($0.0.name)! < ($1.0.name)! )})
 			
 			let namedSubCategoryList = subCategoryList.map{($0.0.name!, $0.1)}
 			
@@ -170,7 +170,8 @@ class CatalogeDataSource{
 				
 				priceThreshold *= thresholdRate
 				
-				let itemsLowerThan = newList.filter({$0.price < priceThreshold}).sorted(by: {$0.0.price < $0.1.price})
+				let itemsLowerThan = newList.filter({$0.price < priceThreshold})
+					.sorted(by: { $0.0.price < $0.1.price || ($0.0.price == $0.1.price && $0.0.name! < $0.1.name!)})
 				newList = newList.filter({$0.price >= priceThreshold})
 				
 				let sectionName: String
