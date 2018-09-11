@@ -458,8 +458,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-iR-LCx">
-                                            <rect key="frame" x="8" y="10" width="225" height="21"/>
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Ukq-Hy-rTg">
+                                            <rect key="frame" x="218" y="6" width="94" height="29"/>
+                                            <connections>
+                                                <action selector="valueChanged" destination="i7Z-vD-1tO" eventType="valueChanged" id="Pry-AH-a9F"/>
+                                            </connections>
+                                        </stepper>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-iR-LCx">
+                                            <rect key="frame" x="16" y="14" width="225" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="225" id="cym-vu-l8b"/>
                                             </constraints>
@@ -467,18 +473,12 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Ukq-Hy-rTg">
-                                            <rect key="frame" x="218" y="6" width="94" height="29"/>
-                                            <connections>
-                                                <action selector="valueChanged" destination="i7Z-vD-1tO" eventType="valueChanged" id="Pry-AH-a9F"/>
-                                            </connections>
-                                        </stepper>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="LUf-iR-LCx" firstAttribute="top" secondItem="AOn-h9-qZb" secondAttribute="topMargin" constant="2" id="58l-I5-RzL"/>
+                                        <constraint firstItem="LUf-iR-LCx" firstAttribute="top" secondItem="AOn-h9-qZb" secondAttribute="topMargin" constant="6" id="58l-I5-RzL"/>
                                         <constraint firstItem="Ukq-Hy-rTg" firstAttribute="trailing" secondItem="AOn-h9-qZb" secondAttribute="trailingMargin" id="9ux-oS-Ms4"/>
-                                        <constraint firstItem="Ukq-Hy-rTg" firstAttribute="centerY" secondItem="LUf-iR-LCx" secondAttribute="centerY" id="bvX-kM-Uj2"/>
-                                        <constraint firstItem="LUf-iR-LCx" firstAttribute="leading" secondItem="AOn-h9-qZb" secondAttribute="leadingMargin" id="mhD-5l-YMJ"/>
+                                        <constraint firstItem="Ukq-Hy-rTg" firstAttribute="centerY" secondItem="LUf-iR-LCx" secondAttribute="centerY" constant="-4" id="bvX-kM-Uj2"/>
+                                        <constraint firstItem="LUf-iR-LCx" firstAttribute="leading" secondItem="AOn-h9-qZb" secondAttribute="leadingMargin" constant="8" id="mhD-5l-YMJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -494,19 +494,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="Rdv-iz-hlx">
-                                            <rect key="frame" x="196" y="3" width="118" height="31"/>
+                                            <rect key="frame" x="150" y="3" width="164" height="31"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="114" id="afz-dw-gwX"/>
+                                                <constraint firstAttribute="width" constant="160" id="afz-dw-gwX"/>
                                             </constraints>
                                             <connections>
                                                 <action selector="valueChanged" destination="VDa-8O-P7h" eventType="valueChanged" id="Y6N-iD-tUh"/>
                                             </connections>
                                         </slider>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l28-2u-8UA">
-                                            <rect key="frame" x="8" y="10" width="225" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="225" id="bUD-ct-2dx"/>
-                                            </constraints>
+                                            <rect key="frame" x="16" y="11" width="126" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -514,9 +511,10 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Rdv-iz-hlx" firstAttribute="top" secondItem="nG0-Gv-p1w" secondAttribute="topMargin" constant="-5" id="5Yv-vQ-m1X"/>
-                                        <constraint firstItem="l28-2u-8UA" firstAttribute="top" secondItem="nG0-Gv-p1w" secondAttribute="topMargin" constant="2" id="8d8-9I-eMa"/>
-                                        <constraint firstItem="l28-2u-8UA" firstAttribute="leading" secondItem="nG0-Gv-p1w" secondAttribute="leadingMargin" id="SUX-n3-ncO"/>
+                                        <constraint firstItem="l28-2u-8UA" firstAttribute="top" secondItem="nG0-Gv-p1w" secondAttribute="topMargin" constant="3" id="8d8-9I-eMa"/>
+                                        <constraint firstItem="l28-2u-8UA" firstAttribute="leading" secondItem="nG0-Gv-p1w" secondAttribute="leadingMargin" constant="8" id="SUX-n3-ncO"/>
                                         <constraint firstItem="Rdv-iz-hlx" firstAttribute="trailing" secondItem="nG0-Gv-p1w" secondAttribute="trailingMargin" id="ZGA-n1-lgR"/>
+                                        <constraint firstItem="Rdv-iz-hlx" firstAttribute="leading" secondItem="l28-2u-8UA" secondAttribute="trailing" constant="10" id="a8m-0t-Ea9"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -537,13 +535,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7w-qx-rba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4877" y="-1421"/>
+            <point key="canvasLocation" x="4876.7578125" y="-1421.09375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hnk-Zf-2pi">
             <objects>
                 <navigationController id="S6X-FX-ZXN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0K4-3N-T66">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0K4-3N-T66">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -559,7 +557,7 @@
         <scene sceneID="qp8-9j-QTc">
             <objects>
                 <navigationController storyboardIdentifier="handlarzeDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uL0-b7-9Bc" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Etb-NT-wxV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Etb-NT-wxV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1103,7 +1101,7 @@
         <scene sceneID="2I1-H5-N86">
             <objects>
                 <collectionViewController id="i43-Aj-Vf2" customClass="TeamView" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="black" dataMode="prototypes" id="N43-wO-ILd">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" id="N43-wO-ILd">
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.9960131049156189" green="0.99600023031234741" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1371,7 +1369,7 @@
         <scene sceneID="22q-Le-Frp">
             <objects>
                 <navigationController id="sJi-kv-4vj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="97x-1z-sHB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="97x-1z-sHB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1387,7 +1385,7 @@
         <scene sceneID="Ked-jA-bZM">
             <objects>
                 <navigationController id="ql2-IU-CCY" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="W9h-1h-drq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W9h-1h-drq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1403,7 +1401,7 @@
         <scene sceneID="r7l-gg-dq7">
             <objects>
                 <navigationController storyboardIdentifier="detail1Nav" title="detail1Nav" id="vC3-pB-5Vb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="DjV-YW-jjY">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1420,7 +1418,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a0z-H3-ndm" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2Mj-RF-dgr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Mj-RF-dgr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1718,7 +1716,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vFY-dM-00p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vFY-dM-00p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
