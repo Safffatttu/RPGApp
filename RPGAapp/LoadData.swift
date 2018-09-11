@@ -59,41 +59,6 @@ public struct Load {
         
         return subCategories
     }
-	
-	public static func subCategoriesForCataloge() -> [SubCategory] {
-		let subCategories: [SubCategory] = categories().flatMap{
-			$0.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
-		}
-		
-		return subCategories
-	}
-	
-	public static func subCategoriesFormCatalogeMenu() -> [(Category, [SubCategory])]{
-		var subCategoryList: [(Category, [SubCategory])] = []
-		
-		let categories = Load.categories()
-		
-		for category in categories{
-			let subCategories = category.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
-			
-			subCategoryList.append((category,subCategories))
-		}
-		
-		return subCategoryList
-	}
-	
-    public static func itemsForCataloge() -> [(String,[Item])] {
-		let subCats = subCategoriesForCataloge()
-		
-        var subCategoriesToReturn: [(String,[Item])] = []
-		
-        for sub in subCats{
-            let subCategory = (sub.name!,sub.items?.sortedArray(using: [.sortItemByName]) as! [Item])
-            subCategoriesToReturn.append(subCategory)
-        }
-		
-        return subCategoriesToReturn
-    }
     
     public static func categories() -> [Category] {
         var categories: [Category] = []
