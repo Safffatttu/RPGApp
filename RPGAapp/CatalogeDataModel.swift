@@ -125,6 +125,37 @@ final class CatalogeFilterItem: CatalogeModelItem{
 		
 		self.value = newValue
 	}
+	
+	var valueForSlider: Float{
+		let normalizedValue = normalize(value)
+		let linearValue = toLinear(normalizedValue)
+		return Float(linearValue)
+	}
+	
+	func setValueFromSlider(_ newValue: Float){
+		let logValue = toLog(Double(newValue))
+		let denormalized = denormalize(logValue)
+		
+		self.value = denormalized
+	}
+	
+	private let logRate: Double = 6
+	
+	private func toLog(_ value: Double) -> Double{
+		return pow(value, logRate)
+	}
+	
+	private func toLinear(_ value: Double) -> Double{
+		return pow(value, 1 / logRate)
+	}
+	
+	private func normalize(_ value: Double) -> Double{
+		return (value - range.0) / (range.1 - range.0)
+	}
+	
+	private func denormalize(_ value: Double) -> Double{
+		return value * (range.1 - range.0) + range.0
+	}
 }
 
 final class CatalogeSortSection: CatalogeModelSection{

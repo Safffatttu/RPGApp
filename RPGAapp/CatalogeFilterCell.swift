@@ -21,21 +21,25 @@ class CatalogeFilterSlider: UITableViewCell, CatalogeFilterCell {
 
 	var filterItem: CatalogeFilterItem?
 	
+	override func awakeFromNib() {
+		filterItem = nil
+		super.awakeFromNib()
+	}
+	
 	func setup(using filterItem: CatalogeFilterItem){
+		guard self.filterItem == nil else { return }
 		self.filterItem = filterItem
 		
 		self.nameLabel.text = "\(NSLocalizedString(filterItem.name, comment: "")) \(showPrice(filterItem.value))"
 		
-		let range = filterItem.range
+		self.slider.minimumValue = 0
+		self.slider.maximumValue = 1
 		
-		self.slider.minimumValue = Float(range.0)
-		self.slider.maximumValue = Float(range.1)
-		
-		self.slider.setValue(Float(filterItem.value), animated: true)
+		self.slider.setValue(filterItem.valueForSlider, animated: true)
 	}
 	
 	@IBAction func valueChanged(){
-		filterItem?.value = Double(slider.value)
+		filterItem?.setValueFromSlider(slider.value)
 		self.nameLabel.text = "\(NSLocalizedString((filterItem?.name)!, comment: "")) \(showPrice((filterItem?.value)!))"
 	}
 }
