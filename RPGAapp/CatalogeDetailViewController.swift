@@ -168,8 +168,6 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 			
 			CoreDataStack.managedObjectContext.delete(item)
 			CoreDataStack.saveContext()
-			
-//			self.items = RPGAapp.searchCataloge(searchWith: self.lastSearchString, using: self.searchModel, sortBy: self.sortModel)
 		})
 		
 		let localizedShare = NSLocalizedString("Share item", comment: "")
