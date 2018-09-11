@@ -18,8 +18,6 @@ class CatalogeDataSource{
 		self.modelChanged()
 	}
 	
-	private var filter: [String : Double?] = [:]
-	
 	private(set) var model = CatalogeModel(
 		sortSection:   CatalogeSortSection(list: [
 			CatelogeSortItem(name: NSLocalizedString("Sort by categories", comment: ""), selected: true, type: .categories),
@@ -42,7 +40,6 @@ class CatalogeDataSource{
 			CatalogeFilterItem(type: .price,  mode: .max, range: Load.priceRange)
 			])
 	)
-	
 	
 	private var searchString: String = ""{
 		didSet{
@@ -90,9 +87,35 @@ class CatalogeDataSource{
 	}
 	
 	private func filterItems(_ list: [Item]) -> [Item]{
-		guard filter.count != 0 else { return list }
-		let filterdList = FilterHelper.filterItemList(list, using: filter)
-		return filterdList
+		
+		var filteredList = list
+		
+		for item in model.filterModel.filterItems{
+		
+			let filterBy: (Item) -> Bool
+			let filteringOperator: (Double, Double) -> Bool
+			let valueToFilter: (Item) -> Double
+			
+			switch item.filterMode {
+			case .min:
+				filteringOperator = { $0.0 >= $0.1 }
+			case .max:
+				filteringOperator = { $0.0 <= $0.1 }
+			}
+			
+			switch item.filterType {
+			case .rarity:
+				valueToFilter = { Double($0.rarity) }
+			case .price:
+				valueToFilter = { Double($0.price) }
+			}
+			
+			filterBy = { filteringOperator(valueToFilter($0), item.value) }
+		
+			filteredList = filteredList.filter(filterBy)
+		}
+		
+		return filteredList
 	}
 	
 	private func sortItems(_ list: [Item]) -> [(String, [Item])]{

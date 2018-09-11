@@ -202,6 +202,25 @@ final class CatalogeFilterSection: CatalogeModelSection{
 		}
 		NotificationCenter.default.post(name: .reloadFilterRange, object: nil)
 	}
+	
+	var filterItems: [CatalogeFilterItem]{
+		return store.flatMap{
+			guard let filterItem = $0 as? CatalogeFilterItem else { return nil }
+			
+			let isChanged: Bool
+			
+			switch filterItem.filterMode {
+			case .min:
+				isChanged = filterItem.range.0 != filterItem.value
+			case .max:
+				isChanged = filterItem.range.1 != filterItem.value
+			}
+			
+			guard isChanged else { return nil }
+			
+			return filterItem
+		}
+	}
 }
 
 final class CatalogeModel{
