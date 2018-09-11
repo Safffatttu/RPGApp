@@ -227,10 +227,12 @@ class CatalogeDataSource{
 				newList = newList.filter({$0.rarity != rarityThreshold})
 				
 				let sectionName = rarityName[Int(rarityThreshold) - 1]
-				
-				rarityList.append((sectionName, itemsLowerThan))
-				
+
 				rarityThreshold += 1
+				
+				guard itemsLowerThan.count > 0 else { continue }
+			
+				rarityList.append((sectionName, itemsLowerThan))
 			}
 			
 			menuItems = [(NSLocalizedString("Rarity segment", comment: ""), rarityList.map{$0.0})]
