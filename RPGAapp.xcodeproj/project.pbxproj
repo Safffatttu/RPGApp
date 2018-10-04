@@ -65,6 +65,7 @@
 		3B88010D20B2E9A100AB2C62 /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010720B2E9A100AB2C62 /* Store+CoreDataProperties.swift */; };
 		3B88010E20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010820B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift */; };
 		3B88010F20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88010920B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift */; };
+		3B8E8C0121667E8E00C55BB1 /* CharacterHealthChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8E8C0021667E8E00C55BB1 /* CharacterHealthChanged.swift */; };
 		3B8F06B01F9792F100611C34 /* PackageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F06AF1F9792F100611C34 /* PackageViewer.swift */; };
 		3B8FB3BA2142EA5A004916BD /* CatalogeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */; };
 		3B94593C2137F09F00384F5B /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B94593B2137F09F00384F5B /* Action.swift */; };
@@ -228,6 +229,7 @@
 		3B88010720B2E9A100AB2C62 /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataProperties.swift"; path = "Data Classes/Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3B88010820B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StoreAvalibleItem+CoreDataClass.swift"; path = "Data Classes/StoreAvalibleItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3B88010920B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StoreAvalibleItem+CoreDataProperties.swift"; path = "Data Classes/StoreAvalibleItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3B8E8C0021667E8E00C55BB1 /* CharacterHealthChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterHealthChanged.swift; sourceTree = "<group>"; };
 		3B8F06AF1F9792F100611C34 /* PackageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageViewer.swift; sourceTree = "<group>"; };
 		3B8FB3B92142EA5A004916BD /* CatalogeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatalogeDataSource.swift; path = ../CatalogeDataSource.swift; sourceTree = "<group>"; };
 		3B94593B2137F09F00384F5B /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -494,11 +496,12 @@
 		3B94593A2137F08D00384F5B /* Action */ = {
 			isa = PBXGroup;
 			children = (
-				3B965839214198510016B593 /* CharacterMoneyChanged.swift */,
 				3B016629213858D10074A747 /* AbilityAdded.swift */,
 				3B01662F21385DF90074A747 /* AbilityRemoved.swift */,
 				3B01662B213859DE0074A747 /* AbilityValueChanged.swift */,
 				3B94594321380D0F00384F5B /* CharacterCreated.swift */,
+				3B8E8C0021667E8E00C55BB1 /* CharacterHealthChanged.swift */,
+				3B965839214198510016B593 /* CharacterMoneyChanged.swift */,
 				3B01663121385FBF0074A747 /* CharacterRemoved.swift */,
 				3BA749A8213956C9002E09A1 /* CharacterVisibilityChanged.swift */,
 				3BA749AE21395F0E002E09A1 /* CurrencyCreated.swift */,
@@ -966,6 +969,7 @@
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
 				3BDBDA0220ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */,
 				3B85B4E92146C41500D637B2 /* CatalogeFilterCell.swift in Sources */,
+				3B8E8C0121667E8E00C55BB1 /* CharacterHealthChanged.swift in Sources */,
 				3BDBD9F720ACD45D00E0EB62 /* Currency+CoreDataClass.swift in Sources */,
 				3B94594421380D0F00384F5B /* CharacterCreated.swift in Sources */,
 				3B9459482138256900384F5B /* ItemPackageAdded.swift in Sources */,
@@ -1205,7 +1209,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
-				CLANG_STATIC_ANALYZER_MODE = shallow;
+				CLANG_STATIC_ANALYZER_MODE = deep;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: safffatttu@gmail.com (5GGSDAF87N)";

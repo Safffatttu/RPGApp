@@ -143,6 +143,9 @@ class ActionDelegate: PackageServiceDelegate{
 		}else if actionType == .characterMoneyChanged{
 			let action = CharacterMoneyChanged(actionData: actionData, sender: sender)
 			action.execute()
+		}else if actionType == .characterHealthChanged{
+			let action = CharacterHealthChanged(actionData: actionData, sender: sender)
+			action.execute()
 		}
     }
 	

@@ -45,6 +45,7 @@ enum ActionType: Int {
 	case characterCreated
 	case characterRemoved
 	case characterMoneyChanged
+	case characterHealthChanged
 	
 	// Map
 	case mapEntityMoved

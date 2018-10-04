@@ -191,6 +191,9 @@ class TeamViewCell: UICollectionViewCell {
 		healthLabel.text = "\(NSLocalizedString("Health", comment: "")) \(character.health)"
 		
 		CoreDataStack.saveContext()
+		
+		let action = CharacterHealthChanged(character: character)
+		PackageService.pack.send(action: action)
 	}
 }
 
