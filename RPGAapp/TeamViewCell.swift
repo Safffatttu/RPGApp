@@ -21,6 +21,8 @@ class TeamViewCell: UICollectionViewCell {
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var raceLabel: UILabel!
 	@IBOutlet weak var professionLabel: UILabel!
+	@IBOutlet weak var healthLabel: UILabel!
+	@IBOutlet weak var healthStepper: UIStepper!
 	
 	@IBOutlet weak var moneyLabel: UILabel!
 	@IBOutlet weak var moneyTextField: UITextField!
@@ -127,6 +129,9 @@ class TeamViewCell: UICollectionViewCell {
 			professionLabel.text = ""
 		}
 		
+		healthLabel.text = "\(NSLocalizedString("Health", comment: "")): \(character.health)"
+		healthStepper.value = character.health
+		
 		moneyTextField.text = showPrice(character.money)
 		
 		visibilities = Load.visibilities()
@@ -177,6 +182,13 @@ class TeamViewCell: UICollectionViewCell {
 		let value = convertCurrencyToValue(text)
 		
 		character.money = value
+		
+		CoreDataStack.saveContext()
+	}
+	
+	@IBAction func healthChanged(_ sender: UIStepper) {
+		character.health = sender.value
+		healthLabel.text = "\(NSLocalizedString("Health", comment: "")) \(character.health)"
 		
 		CoreDataStack.saveContext()
 	}
