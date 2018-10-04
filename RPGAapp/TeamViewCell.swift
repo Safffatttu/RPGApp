@@ -18,6 +18,8 @@ class TeamViewCell: UICollectionViewCell {
 	@IBOutlet weak var equipmentTable: UITableView!
 	@IBOutlet weak var visibilitiesTable: UITableView!
 	
+	@IBOutlet weak var propertiesStackView: UIStackView!
+	
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var raceLabel: UILabel!
 	@IBOutlet weak var professionLabel: UILabel!
@@ -105,28 +107,27 @@ class TeamViewCell: UICollectionViewCell {
 	func reloadLabels(){
 		if let name = character.name{
 			nameLabel.text = NSLocalizedString("Name", comment: "") + ": \(name)"
-		}else{
-			nameLabel.text = ""
+			propertiesStackView.insertArrangedSubview(nameLabel, at: 0)
 		}
 		
-		if let race = character.race{
-			if race.characters.count > 0{
-				raceLabel.text = NSLocalizedString("Character", comment: "") + ": \(race)"
-			}else{
-				raceLabel.text = ""
-			}
+		if let race = character.race, character.race != ""{
+			raceLabel.text = NSLocalizedString("Race", comment: "") + ": \(race)"
+			raceLabel.isHidden = false
+			propertiesStackView.insertArrangedSubview(raceLabel, at: 1)
 		}else{
-			raceLabel.text = ""
+			raceLabel.isHidden = true
+			propertiesStackView.removeArrangedSubview(raceLabel)
 		}
 		
-		if let profession = character.profession{
-			if profession.characters.count > 0{
-				professionLabel.text = NSLocalizedString("Profession", comment: "") + ": \(profession)"
-			}else{
-				professionLabel.text = ""
-			}
+		if let profession = character.profession, character.profession != ""{
+			professionLabel.text = NSLocalizedString("Profession", comment: "") + ": \(profession)"
+			professionLabel.isHidden = false
+			
+			let index = propertiesStackView.arrangedSubviews.count - 2
+			propertiesStackView.insertArrangedSubview(professionLabel, at: index)
 		}else{
-			professionLabel.text = ""
+			professionLabel.isHidden = true
+			propertiesStackView.removeArrangedSubview(professionLabel)
 		}
 		
 		healthLabel.text = "\(NSLocalizedString("Health", comment: "")): \(character.health)"
