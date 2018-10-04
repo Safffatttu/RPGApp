@@ -329,6 +329,21 @@ public struct Load {
 		
 		return texture		
 	}
+
+	public static func itemAtributes() -> [ItemAtribute]{
+		var attributes: [ItemAtribute] = []
+		
+		let attributeFetch: NSFetchRequest<ItemAtribute> = ItemAtribute.fetchRequest()
+		
+		do{
+			attributes = try context.fetch(attributeFetch)
+		}
+		catch{
+			print("error")
+		}
+		
+		return attributes
+	}
 	
 	public static var priceRange: (Double, Double){
 		let priceList = Load.items().map{$0.price}

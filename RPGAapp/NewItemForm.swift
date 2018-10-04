@@ -45,12 +45,99 @@ class NewItemForm: FormViewController{
 			price = item.price
 			quantity = item.quantity
 			rarity = item.rarity
+			
+			if let atributes = item.itemAtribute?.sortedArray(using: [.sortItemAtributeByName]) as? [ItemAtribute]{
+				self.atributes = atributes
+			}
 		}
 	}
 	
+	var atributes: [ItemAtribute] = []
+	
+	var atributeMode: Bool = false
+	
 	override func viewDidLoad() {
+		let itemSection = createItemSection()
+		
+		former.append(sectionFormer: itemSection)
+		
+		let createItemRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
+			.configure{[unowned self] in
+				if self.item == nil{
+					$0.text = NSLocalizedString("Create new item", comment: "")
+				}else{
+					$0.text = NSLocalizedString("Edit item", comment: "")
+				}
+			}.onSelected{[unowned self] _ in
+				self.doneEditing()
+		}
+		
+		let switchModeRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
+			.configure{
+				if atributeMode{
+					$0.text = NSLocalizedString("Show item properties", comment: "")
+				}else{
+					$0.text = NSLocalizedString("Show item atributes", comment: "")
+				}
+			}.onSelected{[unowned self] _ in
+				self.switchDisplayMode()
+		}
+		
+		let dissmissRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
+				$0.centerTextLabel.textColor = .red
+			}.configure{
+			$0.text	= NSLocalizedString("Dismiss changes", comment: "")
+			}.onSelected{[unowned self] _ in
+				self.dismissView()
+		}
+	
+		let secondSection = SectionFormer(rowFormers: [createItemRow, switchModeRow, dissmissRow])
+		former.append(sectionFormer: secondSection)
+		
+		super.viewDidLoad()
+	}
+	
+	func switchDisplayMode(){
+		self.atributeMode = !self.atributeMode
+		
+		if self.atributeMode{
+			self.showItemAtributes()
+		}else{
+			self.showItemProperties()
+		}
+	}
+	
+	func showItemProperties(){
+		let itemSection = self.createItemSection()
+		let count = self.former.sectionFormers.count
+		
+		for _ in 0...count - 2{
+			self.former.remove(section: 0)
+		}
+		
+		self.former.insert(sectionFormer: itemSection, toSection: 0)
+		self.former.reload()
+	}
+	
+	func showItemAtributes(){
+		var atributesSections: [SectionFormer] = []
+		
+		for atribute in self.atributes{
+			let newSection = createAtributeSection(using: atribute)
+			atributesSections.append(newSection)
+		}
+		
+		let addAtribute = addAtributeSection()
+		atributesSections.append(addAtribute)
+		
+		self.former.remove(section: 0)
+		self.former.insert(sectionFormers: atributesSections, toSection: 0)
+		self.former.reload()
+	}
+	
+	func createItemSection() -> SectionFormer{
 		let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
-				$0.titleLabel.text = NSLocalizedString("Name", comment: "")
+			$0.titleLabel.text = NSLocalizedString("Name", comment: "")
 			}.onTextChanged{[unowned self] in
 				self.itemName = $0
 			}.configure{
@@ -81,7 +168,7 @@ class NewItemForm: FormViewController{
 				}
 			}.onValueChanged{[unowned self] in
 				self.subCategories = $0.value?.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
-
+				
 				subCategoryRow.configure{[unowned self] row in
 					row.pickerItems = self.subCategories.map({
 						InlinePickerItem(title: $0.name!, value: $0)
@@ -100,7 +187,7 @@ class NewItemForm: FormViewController{
 			}.onTextChanged{[unowned self] in
 				self.itemDescription = $0
 		}
-
+		
 		let priceRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
 			$0.titleLabel.text = NSLocalizedString("Price", comment: "")
 			}.configure{[unowned self] in
@@ -142,33 +229,81 @@ class NewItemForm: FormViewController{
 		let section = SectionFormer(rowFormers: [nameRow, categoryRow, subCategoryRow, descriptionRow, priceRow, quantityRow, rarityRow])
 			.set(headerViewFormer: header)
 		
-		former.append(sectionFormer: section)
-		
-		let createItemRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
-			.configure{[unowned self] in
-				if self.item == nil{
-					$0.text = NSLocalizedString("Create new item", comment: "")
-				}else{
-					$0.text = NSLocalizedString("Edit item", comment: "")
-				}
-			}.onSelected{[unowned self] _ in
-				self.doneEditing()
-		}
-		
-		let dissmissRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
-				$0.centerTextLabel.textColor = .red
-			}.configure{
-			$0.text	= NSLocalizedString("Dismiss changes", comment: "")
-			}.onSelected{[unowned self] _ in
-				self.dismissView()
-		}
+		return section
+	}
 	
-		let secondSection = SectionFormer(rowFormers: [createItemRow,dissmissRow])
-		former.append(sectionFormer: secondSection)
+	func createAtributeSection(using atribute: ItemAtribute) -> SectionFormer{
 		
-		tableView.isScrollEnabled = false 
+		let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
+				$0.titleLabel.text = NSLocalizedString("Name", comment: "")
+			}.configure{
+				$0.text = atribute.name ?? ""
+			}.onTextChanged{
+				atribute.name = $0
+		}
 		
-		super.viewDidLoad()
+		let priceModRow = TextFieldRowFormer<NumberFieldCell>(instantiateType: .Nib(nibName: "NumberFieldCell")){
+				$0.titleLabel.text = NSLocalizedString("Price", comment: "")
+				$0.allowFloatingPoint = true
+			}.configure{
+				$0.text = String(atribute.priceMod)
+			}.onTextChanged{
+				atribute.priceMod = Double($0) ?? 1
+		}
+		
+		let rarityModRow = SegmentedRowFormer<FormSegmentedCell>(){
+				$0.titleLabel.text = NSLocalizedString("Rarity", comment: "")
+			}.configure{
+				$0.segmentTitles = rarityName
+				$0.selectedIndex = Int(atribute.rarityMod - 1)
+			}.onSegmentSelected{ r,_ in
+				atribute.rarityMod = Int16(r + 1)
+		}
+		
+		let removeAttributeRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
+			$0.centerTextLabel.textColor = .red
+			}.configure{
+				$0.text = NSLocalizedString("Remove attribute", comment: "")
+			}.onSelected{[unowned self] _ in
+				guard let sectionNumber = self.atributes.index(of: atribute) else { return }
+				self.atributes.remove(at: sectionNumber)
+				
+				self.former.remove(section: sectionNumber)
+				self.former.reload()
+		}
+		
+		let header = LabelViewFormer<FormLabelHeaderView>()
+			.configure{
+				$0.text = NSLocalizedString("Atribute", comment: "")
+		}
+		
+		let section = SectionFormer(rowFormers: [nameRow, priceModRow, rarityModRow, removeAttributeRow])
+			.set(headerViewFormer: header)
+		
+		return section
+	}
+	
+	func addAtributeSection() -> SectionFormer{
+		let addAttributeRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
+			.configure{
+				$0.text = NSLocalizedString("Add new attribute", comment: "")
+			}.onSelected{[unowned self] _ in
+				let context = CoreDataStack.managedObjectContext
+				let newAtribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtribute.self), into: context) as! ItemAtribute
+				
+				let sectionToInsert = self.atributes.count
+				
+				self.atributes.append(newAtribute)
+				
+				let newAtributeSection = self.createAtributeSection(using: newAtribute)
+				
+				self.former.insert(sectionFormer: newAtributeSection, toSection: sectionToInsert)
+				self.former.reload()
+		}
+		
+		let section = SectionFormer(rowFormer: addAttributeRow)
+		
+		return section
 	}
 	
 	func doneEditing(){
@@ -196,6 +331,25 @@ class NewItemForm: FormViewController{
 		if item == nil{
 			newItem.id = (newItem.name)! + String(describing: strHash(newItem.name! + (newItem.item_description)! + String(describing: newItem.price)))
 		}
+		
+		if let previousAttributes = newItem.itemAtribute{
+			newItem.removeFromItemAtribute(previousAttributes)
+		}
+		
+		let context = CoreDataStack.managedObjectContext
+		
+		for attribute in atributes{
+			guard attribute.name != nil && attribute.name != "" else {
+				context.delete(attribute)
+				continue
+			}
+			
+		 	attribute.id = (attribute.name)! + String(describing: strHash((attribute.name)! + String(describing: attribute.priceMod) + String(describing: (attribute.rarityMod))))
+			newItem.addToItemAtribute(attribute)
+		}
+	
+		let atributesToDelete = Load.itemAtributes().filter({$0.item == nil})
+		atributesToDelete.forEach{context.delete($0)}
 		
 		CoreDataStack.saveContext()
 		
