@@ -82,5 +82,9 @@ enum ActionType: Int {
 	case visibilityRemoved
 	case characterVisibilityChanged
 	
+	//Note
+	case noteCreated
+	case noteTextChanged
+	case noteRemoved
 	
 }

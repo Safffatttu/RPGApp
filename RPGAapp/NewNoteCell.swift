@@ -36,5 +36,8 @@ class NewNoteCell: UICollectionViewCell{
 		CoreDataStack.saveContext()
 		
 		NotificationCenter.default.post(name: .addedNote, object: nil)
+		
+		let action = NoteCreated(note: note)
+		PackageService.pack.send(action: action)		
 	}
 }

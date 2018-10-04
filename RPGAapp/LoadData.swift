@@ -358,6 +358,23 @@ public struct Load {
 		return notes
 	}
 	
+	public static func note(with id: String) -> Note?{
+		var note: Note?
+		
+		let noteFetch: NSFetchRequest<Note> = Note.fetchRequest()
+		
+		noteFetch.predicate = NSPredicate(format: "id == %@", id)
+		
+		do{
+			note = try context.fetch(noteFetch).first
+		}
+		catch{
+			print("error")
+		}
+		
+		return note
+	}
+	
 	public static var priceRange: (Double, Double){
 		let priceList = Load.items().map{$0.price}
 		return (priceList.min() ?? 0, priceList.max() ?? 0)

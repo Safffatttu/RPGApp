@@ -34,6 +34,9 @@
 		3B31039B20E00D1100CECAAB /* DrawSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31039A20E00D1100CECAAB /* DrawSettingCell.swift */; };
 		3B31B3E61F3B67A6003526E1 /* CatalogMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E51F3B67A6003526E1 /* CatalogMenuViewController.swift */; };
 		3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */; };
+		3B34B6DF2166D81B00F61D40 /* NoteCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B34B6DE2166D81B00F61D40 /* NoteCreated.swift */; };
+		3B34B6E12166D83100F61D40 /* NoteTextChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B34B6E02166D83100F61D40 /* NoteTextChanged.swift */; };
+		3B34B6E32166D83F00F61D40 /* NoteRemoved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B34B6E22166D83F00F61D40 /* NoteRemoved.swift */; };
 		3B3C052D1F3BBA8100CFB002 /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */; };
 		3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C05301F3BC1D600CFB002 /* MapViewController.swift */; };
 		3B4582AA20B1F09700A07627 /* CenteredLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4582A920B1F09700A07627 /* CenteredLabelCell.xib */; };
@@ -201,6 +204,9 @@
 		3B31039A20E00D1100CECAAB /* DrawSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawSettingCell.swift; sourceTree = "<group>"; };
 		3B31B3E51F3B67A6003526E1 /* CatalogMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogMenuViewController.swift; sourceTree = "<group>"; };
 		3B31B3E71F3B7622003526E1 /* CatalogeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDetailViewController.swift; sourceTree = "<group>"; };
+		3B34B6DE2166D81B00F61D40 /* NoteCreated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCreated.swift; sourceTree = "<group>"; };
+		3B34B6E02166D83100F61D40 /* NoteTextChanged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTextChanged.swift; sourceTree = "<group>"; };
+		3B34B6E22166D83F00F61D40 /* NoteRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteRemoved.swift; sourceTree = "<group>"; };
 		3B3C052C1F3BBA8100CFB002 /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3B3C05301F3BC1D600CFB002 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3B4582A920B1F09700A07627 /* CenteredLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenteredLabelCell.xib; sourceTree = "<group>"; };
@@ -530,6 +536,9 @@
 				3B016633213864380074A747 /* ItemCharacterChanged.swift */,
 				3BBD22E221393DA100DDE572 /* MapEntityMoved.swift */,
 				3B0FD4B2214106540005D018 /* MapTextureChanged.swift */,
+				3B34B6DE2166D81B00F61D40 /* NoteCreated.swift */,
+				3B34B6E02166D83100F61D40 /* NoteTextChanged.swift */,
+				3B34B6E22166D83F00F61D40 /* NoteRemoved.swift */,
 				3BD777932138506300A03A88 /* PackageCreated.swift */,
 				3BD777952138521200A03A88 /* PackageDeleted.swift */,
 				3BD77797213853B700A03A88 /* SessionDeleted.swift */,
@@ -986,6 +995,7 @@
 				3B295D8620A8E326001DC35D /* DiceRollModels.swift in Sources */,
 				3BDBD9FB20ACD45D00E0EB62 /* DrawSubSetting+CoreDataClass.swift in Sources */,
 				3BDBDA0C20ACD4F400E0EB62 /* SubCurrency+CoreDataClass.swift in Sources */,
+				3B34B6E12166D83100F61D40 /* NoteTextChanged.swift in Sources */,
 				3B8FB3BA2142EA5A004916BD /* CatalogeDataSource.swift in Sources */,
 				3BDBDA0120ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataClass.swift in Sources */,
 				3BDBDA0520ACD45D00E0EB62 /* Package+CoreDataClass.swift in Sources */,
@@ -993,6 +1003,8 @@
 				3B96583A214198510016B593 /* CharacterMoneyChanged.swift in Sources */,
 				3BBD22E321393DA100DDE572 /* MapEntityMoved.swift in Sources */,
 				3B4582AC20B1F17600A07627 /* CenteredLabelCell.swift in Sources */,
+				3B34B6E32166D83F00F61D40 /* NoteRemoved.swift in Sources */,
+				3B34B6DF2166D81B00F61D40 /* NoteCreated.swift in Sources */,
 				3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */,
 				3BDBDA0220ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */,
 				3B85B4E92146C41500D637B2 /* CatalogeFilterCell.swift in Sources */,
