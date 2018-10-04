@@ -39,13 +39,11 @@ class NotesViewController: UICollectionViewController{
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		print(indexPath.row)
 		if indexPath.row == noteDiffCalculator.items.count{
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newNoteCell", for: indexPath) as! NewNoteCell
 			return cell
 		}else{
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noteCell", for: indexPath) as! NoteCell
-			print(noteDiffCalculator.items.count)
 			let note = noteDiffCalculator.items[indexPath.row]
 			
 			cell.note = note
