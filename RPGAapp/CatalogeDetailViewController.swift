@@ -136,15 +136,26 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 			tableView.reloadRows(at: [indexPath], with: .automatic)
 			return
 		}
+
+		tableView.beginUpdates()
 		
 		if expandedCell != nil{
-			let tmpIndex = expandedCell
+			let tmpIndex = expandedCell!
+
+			let section = tmpIndex.section
+			let row = tmpIndex.row
+			
 			expandedCell = nil
-			tableView.reloadRows(at: [tmpIndex!], with: .automatic)
+			
+			if numberOfSections(in: tableView) >= section && self.tableView(tableView, numberOfRowsInSection: section) >= row{
+				tableView.reloadRows(at: [tmpIndex], with: .automatic)
+			}
 		}
-		expandedCell = indexPath
 		
+		expandedCell = indexPath
 		tableView.reloadRows(at: [indexPath], with: .automatic)
+		
+		tableView.endUpdates()
 		
 		if tableView.cellForRow(at: indexPath) == tableView.visibleCells.first {
 			tableView.scrollToRow(at: indexPath, at: .top, animated: true)
