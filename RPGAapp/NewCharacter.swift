@@ -16,7 +16,7 @@ class NewCharacterForm: FormViewController {
 	var name = ""
 	var race = ""
 	var profession = ""
-	var health: Double = 0
+	var health: Int16 = 0
 	var id = ""
 	
 	let imagePicker = UIImagePickerController()
@@ -84,9 +84,9 @@ class NewCharacterForm: FormViewController {
 			$0.stepper.maximumValue = 100000000
 			$0.stepper.minimumValue = 0
 			}.onValueChanged{[unowned self] in
-				self.health = $0
+				self.health = Int16($0)
 			}.configure{
-				$0.value = health
+				$0.value = Double(health)
 		}
 		
 		let selectImageRow = LabelRowFormer<FormLabelCell>()

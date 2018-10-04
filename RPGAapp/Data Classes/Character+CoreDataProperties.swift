@@ -16,7 +16,7 @@ extension Character {
         return NSFetchRequest<Character>(entityName: "Character")
     }
 
-    @NSManaged public var health: Double
+    @NSManaged public var health: Int16
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var profession: String?

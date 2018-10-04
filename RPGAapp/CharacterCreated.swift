@@ -37,7 +37,7 @@ struct CharacterCreated: Action {
 	var id: String?
 	var name: String?
 	var race: String?
-	var health: Double?
+	var health: Int16?
 	var profession: String?
 	var visibilityId: String?
 	
@@ -67,7 +67,7 @@ struct CharacterCreated: Action {
 		id = actionData.value(forKey: "id") as? String
 		name = actionData.value(forKey: "name") as? String
 		race = actionData.value(forKey: "race") as? String
-		health = actionData.value(forKey: "health") as? Double
+		health = actionData.value(forKey: "health") as? Int16
 		profession = actionData.value(forKey: "profession") as? String
 		visibilityId = actionData.value(forKey: "visibilityId") as? String
 		

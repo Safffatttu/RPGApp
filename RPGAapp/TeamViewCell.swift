@@ -130,7 +130,7 @@ class TeamViewCell: UICollectionViewCell {
 		}
 		
 		healthLabel.text = "\(NSLocalizedString("Health", comment: "")): \(character.health)"
-		healthStepper.value = character.health
+		healthStepper.value = Double(character.health)
 		
 		moneyTextField.text = showPrice(character.money)
 		
@@ -187,7 +187,7 @@ class TeamViewCell: UICollectionViewCell {
 	}
 	
 	@IBAction func healthChanged(_ sender: UIStepper) {
-		character.health = sender.value
+		character.health = Int16(sender.value)
 		healthLabel.text = "\(NSLocalizedString("Health", comment: "")) \(character.health)"
 		
 		CoreDataStack.saveContext()

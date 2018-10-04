@@ -189,7 +189,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		
 		guard let characterName = characterDict.value(forKey: "name") as? String else { continue }
 		guard let characterId = characterDict.value(forKey: "id") as? String else { continue }
-		guard let characterHealth = characterDict.value(forKey: "health") as? Double else { continue }
+		guard let characterHealth = characterDict.value(forKey: "health") as? Int16 else { continue }
 		let characterProfession = characterDict.value(forKey: "profession") as? String
 		let characterRace = characterDict.value(forKey: "race") as? String
 		
