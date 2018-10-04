@@ -74,6 +74,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 			
 			if let filterItem = modelItem as? CatalogeFilterItem, let filterCell = cell as? CatalogeFilterCell{
 				filterCell.setup(using: filterItem)
+				cell?.selectionStyle = .none
 			}else{
 				cell?.textLabel?.text = modelItem.name
 				cell?.detailTextLabel?.text = ""
@@ -86,7 +87,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 			let cellSubCategory = list[indexPath.section].1[indexPath.row]
 			
 			cell?.textLabel?.text = cellSubCategory.0.capitalized
-			cell?.detailTextLabel?.text = "\(cellSubCategory.1) \(NSLocalizedString("Items", comment: ""))"
+			cell?.detailTextLabel?.text = String(cellSubCategory.1)
 			cell?.accessoryType = .none
 			
 			return cell!
