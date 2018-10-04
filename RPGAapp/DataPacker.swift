@@ -126,6 +126,18 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		maps.add(mapDict)
 	}
 	
+	let notes = NSMutableArray()
+	
+	for case let note as Note in session.notes!{
+		let noteDict = NSMutableDictionary()
+		
+		noteDict.setValue(note.id, forKey: "id")
+		noteDict.setValue(note.text, forKey: "text")
+		noteDict.setValue(note.visibility?.id, forKey: "visibilityId")
+		
+		notes.add(noteDict)
+	}
+	
 	let dictionary = NSMutableDictionary()
 	dictionary.setValue(current, forKey: "current")
 	//dictionary.setValue(devices, forKey: "devices")
@@ -137,6 +149,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	dictionary.setValue(packages, forKey: "packages")
 	dictionary.setValue(maps, forKey: "maps")
 	dictionary.setValue(visibilties, forKey: "visibilties")
+	dictionary.setValue(notes, forKey: "notes")
 	
 	return dictionary
 }
@@ -153,6 +166,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	guard let allPackagesDict = dictionary.value(forKey: "packages") as? NSArray else { return nil }
 	guard let allMapsDict = dictionary.value(forKey: "maps") as? NSArray else { return nil }
 	guard let allVisibilities = dictionary.value(forKey: "visibilties") as? NSArray else { return nil }
+	guard let allNotes = dictionary.value(forKey: "notes") as? NSArray else { return nil }
 	
 	let context = CoreDataStack.managedObjectContext
 	
@@ -309,6 +323,24 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		map.current = mapCurrent
 		
 		session.addToMaps(map)
+	}
+	
+	for case let noteDict as NSDictionary in allNotes{
+		guard let noteId = noteDict.value(forKey: "id") as? String else { continue }
+		guard let noteText = noteDict.value(forKey: "text") as? String else { continue	}
+		
+		let note = NSEntityDescription.insertNewObject(forEntityName: String(describing: Note.self), into: context) as! Note
+		
+		note.id = noteId
+		note.text = noteText
+		
+		if let noteVisibilityId = noteDict.value(forKey: "visibilityId") as? String{
+			if let visibility = Load.visibility(with: noteVisibilityId){
+				note.visibility = visibility
+			}
+		}
+		
+		session.addToNotes(note)
 	}
 	
 	CoreDataStack.saveContext()
