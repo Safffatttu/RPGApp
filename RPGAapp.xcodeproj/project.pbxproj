@@ -97,6 +97,11 @@
 		3BBD22E521393F3000DDE572 /* ItemListSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBD22E421393F3000DDE572 /* ItemListSync.swift */; };
 		3BBD22E721393FE500DDE572 /* ItemListRequested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBD22E621393FE500DDE572 /* ItemListRequested.swift */; };
 		3BBD22E92139412C00DDE572 /* ItemListRecieved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBD22E82139412C00DDE572 /* ItemListRecieved.swift */; };
+		3BC4483321669F1E00A03B49 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC4483121669F1E00A03B49 /* Note+CoreDataClass.swift */; };
+		3BC4483421669F1E00A03B49 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC4483221669F1E00A03B49 /* Note+CoreDataProperties.swift */; };
+		3BC448372166A16000A03B49 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC448362166A16000A03B49 /* NotesViewController.swift */; };
+		3BC448392166A49100A03B49 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC448382166A49100A03B49 /* NoteCell.swift */; };
+		3BC4483B2166A80000A03B49 /* NewNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC4483A2166A80000A03B49 /* NewNoteCell.swift */; };
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
 		3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */; };
 		3BD335931FF291DC004F70BF /* drawingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD335921FF291DC004F70BF /* drawingTest.swift */; };
@@ -260,6 +265,11 @@
 		3BBD22E421393F3000DDE572 /* ItemListSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListSync.swift; sourceTree = "<group>"; };
 		3BBD22E621393FE500DDE572 /* ItemListRequested.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListRequested.swift; sourceTree = "<group>"; };
 		3BBD22E82139412C00DDE572 /* ItemListRecieved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListRecieved.swift; sourceTree = "<group>"; };
+		3BC4483121669F1E00A03B49 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Note+CoreDataClass.swift"; path = "Data Classes/Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3BC4483221669F1E00A03B49 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Note+CoreDataProperties.swift"; path = "Data Classes/Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3BC448362166A16000A03B49 /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		3BC448382166A49100A03B49 /* NoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
+		3BC4483A2166A80000A03B49 /* NewNoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNoteCell.swift; sourceTree = "<group>"; };
 		3BCD737F1F3C4E1400B35D75 /* TeamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamView.swift; path = RPGAapp/TeamView.swift; sourceTree = "<group>"; };
 		3BCF1593210F8B31000E3082 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3BCF1595210F8B31000E3082 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -380,6 +390,7 @@
 				3B11312820C2C9CD00F95088 /* RandomItem */,
 				3B11312720C2C99700F95088 /* TeamView */,
 				3B709CE620ACA26B00D5825E /* Map */,
+				3BC448352166A13C00A03B49 /* Notes */,
 				3B3C052E1F3BBE3E00CFB002 /* Menu */,
 				3BEBCDFC20E15A0200F31732 /* PackageViewer */,
 				3B11312620C2C90E00F95088 /* Cataloge */,
@@ -558,6 +569,16 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		3BC448352166A13C00A03B49 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				3BC448382166A49100A03B49 /* NoteCell.swift */,
+				3BC4483A2166A80000A03B49 /* NewNoteCell.swift */,
+				3BC448362166A16000A03B49 /* NotesViewController.swift */,
+			);
+			name = Notes;
+			sourceTree = "<group>";
+		};
 		3BD335891FF28B2E004F70BF /* RPGAappUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,6 +607,8 @@
 				3BDBD9D020ACD45D00E0EB62 /* Map+CoreDataProperties.swift */,
 				3BDBD9D120ACD45D00E0EB62 /* MapEntity+CoreDataClass.swift */,
 				3BDBD9D220ACD45D00E0EB62 /* MapEntity+CoreDataProperties.swift */,
+				3BC4483121669F1E00A03B49 /* Note+CoreDataClass.swift */,
+				3BC4483221669F1E00A03B49 /* Note+CoreDataProperties.swift */,
 				3BDBD9D320ACD45D00E0EB62 /* Session+CoreDataProperties.swift */,
 				3BDBD9D420ACD45D00E0EB62 /* Ability+CoreDataClass.swift */,
 				3BDBD9D520ACD45D00E0EB62 /* Ability+CoreDataProperties.swift */,
@@ -889,6 +912,7 @@
 				3BDBD9F120ACD45D00E0EB62 /* Session+CoreDataProperties.swift in Sources */,
 				3BA749A5213951D0002E09A1 /* TextureRequest.swift in Sources */,
 				3B01662A213858D10074A747 /* AbilityAdded.swift in Sources */,
+				3BC4483321669F1E00A03B49 /* Note+CoreDataClass.swift in Sources */,
 				3BF480AF1F44DBF50017169D /* ShowInfoPopOver.swift in Sources */,
 				3B88010F20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataProperties.swift in Sources */,
 				3BA749A3213945AC002E09A1 /* TextureSend.swift in Sources */,
@@ -909,9 +933,11 @@
 				3B31B3E81F3B7622003526E1 /* CatalogeDetailViewController.swift in Sources */,
 				3B063D651F3A21A800B5271C /* MasterViewController.swift in Sources */,
 				3BD777962138521200A03A88 /* PackageDeleted.swift in Sources */,
+				3BC448392166A49100A03B49 /* NoteCell.swift in Sources */,
 				3BDBD9F220ACD45D00E0EB62 /* Ability+CoreDataClass.swift in Sources */,
 				3BEBCDFE20E15A2F00F31732 /* PackageViewerCell.swift in Sources */,
 				3BA749A72139559A002E09A1 /* VisibilityCreated.swift in Sources */,
+				3BC4483421669F1E00A03B49 /* Note+CoreDataProperties.swift in Sources */,
 				3BDBD9F920ACD45D00E0EB62 /* DrawSetting+CoreDataClass.swift in Sources */,
 				3B9779FC1F6D401900B2D23A /* Functions.swift in Sources */,
 				3B87467520E91B7F00A5527E /* NameGenerator.swift in Sources */,
@@ -932,6 +958,7 @@
 				3B11312B20C2CAAF00F95088 /* CatalogeDetailCell.swift in Sources */,
 				3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */,
 				3BDBD9FD20ACD45D00E0EB62 /* Item+CoreDataClass.swift in Sources */,
+				3BC448372166A16000A03B49 /* NotesViewController.swift in Sources */,
 				3B88010A20B2E9A100AB2C62 /* StorePurchases+CoreDataClass.swift in Sources */,
 				3B709CE820ACA29600D5825E /* MapScene.swift in Sources */,
 				3B01662E21385B390074A747 /* GeneratedRandomNumber.swift in Sources */,
@@ -970,6 +997,7 @@
 				3BDBDA0220ACD45D00E0EB62 /* ItemAtributeHandler+CoreDataProperties.swift in Sources */,
 				3B85B4E92146C41500D637B2 /* CatalogeFilterCell.swift in Sources */,
 				3B8E8C0121667E8E00C55BB1 /* CharacterHealthChanged.swift in Sources */,
+				3BC4483B2166A80000A03B49 /* NewNoteCell.swift in Sources */,
 				3BDBD9F720ACD45D00E0EB62 /* Currency+CoreDataClass.swift in Sources */,
 				3B94594421380D0F00384F5B /* CharacterCreated.swift in Sources */,
 				3B9459482138256900384F5B /* ItemPackageAdded.swift in Sources */,

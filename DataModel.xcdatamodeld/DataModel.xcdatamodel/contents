@@ -94,6 +94,12 @@
         <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="entities" inverseEntity="Map" syncable="YES"/>
         <relationship name="texture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" inverseName="mapEntity" inverseEntity="Texture" storedInTruthFile="YES" syncable="YES"/>
     </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="text" attributeType="String" syncable="YES"/>
+        <relationship name="session" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="notes" inverseEntity="Session" syncable="YES"/>
+        <relationship name="visibility" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Visibility" syncable="YES"/>
+    </entity>
     <entity name="Package" representedClassName="Package" syncable="YES">
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -111,6 +117,7 @@
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="session" inverseEntity="Character" syncable="YES"/>
         <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" syncable="YES"/>
         <relationship name="maps" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Map" inverseName="session" inverseEntity="Map" syncable="YES"/>
+        <relationship name="notes" toMany="YES" deletionRule="Cascade" destinationEntity="Note" inverseName="session" inverseEntity="Note" syncable="YES"/>
         <relationship name="packages" toMany="YES" deletionRule="Cascade" destinationEntity="Package" inverseName="session" inverseEntity="Package" syncable="YES"/>
         <relationship name="visibility" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Visibility" inverseName="session" inverseEntity="Visibility" syncable="YES"/>
     </entity>
@@ -169,8 +176,9 @@
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="105"/>
         <element name="Map" positionX="-1026" positionY="204" width="128" height="165"/>
         <element name="MapEntity" positionX="-819" positionY="405" width="128" height="135"/>
+        <element name="Note" positionX="-1044" positionY="6" width="128" height="30"/>
         <element name="Package" positionX="-452" positionY="-99" width="128" height="120"/>
-        <element name="Session" positionX="-866" positionY="-84" width="128" height="210"/>
+        <element name="Session" positionX="-866" positionY="-84" width="128" height="225"/>
         <element name="Store" positionX="-531" positionY="431" width="126" height="118"/>
         <element name="StoreAvalibleItem" positionX="-378" positionY="359" width="128" height="73"/>
         <element name="StorePurchases" positionX="-387" positionY="557" width="128" height="118"/>

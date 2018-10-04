@@ -364,6 +364,7 @@ extension UIResponder {
 extension Notification.Name{
     static let itemAddedToCharacter = Notification.Name("itemAddedToCharacter")
     static let addedItemToPackage = Notification.Name("addedItemToPackage")
+	static let addedNote = Notification.Name("newNote")
 }
 
 extension NSSortDescriptor{

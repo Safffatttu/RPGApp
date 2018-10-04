@@ -345,6 +345,19 @@ public struct Load {
 		return attributes
 	}
 	
+	public static func notes() -> [Note]{
+		var notes: [Note] = []
+		let notesFetch: NSFetchRequest<Note> = Note.fetchRequest()
+		
+		do {
+			notes = try context.fetch(notesFetch)
+		}catch{
+			print("error")
+		}
+		
+		return notes
+	}
+	
 	public static var priceRange: (Double, Double){
 		let priceList = Load.items().map{$0.price}
 		return (priceList.min() ?? 0, priceList.max() ?? 0)

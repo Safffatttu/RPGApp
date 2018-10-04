@@ -27,6 +27,7 @@ extension Session {
     @NSManaged public var maps: NSSet?
     @NSManaged public var packages: NSSet?
     @NSManaged public var visibility: NSSet?
+    @NSManaged public var notes: NSSet?
 
 }
 
@@ -95,5 +96,22 @@ extension Session {
 
     @objc(removeVisibility:)
     @NSManaged public func removeFromVisibility(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for notes
+extension Session {
+
+    @objc(addNotesObject:)
+    @NSManaged public func addToNotes(_ value: Note)
+
+    @objc(removeNotesObject:)
+    @NSManaged public func removeFromNotes(_ value: Note)
+
+    @objc(addNotes:)
+    @NSManaged public func addToNotes(_ values: NSSet)
+
+    @objc(removeNotes:)
+    @NSManaged public func removeFromNotes(_ values: NSSet)
 
 }

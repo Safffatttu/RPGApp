@@ -17,6 +17,7 @@ class MasterViewController: UITableViewController {
                      (NSLocalizedString("Draw Items",comment: "") ,"showRandomItemView","showRandomItemDetailView"),
 					 (NSLocalizedString("Packages"  ,comment: "") ,"showPackageViewer",""),
 					 (NSLocalizedString("Dice"      ,comment: "") ,"showRNG", ""),
+					 (NSLocalizedString("Notes"     ,comment: "") ,"showNotes",""),
 					 (NSLocalizedString("Settings"  ,comment: "") ,"showSettings", "")
 	]
 	
