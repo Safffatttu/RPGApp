@@ -168,6 +168,8 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 			
 			CoreDataStack.managedObjectContext.delete(item)
 			CoreDataStack.saveContext()
+			
+			NotificationCenter.default.post(name: .createdNewItem, object: nil)
 		})
 		
 		let localizedShare = NSLocalizedString("Share item", comment: "")

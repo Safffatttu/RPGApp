@@ -15,6 +15,7 @@ class CatalogeDataSource{
 	init() {
 		NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(modelChanged), name: .catalogeModelChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(modelChanged), name: .createdNewItem, object: nil)
 		self.modelChanged()
 	}
 	
