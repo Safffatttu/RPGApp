@@ -19,7 +19,7 @@ extension ItemAtribute {
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var priceMod: Double
-    @NSManaged public var rarityMod: Double
+    @NSManaged public var rarityMod: Int16
     @NSManaged public var excludingAtributes: NSSet?
     @NSManaged public var item: Item?
     @NSManaged public var requiredAtributes: NSSet?

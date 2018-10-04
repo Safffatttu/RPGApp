@@ -160,7 +160,7 @@ func loadItemsFromAsset(){
             let attribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtribute.self), into: context) as! ItemAtribute
             attribute.name = line[3]
             attribute.priceMod = Double(line[4])!
-            attribute.rarityMod = Double(line[5])!
+            attribute.rarityMod = Int16(line[5])!
             attribute.id = (attribute.name)! + String(describing: strHash((attribute.name)! + String(describing: attribute.priceMod) + String(describing: (attribute.rarityMod))))
             item?.addToItemAtribute(attribute)
             continue
