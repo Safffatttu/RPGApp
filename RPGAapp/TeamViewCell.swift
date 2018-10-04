@@ -16,6 +16,7 @@ class TeamViewCell: UICollectionViewCell {
 	
 	@IBOutlet weak var abilityTable: UITableView!
 	@IBOutlet weak var equipmentTable: UITableView!
+	@IBOutlet weak var visibilitiesTable: UITableView!
 	
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var raceLabel: UILabel!
@@ -26,19 +27,20 @@ class TeamViewCell: UICollectionViewCell {
 	
 	@IBOutlet weak var abilityLabel: UILabel!
 	@IBOutlet weak var equipmentLabel: UILabel!
+	@IBOutlet weak var visibilitiesLabel: UILabel!
 	
 	@IBOutlet weak var deleteButton: UIButton!
 	@IBOutlet weak var editButton: UIButton!
 	
-	@IBOutlet weak var visibilitySegController: UISegmentedControl!
-	
 	var abilityDiffCalculator: SingleSectionTableViewDiffCalculator<Ability>?
 	var equipmentDiffCalculator: SingleSectionTableViewDiffCalculator<ItemHandler>?
+	var visibilitiesDiffCalculator: SingleSectionTableViewDiffCalculator<Visibility>?
 	
 	var character: Character!{
 		didSet{
 			abilities = character.abilities?.sortedArray(using: [.sortAbilityByName]) as? [Ability]
 			items = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler]
+			visibilities = Load.visibilities()
 			
 			reloadLabels()
 		}
@@ -56,15 +58,22 @@ class TeamViewCell: UICollectionViewCell {
 		}
 	}
 	
-	var visibilities: [Visibility]!
+	var visibilities: [Visibility]!{
+		didSet{
+			visibilitiesDiffCalculator?.rows = visibilities
+		}
+	}
 	
 	override func awakeFromNib() {
 		equipmentTable.dataSource = self
 		abilityTable.dataSource = self
+		visibilitiesTable.dataSource = self
+		visibilitiesTable.delegate = self
 		moneyTextField.delegate = self
 		
 		equipmentDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: equipmentTable)
 		abilityDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: abilityTable, initialRows: [], sectionIndex: 0)
+		visibilitiesDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: visibilitiesTable, initialRows: [], sectionIndex: 0)
 		
 		let iconSize: CGFloat = 25
 		
@@ -77,6 +86,7 @@ class TeamViewCell: UICollectionViewCell {
 		abilityLabel.text = NSLocalizedString("Abilities", comment: "")
 		equipmentLabel.text = NSLocalizedString("Equipment", comment: "")
 		moneyLabel.text = NSLocalizedString("Money", comment: "")
+		visibilitiesLabel.text = NSLocalizedString("Visibilities", comment: "")
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(modifiedAbility), name: .modifiedAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
@@ -119,38 +129,14 @@ class TeamViewCell: UICollectionViewCell {
 		
 		moneyTextField.text = showPrice(character.money)
 		
-		if Load.currentVisibility() == nil{
-			visibilities = Load.visibilities()
-			
-			if visibilities.count > 0{
-				setupSegmentControl(visibilitySegController)
-				visibilitySegController.isHidden = false
-			}else{
-				visibilitySegController.isHidden = true
-			}
-			
+		visibilities = Load.visibilities()
+		
+		if Load.currentVisibility() == nil && visibilities.count > 0{
+			visibilitiesTable.isHidden = false
+			visibilitiesLabel.isHidden = false
 		}else {
-			visibilitySegController.isHidden = true
-		}
-	}
-	
-	func setupSegmentControl(_ control: UISegmentedControl){
-		control.removeAllSegments()
-		
-		for visNum in 0...visibilities.count - 1{
-			let vis = visibilities[visNum]
-			
-			control.insertSegment(withTitle: vis.name, at: visNum, animated: false)
-			
-			if character.visibility == vis{
-				control.selectedSegmentIndex = visNum
-			}
-		}
-		
-		control.insertSegment(withTitle: "Always visable", at: 0, animated: false)
-		
-		if character.visibility == nil{
-			control.selectedSegmentIndex = 0
+			visibilitiesTable.isHidden = true
+			visibilitiesLabel.isHidden = true
 		}
 	}
 	
@@ -194,24 +180,6 @@ class TeamViewCell: UICollectionViewCell {
 		
 		CoreDataStack.saveContext()
 	}
-	
-	@IBAction func changeVisibility(_ sender: UISegmentedControl) {
-		let index = sender.selectedSegmentIndex
-		
-		var newVisibility: Visibility? = nil
-		
-		if index > 0 && index <= visibilities.count{
-			newVisibility = visibilities[index - 1]
-		}
-		
-		character.visibility = newVisibility
-		
-		CoreDataStack.saveContext()
-		
-		let action = CharacterVisibilityChanged(character: character, visibility: newVisibility)
-		PackageService.pack.send(action: action)
-	}
-	
 }
 
 extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
@@ -223,8 +191,10 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if tableView == abilityTable{
 			return (abilityDiffCalculator?.rows.count)! + 1
-		}else{
+		}else if tableView == equipmentTable{
 			return (equipmentDiffCalculator?.rows.count)!
+		}else {
+			return (visibilitiesDiffCalculator?.rows.count)! + 1
 		}
 	}
 	
@@ -242,9 +212,7 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 			cell.itemHandler = cellItem
 			cell.character = character
 			return cell
-		}
-			
-		else{
+		}else if tableView == abilityTable{
 			if indexPath.row == abilities.count{
 				
 				let cell = tableView.dequeueReusableCell(withIdentifier: "newAbilityCell") as? newAbilityCell
@@ -267,7 +235,65 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 				
 				return cell!
 			}
+		}else{
+			let cell = tableView.dequeueReusableCell(withIdentifier: "visibilityCell")
+
+			cell?.accessoryType = .none
+			cell?.selectionStyle = .none
+			
+			if indexPath.row == visibilities.count{
+				if character.visibility == nil{
+					cell?.accessoryType = .checkmark
+				}
+				
+				cell?.textLabel?.text = NSLocalizedString("Always visable", comment: "")
+				
+			}else{
+				if character.visibility == visibilitiesDiffCalculator?.rows[indexPath.row]{
+					cell?.accessoryType = .checkmark
+				}
+				
+				cell?.textLabel?.text = visibilitiesDiffCalculator?.rows[indexPath.row].name ?? ""
+			}
+			
+			return cell!
 		}
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		guard tableView == visibilitiesTable else { return }
+		
+		let index = indexPath.row
+		
+		var newVisibility: Visibility? = nil
+		
+		if index < visibilities.count{
+			newVisibility = visibilities[index]
+		}
+		
+		let previousIndex: IndexPath!
+		
+		if let previousVisibility = character.visibility{
+			guard let previousVisibilityNumber = visibilities.index(of: previousVisibility) else { return }
+			previousIndex = IndexPath(row: previousVisibilityNumber, section: 0)
+		}else{
+			previousIndex = IndexPath(row: visibilities.count, section: 0)
+		}
+		
+		guard previousIndex != indexPath else { return }
+		
+		character.visibility = newVisibility
+		
+		let newCell = visibilitiesTable.cellForRow(at: indexPath)
+		let previousCell = visibilitiesTable.cellForRow(at: previousIndex)
+		
+		newCell?.accessoryType = .checkmark
+		previousCell?.accessoryType = .none
+		
+		CoreDataStack.saveContext()
+		
+		let action = CharacterVisibilityChanged(character: character, visibility: newVisibility)
+		PackageService.pack.send(action: action)
 	}
 }
 
@@ -305,5 +331,4 @@ extension TeamViewCell: CharacterItemCellDelegate{
 			items = newItems
 		}
 	}
-	
 }
