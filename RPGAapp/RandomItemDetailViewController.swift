@@ -76,6 +76,11 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
 			
 			cell.itemHandler = cellItem
 			cell.cellDelegate = self
+			
+			cell.sendButton.isHidden = false
+			cell.infoButton.isHidden = false
+			cell.redrawButton.isHidden = false
+			cell.packageButton.isHidden = false
         }
         else{
             cell.nameLabel?.text = NSLocalizedString("Have not draw items yet", comment: "")

@@ -45,12 +45,7 @@ class randomItemCell: UITableViewCell{
 		}
 	}
 	
-	override func awakeFromNib() {
-		sendButton.isHidden = false
-		infoButton.isHidden = false
-		redrawButton.isHidden = false
-		packageButton.isHidden = false
-		
+	override func awakeFromNib() {		
 		sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
 		sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
 		
