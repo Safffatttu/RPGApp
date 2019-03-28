@@ -73,32 +73,32 @@ class drawingTest: XCTestCase {
         }
     }
     
-    func testFlitering(){
-        let itemList = Load.items()
-        var newItemList = itemList
-        
-        self.measure {
-            for _ in 0...100{
-                newItemList = itemList
-				
-				FilterHelper.filterItemList(newItemList, using: self.randomFilter())
-            }
-        }
-    }
-        
-    func testFlitering3(){
-        let itemList = Load.items()
-        let cat = catalogeDetail()
-        cat.filter = randomFilter()
-        var newItemList = itemList
-        self.measure {
-            for _ in 0...100{
-                let filter = self.randomFilter()
-                newItemList = itemList
-                self.filterItems(newItemList, filter: filter)
-            }
-        }
-    }
+//    func testFlitering(){
+//        let itemList = Load.items()
+//        var newItemList = itemList
+//
+//        self.measure {
+//            for _ in 0...100{
+//                newItemList = itemList
+//
+//                FilterHelper.filterItemList(newItemList, using: self.randomFilter())
+//            }
+//        }
+//    }
+    
+//    func testFlitering3(){
+//        let itemList = Load.items()
+//        let cat = catalogeDetail()
+//        cat.filter = randomFilter()
+//        var newItemList = itemList
+//        self.measure {
+//            for _ in 0...100{
+//                let filter = self.randomFilter()
+//                newItemList = itemList
+//                self.filterItems(newItemList, filter: filter)
+//            }
+//        }
+//    }
     
     func testDrawSettings(){
         var drawSettings: [DrawSetting] = []

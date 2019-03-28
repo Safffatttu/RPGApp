@@ -2,23 +2,27 @@ PODS:
   - Dwifft (0.8)
   - FontAwesome.swift (1.2.0)
   - Former (1.5.1)
-  - Popover (1.1.0)
   - Whisper (6.0.2)
 
 DEPENDENCIES:
   - Dwifft
   - FontAwesome.swift
   - Former (~> 1.5.1)
-  - Popover (~> 1.1.0)
   - Whisper
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Dwifft
+    - FontAwesome.swift
+    - Former
+    - Whisper
 
 SPEC CHECKSUMS:
   Dwifft: 463e61d07322fdf83b32ee6975ca1b20708db746
   FontAwesome.swift: 60063e3f19ba4801155d4b0f2334ab7585763ab3
   Former: 0b48a812c0d93b092b908d1b0574d0fd95c6b6f9
-  Popover: 8b4330c16d9e72f1ea8a2f6783d83b8692ae8776
   Whisper: 169760fc4bab0abf24d5529f9276f95c25cf1025
 
-PODFILE CHECKSUM: 96e5b49af19ec6388216b031efffd95403215969
+PODFILE CHECKSUM: e07e8bdc073fb35128df3bb1c09ce7d6ab987554
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.5.2

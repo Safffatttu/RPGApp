@@ -10,7 +10,6 @@ target 'RPGAapp' do
 
   # Pods for RPGAapp
   pod 'FontAwesome.swift'
-  pod 'Popover', '~> 1.1.0'
   pod 'Whisper'
   pod 'Former', '~> 1.5.1'
   pod 'Dwifft'

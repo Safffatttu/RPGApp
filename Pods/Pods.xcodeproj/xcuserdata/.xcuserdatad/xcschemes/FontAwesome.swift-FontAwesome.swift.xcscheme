@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6991F49AED797519343B1F4591001691'
-               BlueprintName = 'FontAwesome.swift-FontAwesome.swift'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'FontAwesome.swift.bundle'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CB2EAB5C326E4BB9AE6483289BB7C828"
+               BlueprintName = "FontAwesome.swift-FontAwesome.swift"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "FontAwesome.swift-FontAwesome.swift.bundle">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

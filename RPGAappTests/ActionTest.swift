@@ -41,9 +41,9 @@ class ActionTest: XCTestCase{
 				print("test nr\(n)")
 				
 				guard let randAction = self.actions.random() else { continue }
-				
+
 				self.ad.receiveLocally(randAction)
-				self.pack.send(randAction)
+//                self.pack.send(action: randAction)
 				
 				sleep(1)
 			}
@@ -61,7 +61,7 @@ class ActionTest: XCTestCase{
 	}
 	
 	let actions = [ ActionTest.createCharacterAction(),
-					ActionTest.sendItemAction(),
+//                    ActionTest.sendItemAction(),
 					ActionTest.createPackgeAction(),
 					ActionTest.deletePackageAction(),
 					ActionTest.adddItemToPackageAction(),
@@ -103,24 +103,24 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func sendItemAction() -> NSMutableDictionary{
-		
-		let itemId = Load.items().random()?.id
-		let characterId = Load.characters().random()?.id
-		let count = Int64(myRand(100))
-		let action =  NSMutableDictionary()
-		
-		let actionType: NSNumber = NSNumber(value: ActionType.itemSend.rawValue)
-		action.setValue(actionType, forKey: "action")
-		
-
-		action.setValue(itemId, forKey: "itemId")
-		action.setValue(count, forKey: "itemCount")
-		
-		action.setValue(characterId, forKey: "characterId")
-		
-		return action
-	}
+//    public static func sendItemAction() -> NSMutableDictionary{
+//        
+//        let itemId = Load.items().random()?.id
+//        let characterId = Load.characters().random()?.id
+//        let count = Int64(myRand(100))
+//        let action =  NSMutableDictionary()
+//        
+//        let actionType: NSNumber = NSNumber(value: ActionType.itemDataSend.rawValue)
+//        action.setValue(actionType, forKey: "action")
+//        
+//
+//        action.setValue(itemId, forKey: "itemId")
+//        action.setValue(count, forKey: "itemCount")
+//        
+//        action.setValue(characterId, forKey: "characterId")
+//        
+//        return action
+//    }
 	
 	public static func createPackgeAction() -> NSMutableDictionary{
 		
@@ -157,7 +157,7 @@ class ActionTest: XCTestCase{
 		guard let itemId = Load.items().random()?.id else { return NSMutableDictionary() }
 		
 		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.itemAddedToPackge.rawValue)
+		let actionType = NSNumber(value: ActionType.itemPackageAdded.rawValue)
 		
 		action.setValue(actionType, forKey: "action")
 		action.setValue(packageId, forKey: "packageId")
@@ -173,7 +173,7 @@ class ActionTest: XCTestCase{
 		guard let itemId = (character?.equipment?.allObjects.random() as? Item)?.id  else { return NSMutableDictionary() }
 		
 		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.itemDeletedFromCharacter.rawValue)
+		let actionType = NSNumber(value: ActionType.itemCharacterDeleted.rawValue)
 		
 		action.setValue(actionType, forKey: "action")
 		
@@ -267,7 +267,7 @@ class ActionTest: XCTestCase{
 		let abilityValue = myRand(100)
 		
 		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.addedAbilityToCharacter.rawValue)
+		let actionType = NSNumber(value: ActionType.abilityAdded.rawValue)
 		
 		action.setValue(actionType, forKey: "action")
 		
@@ -294,7 +294,7 @@ class ActionTest: XCTestCase{
 		let abilityValue = ability?.value
 		
 		let action = NSMutableDictionary()
-		let actionType = NSNumber(value: ActionType.valueOfAblilityChanged.rawValue)
+		let actionType = NSNumber(value: ActionType.abilityValueChanged.rawValue)
 		
 		action.setValue(actionType, forKey: "action")
 		

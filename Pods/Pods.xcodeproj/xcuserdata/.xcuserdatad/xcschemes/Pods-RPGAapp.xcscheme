@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E21D933B15F2DDB0ECC03D0022D8B4B7'
-               BlueprintName = 'Pods-RPGAapp'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-RPGAapp.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2A4A4C821E712DAC4BBF0FE51DB55025"
+               BlueprintName = "Pods-RPGAapp"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "Pods-RPGAapp.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

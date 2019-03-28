@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import CoreData
-import Popover
 import Whisper
 import Dwifft
 

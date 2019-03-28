@@ -137,9 +137,9 @@ extension PackageService: MCSessionDelegate{
         NSLog("%@", "didStartReceivingResourceWithName")
     }
     
-    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
 		NSLog("%@", "didFinishReceivingResourceWithName")
-		self.delegate?.finishedReciveingResource(withName: resourceName, from: peerID, url: localURL)
+		self.delegate?.finishedReciveingResource(withName: resourceName, from: peerID, url: localURL!)
     }
 }
 
