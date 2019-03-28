@@ -68,3 +68,7 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 RPGAapp.xcworkspace/xcuserdata/jakub.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+
+.vscode/
+
+xcshareddata
