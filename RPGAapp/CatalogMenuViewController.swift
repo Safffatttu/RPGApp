@@ -32,16 +32,16 @@ class catalogeMenu: UIViewController {
         super.viewWillAppear(animated)
     }
 	
-	func reloadTableView(){
+	@objc func reloadTableView(){
 		list = CatalogeDataSource.source.menuItems
 		tableView.reloadData()
 	}
 	
-    func dismissKeyboard(){
+    @objc func dismissKeyboard(){
         searchBar.endEditing(true)
     }
     
-    func showModelView(){
+    @objc func showModelView(){
         showModel = !showModel
 		tableView.reloadData()
     }

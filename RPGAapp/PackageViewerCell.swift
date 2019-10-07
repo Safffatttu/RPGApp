@@ -81,7 +81,7 @@ class PackageViewerCell: UITableViewCell{
 	}
 	
 	
-	func reloadPackage(){
+	@objc func reloadPackage(){
 		guard let items = package?.items?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] else { return }
 		self.items = items
 	}
@@ -104,7 +104,7 @@ class PackageViewerCell: UITableViewCell{
 	var removeItemCancelled: Bool = false
 	var lastCellIndex: IndexPath? = nil
 	
-	func removeItemLongPress(_ sender: UILongPressGestureRecognizer) {
+	@objc func removeItemLongPress(_ sender: UILongPressGestureRecognizer) {
 		let touchPoint = sender.location(in: self.contentView)
 		
 		guard let indexPath = itemTable.indexPathForRow(at: touchPoint) else {

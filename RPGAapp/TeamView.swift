@@ -34,7 +34,7 @@ class TeamView: UICollectionViewController {
         super.viewDidLoad()
     }
 	
-    func addCharacter(_ sender: Any){
+    @objc func addCharacter(_ sender: Any){
         let characterFrom = NewCharacterForm()
 		
 		characterFrom.modalPresentationStyle = .formSheet
@@ -43,7 +43,7 @@ class TeamView: UICollectionViewController {
         present(characterFrom, animated: true, completion: nil)
     }
 	
-	func editCharacter(_ notification: Notification){
+	@objc func editCharacter(_ notification: Notification){
 		guard let character = notification.object as? Character else { return }
 		
 		let characterFrom = NewCharacterForm()
@@ -56,7 +56,7 @@ class TeamView: UICollectionViewController {
 		present(characterFrom, animated: true, completion: nil)
 	}
 	
-    func reloadTeam(){
+    @objc func reloadTeam(){
         team = Load.characters(usingVisibility: true)
     }
 

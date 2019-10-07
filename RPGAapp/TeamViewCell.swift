@@ -98,13 +98,13 @@ class TeamViewCell: UICollectionViewCell {
 		super.awakeFromNib()
 	}
 	
-	func equipmentChanged(){
+	@objc func equipmentChanged(){
 		if let newItems = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] {
 			items = newItems
 		}
 	}
 	
-	func reloadLabels(){
+	@objc func reloadLabels(){
 		if let name = character.name{
 			nameLabel.text = NSLocalizedString("Name", comment: "") + ": \(name)"
 			propertiesStackView.insertArrangedSubview(nameLabel, at: 0)
@@ -333,7 +333,7 @@ extension TeamViewCell: UITextFieldDelegate{
 
 extension TeamViewCell: AbilityCellDelegate{
 	
-	func modifiedAbility() {
+	@objc func modifiedAbility() {
 		if let abs = character.abilities?.sortedArray(using: [.sortAbilityByName]) as? [Ability]{
 			self.abilities = abs
 		}

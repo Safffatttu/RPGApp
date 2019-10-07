@@ -79,14 +79,14 @@ class SettingMenu: UITableViewController {
 		settingList.insert("Sync item database", at: 0)
 		let settingSection = ("Settings", settingList)
 		
-		var sessionList = sessions.flatMap{ session -> String? in
+		var sessionList = sessions.compactMap{ session -> String? in
 			guard let id = session.id else { return nil }
 			return "\(id)\(session.current)"			
 			}
 		sessionList.insert("CreateSessions", at: 0)
 		let sessionsSection = ("Sessions", sessionList)
 		
-		var currencyList = currencies.flatMap{ currency -> String? in
+		var currencyList = currencies.compactMap{ currency -> String? in
 			guard let name = currency.name else { return nil }
 			guard let currentCurrency = Load.currentCurrency() else { return "false\(name)" }
 			let isCurrent = (currency === currentCurrency)
@@ -95,7 +95,7 @@ class SettingMenu: UITableViewController {
 		currencyList.insert("CreateCurrency", at: 0)
 		let currenciesSection = ("Currencies", currencyList)
 		
-		var visibilitiesList = visibilities.flatMap{ visibility -> String? in
+		var visibilitiesList = visibilities.compactMap{ visibility -> String? in
 			guard let id = visibility.id else { return nil }
 			return "\(visibility.current)\(id)"
 		}
@@ -118,23 +118,23 @@ class SettingMenu: UITableViewController {
 	}
 	
 	
-	func sessionReceived() {
+	@objc func sessionReceived() {
 		sessions = Load.sessions()
 		visibilities = Load.visibilities()
 		updateDiffTable()
 	}
 	
-	func currencyCreated(){
+	@objc func currencyCreated(){
 		currencies = Load.currencies()
 		updateDiffTable()
 	}
 	
-	func visibilityCreated(){
+	@objc func visibilityCreated(){
 		visibilities = Load.visibilities()
 		updateDiffTable()
 	}
 	
-	func switchedSessionAction(_ notification: Notification){
+	@objc func switchedSessionAction(_ notification: Notification){
 		sessions = Load.sessions()
 		visibilities = Load.visibilities()
 		updateDiffTable()
@@ -163,13 +163,13 @@ class SettingMenu: UITableViewController {
 		PackageService.pack.send(action: action)
 	}
 	
-	func sessionDeleted(_ notification: Notification){
+	@objc func sessionDeleted(_ notification: Notification){
 		sessions = Load.sessions()
 		
 		updateDiffTable()
 	}
 	
-	func connectedDevicesChanged() {
+	@objc func connectedDevicesChanged() {
 		updateDiffTable()
 	}
 	

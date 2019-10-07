@@ -32,7 +32,7 @@ class PackageViewer: UITableViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .reloadTeam, object: nil)
     }
 	
-    func reloadPackages(){
+    @objc func reloadPackages(){
         packages = Load.packages()
     }
     
@@ -61,7 +61,7 @@ class PackageViewer: UITableViewController {
 		return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
 			guard let package = diffCalculator?.rows[indexPath.row] else { return }
             let packageId = package.id

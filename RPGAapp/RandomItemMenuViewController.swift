@@ -25,7 +25,7 @@ class RandomItemMenu: UITableViewController {
         self.tableView.accessibilityIdentifier = "randomItemMenu"
     }
     
-    func reloadDrawSettings(){
+    @objc func reloadDrawSettings(){
         drawSettings = Load.drawSettings()
         
         tableView.reloadData()
@@ -184,7 +184,7 @@ class RandomItemMenu: UITableViewController {
         return [deleteAction,editAction]
     }
     
-    func addDrawSetting(_ sender: UIBarButtonItem){
+    @objc func addDrawSetting(_ sender: UIBarButtonItem){
         let addDrawSettingControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor")
         
         addDrawSettingControler.modalPresentationStyle = .pageSheet

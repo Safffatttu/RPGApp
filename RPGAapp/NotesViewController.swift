@@ -26,7 +26,7 @@ class NotesViewController: UICollectionViewController{
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadNotes), name: .addedNote, object: nil)
 	}
 	
-	func reloadNotes(){
+	@objc func reloadNotes(){
 		notes = Load.notes()
 	}
 	

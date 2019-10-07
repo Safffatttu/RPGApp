@@ -102,7 +102,7 @@ class MapScene: SKScene{
 		NotificationCenter.default.addObserver(self, selector: #selector(textureChanged(_:)), name: .mapEntityTextureChanged, object: nil)
 	}
 	
-	func mapEntityMoved(_ sender: Notification){
+	@objc func mapEntityMoved(_ sender: Notification){
 		guard let object = sender.object as? (MapEntity, CGPoint) else { return }
 		
 		let entity = object.0
@@ -115,7 +115,7 @@ class MapScene: SKScene{
 		sprite.run(moveToAction)
 	}
 	
-	func textureChanged(_ sender: Notification){
+	@objc func textureChanged(_ sender: Notification){
 		var sprite: SKSpriteNode!
 		
 		var textureData: Data? = nil
@@ -144,14 +144,14 @@ class MapScene: SKScene{
 		sprite.run(textureReloadSeq)
 	}
 	
-	func reloadEntities(){
+	@objc func reloadEntities(){
 		for sprite in mapThings.map({$0.1}){
 			sprite.run(SKAction.hide())
 		}
 		reloadBackground()
 	}
 	
-	func reloadBackground(){
+	@objc func reloadBackground(){
 		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
 		if let backgroundData = map?.background?.data{
 			guard let image = UIImage(data: backgroundData as Data) else { return }
@@ -193,7 +193,7 @@ class MapScene: SKScene{
 	
 	var previousScale: CGFloat = 1
 	
-	func pinchRec(sender: UIPinchGestureRecognizer){
+	@objc func pinchRec(sender: UIPinchGestureRecognizer){
 		
 		if sender.state == .began{
 			previousScale = cam.xScale
@@ -204,7 +204,7 @@ class MapScene: SKScene{
 		
 	}
 	
-	func rotationRec(sender: UIRotationGestureRecognizer){
+	@objc func rotationRec(sender: UIRotationGestureRecognizer){
 		cam.zRotation = sender.rotation
 	}
 	

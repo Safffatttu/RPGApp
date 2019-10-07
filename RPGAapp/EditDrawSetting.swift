@@ -174,7 +174,7 @@ class EditDrawSetting: UIViewController {
 		}
 	}
 	
-    func done(_ sender: UIBarButtonItem){
+    @objc func done(_ sender: UIBarButtonItem){
 		guard setting?.subSettings?.count != 0 else { return }
 		
         setting?.name = drawSettingNameField.text!
@@ -185,7 +185,7 @@ class EditDrawSetting: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func cancel(_ sender: UIBarButtonItem){
+    @objc func cancel(_ sender: UIBarButtonItem){
         if !editingMode{
             CoreDataStack.managedObjectContext.delete(setting!)
 			
@@ -284,7 +284,7 @@ extension EditDrawSetting: UITableViewDataSource, UITableViewDelegate{
 		}
 	}
 	
-	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete{
 			let subToRemove = subSettings[indexPath.row]
 			

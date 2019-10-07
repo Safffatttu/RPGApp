@@ -34,7 +34,7 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openImagePicker))
 	}
 	
-	func openImagePicker(){
+	@objc func openImagePicker(){
 	
 		imagePicker = UIImagePickerController()
 		
@@ -51,12 +51,15 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		imagePicker.dismiss(animated: true)
 	}
 	
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		let chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
-		
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+//        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+//        let chosenImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as! UIImage
+        let chosenImage = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
 		dismiss(animated:true, completion: nil)
 		
-		guard let imageData = UIImagePNGRepresentation(chosenImage) else { return }
+		guard let imageData = chosenImage.pngData() else { return }
 		
 		let map = Load.currentMap(session: Load.currentSession())
 		
@@ -83,4 +86,14 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		let action = MapTextureChanged(mapId: mapId)
 		PackageService.pack.send(action: action)
 	}
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

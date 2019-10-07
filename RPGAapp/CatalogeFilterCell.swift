@@ -68,7 +68,7 @@ class CatalogeFilterStepper: UITableViewCell, CatalogeFilterCell {
 		self.stepper.value = filterItem.value
 	}
 	
-	func reloadRange(){
+	@objc func reloadRange(){
 		guard let range = filterItem?.range else { return }
 		
 		self.stepper.minimumValue = range.0

@@ -53,11 +53,11 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
         view.addGestureRecognizer(tap)
     }
 	
-    func dismissKeyboard(){
+    @objc func dismissKeyboard(){
         NotificationCenter.default.post(name: .dismissKeyboard, object: nil)
     }
 	
-	func newItemForm() {
+	@objc func newItemForm() {
 		let form = NewItemForm()
 		
 		form.modalPresentationStyle = .formSheet
@@ -66,11 +66,11 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
 		self.present(form, animated: true, completion: nil)
 	}
 	
-	func reloadItems(_ not: Notification){
+	@objc func reloadItems(_ not: Notification){
 		items = SectionedValues(CatalogeDataSource.source.items)
 	}
 	
-    func goToSection(_ notification: Notification) {
+    @objc func goToSection(_ notification: Notification) {
 		guard let menuIndexPath = notification.object as? IndexPath else { return }
 		let menuItem = CatalogeDataSource.source.menuItems[menuIndexPath.section].1[menuIndexPath.row].0
 		

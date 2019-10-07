@@ -43,7 +43,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         super.viewDidLoad()
     }
     
-    func reloadPackages(){
+    @objc func reloadPackages(){
         packages = Load.packages(usingVisiblitiy: true)
         tableView.reloadData()
         viewDidLoad()
@@ -83,7 +83,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         return indexPath.row < packages.count
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let packageId = packages[indexPath.row].id
             let session = Load.currentSession()

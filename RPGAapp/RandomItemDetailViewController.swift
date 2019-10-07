@@ -63,7 +63,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         return self.diffCalculator?.rows.count ?? 0
     }
     
-    func reloadTableData() {
+    @objc func reloadTableData() {
         setDiffTable()
         diffCalculator?.rows = diffTable
     }
@@ -101,7 +101,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let contex = CoreDataStack.managedObjectContext
             let handlerToRemove = ItemDrawManager.randomlySelected[indexPath.row]

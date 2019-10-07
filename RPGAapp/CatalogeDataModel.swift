@@ -250,7 +250,7 @@ final class CatalogeFilterSection: CatalogeModelSection{
 	}
 	
 	var filterItems: [CatalogeFilterItem]{
-		return store.flatMap{
+		return store.compactMap{
 			guard let filterItem = $0 as? CatalogeFilterItem else { return nil }
 			
 			let isChanged: Bool

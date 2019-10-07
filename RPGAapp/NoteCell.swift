@@ -30,7 +30,7 @@ class NoteCell: UICollectionViewCell, UITextViewDelegate{
 	
 	var removeNoteCancelled: Bool = false
 	
-	func removeNote(_ sender: UILongPressGestureRecognizer){
+	@objc func removeNote(_ sender: UILongPressGestureRecognizer){
 		switch sender.state {
 		case .changed:
 			removeNoteCancelled = true
@@ -82,7 +82,7 @@ class NoteCell: UICollectionViewCell, UITextViewDelegate{
 		PackageService.pack.send(action: action)
 	}
 	
-	func changeText(_ notification: Notification){
+	@objc func changeText(_ notification: Notification){
 		guard let changedNote = notification.object as? Note else { return }
 		guard note == changedNote else { return }
 		

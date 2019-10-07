@@ -61,7 +61,7 @@ class randomItemCell: UITableViewCell{
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPrice), name: .currencyChanged, object: nil)
 	}
 	
-	func reloadPrice(){
+	@objc func reloadPrice(){
 		var priceToShow = ""
 		
 		if let price = itemHandler?.item?.price {

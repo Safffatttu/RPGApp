@@ -79,12 +79,12 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 		NotificationCenter.default.addObserver(self, selector: #selector(itemEdited(_:)), name: .editedItem, object: nil)
 	}
 	
-	func changedCurrency(){
+	@objc func changedCurrency(){
 		guard let price = self.item?.price else { return }
 		self.priceLabel.text = showPrice(price)
 	}
 	
-	func itemEdited(_ notification: Notification){
+	@objc func itemEdited(_ notification: Notification){
 		guard let newItem = notification.object as? Item else { return }
 		guard self.item == newItem else { return	}
 		
@@ -161,9 +161,11 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 		cellDelegate?.sendItemButton(sender)
 	}
 	
-	func sendAllItems(_ sender: UILongPressGestureRecognizer){
+	@objc func sendAllItems(_ sender: UILongPressGestureRecognizer){
 		guard sender.state == .ended else { return }
 		cellDelegate?.sendItemToAllButton(sendButton)
 	}
 	
 }
+
+ 

@@ -70,7 +70,7 @@ class abilityCell: UITableViewCell {
 		self.contentView.addGestureRecognizer(removeAbilityLongPress)
 	}
 	
-	func valueOfAblitityChanged(_ notification: Notification){
+	@objc func valueOfAblitityChanged(_ notification: Notification){
 		guard let idOfChanged = notification.object as? String else{
 			return
 		}
@@ -83,7 +83,7 @@ class abilityCell: UITableViewCell {
 	
 	var removeAbilityCancelled: Bool = false
 	
-	func removeAbility(_ sender: UILongPressGestureRecognizer){
+	@objc func removeAbility(_ sender: UILongPressGestureRecognizer){
 		switch sender.state {
 		case .changed:
 			removeAbilityCancelled = true
@@ -197,7 +197,7 @@ class characterItemCell: UITableViewCell {
 		PackageService.pack.send(action: action)
 	}
 	
-	func equipmentChanged(){
+	@objc func equipmentChanged(){
 		if let name = itemHandler.item?.name{
 			stepper.value = Double(itemHandler.count)
 			self.textLabel?.text = "\(name) \(itemHandler.count)"
@@ -206,7 +206,7 @@ class characterItemCell: UITableViewCell {
 	
 	var removeItemCancelled: Bool = false
 	
-	func removeItem(_ sender: UILongPressGestureRecognizer){
+	@objc func removeItem(_ sender: UILongPressGestureRecognizer){
 		switch sender.state {
 		case .changed:
 			removeItemCancelled = true

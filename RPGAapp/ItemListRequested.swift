@@ -34,7 +34,7 @@ struct ItemListRequested: Action {
 	}
 	
 	func execute(){
-		let itemList = Load.items().flatMap{$0.id}
+		let itemList = Load.items().compactMap{$0.id}
 		
 		let action = ItemListRecieved(itemList: itemList)
 		PackageService.pack.send(action: action, to: sender!)

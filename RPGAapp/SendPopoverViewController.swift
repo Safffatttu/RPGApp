@@ -46,7 +46,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
 	}
 	
-	func reloadTeam(){
+	@objc func reloadTeam(){
 		team = Load.characters(usingVisibility: true)
 		self.viewWillAppear(true)
 	}

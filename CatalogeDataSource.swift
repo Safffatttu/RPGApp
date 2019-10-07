@@ -99,9 +99,9 @@ class CatalogeDataSource{
 			
 			switch item.filterMode {
 			case .min:
-				filteringOperator = { $0.0 >= $0.1 }
+				filteringOperator = { $0 >= $1 }
 			case .max:
-				filteringOperator = { $0.0 <= $0.1 }
+				filteringOperator = { $0 <= $1 }
 			}
 			
 			switch item.filterType {
@@ -153,8 +153,8 @@ class CatalogeDataSource{
 			}
 			
 			self.menuItems = categories.map{ cat, subCats in
-				let sectionCount = subCats.flatMap{ sub in subCategoryList.first(where: {$0.0 == sub})?.1.count }
-				let sectionTable: [(String, Int)] = zip(subCats.flatMap{$0.name}, sectionCount).map{$0}
+				let sectionCount = subCats.compactMap{ sub in subCategoryList.first(where: {$0.0 == sub})?.1.count }
+				let sectionTable: [(String, Int)] = zip(subCats.compactMap{$0.name}, sectionCount).map{$0}
 				return (cat.name!, sectionTable)
 				}
 			
@@ -202,7 +202,7 @@ class CatalogeDataSource{
 				priceThreshold *= thresholdRate
 				
 				let itemsLowerThan = newList.filter({$0.price < priceThreshold})
-					.sorted(by: { $0.0.price < $0.1.price || ($0.0.price == $0.1.price && $0.0.name! < $0.1.name!)})
+					.sorted(by: { $0.price < $1.price || ($0.price == $1.price && $0.name! < $1.name!)})
 				newList = newList.filter({$0.price >= priceThreshold})
 				
 				let sectionName: String
@@ -232,7 +232,7 @@ class CatalogeDataSource{
 			
 			while newList.count > 1{
 				
-				let itemsLowerThan = newList.filter({$0.rarity == rarityThreshold}).sorted(by: {$0.0.name! < $0.1.name!})
+				let itemsLowerThan = newList.filter({$0.rarity == rarityThreshold}).sorted(by: {$0.name! < $1.name!})
 				newList = newList.filter({$0.rarity != rarityThreshold})
 				
 				let sectionName = rarityName[Int(rarityThreshold) - 1]
