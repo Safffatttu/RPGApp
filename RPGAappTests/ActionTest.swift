@@ -213,7 +213,7 @@ class ActionTest: XCTestCase{
 		let sessionDictionary = packSessionForMessage(session)
 		
 		action.setValue(actionType, forKey: "action")
-		action.setValue(sessionDictionary, forKey: "session")
+		action.setValue(sessionDictionary, forKey: "sessionData")
 		action.setValue(session.current, forKey: "setCurrent")
 		
 		return action
