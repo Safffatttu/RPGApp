@@ -155,6 +155,7 @@
 		3BF5EACD20A72507005FD6BC /* DataPacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5EACC20A72507005FD6BC /* DataPacker.swift */; };
 		3BFEFA251F570A69008B0C12 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFEFA241F570A69008B0C12 /* CoreData.framework */; };
 		3BFEFA291F5711D6008B0C12 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */; };
+		4788ED36234D412100DF5049 /* SearchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4788ED35234D412100DF5049 /* SearchTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +332,7 @@
 		3BF5EACC20A72507005FD6BC /* DataPacker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPacker.swift; sourceTree = "<group>"; };
 		3BFEFA241F570A69008B0C12 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3BFEFA281F5711D6008B0C12 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../CoreDataStack.swift; sourceTree = "<group>"; };
+		4788ED35234D412100DF5049 /* SearchTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTest.swift; sourceTree = "<group>"; };
 		8AB0BAF53BA80927A2237D45 /* Pods-RPGAapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RPGAapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RPGAapp/Pods-RPGAapp.release.xcconfig"; sourceTree = "<group>"; };
 		B8C303BEBA01DB42BEEC4272 /* Pods-RPGAapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RPGAapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RPGAapp/Pods-RPGAapp.debug.xcconfig"; sourceTree = "<group>"; };
 		BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RPGAapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -503,6 +505,7 @@
 		3B73F91E1F8FB04900EA7E6A /* RPGAappTests */ = {
 			isa = PBXGroup;
 			children = (
+				4788ED35234D412100DF5049 /* SearchTest.swift */,
 				3BD335921FF291DC004F70BF /* drawingTest.swift */,
 				3BB0F99F20AB2DC100729947 /* ActionTest.swift */,
 				3B73F9211F8FB04900EA7E6A /* Info.plist */,
@@ -757,7 +760,7 @@
 				TargetAttributes = {
 					3B063D5E1F3A21A800B5271C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = JJP5D62AP2;
+						DevelopmentTeam = SMH62TPPHV;
 						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1047,6 +1050,7 @@
 			files = (
 				3BD335931FF291DC004F70BF /* drawingTest.swift in Sources */,
 				3BB0F9A020AB2DC100729947 /* ActionTest.swift in Sources */,
+				4788ED36234D412100DF5049 /* SearchTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,7 +1243,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = JJP5D62AP2;
+				DEVELOPMENT_TEAM = SMH62TPPHV;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_PROFILING_CODE = NO;
 				INFOPLIST_FILE = RPGAapp/Info.plist;
@@ -1247,7 +1251,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1272,7 +1276,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = JJP5D62AP2;
+				DEVELOPMENT_TEAM = SMH62TPPHV;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
@@ -1286,7 +1290,7 @@
 				LLVM_LTO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
