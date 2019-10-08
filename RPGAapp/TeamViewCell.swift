@@ -290,7 +290,7 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 		let previousIndex: IndexPath!
 		
 		if let previousVisibility = character.visibility{
-			guard let previousVisibilityNumber = visibilities.index(of: previousVisibility) else { return }
+			guard let previousVisibilityNumber = visibilities.firstIndex(of: previousVisibility) else { return }
 			previousIndex = IndexPath(row: previousVisibilityNumber, section: 0)
 		}else{
 			previousIndex = IndexPath(row: visibilities.count, section: 0)

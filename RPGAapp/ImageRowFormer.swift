@@ -18,7 +18,7 @@ public protocol ImageFormableRow: FormableRow {
 
 final class ImageRowFormer<T: UITableViewCell>: BaseRowFormer<T>, Formable where T: ImageFormableRow {
 	
-	open var image: UIImage?
+	public var image: UIImage?
 	
 	public required init(instantiateType: Former.InstantiateType = .Class, cellSetup: ((T) -> Void)? = nil) {
 		super.init(instantiateType: instantiateType, cellSetup: cellSetup)
@@ -28,7 +28,7 @@ final class ImageRowFormer<T: UITableViewCell>: BaseRowFormer<T>, Formable where
 		super.initialized()
 	}
 	
-	open override func update() {
+	public override func update() {
 		
 		if let image = image{
 			let imageView = cell.formImageView()

@@ -17,7 +17,7 @@ class showItemInfoPopover: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.modalPresentationStyle = .popover
         
-        let characters =  Double((item?.item_description?.characters.count)!)
+        let characters =  Double((item?.item_description?.count)!)
         
         let height = round(characters / 20) * 20 + 20
         let width = round(characters / 50) * 40 + 300

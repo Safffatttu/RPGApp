@@ -237,7 +237,7 @@ class SettingMenu: UITableViewController {
 				return cell
 			}else{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
-				cell?.textLabel?.text = sessions[indexPath.row - 1].name! + " " + String((sessions[indexPath.row - 1].id?.characters.suffix(4))!)
+				cell?.textLabel?.text = sessions[indexPath.row - 1].name! + " " + String((sessions[indexPath.row - 1].id?.suffix(4))!)
 				
 				cell?.selectionStyle = .none
 				cell?.accessoryType = .none
@@ -363,7 +363,7 @@ class SettingMenu: UITableViewController {
 			if indexPath.row != 0{
 				var rowsToReload = [indexPath]
 				
-				let previousVisibilityIndex = visibilities.index(where: {$0.current})
+				let previousVisibilityIndex = visibilities.firstIndex(where: {$0.current})
 				
 				if let previousVisibilityIndex = previousVisibilityIndex{
 					

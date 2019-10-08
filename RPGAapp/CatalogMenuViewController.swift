@@ -123,7 +123,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 extension catalogeMenu: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		let searchFieldIsFull = searchText.replacingOccurrences(of: " ", with: "").characters.count > 0
+		let searchFieldIsFull = searchText.replacingOccurrences(of: " ", with: "").count > 0
 		
 		NotificationCenter.default.post(name: .searchCataloge, object: searchText)
 		

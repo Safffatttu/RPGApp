@@ -128,7 +128,7 @@ class CatalogeDataSource{
 			for item in list{
 				guard let itemSubCategory = item.subCategory else { continue }
 				
-				if let index = subCategoryList.index(where: {$0.0 == itemSubCategory}){
+				if let index = subCategoryList.firstIndex(where: {$0.0 == itemSubCategory}){
 					subCategoryList[index].1.append(item)
 				}else{
 					subCategoryList.append((itemSubCategory, [item]))
@@ -145,7 +145,7 @@ class CatalogeDataSource{
 			var categories: [(Category, [SubCategory])] = []
 			
 			for subCategory in subCategories {
-				if let index = categories.index(where: { $0.0 === subCategory.category}){
+				if let index = categories.firstIndex(where: { $0.0 === subCategory.category}){
 					categories[index].1.append(subCategory)
 				}else{
 					categories.append((subCategory.category!, [subCategory]))
@@ -164,7 +164,7 @@ class CatalogeDataSource{
 			var alphabetDict: [String: [Item]] = [: ]
 			
 			for item in list{
-				guard let itemNameLetter = item.name?.characters.first else { continue }
+				guard let itemNameLetter = item.name?.first else { continue }
 				let itemName = String(itemNameLetter)
 				
 				if alphabetDict[itemName] == nil{

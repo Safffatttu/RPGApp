@@ -151,7 +151,7 @@ class NewItemForm: FormViewController{
 					InlinePickerItem(title: $0.name!, value: $0)
 				}
 				
-				if let index = self.subCategories.index(of: self.itemSubCategory){
+				if let index = self.subCategories.firstIndex(of: self.itemSubCategory){
 					row.selectedRow = index
 				}
 		}
@@ -163,7 +163,7 @@ class NewItemForm: FormViewController{
 					InlinePickerItem(title: $0.name!, value: $0)
 				})
 				
-				if let index = self.categories.index(of: self.itemCategory){
+				if let index = self.categories.firstIndex(of: self.itemCategory){
 					row.selectedRow = index
 				}
 			}.onValueChanged{[unowned self] in
@@ -265,7 +265,7 @@ class NewItemForm: FormViewController{
 			}.configure{
 				$0.text = NSLocalizedString("Remove attribute", comment: "")
 			}.onSelected{[unowned self] _ in
-				guard let sectionNumber = self.atributes.index(of: atribute) else { return }
+				guard let sectionNumber = self.atributes.firstIndex(of: atribute) else { return }
 				self.atributes.remove(at: sectionNumber)
 				
 				self.former.remove(section: sectionNumber)

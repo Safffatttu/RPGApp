@@ -85,7 +85,7 @@ class EditDrawSetting: UIViewController {
 	
 	func reloadSelectedSubSetting(){
 		guard let selectedSubSetting = selectedSubSetting else { return }
-		guard let index = subSettings.index(of: selectedSubSetting) else { return }
+		guard let index = subSettings.firstIndex(of: selectedSubSetting) else { return }
 		
 		let indexPath = IndexPath(row: index, section: 0)
 		subSettingsTable.reloadRows(at: [indexPath], with: .automatic)

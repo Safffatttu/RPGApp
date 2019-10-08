@@ -31,9 +31,9 @@ func stack(_ array: [Int], _ n: Int) -> [Int]{
 	}
 	
 	while ocurances  >= 2{
-		let indexA = a.index(of: n)
+		let indexA = a.firstIndex(of: n)
 		a.remove(at: indexA!)
-		let indexB = a.index(of: n)
+		let indexB = a.firstIndex(of: n)
 		a[indexB!] += 1
 		ocurances -= 2
 	}
@@ -60,7 +60,7 @@ func rollDices(_ count: Int,ofType: Int = 6) -> [Int]{
 
 func removeItems(_ a: inout [Int],_ n: Int, _ c: Int){
 	for _ in 0...c-1 {
-		if let index = a.index(of: n){
+		if let index = a.firstIndex(of: n){
 			a.remove(at: index)
 		}else{
 			break
@@ -78,7 +78,7 @@ func decrementHighest(_ a: inout [Int],times c: Int){
 			return
 		}
 		
-		guard let indexOfMax = a.index(of: max) else{
+		guard let indexOfMax = a.firstIndex(of: max) else{
 			break
 		}
 		

@@ -758,7 +758,7 @@
 					3B063D5E1F3A21A800B5271C = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = JJP5D62AP2;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -774,13 +774,13 @@
 					};
 					3B73F91C1F8FB04900EA7E6A = {
 						CreatedOnToolsVersion = 8.3.3;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3B063D5E1F3A21A800B5271C;
 					};
 					3BD335871FF28B2E004F70BF = {
 						CreatedOnToolsVersion = 8.3.3;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3B063D5E1F3A21A800B5271C;
 					};
@@ -1253,7 +1253,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "";
 			};
@@ -1292,7 +1292,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "";
 			};
@@ -1310,7 +1310,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAappTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RPGAapp.app/RPGAapp";
 			};
 			name = Debug;
@@ -1325,7 +1325,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAappTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RPGAapp.app/RPGAapp";
 			};
 			name = Release;
@@ -1341,7 +1341,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAappUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = RPGAapp;
 			};
 			name = Debug;
@@ -1355,7 +1355,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.SS.RPGAappUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = RPGAapp;
 			};
 			name = Release;

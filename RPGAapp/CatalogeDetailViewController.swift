@@ -74,7 +74,7 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
 		guard let menuIndexPath = notification.object as? IndexPath else { return }
 		let menuItem = CatalogeDataSource.source.menuItems[menuIndexPath.section].1[menuIndexPath.row].0
 		
-		guard let index = items.sectionsAndValues.index(where: {$0.0 == menuItem}) else { return }
+		guard let index = items.sectionsAndValues.firstIndex(where: {$0.0 == menuItem}) else { return }
 		let indexPath = IndexPath(row: 0, section: index)		
 		
 		tableView.scrollToRow(at: indexPath, at: .top, animated: true)

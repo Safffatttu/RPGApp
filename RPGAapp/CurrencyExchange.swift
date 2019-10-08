@@ -69,10 +69,10 @@ extension Currency{
 			
 			guard let range = stringWithoutSpaces.range(of: regex, options: .regularExpression) else { continue }
 			
-			let subString = String(stringWithoutSpaces[range].characters.dropLast((sub.name?.characters.count)!))
+			let subString = String(stringWithoutSpaces[range].dropLast((sub.name?.count)!))
 			guard let subValue = Double(subString) else { continue }
 			
-			guard let divNumber = subCurrencies.index(where: {$0 === sub}) else { continue }
+			guard let divNumber = subCurrencies.firstIndex(where: {$0 === sub}) else { continue }
 			
 			let absoluteDivider = subCurrencies[0...divNumber].map{$0.rate}.reduce(1, *)
 			

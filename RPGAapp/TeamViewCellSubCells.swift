@@ -19,7 +19,7 @@ class newAbilityCell: UITableViewCell,UITextFieldDelegate{
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
 		
-		guard textField.text?.replacingOccurrences(of: " ", with: "").characters.count != 0 else{
+		guard textField.text?.replacingOccurrences(of: " ", with: "").count != 0 else{
 			return true
 		}
 		

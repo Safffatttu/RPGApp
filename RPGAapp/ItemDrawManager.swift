@@ -129,7 +129,7 @@ class ItemDrawManager{
 	
 	func reDrawItem(handler: ItemHandler){
 		
-		guard let index = ItemDrawManager.randomlySelected.index(of: handler) else { return }
+		guard let index = ItemDrawManager.randomlySelected.firstIndex(of: handler) else { return }
 		
 		let originalCount = Int(handler.count)
 		

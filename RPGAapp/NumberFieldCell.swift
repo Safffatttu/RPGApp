@@ -39,7 +39,7 @@ final class NumberFieldCell: UITableViewCell, TextFieldFormableRow, UITextFieldD
 		
 		let containsOnlyAllowedCharacters = string.rangeOfCharacter(from: allowedCharacters.inverted) == nil
 		
-		let numberOfSeparators = textField.text?.characters.filter{$0 == "," || $0 == "."}.count
+		let numberOfSeparators = textField.text?.filter{$0 == "," || $0 == "."}.count
 		let isSeparator = string.rangeOfCharacter(from: separators) != nil
 		let allowedNumberOfSeparators = numberOfSeparators! == 1
 		let allowedSeparators = !(allowedNumberOfSeparators && isSeparator)
