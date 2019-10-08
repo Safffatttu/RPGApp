@@ -245,8 +245,8 @@ extension EditDrawSetting: UITableViewDataSource, UITableViewDelegate{
 					cell?.textLabel?.text = cellSubCategories[indexPath.row - 1].name
 				}
 				
-				cell?.detailTextLabel?.font = UIFont.fontAwesome(ofSize: CGFloat(20))
-				cell?.detailTextLabel?.text = String.fontAwesomeIcon(name: .send)
+                cell?.detailTextLabel?.font = UIFont.fontAwesome(ofSize: CGFloat(20), style: .regular)
+				cell?.detailTextLabel?.text = String.fontAwesomeIcon(name: .paperPlane)
 			}
 			
 		}else{

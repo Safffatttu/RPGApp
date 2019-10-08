@@ -1,13 +1,13 @@
 PODS:
-  - Dwifft (0.8)
-  - FontAwesome.swift (1.2.0)
-  - Former (1.5.1)
+  - Dwifft (0.9)
+  - FontAwesome.swift (1.8.2)
+  - Former (1.7.0)
   - Whisper (6.0.2)
 
 DEPENDENCIES:
   - Dwifft
   - FontAwesome.swift
-  - Former (~> 1.5.1)
+  - Former
   - Whisper
 
 SPEC REPOS:
@@ -18,11 +18,11 @@ SPEC REPOS:
     - Whisper
 
 SPEC CHECKSUMS:
-  Dwifft: 463e61d07322fdf83b32ee6975ca1b20708db746
-  FontAwesome.swift: 60063e3f19ba4801155d4b0f2334ab7585763ab3
-  Former: 0b48a812c0d93b092b908d1b0574d0fd95c6b6f9
+  Dwifft: 42912068ed2a8146077d1a1404df18625bd086e1
+  FontAwesome.swift: 7938d6a03113ff3f39001bde7f50be8a0903d605
+  Former: f78c0c28b84aadc4da3bf29e97220c8db188048d
   Whisper: 169760fc4bab0abf24d5529f9276f95c25cf1025
 
-PODFILE CHECKSUM: e07e8bdc073fb35128df3bb1c09ce7d6ab987554
+PODFILE CHECKSUM: 36c751fac927c6f38fd3fc12ed15e72db272d791
 
 COCOAPODS: 1.5.2

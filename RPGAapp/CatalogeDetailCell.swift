@@ -31,13 +31,13 @@ class CatalogeDetailCell: UITableViewCell{
 	}
 	
 	override func awakeFromNib() {
-		sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-		sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
+		sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
+		sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
 		
-		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
 		editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
 		
-		packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+		packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
 		packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
 		
 		let longPress = UILongPressGestureRecognizer(target: self, action: #selector(sendAllItems(_:)))

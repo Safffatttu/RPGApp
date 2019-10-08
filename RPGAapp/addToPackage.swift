@@ -61,7 +61,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         if indexPath.row == packages.count{
             let cell = tableView.dequeueReusableCell(withIdentifier: "newPackageCell") as! newPackageCell
         
-            cell.newPackageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+            cell.newPackageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
             cell.newPackageButton.setTitle(String.fontAwesomeIcon(name: .plus), for: .normal)
             
             cell.cellDelegate = self
@@ -72,8 +72,8 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "packageCell") as! packageCell
         cell.packageName.text = packages[indexPath.row].name
         
-        cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-        cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
+        cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
+        cell.sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
         
         cell.cellDelegate = self
         return cell

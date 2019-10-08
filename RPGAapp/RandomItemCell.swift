@@ -46,16 +46,16 @@ class randomItemCell: UITableViewCell{
 	}
 	
 	override func awakeFromNib() {		
-		sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-		sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
+		sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
+		sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
 		
-		infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+		infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
 		infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
 		
-		redrawButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-		redrawButton.setTitle(String.fontAwesomeIcon(name: .refresh), for: .normal)
+		redrawButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
+		redrawButton.setTitle(String.fontAwesomeIcon(name: .sync), for: .normal)
 		
-		packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+		packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
 		packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPrice), name: .currencyChanged, object: nil)

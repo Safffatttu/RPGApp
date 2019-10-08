@@ -69,8 +69,8 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         cell.cellDelegate = self
         if (team.count > 0){
             cell.playerName.text = team[indexPath.row].name
-            cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
-            cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
+            cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20, style: .regular)
+            cell.sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
         }
         else{
             cell.playerName.text = NSLocalizedString("No characters", comment: "")

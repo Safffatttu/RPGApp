@@ -1,6 +1,6 @@
 // FontAwesomeTextRepresentable.swift
 //
-// Copyright (c) 2017 Maik639
+// Copyright (c) 2014-present FontAwesome.swift contributors
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,33 @@
 
 import UIKit
 
-protocol FontAwesomeTextRepresentable: class, FontAwesomeStateRequirement {
-    
+protocol FontAwesomeTextRepresentable: FontAwesomeStateRequirement {
+
     var textSize: CGFloat { get }
     var isTextCSSCode: Bool { get }
+    var fontStyle: FontAwesomeStyle { get }
 
-    func updateText(_ updateTextBlock: () -> ())
-    func updateFontAttributes(forStates stateBlock: (UIControlState, UIFont) -> ())
-    
+    func updateText(_ updateTextBlock: () -> Void)
+    func updateFontAttributes(forStates stateBlock: (UIControl.State, UIFont) -> Void)
+
 }
 
 extension FontAwesomeTextRepresentable {
-    
-    public func updateText(_ updateTextBlock: () -> ()) {
+
+    public func updateText(_ updateTextBlock: () -> Void) {
         guard isTextCSSCode else {
             return
         }
-        
+
         updateTextBlock()
     }
-    
-    public func updateFontAttributes(forStates stateBlock: (UIControlState, UIFont) -> ()) {
+
+    public func updateFontAttributes(forStates stateBlock: (UIControl.State, UIFont) -> Void) {
         let states = type(of: self).supportedStates()
-        let font = UIFont.fontAwesome(ofSize: textSize)
-        
+        let font = UIFont.fontAwesome(ofSize: textSize, style: fontStyle)
+
         for state in states {
             stateBlock(state, font)
         }
     }
-
 }

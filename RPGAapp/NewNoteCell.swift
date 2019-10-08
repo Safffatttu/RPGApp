@@ -16,7 +16,7 @@ class NewNoteCell: UICollectionViewCell{
 	@IBOutlet weak var button: UIButton!
 	
 	override func awakeFromNib() {
-		button.titleLabel?.font = UIFont.fontAwesome(ofSize: 100.0)
+		button.titleLabel?.font = UIFont.fontAwesome(ofSize: 100, style: .regular)
 		button.setTitle(String.fontAwesomeIcon(name: .plus), for: .normal)
 		
 		super.awakeFromNib()

@@ -28,8 +28,8 @@ class PackageViewerCell: UITableViewCell{
 			
 			nameLabel.text = package?.name
 			
-			sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
-			sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
+            sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
+            sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
 		}
 	}
 	

@@ -81,10 +81,10 @@ class TeamViewCell: UICollectionViewCell {
 		
 		let iconSize: CGFloat = 25
 		
-		deleteButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+		deleteButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
 		deleteButton.setTitle(String.fontAwesomeIcon(name: .times), for: .normal)
 		
-		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize)
+		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
 		editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
 		
 		abilityLabel.text = NSLocalizedString("Abilities", comment: "")
