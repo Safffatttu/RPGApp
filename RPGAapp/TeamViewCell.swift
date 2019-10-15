@@ -3,8 +3,6 @@
 //  TeamViewCell.swift
 //  RPGAapp
 //
-//  Created by Jakub on 14.05.2018.
-//  Copyright © 2018 Jakub. All rights reserved.
 //
 
 import Foundation

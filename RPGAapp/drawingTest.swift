@@ -4,7 +4,6 @@
 //
 //  Created by Jakub on 26.12.2017.
 //
-//
 
 import XCTest
 import CoreData

@@ -1,8 +1,8 @@
 //
 //  addCharacter.swift
 //  RPGAapp
-////  Created by Jakub on 13.11.2017.
-//  Copyright © 2017 Jakub. All rights reserved.
+//
+//  Created by Jakub on 13.11.2017.
 //
 
 import Foundation
