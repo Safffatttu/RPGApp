@@ -41,6 +41,7 @@ playground.xcworkspace
 # Package.resolved
 .build/
 
+<<<<<<< HEAD
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
@@ -68,7 +69,16 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 RPGAapp.xcworkspace/xcuserdata/jakub.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+=======
+Pods/
+Pods/
+Pods
+>>>>>>> test
 
 .vscode/
 
 xcshareddata
+<<<<<<< HEAD
+=======
+Pods/**.swift
+>>>>>>> test

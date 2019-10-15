@@ -7,58 +7,44 @@
 //
 
 import UIKit
+import Foundation
 
 class MasterViewController: UITableViewController {
-
-    var listOfItems = loadItemList(data: loadStringTableFromDataAsset(Data: "ITEMS"))
-    var characterDetailViewController: CharacterDetailViewController? = nil
     
-    
-    var menuItems = [("Items","showItemMenu"), ("TeamView","showTeamView"), ("Map", "showMap"), ("Settings" ,"showSettings")]
-    
-
+    var menuItems = [(NSLocalizedString("Cataloge"  ,comment: "") ,"showCatalogeView","showCatalogeDetailView"),
+                     (NSLocalizedString("TeamView"  ,comment: "") ,"showTeamView", ""),
+                     (NSLocalizedString("Map"       ,comment: "") ,"showMap", ""),
+                     (NSLocalizedString("Draw Items",comment: "") ,"showRandomItemView","showRandomItemDetailView"),
+					 (NSLocalizedString("Packages"  ,comment: "") ,"showPackageViewer",""),
+					 (NSLocalizedString("Dice"      ,comment: "") ,"showRNG", ""),
+					 (NSLocalizedString("Notes"     ,comment: "") ,"showNotes",""),
+					 (NSLocalizedString("Settings"  ,comment: "") ,"showSettings", "")
+	]
+	
+	static var currentDetail: String = ""
+	
     override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible
-        //splitViewController.preferredDisplayMode = .primaryOverlay
     }
-    
+     
     override func viewDidAppear(_ animated: Bool) {
         splitViewController?.preferredDisplayMode = .allVisible
     }
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "showMap"{
-            let controller = (segue.destination as!UINavigationController).topViewController as! MapViewController
-            
-            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            controller.navigationItem.leftItemsSupplementBackButton = true
-            self.splitViewController?.preferredDisplayMode = .primaryHidden
+		
+		let controller = (segue.destination as?UINavigationController)?.topViewController
+		
+		controller?.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+		controller?.navigationItem.leftItemsSupplementBackButton = true
+		
+		if segue.identifier == "showMap" || segue.identifier == "showTeamView"{
+			
+            if UserDefaults.standard.bool(forKey: "Auto hide menu"){
+                self.splitViewController?.preferredDisplayMode = .primaryHidden
+            }
         }
-        else if segue.identifier == "showTeamView"{
-            let controller = (segue.destination as!UINavigationController).topViewController as! TeamView
-            
-            controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            controller.navigationItem.leftItemsSupplementBackButton = true
-            self.splitViewController?.preferredDisplayMode = .primaryHidden
-        }
-            
-            //let controller = (segue.destination as! UINavigationController).topViewController as! MapViewController
-            //controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-            //controller.navigationItem.leftItemsSupplementBackButton = true
-        /*Dotyczy zmiany detail? chyba, albo navigation controllera
-         
-         
-         if segue.identifier == "showItemMenu" {
-         if let indexPath = tableView.indexPathForSelectedRow {
-         let controller = (segue.destination as! UINavigationController).topViewController as! ItemMenu
-         controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-         controller.navigationItem.leftItemsSupplementBackButton = true
-         }
-         }
-         if segue.identifier == "showTeamView"{
-         
-         }*/
+		
     }
 
     // MARK: - Table View
@@ -73,20 +59,20 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        // Set appropriate labels for the cells.
         cell.textLabel?.text = menuItems[indexPath.row].0
-        if indexPath.row == 0{
-            cell.accessoryType = .disclosureIndicator
-        }
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(menuItems[indexPath.row].1)
-        self.performSegue(withIdentifier: menuItems[indexPath.row].1, sender: self)
+		let segue = menuItems[indexPath.row]
+		self.performSegue(withIdentifier: segue.1, sender: self)
+		
+		if segue.2 != "" && segue.2	!= MasterViewController.currentDetail{
+			self.performSegue(withIdentifier: segue.2, sender: self)
+			MasterViewController.currentDetail = segue.2
+		}else{
+			MasterViewController.currentDetail = segue.1
+		}
     }
-
-
 }
-

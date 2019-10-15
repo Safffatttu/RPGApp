@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="300" id="kEP-Bv-HP8" customClass="FormImageCell" customModule="RPGAapp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="298"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kEP-Bv-HP8" id="KCo-n1-VdE">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="297.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Er7-E4-4L0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="297.5"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Er7-E4-4L0" firstAttribute="top" secondItem="KCo-n1-VdE" secondAttribute="top" id="Vvy-zW-YMA"/>
+                    <constraint firstItem="Er7-E4-4L0" firstAttribute="leading" secondItem="KCo-n1-VdE" secondAttribute="leading" id="fvk-h8-i6d"/>
+                    <constraint firstAttribute="trailing" secondItem="Er7-E4-4L0" secondAttribute="trailing" id="qya-25-MGm"/>
+                    <constraint firstAttribute="bottom" secondItem="Er7-E4-4L0" secondAttribute="bottom" id="xIn-uI-03t"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="_imageView" destination="Er7-E4-4L0" id="UTC-S1-cgz"/>
+            </connections>
+            <point key="canvasLocation" x="-90.5" y="82"/>
+        </tableViewCell>
+    </objects>
+</document>
