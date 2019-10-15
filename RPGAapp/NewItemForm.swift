@@ -1,9 +1,8 @@
- //
+//
 //  NewItemForm.swift
 //  RPGAapp
 //
 //  Created by Jakub on 18.05.2018.
-//  Copyright © 2018 Jakub. All rights reserved.
 //
 
 import Foundation

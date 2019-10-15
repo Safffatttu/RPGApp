@@ -3,7 +3,6 @@
 //  RPGAappTests
 //
 //  Created by Jakub Berkop on 09/10/2019.
-//  Copyright © 2019 Jakub. All rights reserved.
 //
 
 import XCTest

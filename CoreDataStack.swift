@@ -3,7 +3,6 @@
 //  RPGAapp
 //
 //  Created by Jakub on 30.08.2017.
-//  Copyright © 2017 Jakub. All rights reserved.
 //
 
 import UIKit

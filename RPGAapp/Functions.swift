@@ -3,7 +3,6 @@
 //  characterGen1
 //
 //  Created by Jakub on 04.08.2017.
-//  Copyright © 2017 Jakub. All rights reserved.
 //
 
 import Foundation

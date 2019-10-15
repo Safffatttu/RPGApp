@@ -1,8 +1,8 @@
 //
 //  NewCurrencyForm.swift
 //  RPGAapp
-////  Created by Jakub on 27.06.2018.
-//  Copyright © 2017 Jakub. All rights reserved.
+//
+//  Created by Jakub on 27.06.2018.
 //
 
 import UIKit

@@ -3,7 +3,6 @@
 //  MultipleDetailViews
 //
 //  Code provided As Is, Do whatever you want with it, but do it at your own risk
-//  www.SwiftWala.com
 //
 
 import UIKit

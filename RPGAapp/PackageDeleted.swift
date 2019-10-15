@@ -3,7 +3,6 @@
 //  RPGAapp
 //
 //  Created by Jakub on 30.08.2018.
-//  Copyright © 2018 Jakub. All rights reserved.
 //
 
 import Foundation
