@@ -416,16 +416,6 @@ extension UIApplication {
 	}
 }
 
-extension Array{
-	
-	public func random() -> Element?{
-		guard !isEmpty else { return nil }
-		let index = Int(arc4random_uniform(UInt32(count)))
-		return self[index]
-	}
-	
-}
-
 func shakeView(_  view: UIView){
 	
 	let animation = CABasicAnimation(keyPath: "position")

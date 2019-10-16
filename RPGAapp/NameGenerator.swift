@@ -28,12 +28,12 @@ class NameGenerator{
 		let colorsLeft = allColors.subtracting(colorsAlreadyUsed)
 		
 		if colorsLeft.count == 0{
-			return colors.random()!
+			return colors.randomElement()!
 		}else{
-			if let new =  Array(colorsLeft).random(){
+			if let new =  Array(colorsLeft).randomElement(){
 				return colors.first(where: {$0.0 == new})!
 			}else{
-				return colors.random()!
+				return colors.randomElement()!
 			}
 		}
 	}

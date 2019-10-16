@@ -39,7 +39,7 @@ class ActionTest: XCTestCase{
 			for n in 0...1000 {
 				print("test nr\(n)")
 				
-				guard let randAction = self.actions.random() else { continue }
+				guard let randAction = self.actions.randomElement() else { continue }
 
 				self.ad.receiveLocally(randAction)
 //                self.pack.send(action: randAction)
@@ -53,7 +53,7 @@ class ActionTest: XCTestCase{
 		for n in 0...1000 {
 			print("test nr\(n)")
 			
-			guard let randAction = self.actions.random() else { continue }
+			guard let randAction = self.actions.randomElement() else { continue }
 			
 			self.ad.receiveLocally(randAction)
 		}
@@ -138,7 +138,7 @@ class ActionTest: XCTestCase{
 	
 	public static func deletePackageAction() -> NSMutableDictionary{
 	
-		guard let packageId = Load.packages().random()?.id else { return NSMutableDictionary() }
+		guard let packageId = Load.packages().randomElement()?.id else { return NSMutableDictionary() }
 		
 		let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.packageDeleted.rawValue)
@@ -151,9 +151,9 @@ class ActionTest: XCTestCase{
 	
 	public static func adddItemToPackageAction() -> NSMutableDictionary{
 		
-		guard let packageId = Load.packages().random()?.id  else { return NSMutableDictionary() }
+		guard let packageId = Load.packages().randomElement()?.id  else { return NSMutableDictionary() }
 		
-		guard let itemId = Load.items().random()?.id else { return NSMutableDictionary() }
+		guard let itemId = Load.items().randomElement()?.id else { return NSMutableDictionary() }
 		
 		let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.itemPackageAdded.rawValue)
@@ -167,9 +167,9 @@ class ActionTest: XCTestCase{
 	
 	public static func delteItemFromCharacter() -> NSMutableDictionary{
 	
-		let character = Load.characters().random()
+		let character = Load.characters().randomElement()
 		guard let characterId = character?.id  else { return NSMutableDictionary() }
-		guard let itemId = (character?.equipment?.allObjects.random() as? Item)?.id  else { return NSMutableDictionary() }
+		guard let itemId = (character?.equipment?.allObjects.randomElement() as? Item)?.id  else { return NSMutableDictionary() }
 		
 		let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.itemCharacterDeleted.rawValue)
@@ -220,7 +220,7 @@ class ActionTest: XCTestCase{
 	
 	public static func sessionSwitchedAction() -> NSMutableDictionary{
 	
-		guard let sessionId = Load.sessions().random()?.id else { return NSMutableDictionary() }
+		guard let sessionId = Load.sessions().randomElement()?.id else { return NSMutableDictionary() }
 		
 		let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.sessionSwitched.rawValue)
@@ -233,7 +233,7 @@ class ActionTest: XCTestCase{
 	
 	public static func deleteSessionAction() -> NSMutableDictionary{
 		
-		guard let sessionId = Load.sessions().random()?.id else { return NSMutableDictionary() }
+		guard let sessionId = Load.sessions().randomElement()?.id else { return NSMutableDictionary() }
 		
 		let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.sessionSwitched.rawValue)
@@ -258,7 +258,7 @@ class ActionTest: XCTestCase{
 	}
 	
 	public static func addAbilityAction() -> NSMutableDictionary{
-		guard let characterId = Load.characters().random()?.id else { return NSMutableDictionary() }
+		guard let characterId = Load.characters().randomElement()?.id else { return NSMutableDictionary() }
 		
 		let name = String(myRand(10000))
 		let abilityId = String(strHash(name + characterId + String(describing: Date())))
@@ -281,13 +281,13 @@ class ActionTest: XCTestCase{
 	
 	public static func valueOfAbilityChangedAction() -> NSMutableDictionary{
 	
-		guard let character = Load.characters().random() else { return NSMutableDictionary() }
+		guard let character = Load.characters().randomElement() else { return NSMutableDictionary() }
 		
 		guard (character.abilities?.sortedArray(using: [.sortAbilityByName]).count)! > 0 else { return NSMutableDictionary()	}
 		
 		let characterId = character.id
 		
-		let ability = character.abilities?.sortedArray(using: [.sortAbilityByName]).random() as? Ability
+		let ability = character.abilities?.sortedArray(using: [.sortAbilityByName]).randomElement() as? Ability
 		
 		let abilityId = ability?.id
 		let abilityValue = ability?.value
