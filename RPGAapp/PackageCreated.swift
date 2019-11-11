@@ -61,4 +61,3 @@ struct PackageCreated: Action {
 		NotificationCenter.default.post(name: .createdPackage, object: nil)
 	}
 }
-

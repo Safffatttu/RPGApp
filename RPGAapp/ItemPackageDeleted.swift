@@ -57,4 +57,3 @@ struct ItemPackageDeleted: Action {
 		
 	}
 }
-

@@ -38,4 +38,3 @@ extension SubCategory {
     @NSManaged public func removeFromItems(_ values: NSSet)
     
 }
-

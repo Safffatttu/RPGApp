@@ -71,4 +71,3 @@ struct ItemRequest {
 extension Notification.Name{
 	static let receivedItemData = Notification.Name("receivedItemData")
 }
-

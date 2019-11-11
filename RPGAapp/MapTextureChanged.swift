@@ -43,4 +43,3 @@ struct MapTextureChanged: Action {
 		PackageService.pack.send(action: action, to: sender!)
 	}
 }
-

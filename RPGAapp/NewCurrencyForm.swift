@@ -216,5 +216,4 @@ class NewCurrencyForm: FormViewController {
     func dismissView(){
         dismiss(animated: true, completion: nil)
     }
-
 }

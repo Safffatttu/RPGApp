@@ -94,6 +94,3 @@ func convertCurrencyToValue(_ string: String) -> Double{
 	
 	return currency.valueFrom(string: string)
 }
-
-
-

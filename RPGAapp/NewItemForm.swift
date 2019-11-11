@@ -370,4 +370,3 @@ extension Notification.Name{
 	static let createdNewItem = Notification.Name(rawValue: "createdNewItem")
 	static let editedItem = Notification.Name(rawValue: "editedItem")
 }
-
