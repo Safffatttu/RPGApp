@@ -11,7 +11,8 @@ import CoreData
 
 extension Visibility {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Visibility> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Visibility> {
         return NSFetchRequest<Visibility>(entityName: "Visibility")
     }
 

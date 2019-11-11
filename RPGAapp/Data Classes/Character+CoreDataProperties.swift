@@ -12,7 +12,8 @@ import CoreData
 
 extension Character {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Character> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Character> {
         return NSFetchRequest<Character>(entityName: "Character")
     }
 

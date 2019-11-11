@@ -19,9 +19,9 @@ class MasterViewController: UITableViewController {
 					 (NSLocalizedString("Notes"     ,comment: "") ,"showNotes",""),
 					 (NSLocalizedString("Settings"  ,comment: "") ,"showSettings", "")
 	]
-	
+
 	static var currentDetail: String = ""
-	
+
     override func viewDidLoad() {
         splitViewController?.preferredDisplayMode = .allVisible
     }
@@ -31,19 +31,19 @@ class MasterViewController: UITableViewController {
     }
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		
+	
 		let controller = (segue.destination as?UINavigationController)?.topViewController
-		
+	
 		controller?.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
 		controller?.navigationItem.leftItemsSupplementBackButton = true
-		
+	
 		if segue.identifier == "showMap" || segue.identifier == "showTeamView"{
-			
+
             if UserDefaults.standard.bool(forKey: "Auto hide menu") {
                 self.splitViewController?.preferredDisplayMode = .primaryHidden
             }
         }
-		
+	
     }
 
     // MARK: - Table View
@@ -66,11 +66,11 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let segue = menuItems[indexPath.row]
 		self.performSegue(withIdentifier: segue.1, sender: self)
-		
+	
 		if segue.2 != "" && segue.2	!= MasterViewController.currentDetail {
 			self.performSegue(withIdentifier: segue.2, sender: self)
 			MasterViewController.currentDetail = segue.2
-		}else {
+		} else {
 			MasterViewController.currentDetail = segue.1
 		}
     }

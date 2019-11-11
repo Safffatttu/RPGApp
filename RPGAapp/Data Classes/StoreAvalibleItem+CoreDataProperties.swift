@@ -12,7 +12,8 @@ import CoreData
 
 extension StoreAvalibleItem {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<StoreAvalibleItem> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<StoreAvalibleItem> {
         return NSFetchRequest<StoreAvalibleItem>(entityName: "StoreAvalibleItem")
     }
 

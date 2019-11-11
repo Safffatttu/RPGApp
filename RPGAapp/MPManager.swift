@@ -17,8 +17,8 @@ class PackageService: NSObject {
     let serviceAdvertiser: MCNearbyServiceAdvertiser
     let serviceBrowser: MCNearbyServiceBrowser
     
-    var delegate: PackageServiceDelegate?
-	
+    weak var delegate: PackageServiceDelegate?
+
 	static var pack = PackageService()
     
     override init() {
@@ -26,13 +26,13 @@ class PackageService: NSObject {
         self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType)
         
         super.init()
-		
+	
         self.serviceAdvertiser.delegate = self
         self.serviceAdvertiser.startAdvertisingPeer()
         
         self.serviceBrowser.delegate = self
         self.serviceBrowser.startBrowsingForPeers()
-		
+	
 		self.delegate = ActionDelegate.ad
     }
     
@@ -40,49 +40,47 @@ class PackageService: NSObject {
         self.serviceAdvertiser.stopAdvertisingPeer()
         self.serviceBrowser.stopBrowsingForPeers()
 	}
-	
+
     lazy var session: MCSession = {
         let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         return session
     }()
-	
+
 	func send<T: Action>(action: T) {
 		let data = action.data
 		data.setValue(action.actionType.rawValue, forKey: "action")
-		
+	
 		NSLog("%@", "send")
 		if session.connectedPeers.count > 0 {
 			do {
 				let data = NSKeyedArchiver.archivedData(withRootObject: data)
 				try self.session.send(data, toPeers: session.connectedPeers, with: .reliable)
-			}
-			catch let error {
+			} catch let error {
 				NSLog("Error: \(error)")
 			}
 		}
 	}
-	
+
 	func send<T: Action>(action: T, to peer: MCPeerID) {
 		let data = action.data
 		data.setValue(action.actionType.rawValue, forKey: "action")
-		
+	
 		NSLog("%@", "sendTo")
 		if session.connectedPeers.count > 0 {
 			do {
 				let data = NSKeyedArchiver.archivedData(withRootObject: data)
 				try self.session.send(data, toPeers: [peer], with: .reliable)
-			}
-			catch let error {
+			} catch let error {
 				NSLog("Error: \(error)")
 			}
 		}
 	}
-	
+
 	func sendResourceAt(url: URL, with name: String, to peer: MCPeerID, completionHandler: ((Error?) -> Void)? = nil) {
 		self.session.sendResource(at: url, withName: name, toPeer: peer, withCompletionHandler: completionHandler)
 	}
-	
+
 }
 
 extension PackageService: MCNearbyServiceAdvertiserDelegate {
@@ -101,7 +99,7 @@ extension PackageService: MCNearbyServiceBrowserDelegate {
         NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
     }
     
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {
         NSLog("%@", "foundPeer: \(peerID)")
         browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 30)
         self.delegate?.found(peerID)
@@ -142,9 +140,9 @@ extension PackageService: MCSessionDelegate {
     }
 }
 
-protocol PackageServiceDelegate {
+protocol PackageServiceDelegate: class {
     
-    func connectedDevicesChanged(manager : PackageService, connectedDevices: [String])
+    func connectedDevicesChanged(manager: PackageService, connectedDevices: [String])
     func lost(_ peer: MCPeerID)
     func found(_ peer: MCPeerID)
     func received(_ actionData: ActionData, from sender: MCPeerID)
