@@ -9,47 +9,9 @@ import Foundation
 import UIKit
 import CoreData
 import Whisper
-import Dwifft
 
 func myRand(_ num: Int) -> Int {
     return Int(arc4random_uniform(UInt32(num)))
-}
-
-func datatostring() -> String {
-    let proTable = NSDataAsset(name: "Profesion")
-    let dataToDecode = proTable?.data
-    return String(data: dataToDecode!, encoding: .utf8)!
-
-}
-
-func csv(data: String) -> [[String]] {
-    var result: [[String]] = []
-    let rows = data.components(separatedBy: "\n")
-    for row in rows {
-        let columns = row.components(separatedBy: ",")
-        result.append(columns)
-    }
-    return result
-}
-
-func weightedRandomElement<T>(items: [(T, UInt)]) -> T {
-    /*function by
-     Martin R
-     https://codereview.stackexchange.com/questions/112605/weighted-probability-problem-in-swift
-   */
-    let total = items.map { $0.1 }.reduce(0, +)
-    precondition(total > 0, "The sum of the weights must be positive")
-
-    let rand = UInt(arc4random_uniform(UInt32(total)))
-
-    var sum = UInt(0)
-    for (element, weight) in items {
-        sum += weight
-        if rand < sum {
-            return element
-        }
-    }
-    fatalError("This should never be reached")
 }
 
 func weightedRandom(items: [Item], weightTotal: Int64) -> Item {
@@ -70,38 +32,6 @@ func weightedRandom(items: [Item], weightTotal: Int64) -> Item {
         }
     }
     fatalError("This should never be reached")
-}
-
-func loadStringTableFromDataAsset(Data: String) -> [[String]] {
-    let table = NSDataAsset(name: Data)
-    let decoded = String(data: (table?.data)!, encoding: .utf8)!
-    var result: [[String]] = []
-    let rows = decoded.components(separatedBy: "\r")
-    for row in rows {
-        let columns = row.components(separatedBy: ";")
-        result.append(columns)
-    }
-    return result
-}
-
-func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]] {
-    var tableToRet = [[(Int, UInt)]]()
-    for i in 0...Int((table.first?.count)! - 2) { //for each race
-        print("Race Start\(i)")
-        var race = [(Int, UInt)]()
-        for j in 0...59 {
-            var prof: (Int, UInt)
-            if table[j][i]?.rangeOfCharacter(from: CharacterSet.decimalDigits) == nil {
-            //if table[j][i] == ""{
-                prof = (Int(j), UInt(0))
-            } else {
-                prof = (Int(j), UInt(table[j][i]!)!)
-            }
-            race.append(prof)
-        }
-        tableToRet.append(race)
-    }
-    return tableToRet
 }
 
 func forTailingZero(_ temp: Double) -> String {
@@ -333,15 +263,6 @@ func widthForSegmentOfRarityName(num: Int) -> CGFloat {
 	return CGFloat(rarityCount) / CGFloat(count)
 }
 
-extension Int {
-    init?(_ bool: Bool?) {
-        guard bool != nil else {
-            return nil
-        }
-        self = bool! ? 1: 0
-    }
-}
-
 extension String {
 
     func containsIgnoringCase(_ string: String) -> Bool {
@@ -357,7 +278,6 @@ extension UIResponder {
 }
 
 extension Notification.Name {
-    static let itemAddedToCharacter = Notification.Name("itemAddedToCharacter")
     static let addedItemToPackage = Notification.Name("addedItemToPackage")
 	static let addedNote = Notification.Name("newNote")
 	static let changedNote = Notification.Name("changedNote")
