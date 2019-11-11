@@ -13,7 +13,7 @@ class NameGenerator {
 	
 	static let colors: [(String, UIColor)] = [
 					("Black", .black),
-					("Blue" , .blue),
+					("Blue", .blue),
 					("Gray", .green),
 					("Red", .red),
 					("Yellow", .yellow),

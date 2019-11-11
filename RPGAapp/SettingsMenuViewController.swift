@@ -406,7 +406,7 @@ class SettingMenu: UITableViewController {
 			actions = []
 			
 			let localizedDelete = NSLocalizedString("Delete", comment: "")
-			let removeSession = UITableViewRowAction(style: .destructive, title: localizedDelete, handler: {action,path in
+			let removeSession = UITableViewRowAction(style: .destructive, title: localizedDelete, handler: {action, path in
 			
 				let localizedMessage = NSLocalizedString("Do you want to delete this session?", comment: "")
 				let alert = UIAlertController(title: nil, message: localizedMessage, preferredStyle: .alert)
@@ -444,7 +444,7 @@ class SettingMenu: UITableViewController {
 		
 			let localizedSendTitle = NSLocalizedString("Send", comment: "")
 			
-			let sendSession = UITableViewRowAction(style: .normal, title: localizedSendTitle, handler: {action,path in
+			let sendSession = UITableViewRowAction(style: .normal, title: localizedSendTitle, handler: {action, path in
 				
 				let session = self.sessions[path.row - 1]
 				
@@ -460,7 +460,7 @@ class SettingMenu: UITableViewController {
 			actions?.append(sendSession)
 			
 			let localizedSharedTitle = NSLocalizedString("Share", comment: "")
-			let shareSession = UITableViewRowAction(style: .normal, title: localizedSharedTitle, handler: {action,path in
+			let shareSession = UITableViewRowAction(style: .normal, title: localizedSharedTitle, handler: {action, path in
 				guard self.sessions.count > indexPath.row - 1 && indexPath.row - 1 >= 0  else { return }
 				
 				let dict = packSessionForMessage(self.sessions[indexPath.row - 1])
@@ -526,7 +526,7 @@ class SettingMenu: UITableViewController {
 			actions = [deleteVisibility]
 		}else if indexPath.section == 4 {
 			actions = []
-			let removePeer = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {action,path in
+			let removePeer = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {action, path in
 				
 				let peer = PackageService.pack.session.connectedPeers[path.row]
 				let action = DisconnectPeer(peer: peer.displayName)

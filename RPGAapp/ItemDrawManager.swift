@@ -63,7 +63,7 @@ class ItemDrawManager {
 			item.propability = Int64(ItemDrawManager.propabilities[Int(item.rarity) - 1])
 		}
 		
-		let weight = Int64(items.map {$0.propability}.reduce(0,+))
+		let weight = Int64(items.map {$0.propability}.reduce(0, +))
 		
 		guard weight > 0 else { return }
 		

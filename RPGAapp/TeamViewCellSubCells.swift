@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class NewAbilityCell: UITableViewCell,UITextFieldDelegate {
+class NewAbilityCell: UITableViewCell, UITextFieldDelegate {
 	
 	var character: Character!
 	

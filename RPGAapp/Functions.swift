@@ -90,13 +90,13 @@ func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]] {
         print("Race Start\(i)")
         var race = [(Int, UInt)] ()
         for j in 0...59 {
-            var prof : (Int,UInt)
+            var prof : (Int, UInt)
             if table[j][i]?.rangeOfCharacter(from: CharacterSet.decimalDigits) == nil {
             //if table[j][i] == ""{
-                prof = (Int(j),UInt(0))
+                prof = (Int(j), UInt(0))
             }
             else {
-                prof = (Int(j),UInt(table[j][i]!)!)
+                prof = (Int(j), UInt(table[j][i]!)!)
             }
             race.append(prof)
         }
@@ -230,7 +230,7 @@ func addToEquipment(itemHandler: ItemHandler, to character: Character) {
     itemHandler.addToItemAtributesHandler(atribute)
 }
 
-func add(_ item: Item,to package: Package, count: Int64?) {
+func add(_ item: Item, to package: Package, count: Int64?) {
     let context = CoreDataStack.managedObjectContext
 
     var itemHandler = package.items?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler
@@ -281,7 +281,7 @@ func getDocumentsDirectory() -> URL {
 	return paths[0]
 }
 
-@discardableResult func createCurrencyUsing(name: String, rate: Double, subList: [(String,Int16)]) -> Currency {
+@discardableResult func createCurrencyUsing(name: String, rate: Double, subList: [(String, Int16)]) -> Currency {
 	let context = CoreDataStack.managedObjectContext
 	
 	let currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency

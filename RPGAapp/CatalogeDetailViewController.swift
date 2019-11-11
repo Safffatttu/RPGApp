@@ -24,9 +24,9 @@ class CatalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate 
 	
     @IBOutlet weak var catalogTable: UITableView!
     
-    var diffCalculator: TableViewDiffCalculator<String,Item>?
+    var diffCalculator: TableViewDiffCalculator<String, Item>?
     
-    var items: SectionedValues<String,Item> = SectionedValues(CatalogeDataSource.source.items) {
+    var items: SectionedValues<String, Item> = SectionedValues(CatalogeDataSource.source.items) {
         didSet {
             self.diffCalculator?.sectionedValues = items
         }
@@ -169,7 +169,7 @@ extension CatalogeDetail: UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		let localizedRemove = NSLocalizedString("Remove", comment: "")
-		let removeAction = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {_,_ in
+		let removeAction = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {_, _ in
 			if indexPath == self.expandedCell {
 				self.expandedCell = nil
 			}
@@ -183,7 +183,7 @@ extension CatalogeDetail: UITableViewDataSource, UITableViewDelegate {
 		})
 		
 		let localizedShare = NSLocalizedString("Share item", comment: "")
-		let sendAction = UITableViewRowAction(style: .normal, title: localizedShare, handler: { _,_ in
+		let sendAction = UITableViewRowAction(style: .normal, title: localizedShare, handler: { _, _ in
 			
 			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
 			

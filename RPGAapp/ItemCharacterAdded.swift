@@ -80,7 +80,7 @@ struct ItemCharacterAdded: Action {
 		
 		if requestList.count != 0 {
 			
-			let requestAction = ItemCharacterAdded(characterId: characterId,itemsId: requestList.map {$0.0}, itemsCount: requestList.map {$0.1})
+			let requestAction = ItemCharacterAdded(characterId: characterId, itemsId: requestList.map {$0.0}, itemsCount: requestList.map {$0.1})
 			
 			let data = requestAction.data
 			data.setValue(requestAction.actionType.rawValue, forKey: "action")

@@ -45,7 +45,7 @@ public func countOccurances(_ array: [Int], _ number: Int) -> Int {
 	return array.filter({$0 == number}).count
 }
 
-func rollDices(_ count: Int,ofType: Int = 6) -> [Int] {
+func rollDices(_ count: Int, ofType: Int = 6) -> [Int] {
 	var array: [Int] = []
 	
 	for _ in 0...count - 1 {
@@ -57,7 +57,7 @@ func rollDices(_ count: Int,ofType: Int = 6) -> [Int] {
 }
 
 
-func removeItems(_ a: inout [Int],_ n: Int, _ c: Int) {
+func removeItems(_ a: inout [Int], n: Int, _ c: Int) {
 	for _ in 0...c-1 {
 		if let index = a.firstIndex(of: n) {
 			a.remove(at: index)
@@ -67,7 +67,7 @@ func removeItems(_ a: inout [Int],_ n: Int, _ c: Int) {
 	}
 }
 
-func decrementHighest(_ a: inout [Int],times c: Int) {
+func decrementHighest(_ a: inout [Int], times c: Int) {
 	for _ in 0...c-1 {
 		guard let max = a.max() else {
 			return

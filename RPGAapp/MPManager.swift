@@ -124,7 +124,7 @@ extension PackageService: MCSessionDelegate {
         NSLog("%@", "didReceiveData: \(data)")
         let action = NSKeyedUnarchiver.unarchiveObject(with: data) as! ActionData
 		DispatchQueue.main.async {
-			self.delegate?.received(action,from: peerID)
+			self.delegate?.received(action, from: peerID)
 		}
     }
     
@@ -147,7 +147,7 @@ protocol PackageServiceDelegate {
     func connectedDevicesChanged(manager : PackageService, connectedDevices: [String])
     func lost(_ peer: MCPeerID)
     func found(_ peer: MCPeerID)
-    func received(_ actionData: ActionData,from sender: MCPeerID)
+    func received(_ actionData: ActionData, from sender: MCPeerID)
 	func finishedReciveingResource(withName: String, from: MCPeerID, url: URL)
 }
 

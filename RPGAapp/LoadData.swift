@@ -47,7 +47,7 @@ public struct Load {
     public static func subCategories() -> [SubCategory] {
         var subCategories: [SubCategory] = []
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
-        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
+        subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory, .sortSubCategoryByName]
         
         do {
             subCategories = try context.fetch(subCategoryFetch)
@@ -159,7 +159,7 @@ public struct Load {
 		
 		guard let session = Load.currentExistingSession() else { return [] }
 			
-		packages = session.packages?.sortedArray(using: [.sortPackageByName,.sortPackageById]) as! [Package]
+		packages = session.packages?.sortedArray(using: [.sortPackageByName, .sortPackageById]) as! [Package]
 		
 		if usingVisiblitiy {
 			let visiblity = Load.currentVisibility()

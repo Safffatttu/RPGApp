@@ -9,7 +9,7 @@ import UIKit
 
 class RandomNumberGenerator: UITableViewController, StepperCellDelegate {
 	
-	let draw = [4,6,10,12,20,100]
+	let draw = [4, 6, 10, 12, 20, 100]
 	let models = DiceModel.allModels
 	
 	var numOfDices = { () -> Int in 

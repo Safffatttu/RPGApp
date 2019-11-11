@@ -92,7 +92,7 @@ class TeamViewCell: UICollectionViewCell {
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(modifiedAbility), name: .modifiedAbility, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(equipmentChanged), name: .equipmentChanged, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(reloadLabels) , name: .reloadTeam, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(reloadLabels), name: .reloadTeam, object: nil)
 		super.awakeFromNib()
 	}
 	

@@ -180,7 +180,7 @@ class RandomItemMenu: UITableViewController {
 		
         deleteAction.backgroundColor = .red
         
-        return [deleteAction,editAction]
+        return [deleteAction, editAction]
     }
     
     @objc func addDrawSetting(_ sender: UIBarButtonItem) {

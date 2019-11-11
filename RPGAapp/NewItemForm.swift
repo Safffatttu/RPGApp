@@ -143,7 +143,7 @@ class NewItemForm: FormViewController {
 				$0.text = self.itemName
 		}
 		
-		let subCategoryRow = InlinePickerRowFormer<FormInlinePickerCell,SubCategory>() {
+		let subCategoryRow = InlinePickerRowFormer<FormInlinePickerCell, SubCategory>() {
 			$0.titleLabel.text = NSLocalizedString("Subcategory", comment: "")
 			}.configure {[unowned self] row in
 				row.pickerItems = self.subCategories.map {
@@ -155,7 +155,7 @@ class NewItemForm: FormViewController {
 				}
 		}
 		
-		let categoryRow = InlinePickerRowFormer<FormInlinePickerCell,Category>() {
+		let categoryRow = InlinePickerRowFormer<FormInlinePickerCell, Category>() {
 			$0.titleLabel.text = NSLocalizedString("Category", comment: "")
 			}.configure {[unowned self] row in
 				row.pickerItems = self.categories.map({
@@ -202,7 +202,7 @@ class NewItemForm: FormViewController {
 			}.configure {[unowned self] in
 				$0.segmentTitles = rarityName
 				$0.selectedIndex = Int(self.rarity - 1)
-			}.onSegmentSelected {[unowned self] r,_ in
+			}.onSegmentSelected {[unowned self] r, _ in
 				self.rarity = Int16(r + 1)
 		}
 		
@@ -255,7 +255,7 @@ class NewItemForm: FormViewController {
 			}.configure {
 				$0.segmentTitles = rarityName
 				$0.selectedIndex = Int(atribute.rarityMod - 1)
-			}.onSegmentSelected { r,_ in
+			}.onSegmentSelected { r, _ in
 				atribute.rarityMod = Int16(r + 1)
 		}
 		

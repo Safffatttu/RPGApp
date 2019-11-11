@@ -37,7 +37,7 @@ class SendPopover: UITableViewController, sendPopoverDelegate {
         }
         
         self.preferredContentSize = CGSize(width: 150, height: height)
-        self.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0)
+        self.popoverPresentationController?.sourceRect = CGRect(x:0, y: y, width: 0,height: 0)
         self.popoverPresentationController?.permittedArrowDirections = .right
         
         super.viewWillAppear(animated)

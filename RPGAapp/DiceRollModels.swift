@@ -75,7 +75,7 @@ public struct DiceModel {
 		
 		var wynik: Int
 		
-		removeItems(&roll, 1, countOf1)
+        removeItems(&roll, n: 1, countOf1)
 		
 		decrementHighest(&roll, times: countOf1/2)
 		
@@ -88,8 +88,8 @@ public struct DiceModel {
 	}
 	
 	public static let allModels: [((Int) -> Int, String)] = [
-		(DiceModel.ADNormal(_:),"ADNormal"),
-		(DiceModel.AD2UP(_:),"AD2UP"),
-		(DiceModel.ADTo6(_:),"ADTo6")]
+		(DiceModel.ADNormal(_:), "ADNormal"),
+		(DiceModel.AD2UP(_:), "AD2UP"),
+		(DiceModel.ADTo6(_:), "ADTo6")]
 	
 }

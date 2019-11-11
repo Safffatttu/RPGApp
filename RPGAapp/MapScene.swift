@@ -32,7 +32,7 @@ class MapScene: SKScene {
 				for e in entities {
 					let newSprite = SKSpriteNode(entity: e)
 					newSprite.name = e.character?.name
-					newMapThings.append((e,newSprite))
+					newMapThings.append((e, newSprite))
 					
 					self.addChild(newSprite)
 				}
@@ -42,7 +42,7 @@ class MapScene: SKScene {
 		}
 	}
 	
-	var mapThings: [(MapEntity,SKSpriteNode)] = []
+	var mapThings: [(MapEntity, SKSpriteNode)] = []
 	
 	var mapa: SKSpriteNode!
 	
@@ -95,7 +95,7 @@ class MapScene: SKScene {
 		rotation.cancelsTouchesInView = false
 		self.view?.addGestureRecognizer(rotation)
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(mapEntityMoved(_:)) , name: .mapEntityMoved, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(mapEntityMoved(_:)), name: .mapEntityMoved, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadEntities), name: .reloadTeam, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadBackground), name: .mapBackgroundChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(textureChanged(_:)), name: .mapEntityTextureChanged, object: nil)
@@ -263,7 +263,7 @@ class MapScene: SKScene {
 			let previousPosition = touch.previousLocation(in: self)
 			let translation = CGPoint(x: positionInScene.x - previousPosition.x, y: positionInScene.y - previousPosition.y)
 			
-			panForTranslation(translation: translation,node: node)
+			panForTranslation(translation: translation, node: node)
 		}else {
 			
 			let location = touch.location(in: self)
