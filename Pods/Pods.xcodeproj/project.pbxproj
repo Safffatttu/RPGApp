@@ -7,678 +7,624 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B2116700FA0CFFB7FB4903C53230FED /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = E3BC550F43C400D8579262E2A0A06BFB /* Font Awesome 5 Brands-Regular-400.otf */; };
-		0D419A0A140CCD76C4ABC610469A7F86 /* SelectorPickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F129D426D1E3C22B92DF0A760868BC9C /* SelectorPickerRowFormer.swift */; };
-		0FABCAA22D4E35B398FA1894E116A3F5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B33AB8367156D9CECB163A282B22FA8 /* CoreText.framework */; };
-		0FE9C1DB0A04041F2D6D572B7B519367 /* FontAwesomeTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3BAE6A8A5471D3CEF71D4B8EED6154 /* FontAwesomeTabBarItem.swift */; };
-		0FF663F919A014E6DE08F3726ED3D26F /* FontAwesomeStateRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0142115FF89C3ADD21C4B20E73985F /* FontAwesomeStateRequirement.swift */; };
-		13258F01C1DB8B0D18900D9EFB51265F /* FontList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FF7816E96300FAE185FA5BC285EA /* FontList.swift */; };
-		16A4C7DFC018425404008E8DF2A8D2A3 /* SwitchRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B13F28A18F331350117D36674BA84D /* SwitchRowFormer.swift */; };
-		16B052A781EBC363764D6BF825BF08AC /* SelectorDatePickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30228C54E436BB2A515A40665355075A /* SelectorDatePickerRowFormer.swift */; };
-		17EFA9C01D6621D1DCF25660C1F5F7E4 /* FormPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D150B954CFBB3FDC146A0649559C34 /* FormPickerCell.swift */; };
-		189C57CEA44F24610F314FF842FDEF53 /* FormLabelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0B97F689E1715CB9FC54FDA2A6C0 /* FormLabelHeaderView.swift */; };
-		1D865635B49CD023BA6445CBB603D777 /* Dwifft+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC716BB97B6E0EF69BEAD184CDF1686 /* Dwifft+UIKit.swift */; };
-		28434066CFF5F0C3BDC870444177F0F1 /* Dwifft-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F69DB182B28D9BC821AF13CFA0A2E5 /* Dwifft-dummy.m */; };
-		2B476160A1663094CDFBDC35DC9EFD32 /* FontAwesome.swift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A01DF83C7334F2688A1C0A17912D2DA9 /* FontAwesome.swift.bundle */; };
-		2D2DD9882ED57FA4A43A5912F7325970 /* FontAwesomeImageRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434C5FE9B417232FFB1DABBF119F36AD /* FontAwesomeImageRepresentable.swift */; };
-		2EE2351C2A901B95575996A266873EAC /* FormStepperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E105639CFFB37F3671E9273AE113959 /* FormStepperCell.swift */; };
-		31514774FEEC7F179F887E6F1CC84857 /* Font Awesome 5 Free-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9A1D910FA1120B29F9AAD99F4A11BE92 /* Font Awesome 5 Free-Solid-900.otf */; };
-		33B9C0A36836C1FB916408CEF2D5F02B /* FormerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9401BF6FD70AD8811A6475932B1E6B65 /* FormerProtocol.swift */; };
-		3513BAD9FDE72F17B92827FE76F80F35 /* Former-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6000C1838C067E459F200D5AF86A85CD /* Former-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35872AF610AAF773021BE2290728B317 /* Dwifft+AppKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA73DEDCC232FC9F03F7EF17A3CD6650 /* Dwifft+AppKit.swift */; };
-		382EE183B8B8F4AE6930F5FA7EBC772E /* ColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BC1D01F844D59CD36AA2CA1BA901E /* ColorList.swift */; };
-		39C46C8DA3341A7EBC4DE56B2FF6977C /* InlinePickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742EAF91A5FA61C56973F8F4029D843E /* InlinePickerRowFormer.swift */; };
-		3B26519FB571112C58B6A58E36F6C024 /* Former-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC5D582112D2424BEED185CBDCAA320 /* Former-dummy.m */; };
-		3D250F06F0057FCA20D5E9714D2286A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E12950B9CE60F60E04016668A8A8842 /* Foundation.framework */; };
-		45A8883BB91A0C92532CFF54EDE6F13A /* FormInlinePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A786C468F6A080B8E0858F454AB185 /* FormInlinePickerCell.swift */; };
-		4C69299B51B74F70F02E4AF10AF38D7F /* FormSelectorDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B885F3BCED524B29CC59D42FAA77DF /* FormSelectorDatePickerCell.swift */; };
-		4EB3C7E861E1843C259CB3E2E855D384 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3C796A2AE95981D980275E47AA8E84 /* Dwifft.swift */; };
-		4EDC151113BF40EEA2F326AF2432AAB1 /* CustomRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63D1988E13C83055BAD08B8B0DA0F85 /* CustomRowFormer.swift */; };
-		4EFE73FBD31B8A1674514B2E029BA8CD /* FormHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87A4D72FEE93B10B0BAA04A392C9FAD /* FormHeaderFooterView.swift */; };
-		529CAB3169FD4B7580C36502697F4BA2 /* Dwifft-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DBF2D7400C39FC5ED654147EA618701 /* Dwifft-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		532B94DAC89623F895B0D5C1F04DB994 /* FontAwesomeSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7204414E1C360DBAA480890156AE1188 /* FontAwesomeSegmentedControl.swift */; };
-		546D31CA3475C9BA13235F4922CB845B /* FormSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FB9D86F89EDECDC17FE12D61EECFEF /* FormSliderCell.swift */; };
-		55772E659D33D42E6EEDF71D251FAB2D /* FormCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EACB9C8F0E83436ECA42891979579B /* FormCheckCell.swift */; };
-		5577896A743A437DF295CD4758201354 /* Whisper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DAE8029D76970D9B8E40633D788A299C /* Whisper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5A5EE1E9039686A8BBC61EB05B85910A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E12950B9CE60F60E04016668A8A8842 /* Foundation.framework */; };
-		5C8DE6B19FD4FCD81CEE048B56EC9E06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2E9972E4EADE8079124B2892701799 /* UIKit.framework */; };
-		5FAF74594460C8D9B157D952AD7295EF /* PickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA77969CF49433EA4DF8C9213DCDA06 /* PickerRowFormer.swift */; };
-		68A2933A4F214599BFFDF4235317AE40 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AE8079FF672587261633329EA5B25D /* Message.swift */; };
-		68B163429BCDC122CDBA8214FF07C198 /* ViewFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED291361BC5A917E6108FBCAC231D6 /* ViewFormer.swift */; };
-		694E28245529184FE8E141808B13944F /* SegmentedRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71253F6F8774306C3985A4C402FE2586 /* SegmentedRowFormer.swift */; };
-		6B5413138C15627AB31211A88A063709 /* FontAwesomeTextRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E3086232B151F4A68310E4C2BA127 /* FontAwesomeTextRepresentable.swift */; };
-		6B95D6771182922AD0FBFC7724ED08C4 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB9E3E1EAAC86E167B73954C0B64CA /* FormViewController.swift */; };
-		6F9C78CE9BA836E9272D3D08F2EBD5AE /* FontAwesomeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC39FD7E9B918A4BB5E4436CC6BCB37 /* FontAwesomeExtension.swift */; };
-		7124956B495CDA21169C52782FA3A0A0 /* WhisperFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C990C993F740C80064D6B80F52DC84 /* WhisperFactory.swift */; };
-		74B457C64DE1463BAD3CA120879481C3 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16CFBF7EBD93A046F063DE3C84E84DD /* UIView+Extensions.swift */; };
-		76A08F174323C7A1611DE6CB305C0701 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2E9972E4EADE8079124B2892701799 /* UIKit.framework */; };
-		7A5E8B97139C89F485F7D8FBD9E0101B /* Whisper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A50720E9BB20ED3A3A281E1B9C782B3 /* Whisper-dummy.m */; };
-		7E5170AF2E6ED4CC226B11F30D86E5D0 /* ShoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BD3695C1D34CE15E9847B692FCA7F3 /* ShoutFactory.swift */; };
-		7EE1017AB43B9F22AAE7275204FD37AE /* FormSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C3607FCB909AD87F83459574201165 /* FormSwitchCell.swift */; };
-		828E84A639F7F74F9C871F82A4E252B9 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3480DE57ED936A28EB2DAF00B75A30F7 /* Enum.swift */; };
-		83163EB183883A03B5DB60B70828B189 /* FormDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EF2F1138630E9F3D284D43E714364D /* FormDatePickerCell.swift */; };
-		89F604C5071756146A5C682E03897724 /* FontAwesomeBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E937FD029AEA0091562396BF68C172F /* FontAwesomeBarButtonItem.swift */; };
-		8E7FA123DFABE64E19ED5A7DF90D36A4 /* CustomViewFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFD2DB360E57995A575C53CAFF5F1EA /* CustomViewFormer.swift */; };
-		93929E495F12F2702B2522EE518586C5 /* FontAwesomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F532D6B2EFE21C59607CC5A13AA4A71 /* FontAwesomeView.swift */; };
-		9419ACA668E00FFC1F70AA23359DF3E5 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE116EE0965E7B1F5CC07150115D0BCE /* FontAwesome.swift */; };
-		94B13140E811D85AD9594F66CCD46A4A /* LabelRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45780900C8D4E5E7DDED678EE9B4074D /* LabelRowFormer.swift */; };
-		9CA60A59DB6D0840E7CFE88233FAC8C5 /* Showing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70FB3041041AFBC1F196F71CEA4E22 /* Showing.swift */; };
-		A3088DBACC68068F17A9B20A8F442ACA /* Font Awesome 5 Free-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = D5D4A6D02BFAA53BCD4BD1E59AE413A9 /* Font Awesome 5 Free-Regular-400.otf */; };
-		A82DB4FBC7E2AE3C28D22BFCA2C4F419 /* RowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614C6015054C5EEA833744625366B356 /* RowFormer.swift */; };
-		A84D87C6083E28309039FF58DE79468B /* FormLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D8F344FFBE68607C58F8B06054F57 /* FormLabelCell.swift */; };
-		AE37967D9124D3DEF3D3F76BAAF6D693 /* TextFieldRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BBF32E48E24CF3F5CD03AA1E707E15 /* TextFieldRowFormer.swift */; };
-		AE936C2ACC5E117B7B837579D7BA0038 /* BaseViewFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99449D44B93C9EB55D0CE3ADAEF39E8E /* BaseViewFormer.swift */; };
-		AF3DA11374B37D880A650CF701AABCFE /* FormTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3837EBE3B35DACB3FF7F72F8179313 /* FormTextFieldCell.swift */; };
-		B021C3B950A41D10C91FD0FE0161CD98 /* SectionedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D33E16FCF603A325D22D0D8FE5970CB /* SectionedValues.swift */; };
-		B22CD5BAA233DD92D22269BAF31049B9 /* FontAwesomeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD3CDAF83294E000B907DA0D379A1DF /* FontAwesomeImageView.swift */; };
-		B38775B10F00A04518A4E9CD8F1ED16C /* AbstractDiffCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE70ACC1010A1039ADFDF66AE4D184A0 /* AbstractDiffCalculator.swift */; };
-		B5729C1C328395C69DADEF10ECD56EE0 /* LabelViewFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE0D5F4590207E2A732893EFADF3046 /* LabelViewFormer.swift */; };
-		B58D53F8B6565779B62D6FFE49C3253B /* FormSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C94113A25F91D58DA9A7B624937E67 /* FormSegmentedCell.swift */; };
-		B633D850FB892345DDA1F0DB05213C58 /* FontAwesome.swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF834870DD5324C902EF07ED887BC62 /* FontAwesome.swift-dummy.m */; };
-		B689897BD307BF6993898DFF5281EEE1 /* Pods-RPGAapp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FD88525CD2EF0FAF6CF751F651AF226A /* Pods-RPGAapp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BBFB67C50B82DECA17A136C35C15438C /* BaseRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56020233CA85BBC605131B0D9C239902 /* BaseRowFormer.swift */; };
-		BD28058DB8D44A6C5C695D4E238B581D /* Pods-RPGAapp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E7142A121A80A3B9F4393E80472D9 /* Pods-RPGAapp-dummy.m */; };
-		C4AE8A38FDC9570C4CC436154A9D4CAC /* SectionFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EC00B9D8F3FB92646BF25C186B7BE8 /* SectionFormer.swift */; };
-		C5F215094C2681535E9F9A49AD6A6FBE /* FormTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684B707E9376377DC03D172894A183E6 /* FormTextViewCell.swift */; };
-		C69E16BA4B29E974C6162C2EB64B72F5 /* DatePickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9DBA018083AC2A933B34A6BA18268B /* DatePickerRowFormer.swift */; };
-		CA3E2B9DEA1BDD4B7CBA071D9AB69791 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E12950B9CE60F60E04016668A8A8842 /* Foundation.framework */; };
-		CE7C6D64C81DD144594F04A28D2F139C /* CheckRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32066C3785CD50E819043BB85FBAB0C1 /* CheckRowFormer.swift */; };
-		D3B3C4959E87242CE3DA4E7C39BEA5B1 /* FormSelectorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D11541EAFB280A704D447A0B18A286C /* FormSelectorPickerCell.swift */; };
-		D7096844778FD786DEA1FF19EDE57DD8 /* Former.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A27ED1827C8DF48E865DB3874C182F /* Former.swift */; };
-		D9C338868E91B8ADFF37848BF3B469B5 /* TextViewRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3315200190A7DB7D7A86FEECB18718DF /* TextViewRowFormer.swift */; };
-		DA7536D00F56D42625FC9D1F8A8D6A0A /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFEDE51D62F7C861664616327FA2224 /* FormCell.swift */; };
-		DC3B6E74825998D8B9F46CEFDD3611A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E12950B9CE60F60E04016668A8A8842 /* Foundation.framework */; };
-		DCC21235139A2A7B308BB095736BCF3A /* SliderRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9343F6F907855D0142A8C02FF33522 /* SliderRowFormer.swift */; };
-		DD296D6DF8AC3E1814624874847905C8 /* FontAwesome.swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 46FD05E5E8A25C2A54FBF438FDAE2C34 /* FontAwesome.swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E5A143927DD5231560C182C431A95245 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE2E9972E4EADE8079124B2892701799 /* UIKit.framework */; };
-		E9D22F50963A6E475DBF593C9AA30741 /* WhistleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE079E8740BB2653E93241CE1CCF7B46 /* WhistleFactory.swift */; };
-		ECF68AB0AB6628F958358DA4DB6AF4B5 /* InlineDatePickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD10C754E2DCB5494D77757F4253C841 /* InlineDatePickerRowFormer.swift */; };
-		EE97B4BF52F0659A77B81A511F23F8C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E12950B9CE60F60E04016668A8A8842 /* Foundation.framework */; };
-		EFD3F3570A5F9EA4265063278BC78A45 /* FormLabelFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785A9D335A2E671D1475693BAF5C04F8 /* FormLabelFooterView.swift */; };
-		F089516C28BD6E6A44DF311DBCA2BF00 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3457E10640E8712DC23D5EC5A3BC2388 /* Config.swift */; };
-		F1EC37F474D60F9CAFA8E80E29700C29 /* WhisperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02486E66E2EC6D678DD644066BD8A061 /* WhisperView.swift */; };
-		F605F8E6F29D12C15B687BF682531555 /* StepperRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAC84267E786CAF6E502474527A09B2 /* StepperRowFormer.swift */; };
-		F95AD2DEE354C9219E492908B3741F7A /* UITableViewCell+Former.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB55276DD72B4CDEF7F417DF5BCACB87 /* UITableViewCell+Former.swift */; };
-		F9C5FEA6B4EEEC9F348A7781D55DD101 /* FormInlineDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443F9011B79E7680F18CCA70A90532AA /* FormInlineDatePickerCell.swift */; };
-		FD7D88BEDD0AE05917D12C317D1FB70C /* Former.h in Headers */ = {isa = PBXBuildFile; fileRef = 2726A88E171ECC8F144A3B278E7EDDAF /* Former.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		022446359E9FD64F2D6CA0627128CF56 /* BaseViewFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9475514AEEB748FDB18FD553B051219 /* BaseViewFormer.swift */; };
+		0695EC978CB3FA0210342DD7F3C18860 /* FormLabelHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FF72513A3E0887E3D3A39AA4B1472C /* FormLabelHeaderView.swift */; };
+		08FA521531A6DFC1209732035429ED00 /* FontAwesomeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7596EDA2B9484326FA20CABB8F4922C4 /* FontAwesomeImageView.swift */; };
+		0B28AF4E12913AC5EEBAF7499182DF0B /* AbstractDiffCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA11AB1C1000269CBE729D5AA84E952 /* AbstractDiffCalculator.swift */; };
+		0DF215F73C6BA629BE8B7755C2C543C4 /* FormSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDA2A4A5F05F3BCE1596DBDAC85BEF7 /* FormSliderCell.swift */; };
+		0EA83B5A837DBADC27DFED1E8E311A2C /* SectionFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489A74264AA881F318D9AC31672DE35 /* SectionFormer.swift */; };
+		0FB5FF51B597E1E0312C5F1438BAB51B /* FontAwesome.swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 99840D071293FC83ABA09D735EEF4C80 /* FontAwesome.swift-dummy.m */; };
+		145572EA681C76F4335F487525B3EAE8 /* Whisper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C9120A5BC031AFF62D6E67848CE8489 /* Whisper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		164ECEFD46FDE59D5A1F9CFC71D500AE /* FormSelectorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF3DA90E6B7493648C0D05544A512C1 /* FormSelectorPickerCell.swift */; };
+		1AD7291D7D3B84EA910DEF65E8B45315 /* InlinePickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4682E6181F543A8ECA29E2E6DC918B /* InlinePickerRowFormer.swift */; };
+		1ADD9D0AD5F0657B7809864B756BC155 /* SectionedValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362BDA4B26FD151F86F0125EBA19705E /* SectionedValues.swift */; };
+		1E227683449CCC810DD526583BDCA230 /* SelectorDatePickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5056EAA986D1A2341C25991073864E /* SelectorDatePickerRowFormer.swift */; };
+		20F5E98A8942CC209EB3F85FFBD2EF7D /* Whisper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C842D26737D6E8848777839E7FA1EDFE /* Whisper-dummy.m */; };
+		22CAB863C8E98C2BD1CEEA2381A46A34 /* FontAwesomeTextRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527D29E58F54F9CD27B7A423C402C28 /* FontAwesomeTextRepresentable.swift */; };
+		234800F45E47ABA77D3B9006EF140141 /* WhistleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CBAC426A6C91B6D6AC42D64F26D31 /* WhistleFactory.swift */; };
+		268C7EBA9D385695457459052B26F17F /* Former-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D8572DF633B4D139358826BBCECF68 /* Former-dummy.m */; };
+		26D86A5A6215B671C527751DFD6BFE1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032F67321D34EE01369F5810E71B7660 /* UIKit.framework */; };
+		329E84BDC01F6097A6807443EF551461 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133B5D5BAE5D2EE0B72FE984673B785 /* Message.swift */; };
+		37814F7ACBAA3BD6D9307441CED63968 /* SwitchRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7118F01C79F9106C0ED6C4193C40EFD /* SwitchRowFormer.swift */; };
+		3BD8F419DBF44859535DB87FAD0604F1 /* WhisperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5454C13210FB24561F490EC6ACA10FB /* WhisperView.swift */; };
+		3D4FFAF390000EC02AD725C2E3D09B54 /* FormTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A395E9DBDA1BB04B4EBB5FC220ED53 /* FormTextViewCell.swift */; };
+		3DAC069E4471567E23173291B732C37F /* Former.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FA1543813B1878F7C20034E591F0E2 /* Former.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F6FCC0C749E99590A16807CD69416AF /* FormInlineDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1EB1448E5D3B18B458DC4C5A909A0D /* FormInlineDatePickerCell.swift */; };
+		4452A4C261337D00D753E7E3A12B8506 /* Dwifft+AppKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5AFC6EA5B8C577F8C2C97F2798601F /* Dwifft+AppKit.swift */; };
+		47393EB4FC241F621AEEF79901A27917 /* Pods-RPGAapp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BDA524DA7E40C31635CA92FDB2FAD0E5 /* Pods-RPGAapp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4972C9845065C3666A9B6DB4D30AAE22 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5ADBE14CA412E0462014A1939D98ED /* Config.swift */; };
+		4A32D244FCC1E0D335525159EDE259DB /* RowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFD7E76A1BE30C6F070629F19FC61D /* RowFormer.swift */; };
+		4EA72BE0469B53B100A8359B717C7A92 /* FormSelectorDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EDE22F1A917B8FA30AF9E12CB22F2A /* FormSelectorDatePickerCell.swift */; };
+		506ACADC63134125FA6DF10CF06FD027 /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7B9514F8E7D5DA9545DC6202A9F24967 /* Font Awesome 5 Brands-Regular-400.otf */; };
+		525D070C9F6CF03C6E74B3EB53DDB360 /* FormHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01899E26F6078DF4A8C06CC761B58707 /* FormHeaderFooterView.swift */; };
+		52DA1E9A705D843EC7B60772C7B9F5AF /* FormLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26FE4B9507F92E4130DA96CDC243743 /* FormLabelCell.swift */; };
+		55286D2DEC1DB91F601519B9649B49C2 /* Font Awesome 5 Free-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78D3CEC9B84BE27DF9C58A8AE3658537 /* Font Awesome 5 Free-Regular-400.otf */; };
+		5B092527AA01625A684A950BA139743C /* FormInlinePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B0FF95B55CE722FD2BE07D5AE8079E /* FormInlinePickerCell.swift */; };
+		632EC0ADDD99413F1C10964C64CF72B6 /* FontAwesomeImageRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20605A19DDE63A8BEF17A249C86D6EAC /* FontAwesomeImageRepresentable.swift */; };
+		636E431623312942F68D616DE57F1121 /* UITableViewCell+Former.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE76178A025496900FE7676ED80FE202 /* UITableViewCell+Former.swift */; };
+		67014C7EE8BE73ACC9D2101FDF7089EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23621862A99429490F9C983069F078BB /* Foundation.framework */; };
+		68B39D165C2442C9986CB14C96F7A483 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23621862A99429490F9C983069F078BB /* Foundation.framework */; };
+		69E49A01811CF8FA1FE92981ABB9067F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23621862A99429490F9C983069F078BB /* Foundation.framework */; };
+		6CADCBC18CE422499677C423AB08B95A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23621862A99429490F9C983069F078BB /* Foundation.framework */; };
+		6DBFE78AD532B8E48C3A1A4F2050639D /* FormSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608E80CFAF230D7E1BA1E5F7D6D2BF55 /* FormSwitchCell.swift */; };
+		728682615BDA1B39952B3A6452288A56 /* ColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB969FD073927E6AA543394FF1731CA1 /* ColorList.swift */; };
+		769E73BAE26F14766F3D2F8CC2A295EF /* FontAwesome.swift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DA4F5DC4EB6E9DF6B4859D27EF8C9F5 /* FontAwesome.swift.bundle */; };
+		7B3C460BDFAAFAFF7CE0C31846BEB331 /* FontList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C17620E8C39270DD6DA6065CAF04FF /* FontList.swift */; };
+		7BFE4CB72D9AD8D1781B864B5C1EE1B6 /* FontAwesomeBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF6E052D326440DD81725DF787201F /* FontAwesomeBarButtonItem.swift */; };
+		7D98B888ACA1822CD885AE930EB9F1DA /* Dwifft-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D6A1D0FD0AE2419C580B695C0A4EA59 /* Dwifft-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7FDD36C2B52D9EEC8F39D5552CB96C92 /* Pods-RPGAapp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 847EE639F7825E65B57A10226725619D /* Pods-RPGAapp-dummy.m */; };
+		81254017D2D4A97CBE1534E22E519329 /* FontAwesomeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17499A165DC416B965673246600C52AF /* FontAwesomeExtension.swift */; };
+		88703EFA5F39A9C53799FB29E017AD42 /* Font Awesome 5 Free-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 02FB69F40336B1A312D9CE8F5C589B77 /* Font Awesome 5 Free-Solid-900.otf */; };
+		894969C74BE3934962FF7FCBBC0BF161 /* Dwifft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBAD1848090A01C29A952C641838665 /* Dwifft.swift */; };
+		8DC785D0EC04427925ED3F93017DC624 /* FontAwesomeSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFE50AA2B5229A14A2B7BB55FE13A03 /* FontAwesomeSegmentedControl.swift */; };
+		8F958A757695F959363483AF5B109D64 /* Dwifft+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A87882DBAC9063FBEA9F4DAA554DF16 /* Dwifft+UIKit.swift */; };
+		915575F5F4644F62FDB007D0E1FF392C /* TextViewRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8156C36A21BF9C7020547EAB07FD0 /* TextViewRowFormer.swift */; };
+		93567B5C391C299B1721C80C4B608877 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032F67321D34EE01369F5810E71B7660 /* UIKit.framework */; };
+		96E468CFC69D3D4E445FC9550AC82F28 /* BaseRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191088201520A15BA63975F94F048F7D /* BaseRowFormer.swift */; };
+		9CF3B03A5A77CBE8591CC6CD3F8A2DFB /* StepperRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C702A6E62BCB585641456F53D02A27 /* StepperRowFormer.swift */; };
+		9DE3360E24D9FE3ADA0C2162E8DBE1A5 /* FontAwesome.swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A0FB1165F5EF21BCE590FDBA47A62EF2 /* FontAwesome.swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9E8C5B6B67D7BDA1A22C4F3BD9A26619 /* FormSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B3FF9FE68A597E92354D2FDAD03FE /* FormSegmentedCell.swift */; };
+		A3186D59C0B37578D5AF220C399D45A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032F67321D34EE01369F5810E71B7660 /* UIKit.framework */; };
+		A36737908BC56E70D5BED89551A3BB8D /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D36A31668AAB2FC4ED33D842A84364 /* FormCell.swift */; };
+		A40FD679EA4164AAB96094D8AE90CD09 /* FontAwesomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2272844F9F9CB0FB94C190FA2089D3A3 /* FontAwesomeView.swift */; };
+		A482EB6422BB87EEC0CD8E4E61280D7E /* LabelViewFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3605AEB69034EB288F3AC654F03C340F /* LabelViewFormer.swift */; };
+		A65B293A7E7E0E8C1825116E6F87496D /* CustomViewFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299800F2DDFA1CD9202E92239DB76711 /* CustomViewFormer.swift */; };
+		A666B8EB855AC76D346B245991419FA1 /* FormerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04D06F3E23400CA2C218AAF22223420 /* FormerProtocol.swift */; };
+		AA082527D444D82B60C6FAD7800E28C6 /* CheckRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6028534D0C7019D26EFEAAA617E6352 /* CheckRowFormer.swift */; };
+		ABB4EE2913AFA25FBB898CF666EF67C1 /* FormCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6925D18ABFFC8BF974D8F4B4571B72 /* FormCheckCell.swift */; };
+		AC9CF05623874F023C441D602E158836 /* CustomRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD39E272AB554B7C1479BAF9BB6A1C38 /* CustomRowFormer.swift */; };
+		B2F24FB0609979AC54487759A774FC66 /* FormTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C58607CB5206B986C2C2061E0E4192 /* FormTextFieldCell.swift */; };
+		B5BB991A05ED08B0FAA51239CEB2D802 /* TextFieldRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3616314070955A1EE5CB87864143F9E /* TextFieldRowFormer.swift */; };
+		C3F346DD8584FBFB44CBC81EA95D8ADB /* InlineDatePickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F658857A2C6862D3A523811020DDE8 /* InlineDatePickerRowFormer.swift */; };
+		C472BF180CE883EE3D8D12C5D1BFDFA7 /* FontAwesomeTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010ADC3B682EB625DA550B3AA858B174 /* FontAwesomeTabBarItem.swift */; };
+		C64164D4BE413C144BA296F0A6BC138D /* DatePickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFEC68D2DA5679588F0E29E855FD71B /* DatePickerRowFormer.swift */; };
+		C706773FD598B213CE9429820F52FDFE /* SliderRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D8441DEC48340FB12A47642299480 /* SliderRowFormer.swift */; };
+		C7BA1B3FC4C025CAF4C156B2912BF3F8 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C9A0B672B6CDCA33D84AB895D938167 /* CoreText.framework */; };
+		CF85988A8731B78244096FEF7B352897 /* SelectorPickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B231E21D23776C5D51E4A29A5C4ADC2 /* SelectorPickerRowFormer.swift */; };
+		D0EC5746F884242686F80EAAA2551B4C /* LabelRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C82C2BB7CF6AF30F1D8236C9C93EF3F /* LabelRowFormer.swift */; };
+		D12112807C051CC78209875AE69680BC /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16047304C63AC64B25E8358992CC1FA8 /* FormViewController.swift */; };
+		D71293F143E62C33E8676E4E6CC8DA6F /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B89D3B28538610D8A6E4725C1C8DE0 /* FontAwesome.swift */; };
+		DBA3F192815D6D0F4D2CBAF9F0D75A60 /* ShoutFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2E6EDA287B139D3D2B455E20DCEB5C /* ShoutFactory.swift */; };
+		DC7A22B339CA1049C19D06C7A93DF302 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968B2B794A77077D618DEA3CD4C4FE25 /* Enum.swift */; };
+		DF3B83C81214CC3290255C922E55DDF1 /* Dwifft-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDD33FBAA8FD777C0E3BD7EC83F09E5 /* Dwifft-dummy.m */; };
+		E39AF08999555F1281CF51A4D0C6E9BE /* Former.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71585A4C8566A8D54485C72825D2FE39 /* Former.swift */; };
+		E5087EB5D254943652891628E37DEF87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23621862A99429490F9C983069F078BB /* Foundation.framework */; };
+		E87041F736498D72105A17AC39A4D120 /* WhisperFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5614710D1AE5DA4D4E9975943122273 /* WhisperFactory.swift */; };
+		E9A46B604336316DF16B886D4A9D86A1 /* FormDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CAF165BB61FB07979D520D9C6B24B /* FormDatePickerCell.swift */; };
+		EA34A645CC71F2C3130A57C3E9AD66B5 /* ViewFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC618E0628FBC5A1620E9F3E973AA09 /* ViewFormer.swift */; };
+		EB2D25A2D229D5F57A2195D560124AF3 /* FormStepperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C267C076F04E11B18AA67F16C6B038 /* FormStepperCell.swift */; };
+		F1AEA891EC7DE537191688BACC937513 /* Former-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F9A3075975F5A2DEC7F9542146314ACE /* Former-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2B2B0446AC6146F6D4CC81F9906BA51 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AFED25826B2DDB9155CA4650C58BEB /* UIView+Extensions.swift */; };
+		F59933A35FCBB17BA905F41BA593EF9D /* FormPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8032FF3693C6ED08388178BB6B1F0924 /* FormPickerCell.swift */; };
+		F603F48C3FE400DBA4837F6142C9B9E6 /* SegmentedRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BEAB1D3CEEF9642E7998C9EC32762B /* SegmentedRowFormer.swift */; };
+		FBCCF132CAFC2A35BEBB62A143A37E99 /* FormLabelFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1654D9A3237EBBD1A6094CFA2CFE4F /* FormLabelFooterView.swift */; };
+		FE49B0792565E3DBA62187EBEB4E1E58 /* FontAwesomeStateRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DF0C4930E45B56A32D024FB604DC16 /* FontAwesomeStateRequirement.swift */; };
+		FF9673B5A6172D42CBFCAF8F5CB1CA3D /* PickerRowFormer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE0149E608FCF6E29E76AD9568A543 /* PickerRowFormer.swift */; };
+		FFCEC374CA514CF2D3BAD7549FE31824 /* Showing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50698719129DE5CF75D0A6878CDC38E2 /* Showing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		11C46040B80D714B8D493D1A3B1820AC /* PBXContainerItemProxy */ = {
+		4290B203691AA9B2A04A4D6CF05B8C35 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CB2EAB5C326E4BB9AE6483289BB7C828;
-			remoteInfo = "FontAwesome.swift-FontAwesome.swift";
-		};
-		6AA8FFDF6758F740F029CF4396D9307E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A49653DE5C178056786C3F4942CA524F;
-			remoteInfo = Former;
-		};
-		8EC84E5DD959DE0A4C836A2083A15255 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 29124FF4E0F9AB7495AA7588B0A1A107;
-			remoteInfo = FontAwesome.swift;
-		};
-		A12FE4183ACEE49201A60A503229FC9E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 73F49D601141DFE6D44DCC575B3765F5;
+			remoteGlobalIDString = 339DE581A0AE70EBFF16B6E958971520;
 			remoteInfo = Whisper;
 		};
-		D114F4AEB29D7FF348D9D7A69C2BA6DE /* PBXContainerItemProxy */ = {
+		58667D01C5905B9BFA95D89F2D1ECE42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B881263F5FBF1212B32FA2AABEFFB1CD;
+			remoteGlobalIDString = 03A4028D44C4F7F96FB87182054B36C8;
+			remoteInfo = Former;
+		};
+		9094F397ED177DF87283C626D2F5F806 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4255A53C9FC46E2A6605D689307219F6;
 			remoteInfo = Dwifft;
+		};
+		D06B65A6786DC2E10084C7B8E08BEF0B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4DC20DD2E50259D674257304EC016C93;
+			remoteInfo = "FontAwesome.swift-FontAwesome.swift";
+		};
+		E50AA4F06D3EC9ACD946F4E8AF2BB051 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB240150692F32EC312F3CF346C8B9D1;
+			remoteInfo = FontAwesome.swift;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00ECE5A172D3E1E5C3C95C6D35E6B7A3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02486E66E2EC6D678DD644066BD8A061 /* WhisperView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WhisperView.swift; path = Source/WhisperView.swift; sourceTree = "<group>"; };
-		02AB41A5F5E51335D44C7FD6C56874AB /* Former-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Former-prefix.pch"; sourceTree = "<group>"; };
-		02C94113A25F91D58DA9A7B624937E67 /* FormSegmentedCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSegmentedCell.swift; path = Former/Cells/FormSegmentedCell.swift; sourceTree = "<group>"; };
-		051E3086232B151F4A68310E4C2BA127 /* FontAwesomeTextRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeTextRepresentable.swift; path = FontAwesome/FontAwesomeTextRepresentable.swift; sourceTree = "<group>"; };
-		073E7142A121A80A3B9F4393E80472D9 /* Pods-RPGAapp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RPGAapp-dummy.m"; sourceTree = "<group>"; };
-		07D6FF7816E96300FAE185FA5BC285EA /* FontList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontList.swift; path = Source/Configuration/FontList.swift; sourceTree = "<group>"; };
-		0D3BAE6A8A5471D3CEF71D4B8EED6154 /* FontAwesomeTabBarItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeTabBarItem.swift; path = FontAwesome/FontAwesomeTabBarItem.swift; sourceTree = "<group>"; };
-		0E9DBA018083AC2A933B34A6BA18268B /* DatePickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePickerRowFormer.swift; path = Former/RowFormers/DatePickerRowFormer.swift; sourceTree = "<group>"; };
-		13C349E5947FB95CF4308FFE8A1D92EE /* Former.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Former.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		15AE8079FF672587261633329EA5B25D /* Message.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Source/Message.swift; sourceTree = "<group>"; };
-		15C990C993F740C80064D6B80F52DC84 /* WhisperFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WhisperFactory.swift; path = Source/WhisperFactory.swift; sourceTree = "<group>"; };
-		17ED291361BC5A917E6108FBCAC231D6 /* ViewFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewFormer.swift; path = Former/Commons/ViewFormer.swift; sourceTree = "<group>"; };
-		1A273220983072FD629F74F45357FD7C /* FontAwesome.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-prefix.pch"; sourceTree = "<group>"; };
-		1A3C796A2AE95981D980275E47AA8E84 /* Dwifft.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dwifft.swift; path = Dwifft/Dwifft.swift; sourceTree = "<group>"; };
-		1A50720E9BB20ED3A3A281E1B9C782B3 /* Whisper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Whisper-dummy.m"; sourceTree = "<group>"; };
-		1CDCC4F9282BF83ED7AECF002844BEAC /* Former.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Former.modulemap; sourceTree = "<group>"; };
-		1E105639CFFB37F3671E9273AE113959 /* FormStepperCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormStepperCell.swift; path = Former/Cells/FormStepperCell.swift; sourceTree = "<group>"; };
-		2726A88E171ECC8F144A3B278E7EDDAF /* Former.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Former.h; path = Former/Former.h; sourceTree = "<group>"; };
-		2A70FB3041041AFBC1F196F71CEA4E22 /* Showing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Showing.swift; path = Source/Showing.swift; sourceTree = "<group>"; };
-		2D7F05B55DC57F7184BC52F52785980C /* Whisper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Whisper.xcconfig; sourceTree = "<group>"; };
-		30228C54E436BB2A515A40665355075A /* SelectorDatePickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelectorDatePickerRowFormer.swift; path = Former/RowFormers/SelectorDatePickerRowFormer.swift; sourceTree = "<group>"; };
-		32066C3785CD50E819043BB85FBAB0C1 /* CheckRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CheckRowFormer.swift; path = Former/RowFormers/CheckRowFormer.swift; sourceTree = "<group>"; };
-		3315200190A7DB7D7A86FEECB18718DF /* TextViewRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextViewRowFormer.swift; path = Former/RowFormers/TextViewRowFormer.swift; sourceTree = "<group>"; };
-		3457E10640E8712DC23D5EC5A3BC2388 /* Config.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Source/Config.swift; sourceTree = "<group>"; };
-		3480DE57ED936A28EB2DAF00B75A30F7 /* Enum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enum.swift; path = FontAwesome/Enum.swift; sourceTree = "<group>"; };
-		3BA77969CF49433EA4DF8C9213DCDA06 /* PickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PickerRowFormer.swift; path = Former/RowFormers/PickerRowFormer.swift; sourceTree = "<group>"; };
-		3FC39FD7E9B918A4BB5E4436CC6BCB37 /* FontAwesomeExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeExtension.swift; path = FontAwesome/FontAwesomeExtension.swift; sourceTree = "<group>"; };
-		402D8F344FFBE68607C58F8B06054F57 /* FormLabelCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormLabelCell.swift; path = Former/Cells/FormLabelCell.swift; sourceTree = "<group>"; };
-		434C5FE9B417232FFB1DABBF119F36AD /* FontAwesomeImageRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeImageRepresentable.swift; path = FontAwesome/FontAwesomeImageRepresentable.swift; sourceTree = "<group>"; };
-		443F9011B79E7680F18CCA70A90532AA /* FormInlineDatePickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormInlineDatePickerCell.swift; path = Former/Cells/FormInlineDatePickerCell.swift; sourceTree = "<group>"; };
-		45780900C8D4E5E7DDED678EE9B4074D /* LabelRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LabelRowFormer.swift; path = Former/RowFormers/LabelRowFormer.swift; sourceTree = "<group>"; };
-		46FD05E5E8A25C2A54FBF438FDAE2C34 /* FontAwesome.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-umbrella.h"; sourceTree = "<group>"; };
-		49546408F188A34EE24BF6BAA0D12D8D /* Pods-RPGAapp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RPGAapp.modulemap"; sourceTree = "<group>"; };
-		55E8430DD3A72715C524B9D53C949643 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontAwesome_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		55FB9D86F89EDECDC17FE12D61EECFEF /* FormSliderCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSliderCell.swift; path = Former/Cells/FormSliderCell.swift; sourceTree = "<group>"; };
-		56020233CA85BBC605131B0D9C239902 /* BaseRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseRowFormer.swift; path = Former/RowFormers/BaseRowFormer.swift; sourceTree = "<group>"; };
-		58C3607FCB909AD87F83459574201165 /* FormSwitchCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSwitchCell.swift; path = Former/Cells/FormSwitchCell.swift; sourceTree = "<group>"; };
-		59BBF32E48E24CF3F5CD03AA1E707E15 /* TextFieldRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFieldRowFormer.swift; path = Former/RowFormers/TextFieldRowFormer.swift; sourceTree = "<group>"; };
-		5ABD0B97F689E1715CB9FC54FDA2A6C0 /* FormLabelHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormLabelHeaderView.swift; path = Former/Views/FormLabelHeaderView.swift; sourceTree = "<group>"; };
-		5B33AB8367156D9CECB163A282B22FA8 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		5B9B011F7CDDFC25331DACF272B18393 /* Pods-RPGAapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RPGAapp.release.xcconfig"; sourceTree = "<group>"; };
-		5CB115A737AA36AB84E7D3A792BB1DA3 /* Whisper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Whisper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DBF2D7400C39FC5ED654147EA618701 /* Dwifft-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Dwifft-umbrella.h"; sourceTree = "<group>"; };
-		5F532D6B2EFE21C59607CC5A13AA4A71 /* FontAwesomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeView.swift; path = FontAwesome/FontAwesomeView.swift; sourceTree = "<group>"; };
-		6000C1838C067E459F200D5AF86A85CD /* Former-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Former-umbrella.h"; sourceTree = "<group>"; };
-		61141C48AAFD5D66D77D493F974D5391 /* Dwifft-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Dwifft-prefix.pch"; sourceTree = "<group>"; };
-		614C6015054C5EEA833744625366B356 /* RowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RowFormer.swift; path = Former/Commons/RowFormer.swift; sourceTree = "<group>"; };
-		64362D1DD47B3F141AAE402041857EFC /* Whisper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Whisper.modulemap; sourceTree = "<group>"; };
-		684B707E9376377DC03D172894A183E6 /* FormTextViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormTextViewCell.swift; path = Former/Cells/FormTextViewCell.swift; sourceTree = "<group>"; };
-		6AE0D5F4590207E2A732893EFADF3046 /* LabelViewFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LabelViewFormer.swift; path = Former/ViewFormers/LabelViewFormer.swift; sourceTree = "<group>"; };
-		6C9343F6F907855D0142A8C02FF33522 /* SliderRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SliderRowFormer.swift; path = Former/RowFormers/SliderRowFormer.swift; sourceTree = "<group>"; };
-		6D11541EAFB280A704D447A0B18A286C /* FormSelectorPickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSelectorPickerCell.swift; path = Former/Cells/FormSelectorPickerCell.swift; sourceTree = "<group>"; };
-		6D33E16FCF603A325D22D0D8FE5970CB /* SectionedValues.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SectionedValues.swift; path = Dwifft/SectionedValues.swift; sourceTree = "<group>"; };
-		6E937FD029AEA0091562396BF68C172F /* FontAwesomeBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeBarButtonItem.swift; path = FontAwesome/FontAwesomeBarButtonItem.swift; sourceTree = "<group>"; };
-		71253F6F8774306C3985A4C402FE2586 /* SegmentedRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SegmentedRowFormer.swift; path = Former/RowFormers/SegmentedRowFormer.swift; sourceTree = "<group>"; };
-		7204414E1C360DBAA480890156AE1188 /* FontAwesomeSegmentedControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeSegmentedControl.swift; path = FontAwesome/FontAwesomeSegmentedControl.swift; sourceTree = "<group>"; };
-		72B885F3BCED524B29CC59D42FAA77DF /* FormSelectorDatePickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSelectorDatePickerCell.swift; path = Former/Cells/FormSelectorDatePickerCell.swift; sourceTree = "<group>"; };
-		742EAF91A5FA61C56973F8F4029D843E /* InlinePickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InlinePickerRowFormer.swift; path = Former/RowFormers/InlinePickerRowFormer.swift; sourceTree = "<group>"; };
-		75BD3695C1D34CE15E9847B692FCA7F3 /* ShoutFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShoutFactory.swift; path = Source/ShoutFactory.swift; sourceTree = "<group>"; };
-		785A9D335A2E671D1475693BAF5C04F8 /* FormLabelFooterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormLabelFooterView.swift; path = Former/Views/FormLabelFooterView.swift; sourceTree = "<group>"; };
-		78D150B954CFBB3FDC146A0649559C34 /* FormPickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormPickerCell.swift; path = Former/Cells/FormPickerCell.swift; sourceTree = "<group>"; };
-		7FFD2DB360E57995A575C53CAFF5F1EA /* CustomViewFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomViewFormer.swift; path = Former/ViewFormers/CustomViewFormer.swift; sourceTree = "<group>"; };
-		852EF5A80368F17122FD103FA541316A /* Pods-RPGAapp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RPGAapp-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8A78C06F1AC4EB96EE1181127CBF391E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FC716BB97B6E0EF69BEAD184CDF1686 /* Dwifft+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dwifft+UIKit.swift"; path = "Dwifft/Dwifft+UIKit.swift"; sourceTree = "<group>"; };
-		92A786C468F6A080B8E0858F454AB185 /* FormInlinePickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormInlinePickerCell.swift; path = Former/Cells/FormInlinePickerCell.swift; sourceTree = "<group>"; };
-		92EF2F1138630E9F3D284D43E714364D /* FormDatePickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormDatePickerCell.swift; path = Former/Cells/FormDatePickerCell.swift; sourceTree = "<group>"; };
-		93A27ED1827C8DF48E865DB3874C182F /* Former.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Former.swift; path = Former/Commons/Former.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9401BF6FD70AD8811A6475932B1E6B65 /* FormerProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormerProtocol.swift; path = Former/Commons/FormerProtocol.swift; sourceTree = "<group>"; };
-		94B13F28A18F331350117D36674BA84D /* SwitchRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwitchRowFormer.swift; path = Former/RowFormers/SwitchRowFormer.swift; sourceTree = "<group>"; };
-		95425A43EAC7380E3293A1ECFA7FC134 /* Pods_RPGAapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RPGAapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		96F69DB182B28D9BC821AF13CFA0A2E5 /* Dwifft-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Dwifft-dummy.m"; sourceTree = "<group>"; };
-		99449D44B93C9EB55D0CE3ADAEF39E8E /* BaseViewFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseViewFormer.swift; path = Former/ViewFormers/BaseViewFormer.swift; sourceTree = "<group>"; };
-		9A1D910FA1120B29F9AAD99F4A11BE92 /* Font Awesome 5 Free-Solid-900.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "Font Awesome 5 Free-Solid-900.otf"; path = "FontAwesome/Font Awesome 5 Free-Solid-900.otf"; sourceTree = "<group>"; };
-		9A3837EBE3B35DACB3FF7F72F8179313 /* FormTextFieldCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormTextFieldCell.swift; path = Former/Cells/FormTextFieldCell.swift; sourceTree = "<group>"; };
-		9E0142115FF89C3ADD21C4B20E73985F /* FontAwesomeStateRequirement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeStateRequirement.swift; path = FontAwesome/FontAwesomeStateRequirement.swift; sourceTree = "<group>"; };
-		9E12950B9CE60F60E04016668A8A8842 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		A01DF83C7334F2688A1C0A17912D2DA9 /* FontAwesome.swift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontAwesome.swift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7618314356A2422EED44DEBB9A1CD2E /* Former.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Former.xcconfig; sourceTree = "<group>"; };
-		AA884B850F8F5032976A83C4ACFBE6D8 /* Pods-RPGAapp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RPGAapp-resources.sh"; sourceTree = "<group>"; };
-		AAFEDE51D62F7C861664616327FA2224 /* FormCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormCell.swift; path = Former/Cells/FormCell.swift; sourceTree = "<group>"; };
-		AB55276DD72B4CDEF7F417DF5BCACB87 /* UITableViewCell+Former.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+Former.swift"; path = "Former/Helpers/UITableViewCell+Former.swift"; sourceTree = "<group>"; };
-		AE079E8740BB2653E93241CE1CCF7B46 /* WhistleFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WhistleFactory.swift; path = Source/WhistleFactory.swift; sourceTree = "<group>"; };
-		B5EF600DE2F93CCBA099265E50B06982 /* Dwifft.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Dwifft.modulemap; sourceTree = "<group>"; };
-		B63D1988E13C83055BAD08B8B0DA0F85 /* CustomRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomRowFormer.swift; path = Former/RowFormers/CustomRowFormer.swift; sourceTree = "<group>"; };
-		B6EACB9C8F0E83436ECA42891979579B /* FormCheckCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormCheckCell.swift; path = Former/Cells/FormCheckCell.swift; sourceTree = "<group>"; };
-		BA73DEDCC232FC9F03F7EF17A3CD6650 /* Dwifft+AppKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dwifft+AppKit.swift"; path = "Dwifft/Dwifft+AppKit.swift"; sourceTree = "<group>"; };
-		BD52E9AB6A2B138A154312D1E6405359 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BDC5D582112D2424BEED185CBDCAA320 /* Former-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Former-dummy.m"; sourceTree = "<group>"; };
-		BF9BC1D01F844D59CD36AA2CA1BA901E /* ColorList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorList.swift; path = Source/Configuration/ColorList.swift; sourceTree = "<group>"; };
-		CD5B00CCBA7461893C45045D86EED950 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D16CFBF7EBD93A046F063DE3C84E84DD /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Source/UIView+Extensions.swift"; sourceTree = "<group>"; };
-		D5D4A6D02BFAA53BCD4BD1E59AE413A9 /* Font Awesome 5 Free-Regular-400.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "Font Awesome 5 Free-Regular-400.otf"; path = "FontAwesome/Font Awesome 5 Free-Regular-400.otf"; sourceTree = "<group>"; };
-		D8E6853E61175BC2EAA69AAA9513E1E4 /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA650383EC117C91A89B1108C47EBDB7 /* Pods-RPGAapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RPGAapp.debug.xcconfig"; sourceTree = "<group>"; };
-		DAD3CDAF83294E000B907DA0D379A1DF /* FontAwesomeImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeImageView.swift; path = FontAwesome/FontAwesomeImageView.swift; sourceTree = "<group>"; };
-		DAE8029D76970D9B8E40633D788A299C /* Whisper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Whisper-umbrella.h"; sourceTree = "<group>"; };
-		DC88D87BAF506C609AB27E7987C293AF /* Pods-RPGAapp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RPGAapp-frameworks.sh"; sourceTree = "<group>"; };
-		DCAC84267E786CAF6E502474527A09B2 /* StepperRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StepperRowFormer.swift; path = Former/RowFormers/StepperRowFormer.swift; sourceTree = "<group>"; };
-		DD10C754E2DCB5494D77757F4253C841 /* InlineDatePickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InlineDatePickerRowFormer.swift; path = Former/RowFormers/InlineDatePickerRowFormer.swift; sourceTree = "<group>"; };
-		DD2DC58D4116DCC2875D2C24678F281F /* FontAwesome.swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FontAwesome.swift.xcconfig; sourceTree = "<group>"; };
-		DE2E9972E4EADE8079124B2892701799 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		E3BC550F43C400D8579262E2A0A06BFB /* Font Awesome 5 Brands-Regular-400.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "Font Awesome 5 Brands-Regular-400.otf"; path = "FontAwesome/Font Awesome 5 Brands-Regular-400.otf"; sourceTree = "<group>"; };
-		E8BB9E3E1EAAC86E167B73954C0B64CA /* FormViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormViewController.swift; path = Former/Controllers/FormViewController.swift; sourceTree = "<group>"; };
-		EF75FF68F23A587CF66ED5F2C1377EE8 /* ResourceBundle-FontAwesome.swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-FontAwesome.swift-Info.plist"; sourceTree = "<group>"; };
-		F129D426D1E3C22B92DF0A760868BC9C /* SelectorPickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelectorPickerRowFormer.swift; path = Former/RowFormers/SelectorPickerRowFormer.swift; sourceTree = "<group>"; };
-		F2D499ADCC32DD4D5C50D21EBAC6A0F6 /* Whisper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Whisper-prefix.pch"; sourceTree = "<group>"; };
-		F3F639E3AACD9D118E7025F8713F62DA /* FontAwesome.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FontAwesome.swift.modulemap; sourceTree = "<group>"; };
-		F409E42819303C7B15E295C0C447B018 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4EC00B9D8F3FB92646BF25C186B7BE8 /* SectionFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SectionFormer.swift; path = Former/Commons/SectionFormer.swift; sourceTree = "<group>"; };
-		F70014979970BB73BF618A2D0A3F50A5 /* Dwifft.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Dwifft.xcconfig; sourceTree = "<group>"; };
-		F87A4D72FEE93B10B0BAA04A392C9FAD /* FormHeaderFooterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormHeaderFooterView.swift; path = Former/Views/FormHeaderFooterView.swift; sourceTree = "<group>"; };
-		FA619340EF22A8FCF3A0959E6D485CFC /* Pods-RPGAapp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RPGAapp-acknowledgements.plist"; sourceTree = "<group>"; };
-		FD88525CD2EF0FAF6CF751F651AF226A /* Pods-RPGAapp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RPGAapp-umbrella.h"; sourceTree = "<group>"; };
-		FDF834870DD5324C902EF07ED887BC62 /* FontAwesome.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FontAwesome.swift-dummy.m"; sourceTree = "<group>"; };
-		FE116EE0965E7B1F5CC07150115D0BCE /* FontAwesome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesome.swift; path = FontAwesome/FontAwesome.swift; sourceTree = "<group>"; };
-		FE70ACC1010A1039ADFDF66AE4D184A0 /* AbstractDiffCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AbstractDiffCalculator.swift; path = Dwifft/AbstractDiffCalculator.swift; sourceTree = "<group>"; };
+		010ADC3B682EB625DA550B3AA858B174 /* FontAwesomeTabBarItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeTabBarItem.swift; path = FontAwesome/FontAwesomeTabBarItem.swift; sourceTree = "<group>"; };
+		01899E26F6078DF4A8C06CC761B58707 /* FormHeaderFooterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormHeaderFooterView.swift; path = Former/Views/FormHeaderFooterView.swift; sourceTree = "<group>"; };
+		022E4F19FC36A63E934C2F844C92C9C7 /* Former-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Former-prefix.pch"; sourceTree = "<group>"; };
+		02FB69F40336B1A312D9CE8F5C589B77 /* Font Awesome 5 Free-Solid-900.otf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Font Awesome 5 Free-Solid-900.otf"; path = "FontAwesome/Font Awesome 5 Free-Solid-900.otf"; sourceTree = "<group>"; };
+		032F67321D34EE01369F5810E71B7660 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		076E46045788F7D480C055DBD372D3B1 /* Former.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Former.framework; path = Former.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08B1010FE09B39CBF39F50C07C80FAA9 /* Whisper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Whisper.xcconfig; sourceTree = "<group>"; };
+		0C9A0B672B6CDCA33D84AB895D938167 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		0D6A1D0FD0AE2419C580B695C0A4EA59 /* Dwifft-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Dwifft-umbrella.h"; sourceTree = "<group>"; };
+		10DF0C4930E45B56A32D024FB604DC16 /* FontAwesomeStateRequirement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeStateRequirement.swift; path = FontAwesome/FontAwesomeStateRequirement.swift; sourceTree = "<group>"; };
+		1447331F3BC339E0C740EAAB9C556943 /* FontAwesome.swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FontAwesome.swift.xcconfig; sourceTree = "<group>"; };
+		15A8156C36A21BF9C7020547EAB07FD0 /* TextViewRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextViewRowFormer.swift; path = Former/RowFormers/TextViewRowFormer.swift; sourceTree = "<group>"; };
+		16047304C63AC64B25E8358992CC1FA8 /* FormViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormViewController.swift; path = Former/Controllers/FormViewController.swift; sourceTree = "<group>"; };
+		1692AB4C3F78FCCD4071586A8183D76D /* Pods_RPGAapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RPGAapp.framework; path = "Pods-RPGAapp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		17499A165DC416B965673246600C52AF /* FontAwesomeExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeExtension.swift; path = FontAwesome/FontAwesomeExtension.swift; sourceTree = "<group>"; };
+		191088201520A15BA63975F94F048F7D /* BaseRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseRowFormer.swift; path = Former/RowFormers/BaseRowFormer.swift; sourceTree = "<group>"; };
+		19EE0149E608FCF6E29E76AD9568A543 /* PickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PickerRowFormer.swift; path = Former/RowFormers/PickerRowFormer.swift; sourceTree = "<group>"; };
+		1C82C2BB7CF6AF30F1D8236C9C93EF3F /* LabelRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LabelRowFormer.swift; path = Former/RowFormers/LabelRowFormer.swift; sourceTree = "<group>"; };
+		1D4682E6181F543A8ECA29E2E6DC918B /* InlinePickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InlinePickerRowFormer.swift; path = Former/RowFormers/InlinePickerRowFormer.swift; sourceTree = "<group>"; };
+		1EEFAA1767479A197166269D5B6E4CCF /* ResourceBundle-FontAwesome.swift-FontAwesome.swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-FontAwesome.swift-FontAwesome.swift-Info.plist"; sourceTree = "<group>"; };
+		20605A19DDE63A8BEF17A249C86D6EAC /* FontAwesomeImageRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeImageRepresentable.swift; path = FontAwesome/FontAwesomeImageRepresentable.swift; sourceTree = "<group>"; };
+		2133B5D5BAE5D2EE0B72FE984673B785 /* Message.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Source/Message.swift; sourceTree = "<group>"; };
+		2272844F9F9CB0FB94C190FA2089D3A3 /* FontAwesomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeView.swift; path = FontAwesome/FontAwesomeView.swift; sourceTree = "<group>"; };
+		23621862A99429490F9C983069F078BB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		28A3CCFDC77829170B0B12EB9E3391CF /* FontAwesome_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FontAwesome_swift.framework; path = FontAwesome.swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28AFED25826B2DDB9155CA4650C58BEB /* UIView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Source/UIView+Extensions.swift"; sourceTree = "<group>"; };
+		299800F2DDFA1CD9202E92239DB76711 /* CustomViewFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomViewFormer.swift; path = Former/ViewFormers/CustomViewFormer.swift; sourceTree = "<group>"; };
+		29FA1543813B1878F7C20034E591F0E2 /* Former.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Former.h; path = Former/Former.h; sourceTree = "<group>"; };
+		2CFEC68D2DA5679588F0E29E855FD71B /* DatePickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePickerRowFormer.swift; path = Former/RowFormers/DatePickerRowFormer.swift; sourceTree = "<group>"; };
+		2D2E6EDA287B139D3D2B455E20DCEB5C /* ShoutFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShoutFactory.swift; path = Source/ShoutFactory.swift; sourceTree = "<group>"; };
+		2D6925D18ABFFC8BF974D8F4B4571B72 /* FormCheckCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormCheckCell.swift; path = Former/Cells/FormCheckCell.swift; sourceTree = "<group>"; };
+		2D86FF5DCCDC5DE660381D0F949C0C18 /* Pods-RPGAapp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RPGAapp-frameworks.sh"; sourceTree = "<group>"; };
+		30F24FAEF858A4368950A41E576C8947 /* Former.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Former.modulemap; sourceTree = "<group>"; };
+		32FF72513A3E0887E3D3A39AA4B1472C /* FormLabelHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormLabelHeaderView.swift; path = Former/Views/FormLabelHeaderView.swift; sourceTree = "<group>"; };
+		34B0FF95B55CE722FD2BE07D5AE8079E /* FormInlinePickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormInlinePickerCell.swift; path = Former/Cells/FormInlinePickerCell.swift; sourceTree = "<group>"; };
+		3605AEB69034EB288F3AC654F03C340F /* LabelViewFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LabelViewFormer.swift; path = Former/ViewFormers/LabelViewFormer.swift; sourceTree = "<group>"; };
+		362BDA4B26FD151F86F0125EBA19705E /* SectionedValues.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SectionedValues.swift; path = Dwifft/SectionedValues.swift; sourceTree = "<group>"; };
+		3B5056EAA986D1A2341C25991073864E /* SelectorDatePickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelectorDatePickerRowFormer.swift; path = Former/RowFormers/SelectorDatePickerRowFormer.swift; sourceTree = "<group>"; };
+		3DA4F5DC4EB6E9DF6B4859D27EF8C9F5 /* FontAwesome.swift.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FontAwesome.swift.bundle; path = "FontAwesome.swift-FontAwesome.swift.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EC618E0628FBC5A1620E9F3E973AA09 /* ViewFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewFormer.swift; path = Former/Commons/ViewFormer.swift; sourceTree = "<group>"; };
+		3F38978DA556459622FFF3C10D352531 /* Whisper-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Whisper-Info.plist"; sourceTree = "<group>"; };
+		43DF6E052D326440DD81725DF787201F /* FontAwesomeBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeBarButtonItem.swift; path = FontAwesome/FontAwesomeBarButtonItem.swift; sourceTree = "<group>"; };
+		4B231E21D23776C5D51E4A29A5C4ADC2 /* SelectorPickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelectorPickerRowFormer.swift; path = Former/RowFormers/SelectorPickerRowFormer.swift; sourceTree = "<group>"; };
+		4CA11AB1C1000269CBE729D5AA84E952 /* AbstractDiffCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AbstractDiffCalculator.swift; path = Dwifft/AbstractDiffCalculator.swift; sourceTree = "<group>"; };
+		50698719129DE5CF75D0A6878CDC38E2 /* Showing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Showing.swift; path = Source/Showing.swift; sourceTree = "<group>"; };
+		523B3FF9FE68A597E92354D2FDAD03FE /* FormSegmentedCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSegmentedCell.swift; path = Former/Cells/FormSegmentedCell.swift; sourceTree = "<group>"; };
+		53B89D3B28538610D8A6E4725C1C8DE0 /* FontAwesome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesome.swift; path = FontAwesome/FontAwesome.swift; sourceTree = "<group>"; };
+		547C558DEFB894014D08C45AD134E156 /* Pods-RPGAapp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RPGAapp.modulemap"; sourceTree = "<group>"; };
+		5A5ADBE14CA412E0462014A1939D98ED /* Config.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Source/Config.swift; sourceTree = "<group>"; };
+		608E80CFAF230D7E1BA1E5F7D6D2BF55 /* FormSwitchCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSwitchCell.swift; path = Former/Cells/FormSwitchCell.swift; sourceTree = "<group>"; };
+		63EDE22F1A917B8FA30AF9E12CB22F2A /* FormSelectorDatePickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSelectorDatePickerCell.swift; path = Former/Cells/FormSelectorDatePickerCell.swift; sourceTree = "<group>"; };
+		6C9120A5BC031AFF62D6E67848CE8489 /* Whisper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Whisper-umbrella.h"; sourceTree = "<group>"; };
+		6D5AFC6EA5B8C577F8C2C97F2798601F /* Dwifft+AppKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dwifft+AppKit.swift"; path = "Dwifft/Dwifft+AppKit.swift"; sourceTree = "<group>"; };
+		6E2C0620DDF4ABEC9D4A1AD5B311B329 /* Dwifft.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Dwifft.xcconfig; sourceTree = "<group>"; };
+		71585A4C8566A8D54485C72825D2FE39 /* Former.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Former.swift; path = Former/Commons/Former.swift; sourceTree = "<group>"; };
+		73DFD7E76A1BE30C6F070629F19FC61D /* RowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RowFormer.swift; path = Former/Commons/RowFormer.swift; sourceTree = "<group>"; };
+		7527D29E58F54F9CD27B7A423C402C28 /* FontAwesomeTextRepresentable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeTextRepresentable.swift; path = FontAwesome/FontAwesomeTextRepresentable.swift; sourceTree = "<group>"; };
+		7596EDA2B9484326FA20CABB8F4922C4 /* FontAwesomeImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeImageView.swift; path = FontAwesome/FontAwesomeImageView.swift; sourceTree = "<group>"; };
+		77ADC425BA37DE8E2AFD4A051AE9963F /* Whisper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Whisper-prefix.pch"; sourceTree = "<group>"; };
+		78D3CEC9B84BE27DF9C58A8AE3658537 /* Font Awesome 5 Free-Regular-400.otf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Font Awesome 5 Free-Regular-400.otf"; path = "FontAwesome/Font Awesome 5 Free-Regular-400.otf"; sourceTree = "<group>"; };
+		7B9514F8E7D5DA9545DC6202A9F24967 /* Font Awesome 5 Brands-Regular-400.otf */ = {isa = PBXFileReference; includeInIndex = 1; name = "Font Awesome 5 Brands-Regular-400.otf"; path = "FontAwesome/Font Awesome 5 Brands-Regular-400.otf"; sourceTree = "<group>"; };
+		7C1654D9A3237EBBD1A6094CFA2CFE4F /* FormLabelFooterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormLabelFooterView.swift; path = Former/Views/FormLabelFooterView.swift; sourceTree = "<group>"; };
+		8032FF3693C6ED08388178BB6B1F0924 /* FormPickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormPickerCell.swift; path = Former/Cells/FormPickerCell.swift; sourceTree = "<group>"; };
+		841CAF165BB61FB07979D520D9C6B24B /* FormDatePickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormDatePickerCell.swift; path = Former/Cells/FormDatePickerCell.swift; sourceTree = "<group>"; };
+		847EE639F7825E65B57A10226725619D /* Pods-RPGAapp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RPGAapp-dummy.m"; sourceTree = "<group>"; };
+		8489A74264AA881F318D9AC31672DE35 /* SectionFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SectionFormer.swift; path = Former/Commons/SectionFormer.swift; sourceTree = "<group>"; };
+		850381CDBE0DE2BC5006C6E7940275F8 /* Former.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Former.xcconfig; sourceTree = "<group>"; };
+		890DBB9420162A2867CF377FF6200413 /* Pods-RPGAapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RPGAapp.release.xcconfig"; sourceTree = "<group>"; };
+		8928DC7F9A5F56C512ACB476A8B54DE9 /* Pods-RPGAapp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RPGAapp-acknowledgements.plist"; sourceTree = "<group>"; };
+		8A87882DBAC9063FBEA9F4DAA554DF16 /* Dwifft+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dwifft+UIKit.swift"; path = "Dwifft/Dwifft+UIKit.swift"; sourceTree = "<group>"; };
+		8E3991EC9A9016B42F0CD9FB48E07E46 /* Whisper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Whisper.modulemap; sourceTree = "<group>"; };
+		968B2B794A77077D618DEA3CD4C4FE25 /* Enum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enum.swift; path = FontAwesome/Enum.swift; sourceTree = "<group>"; };
+		99840D071293FC83ABA09D735EEF4C80 /* FontAwesome.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FontAwesome.swift-dummy.m"; sourceTree = "<group>"; };
+		9CDD33FBAA8FD777C0E3BD7EC83F09E5 /* Dwifft-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Dwifft-dummy.m"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0FB1165F5EF21BCE590FDBA47A62EF2 /* FontAwesome.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-umbrella.h"; sourceTree = "<group>"; };
+		A40084535EB4733CF3741B2CF27B4420 /* Dwifft-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Dwifft-prefix.pch"; sourceTree = "<group>"; };
+		A867BDB9F9FA6768D0FD91AFEAEE938D /* Whisper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Whisper.framework; path = Whisper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABA9B90B59E5BE126E3C35CA9FC7FFC0 /* Dwifft.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Dwifft.modulemap; sourceTree = "<group>"; };
+		AE0D8441DEC48340FB12A47642299480 /* SliderRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SliderRowFormer.swift; path = Former/RowFormers/SliderRowFormer.swift; sourceTree = "<group>"; };
+		AE1EB1448E5D3B18B458DC4C5A909A0D /* FormInlineDatePickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormInlineDatePickerCell.swift; path = Former/Cells/FormInlineDatePickerCell.swift; sourceTree = "<group>"; };
+		AF67B4B01BE0C6D59C6FDB01741DFAA1 /* Pods-RPGAapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RPGAapp.debug.xcconfig"; sourceTree = "<group>"; };
+		B04D06F3E23400CA2C218AAF22223420 /* FormerProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormerProtocol.swift; path = Former/Commons/FormerProtocol.swift; sourceTree = "<group>"; };
+		B1C267C076F04E11B18AA67F16C6B038 /* FormStepperCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormStepperCell.swift; path = Former/Cells/FormStepperCell.swift; sourceTree = "<group>"; };
+		B5CC0A5A0CBCAF4FC61561D3720CAC82 /* Pods-RPGAapp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RPGAapp-Info.plist"; sourceTree = "<group>"; };
+		B6028534D0C7019D26EFEAAA617E6352 /* CheckRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CheckRowFormer.swift; path = Former/RowFormers/CheckRowFormer.swift; sourceTree = "<group>"; };
+		B9D130EEF4EB5ABF47FCC2965F2EE821 /* FontAwesome.swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FontAwesome.swift-Info.plist"; sourceTree = "<group>"; };
+		BBF3DA90E6B7493648C0D05544A512C1 /* FormSelectorPickerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSelectorPickerCell.swift; path = Former/Cells/FormSelectorPickerCell.swift; sourceTree = "<group>"; };
+		BDA524DA7E40C31635CA92FDB2FAD0E5 /* Pods-RPGAapp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RPGAapp-umbrella.h"; sourceTree = "<group>"; };
+		C0F658857A2C6862D3A523811020DDE8 /* InlineDatePickerRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InlineDatePickerRowFormer.swift; path = Former/RowFormers/InlineDatePickerRowFormer.swift; sourceTree = "<group>"; };
+		C142878111AF1C313A42FF7DA27981A2 /* Former-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Former-Info.plist"; sourceTree = "<group>"; };
+		C165C26F9E38904776C12CABA0EEAF75 /* Dwifft-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Dwifft-Info.plist"; sourceTree = "<group>"; };
+		C26FE4B9507F92E4130DA96CDC243743 /* FormLabelCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormLabelCell.swift; path = Former/Cells/FormLabelCell.swift; sourceTree = "<group>"; };
+		C5C702A6E62BCB585641456F53D02A27 /* StepperRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StepperRowFormer.swift; path = Former/RowFormers/StepperRowFormer.swift; sourceTree = "<group>"; };
+		C842D26737D6E8848777839E7FA1EDFE /* Whisper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Whisper-dummy.m"; sourceTree = "<group>"; };
+		CDBAD1848090A01C29A952C641838665 /* Dwifft.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dwifft.swift; path = Dwifft/Dwifft.swift; sourceTree = "<group>"; };
+		CE499DDAF7033405FAACA0179C15C05F /* FontAwesome.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FontAwesome.swift.modulemap; sourceTree = "<group>"; };
+		D0A395E9DBDA1BB04B4EBB5FC220ED53 /* FormTextViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormTextViewCell.swift; path = Former/Cells/FormTextViewCell.swift; sourceTree = "<group>"; };
+		D5614710D1AE5DA4D4E9975943122273 /* WhisperFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WhisperFactory.swift; path = Source/WhisperFactory.swift; sourceTree = "<group>"; };
+		D8D85087F15165122FB703D9CA434430 /* Pods-RPGAapp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RPGAapp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D9475514AEEB748FDB18FD553B051219 /* BaseViewFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseViewFormer.swift; path = Former/ViewFormers/BaseViewFormer.swift; sourceTree = "<group>"; };
+		D98CBAC426A6C91B6D6AC42D64F26D31 /* WhistleFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WhistleFactory.swift; path = Source/WhistleFactory.swift; sourceTree = "<group>"; };
+		DCDA2A4A5F05F3BCE1596DBDAC85BEF7 /* FormSliderCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormSliderCell.swift; path = Former/Cells/FormSliderCell.swift; sourceTree = "<group>"; };
+		DD39E272AB554B7C1479BAF9BB6A1C38 /* CustomRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomRowFormer.swift; path = Former/RowFormers/CustomRowFormer.swift; sourceTree = "<group>"; };
+		DE76178A025496900FE7676ED80FE202 /* UITableViewCell+Former.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+Former.swift"; path = "Former/Helpers/UITableViewCell+Former.swift"; sourceTree = "<group>"; };
+		DF63AFD502D83413C26C22A8956E1DC4 /* FontAwesome.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesome.swift-prefix.pch"; sourceTree = "<group>"; };
+		E4C58607CB5206B986C2C2061E0E4192 /* FormTextFieldCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormTextFieldCell.swift; path = Former/Cells/FormTextFieldCell.swift; sourceTree = "<group>"; };
+		E5454C13210FB24561F490EC6ACA10FB /* WhisperView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WhisperView.swift; path = Source/WhisperView.swift; sourceTree = "<group>"; };
+		E6BEAB1D3CEEF9642E7998C9EC32762B /* SegmentedRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SegmentedRowFormer.swift; path = Former/RowFormers/SegmentedRowFormer.swift; sourceTree = "<group>"; };
+		E6C17620E8C39270DD6DA6065CAF04FF /* FontList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontList.swift; path = Source/Configuration/FontList.swift; sourceTree = "<group>"; };
+		E8D8572DF633B4D139358826BBCECF68 /* Former-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Former-dummy.m"; sourceTree = "<group>"; };
+		EBFE50AA2B5229A14A2B7BB55FE13A03 /* FontAwesomeSegmentedControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesomeSegmentedControl.swift; path = FontAwesome/FontAwesomeSegmentedControl.swift; sourceTree = "<group>"; };
+		F3616314070955A1EE5CB87864143F9E /* TextFieldRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFieldRowFormer.swift; path = Former/RowFormers/TextFieldRowFormer.swift; sourceTree = "<group>"; };
+		F4D36A31668AAB2FC4ED33D842A84364 /* FormCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormCell.swift; path = Former/Cells/FormCell.swift; sourceTree = "<group>"; };
+		F7118F01C79F9106C0ED6C4193C40EFD /* SwitchRowFormer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwitchRowFormer.swift; path = Former/RowFormers/SwitchRowFormer.swift; sourceTree = "<group>"; };
+		F9A3075975F5A2DEC7F9542146314ACE /* Former-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Former-umbrella.h"; sourceTree = "<group>"; };
+		FB969FD073927E6AA543394FF1731CA1 /* ColorList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorList.swift; path = Source/Configuration/ColorList.swift; sourceTree = "<group>"; };
+		FF024DCEACF139617EC596C45282C2F1 /* Dwifft.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Dwifft.framework; path = Dwifft.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		22A3AB69EEAACA5C5B209383A1A3CAA6 /* Frameworks */ = {
+		0DAEF888E5FE7A1FC8AA99D9C7551CCA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC3B6E74825998D8B9F46CEFDD3611A8 /* Foundation.framework in Frameworks */,
-				E5A143927DD5231560C182C431A95245 /* UIKit.framework in Frameworks */,
+				68B39D165C2442C9986CB14C96F7A483 /* Foundation.framework in Frameworks */,
+				93567B5C391C299B1721C80C4B608877 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81CB756C19F41368409453330FD5D5C7 /* Frameworks */ = {
+		7E427BB678B5E6168CC555F4A4AB8E1A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FABCAA22D4E35B398FA1894E116A3F5 /* CoreText.framework in Frameworks */,
-				5A5EE1E9039686A8BBC61EB05B85910A /* Foundation.framework in Frameworks */,
-				5C8DE6B19FD4FCD81CEE048B56EC9E06 /* UIKit.framework in Frameworks */,
+				E5087EB5D254943652891628E37DEF87 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E11180A995E82221EF7A4A0E4601B83 /* Frameworks */ = {
+		889FC90E007AF2C9DE5C84516B57F606 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE97B4BF52F0659A77B81A511F23F8C4 /* Foundation.framework in Frameworks */,
-				76A08F174323C7A1611DE6CB305C0701 /* UIKit.framework in Frameworks */,
+				C7BA1B3FC4C025CAF4C156B2912BF3F8 /* CoreText.framework in Frameworks */,
+				6CADCBC18CE422499677C423AB08B95A /* Foundation.framework in Frameworks */,
+				26D86A5A6215B671C527751DFD6BFE1A /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AF37D16DED482F2D7F59DFA4929A4710 /* Frameworks */ = {
+		B2E461109F7C8F6856E2B401CB6EBC27 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B774422ECF13F4334D1A8E51CE3AC140 /* Frameworks */ = {
+		CEFF38456BEA24070873C7A757E8E10D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D250F06F0057FCA20D5E9714D2286A9 /* Foundation.framework in Frameworks */,
+				69E49A01811CF8FA1FE92981ABB9067F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EA8100DE2067E1B1287C66F1119EE36E /* Frameworks */ = {
+		EDB85C9E65BCC1B6BF53C5C094DA9717 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA3E2B9DEA1BDD4B7CBA071D9AB69791 /* Foundation.framework in Frameworks */,
+				67014C7EE8BE73ACC9D2101FDF7089EF /* Foundation.framework in Frameworks */,
+				A3186D59C0B37578D5AF220C399D45A6 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+		026DA581301F0B7877DC786EC8FA59E5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A6E8F77E6A3B76377DD6425D7F87AFA3 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		19617BACAB6D611BE1D3D9D5D819038E /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F3F639E3AACD9D118E7025F8713F62DA /* FontAwesome.swift.modulemap */,
-				DD2DC58D4116DCC2875D2C24678F281F /* FontAwesome.swift.xcconfig */,
-				FDF834870DD5324C902EF07ED887BC62 /* FontAwesome.swift-dummy.m */,
-				1A273220983072FD629F74F45357FD7C /* FontAwesome.swift-prefix.pch */,
-				46FD05E5E8A25C2A54FBF438FDAE2C34 /* FontAwesome.swift-umbrella.h */,
-				CD5B00CCBA7461893C45045D86EED950 /* Info.plist */,
-				EF75FF68F23A587CF66ED5F2C1377EE8 /* ResourceBundle-FontAwesome.swift-Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FontAwesome.swift";
-			sourceTree = "<group>";
-		};
-		1E4892B0CEF7727F2EAD1078D99E7BB2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				585FCED892DE4D605803E3162F4E5028 /* Dwifft */,
-				3B923CFFA4E8E8F61861AD092AD7ED5E /* FontAwesome.swift */,
-				E0F5002C8D6C294EB28F746F674BDE72 /* Former */,
-				B4C1466D3EDF8EA8665D3E4B67A3F846 /* Whisper */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		2BF838CADF7369C1A1AAADDB71E0676E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D8E6853E61175BC2EAA69AAA9513E1E4 /* Dwifft.framework */,
-				A01DF83C7334F2688A1C0A17912D2DA9 /* FontAwesome.swift.bundle */,
-				55E8430DD3A72715C524B9D53C949643 /* FontAwesome_swift.framework */,
-				13C349E5947FB95CF4308FFE8A1D92EE /* Former.framework */,
-				95425A43EAC7380E3293A1ECFA7FC134 /* Pods_RPGAapp.framework */,
-				5CB115A737AA36AB84E7D3A792BB1DA3 /* Whisper.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		3A7B67E99275C95AB029929C13195E09 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B5EF600DE2F93CCBA099265E50B06982 /* Dwifft.modulemap */,
-				F70014979970BB73BF618A2D0A3F50A5 /* Dwifft.xcconfig */,
-				96F69DB182B28D9BC821AF13CFA0A2E5 /* Dwifft-dummy.m */,
-				61141C48AAFD5D66D77D493F974D5391 /* Dwifft-prefix.pch */,
-				5DBF2D7400C39FC5ED654147EA618701 /* Dwifft-umbrella.h */,
-				8A78C06F1AC4EB96EE1181127CBF391E /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Dwifft";
-			sourceTree = "<group>";
-		};
-		3B923CFFA4E8E8F61861AD092AD7ED5E /* FontAwesome.swift */ = {
-			isa = PBXGroup;
-			children = (
-				3480DE57ED936A28EB2DAF00B75A30F7 /* Enum.swift */,
-				FE116EE0965E7B1F5CC07150115D0BCE /* FontAwesome.swift */,
-				6E937FD029AEA0091562396BF68C172F /* FontAwesomeBarButtonItem.swift */,
-				3FC39FD7E9B918A4BB5E4436CC6BCB37 /* FontAwesomeExtension.swift */,
-				434C5FE9B417232FFB1DABBF119F36AD /* FontAwesomeImageRepresentable.swift */,
-				DAD3CDAF83294E000B907DA0D379A1DF /* FontAwesomeImageView.swift */,
-				7204414E1C360DBAA480890156AE1188 /* FontAwesomeSegmentedControl.swift */,
-				9E0142115FF89C3ADD21C4B20E73985F /* FontAwesomeStateRequirement.swift */,
-				0D3BAE6A8A5471D3CEF71D4B8EED6154 /* FontAwesomeTabBarItem.swift */,
-				051E3086232B151F4A68310E4C2BA127 /* FontAwesomeTextRepresentable.swift */,
-				5F532D6B2EFE21C59607CC5A13AA4A71 /* FontAwesomeView.swift */,
-				3DE4FFBB99BB3AA32892CC407CE5264C /* Resources */,
-				19617BACAB6D611BE1D3D9D5D819038E /* Support Files */,
-			);
-			path = FontAwesome.swift;
-			sourceTree = "<group>";
-		};
-		3DE4FFBB99BB3AA32892CC407CE5264C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E3BC550F43C400D8579262E2A0A06BFB /* Font Awesome 5 Brands-Regular-400.otf */,
-				D5D4A6D02BFAA53BCD4BD1E59AE413A9 /* Font Awesome 5 Free-Regular-400.otf */,
-				9A1D910FA1120B29F9AAD99F4A11BE92 /* Font Awesome 5 Free-Solid-900.otf */,
+				7B9514F8E7D5DA9545DC6202A9F24967 /* Font Awesome 5 Brands-Regular-400.otf */,
+				78D3CEC9B84BE27DF9C58A8AE3658537 /* Font Awesome 5 Free-Regular-400.otf */,
+				02FB69F40336B1A312D9CE8F5C589B77 /* Font Awesome 5 Free-Solid-900.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		585FCED892DE4D605803E3162F4E5028 /* Dwifft */ = {
+		03C5C200A0787E300053CFA8F53CA094 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FE70ACC1010A1039ADFDF66AE4D184A0 /* AbstractDiffCalculator.swift */,
-				1A3C796A2AE95981D980275E47AA8E84 /* Dwifft.swift */,
-				BA73DEDCC232FC9F03F7EF17A3CD6650 /* Dwifft+AppKit.swift */,
-				8FC716BB97B6E0EF69BEAD184CDF1686 /* Dwifft+UIKit.swift */,
-				6D33E16FCF603A325D22D0D8FE5970CB /* SectionedValues.swift */,
-				3A7B67E99275C95AB029929C13195E09 /* Support Files */,
+				092FD875F565846165BF2D8B053941F7 /* iOS */,
 			);
-			path = Dwifft;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		704F091FFC7675496AB31BBE9AB0F8E9 /* Support Files */ = {
+		068D9B389CB257A74D003A9BA114CD6E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F409E42819303C7B15E295C0C447B018 /* Info.plist */,
-				64362D1DD47B3F141AAE402041857EFC /* Whisper.modulemap */,
-				2D7F05B55DC57F7184BC52F52785980C /* Whisper.xcconfig */,
-				1A50720E9BB20ED3A3A281E1B9C782B3 /* Whisper-dummy.m */,
-				F2D499ADCC32DD4D5C50D21EBAC6A0F6 /* Whisper-prefix.pch */,
-				DAE8029D76970D9B8E40633D788A299C /* Whisper-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Whisper";
-			sourceTree = "<group>";
-		};
-		7DB346D0F39D3F0E887471402A8071AB = {
-			isa = PBXGroup;
-			children = (
-				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				1E4892B0CEF7727F2EAD1078D99E7BB2 /* Pods */,
-				2BF838CADF7369C1A1AAADDB71E0676E /* Products */,
-				EE293094FE189FACA695F8F6638A34CD /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		A2CCDD521871C0C60C4C9039B018F5FB /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				1CDCC4F9282BF83ED7AECF002844BEAC /* Former.modulemap */,
-				A7618314356A2422EED44DEBB9A1CD2E /* Former.xcconfig */,
-				BDC5D582112D2424BEED185CBDCAA320 /* Former-dummy.m */,
-				02AB41A5F5E51335D44C7FD6C56874AB /* Former-prefix.pch */,
-				6000C1838C067E459F200D5AF86A85CD /* Former-umbrella.h */,
-				BD52E9AB6A2B138A154312D1E6405359 /* Info.plist */,
+				30F24FAEF858A4368950A41E576C8947 /* Former.modulemap */,
+				850381CDBE0DE2BC5006C6E7940275F8 /* Former.xcconfig */,
+				E8D8572DF633B4D139358826BBCECF68 /* Former-dummy.m */,
+				C142878111AF1C313A42FF7DA27981A2 /* Former-Info.plist */,
+				022E4F19FC36A63E934C2F844C92C9C7 /* Former-prefix.pch */,
+				F9A3075975F5A2DEC7F9542146314ACE /* Former-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Former";
 			sourceTree = "<group>";
 		};
-		A6E8F77E6A3B76377DD6425D7F87AFA3 /* iOS */ = {
+		092FD875F565846165BF2D8B053941F7 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				5B33AB8367156D9CECB163A282B22FA8 /* CoreText.framework */,
-				9E12950B9CE60F60E04016668A8A8842 /* Foundation.framework */,
-				DE2E9972E4EADE8079124B2892701799 /* UIKit.framework */,
+				0C9A0B672B6CDCA33D84AB895D938167 /* CoreText.framework */,
+				23621862A99429490F9C983069F078BB /* Foundation.framework */,
+				032F67321D34EE01369F5810E71B7660 /* UIKit.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		B4C1466D3EDF8EA8665D3E4B67A3F846 /* Whisper */ = {
+		0944979F504070116131D8070C20ED03 /* Former */ = {
 			isa = PBXGroup;
 			children = (
-				BF9BC1D01F844D59CD36AA2CA1BA901E /* ColorList.swift */,
-				3457E10640E8712DC23D5EC5A3BC2388 /* Config.swift */,
-				07D6FF7816E96300FAE185FA5BC285EA /* FontList.swift */,
-				15AE8079FF672587261633329EA5B25D /* Message.swift */,
-				75BD3695C1D34CE15E9847B692FCA7F3 /* ShoutFactory.swift */,
-				2A70FB3041041AFBC1F196F71CEA4E22 /* Showing.swift */,
-				D16CFBF7EBD93A046F063DE3C84E84DD /* UIView+Extensions.swift */,
-				15C990C993F740C80064D6B80F52DC84 /* WhisperFactory.swift */,
-				02486E66E2EC6D678DD644066BD8A061 /* WhisperView.swift */,
-				AE079E8740BB2653E93241CE1CCF7B46 /* WhistleFactory.swift */,
-				704F091FFC7675496AB31BBE9AB0F8E9 /* Support Files */,
+				191088201520A15BA63975F94F048F7D /* BaseRowFormer.swift */,
+				D9475514AEEB748FDB18FD553B051219 /* BaseViewFormer.swift */,
+				B6028534D0C7019D26EFEAAA617E6352 /* CheckRowFormer.swift */,
+				DD39E272AB554B7C1479BAF9BB6A1C38 /* CustomRowFormer.swift */,
+				299800F2DDFA1CD9202E92239DB76711 /* CustomViewFormer.swift */,
+				2CFEC68D2DA5679588F0E29E855FD71B /* DatePickerRowFormer.swift */,
+				F4D36A31668AAB2FC4ED33D842A84364 /* FormCell.swift */,
+				2D6925D18ABFFC8BF974D8F4B4571B72 /* FormCheckCell.swift */,
+				841CAF165BB61FB07979D520D9C6B24B /* FormDatePickerCell.swift */,
+				29FA1543813B1878F7C20034E591F0E2 /* Former.h */,
+				71585A4C8566A8D54485C72825D2FE39 /* Former.swift */,
+				B04D06F3E23400CA2C218AAF22223420 /* FormerProtocol.swift */,
+				01899E26F6078DF4A8C06CC761B58707 /* FormHeaderFooterView.swift */,
+				AE1EB1448E5D3B18B458DC4C5A909A0D /* FormInlineDatePickerCell.swift */,
+				34B0FF95B55CE722FD2BE07D5AE8079E /* FormInlinePickerCell.swift */,
+				C26FE4B9507F92E4130DA96CDC243743 /* FormLabelCell.swift */,
+				7C1654D9A3237EBBD1A6094CFA2CFE4F /* FormLabelFooterView.swift */,
+				32FF72513A3E0887E3D3A39AA4B1472C /* FormLabelHeaderView.swift */,
+				8032FF3693C6ED08388178BB6B1F0924 /* FormPickerCell.swift */,
+				523B3FF9FE68A597E92354D2FDAD03FE /* FormSegmentedCell.swift */,
+				63EDE22F1A917B8FA30AF9E12CB22F2A /* FormSelectorDatePickerCell.swift */,
+				BBF3DA90E6B7493648C0D05544A512C1 /* FormSelectorPickerCell.swift */,
+				DCDA2A4A5F05F3BCE1596DBDAC85BEF7 /* FormSliderCell.swift */,
+				B1C267C076F04E11B18AA67F16C6B038 /* FormStepperCell.swift */,
+				608E80CFAF230D7E1BA1E5F7D6D2BF55 /* FormSwitchCell.swift */,
+				E4C58607CB5206B986C2C2061E0E4192 /* FormTextFieldCell.swift */,
+				D0A395E9DBDA1BB04B4EBB5FC220ED53 /* FormTextViewCell.swift */,
+				16047304C63AC64B25E8358992CC1FA8 /* FormViewController.swift */,
+				C0F658857A2C6862D3A523811020DDE8 /* InlineDatePickerRowFormer.swift */,
+				1D4682E6181F543A8ECA29E2E6DC918B /* InlinePickerRowFormer.swift */,
+				1C82C2BB7CF6AF30F1D8236C9C93EF3F /* LabelRowFormer.swift */,
+				3605AEB69034EB288F3AC654F03C340F /* LabelViewFormer.swift */,
+				19EE0149E608FCF6E29E76AD9568A543 /* PickerRowFormer.swift */,
+				73DFD7E76A1BE30C6F070629F19FC61D /* RowFormer.swift */,
+				8489A74264AA881F318D9AC31672DE35 /* SectionFormer.swift */,
+				E6BEAB1D3CEEF9642E7998C9EC32762B /* SegmentedRowFormer.swift */,
+				3B5056EAA986D1A2341C25991073864E /* SelectorDatePickerRowFormer.swift */,
+				4B231E21D23776C5D51E4A29A5C4ADC2 /* SelectorPickerRowFormer.swift */,
+				AE0D8441DEC48340FB12A47642299480 /* SliderRowFormer.swift */,
+				C5C702A6E62BCB585641456F53D02A27 /* StepperRowFormer.swift */,
+				F7118F01C79F9106C0ED6C4193C40EFD /* SwitchRowFormer.swift */,
+				F3616314070955A1EE5CB87864143F9E /* TextFieldRowFormer.swift */,
+				15A8156C36A21BF9C7020547EAB07FD0 /* TextViewRowFormer.swift */,
+				DE76178A025496900FE7676ED80FE202 /* UITableViewCell+Former.swift */,
+				3EC618E0628FBC5A1620E9F3E973AA09 /* ViewFormer.swift */,
+				068D9B389CB257A74D003A9BA114CD6E /* Support Files */,
 			);
-			path = Whisper;
-			sourceTree = "<group>";
-		};
-		E0F5002C8D6C294EB28F746F674BDE72 /* Former */ = {
-			isa = PBXGroup;
-			children = (
-				56020233CA85BBC605131B0D9C239902 /* BaseRowFormer.swift */,
-				99449D44B93C9EB55D0CE3ADAEF39E8E /* BaseViewFormer.swift */,
-				32066C3785CD50E819043BB85FBAB0C1 /* CheckRowFormer.swift */,
-				B63D1988E13C83055BAD08B8B0DA0F85 /* CustomRowFormer.swift */,
-				7FFD2DB360E57995A575C53CAFF5F1EA /* CustomViewFormer.swift */,
-				0E9DBA018083AC2A933B34A6BA18268B /* DatePickerRowFormer.swift */,
-				AAFEDE51D62F7C861664616327FA2224 /* FormCell.swift */,
-				B6EACB9C8F0E83436ECA42891979579B /* FormCheckCell.swift */,
-				92EF2F1138630E9F3D284D43E714364D /* FormDatePickerCell.swift */,
-				2726A88E171ECC8F144A3B278E7EDDAF /* Former.h */,
-				93A27ED1827C8DF48E865DB3874C182F /* Former.swift */,
-				9401BF6FD70AD8811A6475932B1E6B65 /* FormerProtocol.swift */,
-				F87A4D72FEE93B10B0BAA04A392C9FAD /* FormHeaderFooterView.swift */,
-				443F9011B79E7680F18CCA70A90532AA /* FormInlineDatePickerCell.swift */,
-				92A786C468F6A080B8E0858F454AB185 /* FormInlinePickerCell.swift */,
-				402D8F344FFBE68607C58F8B06054F57 /* FormLabelCell.swift */,
-				785A9D335A2E671D1475693BAF5C04F8 /* FormLabelFooterView.swift */,
-				5ABD0B97F689E1715CB9FC54FDA2A6C0 /* FormLabelHeaderView.swift */,
-				78D150B954CFBB3FDC146A0649559C34 /* FormPickerCell.swift */,
-				02C94113A25F91D58DA9A7B624937E67 /* FormSegmentedCell.swift */,
-				72B885F3BCED524B29CC59D42FAA77DF /* FormSelectorDatePickerCell.swift */,
-				6D11541EAFB280A704D447A0B18A286C /* FormSelectorPickerCell.swift */,
-				55FB9D86F89EDECDC17FE12D61EECFEF /* FormSliderCell.swift */,
-				1E105639CFFB37F3671E9273AE113959 /* FormStepperCell.swift */,
-				58C3607FCB909AD87F83459574201165 /* FormSwitchCell.swift */,
-				9A3837EBE3B35DACB3FF7F72F8179313 /* FormTextFieldCell.swift */,
-				684B707E9376377DC03D172894A183E6 /* FormTextViewCell.swift */,
-				E8BB9E3E1EAAC86E167B73954C0B64CA /* FormViewController.swift */,
-				DD10C754E2DCB5494D77757F4253C841 /* InlineDatePickerRowFormer.swift */,
-				742EAF91A5FA61C56973F8F4029D843E /* InlinePickerRowFormer.swift */,
-				45780900C8D4E5E7DDED678EE9B4074D /* LabelRowFormer.swift */,
-				6AE0D5F4590207E2A732893EFADF3046 /* LabelViewFormer.swift */,
-				3BA77969CF49433EA4DF8C9213DCDA06 /* PickerRowFormer.swift */,
-				614C6015054C5EEA833744625366B356 /* RowFormer.swift */,
-				F4EC00B9D8F3FB92646BF25C186B7BE8 /* SectionFormer.swift */,
-				71253F6F8774306C3985A4C402FE2586 /* SegmentedRowFormer.swift */,
-				30228C54E436BB2A515A40665355075A /* SelectorDatePickerRowFormer.swift */,
-				F129D426D1E3C22B92DF0A760868BC9C /* SelectorPickerRowFormer.swift */,
-				6C9343F6F907855D0142A8C02FF33522 /* SliderRowFormer.swift */,
-				DCAC84267E786CAF6E502474527A09B2 /* StepperRowFormer.swift */,
-				94B13F28A18F331350117D36674BA84D /* SwitchRowFormer.swift */,
-				59BBF32E48E24CF3F5CD03AA1E707E15 /* TextFieldRowFormer.swift */,
-				3315200190A7DB7D7A86FEECB18718DF /* TextViewRowFormer.swift */,
-				AB55276DD72B4CDEF7F417DF5BCACB87 /* UITableViewCell+Former.swift */,
-				17ED291361BC5A917E6108FBCAC231D6 /* ViewFormer.swift */,
-				A2CCDD521871C0C60C4C9039B018F5FB /* Support Files */,
-			);
+			name = Former;
 			path = Former;
 			sourceTree = "<group>";
 		};
-		EE293094FE189FACA695F8F6638A34CD /* Targets Support Files */ = {
+		2F7369ACA3AFB3B6EB86B7E4D30DC105 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FD0AD1F146A246C050C9BBDADF23B3F1 /* Pods-RPGAapp */,
+				77F2861E46E4F8D340A9C922DFCB712C /* Pods-RPGAapp */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		FD0AD1F146A246C050C9BBDADF23B3F1 /* Pods-RPGAapp */ = {
+		60A49CD089FEAF6340E6348F0B06AE06 /* Dwifft */ = {
 			isa = PBXGroup;
 			children = (
-				00ECE5A172D3E1E5C3C95C6D35E6B7A3 /* Info.plist */,
-				49546408F188A34EE24BF6BAA0D12D8D /* Pods-RPGAapp.modulemap */,
-				852EF5A80368F17122FD103FA541316A /* Pods-RPGAapp-acknowledgements.markdown */,
-				FA619340EF22A8FCF3A0959E6D485CFC /* Pods-RPGAapp-acknowledgements.plist */,
-				073E7142A121A80A3B9F4393E80472D9 /* Pods-RPGAapp-dummy.m */,
-				DC88D87BAF506C609AB27E7987C293AF /* Pods-RPGAapp-frameworks.sh */,
-				AA884B850F8F5032976A83C4ACFBE6D8 /* Pods-RPGAapp-resources.sh */,
-				FD88525CD2EF0FAF6CF751F651AF226A /* Pods-RPGAapp-umbrella.h */,
-				DA650383EC117C91A89B1108C47EBDB7 /* Pods-RPGAapp.debug.xcconfig */,
-				5B9B011F7CDDFC25331DACF272B18393 /* Pods-RPGAapp.release.xcconfig */,
+				4CA11AB1C1000269CBE729D5AA84E952 /* AbstractDiffCalculator.swift */,
+				CDBAD1848090A01C29A952C641838665 /* Dwifft.swift */,
+				6D5AFC6EA5B8C577F8C2C97F2798601F /* Dwifft+AppKit.swift */,
+				8A87882DBAC9063FBEA9F4DAA554DF16 /* Dwifft+UIKit.swift */,
+				362BDA4B26FD151F86F0125EBA19705E /* SectionedValues.swift */,
+				D2AC10CF849BDA105D4AF6841B08E87E /* Support Files */,
+			);
+			name = Dwifft;
+			path = Dwifft;
+			sourceTree = "<group>";
+		};
+		77F2861E46E4F8D340A9C922DFCB712C /* Pods-RPGAapp */ = {
+			isa = PBXGroup;
+			children = (
+				547C558DEFB894014D08C45AD134E156 /* Pods-RPGAapp.modulemap */,
+				D8D85087F15165122FB703D9CA434430 /* Pods-RPGAapp-acknowledgements.markdown */,
+				8928DC7F9A5F56C512ACB476A8B54DE9 /* Pods-RPGAapp-acknowledgements.plist */,
+				847EE639F7825E65B57A10226725619D /* Pods-RPGAapp-dummy.m */,
+				2D86FF5DCCDC5DE660381D0F949C0C18 /* Pods-RPGAapp-frameworks.sh */,
+				B5CC0A5A0CBCAF4FC61561D3720CAC82 /* Pods-RPGAapp-Info.plist */,
+				BDA524DA7E40C31635CA92FDB2FAD0E5 /* Pods-RPGAapp-umbrella.h */,
+				AF67B4B01BE0C6D59C6FDB01741DFAA1 /* Pods-RPGAapp.debug.xcconfig */,
+				890DBB9420162A2867CF377FF6200413 /* Pods-RPGAapp.release.xcconfig */,
 			);
 			name = "Pods-RPGAapp";
 			path = "Target Support Files/Pods-RPGAapp";
 			sourceTree = "<group>";
 		};
+		813B55D244A22FC1F4173311CF20AD43 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E3991EC9A9016B42F0CD9FB48E07E46 /* Whisper.modulemap */,
+				08B1010FE09B39CBF39F50C07C80FAA9 /* Whisper.xcconfig */,
+				C842D26737D6E8848777839E7FA1EDFE /* Whisper-dummy.m */,
+				3F38978DA556459622FFF3C10D352531 /* Whisper-Info.plist */,
+				77ADC425BA37DE8E2AFD4A051AE9963F /* Whisper-prefix.pch */,
+				6C9120A5BC031AFF62D6E67848CE8489 /* Whisper-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Whisper";
+			sourceTree = "<group>";
+		};
+		9691F6D57D08320ED33943B9B7F60A5E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				60A49CD089FEAF6340E6348F0B06AE06 /* Dwifft */,
+				C328A5CF493516EE2976F988E0251576 /* FontAwesome.swift */,
+				0944979F504070116131D8070C20ED03 /* Former */,
+				FFB587259E231E3695893E58DF530D71 /* Whisper */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C328A5CF493516EE2976F988E0251576 /* FontAwesome.swift */ = {
+			isa = PBXGroup;
+			children = (
+				968B2B794A77077D618DEA3CD4C4FE25 /* Enum.swift */,
+				53B89D3B28538610D8A6E4725C1C8DE0 /* FontAwesome.swift */,
+				43DF6E052D326440DD81725DF787201F /* FontAwesomeBarButtonItem.swift */,
+				17499A165DC416B965673246600C52AF /* FontAwesomeExtension.swift */,
+				20605A19DDE63A8BEF17A249C86D6EAC /* FontAwesomeImageRepresentable.swift */,
+				7596EDA2B9484326FA20CABB8F4922C4 /* FontAwesomeImageView.swift */,
+				EBFE50AA2B5229A14A2B7BB55FE13A03 /* FontAwesomeSegmentedControl.swift */,
+				10DF0C4930E45B56A32D024FB604DC16 /* FontAwesomeStateRequirement.swift */,
+				010ADC3B682EB625DA550B3AA858B174 /* FontAwesomeTabBarItem.swift */,
+				7527D29E58F54F9CD27B7A423C402C28 /* FontAwesomeTextRepresentable.swift */,
+				2272844F9F9CB0FB94C190FA2089D3A3 /* FontAwesomeView.swift */,
+				026DA581301F0B7877DC786EC8FA59E5 /* Resources */,
+				D7BB397732F88FA0942DA7B65F0E9854 /* Support Files */,
+			);
+			name = FontAwesome.swift;
+			path = FontAwesome.swift;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				03C5C200A0787E300053CFA8F53CA094 /* Frameworks */,
+				9691F6D57D08320ED33943B9B7F60A5E /* Pods */,
+				E0B407D235EC805E0860F3B61DA52D12 /* Products */,
+				2F7369ACA3AFB3B6EB86B7E4D30DC105 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D2AC10CF849BDA105D4AF6841B08E87E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				ABA9B90B59E5BE126E3C35CA9FC7FFC0 /* Dwifft.modulemap */,
+				6E2C0620DDF4ABEC9D4A1AD5B311B329 /* Dwifft.xcconfig */,
+				9CDD33FBAA8FD777C0E3BD7EC83F09E5 /* Dwifft-dummy.m */,
+				C165C26F9E38904776C12CABA0EEAF75 /* Dwifft-Info.plist */,
+				A40084535EB4733CF3741B2CF27B4420 /* Dwifft-prefix.pch */,
+				0D6A1D0FD0AE2419C580B695C0A4EA59 /* Dwifft-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Dwifft";
+			sourceTree = "<group>";
+		};
+		D7BB397732F88FA0942DA7B65F0E9854 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE499DDAF7033405FAACA0179C15C05F /* FontAwesome.swift.modulemap */,
+				1447331F3BC339E0C740EAAB9C556943 /* FontAwesome.swift.xcconfig */,
+				99840D071293FC83ABA09D735EEF4C80 /* FontAwesome.swift-dummy.m */,
+				B9D130EEF4EB5ABF47FCC2965F2EE821 /* FontAwesome.swift-Info.plist */,
+				DF63AFD502D83413C26C22A8956E1DC4 /* FontAwesome.swift-prefix.pch */,
+				A0FB1165F5EF21BCE590FDBA47A62EF2 /* FontAwesome.swift-umbrella.h */,
+				1EEFAA1767479A197166269D5B6E4CCF /* ResourceBundle-FontAwesome.swift-FontAwesome.swift-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FontAwesome.swift";
+			sourceTree = "<group>";
+		};
+		E0B407D235EC805E0860F3B61DA52D12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF024DCEACF139617EC596C45282C2F1 /* Dwifft.framework */,
+				3DA4F5DC4EB6E9DF6B4859D27EF8C9F5 /* FontAwesome.swift.bundle */,
+				28A3CCFDC77829170B0B12EB9E3391CF /* FontAwesome_swift.framework */,
+				076E46045788F7D480C055DBD372D3B1 /* Former.framework */,
+				1692AB4C3F78FCCD4071586A8183D76D /* Pods_RPGAapp.framework */,
+				A867BDB9F9FA6768D0FD91AFEAEE938D /* Whisper.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FFB587259E231E3695893E58DF530D71 /* Whisper */ = {
+			isa = PBXGroup;
+			children = (
+				FB969FD073927E6AA543394FF1731CA1 /* ColorList.swift */,
+				5A5ADBE14CA412E0462014A1939D98ED /* Config.swift */,
+				E6C17620E8C39270DD6DA6065CAF04FF /* FontList.swift */,
+				2133B5D5BAE5D2EE0B72FE984673B785 /* Message.swift */,
+				2D2E6EDA287B139D3D2B455E20DCEB5C /* ShoutFactory.swift */,
+				50698719129DE5CF75D0A6878CDC38E2 /* Showing.swift */,
+				28AFED25826B2DDB9155CA4650C58BEB /* UIView+Extensions.swift */,
+				D5614710D1AE5DA4D4E9975943122273 /* WhisperFactory.swift */,
+				E5454C13210FB24561F490EC6ACA10FB /* WhisperView.swift */,
+				D98CBAC426A6C91B6D6AC42D64F26D31 /* WhistleFactory.swift */,
+				813B55D244A22FC1F4173311CF20AD43 /* Support Files */,
+			);
+			name = Whisper;
+			path = Whisper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		2417DCDC1616BAD7D203C158FE5B0F35 /* Headers */ = {
+		05806A3E47EF27AF118296DD732F0CAA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD296D6DF8AC3E1814624874847905C8 /* FontAwesome.swift-umbrella.h in Headers */,
+				F1AEA891EC7DE537191688BACC937513 /* Former-umbrella.h in Headers */,
+				3DAC069E4471567E23173291B732C37F /* Former.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		32AF4DE727AEAE1BDAEAF1F31B9E691B /* Headers */ = {
+		84C40DE312CB776675E2AFA61F275183 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5577896A743A437DF295CD4758201354 /* Whisper-umbrella.h in Headers */,
+				145572EA681C76F4335F487525B3EAE8 /* Whisper-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6BA4697B9E0790E893B4E204069FF773 /* Headers */ = {
+		B20E58BC772CBD684F94F624149AD54E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				529CAB3169FD4B7580C36502697F4BA2 /* Dwifft-umbrella.h in Headers */,
+				47393EB4FC241F621AEEF79901A27917 /* Pods-RPGAapp-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE9B7F9DF31524E8D30529A372D6B8C5 /* Headers */ = {
+		B7F1943802E8736187005871BB4F6723 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B689897BD307BF6993898DFF5281EEE1 /* Pods-RPGAapp-umbrella.h in Headers */,
+				7D98B888ACA1822CD885AE930EB9F1DA /* Dwifft-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC68E5F56EE6654D21122F9C231D22F0 /* Headers */ = {
+		ECE4C7F4345CDC22DFD0DA8533F5F57B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3513BAD9FDE72F17B92827FE76F80F35 /* Former-umbrella.h in Headers */,
-				FD7D88BEDD0AE05917D12C317D1FB70C /* Former.h in Headers */,
+				9DE3360E24D9FE3ADA0C2162E8DBE1A5 /* FontAwesome.swift-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		29124FF4E0F9AB7495AA7588B0A1A107 /* FontAwesome.swift */ = {
+		03A4028D44C4F7F96FB87182054B36C8 /* Former */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A80A527DA4E27E5F6BB54D77CF803FB4 /* Build configuration list for PBXNativeTarget "FontAwesome.swift" */;
+			buildConfigurationList = 48203D6EDAF853126F41E7492A864BE6 /* Build configuration list for PBXNativeTarget "Former" */;
 			buildPhases = (
-				700B061BB8418D063C16F57AA01105C4 /* Sources */,
-				81CB756C19F41368409453330FD5D5C7 /* Frameworks */,
-				7AD3B2D76D4860EC61264A9E91F7B979 /* Resources */,
-				2417DCDC1616BAD7D203C158FE5B0F35 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				168EED59381E6A33050008C1EBD91077 /* PBXTargetDependency */,
-			);
-			name = FontAwesome.swift;
-			productName = FontAwesome.swift;
-			productReference = 55E8430DD3A72715C524B9D53C949643 /* FontAwesome_swift.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		2A4A4C821E712DAC4BBF0FE51DB55025 /* Pods-RPGAapp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8F460C12792C9A928707FAEFBDDB8F8D /* Build configuration list for PBXNativeTarget "Pods-RPGAapp" */;
-			buildPhases = (
-				E99FB11A4B4D5AEB8F43758403D95958 /* Sources */,
-				B774422ECF13F4334D1A8E51CE3AC140 /* Frameworks */,
-				DE9B7F9DF31524E8D30529A372D6B8C5 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FA62DCB24170E81B0B5B915E9961BF55 /* PBXTargetDependency */,
-				E0E72F26CFFA91B9F895E48978E2B0DE /* PBXTargetDependency */,
-				FCE9F59AD36061A4E1A13BDE30378C5E /* PBXTargetDependency */,
-				AD9B5B2F5AEA7172221E1DAACA88C3FE /* PBXTargetDependency */,
-			);
-			name = "Pods-RPGAapp";
-			productName = "Pods-RPGAapp";
-			productReference = 95425A43EAC7380E3293A1ECFA7FC134 /* Pods_RPGAapp.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		73F49D601141DFE6D44DCC575B3765F5 /* Whisper */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 919B92137048C62CB470E976602C9E33 /* Build configuration list for PBXNativeTarget "Whisper" */;
-			buildPhases = (
-				480E49C17D745C6640E72965E403A4EA /* Sources */,
-				8E11180A995E82221EF7A4A0E4601B83 /* Frameworks */,
-				32AF4DE727AEAE1BDAEAF1F31B9E691B /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Whisper;
-			productName = Whisper;
-			productReference = 5CB115A737AA36AB84E7D3A792BB1DA3 /* Whisper.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		A49653DE5C178056786C3F4942CA524F /* Former */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C0483641AE5495915EE7220D17698DAC /* Build configuration list for PBXNativeTarget "Former" */;
-			buildPhases = (
-				AB33A22550A4751C3EFE4DD7CB706561 /* Sources */,
-				22A3AB69EEAACA5C5B209383A1A3CAA6 /* Frameworks */,
-				EC68E5F56EE6654D21122F9C231D22F0 /* Headers */,
+				05806A3E47EF27AF118296DD732F0CAA /* Headers */,
+				8E50E317B22024D58FEED691D0A39497 /* Sources */,
+				EDB85C9E65BCC1B6BF53C5C094DA9717 /* Frameworks */,
+				E3FE1DBBE6CD3AEE6606AE40AD3AF2EF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -686,16 +632,57 @@
 			);
 			name = Former;
 			productName = Former;
-			productReference = 13C349E5947FB95CF4308FFE8A1D92EE /* Former.framework */;
+			productReference = 076E46045788F7D480C055DBD372D3B1 /* Former.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B881263F5FBF1212B32FA2AABEFFB1CD /* Dwifft */ = {
+		142E16282937DD3B69CFA3EABC41A564 /* Pods-RPGAapp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04E690776F854B78BAAB4F45DBA72674 /* Build configuration list for PBXNativeTarget "Dwifft" */;
+			buildConfigurationList = D53A75B833A6CDAAF7316B2B14F8A56D /* Build configuration list for PBXNativeTarget "Pods-RPGAapp" */;
 			buildPhases = (
-				83A5511E4268E6FD6601C87C640E68D7 /* Sources */,
-				EA8100DE2067E1B1287C66F1119EE36E /* Frameworks */,
-				6BA4697B9E0790E893B4E204069FF773 /* Headers */,
+				B20E58BC772CBD684F94F624149AD54E /* Headers */,
+				EE1D22B887E48BA5748A7D73372E11B7 /* Sources */,
+				7E427BB678B5E6168CC555F4A4AB8E1A /* Frameworks */,
+				5829AF5C68E60183C32B44D0B23D1F71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFE0FC1E77E2BA4641C547BD1C0F445F /* PBXTargetDependency */,
+				5530B62437B20C370A14971F5E2706BD /* PBXTargetDependency */,
+				F3209D0D1D84AE2F65D212FEA8F0F5C5 /* PBXTargetDependency */,
+				64DF30926189D5E6F7D3F088FFEDE703 /* PBXTargetDependency */,
+			);
+			name = "Pods-RPGAapp";
+			productName = "Pods-RPGAapp";
+			productReference = 1692AB4C3F78FCCD4071586A8183D76D /* Pods_RPGAapp.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		339DE581A0AE70EBFF16B6E958971520 /* Whisper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E7C1473DFE9E6AA50C03C691D9558F7 /* Build configuration list for PBXNativeTarget "Whisper" */;
+			buildPhases = (
+				84C40DE312CB776675E2AFA61F275183 /* Headers */,
+				4A325F8C0E764602B4A5375FC4D6A48A /* Sources */,
+				0DAEF888E5FE7A1FC8AA99D9C7551CCA /* Frameworks */,
+				A1F0090CE8095D740A826B18C26972CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Whisper;
+			productName = Whisper;
+			productReference = A867BDB9F9FA6768D0FD91AFEAEE938D /* Whisper.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4255A53C9FC46E2A6605D689307219F6 /* Dwifft */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67375D2293447FAF29DF2E5022FF51F7 /* Build configuration list for PBXNativeTarget "Dwifft" */;
+			buildPhases = (
+				B7F1943802E8736187005871BB4F6723 /* Headers */,
+				40331C885CE19F8625C67402AE78230A /* Sources */,
+				CEFF38456BEA24070873C7A757E8E10D /* Frameworks */,
+				E95C69620542908F55D87BBD7BCF3392 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -703,16 +690,16 @@
 			);
 			name = Dwifft;
 			productName = Dwifft;
-			productReference = D8E6853E61175BC2EAA69AAA9513E1E4 /* Dwifft.framework */;
+			productReference = FF024DCEACF139617EC596C45282C2F1 /* Dwifft.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CB2EAB5C326E4BB9AE6483289BB7C828 /* FontAwesome.swift-FontAwesome.swift */ = {
+		4DC20DD2E50259D674257304EC016C93 /* FontAwesome.swift-FontAwesome.swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EBA26AD231745C1751BE4055B27A6510 /* Build configuration list for PBXNativeTarget "FontAwesome.swift-FontAwesome.swift" */;
+			buildConfigurationList = 162CE2CC222588C47F9D8623AC2D740C /* Build configuration list for PBXNativeTarget "FontAwesome.swift-FontAwesome.swift" */;
 			buildPhases = (
-				DB2699BD7760421C55713B9415FF0274 /* Sources */,
-				AF37D16DED482F2D7F59DFA4929A4710 /* Frameworks */,
-				0284765E3DCE50F1BA8BC52089D9EF11 /* Resources */,
+				A8047C3FFDA6444FE7150EE130F76CD6 /* Sources */,
+				B2E461109F7C8F6856E2B401CB6EBC27 /* Frameworks */,
+				894D7CAAA9B98700AF38B4C59C0C0BA6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -720,19 +707,38 @@
 			);
 			name = "FontAwesome.swift-FontAwesome.swift";
 			productName = "FontAwesome.swift-FontAwesome.swift";
-			productReference = A01DF83C7334F2688A1C0A17912D2DA9 /* FontAwesome.swift.bundle */;
+			productReference = 3DA4F5DC4EB6E9DF6B4859D27EF8C9F5 /* FontAwesome.swift.bundle */;
 			productType = "com.apple.product-type.bundle";
+		};
+		BB240150692F32EC312F3CF346C8B9D1 /* FontAwesome.swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E72A36E6CAEEEF1BFE244B0DF658E365 /* Build configuration list for PBXNativeTarget "FontAwesome.swift" */;
+			buildPhases = (
+				ECE4C7F4345CDC22DFD0DA8533F5F57B /* Headers */,
+				A8925681EB2BF025BB55530B5E2900D4 /* Sources */,
+				889FC90E007AF2C9DE5C84516B57F606 /* Frameworks */,
+				F52DAFB0ECDBC2C21F9A22F311FDFDE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46DD140710EF752CE3A5897A912AAAA0 /* PBXTargetDependency */,
+			);
+			name = FontAwesome.swift;
+			productName = FontAwesome.swift;
+			productReference = 28A3CCFDC77829170B0B12EB9E3391CF /* FontAwesome_swift.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1110;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -740,199 +746,227 @@
 				en,
 				Base,
 			);
-			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 2BF838CADF7369C1A1AAADDB71E0676E /* Products */;
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = E0B407D235EC805E0860F3B61DA52D12 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B881263F5FBF1212B32FA2AABEFFB1CD /* Dwifft */,
-				29124FF4E0F9AB7495AA7588B0A1A107 /* FontAwesome.swift */,
-				CB2EAB5C326E4BB9AE6483289BB7C828 /* FontAwesome.swift-FontAwesome.swift */,
-				A49653DE5C178056786C3F4942CA524F /* Former */,
-				2A4A4C821E712DAC4BBF0FE51DB55025 /* Pods-RPGAapp */,
-				73F49D601141DFE6D44DCC575B3765F5 /* Whisper */,
+				4255A53C9FC46E2A6605D689307219F6 /* Dwifft */,
+				BB240150692F32EC312F3CF346C8B9D1 /* FontAwesome.swift */,
+				4DC20DD2E50259D674257304EC016C93 /* FontAwesome.swift-FontAwesome.swift */,
+				03A4028D44C4F7F96FB87182054B36C8 /* Former */,
+				142E16282937DD3B69CFA3EABC41A564 /* Pods-RPGAapp */,
+				339DE581A0AE70EBFF16B6E958971520 /* Whisper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0284765E3DCE50F1BA8BC52089D9EF11 /* Resources */ = {
+		5829AF5C68E60183C32B44D0B23D1F71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B2116700FA0CFFB7FB4903C53230FED /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
-				A3088DBACC68068F17A9B20A8F442ACA /* Font Awesome 5 Free-Regular-400.otf in Resources */,
-				31514774FEEC7F179F887E6F1CC84857 /* Font Awesome 5 Free-Solid-900.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7AD3B2D76D4860EC61264A9E91F7B979 /* Resources */ = {
+		894D7CAAA9B98700AF38B4C59C0C0BA6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B476160A1663094CDFBDC35DC9EFD32 /* FontAwesome.swift.bundle in Resources */,
+				506ACADC63134125FA6DF10CF06FD027 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
+				55286D2DEC1DB91F601519B9649B49C2 /* Font Awesome 5 Free-Regular-400.otf in Resources */,
+				88703EFA5F39A9C53799FB29E017AD42 /* Font Awesome 5 Free-Solid-900.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1F0090CE8095D740A826B18C26972CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3FE1DBBE6CD3AEE6606AE40AD3AF2EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E95C69620542908F55D87BBD7BCF3392 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F52DAFB0ECDBC2C21F9A22F311FDFDE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				769E73BAE26F14766F3D2F8CC2A295EF /* FontAwesome.swift.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		480E49C17D745C6640E72965E403A4EA /* Sources */ = {
+		40331C885CE19F8625C67402AE78230A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				382EE183B8B8F4AE6930F5FA7EBC772E /* ColorList.swift in Sources */,
-				F089516C28BD6E6A44DF311DBCA2BF00 /* Config.swift in Sources */,
-				13258F01C1DB8B0D18900D9EFB51265F /* FontList.swift in Sources */,
-				68A2933A4F214599BFFDF4235317AE40 /* Message.swift in Sources */,
-				7E5170AF2E6ED4CC226B11F30D86E5D0 /* ShoutFactory.swift in Sources */,
-				9CA60A59DB6D0840E7CFE88233FAC8C5 /* Showing.swift in Sources */,
-				74B457C64DE1463BAD3CA120879481C3 /* UIView+Extensions.swift in Sources */,
-				7A5E8B97139C89F485F7D8FBD9E0101B /* Whisper-dummy.m in Sources */,
-				7124956B495CDA21169C52782FA3A0A0 /* WhisperFactory.swift in Sources */,
-				F1EC37F474D60F9CAFA8E80E29700C29 /* WhisperView.swift in Sources */,
-				E9D22F50963A6E475DBF593C9AA30741 /* WhistleFactory.swift in Sources */,
+				0B28AF4E12913AC5EEBAF7499182DF0B /* AbstractDiffCalculator.swift in Sources */,
+				4452A4C261337D00D753E7E3A12B8506 /* Dwifft+AppKit.swift in Sources */,
+				8F958A757695F959363483AF5B109D64 /* Dwifft+UIKit.swift in Sources */,
+				DF3B83C81214CC3290255C922E55DDF1 /* Dwifft-dummy.m in Sources */,
+				894969C74BE3934962FF7FCBBC0BF161 /* Dwifft.swift in Sources */,
+				1ADD9D0AD5F0657B7809864B756BC155 /* SectionedValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		700B061BB8418D063C16F57AA01105C4 /* Sources */ = {
+		4A325F8C0E764602B4A5375FC4D6A48A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				828E84A639F7F74F9C871F82A4E252B9 /* Enum.swift in Sources */,
-				9419ACA668E00FFC1F70AA23359DF3E5 /* FontAwesome.swift in Sources */,
-				B633D850FB892345DDA1F0DB05213C58 /* FontAwesome.swift-dummy.m in Sources */,
-				89F604C5071756146A5C682E03897724 /* FontAwesomeBarButtonItem.swift in Sources */,
-				6F9C78CE9BA836E9272D3D08F2EBD5AE /* FontAwesomeExtension.swift in Sources */,
-				2D2DD9882ED57FA4A43A5912F7325970 /* FontAwesomeImageRepresentable.swift in Sources */,
-				B22CD5BAA233DD92D22269BAF31049B9 /* FontAwesomeImageView.swift in Sources */,
-				532B94DAC89623F895B0D5C1F04DB994 /* FontAwesomeSegmentedControl.swift in Sources */,
-				0FF663F919A014E6DE08F3726ED3D26F /* FontAwesomeStateRequirement.swift in Sources */,
-				0FE9C1DB0A04041F2D6D572B7B519367 /* FontAwesomeTabBarItem.swift in Sources */,
-				6B5413138C15627AB31211A88A063709 /* FontAwesomeTextRepresentable.swift in Sources */,
-				93929E495F12F2702B2522EE518586C5 /* FontAwesomeView.swift in Sources */,
+				728682615BDA1B39952B3A6452288A56 /* ColorList.swift in Sources */,
+				4972C9845065C3666A9B6DB4D30AAE22 /* Config.swift in Sources */,
+				7B3C460BDFAAFAFF7CE0C31846BEB331 /* FontList.swift in Sources */,
+				329E84BDC01F6097A6807443EF551461 /* Message.swift in Sources */,
+				DBA3F192815D6D0F4D2CBAF9F0D75A60 /* ShoutFactory.swift in Sources */,
+				FFCEC374CA514CF2D3BAD7549FE31824 /* Showing.swift in Sources */,
+				F2B2B0446AC6146F6D4CC81F9906BA51 /* UIView+Extensions.swift in Sources */,
+				20F5E98A8942CC209EB3F85FFBD2EF7D /* Whisper-dummy.m in Sources */,
+				E87041F736498D72105A17AC39A4D120 /* WhisperFactory.swift in Sources */,
+				3BD8F419DBF44859535DB87FAD0604F1 /* WhisperView.swift in Sources */,
+				234800F45E47ABA77D3B9006EF140141 /* WhistleFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83A5511E4268E6FD6601C87C640E68D7 /* Sources */ = {
+		8E50E317B22024D58FEED691D0A39497 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B38775B10F00A04518A4E9CD8F1ED16C /* AbstractDiffCalculator.swift in Sources */,
-				35872AF610AAF773021BE2290728B317 /* Dwifft+AppKit.swift in Sources */,
-				1D865635B49CD023BA6445CBB603D777 /* Dwifft+UIKit.swift in Sources */,
-				28434066CFF5F0C3BDC870444177F0F1 /* Dwifft-dummy.m in Sources */,
-				4EB3C7E861E1843C259CB3E2E855D384 /* Dwifft.swift in Sources */,
-				B021C3B950A41D10C91FD0FE0161CD98 /* SectionedValues.swift in Sources */,
+				96E468CFC69D3D4E445FC9550AC82F28 /* BaseRowFormer.swift in Sources */,
+				022446359E9FD64F2D6CA0627128CF56 /* BaseViewFormer.swift in Sources */,
+				AA082527D444D82B60C6FAD7800E28C6 /* CheckRowFormer.swift in Sources */,
+				AC9CF05623874F023C441D602E158836 /* CustomRowFormer.swift in Sources */,
+				A65B293A7E7E0E8C1825116E6F87496D /* CustomViewFormer.swift in Sources */,
+				C64164D4BE413C144BA296F0A6BC138D /* DatePickerRowFormer.swift in Sources */,
+				A36737908BC56E70D5BED89551A3BB8D /* FormCell.swift in Sources */,
+				ABB4EE2913AFA25FBB898CF666EF67C1 /* FormCheckCell.swift in Sources */,
+				E9A46B604336316DF16B886D4A9D86A1 /* FormDatePickerCell.swift in Sources */,
+				268C7EBA9D385695457459052B26F17F /* Former-dummy.m in Sources */,
+				E39AF08999555F1281CF51A4D0C6E9BE /* Former.swift in Sources */,
+				A666B8EB855AC76D346B245991419FA1 /* FormerProtocol.swift in Sources */,
+				525D070C9F6CF03C6E74B3EB53DDB360 /* FormHeaderFooterView.swift in Sources */,
+				3F6FCC0C749E99590A16807CD69416AF /* FormInlineDatePickerCell.swift in Sources */,
+				5B092527AA01625A684A950BA139743C /* FormInlinePickerCell.swift in Sources */,
+				52DA1E9A705D843EC7B60772C7B9F5AF /* FormLabelCell.swift in Sources */,
+				FBCCF132CAFC2A35BEBB62A143A37E99 /* FormLabelFooterView.swift in Sources */,
+				0695EC978CB3FA0210342DD7F3C18860 /* FormLabelHeaderView.swift in Sources */,
+				F59933A35FCBB17BA905F41BA593EF9D /* FormPickerCell.swift in Sources */,
+				9E8C5B6B67D7BDA1A22C4F3BD9A26619 /* FormSegmentedCell.swift in Sources */,
+				4EA72BE0469B53B100A8359B717C7A92 /* FormSelectorDatePickerCell.swift in Sources */,
+				164ECEFD46FDE59D5A1F9CFC71D500AE /* FormSelectorPickerCell.swift in Sources */,
+				0DF215F73C6BA629BE8B7755C2C543C4 /* FormSliderCell.swift in Sources */,
+				EB2D25A2D229D5F57A2195D560124AF3 /* FormStepperCell.swift in Sources */,
+				6DBFE78AD532B8E48C3A1A4F2050639D /* FormSwitchCell.swift in Sources */,
+				B2F24FB0609979AC54487759A774FC66 /* FormTextFieldCell.swift in Sources */,
+				3D4FFAF390000EC02AD725C2E3D09B54 /* FormTextViewCell.swift in Sources */,
+				D12112807C051CC78209875AE69680BC /* FormViewController.swift in Sources */,
+				C3F346DD8584FBFB44CBC81EA95D8ADB /* InlineDatePickerRowFormer.swift in Sources */,
+				1AD7291D7D3B84EA910DEF65E8B45315 /* InlinePickerRowFormer.swift in Sources */,
+				D0EC5746F884242686F80EAAA2551B4C /* LabelRowFormer.swift in Sources */,
+				A482EB6422BB87EEC0CD8E4E61280D7E /* LabelViewFormer.swift in Sources */,
+				FF9673B5A6172D42CBFCAF8F5CB1CA3D /* PickerRowFormer.swift in Sources */,
+				4A32D244FCC1E0D335525159EDE259DB /* RowFormer.swift in Sources */,
+				0EA83B5A837DBADC27DFED1E8E311A2C /* SectionFormer.swift in Sources */,
+				F603F48C3FE400DBA4837F6142C9B9E6 /* SegmentedRowFormer.swift in Sources */,
+				1E227683449CCC810DD526583BDCA230 /* SelectorDatePickerRowFormer.swift in Sources */,
+				CF85988A8731B78244096FEF7B352897 /* SelectorPickerRowFormer.swift in Sources */,
+				C706773FD598B213CE9429820F52FDFE /* SliderRowFormer.swift in Sources */,
+				9CF3B03A5A77CBE8591CC6CD3F8A2DFB /* StepperRowFormer.swift in Sources */,
+				37814F7ACBAA3BD6D9307441CED63968 /* SwitchRowFormer.swift in Sources */,
+				B5BB991A05ED08B0FAA51239CEB2D802 /* TextFieldRowFormer.swift in Sources */,
+				915575F5F4644F62FDB007D0E1FF392C /* TextViewRowFormer.swift in Sources */,
+				636E431623312942F68D616DE57F1121 /* UITableViewCell+Former.swift in Sources */,
+				EA34A645CC71F2C3130A57C3E9AD66B5 /* ViewFormer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AB33A22550A4751C3EFE4DD7CB706561 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BBFB67C50B82DECA17A136C35C15438C /* BaseRowFormer.swift in Sources */,
-				AE936C2ACC5E117B7B837579D7BA0038 /* BaseViewFormer.swift in Sources */,
-				CE7C6D64C81DD144594F04A28D2F139C /* CheckRowFormer.swift in Sources */,
-				4EDC151113BF40EEA2F326AF2432AAB1 /* CustomRowFormer.swift in Sources */,
-				8E7FA123DFABE64E19ED5A7DF90D36A4 /* CustomViewFormer.swift in Sources */,
-				C69E16BA4B29E974C6162C2EB64B72F5 /* DatePickerRowFormer.swift in Sources */,
-				DA7536D00F56D42625FC9D1F8A8D6A0A /* FormCell.swift in Sources */,
-				55772E659D33D42E6EEDF71D251FAB2D /* FormCheckCell.swift in Sources */,
-				83163EB183883A03B5DB60B70828B189 /* FormDatePickerCell.swift in Sources */,
-				3B26519FB571112C58B6A58E36F6C024 /* Former-dummy.m in Sources */,
-				D7096844778FD786DEA1FF19EDE57DD8 /* Former.swift in Sources */,
-				33B9C0A36836C1FB916408CEF2D5F02B /* FormerProtocol.swift in Sources */,
-				4EFE73FBD31B8A1674514B2E029BA8CD /* FormHeaderFooterView.swift in Sources */,
-				F9C5FEA6B4EEEC9F348A7781D55DD101 /* FormInlineDatePickerCell.swift in Sources */,
-				45A8883BB91A0C92532CFF54EDE6F13A /* FormInlinePickerCell.swift in Sources */,
-				A84D87C6083E28309039FF58DE79468B /* FormLabelCell.swift in Sources */,
-				EFD3F3570A5F9EA4265063278BC78A45 /* FormLabelFooterView.swift in Sources */,
-				189C57CEA44F24610F314FF842FDEF53 /* FormLabelHeaderView.swift in Sources */,
-				17EFA9C01D6621D1DCF25660C1F5F7E4 /* FormPickerCell.swift in Sources */,
-				B58D53F8B6565779B62D6FFE49C3253B /* FormSegmentedCell.swift in Sources */,
-				4C69299B51B74F70F02E4AF10AF38D7F /* FormSelectorDatePickerCell.swift in Sources */,
-				D3B3C4959E87242CE3DA4E7C39BEA5B1 /* FormSelectorPickerCell.swift in Sources */,
-				546D31CA3475C9BA13235F4922CB845B /* FormSliderCell.swift in Sources */,
-				2EE2351C2A901B95575996A266873EAC /* FormStepperCell.swift in Sources */,
-				7EE1017AB43B9F22AAE7275204FD37AE /* FormSwitchCell.swift in Sources */,
-				AF3DA11374B37D880A650CF701AABCFE /* FormTextFieldCell.swift in Sources */,
-				C5F215094C2681535E9F9A49AD6A6FBE /* FormTextViewCell.swift in Sources */,
-				6B95D6771182922AD0FBFC7724ED08C4 /* FormViewController.swift in Sources */,
-				ECF68AB0AB6628F958358DA4DB6AF4B5 /* InlineDatePickerRowFormer.swift in Sources */,
-				39C46C8DA3341A7EBC4DE56B2FF6977C /* InlinePickerRowFormer.swift in Sources */,
-				94B13140E811D85AD9594F66CCD46A4A /* LabelRowFormer.swift in Sources */,
-				B5729C1C328395C69DADEF10ECD56EE0 /* LabelViewFormer.swift in Sources */,
-				5FAF74594460C8D9B157D952AD7295EF /* PickerRowFormer.swift in Sources */,
-				A82DB4FBC7E2AE3C28D22BFCA2C4F419 /* RowFormer.swift in Sources */,
-				C4AE8A38FDC9570C4CC436154A9D4CAC /* SectionFormer.swift in Sources */,
-				694E28245529184FE8E141808B13944F /* SegmentedRowFormer.swift in Sources */,
-				16B052A781EBC363764D6BF825BF08AC /* SelectorDatePickerRowFormer.swift in Sources */,
-				0D419A0A140CCD76C4ABC610469A7F86 /* SelectorPickerRowFormer.swift in Sources */,
-				DCC21235139A2A7B308BB095736BCF3A /* SliderRowFormer.swift in Sources */,
-				F605F8E6F29D12C15B687BF682531555 /* StepperRowFormer.swift in Sources */,
-				16A4C7DFC018425404008E8DF2A8D2A3 /* SwitchRowFormer.swift in Sources */,
-				AE37967D9124D3DEF3D3F76BAAF6D693 /* TextFieldRowFormer.swift in Sources */,
-				D9C338868E91B8ADFF37848BF3B469B5 /* TextViewRowFormer.swift in Sources */,
-				F95AD2DEE354C9219E492908B3741F7A /* UITableViewCell+Former.swift in Sources */,
-				68B163429BCDC122CDBA8214FF07C198 /* ViewFormer.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DB2699BD7760421C55713B9415FF0274 /* Sources */ = {
+		A8047C3FFDA6444FE7150EE130F76CD6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E99FB11A4B4D5AEB8F43758403D95958 /* Sources */ = {
+		A8925681EB2BF025BB55530B5E2900D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD28058DB8D44A6C5C695D4E238B581D /* Pods-RPGAapp-dummy.m in Sources */,
+				DC7A22B339CA1049C19D06C7A93DF302 /* Enum.swift in Sources */,
+				D71293F143E62C33E8676E4E6CC8DA6F /* FontAwesome.swift in Sources */,
+				0FB5FF51B597E1E0312C5F1438BAB51B /* FontAwesome.swift-dummy.m in Sources */,
+				7BFE4CB72D9AD8D1781B864B5C1EE1B6 /* FontAwesomeBarButtonItem.swift in Sources */,
+				81254017D2D4A97CBE1534E22E519329 /* FontAwesomeExtension.swift in Sources */,
+				632EC0ADDD99413F1C10964C64CF72B6 /* FontAwesomeImageRepresentable.swift in Sources */,
+				08FA521531A6DFC1209732035429ED00 /* FontAwesomeImageView.swift in Sources */,
+				8DC785D0EC04427925ED3F93017DC624 /* FontAwesomeSegmentedControl.swift in Sources */,
+				FE49B0792565E3DBA62187EBEB4E1E58 /* FontAwesomeStateRequirement.swift in Sources */,
+				C472BF180CE883EE3D8D12C5D1BFDFA7 /* FontAwesomeTabBarItem.swift in Sources */,
+				22CAB863C8E98C2BD1CEEA2381A46A34 /* FontAwesomeTextRepresentable.swift in Sources */,
+				A40FD679EA4164AAB96094D8AE90CD09 /* FontAwesomeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE1D22B887E48BA5748A7D73372E11B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FDD36C2B52D9EEC8F39D5552CB96C92 /* Pods-RPGAapp-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		168EED59381E6A33050008C1EBD91077 /* PBXTargetDependency */ = {
+		46DD140710EF752CE3A5897A912AAAA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "FontAwesome.swift-FontAwesome.swift";
-			target = CB2EAB5C326E4BB9AE6483289BB7C828 /* FontAwesome.swift-FontAwesome.swift */;
-			targetProxy = 11C46040B80D714B8D493D1A3B1820AC /* PBXContainerItemProxy */;
+			target = 4DC20DD2E50259D674257304EC016C93 /* FontAwesome.swift-FontAwesome.swift */;
+			targetProxy = D06B65A6786DC2E10084C7B8E08BEF0B /* PBXContainerItemProxy */;
 		};
-		AD9B5B2F5AEA7172221E1DAACA88C3FE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Whisper;
-			target = 73F49D601141DFE6D44DCC575B3765F5 /* Whisper */;
-			targetProxy = A12FE4183ACEE49201A60A503229FC9E /* PBXContainerItemProxy */;
-		};
-		E0E72F26CFFA91B9F895E48978E2B0DE /* PBXTargetDependency */ = {
+		5530B62437B20C370A14971F5E2706BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FontAwesome.swift;
-			target = 29124FF4E0F9AB7495AA7588B0A1A107 /* FontAwesome.swift */;
-			targetProxy = 8EC84E5DD959DE0A4C836A2083A15255 /* PBXContainerItemProxy */;
+			target = BB240150692F32EC312F3CF346C8B9D1 /* FontAwesome.swift */;
+			targetProxy = E50AA4F06D3EC9ACD946F4E8AF2BB051 /* PBXContainerItemProxy */;
 		};
-		FA62DCB24170E81B0B5B915E9961BF55 /* PBXTargetDependency */ = {
+		64DF30926189D5E6F7D3F088FFEDE703 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Whisper;
+			target = 339DE581A0AE70EBFF16B6E958971520 /* Whisper */;
+			targetProxy = 4290B203691AA9B2A04A4D6CF05B8C35 /* PBXContainerItemProxy */;
+		};
+		AFE0FC1E77E2BA4641C547BD1C0F445F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Dwifft;
-			target = B881263F5FBF1212B32FA2AABEFFB1CD /* Dwifft */;
-			targetProxy = D114F4AEB29D7FF348D9D7A69C2BA6DE /* PBXContainerItemProxy */;
+			target = 4255A53C9FC46E2A6605D689307219F6 /* Dwifft */;
+			targetProxy = 9094F397ED177DF87283C626D2F5F806 /* PBXContainerItemProxy */;
 		};
-		FCE9F59AD36061A4E1A13BDE30378C5E /* PBXTargetDependency */ = {
+		F3209D0D1D84AE2F65D212FEA8F0F5C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Former;
-			target = A49653DE5C178056786C3F4942CA524F /* Former */;
-			targetProxy = 6AA8FFDF6758F740F029CF4396D9307E /* PBXContainerItemProxy */;
+			target = 03A4028D44C4F7F96FB87182054B36C8 /* Former */;
+			targetProxy = 58667D01C5905B9BFA95D89F2D1ECE42 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1173E9FA6E61DA9A9C1E456D5BAB3FCC /* Debug */ = {
+		2C124DF7A47209A316F7950254079AAE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D7F05B55DC57F7184BC52F52785980C /* Whisper.xcconfig */;
+			baseConfigurationReference = 1447331F3BC339E0C740EAAB9C556943 /* FontAwesome.swift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -943,32 +977,33 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Whisper/Whisper-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Whisper/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/FontAwesome.swift/FontAwesome.swift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FontAwesome.swift/FontAwesome.swift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Whisper/Whisper.modulemap";
-				PRODUCT_MODULE_NAME = Whisper;
-				PRODUCT_NAME = Whisper;
+				MODULEMAP_FILE = "Target Support Files/FontAwesome.swift/FontAwesome.swift.modulemap";
+				PRODUCT_MODULE_NAME = FontAwesome_swift;
+				PRODUCT_NAME = FontAwesome_swift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		21B519DB3A7D9E3BF95432CAB50F2332 /* Release */ = {
+		438109E1802BB2291C9A0BB8FE9DC07D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD2DC58D4116DCC2875D2C24678F281F /* FontAwesome.swift.xcconfig */;
+			baseConfigurationReference = 1447331F3BC339E0C740EAAB9C556943 /* FontAwesome.swift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FontAwesome.swift";
-				INFOPLIST_FILE = "Target Support Files/FontAwesome.swift/ResourceBundle-FontAwesome.swift-Info.plist";
+				IBSC_MODULE = FontAwesome_swift;
+				INFOPLIST_FILE = "Target Support Files/FontAwesome.swift/ResourceBundle-FontAwesome.swift-FontAwesome.swift-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = FontAwesome.swift;
 				SDKROOT = iphoneos;
@@ -976,11 +1011,11 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
-		420E0C81A365746FF7745C3A533BC13B /* Debug */ = {
+		609D9DA50C988A19710F1E76D9FC9B40 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7618314356A2422EED44DEBB9A1CD2E /* Former.xcconfig */;
+			baseConfigurationReference = 6E2C0620DDF4ABEC9D4A1AD5B311B329 /* Dwifft.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -991,18 +1026,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Former/Former-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Former/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Dwifft/Dwifft-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Dwifft/Dwifft-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Former/Former.modulemap";
-				PRODUCT_MODULE_NAME = Former;
-				PRODUCT_NAME = Former;
+				MODULEMAP_FILE = "Target Support Files/Dwifft/Dwifft.modulemap";
+				PRODUCT_MODULE_NAME = Dwifft;
+				PRODUCT_NAME = Dwifft;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1010,9 +1044,9 @@
 			};
 			name = Debug;
 		};
-		5058E976579C161ADD755996A9E3C83B /* Release */ = {
+		6FDECAAFBE98C2FDD7F25ED5DB2F1234 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B9B011F7CDDFC25331DACF272B18393 /* Pods-RPGAapp.release.xcconfig */;
+			baseConfigurationReference = AF67B4B01BE0C6D59C6FDB01741DFAA1 /* Pods-RPGAapp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1024,7 +1058,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-RPGAapp/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-RPGAapp/Pods-RPGAapp-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1037,7 +1071,39 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		83BA82EA2016F02878B26DD33BF2E428 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 890DBB9420162A2867CF377FF6200413 /* Pods-RPGAapp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-RPGAapp/Pods-RPGAapp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RPGAapp/Pods-RPGAapp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1045,9 +1111,9 @@
 			};
 			name = Release;
 		};
-		62195942A21E1BD867C1C516DC1AF66F /* Release */ = {
+		899D2817F40DE54423D025BC0ACFE4CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7618314356A2422EED44DEBB9A1CD2E /* Former.xcconfig */;
+			baseConfigurationReference = 6E2C0620DDF4ABEC9D4A1AD5B311B329 /* Dwifft.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1058,18 +1124,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Former/Former-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Former/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Dwifft/Dwifft-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Dwifft/Dwifft-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Former/Former.modulemap";
-				PRODUCT_MODULE_NAME = Former;
-				PRODUCT_NAME = Former;
+				MODULEMAP_FILE = "Target Support Files/Dwifft/Dwifft.modulemap";
+				PRODUCT_MODULE_NAME = Dwifft;
+				PRODUCT_NAME = Dwifft;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1078,9 +1143,9 @@
 			};
 			name = Release;
 		};
-		81B5846111F648CB77AB4AD8372A14ED /* Debug */ = {
+		A87716657F3FCEAE65E289739823F21C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD2DC58D4116DCC2875D2C24678F281F /* FontAwesome.swift.xcconfig */;
+			baseConfigurationReference = 08B1010FE09B39CBF39F50C07C80FAA9 /* Whisper.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1091,30 +1156,28 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/FontAwesome.swift/FontAwesome.swift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FontAwesome.swift/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Whisper/Whisper-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Whisper/Whisper-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FontAwesome.swift/FontAwesome.swift.modulemap";
-				PRODUCT_MODULE_NAME = FontAwesome_swift;
-				PRODUCT_NAME = FontAwesome_swift;
+				MODULEMAP_FILE = "Target Support Files/Whisper/Whisper.modulemap";
+				PRODUCT_MODULE_NAME = Whisper;
+				PRODUCT_NAME = Whisper;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */ = {
+		B0087CB4594321EF41619F3181FE120E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1143,8 +1206,66 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		B8BCBD0110C2658BB5DAADB9B7D97B92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1165,34 +1286,52 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		9E94B853A7284D8B491B0751772C5170 /* Debug */ = {
+		B9BF0DAB34A29EF558399FAB14B77ABF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD2DC58D4116DCC2875D2C24678F281F /* FontAwesome.swift.xcconfig */;
+			baseConfigurationReference = 850381CDBE0DE2BC5006C6E7940275F8 /* Former.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FontAwesome.swift";
-				INFOPLIST_FILE = "Target Support Files/FontAwesome.swift/ResourceBundle-FontAwesome.swift-Info.plist";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Former/Former-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Former/Former-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = FontAwesome.swift;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Former/Former.modulemap";
+				PRODUCT_MODULE_NAME = Former;
+				PRODUCT_NAME = Former;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		A20A7930036BC753FD05011500D7B541 /* Release */ = {
+		CD180D192397B281A7CA6B323C60905E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D7F05B55DC57F7184BC52F52785980C /* Whisper.xcconfig */;
+			baseConfigurationReference = 08B1010FE09B39CBF39F50C07C80FAA9 /* Whisper.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1204,7 +1343,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = "Target Support Files/Whisper/Whisper-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Whisper/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Whisper/Whisper-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1214,178 +1353,15 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		ABF2AB4ABB5AF9300B1B395EA7FFC58B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F70014979970BB73BF618A2D0A3F50A5 /* Dwifft.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Dwifft/Dwifft-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Dwifft/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Dwifft/Dwifft.modulemap";
-				PRODUCT_MODULE_NAME = Dwifft;
-				PRODUCT_NAME = Dwifft;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		B42B54097A876E8A982CBF5DAA91B1AB /* Release */ = {
+		D1BAA4E174B801062C356040BA9F2063 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		B7E5E2301060A1CDE5CF5F3BE651698A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA650383EC117C91A89B1108C47EBDB7 /* Pods-RPGAapp.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-RPGAapp/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-RPGAapp/Pods-RPGAapp.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		C309A50E18BAF1AEE345702ED7FCC9B9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F70014979970BB73BF618A2D0A3F50A5 /* Dwifft.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Dwifft/Dwifft-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Dwifft/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Dwifft/Dwifft.modulemap";
-				PRODUCT_MODULE_NAME = Dwifft;
-				PRODUCT_NAME = Dwifft;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		CAA28416F1BA9757A7765B11F357202A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD2DC58D4116DCC2875D2C24678F281F /* FontAwesome.swift.xcconfig */;
+			baseConfigurationReference = 1447331F3BC339E0C740EAAB9C556943 /* FontAwesome.swift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1397,7 +1373,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = "Target Support Files/FontAwesome.swift/FontAwesome.swift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FontAwesome.swift/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/FontAwesome.swift/FontAwesome.swift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1407,7 +1383,54 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D9BA2525D3A5887E6378C9733563CB55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1447331F3BC339E0C740EAAB9C556943 /* FontAwesome.swift.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FontAwesome.swift";
+				IBSC_MODULE = FontAwesome_swift;
+				INFOPLIST_FILE = "Target Support Files/FontAwesome.swift/ResourceBundle-FontAwesome.swift-FontAwesome.swift-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = FontAwesome.swift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		FADEB3FC2EBFD39B7FF6921243BD050A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 850381CDBE0DE2BC5006C6E7940275F8 /* Former.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Former/Former-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Former/Former-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Former/Former.modulemap";
+				PRODUCT_MODULE_NAME = Former;
+				PRODUCT_NAME = Former;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1419,70 +1442,70 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04E690776F854B78BAAB4F45DBA72674 /* Build configuration list for PBXNativeTarget "Dwifft" */ = {
+		162CE2CC222588C47F9D8623AC2D740C /* Build configuration list for PBXNativeTarget "FontAwesome.swift-FontAwesome.swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ABF2AB4ABB5AF9300B1B395EA7FFC58B /* Debug */,
-				C309A50E18BAF1AEE345702ED7FCC9B9 /* Release */,
+				438109E1802BB2291C9A0BB8FE9DC07D /* Debug */,
+				D9BA2525D3A5887E6378C9733563CB55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+		48203D6EDAF853126F41E7492A864BE6 /* Build configuration list for PBXNativeTarget "Former" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */,
-				B42B54097A876E8A982CBF5DAA91B1AB /* Release */,
+				B9BF0DAB34A29EF558399FAB14B77ABF /* Debug */,
+				FADEB3FC2EBFD39B7FF6921243BD050A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8F460C12792C9A928707FAEFBDDB8F8D /* Build configuration list for PBXNativeTarget "Pods-RPGAapp" */ = {
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B7E5E2301060A1CDE5CF5F3BE651698A /* Debug */,
-				5058E976579C161ADD755996A9E3C83B /* Release */,
+				B8BCBD0110C2658BB5DAADB9B7D97B92 /* Debug */,
+				B0087CB4594321EF41619F3181FE120E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		919B92137048C62CB470E976602C9E33 /* Build configuration list for PBXNativeTarget "Whisper" */ = {
+		67375D2293447FAF29DF2E5022FF51F7 /* Build configuration list for PBXNativeTarget "Dwifft" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1173E9FA6E61DA9A9C1E456D5BAB3FCC /* Debug */,
-				A20A7930036BC753FD05011500D7B541 /* Release */,
+				609D9DA50C988A19710F1E76D9FC9B40 /* Debug */,
+				899D2817F40DE54423D025BC0ACFE4CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A80A527DA4E27E5F6BB54D77CF803FB4 /* Build configuration list for PBXNativeTarget "FontAwesome.swift" */ = {
+		8E7C1473DFE9E6AA50C03C691D9558F7 /* Build configuration list for PBXNativeTarget "Whisper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				81B5846111F648CB77AB4AD8372A14ED /* Debug */,
-				CAA28416F1BA9757A7765B11F357202A /* Release */,
+				CD180D192397B281A7CA6B323C60905E /* Debug */,
+				A87716657F3FCEAE65E289739823F21C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C0483641AE5495915EE7220D17698DAC /* Build configuration list for PBXNativeTarget "Former" */ = {
+		D53A75B833A6CDAAF7316B2B14F8A56D /* Build configuration list for PBXNativeTarget "Pods-RPGAapp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				420E0C81A365746FF7745C3A533BC13B /* Debug */,
-				62195942A21E1BD867C1C516DC1AF66F /* Release */,
+				6FDECAAFBE98C2FDD7F25ED5DB2F1234 /* Debug */,
+				83BA82EA2016F02878B26DD33BF2E428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EBA26AD231745C1751BE4055B27A6510 /* Build configuration list for PBXNativeTarget "FontAwesome.swift-FontAwesome.swift" */ = {
+		E72A36E6CAEEEF1BFE244B0DF658E365 /* Build configuration list for PBXNativeTarget "FontAwesome.swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9E94B853A7284D8B491B0751772C5170 /* Debug */,
-				21B519DB3A7D9E3BF95432CAB50F2332 /* Release */,
+				D1BAA4E174B801062C356040BA9F2063 /* Debug */,
+				2C124DF7A47209A316F7950254079AAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 }
