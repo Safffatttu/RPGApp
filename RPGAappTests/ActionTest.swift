@@ -152,15 +152,30 @@ class ActionTest: XCTestCase{
 	public static func adddItemToPackageAction() -> NSMutableDictionary{
 		
 		guard let packageId = Load.packages().randomElement()?.id  else { return NSMutableDictionary() }
+		guard let packageName = Load.packages().randomElement()?.name  else { return NSMutableDictionary() }
 		
-		guard let itemId = Load.items().randomElement()?.id else { return NSMutableDictionary() }
+		let numberOfItems = Int(arc4random_uniform(100))
+		let items = Load.items()
 		
+		let itemsId = NSMutableArray()
+		let itemsCount = NSMutableArray()
+		
+		
+		for _ in 0...numberOfItems{
+			guard let itemId = items.randomElement()?.id else { continue }
+			let itemCount = Int(arc4random_uniform(100))
+			itemsId.add(itemId)
+			itemsCount.add(itemCount)
+		}
+
 		let action = NSMutableDictionary()
 		let actionType = NSNumber(value: ActionType.itemPackageAdded.rawValue)
 		
 		action.setValue(actionType, forKey: "action")
 		action.setValue(packageId, forKey: "packageId")
-		action.setValue(itemId, forKey: "itemId")
+		action.setValue(packageName, forKey: "packageName")
+		action.setValue(itemsId, forKey: "itemsId")
+		action.setValue(itemsCount, forKey: "itemsCount")
 		
 		return action
 	}
