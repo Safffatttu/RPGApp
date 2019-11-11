@@ -8,7 +8,7 @@ excluded:
 
 disabled_rules: # rule identifiers to exclude from running
   # - trailing_whitespace
-  - opening_brace
+  # - opening_brace
   - force_cast
   - line_length
   - identifier_name

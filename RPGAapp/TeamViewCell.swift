@@ -38,8 +38,8 @@ class TeamViewCell: UICollectionViewCell {
 	var equipmentDiffCalculator: SingleSectionTableViewDiffCalculator<ItemHandler>?
 	var visibilitiesDiffCalculator: SingleSectionTableViewDiffCalculator<Visibility>?
 	
-	var character: Character!{
-		didSet{
+	var character: Character! {
+		didSet {
 			abilities = character.abilities?.sortedArray(using: [.sortAbilityByName]) as? [Ability]
 			items = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler]
 			visibilities = Load.visibilities()
@@ -48,20 +48,20 @@ class TeamViewCell: UICollectionViewCell {
 		}
 	}
 	
-	var abilities: [Ability]!{
-		didSet{
+	var abilities: [Ability]! {
+		didSet {
 			abilityDiffCalculator?.rows = abilities
 		}
 	}
 	
-	var items: [ItemHandler]!{
-		didSet{
+	var items: [ItemHandler]! {
+		didSet {
 			equipmentDiffCalculator?.rows = items
 		}
 	}
 	
-	var visibilities: [Visibility]!{
-		didSet{
+	var visibilities: [Visibility]! {
+		didSet {
 			visibilitiesDiffCalculator?.rows = visibilities
 		}
 	}
@@ -96,14 +96,14 @@ class TeamViewCell: UICollectionViewCell {
 		super.awakeFromNib()
 	}
 	
-	@objc func equipmentChanged(){
+	@objc func equipmentChanged() {
 		if let newItems = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] {
 			items = newItems
 		}
 	}
 	
-	@objc func reloadLabels(){
-		if let name = character.name{
+	@objc func reloadLabels() {
+		if let name = character.name {
 			nameLabel.text = NSLocalizedString("Name", comment: "") + ": \(name)"
 			propertiesStackView.insertArrangedSubview(nameLabel, at: 0)
 		}
@@ -112,7 +112,7 @@ class TeamViewCell: UICollectionViewCell {
 			raceLabel.text = NSLocalizedString("Race", comment: "") + ": \(race)"
 			raceLabel.isHidden = false
 			propertiesStackView.insertArrangedSubview(raceLabel, at: 1)
-		}else{
+		}else {
 			raceLabel.isHidden = true
 			propertiesStackView.removeArrangedSubview(raceLabel)
 		}
@@ -123,7 +123,7 @@ class TeamViewCell: UICollectionViewCell {
 			
 			let index = propertiesStackView.arrangedSubviews.count - 2
 			propertiesStackView.insertArrangedSubview(professionLabel, at: index)
-		}else{
+		}else {
 			professionLabel.isHidden = true
 			propertiesStackView.removeArrangedSubview(professionLabel)
 		}
@@ -135,7 +135,7 @@ class TeamViewCell: UICollectionViewCell {
 		
 		visibilities = Load.visibilities()
 		
-		if Load.currentVisibility() == nil && visibilities.count > 0{
+		if Load.currentVisibility() == nil && visibilities.count > 0 {
 			visibilitiesTable.isHidden = false
 			visibilitiesLabel.isHidden = false
 		}else {
@@ -196,16 +196,16 @@ class TeamViewCell: UICollectionViewCell {
 	}
 }
 
-extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
+extension TeamViewCell: UITableViewDataSource, UITableViewDelegate {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if tableView == abilityTable{
+		if tableView == abilityTable {
 			return (abilityDiffCalculator?.rows.count)! + 1
-		}else if tableView == equipmentTable{
+		}else if tableView == equipmentTable {
 			return (equipmentDiffCalculator?.rows.count)!
 		}else {
 			return (visibilitiesDiffCalculator?.rows.count)! + 1
@@ -218,7 +218,7 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 			
 			cell.itemHandlerDelegate = self
 			
-			if let name = cellItem?.item?.name, let count = cellItem?.count{
+			if let name = cellItem?.item?.name, let count = cellItem?.count {
 				cell.textLabel?.text = "\(name) \(count)"
 			}
 			
@@ -226,8 +226,8 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 			cell.itemHandler = cellItem
 			cell.character = character
 			return cell
-		}else if tableView == abilityTable{
-			if indexPath.row == abilities.count{
+		}else if tableView == abilityTable {
+			if indexPath.row == abilities.count {
 				
 				let cell = tableView.dequeueReusableCell(withIdentifier: "newAbilityCell") as? newAbilityCell
 				
@@ -235,7 +235,7 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 				cell?.character = character
 				
 				return cell!
-			}else{
+			}else {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "abilityCell") as? abilityCell
 				
 				cell?.abilityDelgate = self
@@ -249,21 +249,21 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 				
 				return cell!
 			}
-		}else{
+		}else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "visibilityCell")
 
 			cell?.accessoryType = .none
 			cell?.selectionStyle = .none
 			
-			if indexPath.row == visibilities.count{
-				if character.visibility == nil{
+			if indexPath.row == visibilities.count {
+				if character.visibility == nil {
 					cell?.accessoryType = .checkmark
 				}
 				
 				cell?.textLabel?.text = NSLocalizedString("Always visable", comment: "")
 				
-			}else{
-				if character.visibility == visibilitiesDiffCalculator?.rows[indexPath.row]{
+			}else {
+				if character.visibility == visibilitiesDiffCalculator?.rows[indexPath.row] {
 					cell?.accessoryType = .checkmark
 				}
 				
@@ -281,16 +281,16 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 		
 		var newVisibility: Visibility? = nil
 		
-		if index < visibilities.count{
+		if index < visibilities.count {
 			newVisibility = visibilities[index]
 		}
 		
 		let previousIndex: IndexPath!
 		
-		if let previousVisibility = character.visibility{
+		if let previousVisibility = character.visibility {
 			guard let previousVisibilityNumber = visibilities.firstIndex(of: previousVisibility) else { return }
 			previousIndex = IndexPath(row: previousVisibilityNumber, section: 0)
-		}else{
+		}else {
 			previousIndex = IndexPath(row: visibilities.count, section: 0)
 		}
 		
@@ -311,8 +311,8 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate{
 	}
 }
 
-extension TeamViewCell: UITextFieldDelegate{
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+extension TeamViewCell: UITextFieldDelegate {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		guard let text = moneyTextField.text else { return true }
 
 		let money = convertCurrencyToValue(text)
@@ -329,19 +329,19 @@ extension TeamViewCell: UITextFieldDelegate{
 	}
 }
 
-extension TeamViewCell: AbilityCellDelegate{
+extension TeamViewCell: AbilityCellDelegate {
 	
 	@objc func modifiedAbility() {
-		if let abs = character.abilities?.sortedArray(using: [.sortAbilityByName]) as? [Ability]{
+		if let abs = character.abilities?.sortedArray(using: [.sortAbilityByName]) as? [Ability] {
 			self.abilities = abs
 		}
 	}
 }
 
-extension TeamViewCell: CharacterItemCellDelegate{
+extension TeamViewCell: CharacterItemCellDelegate {
 	
 	func modifiedItemHandler() {
-		if let newItems = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler]{
+		if let newItems = character.equipment?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] {
 			items = newItems
 		}
 	}

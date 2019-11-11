@@ -12,8 +12,8 @@ import Dwifft
 
 class PackageViewer: UITableViewController {
     
-	var packages: [Package] = Load.packages(usingVisiblitiy: true){
-		didSet{
+	var packages: [Package] = Load.packages(usingVisiblitiy: true) {
+		didSet {
 			diffCalculator?.rows = packages
 		}
 	}
@@ -31,7 +31,7 @@ class PackageViewer: UITableViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .reloadTeam, object: nil)
     }
 	
-    @objc func reloadPackages(){
+    @objc func reloadPackages() {
         packages = Load.packages()
     }
     
@@ -40,9 +40,9 @@ class PackageViewer: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let count = diffCalculator?.rows.count{
+		if let count = diffCalculator?.rows.count {
 			return count
-		}else{
+		}else {
 			return 0
 		}
     }
@@ -61,7 +61,7 @@ class PackageViewer: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
+        if editingStyle == .delete {
 			guard let package = diffCalculator?.rows[indexPath.row] else { return }
             let packageId = package.id
             

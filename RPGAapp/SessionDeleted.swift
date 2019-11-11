@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct SessionDeleted: Action {
 	
 	var actionType: ActionType = ActionType.sessionDeleted
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"sessionId"  : sessionId
 				])
@@ -26,7 +26,7 @@ struct SessionDeleted: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.sessionId = actionData.value(forKey: "sessionId") as! String
@@ -34,11 +34,11 @@ struct SessionDeleted: Action {
 		self.actionData = actionData
 	}
 	
-	init(sessionId: String){
+	init(sessionId: String) {
 		self.sessionId = sessionId
 	}
 	
-	func execute(){
+	func execute() {
 		guard UserDefaults.standard.bool(forKey: "syncSessionRemoval") else { return }
 		guard let session = Load.session(with: sessionId) else { return }
 		

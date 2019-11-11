@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct NoteTextChanged: Action {
 	
 	var actionType: ActionType = ActionType.noteTextChanged
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"noteId": noteId,
 				"noteText": noteText
@@ -28,7 +28,7 @@ struct NoteTextChanged: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.noteId = actionData.value(forKey: "noteId") as! String
@@ -37,12 +37,12 @@ struct NoteTextChanged: Action {
 		self.actionData = actionData
 	}
 	
-	init(note: Note){
+	init(note: Note) {
 		self.noteId = note.id!
 		self.noteText = note.text!
 	}
 	
-	func execute(){
+	func execute() {
 		guard let note = Load.note(with: noteId) else { return }
 		
 		note.text = ""

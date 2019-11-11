@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-class NoteCell: UICollectionViewCell, UITextViewDelegate{
+class NoteCell: UICollectionViewCell, UITextViewDelegate {
 	
 	@IBOutlet weak var textView: UITextView!
 
-	var note: Note!{
-		didSet{
+	var note: Note! {
+		didSet {
 			textView.text = note.text
 		}
 	}
@@ -29,7 +29,7 @@ class NoteCell: UICollectionViewCell, UITextViewDelegate{
 	
 	var removeNoteCancelled: Bool = false
 	
-	@objc func removeNote(_ sender: UILongPressGestureRecognizer){
+	@objc func removeNote(_ sender: UILongPressGestureRecognizer) {
 		switch sender.state {
 		case .changed:
 			removeNoteCancelled = true
@@ -81,7 +81,7 @@ class NoteCell: UICollectionViewCell, UITextViewDelegate{
 		PackageService.pack.send(action: action)
 	}
 	
-	@objc func changeText(_ notification: Notification){
+	@objc func changeText(_ notification: Notification) {
 		guard let changedNote = notification.object as? Note else { return }
 		guard note == changedNote else { return }
 		

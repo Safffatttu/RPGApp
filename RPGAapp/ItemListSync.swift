@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct ItemListSync: Action {
 	
 	var actionType: ActionType = ActionType.itemListSync
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [ :])
 			return data
 		}
@@ -22,16 +22,16 @@ struct ItemListSync: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.actionData = actionData
 	}
 	
-	init(){
+	init() {
 	}
 	
-	func execute(){
+	func execute() {
 		let action = ItemListRequested()
 		PackageService.pack.send(action: action)
 		

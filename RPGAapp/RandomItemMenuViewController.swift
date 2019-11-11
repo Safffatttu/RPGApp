@@ -24,30 +24,30 @@ class RandomItemMenu: UITableViewController {
         self.tableView.accessibilityIdentifier = "randomItemMenu"
     }
     
-    @objc func reloadDrawSettings(){
+    @objc func reloadDrawSettings() {
         drawSettings = Load.drawSettings()
         
         tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if drawSettings.count > 0{
+        if drawSettings.count > 0 {
             return categories.count + 2
-        }else{
+        }else {
             return categories.count + 1
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if drawSettings.count > 0{
-            if section == 0{
+        if drawSettings.count > 0 {
+            if section == 0 {
                 return drawSettings.count
-            }else if section == 1{
+            }else if section == 1 {
                 return 1
             }
             return (categories[section - 2].subCategories?.count)! + 1
         }else {
-            if section == 0{
+            if section == 0 {
                 return 1
             }
             return (categories[section - 1].subCategories?.count)! + 1
@@ -55,38 +55,38 @@ class RandomItemMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if drawSettings.count > 0{
-            if section == 0{
+        if drawSettings.count > 0 {
+            if section == 0 {
                 return NSLocalizedString("Custom draw presets", comment: "")
-            }else if section == 1{
+            }else if section == 1 {
                 return NSLocalizedString("All items", comment: "")
-            }else{
+            }else {
                 return categories[section-2].name
             }
-        }else if section == 0{
+        }else if section == 0 {
             return NSLocalizedString("All items", comment: "")
-        }else{
+        }else {
             return categories[section-1].name
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if  indexPath.section == 0 && drawSettings.count > 0{
+        if  indexPath.section == 0 && drawSettings.count > 0 {
             return CGFloat((drawSettings[indexPath.row].subSettings?.count)! * 30 + 25)
-        }else{
+        }else {
             return 44
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section: Int
-        if drawSettings.count > 0{
+        if drawSettings.count > 0 {
             section = indexPath.section - 2
-        }else{
+        }else {
             section = indexPath.section - 1
         }
 
-        if indexPath.section == 0 && drawSettings.count > 0{
+        if indexPath.section == 0 && drawSettings.count > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DrawSettingCell") as! DrawSettingCell
             cell.nameLabel?.text = drawSettings[indexPath.row].name
             cell.drawSetting = drawSettings[indexPath.row]
@@ -96,15 +96,15 @@ class RandomItemMenu: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell")
         let cellName: String
         
-        if section == -1{
+        if section == -1 {
             cell?.textLabel?.text = NSLocalizedString("All items", comment: "")
             return cell!
         }
         
-        if indexPath.row == 0{
+        if indexPath.row == 0 {
             cellName = NSLocalizedString("Whole category", comment: "") + " " + categories[section].name!
             cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
-        }else{
+        }else {
             cell?.textLabel?.font = UIFont.systemFont(ofSize: (cell?.textLabel?.font.pointSize)!)
             cellName = (categories[section].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as! SubCategory).name!
         }
@@ -119,17 +119,17 @@ class RandomItemMenu: UITableViewController {
 		
 		let section: Int
 		
-		if self.drawSettings.count > 0{
+		if self.drawSettings.count > 0 {
 			section = indexPath.section - 2
-		}else{
+		}else {
 			section = indexPath.section - 1
 		}
 		
-		if indexPath.section == 0 && drawSettings.count > 0{
+		if indexPath.section == 0 && drawSettings.count > 0 {
 			setting = drawSettings[indexPath.row]
-		}else if indexPath.row == 0 && section != -1{
+		}else if indexPath.row == 0 && section != -1 {
 			setting = categories[section]
-		}else if section != -1{
+		}else if section != -1 {
 			setting = categories[section].subCategories?.sortedArray(using: [.sortSubCategoryByName])[indexPath.row - 1] as? SubCategory
 		}
 		
@@ -158,7 +158,7 @@ class RandomItemMenu: UITableViewController {
         let deleteAction = UITableViewRowAction(style: .normal, title: "Remove") {[unowned self] (rowAction, indexPath) in
 			let settingToDelete = self.drawSettings[indexPath.row]
 			
-			if (ItemDrawManager.drawManager.lastDrawSetting as? DrawSetting) == settingToDelete{
+			if (ItemDrawManager.drawManager.lastDrawSetting as? DrawSetting) == settingToDelete {
 				ItemDrawManager.drawManager.lastDrawSetting = nil
 			}
 			
@@ -169,10 +169,10 @@ class RandomItemMenu: UITableViewController {
 			
             CoreDataStack.saveContext()
             
-            if self.drawSettings.count == 0{
+            if self.drawSettings.count == 0 {
                 let index = IndexSet(integer: 0)
                 tableView.deleteSections(index, with: .automatic)
-            }else{
+            }else {
                 let index = IndexPath(row: indexPath.row, section: 0)
                 tableView.deleteRows(at: [index], with: .automatic)
             }
@@ -183,7 +183,7 @@ class RandomItemMenu: UITableViewController {
         return [deleteAction,editAction]
     }
     
-    @objc func addDrawSetting(_ sender: UIBarButtonItem){
+    @objc func addDrawSetting(_ sender: UIBarButtonItem) {
         let addDrawSettingControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor")
         
         addDrawSettingControler.modalPresentationStyle = .pageSheet
@@ -192,7 +192,7 @@ class RandomItemMenu: UITableViewController {
     }
 }
 
-extension Notification.Name{
+extension Notification.Name {
     static let reloadRandomItemTable = Notification.Name("reloadRandomItemTable")
     static let reloadDrawSettings = Notification.Name("reloadDrawSettings")
 }

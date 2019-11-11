@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct CharacterRemoved: Action {
 	
 	var actionType: ActionType = ActionType.characterRemoved
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"characterId": characterId
 				])
@@ -26,7 +26,7 @@ struct CharacterRemoved: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.characterId = actionData.value(forKey: "characterId") as! String
@@ -34,11 +34,11 @@ struct CharacterRemoved: Action {
 		self.actionData = actionData
 	}
 	
-	init(characterId: String){
+	init(characterId: String) {
 		self.characterId = characterId
 	}
 	
-	func execute(){
+	func execute() {
 		guard let character = Load.character(with: characterId) else { return }
 		
 		let contex = CoreDataStack.managedObjectContext

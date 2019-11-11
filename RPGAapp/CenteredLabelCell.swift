@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Former
 
-final class CenteredLabelCell: UITableViewCell, LabelFormableRow{
+final class CenteredLabelCell: UITableViewCell, LabelFormableRow {
 
 	@IBOutlet weak var centerTextLabel: UILabel!
 	

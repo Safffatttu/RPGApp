@@ -20,7 +20,7 @@ class ItemRequester {
 		NotificationCenter.default.addObserver(self, selector: #selector(check(_:)), name: .receivedItemData, object: nil)
 	}
 	
-	@objc func check(_ notfication: Notification){
+	@objc func check(_ notfication: Notification) {
 		guard let requestId = notfication.object as? String else { return }
 		
 		guard let action = requestQueue.getActionWith(id: requestId) else { return }
@@ -35,7 +35,7 @@ class ItemRequester {
 		PackageService.pack.send(action: action, to: request.from)
 	}
 	
-	func request(_ request: ItemRequest){
+	func request(_ request: ItemRequest) {
 		ItemRequester.rq.execute(request: request)
 	}
 	
@@ -44,11 +44,11 @@ class ItemRequester {
 class ItemRequestQueue {
 	private var actionsToExecute: [ItemRequest] = []
 	
-	public func add(_ request: ItemRequest){
+	public func add(_ request: ItemRequest) {
 		actionsToExecute.append(request)
 	}
 	
-	public func getActionWith(id: String) -> ItemRequest?{
+	public func getActionWith(id: String) -> ItemRequest? {
 		return actionsToExecute.drop(while: {$0.id == id}).first
 	}
 	
@@ -68,6 +68,6 @@ struct ItemRequest {
 	}
 }
 
-extension Notification.Name{
+extension Notification.Name {
 	static let receivedItemData = Notification.Name("receivedItemData")
 }

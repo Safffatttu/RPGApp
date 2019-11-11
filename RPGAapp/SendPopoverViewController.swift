@@ -10,16 +10,16 @@ import UIKit
 import FontAwesome_swift
 import CoreData
 
-class sendPopover: UITableViewController, sendPopoverDelegate{
+class sendPopover: UITableViewController, sendPopoverDelegate {
     
     var item: Item? = nil
     var itemHandler: ItemHandler? = nil
     var itemHandlers: [ItemHandler] = []
     
     var team: [Character] = Load.characters(usingVisibility: true)
-	var from: Character? = nil{
-		didSet{
-			team = team.filter{$0 != from}
+	var from: Character? = nil {
+		didSet {
+			team = team.filter {$0 != from}
 		}
 	}
 	
@@ -27,11 +27,11 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         
         var height =  Int()
         var y = Int()
-        if (team.count > 0){
+        if (team.count > 0) {
             height = 45 * team.count - 1
             y = 13
         }
-        else{
+        else {
             height = 45
             y = 24
         }
@@ -45,7 +45,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadTeam), name: .reloadTeam, object: nil)
 	}
 	
-	@objc func reloadTeam(){
+	@objc func reloadTeam() {
 		team = Load.characters(usingVisibility: true)
 		self.viewWillAppear(true)
 	}
@@ -55,10 +55,10 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (team.count > 0){
+        if (team.count > 0) {
             return team.count
         }
-        else{
+        else {
             return 1
         }
     }
@@ -66,12 +66,12 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sendPopoverCell") as! sendPopoverCell
         cell.cellDelegate = self
-        if (team.count > 0){
+        if (team.count > 0) {
             cell.playerName.text = team[indexPath.row].name
             cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20, style: .regular)
             cell.sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
         }
-        else{
+        else {
             cell.playerName.text = NSLocalizedString("No characters", comment: "")
             cell.sendButton.isHidden = true
         }
@@ -82,24 +82,24 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		sendActionTrigered(playerNum: indexPath.row)
 	}
 	
-	func sendButtonPressed(_ sender: UIButton){
+	func sendButtonPressed(_ sender: UIButton) {
 		guard let playerNum = getCurrentCellIndexPath(sender, tableView: self.tableView)?.row else { return }
 		sendActionTrigered(playerNum: playerNum)
 	}
 	
-	func sendActionTrigered(playerNum: Int){
+	func sendActionTrigered(playerNum: Int) {
 		guard team.count > 0 && team.count > playerNum else { return }
 		
 		let recipient = team[playerNum]
 		
-		if let from = from{
+		if let from = from {
 			transferItem(from: from, to: recipient)
-		}else{
+		}else {
 			sendItem(to: recipient)
 		}
 	}
 	
-	func transferItem(from: Character, to: Character){
+	func transferItem(from: Character, to: Character) {
 		
 		guard let itemHandler = itemHandler else { return }
 		guard let item = itemHandler.item else { return }
@@ -110,7 +110,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		
 		var removed = false
 		
-		if itemHandler.count <= 0{
+		if itemHandler.count <= 0 {
 			from.removeFromEquipment(itemHandler)
 			CoreDataStack.managedObjectContext.delete(itemHandler)
 			removed = true
@@ -126,12 +126,12 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
 		
 		PackageService.pack.send(action: recipientAction)
 		
-		if removed{
+		if removed {
 			let removeAction = ItemCharacterDeleted(characterId: from.id!, itemId: itemId!)
 			
 			PackageService.pack.send(action: removeAction)
 			
-		}else{
+		}else {
 			let fromAction = ItemCharacterChanged(characterId: from.id!, itemId: itemId!, itemCount: itemHandler.count)
 			
 			PackageService.pack.send(action: fromAction)
@@ -146,7 +146,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
         }else if let handlerToAdd = itemHandler {
             addToEquipment(itemHandler: handlerToAdd, to: recipient)
         }else {
-            for handler in itemHandlers{
+            for handler in itemHandlers {
                 addToEquipment(itemHandler: handler, to: recipient)
             }
         }
@@ -169,7 +169,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
             var itemsId: [String] = []
             var itemsCount: [Int64] = []
 
-			for handler in itemHandlers{
+			for handler in itemHandlers {
                 let itemId = handler.item?.id
                 itemsId.append(itemId!)
                 let itemCount = handler.count
@@ -183,11 +183,11 @@ class sendPopover: UITableViewController, sendPopoverDelegate{
     }
 }
 
-class sendPopoverCell: UITableViewCell{
+class sendPopoverCell: UITableViewCell {
     
     weak var cellDelegate: sendPopoverDelegate?
     
-    @IBAction func sendButtonAction(_ sender: UIButton){
+    @IBAction func sendButtonAction(_ sender: UIButton) {
         cellDelegate?.sendButtonPressed(sender)
     }
     
@@ -197,7 +197,7 @@ class sendPopoverCell: UITableViewCell{
     
 }
 
-protocol sendPopoverDelegate: class{
+protocol sendPopoverDelegate: class {
     
     func sendButtonPressed(_ sender: UIButton)
 }

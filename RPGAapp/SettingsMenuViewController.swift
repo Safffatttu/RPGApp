@@ -17,7 +17,7 @@ protocol settingCellDelegate {
     func pressedButton(_ sender: UIButton)
 }
 
-class settingSwitchCell: UITableViewCell{
+class settingSwitchCell: UITableViewCell {
     
     var delegate: settingCellDelegate?
     
@@ -29,7 +29,7 @@ class settingSwitchCell: UITableViewCell{
     @IBOutlet weak var settingSwitch: UISwitch!
 }
 
-class settingButtonCell: UITableViewCell{
+class settingButtonCell: UITableViewCell {
     
     var delegate: settingCellDelegate?
     
@@ -46,7 +46,7 @@ let settingValues = ["Auto hide menu": false, "Show price": true, "Dodawaj do li
 
 class SettingMenu: UITableViewController {
 	
-    let keys = Array(UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}))
+    let keys = Array(UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map {$0.0}))
     
 	var sessions: [Session] = Load.sessions()
 	
@@ -73,19 +73,19 @@ class SettingMenu: UITableViewController {
 	
 	var diffCalculator: TableViewDiffCalculator<String, String>?
 	
-	func createDiffTable() -> [(String, [String])]{
-		var settingList = keys.map{$0.key}
+	func createDiffTable() -> [(String, [String])] {
+		var settingList = keys.map {$0.key}
 		settingList.insert("Sync item database", at: 0)
 		let settingSection = ("Settings", settingList)
 		
-		var sessionList = sessions.compactMap{ session -> String? in
+		var sessionList = sessions.compactMap { session -> String? in
 			guard let id = session.id else { return nil }
 			return "\(id)\(session.current)"			
 			}
 		sessionList.insert("CreateSessions", at: 0)
 		let sessionsSection = ("Sessions", sessionList)
 		
-		var currencyList = currencies.compactMap{ currency -> String? in
+		var currencyList = currencies.compactMap { currency -> String? in
 			guard let name = currency.name else { return nil }
 			guard let currentCurrency = Load.currentCurrency() else { return "false\(name)" }
 			let isCurrent = (currency === currentCurrency)
@@ -94,7 +94,7 @@ class SettingMenu: UITableViewController {
 		currencyList.insert("CreateCurrency", at: 0)
 		let currenciesSection = ("Currencies", currencyList)
 		
-		var visibilitiesList = visibilities.compactMap{ visibility -> String? in
+		var visibilitiesList = visibilities.compactMap { visibility -> String? in
 			guard let id = visibility.id else { return nil }
 			return "\(visibility.current)\(id)"
 		}
@@ -103,15 +103,15 @@ class SettingMenu: UITableViewController {
 		
 		var sectionList = [settingSection, sessionsSection, currenciesSection, visibilitySeciont]
 		
-		if PackageService.pack.session.connectedPeers.count > 0{
-			let connectedDevices  = ("Devices", PackageService.pack.session.connectedPeers.map{$0.displayName})
+		if PackageService.pack.session.connectedPeers.count > 0 {
+			let connectedDevices  = ("Devices", PackageService.pack.session.connectedPeers.map {$0.displayName})
 			sectionList.append(connectedDevices)
 		}
 		
 		return sectionList
 	}
 	
-	func updateDiffTable(){
+	func updateDiffTable() {
 		let newDiffTable = createDiffTable()
 		diffCalculator?.sectionedValues = SectionedValues(newDiffTable)
 	}
@@ -123,24 +123,24 @@ class SettingMenu: UITableViewController {
 		updateDiffTable()
 	}
 	
-	@objc func currencyCreated(){
+	@objc func currencyCreated() {
 		currencies = Load.currencies()
 		updateDiffTable()
 	}
 	
-	@objc func visibilityCreated(){
+	@objc func visibilityCreated() {
 		visibilities = Load.visibilities()
 		updateDiffTable()
 	}
 	
-	@objc func switchedSessionAction(_ notification: Notification){
+	@objc func switchedSessionAction(_ notification: Notification) {
 		sessions = Load.sessions()
 		visibilities = Load.visibilities()
 		updateDiffTable()
 	}
 	
-	func switchedSession(indexPath: IndexPath){
-		for session in sessions{
+	func switchedSession(indexPath: IndexPath) {
+		for session in sessions {
 			session.current = false
 		}
 		
@@ -162,7 +162,7 @@ class SettingMenu: UITableViewController {
 		PackageService.pack.send(action: action)
 	}
 	
-	@objc func sessionDeleted(_ notification: Notification){
+	@objc func sessionDeleted(_ notification: Notification) {
 		sessions = Load.sessions()
 		
 		updateDiffTable()
@@ -177,36 +177,36 @@ class SettingMenu: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if section == 0{
-			return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map{$0.0}).count + 1
-		}else if section == 1{
+		if section == 0 {
+			return UserDefaults.standard.dictionaryWithValues(forKeys: settingValues.map {$0.0}).count + 1
+		}else if section == 1 {
 			return sessions.count + 1
-		}else if section == 2{
+		}else if section == 2 {
 			return currencies.count + 1
-		}else if section == 3{
+		}else if section == 3 {
 			return visibilities.count + 1
-		}else{
+		}else {
 			return PackageService.pack.session.connectedPeers.count
 		}
 	}
 
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		if section == 0{
+		if section == 0 {
 			return NSLocalizedString("Settings", comment: "")
-		}else if section == 1{
+		}else if section == 1 {
 			return NSLocalizedString("Sessions", comment: "")
-		}else if section == 2{
+		}else if section == 2 {
 			return NSLocalizedString("Currencies", comment: "")
-		}else if section == 3{
+		}else if section == 3 {
 			return NSLocalizedString("Visibilities", comment: "")
-		}else{
+		}else {
 			return NSLocalizedString("Connected devices", comment: "")
 		}
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if indexPath.section == 0{
-			if indexPath.row < settingValues.count{
+		if indexPath.section == 0 {
+			if indexPath.row < settingValues.count {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingSwitchCell") as! settingSwitchCell
 				let cellSetting = keys[indexPath.row].key
 				cell.settingLabel.text = NSLocalizedString(cellSetting, comment: "")
@@ -226,7 +226,7 @@ class SettingMenu: UITableViewController {
 				return cell!
 			}
 		}else if indexPath.section == 1 {
-			if indexPath.row == 0{
+			if indexPath.row == 0 {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
 				cell.settingLabel?.text = NSLocalizedString("New session", comment: "")
 				cell.selectionStyle = .none
@@ -234,7 +234,7 @@ class SettingMenu: UITableViewController {
 				cell.settingButton.setTitle(localizedAdd, for: .normal)
 				cell.delegate = self
 				return cell
-			}else{
+			}else {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
 				cell?.textLabel?.text = sessions[indexPath.row - 1].name! + " " + String((sessions[indexPath.row - 1].id?.suffix(4))!)
 				
@@ -242,14 +242,14 @@ class SettingMenu: UITableViewController {
 				cell?.accessoryType = .none
 				cell?.textLabel?.textColor = .black
 				
-				if sessions[indexPath.row - 1].current{
+				if sessions[indexPath.row - 1].current {
 					cell?.accessoryType = .checkmark
 				}
 				
 				return cell!
 			}
-		}else if indexPath.section == 2{
-			if indexPath.row == 0{
+		}else if indexPath.section == 2 {
+			if indexPath.row == 0 {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
 				cell.settingLabel?.text = NSLocalizedString("New Currency", comment: "")
 				cell.selectionStyle = .none
@@ -267,14 +267,14 @@ class SettingMenu: UITableViewController {
 				cell?.accessoryType = .none
 				cell?.textLabel?.textColor = .black
 				
-				if cellCurrency == Load.currentCurrency(){
+				if cellCurrency == Load.currentCurrency() {
 					cell?.accessoryType = .checkmark
 				}
 				
 				return cell!
 			}
-		}else if indexPath.section == 3{
-			if indexPath.row == 0{
+		}else if indexPath.section == 3 {
+			if indexPath.row == 0 {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
 				cell.settingLabel?.text = NSLocalizedString("New visibility", comment: "")
 				cell.selectionStyle = .none
@@ -288,20 +288,20 @@ class SettingMenu: UITableViewController {
 				let cellVisibility = visibilities[indexPath.row - 1]
 				cell?.textLabel?.text =	cellVisibility.name
 				
-				if let color = NameGenerator.colors.first(where: {$0.0 == cellVisibility.name})?.1{
+				if let color = NameGenerator.colors.first(where: {$0.0 == cellVisibility.name})?.1 {
 					cell?.textLabel?.textColor = color
 				}
 				
 				cell?.selectionStyle = .none
 				cell?.accessoryType = .none
 				
-				if cellVisibility.current{
+				if cellVisibility.current {
 					cell?.accessoryType = .checkmark
 				}
 			
 				return cell!
 			}
-		}else{
+		}else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
             cell?.textLabel?.text = PackageService.pack.session.connectedPeers[indexPath.row].displayName
 			
@@ -314,7 +314,7 @@ class SettingMenu: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if indexPath.section == 0 && indexPath.row == settingValues.count{
+		if indexPath.section == 0 && indexPath.row == settingValues.count {
 			
 			let syncAction = ItemListSync()
 			let requestAction = ItemListRequested()
@@ -322,7 +322,7 @@ class SettingMenu: UITableViewController {
 			PackageService.pack.send(action: syncAction)
 			PackageService.pack.send(action: requestAction)
 			
-		}else if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current{
+		}else if indexPath.section == 1 && indexPath.row > 0 && !sessions[indexPath.row - 1].current {
 			guard sessions.filter({$0.current}).count != 0 else {
 				switchedSession(indexPath: indexPath)
 				return
@@ -343,10 +343,10 @@ class SettingMenu: UITableViewController {
             alert.addAction(alertNo)
             
             present(alert, animated: true, completion: nil)
-		}else if indexPath.section == 2{
-			if indexPath.row == 0{
+		}else if indexPath.section == 2 {
+			if indexPath.row == 0 {
 				createCurrency()
-			}else{
+			}else {
 				let session = Load.currentSession()
 				sessions = Load.sessions()
 				visibilities = Load.visibilities()
@@ -358,25 +358,25 @@ class SettingMenu: UITableViewController {
 				
 				NotificationCenter.default.post(name: .currencyChanged, object: nil)
 			}
-		}else if indexPath.section == 3{
-			if indexPath.row != 0{
+		}else if indexPath.section == 3 {
+			if indexPath.row != 0 {
 				var rowsToReload = [indexPath]
 				
 				let previousVisibilityIndex = visibilities.firstIndex(where: {$0.current})
 				
-				if let previousVisibilityIndex = previousVisibilityIndex{
+				if let previousVisibilityIndex = previousVisibilityIndex {
 					
 					let previousRow = IndexPath(row: previousVisibilityIndex + 1, section: 3)
 					
-					if previousRow == indexPath{
+					if previousRow == indexPath {
 						visibilities[previousVisibilityIndex].current = !visibilities[previousVisibilityIndex].current
-					}else{
+					}else {
 						visibilities[previousVisibilityIndex].current = false
 						rowsToReload.append(previousRow)
 					}
 				}
 				
-				if rowsToReload.count == 2 || previousVisibilityIndex == nil{
+				if rowsToReload.count == 2 || previousVisibilityIndex == nil {
 					visibilities[indexPath.row - 1].current = true
 				}
 				
@@ -402,7 +402,7 @@ class SettingMenu: UITableViewController {
 		let localizedNo = NSLocalizedString("No", comment: "")
 		let localizedRemove = NSLocalizedString("Remove", comment: "")
 		
-		if indexPath.section == 1{
+		if indexPath.section == 1 {
 			actions = []
 			
 			let localizedDelete = NSLocalizedString("Delete", comment: "")
@@ -476,7 +476,7 @@ class SettingMenu: UITableViewController {
 			
 			actions?.append(shareSession)
 			
-		}else if indexPath.section == 2{
+		}else if indexPath.section == 2 {
 			let deleteCurrency = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: { action, path in
 				
 				let currencyToDelete = self.currencies[indexPath.row - 1]
@@ -504,7 +504,7 @@ class SettingMenu: UITableViewController {
 			})
 			
 			actions = [deleteCurrency, editCurrency]
-		}else if indexPath.section == 3{
+		}else if indexPath.section == 3 {
 			let deleteVisibility = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: { action, path in
 				
 				let visibilityToDelete = self.visibilities[indexPath.row - 1]
@@ -524,7 +524,7 @@ class SettingMenu: UITableViewController {
 			})
 			
 			actions = [deleteVisibility]
-		}else if indexPath.section == 4{
+		}else if indexPath.section == 4 {
 			actions = []
 			let removePeer = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {action,path in
 				
@@ -556,16 +556,16 @@ extension SettingMenu: settingCellDelegate {
     func pressedButton(_ sender: UIButton) {
 		guard let index = getCurrentCellIndexPath(sender, tableView: self.tableView) else { return } 
 		
-		if index.section == 1{
+		if index.section == 1 {
 			createSeesion()
-		}else if index.section == 2{
+		}else if index.section == 2 {
 			createCurrency()
-		}else if index.section == 3{
+		}else if index.section == 3 {
 			createVisibility()
 		}
     }
 	
-	func createCurrency(){
+	func createCurrency() {
 		let currencyForm = NewCurrencyForm()
 		
 		currencyForm.modalPresentationStyle = .formSheet
@@ -574,7 +574,7 @@ extension SettingMenu: settingCellDelegate {
 
 	}
 	
-	func createVisibility(){
+	func createVisibility() {
 		let context = CoreDataStack.managedObjectContext
 		let newVisibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
 		
@@ -585,7 +585,7 @@ extension SettingMenu: settingCellDelegate {
 		
 		let cur = visibilities.filter({$0.current})
 		
-		for i in cur{
+		for i in cur {
 			i.current = false
 		}
 		
@@ -604,7 +604,7 @@ extension SettingMenu: settingCellDelegate {
 		PackageService.pack.send(action: action)
 	}
 	
-	func createSeesion(){
+	func createSeesion() {
 		let context = CoreDataStack.managedObjectContext
 		let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
 		session.name = NSLocalizedString("Session", comment: "")
@@ -619,10 +619,10 @@ extension SettingMenu: settingCellDelegate {
 		
 		session.addToMaps(newMap)
 		
-		let PLN = Load.currencies().first{$0.name == "PLN"}
+		let PLN = Load.currencies().first {$0.name == "PLN"}
 		session.currency = PLN
 		
-		var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
+		var devices = PackageService.pack.session.connectedPeers.map {$0.displayName}
 		devices.append(UIDevice.current.name)
 		
 		session.devices = NSSet(array: devices)
@@ -631,7 +631,7 @@ extension SettingMenu: settingCellDelegate {
 		
 		CoreDataStack.saveContext()
 		
-		for sessio in sessions.filter({$0.current}){
+		for sessio in sessions.filter({$0.current}) {
 			sessio.current = false
 		}
 		session.current = true
@@ -646,7 +646,7 @@ extension SettingMenu: settingCellDelegate {
     }
 }
 
-extension Notification.Name{
+extension Notification.Name {
     static let reload = Notification.Name("reload")
     static let switchedSession = Notification.Name("switchedSession")
     static let sessionDeleted = Notification.Name("sessionDeleted")

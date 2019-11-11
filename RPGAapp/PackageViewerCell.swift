@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 import Dwifft
 
-class PackageViewerCell: UITableViewCell{
+class PackageViewerCell: UITableViewCell {
 	
 	@IBOutlet var itemTable: UITableView!
 	
 	@IBOutlet var nameLabel: UILabel!
 	@IBOutlet var sendButton: UIButton!
 	
-	var package: Package?{
-		didSet{
+	var package: Package? {
+		didSet {
 			guard let it = package?.items?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] else {
 				items = []
 				itemTable.reloadData()
@@ -43,17 +43,17 @@ class PackageViewerCell: UITableViewCell{
 	
 	var diffTable : [val] = []
 	
-	func setDiffTable(){
+	func setDiffTable() {
 		diffTable = []
-		for han in items{
+		for han in items {
 			guard let name = han.item?.id else { continue }
 			let newVal = val(name: name, count: han.count)
 			diffTable.append(newVal)
 		}
 	}
 	
-	var items: [ItemHandler] = []{
-		didSet{
+	var items: [ItemHandler] = [] {
+		didSet {
 			setDiffTable()
 			diffCalculator?.rows = diffTable
 		}
@@ -80,7 +80,7 @@ class PackageViewerCell: UITableViewCell{
 	}
 	
 	
-	@objc func reloadPackage(){
+	@objc func reloadPackage() {
 		guard let items = package?.items?.sortedArray(using: [.sortItemHandlerByName]) as? [ItemHandler] else { return }
 		self.items = items
 	}
@@ -172,7 +172,7 @@ class PackageViewerCell: UITableViewCell{
 	}
 }
 
-extension PackageViewerCell: UITableViewDataSource{
+extension PackageViewerCell: UITableViewDataSource {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
@@ -187,9 +187,9 @@ extension PackageViewerCell: UITableViewDataSource{
 		
 		let itemHandler = items[indexPath.row]
 		
-		if let name = itemHandler.item?.name{
+		if let name = itemHandler.item?.name {
 			cell.textLabel?.text = "\(name) \(itemHandler.count)"
-		}else{
+		}else {
 			cell.textLabel?.text = ""
 		}
 

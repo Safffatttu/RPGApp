@@ -14,7 +14,7 @@ import Former
 
 let iconSize: CGFloat = 20
 
-class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
+class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
 	
@@ -26,8 +26,8 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
     
     var diffCalculator: TableViewDiffCalculator<String,Item>?
     
-    var items: SectionedValues<String,Item> = SectionedValues(CatalogeDataSource.source.items){
-        didSet{
+    var items: SectionedValues<String,Item> = SectionedValues(CatalogeDataSource.source.items) {
+        didSet {
             self.diffCalculator?.sectionedValues = items
         }
     }
@@ -52,7 +52,7 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
         view.addGestureRecognizer(tap)
     }
 	
-    @objc func dismissKeyboard(){
+    @objc func dismissKeyboard() {
         NotificationCenter.default.post(name: .dismissKeyboard, object: nil)
     }
 	
@@ -65,7 +65,7 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
 		self.present(form, animated: true, completion: nil)
 	}
 	
-	@objc func reloadItems(_ not: Notification){
+	@objc func reloadItems(_ not: Notification) {
 		items = SectionedValues(CatalogeDataSource.source.items)
 	}
 	
@@ -81,7 +81,7 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate{
 	
 }
 
-extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
+extension catalogeDetail: UITableViewDataSource, UITableViewDelegate {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return self.diffCalculator?.numberOfSections() ?? 0
@@ -96,7 +96,7 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 		
 		if let category = titleForSubCategory[subCategory] {
 			return "\(category.capitalized) \(subCategory.lowercased())"
-		}else{
+		}else {
 			return subCategory.capitalized
 		}
 	}
@@ -104,14 +104,14 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath))!
 		
-		if expandedCell == indexPath{
+		if expandedCell == indexPath {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "catalogDetailExpandedCell") as! CatalogeDetailExpandedCell
 			
 			cell.item = cellItem
 			cell.cellDelegate = self
 			
 			return cell
-		}else{
+		}else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! CatalogeDetailCell
 			
 			cell.cellDelegate = self
@@ -122,9 +122,9 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if expandedCell != nil && indexPath == expandedCell{
+		if expandedCell != nil && indexPath == expandedCell {
 			return 150
-		}else{
+		}else {
 			return  44
 		}
 	}
@@ -138,7 +138,7 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 
 		tableView.beginUpdates()
 		
-		if expandedCell != nil{
+		if expandedCell != nil {
 			let tmpIndex = expandedCell!
 
 			let section = tmpIndex.section
@@ -146,7 +146,7 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 			
 			expandedCell = nil
 			
-			if numberOfSections(in: tableView) >= section && self.tableView(tableView, numberOfRowsInSection: section) >= row{
+			if numberOfSections(in: tableView) >= section && self.tableView(tableView, numberOfRowsInSection: section) >= row {
 				tableView.reloadRows(at: [tmpIndex], with: .automatic)
 			}
 		}
@@ -170,7 +170,7 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		let localizedRemove = NSLocalizedString("Remove", comment: "")
 		let removeAction = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {_,_ in
-			if indexPath == self.expandedCell{
+			if indexPath == self.expandedCell {
 				self.expandedCell = nil
 			}
 			
@@ -197,8 +197,8 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate{
 	}
 }
 
-extension catalogeDetail: catalogeDetailCellDelegate{
-	func addToPackageButton(_ sender: UIButton){
+extension catalogeDetail: catalogeDetailCellDelegate {
+	func addToPackageButton(_ sender: UIButton) {
 		let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
 		
 		let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
@@ -215,7 +215,7 @@ extension catalogeDetail: catalogeDetailCellDelegate{
 		self.present(popController, animated: true, completion: nil)
 	}
 	
-	func editItemButton(_ sender: UIButton){
+	func editItemButton(_ sender: UIButton) {
 		guard let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView) else { return }
 		
 		guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
@@ -230,7 +230,7 @@ extension catalogeDetail: catalogeDetailCellDelegate{
 		self.present(form, animated: true, completion: nil)
 	}
 	
-	func sendItemButton(_ sender: UIButton){
+	func sendItemButton(_ sender: UIButton) {
 		let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
 		
 		let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
@@ -253,7 +253,7 @@ extension catalogeDetail: catalogeDetailCellDelegate{
 		
 		let characters = Load.characters()
 		
-		for character in characters{
+		for character in characters {
 			addToEquipment(item: item, to: character)
 			let action = ItemCharacterAdded(characterId: character.id!, itemId: item.id!)
 			PackageService.pack.send(action: action)
@@ -262,7 +262,7 @@ extension catalogeDetail: catalogeDetailCellDelegate{
 }
 
 
-protocol catalogeDetailCellDelegate: class{
+protocol catalogeDetailCellDelegate: class {
 	
     func addToPackageButton(_ sender: UIButton)
 	

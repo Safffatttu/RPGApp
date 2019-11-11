@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 import Dwifft
 
-class NotesViewController: UICollectionViewController{
+class NotesViewController: UICollectionViewController {
 	
-	var notes: [Note] = Load.notes(){
-		didSet{
+	var notes: [Note] = Load.notes() {
+		didSet {
 			noteDiffCalculator.items = notes
 		}
 	}
@@ -25,7 +25,7 @@ class NotesViewController: UICollectionViewController{
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadNotes), name: .addedNote, object: nil)
 	}
 	
-	@objc func reloadNotes(){
+	@objc func reloadNotes() {
 		notes = Load.notes()
 	}
 	
@@ -38,10 +38,10 @@ class NotesViewController: UICollectionViewController{
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		if indexPath.row == noteDiffCalculator.items.count{
+		if indexPath.row == noteDiffCalculator.items.count {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newNoteCell", for: indexPath) as! NewNoteCell
 			return cell
-		}else{
+		}else {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "noteCell", for: indexPath) as! NoteCell
 			let note = noteDiffCalculator.items[indexPath.row]
 			

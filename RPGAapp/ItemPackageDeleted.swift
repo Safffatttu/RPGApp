@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct ItemPackageDeleted: Action {
 	
 	var actionType: ActionType = ActionType.itemPackageDeleted
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"packageId": packageId,
 				"itemId"   : itemId
@@ -28,7 +28,7 @@ struct ItemPackageDeleted: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.packageId = actionData.value(forKeyPath: "packageId") as! String
@@ -37,12 +37,12 @@ struct ItemPackageDeleted: Action {
 		self.actionData = actionData
 	}
 	
-	init(package: Package, itemId: String){
+	init(package: Package, itemId: String) {
 		self.packageId = package.id!
 		self.itemId = itemId
 	}
 	
-	func execute(){
+	func execute() {
 		guard let package = Load.packages(with: packageId) else { return }
 		guard let itemHandlerToRemove = package.items?.first(where: {($0 as! ItemHandler ).item?.id == itemId}) as? ItemHandler else { return }
 		

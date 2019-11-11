@@ -29,7 +29,7 @@ final class ImageRowFormer<T: UITableViewCell>: BaseRowFormer<T>, Formable where
 	
 	public override func update() {
 		
-		if let image = image{
+		if let image = image {
 			let imageView = cell.formImageView()
 			
 			imageView?.image = image
@@ -38,7 +38,7 @@ final class ImageRowFormer<T: UITableViewCell>: BaseRowFormer<T>, Formable where
 			
 			super.update()
 			
-		}else{
+		}else {
 			super.update()
 		}
 		
@@ -46,7 +46,7 @@ final class ImageRowFormer<T: UITableViewCell>: BaseRowFormer<T>, Formable where
 	
 }
 
-class FormImageCell: FormCell, ImageFormableRow{
+class FormImageCell: FormCell, ImageFormableRow {
 	
 	@IBOutlet weak var _imageView: UIImageView!
 	

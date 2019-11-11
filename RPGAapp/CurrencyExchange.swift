@@ -7,9 +7,9 @@
 
 import Foundation
 
-extension Currency{
+extension Currency {
 		
-	func show(value: Double) -> String{
+	func show(value: Double) -> String {
 		let subCurrencies = self.subCurrency?.array as! [SubCurrency]
 		let ratedValue = value * self.rate
 		
@@ -17,10 +17,10 @@ extension Currency{
 		
 		var reminding = ratedValue - floor(ratedValue)
 		
-		for sub in subCurrencies.dropFirst().dropLast(){
+		for sub in subCurrencies.dropFirst().dropLast() {
 			let subValueToShow = Int(floor(reminding * Double(sub.rate)))
 			
-			if subValueToShow != 0{
+			if subValueToShow != 0 {
 				let subStrToShow = " \(subValueToShow) \(sub.name!)"
 				
 				valueToShow += subStrToShow
@@ -29,20 +29,20 @@ extension Currency{
 			reminding = (reminding - floor(reminding * Double(sub.rate)) / Double(sub.rate)) * Double(sub.rate)
 		}
 		
-		if subCurrencies.last != nil && subCurrencies.count > 1{
+		if subCurrencies.last != nil && subCurrencies.count > 1 {
 			
 			let last = subCurrencies.last!
 			
 			let lastValue = reminding * Double(last.rate)
 			
-			if lastValue != 0{
+			if lastValue != 0 {
 				
 				let formatter = NumberFormatter()
 				formatter.numberStyle = NumberFormatter.Style.decimal
 				formatter.roundingMode = NumberFormatter.RoundingMode.halfUp
 				formatter.maximumFractionDigits = 10
 				
-				if let lastValueString = formatter.string(from: NSNumber(value: lastValue)){
+				if let lastValueString = formatter.string(from: NSNumber(value: lastValue)) {
 					if lastValueString != "0"{
 						let lastToShow = " \(lastValueString) \(last.name!)"
 						
@@ -55,14 +55,14 @@ extension Currency{
 		return valueToShow
 	}
 	
-	func valueFrom(string: String)-> Double{
+	func valueFrom(string: String)-> Double {
 		let subCurrencies = self.subCurrency?.array as! [SubCurrency]
 		
 		let stringWithoutSpaces = string.replacingOccurrences(of: " ", with: "")
 		
 		var value: Double = 0.0
 		
-		for sub in subCurrencies{
+		for sub in subCurrencies {
 			
 			let regex = "\\d+.?\\d*\(sub.name!)"
 			
@@ -73,7 +73,7 @@ extension Currency{
 			
 			guard let divNumber = subCurrencies.firstIndex(where: {$0 === sub}) else { continue }
 			
-			let absoluteDivider = subCurrencies[0...divNumber].map{$0.rate}.reduce(1, *)
+			let absoluteDivider = subCurrencies[0...divNumber].map {$0.rate}.reduce(1, *)
 			
 			value += (subValue / Double(absoluteDivider))
 		}
@@ -83,13 +83,13 @@ extension Currency{
 
 }
 
-func showPrice(_ value: Double) -> String{
+func showPrice(_ value: Double) -> String {
 	guard let currency = Load.currentCurrency() else { return "\(value)PLN" }
 	
 	return currency.show(value: value)
 }
 
-func convertCurrencyToValue(_ string: String) -> Double{
+func convertCurrencyToValue(_ string: String) -> Double {
 	guard let currency = Load.currentCurrency() else { return 0.0 }
 	
 	return currency.valueFrom(string: string)

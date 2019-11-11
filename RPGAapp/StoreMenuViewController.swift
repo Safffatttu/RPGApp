@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-class handlarzeMenu: UITableViewController{
+class handlarzeMenu: UITableViewController {
     
 }

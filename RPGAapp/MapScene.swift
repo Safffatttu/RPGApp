@@ -8,14 +8,14 @@
 import Foundation
 import SpriteKit
 
-class MapScene: SKScene{
+class MapScene: SKScene {
 	
 	var cam: SKCameraNode!
 	
 	var selectedNode: SKSpriteNode? = nil
 		
-	var map: Map?{
-		didSet{
+	var map: Map? {
+		didSet {
 			DispatchQueue.global().sync {
 			
 				guard let map = self.map else { return }
@@ -24,12 +24,12 @@ class MapScene: SKScene{
 				
 				let visibility = Load.currentVisibility()
 				
-					entities = entities.filter{$0.character?.visibility == nil
+					entities = entities.filter {$0.character?.visibility == nil
 											|| $0.character?.visibility == visibility}
 					
 				var newMapThings: [(MapEntity,SKSpriteNode)] = []
 				
-				for e in entities{
+				for e in entities {
 					let newSprite = SKSpriteNode(entity: e)
 					newSprite.name = e.character?.name
 					newMapThings.append((e,newSprite))
@@ -66,12 +66,12 @@ class MapScene: SKScene{
 		self.camera?.addChild(background)
 		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
 		
-		if let backgroundTexture = map?.background{
+		if let backgroundTexture = map?.background {
 			let image = UIImage(data: backgroundTexture.data! as Data)
 			let texture = SKTexture(image: image!)
 			mapa = SKSpriteNode(texture: texture)
 		}
-		else{
+		else {
 			mapa = SKSpriteNode(imageNamed: "mapImperium")
 		}
 		
@@ -101,7 +101,7 @@ class MapScene: SKScene{
 		NotificationCenter.default.addObserver(self, selector: #selector(textureChanged(_:)), name: .mapEntityTextureChanged, object: nil)
 	}
 	
-	@objc func mapEntityMoved(_ sender: Notification){
+	@objc func mapEntityMoved(_ sender: Notification) {
 		guard let object = sender.object as? (MapEntity, CGPoint) else { return }
 		
 		let entity = object.0
@@ -114,16 +114,16 @@ class MapScene: SKScene{
 		sprite.run(moveToAction)
 	}
 	
-	@objc func textureChanged(_ sender: Notification){
+	@objc func textureChanged(_ sender: Notification) {
 		var sprite: SKSpriteNode!
 		
 		var textureData: Data? = nil
 		
-		if let entity = sender.object as? MapEntity{
+		if let entity = sender.object as? MapEntity {
 			sprite = mapThings.first(where: {$0.0 == entity})?.1
 			
 			textureData = entity.texture?.data as Data?
-		}else{
+		}else {
 			sprite = self.mapa
 			textureData = map?.background?.data as Data?
 		}
@@ -134,7 +134,7 @@ class MapScene: SKScene{
 		
 		let textureReloadSeq = SKAction.sequence([
 			SKAction.fadeOut(withDuration: 0.4),
-			SKAction.run{
+			SKAction.run {
 				sprite.texture = texture
 			},
 			SKAction.fadeIn(withDuration: 0.4)
@@ -143,21 +143,21 @@ class MapScene: SKScene{
 		sprite.run(textureReloadSeq)
 	}
 	
-	@objc func reloadEntities(){
-		for sprite in mapThings.map({$0.1}){
+	@objc func reloadEntities() {
+		for sprite in mapThings.map({$0.1}) {
 			sprite.run(SKAction.hide())
 		}
 		reloadBackground()
 	}
 	
-	@objc func reloadBackground(){
+	@objc func reloadBackground() {
 		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
-		if let backgroundData = map?.background?.data{
+		if let backgroundData = map?.background?.data {
 			guard let image = UIImage(data: backgroundData as Data) else { return }
 			let texture = SKTexture(image: image)
 			let actionSeq = SKAction.sequence([
 				SKAction.fadeOut(withDuration: 0.4),
-				SKAction.run{
+				SKAction.run {
 					self.mapa.texture = texture
 					
 					let imgW = self.mapa.size.width
@@ -171,10 +171,10 @@ class MapScene: SKScene{
 			])
 			mapa.run(actionSeq)
 		}
-		else{
+		else {
 			let actionSeq = SKAction.sequence([
 				SKAction.fadeOut(withDuration: 0.4),
-				SKAction.run{
+				SKAction.run {
 					self.mapa.texture = SKTexture(imageNamed: "mapImperium")
 
 					let imgW = self.mapa.size.width
@@ -192,9 +192,9 @@ class MapScene: SKScene{
 	
 	var previousScale: CGFloat = 1
 	
-	@objc func pinchRec(sender: UIPinchGestureRecognizer){
+	@objc func pinchRec(sender: UIPinchGestureRecognizer) {
 		
-		if sender.state == .began{
+		if sender.state == .began {
 			previousScale = cam.xScale
 		}
 		
@@ -203,7 +203,7 @@ class MapScene: SKScene{
 		
 	}
 	
-	@objc func rotationRec(sender: UIRotationGestureRecognizer){
+	@objc func rotationRec(sender: UIRotationGestureRecognizer) {
 		cam.zRotation = sender.rotation
 	}
 	
@@ -227,7 +227,7 @@ class MapScene: SKScene{
 		}
 	}
 	
-	func selectNodeForTouch(touchLocation: CGPoint){
+	func selectNodeForTouch(touchLocation: CGPoint) {
 		let touchedNode = self.atPoint(touchLocation)
 		
 		guard mapThings.map({$0.1}).contains(touchedNode) else {
@@ -239,7 +239,7 @@ class MapScene: SKScene{
 		selectedNode = touchedNode as? SKSpriteNode
 		
 		let sendPositionAction = SKAction.run {
-				if let node = self.selectedNode{
+				if let node = self.selectedNode {
 					self.sendPositionData(node: node)
 			}
 		}
@@ -264,7 +264,7 @@ class MapScene: SKScene{
 			let translation = CGPoint(x: positionInScene.x - previousPosition.x, y: positionInScene.y - previousPosition.y)
 			
 			panForTranslation(translation: translation,node: node)
-		}else{
+		}else {
 			
 			let location = touch.location(in: self)
 			let previousLocation = touch.previousLocation(in: self)
@@ -283,7 +283,7 @@ class MapScene: SKScene{
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		if let node = selectedNode{
+		if let node = selectedNode {
 			let scaleFactor = 30/node.size.width
 			
 			let scaleBack = SKAction.scale(by: scaleFactor, duration: 0.2)
@@ -309,7 +309,7 @@ class MapScene: SKScene{
 		for t in touches { self.touchUp(atPoint: t.location(in: self)) }
 	}
 	
-	func sendPositionData(node: SKSpriteNode){
+	func sendPositionData(node: SKSpriteNode) {
 		guard let entity = mapThings.filter({$0.1 == node}).first?.0 else { return }
 		
 		let action = MapEntityMoved(mapEntity: entity)		
@@ -318,7 +318,7 @@ class MapScene: SKScene{
 	
 }
 
-extension Notification.Name{
+extension Notification.Name {
 	static let mapEntityMoved = Notification.Name("mapEntityMoved")
 	static let mapBackgroundChanged = Notification.Name("mapBackgroundChanged")
 	static let mapEntityTextureChanged = Notification.Name("mapEntityTextureChanged")

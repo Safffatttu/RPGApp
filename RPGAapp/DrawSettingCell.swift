@@ -13,8 +13,8 @@ class DrawSettingCell: UITableViewCell {
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var subSettingTable: UITableView!
 	
-	var drawSetting: DrawSetting? = nil{
-		didSet{
+	var drawSetting: DrawSetting? = nil {
+		didSet {
 			subSettingTable.reloadData()
 		}
 	}
@@ -25,16 +25,16 @@ class DrawSettingCell: UITableViewCell {
 	}
 }
 
-extension DrawSettingCell: UITableViewDataSource{
+extension DrawSettingCell: UITableViewDataSource {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if let count = drawSetting?.subSettings?.count{
+		if let count = drawSetting?.subSettings?.count {
 			return count
-		}else{
+		}else {
 			return 0
 		}
 	}

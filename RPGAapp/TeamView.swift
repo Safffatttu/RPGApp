@@ -12,8 +12,8 @@ import Dwifft
 
 class TeamView: UICollectionViewController {
     
-	var team: [Character] = Load.characters(usingVisibility: true){
-		didSet{
+	var team: [Character] = Load.characters(usingVisibility: true) {
+		didSet {
 			diffCalculator?.items = team
 		}
 	}
@@ -33,7 +33,7 @@ class TeamView: UICollectionViewController {
         super.viewDidLoad()
     }
 	
-    @objc func addCharacter(_ sender: Any){
+    @objc func addCharacter(_ sender: Any) {
         let characterFrom = NewCharacterForm()
 		
 		characterFrom.modalPresentationStyle = .formSheet
@@ -42,7 +42,7 @@ class TeamView: UICollectionViewController {
         present(characterFrom, animated: true, completion: nil)
     }
 	
-	@objc func editCharacter(_ notification: Notification){
+	@objc func editCharacter(_ notification: Notification) {
 		guard let character = notification.object as? Character else { return }
 		
 		let characterFrom = NewCharacterForm()
@@ -55,7 +55,7 @@ class TeamView: UICollectionViewController {
 		present(characterFrom, animated: true, completion: nil)
 	}
 	
-    @objc func reloadTeam(){
+    @objc func reloadTeam() {
         team = Load.characters(usingVisibility: true)
     }
 
@@ -78,7 +78,7 @@ class TeamView: UICollectionViewController {
     
 }
 
-extension Notification.Name{
+extension Notification.Name {
     static let reloadTeam = Notification.Name("reloadTeam")
     static let equipmentChanged = Notification.Name("equipmentChanged")
     static let modifiedAbility = Notification.Name("modifiedAbility")

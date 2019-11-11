@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct VisibilityRemoved: Action {
 	
 	var actionType: ActionType = ActionType.visibilityRemoved
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"visibilityId"  : visibilityId
 				])
@@ -26,7 +26,7 @@ struct VisibilityRemoved: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.visibilityId = actionData.value(forKeyPath: "visibilityId") as! String
@@ -34,11 +34,11 @@ struct VisibilityRemoved: Action {
 		self.actionData = actionData
 	}
 	
-	init(visibilityId: String){
+	init(visibilityId: String) {
 		self.visibilityId = visibilityId
 	}
 	
-	func execute(){
+	func execute() {
 		guard let visibility = Load.visibility(with: visibilityId) else { return }
 		
 		let context = CoreDataStack.managedObjectContext

@@ -10,7 +10,7 @@ import MultipeerConnectivity
 import CoreData
 import Whisper
 
-class ActionDelegate: PackageServiceDelegate{
+class ActionDelegate: PackageServiceDelegate {
 	
 	static var ad = ActionDelegate()	
 	
@@ -20,135 +20,135 @@ class ActionDelegate: PackageServiceDelegate{
 		guard let actionNumber = actionData.value(forKey: "action") as? Int else { return }
 		guard let actionType = ActionType(rawValue: actionNumber) else { return }
 		
-		if actionType == .itemCharacterAdded{
+		if actionType == .itemCharacterAdded {
 			let action = ItemCharacterAdded(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .characterCreated{
+		}else if actionType == .characterCreated {
 			let action = CharacterCreated(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemPackageAdded{
+		}else if actionType == .itemPackageAdded {
 			let action = ItemPackageAdded(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .disconnectPeer{
+		}else if actionType == .disconnectPeer {
 			let action = DisconnectPeer(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemCharacterDeleted{
+		}else if actionType == .itemCharacterDeleted {
 			let action = ItemCharacterDeleted(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .sessionSwitched{
+		}else if actionType == .sessionSwitched {
 			let action = SessionSwitched(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .sessionDeleted{
+		}else if actionType == .sessionDeleted {
 			let action = SessionDeleted(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .packageCreated{
+		}else if actionType == .packageCreated {
 			let action = PackageCreated(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .packageDeleted{
+		}else if actionType == .packageDeleted {
 			let action = PackageDeleted(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .generatedRandomNumber{
+		}else if actionType == .generatedRandomNumber {
 			let action = GeneratedRandomNumber(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .abilityAdded{
+		}else if actionType == .abilityAdded {
 			let action = AbilityAdded(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .abilityValueChanged{
+		}else if actionType == .abilityValueChanged {
 			let action = AbilityValueChanged(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .abilityRemoved{
+		}else if actionType == .abilityRemoved {
 			let action = AbilityRemoved(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .characterRemoved{
+		}else if actionType == .characterRemoved {
 			let action = CharacterRemoved(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemCharacterChanged{
+		}else if actionType == .itemCharacterChanged {
 			let action = ItemCharacterChanged(actionData: actionData, sender: sender)
 			action.execute()
 		
-		}else if actionType == .sessionReceived{
+		}else if actionType == .sessionReceived {
 			let action = SessionReceived(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemsRequest{
+		}else if actionType == .itemsRequest {
 			let action = ItemsRequest(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemsRequestResponse{
+		}else if actionType == .itemsRequestResponse {
 			let action = ItemsRequestResponse(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == ActionType.mapEntityMoved{
+		}else if actionType == ActionType.mapEntityMoved {
 			let action = MapEntityMoved(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemListSync{
+		}else if actionType == .itemListSync {
 			let action = ItemListSync(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemListRequested{
+		}else if actionType == .itemListRequested {
 			let action = ItemListRequested(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemListRecieved{
+		}else if actionType == .itemListRecieved {
 			let action = ItemListRecieved(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .textureSend{
+		}else if actionType == .textureSend {
 			let action = TextureSend(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .currencyCreated{
+		}else if actionType == .currencyCreated {
 			let action = CurrencyCreated(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .visibilityCreated{
+		}else if actionType == .visibilityCreated {
 			let action = VisibilityCreated(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .characterVisibilityChanged{
+		}else if actionType == .characterVisibilityChanged {
 			let action = CharacterVisibilityChanged(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .itemPackageDeleted{
+		}else if actionType == .itemPackageDeleted {
 			let action = ItemPackageDeleted(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .textureRequest{
+		}else if actionType == .textureRequest {
 			let action = TextureRequest(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .visibilityRemoved{
+		}else if actionType == .visibilityRemoved {
 			let action = VisibilityRemoved(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .mapTextureChanged{
+		}else if actionType == .mapTextureChanged {
 			let action = MapTextureChanged(actionData: actionData, sender: sender)
 			action.execute()
-		}else if actionType == .characterMoneyChanged{
+		}else if actionType == .characterMoneyChanged {
 			let action = CharacterMoneyChanged(actionData: actionData, sender: sender)
 			action.execute()
-		}else if actionType == .characterHealthChanged{
+		}else if actionType == .characterHealthChanged {
 			let action = CharacterHealthChanged(actionData: actionData, sender: sender)
 			action.execute()
 		}
     }
 	
-	func receiveLocally(_ actionData: NSMutableDictionary){
+	func receiveLocally(_ actionData: NSMutableDictionary) {
 		let packServ = PackageService.pack
 		let localId = packServ.myPeerID
 		
@@ -171,9 +171,9 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			let texture: Texture!
 			
-			if let existingTexture = entity.texture{
+			if let existingTexture = entity.texture {
 				texture = existingTexture
-			}else{
+			}else {
 				texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
 			}
 			
@@ -187,9 +187,9 @@ class ActionDelegate: PackageServiceDelegate{
 			
 			let texture: Texture!
 			
-			if let existingTexture = map.background{
+			if let existingTexture = map.background {
 				texture = existingTexture
-			}else{
+			}else {
 				texture = NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: context) as! Texture
 			}
 			
@@ -201,22 +201,22 @@ class ActionDelegate: PackageServiceDelegate{
 			NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
 		}
 		
-		do{
+		do {
 			try FileManager.default.removeItem(at: url)
-		}catch{
+		}catch {
 			print(error)
 		}
 	}
 
     func lost(_ peer: MCPeerID) {
-		DispatchQueue.main.async{
+		DispatchQueue.main.async {
 			let message = NSLocalizedString("Lost connection with", comment: "") + " " + peer.displayName
 			whisper(messege: message)
 		}
     }
     
     func found(_ peer: MCPeerID) {
-		DispatchQueue.main.async{
+		DispatchQueue.main.async {
 			let message = NSLocalizedString("Reconneced with", comment: "") + " " + peer.displayName
 			whisper(messege: message)
         }

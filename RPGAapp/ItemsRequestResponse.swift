@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct ItemsRequestResponse: Action {
 	
 	var actionType: ActionType = ActionType.itemsRequestResponse
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"requestId": requestId,
 				"itemsData": itemsData
@@ -28,7 +28,7 @@ struct ItemsRequestResponse: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.itemsData = actionData.value(forKey: "itemsData") as! [NSDictionary]
@@ -37,13 +37,13 @@ struct ItemsRequestResponse: Action {
 		self.actionData = actionData
 	}
 	
-	init(itemsData: [NSDictionary], requestId: String){
+	init(itemsData: [NSDictionary], requestId: String) {
 		self.requestId = requestId
 		self.itemsData = itemsData
 	}
 	
-	func execute(){
-		for itemData in itemsData{
+	func execute() {
+		for itemData in itemsData {
 			_ = unPackItem(from: itemData)
 		}
 		

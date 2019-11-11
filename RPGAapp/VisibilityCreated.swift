@@ -12,8 +12,8 @@ import CoreData
 struct VisibilityCreated: Action {
 	
 	var actionType: ActionType = ActionType.visibilityCreated
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"visibilityName": visibilityName,
 				"visibilityId"  : visibilityId
@@ -29,7 +29,7 @@ struct VisibilityCreated: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.visibilityName = actionData.value(forKeyPath: "visibilityName") as! String
@@ -38,12 +38,12 @@ struct VisibilityCreated: Action {
 		self.actionData = actionData
 	}
 	
-	init(visibility: Visibility){
+	init(visibility: Visibility) {
 		self.visibilityName = visibility.name!
 		self.visibilityId = visibility.id!
 	}
 	
-	func execute(){
+	func execute() {
 		let context = CoreDataStack.managedObjectContext
 		let visibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
 		

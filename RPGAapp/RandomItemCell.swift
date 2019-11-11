@@ -7,7 +7,7 @@
 
 import UIKit
 
-class randomItemCell: UITableViewCell{
+class randomItemCell: UITableViewCell {
 	
 	@IBOutlet weak var nameLabel: UILabel!
 	
@@ -23,14 +23,14 @@ class randomItemCell: UITableViewCell{
 	
 	weak var cellDelegate: randomItemCellDelegate?
 	
-	var itemHandler: ItemHandler?{
-		didSet{
+	var itemHandler: ItemHandler? {
+		didSet {
 			guard let itemHandler = self.itemHandler else { return }
 			
 			if itemHandler.count > 1 {
 				nameLabel.text = (itemHandler.item?.name)! + ": " + String(describing: itemHandler.count)
 			}
-			else{
+			else {
 				nameLabel.text = (itemHandler.item?.name)!
 			}
 			
@@ -60,7 +60,7 @@ class randomItemCell: UITableViewCell{
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPrice), name: .currencyChanged, object: nil)
 	}
 	
-	@objc func reloadPrice(){
+	@objc func reloadPrice() {
 		var priceToShow = ""
 		
 		if let price = itemHandler?.item?.price {
@@ -88,7 +88,7 @@ class randomItemCell: UITableViewCell{
 	}
 }
 
-protocol randomItemCellDelegate: class{
+protocol randomItemCellDelegate: class {
 	
 	func addToPackage(_ sender: UIButton)
 	

@@ -8,14 +8,14 @@
 import Foundation
 import SpriteKit
 
-extension SKSpriteNode{
+extension SKSpriteNode {
 	convenience init(entity: MapEntity, size: Int = 30) {
 		
 		self.init(color: .black, size: CGSize(width: size, height: size))
 		
 		self.position = CGPoint(x: entity.x, y: entity.y)
 
-		if let name = entity.character?.name{
+		if let name = entity.character?.name {
 			let label = SKLabelNode(text: name)
 			self.addChild(label)
 			label.position.y = 20

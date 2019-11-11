@@ -10,18 +10,18 @@ import UIKit
 import FontAwesome_swift
 import CoreData
 
-class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
+class sendAllPopover: UITableViewController, sendAllPopoverDelegate {
     let newTeam: [NSManagedObject] = []
     
     override func viewWillAppear(_ animated: Bool) {
         
         var height =  Int()
         var y = Int()
-        if (newTeam.count > 0){
+        if (newTeam.count > 0) {
             height = 45 * newTeam.count - 1
             y = 13
         }
-        else{
+        else {
             height = 45
             y = 24
         }
@@ -38,10 +38,10 @@ class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (newTeam.count > 0){
+        if (newTeam.count > 0) {
             return newTeam.count
         }
-        else{
+        else {
             return 1
         }
     }
@@ -49,12 +49,12 @@ class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sendAllPopoverCell") as! sendAllPopoverCell
         cell.cellDelegate = self
-        if (newTeam.count > 0){
+        if (newTeam.count > 0) {
             cell.playerName.text = (newTeam[indexPath.row] as! Character).name
             cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20)
             cell.sendButton.setTitle(String.fontAwesomeIcon(name: .send), for: .normal)
         }
-        else{
+        else {
             cell.playerName.text = "Brak postaci"
             cell.sendButton.isHidden = true
         }
@@ -74,11 +74,11 @@ class sendAllPopover: UITableViewController, sendAllPopoverDelegate{
     
 }
 
-class sendAllPopoverCell: UITableViewCell{
+class sendAllPopoverCell: UITableViewCell {
     
     weak var cellDelegate: sendAllPopoverDelegate?
     
-    @IBAction func sendButtonAction(_ sender: UIButton){
+    @IBAction func sendButtonAction(_ sender: UIButton) {
         cellDelegate?.sendItem(sender)
     }
     
@@ -90,7 +90,7 @@ class sendAllPopoverCell: UITableViewCell{
 }
 
 
-protocol sendAllPopoverDelegate: class{
+protocol sendAllPopoverDelegate: class {
     
     func sendItem(_ sender: UIButton)
     

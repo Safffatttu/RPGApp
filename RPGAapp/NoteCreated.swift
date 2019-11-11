@@ -12,8 +12,8 @@ import CoreData
 struct NoteCreated: Action {
 	
 	var actionType: ActionType = ActionType.noteCreated
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"noteId": noteId,
 				"noteText": noteText
@@ -29,7 +29,7 @@ struct NoteCreated: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.noteId = actionData.value(forKey: "noteId") as! String
@@ -38,12 +38,12 @@ struct NoteCreated: Action {
 		self.actionData = actionData
 	}
 	
-	init(note: Note){
+	init(note: Note) {
 		self.noteId = note.id!
 		self.noteText = note.text!
 	}
 	
-	func execute(){
+	func execute() {
 		let context = CoreDataStack.managedObjectContext
 		let note = NSEntityDescription.insertNewObject(forEntityName: String(describing: Note.self), into: context) as! Note
 		

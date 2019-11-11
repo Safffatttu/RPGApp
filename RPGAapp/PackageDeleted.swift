@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct PackageDeleted: Action {
 	
 	var actionType: ActionType = ActionType.packageDeleted
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"packageId"  : packageId
 				])
@@ -26,7 +26,7 @@ struct PackageDeleted: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.packageId = actionData.value(forKey: "packageId") as! String
@@ -34,11 +34,11 @@ struct PackageDeleted: Action {
 		self.actionData = actionData
 	}
 	
-	init(packageId: String){
+	init(packageId: String) {
 		self.packageId = packageId
 	}
 	
-	func execute(){
+	func execute() {
 		guard let package = Load.packages(with: packageId) else { return }
 		
 		CoreDataStack.managedObjectContext.delete(package)

@@ -27,7 +27,7 @@ class randomUserTests: XCTestCase {
     }
     
 
-    func test(){
+    func test() {
         
     }
     

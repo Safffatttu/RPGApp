@@ -12,8 +12,8 @@ import CoreData
 struct TextureRequest: Action {
 	
 	var actionType: ActionType = ActionType.textureRequest
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"id"    : id,
 				])
@@ -27,7 +27,7 @@ struct TextureRequest: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.id = actionData.value(forKeyPath: "id") as! String
@@ -35,16 +35,16 @@ struct TextureRequest: Action {
 		self.actionData = actionData
 	}
 	
-	init(id: String){
+	init(id: String) {
 		self.id = id
 	}
 	
-	func execute(){
+	func execute() {
 		var imageData: NSData?
 		
 		if let texture = Load.texture(with: id) {
 			imageData = texture.data
-		}else if let data = Load.map(withId: id)?.background?.data{
+		}else if let data = Load.map(withId: id)?.background?.data {
 			imageData = data
 		}
 		
@@ -57,9 +57,9 @@ struct TextureRequest: Action {
 		data.write(to: path, atomically: true)
 		
 		PackageService.pack.sendResourceAt(url: path, with: id, to: sender!, completionHandler: { e -> Void in
-			do{
+			do {
 				try FileManager.default.removeItem(at: path)
-			}catch{
+			}catch {
 				print(error)
 			}
 		})

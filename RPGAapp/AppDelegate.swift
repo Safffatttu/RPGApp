@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
         }
         
-        for setting in settingValues{
-            if defaults.value(forKey: setting.key) == nil{
+        for setting in settingValues {
+            if defaults.value(forKey: setting.key) == nil {
                 print(setting)
                 defaults.set(setting.value, forKey: setting.key)
             }

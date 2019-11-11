@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import MultipeerConnectivity
 
-func packSessionForMessage(_ session: Session) -> NSDictionary{
+func packSessionForMessage(_ session: Session) -> NSDictionary {
 	let current = session.current
 	//let devices = NSArray(array: (session.devices as! NSSet).allObjects)
 	let gameMaster = session.gameMaster
@@ -19,7 +19,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	
 	let visibilties = NSMutableArray()
 	
-	for case let visibility as Visibility in session.visibility!{
+	for case let visibility as Visibility in session.visibility! {
 		let visibilityDict = NSMutableDictionary()
 		
 		visibilityDict.setValue(visibility.name, forKey: "name")
@@ -43,7 +43,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		
 		let characterItems = NSMutableArray()
 		
-		for case let handler as ItemHandler in character.equipment!{
+		for case let handler as ItemHandler in character.equipment! {
 			let handlerDict = NSMutableDictionary()
 			handlerDict.setValue(handler.item?.id, forKey: "itemId")
 			handlerDict.setValue(handler.count, forKey: "count")
@@ -55,7 +55,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		
 		let characterAbilities = NSMutableArray()
 		
-		for case let ability as Ability in character.abilities!{
+		for case let ability as Ability in character.abilities! {
 			let abilityDict = NSMutableDictionary()
 			abilityDict.setValue(ability.name, forKey: "name")
 			abilityDict.setValue(ability.id, forKey: "id")
@@ -78,7 +78,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 		
 		let packageItems = NSMutableArray()
 		
-		for case let handler as ItemHandler in package.items!{
+		for case let handler as ItemHandler in package.items! {
 			let handlerDict = NSMutableDictionary()
 			handlerDict.setValue(handler.item?.id, forKey: "itemId")
 			handlerDict.setValue(handler.count, forKey: "count")
@@ -93,12 +93,12 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	
 	let maps = NSMutableArray()
 	
-	for case let map as Map in session.maps!{
+	for case let map as Map in session.maps! {
 		let mapDict = NSMutableDictionary()
 		
 		let mapEntities = NSMutableArray()
 		
-		for case let mapEnt as MapEntity in map.entities!{
+		for case let mapEnt as MapEntity in map.entities! {
 			let mapEntDict = NSMutableDictionary()
 			
 			mapEntDict.setValue(mapEnt.id, forKey: "id")
@@ -127,7 +127,7 @@ func packSessionForMessage(_ session: Session) -> NSDictionary{
 	
 	let notes = NSMutableArray()
 	
-	for case let note as Note in session.notes!{
+	for case let note as Note in session.notes! {
 		let noteDict = NSMutableDictionary()
 		
 		noteDict.setValue(note.id, forKey: "id")
@@ -181,10 +181,10 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	session.gameMasterName = gameMasterName
 	//session.devices	= NSSet(array: devices as! [Any])
 	
-	let PLN = Load.currencies().first{$0.name == "PLN"}
+	let PLN = Load.currencies().first {$0.name == "PLN"}
 	session.currency = PLN
 	
-	for case let visibilityDict as NSDictionary in allVisibilities{
+	for case let visibilityDict as NSDictionary in allVisibilities {
 		guard let visibilityName = visibilityDict.value(forKey: "name") as? String else { continue }
 		guard let visibilityId = visibilityDict.value(forKey: "id") as? String else { continue }
 		guard let visibilityCurrent = visibilityDict.value(forKey: "current") as? Bool else { continue }
@@ -198,7 +198,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		session.addToVisibility(newVisibility)
 	}
 	
-	for case let characterDict as NSDictionary in allCharactersDict{
+	for case let characterDict as NSDictionary in allCharactersDict {
 		
 		guard let characterName = characterDict.value(forKey: "name") as? String else { continue }
 		guard let characterId = characterDict.value(forKey: "id") as? String else { continue }
@@ -214,8 +214,8 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		newCharacter.profession = characterProfession
 		newCharacter.race = characterRace
 		
-		if let visiblity = characterDict.value(forKey: "visiblityId") as? String{
-			if let visiblity = Load.visibility(with: visiblity){
+		if let visiblity = characterDict.value(forKey: "visiblityId") as? String {
+			if let visiblity = Load.visibility(with: visiblity) {
 				newCharacter.visibility = visiblity
 			}
 		}
@@ -256,7 +256,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		session.addToCharacters(newCharacter)
 	}
 	
-	for case let packageDict as NSDictionary in allPackagesDict{
+	for case let packageDict as NSDictionary in allPackagesDict {
 		
 		guard let packageName = packageDict.value(forKey: "name") as? String else { continue }
 		guard let packageId = packageDict.value(forKey: "id") as? String else { continue }
@@ -284,7 +284,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		session.addToPackages(package)
 	}
 	
-	for case let mapDict as NSDictionary in allMapsDict{
+	for case let mapDict as NSDictionary in allMapsDict {
 		
 		let mapName = mapDict.value(forKey: "name") as? String
 		guard let mapId = mapDict.value(forKey: "id") as? String else { continue }
@@ -296,7 +296,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		
 		let map = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
 		
-		for case let mapEntDict as NSDictionary in allMapEntities{
+		for case let mapEntDict as NSDictionary in allMapEntities {
 			
 			guard let mapEntId = mapEntDict.value(forKey: "id") as? String else { continue }
 			guard let mapEntPosX = mapEntDict.value(forKey: "posX") as? Double else { continue }
@@ -324,7 +324,7 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		session.addToMaps(map)
 	}
 	
-	for case let noteDict as NSDictionary in allNotes{
+	for case let noteDict as NSDictionary in allNotes {
 		guard let noteId = noteDict.value(forKey: "id") as? String else { continue }
 		guard let noteText = noteDict.value(forKey: "text") as? String else { continue	}
 		
@@ -333,8 +333,8 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 		note.id = noteId
 		note.text = noteText
 		
-		if let noteVisibilityId = noteDict.value(forKey: "visibilityId") as? String{
-			if let visibility = Load.visibility(with: noteVisibilityId){
+		if let noteVisibilityId = noteDict.value(forKey: "visibilityId") as? String {
+			if let visibility = Load.visibility(with: noteVisibilityId) {
 				note.visibility = visibility
 			}
 		}
@@ -360,10 +360,10 @@ func packItem(_ item: Item) -> NSDictionary {
 	itemDict.setValue(item.category?.name, forKey: "categoryName")
 	itemDict.setValue(item.subCategory?.name, forKey: "subCategoryName")
 	
-	if let itemAtributes = item.itemAtribute?.allObjects as? [ItemAtribute]{
+	if let itemAtributes = item.itemAtribute?.allObjects as? [ItemAtribute] {
 		let atributesDict = NSMutableArray()
 		
-		for atribute in itemAtributes{
+		for atribute in itemAtributes {
 			let atributeDict = NSMutableDictionary()
 			
 			atributeDict.setValue(atribute.name, forKey: "name")
@@ -381,7 +381,7 @@ func packItem(_ item: Item) -> NSDictionary {
 	return NSDictionary(dictionary: itemDict)
 }
 
-func unPackItem(from itemDictionary: NSDictionary) -> Item{
+func unPackItem(from itemDictionary: NSDictionary) -> Item {
 	let id = itemDictionary.value(forKey: "id") as? String
 	let item_description = itemDictionary.value(forKey: "item_description") as? String
 	let measure = itemDictionary.value(forKey: "measure") as? String
@@ -414,21 +414,21 @@ func unPackItem(from itemDictionary: NSDictionary) -> Item{
 	return item
 }
 
-func checkSessionDataForNotKnowIds(sessionData: NSDictionary) -> [String]{
+func checkSessionDataForNotKnowIds(sessionData: NSDictionary) -> [String] {
 	var requestList: [String] = []
 	
 	guard let allCharactersDict = sessionData.value(forKey: "characters") as? NSArray else { return requestList }
 	
 	let itemsIdList = Load.items().map({$0.id})
 	
-	for case let characterDict as NSDictionary in allCharactersDict{
+	for case let characterDict as NSDictionary in allCharactersDict {
 		guard let items = characterDict.value(forKey: "items") as? NSArray else { continue }
 		
 		for case let item as NSDictionary in items {
 			
 			guard let itemId = item.value(forKey: "itemId") as? String else { continue }
 			
-			if !itemsIdList.contains(where: {$0 == itemId}){
+			if !itemsIdList.contains(where: {$0 == itemId}) {
 				requestList.append(itemId)
 			}
 			
@@ -437,13 +437,13 @@ func checkSessionDataForNotKnowIds(sessionData: NSDictionary) -> [String]{
 	
 	guard let allPackageDict = sessionData.value(forKey: "packages") as? NSArray else { return  requestList }
 	
-	for case let packgeDict as NSDictionary in allPackageDict{
+	for case let packgeDict as NSDictionary in allPackageDict {
 		guard let packageItems = packgeDict.value(forKey: "items") as? NSArray else { return requestList }
 		
-		for case let packgeItemHandler as NSDictionary in packageItems{
+		for case let packgeItemHandler as NSDictionary in packageItems {
  			guard let itemId = packgeItemHandler.value(forKey: "itemId") as? String else { return requestList }
 			
-			if !itemsIdList.contains(where: {$0 == itemId}){
+			if !itemsIdList.contains(where: {$0 == itemId}) {
 					requestList.append(itemId)
 				}
 		}
@@ -452,7 +452,7 @@ func checkSessionDataForNotKnowIds(sessionData: NSDictionary) -> [String]{
 	return requestList
 }
 
-func createSessionUsing(sessionData: NSDictionary, sender: MCPeerID) -> Session?{
+func createSessionUsing(sessionData: NSDictionary, sender: MCPeerID) -> Session? {
 	
 	let itemsToRequest = checkSessionDataForNotKnowIds(sessionData: sessionData)
 	
@@ -471,7 +471,7 @@ func createSessionUsing(sessionData: NSDictionary, sender: MCPeerID) -> Session?
 	
 	guard let newSession = unPackSession(from: sessionData) else { return nil}
 	
-	if let setCurrent = sessionData.value(forKey: "current") as? Bool{
+	if let setCurrent = sessionData.value(forKey: "current") as? Bool {
 		if setCurrent {
 			Load.sessions().first(where: {$0.current})?.current = false
 			newSession.current = setCurrent
@@ -481,26 +481,26 @@ func createSessionUsing(sessionData: NSDictionary, sender: MCPeerID) -> Session?
 	return newSession
 }
 
-func getTextureId(from sessionData: NSDictionary) -> [String]{
+func getTextureId(from sessionData: NSDictionary) -> [String] {
 	var list: [String] = []
 	
 	guard let mapsDict = sessionData.value(forKey: "maps") as? NSArray else { return list }
 	
-	for case let mapDict as NSDictionary in mapsDict{
+	for case let mapDict as NSDictionary in mapsDict {
 		guard let mapId = mapDict.value(forKey: "id") as? String else { continue }
 		guard let hasBackground = mapDict.value(forKey: "hasBackground") as? Bool else { continue }
 		
-		if hasBackground{
+		if hasBackground {
 			list.append(mapId)
 		}
 		
 		guard let allMapEntities = mapDict.value(forKey: "mapEntities") as? NSArray else { continue }
 		
-		for case let mapEntDict as NSDictionary in allMapEntities{
+		for case let mapEntDict as NSDictionary in allMapEntities {
 			guard let mapEntId = mapEntDict.value(forKey: "id") as? String else { continue }
 			guard let hasTexture = mapEntDict.value(forKey: "hasTexture") as? Bool else { continue }
 			
-			if hasTexture{
+			if hasTexture {
 				list.append(mapEntId)
 			}
 		}
@@ -509,7 +509,7 @@ func getTextureId(from sessionData: NSDictionary) -> [String]{
 	return list
 }
 
-func packCurrency(_ currency: Currency) -> NSMutableDictionary{
+func packCurrency(_ currency: Currency) -> NSMutableDictionary {
 	let currencyData = NSMutableDictionary()
 	
 	currencyData.setValue(currency.name, forKey: "name")
@@ -520,7 +520,7 @@ func packCurrency(_ currency: Currency) -> NSMutableDictionary{
 	
 	let subCurrencies = currency.subCurrency?.array as! [SubCurrency]
 	
-	for subCur in subCurrencies{
+	for subCur in subCurrencies {
 		subCurrencyNames.append(subCur.name!)
 		subCurrencyRates.append(subCur.rate)
 	}
@@ -531,7 +531,7 @@ func packCurrency(_ currency: Currency) -> NSMutableDictionary{
 	return currencyData
 }
 
-func unPackCurrency(currencyData: NSMutableDictionary) -> Currency{
+func unPackCurrency(currencyData: NSMutableDictionary) -> Currency {
 	let currencyName = currencyData.value(forKey: "name") as? String
 	let currencyGlobalRate = currencyData.value(forKey: "globalRate") as! Double
 	
@@ -547,7 +547,7 @@ func unPackCurrency(currencyData: NSMutableDictionary) -> Currency{
 	newCurrency.name = currencyName
 	newCurrency.rate = currencyGlobalRate
 	
-	for subCurData in subCurrencyData{
+	for subCurData in subCurrencyData {
 		let newSubCurrency = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
 		
 		newSubCurrency.name = subCurData.0

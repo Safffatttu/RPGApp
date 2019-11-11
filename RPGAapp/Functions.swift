@@ -11,11 +11,11 @@ import CoreData
 import Whisper
 import Dwifft
 
-func myRand(_ num: Int) -> Int{
+func myRand(_ num: Int) -> Int {
     return Int(arc4random_uniform(UInt32(num)))
 }
 
-func datatostring() -> String{
+func datatostring() -> String {
     let proTable = NSDataAsset.init(name: "Profesion")
     let dataToDecode = proTable?.data
     return String(data: dataToDecode!, encoding: .utf8)!
@@ -72,7 +72,7 @@ func weightedRandom(items: [Item], weightTotal: Int64) -> Item {
     fatalError("This should never be reached")
 }
 
-func loadStringTableFromDataAsset(Data: String) -> [[String]]{
+func loadStringTableFromDataAsset(Data: String) -> [[String]] {
     let table = NSDataAsset.init(name: Data)
     let decoded = String(data: (table?.data)!, encoding: .utf8)!
     var result: [[String]] = []
@@ -84,12 +84,12 @@ func loadStringTableFromDataAsset(Data: String) -> [[String]]{
     return result
 }
 
-func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]]{
+func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]] {
     var tableToRet = [[(Int, UInt)]] ()
-    for i in 0...Int((table.first?.count)! - 2){ //for each race
+    for i in 0...Int((table.first?.count)! - 2) { //for each race
         print("Race Start\(i)")
         var race = [(Int, UInt)] ()
-        for j in 0...59{
+        for j in 0...59 {
             var prof : (Int,UInt)
             if table[j][i]?.rangeOfCharacter(from: CharacterSet.decimalDigits) == nil {
             //if table[j][i] == ""{
@@ -105,11 +105,11 @@ func tableForWRE(table: [[String?]]) -> [[(Int, UInt)]]{
     return tableToRet
 }
 
-func forTailingZero(_ temp: Double) -> String{
+func forTailingZero(_ temp: Double) -> String {
     return String(format: "%g", temp)
 }
 
-func loadItemsFromAsset(){
+func loadItemsFromAsset() {
     let context = CoreDataStack.managedObjectContext
 //    var currency: Currency
 //    var subCurrency: SubCurrency
@@ -128,7 +128,7 @@ func loadItemsFromAsset(){
 
     var item: Item? = nil
     
-    for line in itemList{
+    for line in itemList {
         if line.first == "DATA"{
 //            currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency
 //            currency.name = "Złoty"
@@ -169,7 +169,7 @@ func loadItemsFromAsset(){
         item?.setValue(line[0], forKey: #keyPath(Item.name))
         item?.setValue(line[1], forKey: #keyPath(Item.item_description))
         item?.setValue(Double(line[4]), forKey: #keyPath(Item.price))
-        if let rarity = Int16(line[5]){
+        if let rarity = Int16(line[5]) {
             if rarity > 0 && rarity < 5 {
                 item?.setValue(rarity, forKey: #keyPath(Item.rarity))
             }
@@ -196,12 +196,12 @@ func strHash(_ str: String) -> UInt64 {
     return result
 }
 
-func addToEquipment(item: Item, to character: Character, count: Int64 = 1){
+func addToEquipment(item: Item, to character: Character, count: Int64 = 1) {
     let context = CoreDataStack.managedObjectContext
 	
-    if let handler = (character.equipment?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler){
+    if let handler = (character.equipment?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler) {
         handler.count += count
-    }else{
+    }else {
         let handler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
 		
         handler.item = item
@@ -210,14 +210,14 @@ func addToEquipment(item: Item, to character: Character, count: Int64 = 1){
     }
 }
 
-func addToEquipment(itemHandler: ItemHandler, to character: Character){
+func addToEquipment(itemHandler: ItemHandler, to character: Character) {
     let context = CoreDataStack.managedObjectContext
     
     var newHandler = itemHandler
     
-    if let handler = (character.equipment?.first(where: {($0 as! ItemHandler).item == itemHandler.item}) as? ItemHandler){
+    if let handler = (character.equipment?.first(where: {($0 as! ItemHandler).item == itemHandler.item}) as? ItemHandler) {
         handler.count += itemHandler.count
-    }else{
+    }else {
         newHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
         newHandler.item = itemHandler.item
         newHandler.count = itemHandler.count
@@ -230,24 +230,24 @@ func addToEquipment(itemHandler: ItemHandler, to character: Character){
     itemHandler.addToItemAtributesHandler(atribute)
 }
 
-func add(_ item: Item,to package: Package, count: Int64?){
+func add(_ item: Item,to package: Package, count: Int64?) {
     let context = CoreDataStack.managedObjectContext
 
     var itemHandler = package.items?.first(where: {($0 as! ItemHandler).item == item}) as? ItemHandler
     
-    if itemHandler == nil{
+    if itemHandler == nil {
         itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as? ItemHandler
         itemHandler!.item = item
-        if count != nil{
+        if count != nil {
             itemHandler!.count = count!
         }
         package.addToItems(itemHandler!)
     }
 
-    else if count != nil{
+    else if count != nil {
         itemHandler?.count += count!
     }
-    else if (itemHandler?.count)! > 0{
+    else if (itemHandler?.count)! > 0 {
         itemHandler?.count += 1
     }
  
@@ -262,12 +262,12 @@ func getCurrentCellIndexPath<T: UIView>(_ sender: T, tableView: UITableView) -> 
     return nil
 }
 
-func whisper(messege: String){
+func whisper(messege: String) {
     let murmur = Murmur(title: messege, backgroundColor: .white, titleColor: .black, font: .systemFont(ofSize: UIFont.systemFontSize), action: nil)
     Whisper.show(whistle: murmur, action: .show(3))
 }
 
-func save(dictionary: NSDictionary)-> URL{
+func save(dictionary: NSDictionary)-> URL {
 	
 	//let randomFilename = UUID().uuidString
 	let url = getDocumentsDirectory().appendingPathComponent("session" + String(describing: Date())).appendingPathExtension("rpgs")
@@ -281,7 +281,7 @@ func getDocumentsDirectory() -> URL {
 	return paths[0]
 }
 
-@discardableResult func createCurrencyUsing(name: String, rate: Double, subList: [(String,Int16)]) -> Currency{
+@discardableResult func createCurrencyUsing(name: String, rate: Double, subList: [(String,Int16)]) -> Currency {
 	let context = CoreDataStack.managedObjectContext
 	
 	let currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency
@@ -291,7 +291,7 @@ func getDocumentsDirectory() -> URL {
 	currency.rate = rate
 	
 	
-	for sub in subList{
+	for sub in subList {
 		let subCurrency = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
 		
 		subCurrency.name = sub.0
@@ -303,11 +303,11 @@ func getDocumentsDirectory() -> URL {
 	return currency
 }
 
-func createTitlesForSubCategory() -> [String: String]{
+func createTitlesForSubCategory() -> [String: String] {
 	var nameDict: [String: String] = [: ]
 	let subCategories = Load.subCategories()
 	
-	for subCategory in subCategories{
+	for subCategory in subCategories {
 		guard let name = subCategory.name else { continue }
 		guard let categoryName = subCategory.category?.name else { continue }
 		nameDict[name] = categoryName
@@ -316,7 +316,7 @@ func createTitlesForSubCategory() -> [String: String]{
 	return nameDict
 }
 
-func createBasicCurrency(){
+func createBasicCurrency() {
 	createCurrencyUsing(name: "PLN", rate: 1, subList: [("Zł", 1), ("Gr", 100)])
 	createCurrencyUsing(name: "ZkSrM", rate: 1, subList: [("Zk", 1), ("Sr", 12), ("M", 12)])
 	CoreDataStack.saveContext()
@@ -328,7 +328,7 @@ let rarityName = [NSLocalizedString("Junk", comment: ""),
 				  NSLocalizedString("Legendary", comment: "")
 	]
 
-func widthForSegmentOfRarityName(num: Int) -> CGFloat{
+func widthForSegmentOfRarityName(num: Int) -> CGFloat {
 	guard num < rarityName.count else { return 0.0 }
 	let count = rarityName.reduce("", +).count
 	let rarityCount = rarityName[num].count
@@ -336,7 +336,7 @@ func widthForSegmentOfRarityName(num: Int) -> CGFloat{
 	return CGFloat(rarityCount) / CGFloat(count)
 }
 
-extension Int{
+extension Int {
     init?(_ bool: Bool?) {
         guard bool != nil else {
             return nil
@@ -347,7 +347,7 @@ extension Int{
 
 extension String {
     
-    func containsIgnoringCase(_ string: String) -> Bool{
+    func containsIgnoringCase(_ string: String) -> Bool {
         return self.lowercased().replacingOccurrences(of: " ", with: "").contains(string.lowercased())
     }
 }
@@ -359,14 +359,14 @@ extension UIResponder {
 	}
 }
 
-extension Notification.Name{
+extension Notification.Name {
     static let itemAddedToCharacter = Notification.Name("itemAddedToCharacter")
     static let addedItemToPackage = Notification.Name("addedItemToPackage")
 	static let addedNote = Notification.Name("newNote")
 	static let changedNote = Notification.Name("changedNote")
 }
 
-extension NSSortDescriptor{
+extension NSSortDescriptor {
     static let sortItemByCategory = NSSortDescriptor(key: #keyPath(Item.category), ascending: true)
     static let sortItemBySubCategory = NSSortDescriptor(key: #keyPath(Item.subCategory), ascending: true)
     static let sortItemByName = NSSortDescriptor(key: #keyPath(Item.name), ascending: true)
@@ -416,7 +416,7 @@ extension UIApplication {
 	}
 }
 
-func shakeView(_  view: UIView){
+func shakeView(_  view: UIView) {
 	
 	let animation = CABasicAnimation(keyPath: "position")
 	animation.duration = 0.07

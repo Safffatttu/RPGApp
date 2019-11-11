@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 typealias ActionData = NSMutableDictionary
 
-protocol Action{
+protocol Action {
 	
 	var actionType: ActionType { get }
 	

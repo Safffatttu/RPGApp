@@ -8,21 +8,21 @@
 import Foundation
 
 public struct DiceModel {
-	public static func ADNormal(_ n: Int) -> Int{
+	public static func ADNormal(_ n: Int) -> Int {
 		let roll = rollDices(n)
 		let numOf6 = countOccurances(roll, 6)
 		
 		var wynik: Int
 		
-		if numOf6 > 1{
+		if numOf6 > 1 {
 			wynik = numOf6 + 5
-		}else{
+		}else {
 			wynik = roll.max()!
 		}
 		return wynik
 	}
 	
-	public static func ADTo6(_ n: Int) -> Int{
+	public static func ADTo6(_ n: Int) -> Int {
 		var roll = rollDices(n)
 		
 		for i in 2...5 {
@@ -32,15 +32,15 @@ public struct DiceModel {
 		let numOf6 = countOccurances(roll, 6)
 		var wynik: Int
 		
-		if numOf6 > 1{
+		if numOf6 > 1 {
 			wynik = numOf6 + 5
-		}else{
+		}else {
 			wynik = roll.max()!
 		}
 		return wynik
 	}
 	
-	public static func AD2UP(_ n: Int) -> Int{
+	public static func AD2UP(_ n: Int) -> Int {
 		let roll = rollDices(n)
 		let max = roll.max()!
 		
@@ -53,12 +53,12 @@ public struct DiceModel {
 		var stackedRoll: [Int] = rollBez2
 		
 		var i = 2
-		while true{
+		while true {
 			
 			stackedRoll = stack(stackedRoll, i)
 			
 			let max = stackedRoll.max()!
-			if max <= i{
+			if max <= i {
 				break
 			}
 			
@@ -68,7 +68,7 @@ public struct DiceModel {
 		return stackedRoll.max()!
 	}
 	
-	public static func ADNormalRH(_ n: Int) -> Int{
+	public static func ADNormalRH(_ n: Int) -> Int {
 		var roll = rollDices(n)
 		let numOf6 = countOccurances(roll, 6)
 		let countOf1 = countOccurances(roll, 1)
@@ -79,9 +79,9 @@ public struct DiceModel {
 		
 		decrementHighest(&roll, times: countOf1/2)
 		
-		if numOf6 > 1{
+		if numOf6 > 1 {
 			wynik = numOf6 + 5
-		}else{
+		}else {
 			wynik = roll.max()!
 		}
 		return wynik

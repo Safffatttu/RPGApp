@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct SessionSwitched: Action {
 	
 	var actionType: ActionType = ActionType.sessionSwitched
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"sessionId": sessionId
 				])
@@ -24,7 +24,7 @@ struct SessionSwitched: Action {
 	var sessionId: String
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.sessionId = actionData.value(forKey: "sessionId") as! String
@@ -32,15 +32,15 @@ struct SessionSwitched: Action {
 		self.actionData = actionData
 	}
 	
-	init(session: Session){
+	init(session: Session) {
 		self.sessionId = session.id!
 	}
 	
-	func execute(){
+	func execute() {
 		let sessions = Load.sessions()
-		let currentSessions = sessions.filter{$0.current}
+		let currentSessions = sessions.filter {$0.current}
 		
-		for current in currentSessions{
+		for current in currentSessions {
 			current.current = false
 		}
 		

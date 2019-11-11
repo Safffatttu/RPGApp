@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import Dwifft
 
-class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate, UIPopoverPresentationControllerDelegate{
+class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate, UIPopoverPresentationControllerDelegate {
     
     let iconSize: CGFloat = 20
     
@@ -29,13 +29,13 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     var diffTable : [val] = []
     
-    func setDiffTable(){
+    func setDiffTable() {
         diffTable = []
 		
-		if ItemDrawManager.randomlySelected.count == 0{
+		if ItemDrawManager.randomlySelected.count == 0 {
 			diffTable = [val(name: "", count: 0)]
-		}else{
-			for han in ItemDrawManager.randomlySelected{
+		}else {
+			for han in ItemDrawManager.randomlySelected {
 				guard let name = han.item?.name else { continue }
 				let newVal = val(name: name, count: han.count)
 				diffTable.append(newVal)
@@ -70,7 +70,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell") as! randomItemCell
         
-        if ItemDrawManager.randomlySelected.count > 0{
+        if ItemDrawManager.randomlySelected.count > 0 {
             let cellItem = ItemDrawManager.randomlySelected[indexPath.row]
 			
 			cell.itemHandler = cellItem
@@ -81,7 +81,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
 			cell.redrawButton.isHidden = false
 			cell.packageButton.isHidden = false
         }
-        else{
+        else {
             cell.nameLabel?.text = NSLocalizedString("Have not draw items yet", comment: "")
             cell.priceLabel?.text = ""
             
@@ -101,7 +101,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
+        if editingStyle == .delete {
             let contex = CoreDataStack.managedObjectContext
             let handlerToRemove = ItemDrawManager.randomlySelected[indexPath.row]
             ItemDrawManager.randomlySelected.remove(at: indexPath.row)
@@ -113,7 +113,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    func addToPackage(_ sender: UIButton){
+    func addToPackage(_ sender: UIButton) {
         let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
@@ -128,7 +128,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         self.present(popController, animated: true, completion: nil)
     }
     
-    func reDrawItem(_ sender: UIButton){
+    func reDrawItem(_ sender: UIButton) {
 		guard let indexPath = getCurrentCellIndexPath(sender, tableView: tableView) else { return }
 		
 		let handlerToReDraw = ItemDrawManager.randomlySelected[indexPath.row]
@@ -138,7 +138,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
 		reloadTableData()
     }
     
-    func showInfo(_ sender: UIButton){
+    func showInfo(_ sender: UIButton) {
         let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "showInfoPop")
         
@@ -151,7 +151,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         self.present(popController, animated: true, completion: nil)
     }
     
-    func sendItem(_ sender: UIButton){
+    func sendItem(_ sender: UIButton) {
         let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop")
 
@@ -164,7 +164,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         self.present(popController, animated: true, completion: nil)
     }
     
-    @IBAction func reDrawAllItems(_ sender: UIButton){
+    @IBAction func reDrawAllItems(_ sender: UIButton) {
         ItemDrawManager.drawManager.reDrawAllItems()
 		reloadTableData()
     }

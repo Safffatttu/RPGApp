@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CatalogeDataSource{
+class CatalogeDataSource {
 	
 	static var source: CatalogeDataSource = CatalogeDataSource()
 	
@@ -42,13 +42,13 @@ class CatalogeDataSource{
 	)
 	
 	private var searchString: String = ""{
-		didSet{
+		didSet {
 			modelChanged()
 		}
 	}
 	
-	var items: [(String, [Item])] = []{
-		didSet{
+	var items: [(String, [Item])] = [] {
+		didSet {
 			NotificationCenter.default.post(name: .reloadCataloge, object: nil)
 		}
 	}
@@ -58,19 +58,19 @@ class CatalogeDataSource{
 	private var searchedItems: [Item] = []
 	private var filteredItems: [Item] = []
 	
-	@objc private func modelChanged(){
+	@objc private func modelChanged() {
 		let allItems = Load.items()
 		searchedItems = searchItems(allItems)
 		filteredItems = filterItems(searchedItems)
 		items = sortItems(filteredItems)
 	}
 	
-	@objc private func searchCataloge(_ notification: Notification){
+	@objc private func searchCataloge(_ notification: Notification) {
 		guard let newString = notification.object as? String else { return }
 		searchString = newString.replacingOccurrences(of: " ", with: "")
 	}
 	
-	private func searchItems(_ list: [Item]) -> [Item]{
+	private func searchItems(_ list: [Item]) -> [Item] {
 		guard searchString != "" else { return list }
 		let searchModel = model.searchModel
 		
@@ -80,17 +80,17 @@ class CatalogeDataSource{
 				|| ( searchModel[2].selected && ($0.category?.name?.containsIgnoringCase(searchString))!)
 				|| ( searchModel[3].selected && ($0.subCategory?.name?.containsIgnoringCase(searchString))!)
 				|| ( searchModel[4].selected && forTailingZero($0.price) == searchString)
-				|| ( searchModel[5].selected && $0.itemAtribute?.filter(
-						{(($0 as! ItemAtribute).name?.containsIgnoringCase(searchString))!}).count != 0)
+				|| ( searchModel[5].selected && $0.itemAtribute?.filter({
+                    (($0 as! ItemAtribute).name?.containsIgnoringCase(searchString))!}).count != 0)
 		})
 		return searchedItems
 	}
 	
-	private func filterItems(_ list: [Item]) -> [Item]{
+	private func filterItems(_ list: [Item]) -> [Item] {
 		
 		var filteredList = list
 		
-		for item in model.filterModel.filterItems{
+		for item in model.filterModel.filterItems {
 		
 			let filterBy: (Item) -> Bool
 			let filteringOperator: (Double, Double) -> Bool
@@ -118,18 +118,18 @@ class CatalogeDataSource{
 		return filteredList
 	}
 	
-	private func sortItems(_ list: [Item]) -> [(String, [Item])]{
+	private func sortItems(_ list: [Item]) -> [(String, [Item])] {
 		let sortModel = model.sortModel.sortBy
 		switch sortModel {
 		case .categories:
 			var subCategoryList: [(SubCategory, [Item])] = []
 			
-			for item in list{
+			for item in list {
 				guard let itemSubCategory = item.subCategory else { continue }
 				
-				if let index = subCategoryList.firstIndex(where: {$0.0 == itemSubCategory}){
+				if let index = subCategoryList.firstIndex(where: {$0.0 == itemSubCategory}) {
 					subCategoryList[index].1.append(item)
-				}else{
+				}else {
 					subCategoryList.append((itemSubCategory, [item]))
 				}
 			}
@@ -137,23 +137,23 @@ class CatalogeDataSource{
 			subCategoryList.sort(by: { ($0.0.category?.name)! < ($1.0.category?.name)!
 				|| (($0.0.category?.name)! == ($1.0.category?.name)! && ($0.0.name)! < ($1.0.name)! )})
 			
-			let namedSubCategoryList = subCategoryList.map{($0.0.name!, $0.1)}
+			let namedSubCategoryList = subCategoryList.map {($0.0.name!, $0.1)}
 			
-			let subCategories = subCategoryList.map{$0.0}
+			let subCategories = subCategoryList.map {$0.0}
 			
 			var categories: [(Category, [SubCategory])] = []
 			
 			for subCategory in subCategories {
-				if let index = categories.firstIndex(where: { $0.0 === subCategory.category}){
+				if let index = categories.firstIndex(where: { $0.0 === subCategory.category}) {
 					categories[index].1.append(subCategory)
-				}else{
+				}else {
 					categories.append((subCategory.category!, [subCategory]))
 				}
 			}
 			
-			self.menuItems = categories.map{ cat, subCats in
-				let sectionCount = subCats.compactMap{ sub in subCategoryList.first(where: {$0.0 == sub})?.1.count }
-				let sectionTable: [(String, Int)] = zip(subCats.compactMap{$0.name}, sectionCount).map{$0}
+			self.menuItems = categories.map { cat, subCats in
+				let sectionCount = subCats.compactMap { sub in subCategoryList.first(where: {$0.0 == sub})?.1.count }
+				let sectionTable: [(String, Int)] = zip(subCats.compactMap {$0.name}, sectionCount).map {$0}
 				return (cat.name!, sectionTable)
 				}
 			
@@ -162,11 +162,11 @@ class CatalogeDataSource{
 		case .name:
 			var alphabetDict: [String: [Item]] = [: ]
 			
-			for item in list{
+			for item in list {
 				guard let itemNameLetter = item.name?.first else { continue }
 				let itemName = String(itemNameLetter)
 				
-				if alphabetDict[itemName] == nil{
+				if alphabetDict[itemName] == nil {
 					alphabetDict[itemName] = []
 				}
 				
@@ -177,7 +177,7 @@ class CatalogeDataSource{
 			
 			let localizedAlphabet = NSLocalizedString("Alphabet", comment: "")
 			self.menuItems = [(localizedAlphabet,
-			                   zip(alphabetArray.map{$0.key}, alphabetArray.map{$0.value.count}).map{$0}
+			                   zip(alphabetArray.map {$0.key}, alphabetArray.map {$0.value.count}).map {$0}
 				)]
 			
 			return alphabetArray
@@ -190,13 +190,13 @@ class CatalogeDataSource{
 			
 			let thresholdRate: Double
 		
-			if let currencyRate = Load.currentCurrency()?.rate{
+			if let currencyRate = Load.currentCurrency()?.rate {
 				thresholdRate = currencyRate * 10
-			}else{
+			}else {
 				thresholdRate = 10
 			}
 			
-			while newList.count > 1{
+			while newList.count > 1 {
 				
 				priceThreshold *= thresholdRate
 				
@@ -206,11 +206,11 @@ class CatalogeDataSource{
 				
 				let sectionName: String
 				
-				if priceList.count == 0{
+				if priceList.count == 0 {
 					sectionName = "< \(showPrice(thresholdRate))"
-				}else if newList.count == 0{
+				}else if newList.count == 0 {
 					sectionName = "< \(showPrice(priceThreshold))"
-				}else{
+				}else {
 					sectionName = "\(showPrice(priceThreshold/thresholdRate)) - \(showPrice(priceThreshold))"
 				}
 				
@@ -220,7 +220,7 @@ class CatalogeDataSource{
 			}
 			
 			menuItems = [(NSLocalizedString("Price segment", comment: ""),
-			              zip(priceList.map{$0.0}, priceList.map{$0.1.count}).map{$0})]
+			              zip(priceList.map {$0.0}, priceList.map {$0.1.count}).map {$0})]
 			return priceList
 			
 		case .rarity:
@@ -229,7 +229,7 @@ class CatalogeDataSource{
 			
 			var rarityThreshold: Int16 = 1
 			
-			while newList.count > 1{
+			while newList.count > 1 {
 				
 				let itemsLowerThan = newList.filter({$0.rarity == rarityThreshold}).sorted(by: {$0.name! < $1.name!})
 				newList = newList.filter({$0.rarity != rarityThreshold})
@@ -244,7 +244,7 @@ class CatalogeDataSource{
 			}
 			
 			menuItems = [(NSLocalizedString("Rarity segment", comment: ""),
-					zip(rarityList.map{$0.0}, rarityList.map{$1.count}).map{$0}
+					zip(rarityList.map {$0.0}, rarityList.map {$1.count}).map {$0}
 				)]
 			return rarityList
 			
@@ -255,7 +255,7 @@ class CatalogeDataSource{
 	}
 }
 
-extension Notification.Name{
+extension Notification.Name {
 	static let reloadCataloge = Notification.Name(rawValue: "reloadCataloge")
 	static let catalogeModelChanged = Notification.Name(rawValue: "catalogeModelChanged")
 	static let filterItemChanged = Notification.Name(rawValue: "filterItemChanged")

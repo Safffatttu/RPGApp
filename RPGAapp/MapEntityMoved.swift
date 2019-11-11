@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct MapEntityMoved: Action {
 	
 	var actionType: ActionType = ActionType.mapEntityMoved
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"entityId": entityId,
 				"posX"    : posX,
@@ -30,7 +30,7 @@ struct MapEntityMoved: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.entityId = actionData.value(forKey: "entityId") as! String
@@ -40,14 +40,14 @@ struct MapEntityMoved: Action {
 		self.actionData = actionData
 	}
 	
-	init(mapEntity: MapEntity){
+	init(mapEntity: MapEntity) {
 		self.entityId = mapEntity.id!
 		self.posX = mapEntity.x
 		self.posY = mapEntity.y
 	}
 	
 	
-	func execute(){
+	func execute() {
 		guard let entity = Load.mapEntity(withId: entityId) else { return }
 		
 		entity.x = posX

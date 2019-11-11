@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct MapTextureChanged: Action {
 	
 	var actionType: ActionType = ActionType.mapTextureChanged
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"mapId": mapId
 				])
@@ -26,7 +26,7 @@ struct MapTextureChanged: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.mapId = actionData.value(forKey: "mapId") as! String
@@ -34,11 +34,11 @@ struct MapTextureChanged: Action {
 		self.actionData = actionData
 	}
 	
-	init(mapId: String){
+	init(mapId: String) {
 		self.mapId = mapId
 	}
 	
-	func execute(){
+	func execute() {
 		let action = TextureRequest(id: mapId)
 		PackageService.pack.send(action: action, to: sender!)
 	}

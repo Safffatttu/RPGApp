@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct SessionReceived: Action {
 	
 	var actionType: ActionType = ActionType.sessionReceived
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"sessionData": sessionData,
 				"setCurrent" : setCurrent
@@ -28,7 +28,7 @@ struct SessionReceived: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.sessionData = actionData.value(forKey: "sessionData") as! NSDictionary
@@ -37,20 +37,20 @@ struct SessionReceived: Action {
 		self.actionData = actionData
 	}
 	
-	init(session: Session, setCurrent: Bool = true){
+	init(session: Session, setCurrent: Bool = true) {
 		self.sessionData = packSessionForMessage(session)
 		self.setCurrent = setCurrent
 	}
 	
-	init(sessionData: NSDictionary, setCurrent: Bool = true){
+	init(sessionData: NSDictionary, setCurrent: Bool = true) {
 		self.sessionData = sessionData
 		self.setCurrent = setCurrent
 	}
 	
-	func execute(){
+	func execute() {
 		let sessionId = sessionData.value(forKey: "id") as! String
 		
-		if let session = Load.session(with: sessionId){
+		if let session = Load.session(with: sessionId) {
 			let localizedTitle = NSLocalizedString("receive session with id of exising session", comment: "")
 			let localizedMessage = NSLocalizedString("Do you want to replace it or keep local version?", comment: "")
 			
@@ -76,12 +76,12 @@ struct SessionReceived: Action {
 			
 			topViewController.present(alert, animated: true, completion: nil)
 			
-		}else{
+		}else {
 			createSession()
 		}
 	}
 	
-	private func createSession(){
+	private func createSession() {
 		guard let newSession = createSessionUsing(sessionData: self.sessionData, sender: self.sender!) else { return }
 		
 		let textureToRequest = getTextureId(from: sessionData)
@@ -95,8 +95,8 @@ struct SessionReceived: Action {
 		
 	}
 	
-	private func requestTexutures(id: [String], from: MCPeerID){
-		for textureId in id{
+	private func requestTexutures(id: [String], from: MCPeerID) {
+		for textureId in id {
 			let action = TextureRequest(id: textureId)
 			PackageService.pack.send(action: action, to: from)
 		}

@@ -22,7 +22,7 @@ class drawingTest: XCTestCase {
         super.tearDown()
     }
     
-    func testDrawItem(){
+    func testDrawItem() {
         
         let toTest = ItemDrawManager()
 
@@ -31,53 +31,53 @@ class drawingTest: XCTestCase {
         let subCategoires: [SubCategory] = Load.subCategories()
         
         self.measure {
-            for cat in categories{
+            for cat in categories {
                 toTest.drawItems(using: cat)
             }
             
-            for sub in subCategoires{
+            for sub in subCategoires {
                 print(sub.name)
                 toTest.drawItems(using: sub)
             }
             
-            for _ in 0...10{
+            for _ in 0...10 {
                 let setting = self.createRandomDrawSettin(categories: categories, subCategories: subCategoires)
                 toTest.drawItems(using: setting)
             }
         }
     }
     
-    func testStressDraw(){
+    func testStressDraw() {
         let toTest = ItemDrawManager()
         
         let categories: [RPGAapp.Category] = Load.categories()
         
         let subCategoires: [SubCategory] = Load.subCategories()
         
-        for i in 0...100{
+        for i in 0...100 {
             print("test nr:" + String(describing: i))
             
-            for cat in categories{
+            for cat in categories {
                 toTest.drawItems(using: cat)
             }
             
-            for sub in subCategoires{
+            for sub in subCategoires {
                 toTest.drawItems(using: sub)
             }
             
-            for _ in 0...10{
+            for _ in 0...10 {
                 let setting = createRandomDrawSettin(categories: categories, subCategories: subCategoires)
                 toTest.drawItems(using: setting)
             }
         }
     }
     
-//    func testFlitering(){
+//    func testFlitering() {
 //        let itemList = Load.items()
 //        var newItemList = itemList
 //
 //        self.measure {
-//            for _ in 0...100{
+//            for _ in 0...100 {
 //                newItemList = itemList
 //
 //                FilterHelper.filterItemList(newItemList, using: self.randomFilter())
@@ -85,13 +85,13 @@ class drawingTest: XCTestCase {
 //        }
 //    }
     
-//    func testFlitering3(){
+//    func testFlitering3() {
 //        let itemList = Load.items()
 //        let cat = catalogeDetail()
 //        cat.filter = randomFilter()
 //        var newItemList = itemList
 //        self.measure {
-//            for _ in 0...100{
+//            for _ in 0...100 {
 //                let filter = self.randomFilter()
 //                newItemList = itemList
 //                self.filterItems(newItemList, filter: filter)
@@ -99,7 +99,7 @@ class drawingTest: XCTestCase {
 //        }
 //    }
     
-    func testDrawSettings(){
+    func testDrawSettings() {
         var drawSettings: [DrawSetting] = []
         
         drawSettings = Load.drawSettings()
@@ -113,7 +113,7 @@ class drawingTest: XCTestCase {
     
     }
     
-    func testTempSubCategory(){
+    func testTempSubCategory() {
         let sub = Load.subCategories()
         print(sub.count)
     }
@@ -138,7 +138,7 @@ class drawingTest: XCTestCase {
         return itemsToRet
     }
     
-    func randomFilter() -> [String: Double?]{
+    func randomFilter() -> [String: Double?] {
         let items = Load.items()
         var maxPrice: Double = {
             return (items.max { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
@@ -175,7 +175,7 @@ class drawingTest: XCTestCase {
         for _ in 0...myRand(5) {
             let newSubDraw = NSEntityDescription.insertNewObject(forEntityName: String(describing: DrawSubSetting.self), into: context) as! DrawSubSetting
 
-            switch myRand(2){
+            switch myRand(2) {
                 case 0:
                     let category = categories[myRand(categories.count - 1)]
                     newSubDraw.category = category

@@ -12,8 +12,8 @@ import CoreData
 struct TextureSend: Action {
 	
 	var actionType: ActionType = ActionType.textureSend
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"imageData": imageData,
 				"mapId"    : mapId,
@@ -31,7 +31,7 @@ struct TextureSend: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.imageData = actionData.value(forKeyPath: "imageData") as! NSData
@@ -41,21 +41,21 @@ struct TextureSend: Action {
 		self.actionData = actionData
 	}
 	
-	init(imageData: NSData, mapId: String = "", entityId: String = ""){
+	init(imageData: NSData, mapId: String = "", entityId: String = "") {
 		self.imageData = imageData
 		self.mapId = mapId
 		self.entityId = entityId
 	}
 	
-	func execute(){
+	func execute() {
 		let texture: Texture
 		let contex = CoreDataStack.managedObjectContext
 		
-		if let map = Load.map(withId: mapId){
+		if let map = Load.map(withId: mapId) {
 			
-			if let exisitingTexture = map.background{
+			if let exisitingTexture = map.background {
 				texture = exisitingTexture
-			}else{
+			}else {
 				texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
 				map.background = texture
 			}
@@ -66,11 +66,11 @@ struct TextureSend: Action {
 			
 			NotificationCenter.default.post(name: .mapBackgroundChanged, object: nil)
 			
-		}else if let entity = Load.mapEntity(withId: entityId){
+		}else if let entity = Load.mapEntity(withId: entityId) {
 			
-			if let exisitingTexture = entity.texture{
+			if let exisitingTexture = entity.texture {
 				texture = exisitingTexture
-			}else{
+			}else {
 				texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
 				entity.texture = texture
 			}

@@ -23,11 +23,11 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     override func viewDidLoad() {
         var height =  Int()
         var y = Int()
-        if (packages.count > 0){
+        if (packages.count > 0) {
             height = 44 * (packages.count + 1)
             y = 13
         }
-        else{
+        else {
             height = 44
             y = 24
         }
@@ -42,7 +42,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         super.viewDidLoad()
     }
     
-    @objc func reloadPackages(){
+    @objc func reloadPackages() {
         packages = Load.packages(usingVisiblitiy: true)
         tableView.reloadData()
         viewDidLoad()
@@ -57,7 +57,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == packages.count{
+        if indexPath.row == packages.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "newPackageCell") as! newPackageCell
         
             cell.newPackageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
@@ -83,7 +83,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
+        if editingStyle == .delete {
             let packageId = packages[indexPath.row].id
             let session = Load.currentSession()
             session.removeFromPackages(packages[indexPath.row])
@@ -101,9 +101,9 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != packages.count{
+        if indexPath.row != packages.count {
             addToPackage(indexPath)
-        }else{
+        }else {
             newPackage()
         }
     }
@@ -113,30 +113,30 @@ class addToPackage: UITableViewController, addToPackageDelegate {
         addToPackage(indexPath)
     }
     
-    func addToPackage(_ indexPath: IndexPath){
+    func addToPackage(_ indexPath: IndexPath) {
         let package = packages[indexPath.row]
 		
 		var itemsId: [String] = []
 		var itemsCount: [Int64] = []
 		
-        if item != nil{
+        if item != nil {
             add(item!, to: package, count: nil)
 			itemsId = [(item?.id)!]
 			itemsCount = [1]
-        }else if (itemToAdd != nil){
+        }else if (itemToAdd != nil) {
             add((itemToAdd?.item!)!, to: package, count: itemToAdd?.count)
 			itemsId = [(item?.id)!]
 			itemsCount = [(itemToAdd?.count)!]
 			
-        }else{
-            for item in itemsToAdd{
+        }else {
+            for item in itemsToAdd {
                 add(item.item!, to: package, count: item.count)
 				itemsId.append((item.item?.id)!)
 				itemsCount.append(item.count)
             }
         }
         
-        if UserDefaults.standard.bool(forKey: "Schowaj menu pakietów"){
+        if UserDefaults.standard.bool(forKey: "Schowaj menu pakietów") {
             dismiss(animated: true, completion: nil)
         }
 		
@@ -147,7 +147,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
 		PackageService.pack.send(action: action)
     }
     
-    func newPackage(){
+    func newPackage() {
 		let session = Load.currentSession()
 		
 		let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext) as! Package
@@ -176,7 +176,7 @@ class packageCell: UITableViewCell {
     
     @IBOutlet weak var sendButton: UIButton!
     
-    @IBAction func addToPackage(_ sender: UIButton){
+    @IBAction func addToPackage(_ sender: UIButton) {
         cellDelegate?.addToPackageButton(sender)
     }
 }
@@ -199,6 +199,6 @@ protocol addToPackageDelegate: class {
     func newPackage()
 }
 
-extension Notification.Name{
+extension Notification.Name {
     static let createdPackage = Notification.Name("createdPackage")
 }

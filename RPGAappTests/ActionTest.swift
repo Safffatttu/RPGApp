@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 @testable import RPGAapp
 
-class ActionTest: XCTestCase{
+class ActionTest: XCTestCase {
 	
 	let ad = ActionDelegate.ad
 	let pack = PackageService.pack
@@ -20,7 +20,7 @@ class ActionTest: XCTestCase{
 		
 	}
 	
-	func testRandomActions(){
+	func testRandomActions() {
 		
 		let expect = XCTestExpectation(description: "expect")
 		
@@ -49,7 +49,7 @@ class ActionTest: XCTestCase{
 		}
 	}
 	
-	func testLocalAction(){
+	func testLocalAction() {
 		for n in 0...1000 {
 			print("test nr\(n)")
 			
@@ -74,7 +74,7 @@ class ActionTest: XCTestCase{
 		
 	]
 	
-	public static func createCharacterAction() -> NSMutableDictionary{
+	public static func createCharacterAction() -> NSMutableDictionary {
 		let action = NSMutableDictionary()
 		
 		action.setValue(NSNumber(value: ActionType.characterCreated.rawValue), forKey: "action")
@@ -102,7 +102,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-//    public static func sendItemAction() -> NSMutableDictionary{
+//    public static func sendItemAction() -> NSMutableDictionary {
 //        
 //        let itemId = Load.items().random()?.id
 //        let characterId = Load.characters().random()?.id
@@ -121,7 +121,7 @@ class ActionTest: XCTestCase{
 //        return action
 //    }
 	
-	public static func createPackgeAction() -> NSMutableDictionary{
+	public static func createPackgeAction() -> NSMutableDictionary {
 		
 		let name = "Paczka nr." + String(myRand(1000))
 		let id = name + String(describing: Date())
@@ -136,7 +136,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func deletePackageAction() -> NSMutableDictionary{
+	public static func deletePackageAction() -> NSMutableDictionary {
 	
 		guard let packageId = Load.packages().randomElement()?.id else { return NSMutableDictionary() }
 		
@@ -149,7 +149,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func adddItemToPackageAction() -> NSMutableDictionary{
+	public static func adddItemToPackageAction() -> NSMutableDictionary {
 		
 		guard let packageId = Load.packages().randomElement()?.id  else { return NSMutableDictionary() }
 		guard let packageName = Load.packages().randomElement()?.name  else { return NSMutableDictionary() }
@@ -161,7 +161,7 @@ class ActionTest: XCTestCase{
 		let itemsCount = NSMutableArray()
 		
 		
-		for _ in 0...numberOfItems{
+		for _ in 0...numberOfItems {
 			guard let itemId = items.randomElement()?.id else { continue }
 			let itemCount = Int(arc4random_uniform(100))
 			itemsId.add(itemId)
@@ -180,7 +180,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func delteItemFromCharacter() -> NSMutableDictionary{
+	public static func delteItemFromCharacter() -> NSMutableDictionary {
 	
 		let character = Load.characters().randomElement()
 		guard let characterId = character?.id  else { return NSMutableDictionary() }
@@ -197,7 +197,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func newSessionAction() -> NSMutableDictionary{
+	public static func newSessionAction() -> NSMutableDictionary {
 		
 		let context = CoreDataStack.managedObjectContext
 		let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
@@ -214,7 +214,7 @@ class ActionTest: XCTestCase{
 		
 		session.addToMaps(newMap)
 		
-		var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
+		var devices = PackageService.pack.session.connectedPeers.map {$0.displayName}
 		devices.append(UIDevice.current.name)
 		
 		CoreDataStack.saveContext()
@@ -233,7 +233,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func sessionSwitchedAction() -> NSMutableDictionary{
+	public static func sessionSwitchedAction() -> NSMutableDictionary {
 	
 		guard let sessionId = Load.sessions().randomElement()?.id else { return NSMutableDictionary() }
 		
@@ -246,7 +246,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func deleteSessionAction() -> NSMutableDictionary{
+	public static func deleteSessionAction() -> NSMutableDictionary {
 		
 		guard let sessionId = Load.sessions().randomElement()?.id else { return NSMutableDictionary() }
 		
@@ -259,7 +259,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func generatedRandomNumber() -> NSMutableDictionary{
+	public static func generatedRandomNumber() -> NSMutableDictionary {
 		
 		let number = myRand(1000)
 		
@@ -272,7 +272,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func addAbilityAction() -> NSMutableDictionary{
+	public static func addAbilityAction() -> NSMutableDictionary {
 		guard let characterId = Load.characters().randomElement()?.id else { return NSMutableDictionary() }
 		
 		let name = String(myRand(10000))
@@ -294,7 +294,7 @@ class ActionTest: XCTestCase{
 		return action
 	}
 	
-	public static func valueOfAbilityChangedAction() -> NSMutableDictionary{
+	public static func valueOfAbilityChangedAction() -> NSMutableDictionary {
 	
 		guard let character = Load.characters().randomElement() else { return NSMutableDictionary() }
 		

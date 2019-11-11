@@ -12,8 +12,8 @@ import Whisper
 struct AbilityRemoved: Action {
 	
 	var actionType: ActionType = ActionType.abilityRemoved
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"characterId": characterId,
 				"abilityId": abilityId
@@ -29,7 +29,7 @@ struct AbilityRemoved: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.characterId = actionData.value(forKey: "characterId") as! String
@@ -38,12 +38,12 @@ struct AbilityRemoved: Action {
 		self.actionData = actionData
 	}
 	
-	init(characterId: String, abilityId: String){
+	init(characterId: String, abilityId: String) {
 		self.characterId = characterId
 		self.abilityId = abilityId
 	}
 	
-	func execute(){
+	func execute() {
 		guard let character = Load.character(with: characterId) else { return }
 		guard let ability = character.abilities?.first(where: {($0 as? Ability)?.id == abilityId}) as? Ability else { return }
 		

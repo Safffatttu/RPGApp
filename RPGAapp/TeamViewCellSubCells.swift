@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class newAbilityCell: UITableViewCell,UITextFieldDelegate{
+class newAbilityCell: UITableViewCell,UITextFieldDelegate {
 	
 	var character: Character!
 	
@@ -18,11 +18,11 @@ class newAbilityCell: UITableViewCell,UITextFieldDelegate{
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
 		
-		guard textField.text?.replacingOccurrences(of: " ", with: "").count != 0 else{
+		guard textField.text?.replacingOccurrences(of: " ", with: "").count != 0 else {
 			return true
 		}
 		
-		if let text = textField.text{
+		if let text = textField.text {
 			let context = CoreDataStack.managedObjectContext
 			let newAbility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Ability.self), into: context) as! Ability
 			
@@ -69,12 +69,12 @@ class abilityCell: UITableViewCell {
 		self.contentView.addGestureRecognizer(removeAbilityLongPress)
 	}
 	
-	@objc func valueOfAblitityChanged(_ notification: Notification){
-		guard let idOfChanged = notification.object as? String else{
+	@objc func valueOfAblitityChanged(_ notification: Notification) {
+		guard let idOfChanged = notification.object as? String else {
 			return
 		}
 		
-		if ability.id == idOfChanged{
+		if ability.id == idOfChanged {
 			stepper.value = Double(ability.value)
 			self.textLabel?.text = ability.name! + ": " + String(ability.value)
 		}
@@ -82,7 +82,7 @@ class abilityCell: UITableViewCell {
 	
 	var removeAbilityCancelled: Bool = false
 	
-	@objc func removeAbility(_ sender: UILongPressGestureRecognizer){
+	@objc func removeAbility(_ sender: UILongPressGestureRecognizer) {
 		switch sender.state {
 		case .changed:
 			removeAbilityCancelled = true
@@ -168,7 +168,7 @@ class characterItemCell: UITableViewCell {
 		sendButton.setTitle(NSLocalizedString("Send to character", comment: ""), for: .normal)
 	}
 	
-	@IBAction func sendItem(_ sender: UIButton){
+	@IBAction func sendItem(_ sender: UIButton) {
 		let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop") as! sendPopover
 		
 		popController.modalPresentationStyle = .popover
@@ -186,7 +186,7 @@ class characterItemCell: UITableViewCell {
 		
 		itemHandler.count = Int64(sender.value)
 		
-		if let name = itemHandler.item?.name{
+		if let name = itemHandler.item?.name {
 			self.textLabel?.text = "\(name) \(itemHandler.count)"
 		}
 		
@@ -196,8 +196,8 @@ class characterItemCell: UITableViewCell {
 		PackageService.pack.send(action: action)
 	}
 	
-	@objc func equipmentChanged(){
-		if let name = itemHandler.item?.name{
+	@objc func equipmentChanged() {
+		if let name = itemHandler.item?.name {
 			stepper.value = Double(itemHandler.count)
 			self.textLabel?.text = "\(name) \(itemHandler.count)"
 		}
@@ -205,7 +205,7 @@ class characterItemCell: UITableViewCell {
 	
 	var removeItemCancelled: Bool = false
 	
-	@objc func removeItem(_ sender: UILongPressGestureRecognizer){
+	@objc func removeItem(_ sender: UILongPressGestureRecognizer) {
 		switch sender.state {
 		case .changed:
 			removeItemCancelled = true
@@ -238,7 +238,7 @@ class characterItemCell: UITableViewCell {
 			
 			self.backgroundColor = .white
 			
-			if let characterId = character.id, let itemId = itemId{
+			if let characterId = character.id, let itemId = itemId {
 				let action = ItemCharacterDeleted(characterId: characterId, itemId: itemId)
 				PackageService.pack.send(action: action)
 			}

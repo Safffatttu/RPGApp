@@ -36,7 +36,7 @@ class RPGAappUITests: XCTestCase {
         let app = XCUIApplication()
         let tableView = app.tables.containing(.table, identifier: "selectedTable")
         
-        for i in 0...1000{
+        for i in 0...1000 {
             print("reDraw numer: " + String(i))
             tableView.cells.element(boundBy: 0).buttons[""].tap()
         }
@@ -52,9 +52,9 @@ class RPGAappUITests: XCTestCase {
         
         let tableView = app.tables.containing(.table, identifier: "selectedTable")
         
-        for _ in 0...10{
+        for _ in 0...10 {
             selectRandomDrawOption(app: app)
-                for i in 0...10{
+                for i in 0...10 {
                     print("reDraw numer: " + String(i))
                     let index = UInt(arc4random_uniform(UInt32(tableView.cells.count)))
 //                    tableView.cells.element(boundBy: index).buttons[""].tap()
@@ -62,7 +62,7 @@ class RPGAappUITests: XCTestCase {
         }
     }
     
-    func selectRandomDrawOption(app: XCUIApplication){
+    func selectRandomDrawOption(app: XCUIApplication) {
         let tableView = app.tables.containing(.table, identifier: "randomItemMenu")
         let index = UInt(arc4random_uniform(UInt32(tableView.cells.count)))
 //        tableView.cells.element(boundBy: index).tap()

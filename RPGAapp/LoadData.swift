@@ -18,10 +18,10 @@ public struct Load {
         
         itemFetch.sortDescriptors = [.sortItemByName]
         
-        do{
+        do {
             items = try context.fetch(itemFetch)
         }
-        catch{
+        catch {
             print("error fetching")
         }
         
@@ -34,10 +34,10 @@ public struct Load {
         
         itemFetch.predicate = NSPredicate(format: "id == %@", ID)
         
-        do{
+        do {
             item = try context.fetch(itemFetch).first
         }
-        catch{
+        catch {
             print("error fetching")
         }
         
@@ -49,10 +49,10 @@ public struct Load {
         let subCategoryFetch: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
         subCategoryFetch.sortDescriptors = [.sortSubCategoryByCategory,.sortSubCategoryByName]
         
-        do{
+        do {
             subCategories = try context.fetch(subCategoryFetch)
         }
-        catch{
+        catch {
             print("error fetching")
         }
         
@@ -64,16 +64,16 @@ public struct Load {
         let categoryFetch: NSFetchRequest<Category> = Category.fetchRequest()
         
         categoryFetch.sortDescriptors = [.sortCategoryByName]
-        do{
+        do {
             categories = try context.fetch(categoryFetch) as [Category]
         }
-        catch{
+        catch {
             print("error fetching")
         }
         return categories
     }
  
-    public static func sessions() -> [Session]{
+    public static func sessions() -> [Session] {
         var sessions: [Session] = []
         let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
         
@@ -82,13 +82,13 @@ public struct Load {
         do {
             sessions = try context.fetch(sessionFetch)
         }
-        catch{
+        catch {
             print(error)
         }
         return sessions
     }
 	
-	public static func session(with Id: String) -> Session?{
+	public static func session(with Id: String) -> Session? {
 		var sessions: [Session] = []
 		let sessionFetch: NSFetchRequest<Session> = Session.fetchRequest()
 		
@@ -97,24 +97,24 @@ public struct Load {
 		do {
 			sessions = try context.fetch(sessionFetch)
 		}
-		catch{
+		catch {
 			print(error)
 		}
 		
 		return sessions.first(where: {$0.id == Id})
 	}
 	
-	public static func currentExistingSession() -> Session?{
+	public static func currentExistingSession() -> Session? {
 		let session = Load.sessions().first(where: {$0.current})
 		
 		return session
 	}
 	
-	public static func currentSession() -> Session{
+	public static func currentSession() -> Session {
 		
-		let sessions = Load.sessions().filter{$0.current}
+		let sessions = Load.sessions().filter {$0.current}
 		
-		if sessions.count == 0{
+		if sessions.count == 0 {
 			let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
 			session.name = NSLocalizedString("Session", comment: "")
 			session.gameMaster = UIDevice.current.name
@@ -128,12 +128,12 @@ public struct Load {
 			
 			session.addToMaps(newMap)
 			
-			let PLN = Load.currencies().first{$0.name == "PLN"}
+			let PLN = Load.currencies().first {$0.name == "PLN"}
 			session.currency = PLN
 			
 			CoreDataStack.saveContext()
 			
-			var devices = PackageService.pack.session.connectedPeers.map{$0.displayName}
+			var devices = PackageService.pack.session.connectedPeers.map {$0.displayName}
 			devices.append(UIDevice.current.name)
 						
 			let action = SessionReceived(session: session)			
@@ -145,7 +145,7 @@ public struct Load {
 		
 		var currentSession = sessions.first(where: {$0.current == true})
 		
-		if currentSession == nil{
+		if currentSession == nil {
 			currentSession = sessions.first
 			currentSession?.current = true
 		}
@@ -154,7 +154,7 @@ public struct Load {
 		
 	}
 	
-	public static func packages(usingVisiblitiy: Bool = false) -> [Package]{
+	public static func packages(usingVisiblitiy: Bool = false) -> [Package] {
         var packages: [Package] = []
 		
 		guard let session = Load.currentExistingSession() else { return [] }
@@ -163,54 +163,54 @@ public struct Load {
 		
 		if usingVisiblitiy {
 			let visiblity = Load.currentVisibility()
-			packages = packages.filter{$0.visibility == visiblity}
+			packages = packages.filter {$0.visibility == visiblity}
 		}
 		
         return packages
     }
     
-    public static func packages(with ID: String) -> Package?{
+    public static func packages(with ID: String) -> Package? {
         var package: Package?
 
         let packageFetch: NSFetchRequest<Package> = Package.fetchRequest()
         
         packageFetch.predicate = NSPredicate(format: "id == %@", ID)
         
-        do{
+        do {
             package = try context.fetch(packageFetch).first
         }
-        catch{
+        catch {
             print("error")
         }
         
         return package
     }
     
-    public static func drawSettings() -> [DrawSetting]{
+    public static func drawSettings() -> [DrawSetting] {
         var drawSettings: [DrawSetting] = []
         let drawSettingsFetch: NSFetchRequest<DrawSetting> = DrawSetting.fetchRequest()
         
         drawSettingsFetch.sortDescriptors = [.sortDrawSettingByName]
         
-        do{
+        do {
             drawSettings = try context.fetch(drawSettingsFetch) as [DrawSetting]
         }
-        catch{
+        catch {
             print("error")
         }
         
         return drawSettings
     }
     
-	public static func characters(usingVisibility: Bool = false) -> [Character]{
+	public static func characters(usingVisibility: Bool = false) -> [Character] {
         var characters: [Character] = []
         
 		guard let currentSession = Load.currentExistingSession() else { return [] }
 		characters = currentSession.characters?.sortedArray(using: [.sortCharacterById]) as! [Character]
 		
 		if usingVisibility {
-			if let visibility = self.currentVisibility(){
-				characters = characters.filter{$0.visibility == nil
+			if let visibility = self.currentVisibility() {
+				characters = characters.filter {$0.visibility == nil
 											|| $0.visibility == visibility}
 			}
 		}
@@ -218,28 +218,28 @@ public struct Load {
         return characters
     }
     
-    public static func character(with ID: String) -> Character?{
+    public static func character(with ID: String) -> Character? {
         var character: Character?
         
         let characterFetch: NSFetchRequest<Character> = Character.fetchRequest()
         
         characterFetch.predicate = NSPredicate(format: "id == %@", ID)
         
-        do{
+        do {
             character = try context.fetch(characterFetch).first
         }
-        catch{
+        catch {
             print("error")
         }
         
         return character
     }
 	
-	public static func currentMap(session: Session) -> Map{
+	public static func currentMap(session: Session) -> Map {
 		return session.maps?.filter({($0 as! Map).current}).first as! Map
 	}
 	
-	public static func map(withId id: String) -> Map?{
+	public static func map(withId id: String) -> Map? {
 		var map: Map?
 		let mapFetch: NSFetchRequest<Map> = Map.fetchRequest()
 		
@@ -247,14 +247,14 @@ public struct Load {
 		
 		do {
 			map = try context.fetch(mapFetch).first
-		}catch{
+		}catch {
 			print("error")
 		}
 		
 		return map
 	}
 	
-	public static func mapEntity(withId id: String) -> MapEntity?{
+	public static func mapEntity(withId id: String) -> MapEntity? {
 		var mapEntity: MapEntity?
 		let mapEntityFetch: NSFetchRequest<MapEntity> = MapEntity.fetchRequest()
 		
@@ -262,66 +262,66 @@ public struct Load {
 		
 		do {
 			mapEntity = try context.fetch(mapEntityFetch).first
-		}catch{
+		}catch {
 			print("error")
 		}
 		
 		return mapEntity
 	}
 	
-	public static func currencies() -> [Currency]{
+	public static func currencies() -> [Currency] {
 		var currencies: [Currency]!
 		let currenciesFetch: NSFetchRequest<Currency> = Currency.fetchRequest()
 		
 		do {
 			currencies = try context.fetch(currenciesFetch)
-		}catch{
+		}catch {
 			print("error")
 		}
 		
 		return currencies
 	}
 	
-	public static func currentCurrency() -> Currency?{
+	public static func currentCurrency() -> Currency? {
 		let session = Load.currentExistingSession()
 		
-		if let currency = session?.currency{
+		if let currency = session?.currency {
 			return currency
-		}else{
+		}else {
 			return currencies().first(where: {$0.name == "PLN"})
 		}
 	}
 	
-	public static func visibilities() -> [Visibility]{
+	public static func visibilities() -> [Visibility] {
 		guard let session = Load.currentExistingSession() else { return [] }
 		
 		return session.visibility?.allObjects as! [Visibility]
 	}
 	
-	public static func currentVisibility() -> Visibility?{
+	public static func currentVisibility() -> Visibility? {
 		let visibilities = Load.visibilities()
 		
 		return visibilities.first(where: {$0.current})
 	}
 	
-	public static func visibility(with id: String) -> Visibility?{
+	public static func visibility(with id: String) -> Visibility? {
 		var visibility: Visibility?
 		
 		let visibilityFetch: NSFetchRequest<Visibility> = Visibility.fetchRequest()
 		
 		visibilityFetch.predicate = NSPredicate(format: "id == %@", id)
 		
-		do{
+		do {
 			visibility = try context.fetch(visibilityFetch).first
 		}
-		catch{
+		catch {
 			print("error")
 		}
 		
 		return visibility
 	}
 	
-	public static func texture(with id: String) -> Texture?{
+	public static func texture(with id: String) -> Texture? {
 		let mapEntity = Load.mapEntity(withId: id)
 		
 		let texture = mapEntity?.texture
@@ -329,53 +329,53 @@ public struct Load {
 		return texture		
 	}
 
-	public static func itemAtributes() -> [ItemAtribute]{
+	public static func itemAtributes() -> [ItemAtribute] {
 		var attributes: [ItemAtribute] = []
 		
 		let attributeFetch: NSFetchRequest<ItemAtribute> = ItemAtribute.fetchRequest()
 		
-		do{
+		do {
 			attributes = try context.fetch(attributeFetch)
 		}
-		catch{
+		catch {
 			print("error")
 		}
 		
 		return attributes
 	}
 	
-	public static func notes() -> [Note]{
+	public static func notes() -> [Note] {
 		var notes: [Note] = []
 		let notesFetch: NSFetchRequest<Note> = Note.fetchRequest()
 		
 		do {
 			notes = try context.fetch(notesFetch)
-		}catch{
+		}catch {
 			print("error")
 		}
 		
 		return notes
 	}
 	
-	public static func note(with id: String) -> Note?{
+	public static func note(with id: String) -> Note? {
 		var note: Note?
 		
 		let noteFetch: NSFetchRequest<Note> = Note.fetchRequest()
 		
 		noteFetch.predicate = NSPredicate(format: "id == %@", id)
 		
-		do{
+		do {
 			note = try context.fetch(noteFetch).first
 		}
-		catch{
+		catch {
 			print("error")
 		}
 		
 		return note
 	}
 	
-	public static var priceRange: (Double, Double){
-		let priceList = Load.items().map{$0.price}
+	public static var priceRange: (Double, Double) {
+		let priceList = Load.items().map {$0.price}
 		return (priceList.min() ?? 0, priceList.max() ?? 0)
 	}
 }

@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct ItemCharacterAdded: Action {
 	
 	var actionType: ActionType = ActionType.itemCharacterAdded
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 					"itemsId" : itemsId,
 					"itemsCount" : itemsCount,
@@ -43,32 +43,32 @@ struct ItemCharacterAdded: Action {
 		self.actionData = actionData
 	}
 	
-	init(characterId: String, itemId: String){
+	init(characterId: String, itemId: String) {
 		self.itemsId = [itemId]
 		self.itemsCount = [1]
 		self.characterId = characterId
 	}
 	
-	init(characterId: String, itemId: String, itemCount: Int64){
+	init(characterId: String, itemId: String, itemCount: Int64) {
 		self.itemsId = [itemId]
 		self.itemsCount = [itemCount]
 		self.characterId = characterId
 	}
 	
-	init(characterId: String, itemsId: [String], itemsCount: [Int64]){
+	init(characterId: String, itemsId: [String], itemsCount: [Int64]) {
 		self.itemsId = itemsId
 		self.itemsCount = itemsCount
 		self.characterId = characterId
 	}
 	
-	func execute(){
+	func execute() {
 		guard let character: Character = Load.character(with: characterId) else { return }
 		
 		let itemList = zip(self.itemsId, self.itemsCount)
 		
 		var requestList: [(String, Int64)] = []
 		
-		for itemData in itemList{
+		for itemData in itemList {
 			guard let item =  Load.item(with: itemData.0) else {
 				requestList.append(itemData)
 				continue
@@ -78,14 +78,14 @@ struct ItemCharacterAdded: Action {
 			addToEquipment(item: item, to: character, count: count)
 		}
 		
-		if requestList.count != 0{
+		if requestList.count != 0 {
 			
-			let requestAction = ItemCharacterAdded(characterId: characterId,itemsId: requestList.map{$0.0}, itemsCount: requestList.map{$0.1})
+			let requestAction = ItemCharacterAdded(characterId: characterId,itemsId: requestList.map {$0.0}, itemsCount: requestList.map {$0.1})
 			
 			let data = requestAction.data
 			data.setValue(requestAction.actionType.rawValue, forKey: "action")
 			
-			let request = ItemRequest(with: requestList.map{$0.0}, sender: sender!, action: data)
+			let request = ItemRequest(with: requestList.map {$0.0}, sender: sender!, action: data)
 			
 			ItemRequester.rq.request(request)
 		}

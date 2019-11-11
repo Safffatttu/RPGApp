@@ -7,11 +7,11 @@
 
 import Foundation
 
-func d(_ n: Int) -> Int{
+func d(_ n: Int) -> Int {
 	return myRand(n) + 1
 }
 
-func avg(_ array: [Int]) -> Double{
+func avg(_ array: [Int]) -> Double {
 	var sum: Double = 0
 	for i in array {
 		sum += Double(i)
@@ -20,16 +20,16 @@ func avg(_ array: [Int]) -> Double{
 	return Double(sum) / Double(array.count)
 }
 
-func stack(_ array: [Int], _ n: Int) -> [Int]{
+func stack(_ array: [Int], _ n: Int) -> [Int] {
 	var a = array
 	
 	var ocurances = countOccurances(array, n)
 	
-	if ocurances == 0{
+	if ocurances == 0 {
 		return a
 	}
 	
-	while ocurances  >= 2{
+	while ocurances  >= 2 {
 		let indexA = a.firstIndex(of: n)
 		a.remove(at: indexA!)
 		let indexB = a.firstIndex(of: n)
@@ -41,14 +41,14 @@ func stack(_ array: [Int], _ n: Int) -> [Int]{
 }
 
 
-public func countOccurances(_ array: [Int], _ number: Int) -> Int{
+public func countOccurances(_ array: [Int], _ number: Int) -> Int {
 	return array.filter({$0 == number}).count
 }
 
-func rollDices(_ count: Int,ofType: Int = 6) -> [Int]{
+func rollDices(_ count: Int,ofType: Int = 6) -> [Int] {
 	var array: [Int] = []
 	
-	for _ in 0...count - 1{
+	for _ in 0...count - 1 {
 		let diceRoll = myRand(ofType) + 1
 		array.append(diceRoll)
 	}
@@ -57,18 +57,18 @@ func rollDices(_ count: Int,ofType: Int = 6) -> [Int]{
 }
 
 
-func removeItems(_ a: inout [Int],_ n: Int, _ c: Int){
+func removeItems(_ a: inout [Int],_ n: Int, _ c: Int) {
 	for _ in 0...c-1 {
-		if let index = a.firstIndex(of: n){
+		if let index = a.firstIndex(of: n) {
 			a.remove(at: index)
-		}else{
+		}else {
 			break
 		}
 	}
 }
 
-func decrementHighest(_ a: inout [Int],times c: Int){
-	for _ in 0...c-1{
+func decrementHighest(_ a: inout [Int],times c: Int) {
+	for _ in 0...c-1 {
 		guard let max = a.max() else {
 			return
 		}
@@ -77,7 +77,7 @@ func decrementHighest(_ a: inout [Int],times c: Int){
 			return
 		}
 		
-		guard let indexOfMax = a.firstIndex(of: max) else{
+		guard let indexOfMax = a.firstIndex(of: max) else {
 			break
 		}
 		

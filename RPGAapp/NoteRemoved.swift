@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct NoteRemoved: Action {
 	
 	var actionType: ActionType = ActionType.noteRemoved
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"noteId": noteId
 				])
@@ -26,7 +26,7 @@ struct NoteRemoved: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.noteId = actionData.value(forKey: "noteId") as! String
@@ -34,11 +34,11 @@ struct NoteRemoved: Action {
 		self.actionData = actionData
 	}
 	
-	init(noteId: String){
+	init(noteId: String) {
 		self.noteId = noteId
 	}
 	
-	func execute(){
+	func execute() {
 		guard let note = Load.notes().filter({$0.id == noteId}).first else { return }
 		
 		let contex = CoreDataStack.managedObjectContext

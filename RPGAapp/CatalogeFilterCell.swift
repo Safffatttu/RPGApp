@@ -25,7 +25,7 @@ class CatalogeFilterSlider: UITableViewCell, CatalogeFilterCell {
 		super.awakeFromNib()
 	}
 	
-	func setup(using filterItem: CatalogeFilterItem){
+	func setup(using filterItem: CatalogeFilterItem) {
 		guard self.filterItem == nil else { return }
 		self.filterItem = filterItem
 		
@@ -37,7 +37,7 @@ class CatalogeFilterSlider: UITableViewCell, CatalogeFilterCell {
 		self.slider.setValue(filterItem.valueForSlider, animated: true)
 	}
 	
-	@IBAction func valueChanged(){
+	@IBAction func valueChanged() {
 		filterItem?.setValueFromSlider(slider.value)
 		self.nameLabel.text = "\(NSLocalizedString((filterItem?.name)!, comment: "")) \(showPrice((filterItem?.value)!))"
 	}
@@ -54,7 +54,7 @@ class CatalogeFilterStepper: UITableViewCell, CatalogeFilterCell {
 	
 	var filterItem: CatalogeFilterItem?
 	
-	func setup(using filterItem: CatalogeFilterItem){
+	func setup(using filterItem: CatalogeFilterItem) {
 		self.filterItem = filterItem
 		
 		self.nameLabel.text = "\(NSLocalizedString(filterItem.name, comment: "")): \(rarityName[Int(filterItem.value) - 1])"
@@ -67,19 +67,19 @@ class CatalogeFilterStepper: UITableViewCell, CatalogeFilterCell {
 		self.stepper.value = filterItem.value
 	}
 	
-	@objc func reloadRange(){
+	@objc func reloadRange() {
 		guard let range = filterItem?.range else { return }
 		
 		self.stepper.minimumValue = range.0
 		self.stepper.maximumValue = range.1
 	}
 	
-	@IBAction func valueChanged(){
+	@IBAction func valueChanged() {
 		filterItem?.value = stepper.value
 		self.nameLabel.text = "\(NSLocalizedString((filterItem?.name)!, comment: "")): \(rarityName[Int((filterItem?.value)!) - 1])"
 	}
 }
 
-extension Notification.Name{
+extension Notification.Name {
 	static let reloadFilterRange = Notification.Name(rawValue: "reloadFilterRange")
 }

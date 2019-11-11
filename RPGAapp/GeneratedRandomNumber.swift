@@ -12,8 +12,8 @@ import Whisper
 struct GeneratedRandomNumber: Action {
 	
 	var actionType: ActionType = ActionType.generatedRandomNumber
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"number": number
 				])
@@ -27,7 +27,7 @@ struct GeneratedRandomNumber: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.number = actionData.value(forKey: "number") as! Int
@@ -35,11 +35,11 @@ struct GeneratedRandomNumber: Action {
 		self.actionData = actionData
 	}
 	
-	init(number: Int){
+	init(number: Int) {
 		self.number = number
 	}
 	
-	func execute(){
+	func execute() {
 		let message = "\(NSLocalizedString("Drawn", comment: "")) \(number)"
 		whisper(messege: message)
 	}

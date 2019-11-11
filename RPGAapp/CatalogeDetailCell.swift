@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class CatalogeDetailCell: UITableViewCell{
+class CatalogeDetailCell: UITableViewCell {
 	
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var priceLabel: UILabel!
@@ -20,10 +20,10 @@ class CatalogeDetailCell: UITableViewCell{
 	
 	weak var cellDelegate: catalogeDetailCellDelegate?
 	
-	var item: Item? = nil{
-		didSet{
+	var item: Item? = nil {
+		didSet {
 			self.nameLabel.text = item?.name
-			if let price = item?.price{
+			if let price = item?.price {
 				self.priceLabel.text = showPrice(price)
 			}
 		}
@@ -46,12 +46,12 @@ class CatalogeDetailCell: UITableViewCell{
 		NotificationCenter.default.addObserver(self, selector: #selector(itemEdited(_:)), name: .editedItem, object: nil)
 	}
 	
-	@objc func changedCurrency(){
+	@objc func changedCurrency() {
 		guard let price = self.item?.price else { return }
 		self.priceLabel.text = showPrice(price)
 	}
 	
-	@objc func itemEdited(_ notification: Notification){
+	@objc func itemEdited(_ notification: Notification) {
 		guard let newItem = notification.object as? Item else { return }
 		guard self.item == newItem else { return	}
 		
@@ -70,7 +70,7 @@ class CatalogeDetailCell: UITableViewCell{
 		cellDelegate?.sendItemButton(sender)
 	}
 	
-	@objc func sendAllItems(_ sender: UILongPressGestureRecognizer){
+	@objc func sendAllItems(_ sender: UILongPressGestureRecognizer) {
 		guard sender.state == .ended else { return }
 		cellDelegate?.sendItemToAllButton(sendButton)
 	}

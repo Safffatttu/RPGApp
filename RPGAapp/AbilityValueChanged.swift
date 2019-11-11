@@ -12,8 +12,8 @@ import CoreData
 struct AbilityValueChanged: Action {
 	
 	var actionType: ActionType = ActionType.abilityValueChanged
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"characterId" : characterId,
 				"abilityId"   : abilityId,
@@ -31,7 +31,7 @@ struct AbilityValueChanged: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.characterId = actionData.value(forKey: "characterId") as! String
@@ -41,13 +41,13 @@ struct AbilityValueChanged: Action {
 		self.actionData = actionData
 	}
 	
-	init(ability: Ability){
+	init(ability: Ability) {
 		self.characterId = (ability.character?.id)!
 		self.abilityId = ability.id!
 		self.abilityValue = ability.value
 	}
 	
-	func execute(){
+	func execute() {
 		guard let character = Load.character(with: characterId) else {return}
 		guard let ability = character.abilities?.first(where: {($0 as! Ability).id == abilityId}) as? Ability else {return}
 		

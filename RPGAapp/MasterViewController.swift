@@ -39,7 +39,7 @@ class MasterViewController: UITableViewController {
 		
 		if segue.identifier == "showMap" || segue.identifier == "showTeamView"{
 			
-            if UserDefaults.standard.bool(forKey: "Auto hide menu"){
+            if UserDefaults.standard.bool(forKey: "Auto hide menu") {
                 self.splitViewController?.preferredDisplayMode = .primaryHidden
             }
         }
@@ -67,10 +67,10 @@ class MasterViewController: UITableViewController {
 		let segue = menuItems[indexPath.row]
 		self.performSegue(withIdentifier: segue.1, sender: self)
 		
-		if segue.2 != "" && segue.2	!= MasterViewController.currentDetail{
+		if segue.2 != "" && segue.2	!= MasterViewController.currentDetail {
 			self.performSegue(withIdentifier: segue.2, sender: self)
 			MasterViewController.currentDetail = segue.2
-		}else{
+		}else {
 			MasterViewController.currentDetail = segue.1
 		}
     }

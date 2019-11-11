@@ -12,8 +12,8 @@ import CoreData
 struct CharacterCreated: Action {
 	
 	var actionType: ActionType = ActionType.characterCreated
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"name"         : name,
 				"health"       : health,
@@ -45,7 +45,7 @@ struct CharacterCreated: Action {
 	var mapEntityPosY: Double?
 	var mapId: String?
 	
-	init(character: Character){
+	init(character: Character) {
 		id = character.id
 		name = character.name
 		race = character.race
@@ -76,7 +76,7 @@ struct CharacterCreated: Action {
 		mapId = actionData.value(forKey: "mapId") as? String
 	}
 	
-	func execute(){
+	func execute() {
 		
 		guard let characterId = id else { return }
 		
@@ -84,7 +84,7 @@ struct CharacterCreated: Action {
 		
 		let character: Character!
 		
-		if let exisitingCharacter = Load.character(with: characterId){
+		if let exisitingCharacter = Load.character(with: characterId) {
 			character = exisitingCharacter
 		}else {
 			character = NSEntityDescription.insertNewObject(forEntityName: String(describing: Character.self), into: CoreDataStack.managedObjectContext) as! Character
@@ -111,7 +111,7 @@ struct CharacterCreated: Action {
 		character.id = id
 		character.profession = profession
 		
-		if let visiblityId = visibilityId, let visiblity = Load.visibility(with: visiblityId){
+		if let visiblityId = visibilityId, let visiblity = Load.visibility(with: visiblityId) {
 				character.visibility = visiblity
 			}
 		

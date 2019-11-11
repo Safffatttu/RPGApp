@@ -28,7 +28,7 @@ class SearchTest: XCTestCase {
         XCTAssert(dataSource.items.count > 0)
     }
 
-    func testSortModel(){
+    func testSortModel() {
         let sortTypesCount:UInt32 = UInt32(dataSource.model.sortModel.count)
         let randomSortType:Int = Int(arc4random_uniform(sortTypesCount))
         dataSource.model.sortModel.select(index: randomSortType)

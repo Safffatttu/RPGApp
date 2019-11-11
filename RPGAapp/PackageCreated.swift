@@ -12,8 +12,8 @@ import CoreData
 struct PackageCreated: Action {
 	
 	var actionType: ActionType = ActionType.packageCreated
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"packageName": packageName,
 				"packageId"  : packageId
@@ -29,7 +29,7 @@ struct PackageCreated: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.packageName = actionData.value(forKey: "packageName") as! String
@@ -38,12 +38,12 @@ struct PackageCreated: Action {
 		self.actionData = actionData
 	}
 	
-	init(package: Package){
+	init(package: Package) {
 		self.packageId = package.id!
 		self.packageName = package.name!		
 	}
 	
-	func execute(){
+	func execute() {
 		let context = CoreDataStack.managedObjectContext
 		let newPackage = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: context) as! Package
 		

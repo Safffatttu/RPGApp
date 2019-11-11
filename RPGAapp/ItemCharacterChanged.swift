@@ -11,8 +11,8 @@ import MultipeerConnectivity
 struct ItemCharacterChanged: Action {
 	
 	var actionType: ActionType = ActionType.itemCharacterChanged
-	var data: ActionData{
-		get{
+	var data: ActionData {
+		get {
 			let data = ActionData(dictionary: [
 				"characterId": characterId,
 				"itemId"     : itemId,
@@ -30,7 +30,7 @@ struct ItemCharacterChanged: Action {
 	
 	var actionData: ActionData?
 	
-	init(actionData: ActionData, sender: MCPeerID){
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
 		
 		self.characterId = actionData.value(forKey: "characterId") as! String
@@ -40,13 +40,13 @@ struct ItemCharacterChanged: Action {
 		self.actionData = actionData
 	}
 	
-	init(characterId: String, itemId: String, itemCount: Int64){
+	init(characterId: String, itemId: String, itemCount: Int64) {
 		self.characterId = characterId
 		self.itemId = itemId
 		self.itemCount = itemCount
 	}
 	
-	func execute(){
+	func execute() {
 		guard let character = Load.character(with: characterId) else { return }
 		
 		guard let handler = character.equipment?

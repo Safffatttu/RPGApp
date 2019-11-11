@@ -17,7 +17,7 @@ class NewCurrencyForm: FormViewController {
 
     var currencyData: [(String, Int16)] = []    
 
-    var currency: Currency? = nil{
+    var currency: Currency? = nil {
         
         didSet {
             guard let currency = currency else { return }
@@ -27,7 +27,7 @@ class NewCurrencyForm: FormViewController {
 
             let subCurrencies = currency.subCurrency?.array as! [SubCurrency]
             
-            for subCur in subCurrencies{
+            for subCur in subCurrencies {
                 let subName = subCur.name
                 let subRate = subCur.rate
                 
@@ -40,21 +40,21 @@ class NewCurrencyForm: FormViewController {
 	
 	var createCurrencySection: SectionFormer!
 
-    override func viewDidLoad(){
+    override func viewDidLoad() {
 
-        let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
+        let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) {
 			$0.titleLabel.text = NSLocalizedString("Name", comment: "")
-			}.onTextChanged{[unowned self] in
+			}.onTextChanged {[unowned self] in
 				self.currencyName = $0
-			}.configure{
+			}.configure {
 				$0.text = currencyName
 		}
 
-        let globalRateRow = TextFieldRowFormer<NumberFieldCell>(instantiateType: .Nib(nibName: "NumberFieldCell")){
+        let globalRateRow = TextFieldRowFormer<NumberFieldCell>(instantiateType: .Nib(nibName: "NumberFieldCell")) {
 			$0.titleLabel.text = NSLocalizedString("Global Rate", comment: "")
-			}.onTextChanged{[unowned self] in
+			}.onTextChanged {[unowned self] in
 				self.currencyName = $0
-			}.configure{
+			}.configure {
 				$0.text = String(describing: currencyRate)
 		}
 
@@ -62,7 +62,7 @@ class NewCurrencyForm: FormViewController {
 
         former.add(sectionFormers: [globalSection])
 			
-		if currencyData.count > 0{
+		if currencyData.count > 0 {
 			for subCurNum in 0...currencyData.count - 1 {
 				let subCur = currencyData[subCurNum]
 				let subSection = createSubSection(rate: subCur.1, name: subCur.0, number: subCurNum)
@@ -71,17 +71,17 @@ class NewCurrencyForm: FormViewController {
 			} 
 		}
 		let addSubCurrencyRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
-			.configure{
+			.configure {
 				$0.text = NSLocalizedString("Add new SubCurrency", comment: "")
-			}.onSelected{_ in
+			}.onSelected {_ in
 				self.addNewSubCurrencySection()
         }
 
-		let removeSubCurrencyRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
+		let removeSubCurrencyRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")) {
 				$0.centerTextLabel.textColor = .red
-			}.configure{
+			}.configure {
 				$0.text = NSLocalizedString("Remove SubCurrency", comment: "")
-			}.onSelected{[unowned self] _ in
+			}.onSelected {[unowned self] _ in
 				self.removeSubCurrency()
 		}
 		
@@ -90,21 +90,21 @@ class NewCurrencyForm: FormViewController {
         former.add(sectionFormers: [createSubCurrencySection])
 
         let createRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell"))
-			.configure{
-				if currency == nil{
+			.configure {
+				if currency == nil {
 					$0.text = NSLocalizedString("Create new currency", comment: "")
-				}else{
+				}else {
 					$0.text = NSLocalizedString("Edit currency", comment: "")
 				}
-			}.onSelected{_ in
+			}.onSelected {_ in
 				self.createCurrency()
 		}
 		
-        let dismissRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")){
+        let dismissRow = LabelRowFormer<CenteredLabelCell>(instantiateType: .Nib(nibName: "CenteredLabelCell")) {
 			$0.centerTextLabel.textColor = .red
-			}.configure{
+			}.configure {
 				$0.text	= NSLocalizedString("Dismiss changes", comment: "")
-			}.onSelected{_ in
+			}.onSelected {_ in
 				self.dismissView()
 		} 
 
@@ -115,7 +115,7 @@ class NewCurrencyForm: FormViewController {
         super.viewDidLoad()
     }
 
-	func addNewSubCurrencySection(){
+	func addNewSubCurrencySection() {
 		let defaultData = ("", Int16(1))
 		currencyData.append(defaultData)
 		
@@ -124,7 +124,7 @@ class NewCurrencyForm: FormViewController {
 		former.reload()
 	}
 	
-	func removeSubCurrency(){
+	func removeSubCurrency() {
 		guard currencyData.count > 0 else { return }
 		let lastSubCurrency = currencyData.count
 		currencyData.removeLast()
@@ -132,22 +132,22 @@ class NewCurrencyForm: FormViewController {
 		former.reload()
 	}
 	
-    func createSubSection(rate: Int16 = 1, name: String, number: Int) -> SectionFormer{
-        let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")){
+    func createSubSection(rate: Int16 = 1, name: String, number: Int) -> SectionFormer {
+        let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) {
 			$0.titleLabel.text = NSLocalizedString("Name", comment: "")
-			}.onTextChanged{[unowned self] in
+			}.onTextChanged {[unowned self] in
 				self.currencyData[number].0 = $0
-			}.configure{
+			}.configure {
 				$0.text = self.self.currencyData[number].0
 		}
 
-        let ratioRow = TextFieldRowFormer<NumberFieldCell>(instantiateType: .Nib(nibName: "NumberFieldCell")){
+        let ratioRow = TextFieldRowFormer<NumberFieldCell>(instantiateType: .Nib(nibName: "NumberFieldCell")) {
 			$0.titleLabel.text = NSLocalizedString("Rate", comment: "")
 			$0.allowFloatingPoint = false
-			}.onTextChanged{
+			}.onTextChanged {
 				guard let num = Int16($0) else { return }
 				self.currencyData[number].1 = num
-			}.configure{
+			}.configure {
 				$0.text = String(self.currencyData[number].1)
 		}
 
@@ -156,7 +156,7 @@ class NewCurrencyForm: FormViewController {
         return section
     }
 
-    func createCurrency(){
+    func createCurrency() {
         guard currencyName != "", currencyRate != 0, currencyData.count != 0 else {
 			shakeView(self.view)
 			return
@@ -166,7 +166,7 @@ class NewCurrencyForm: FormViewController {
 		
         var newCurrency: Currency!
 
-        if let editedCurrency = currency{
+        if let editedCurrency = currency {
 			newCurrency = editedCurrency
             newCurrency.name = currencyName
             newCurrency.rate = currencyRate
@@ -175,13 +175,13 @@ class NewCurrencyForm: FormViewController {
 
 			let numOfSubCurennciesToDelete = subCurrencies.count - currencyData.count
 			
-            for curDataNum in 0...currencyData.count - 1{
+            for curDataNum in 0...currencyData.count - 1 {
                 let subCur: SubCurrency!
                 let subData = currencyData[curDataNum]
 
-                if subCurrencies.count - 1 > curDataNum{
+                if subCurrencies.count - 1 > curDataNum {
                     subCur = subCurrencies[curDataNum]                 
-                }else{
+                }else {
                     subCur = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
                 }
 				
@@ -191,14 +191,14 @@ class NewCurrencyForm: FormViewController {
 				currency?.addToSubCurrency(subCur)
             }
 			
-            if numOfSubCurennciesToDelete > 0{
+            if numOfSubCurennciesToDelete > 0 {
                 let toDelete = subCurrencies.dropLast(numOfSubCurennciesToDelete)
 
-                for del in toDelete{
+                for del in toDelete {
                     context.delete(del)
                 }
             }
-        }else{
+        }else {
             newCurrency = createCurrencyUsing(name: currencyName, rate: currencyRate, subList: currencyData)
         }
 
@@ -213,7 +213,7 @@ class NewCurrencyForm: FormViewController {
 		PackageService.pack.send(action: action)
     }
 
-    func dismissView(){
+    func dismissView() {
         dismiss(animated: true, completion: nil)
     }
 }

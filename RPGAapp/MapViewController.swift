@@ -17,8 +17,8 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		if let view = self.view as? SKView{
-			if let mapScene = SKScene(fileNamed: "MapScene"){
+		if let view = self.view as? SKView {
+			if let mapScene = SKScene(fileNamed: "MapScene") {
 				mapScene.scaleMode = .aspectFill
 				
 				view.presentScene(mapScene)
@@ -33,7 +33,7 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openImagePicker))
 	}
 	
-	@objc func openImagePicker(){
+	@objc func openImagePicker() {
 	
 		imagePicker = UIImagePickerController()
 		
@@ -66,9 +66,9 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		
 		let texture: Texture!
 		
-		if let existingTexture = map.background{
+		if let existingTexture = map.background {
 			texture = existingTexture
-		}else{
+		}else {
 			texture =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Texture.self), into: contex) as! Texture
 		}
 		

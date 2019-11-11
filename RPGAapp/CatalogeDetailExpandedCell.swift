@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate{
+class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
 	
 	var atributes: [ItemAtribute]!
 	var atributeHandler: ItemAtributeHandler!
@@ -30,13 +30,13 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 	
 	weak var cellDelegate: catalogeDetailCellDelegate?
 	
-	var item: Item? = nil{
-		didSet{
+	var item: Item? = nil {
+		didSet {
 			self.nameLabel.text = item?.name
 			self.rarityLabel.text = rarityName[Int((item?.rarity)!) - 1]
 			self.measureLabel.text = item?.measure
 			
-			if let price = item?.price{
+			if let price = item?.price {
 				self.priceLabel.text = showPrice(price)
 			}
 			
@@ -48,8 +48,8 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 			
 			atributes = item?.itemAtribute?.sortedArray(using: [.sortItemAtributeByName]) as! [ItemAtribute]
 			
-			if atributes != nil{
-				for cellNum in 0...tableView(atributeTable, numberOfRowsInSection: 0){
+			if atributes != nil {
+				for cellNum in 0...tableView(atributeTable, numberOfRowsInSection: 0) {
 					let cell = atributeTable.cellForRow(at: IndexPath(row: cellNum, section: 0))
 					cell?.prepareForReuse()
 					cell?.setSelected(false, animated: true)
@@ -78,12 +78,12 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 		NotificationCenter.default.addObserver(self, selector: #selector(itemEdited(_:)), name: .editedItem, object: nil)
 	}
 	
-	@objc func changedCurrency(){
+	@objc func changedCurrency() {
 		guard let price = self.item?.price else { return }
 		self.priceLabel.text = showPrice(price)
 	}
 	
-	@objc func itemEdited(_ notification: Notification){
+	@objc func itemEdited(_ notification: Notification) {
 		guard let newItem = notification.object as? Item else { return }
 		guard self.item == newItem else { return	}
 		
@@ -100,32 +100,32 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 		guard item != nil else {
 			return 0
 		}
-		if(atributes.count == 0){
+		if(atributes.count == 0) {
 			return 1
-		}else{
+		}else {
 			return atributes.count
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "AtributeCell")
-		if atributes.count == 0{
+		if atributes.count == 0 {
 			cell?.textLabel?.text = NSLocalizedString("No atributes", comment: "")
 			return cell!
 		}
 		cell?.textLabel?.text = atributes[indexPath.row].name
 		cell?.selectionStyle = .none
-		if (atributeHandler.itemAtributes?.contains(atributes[indexPath.row]))!{
+		if (atributeHandler.itemAtributes?.contains(atributes[indexPath.row]))! {
 			cell?.accessoryType = .checkmark
 		}
-		else{
+		else {
 			cell?.accessoryType = .none
 		}
 		return cell!
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		guard atributes.count != 0 else{
+		guard atributes.count != 0 else {
 			return
 		}
 		let newAtribute = atributes[indexPath.row]
@@ -136,7 +136,7 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 	}
 	
 	func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-		guard atributes.count != 0 else{
+		guard atributes.count != 0 else {
 			return
 		}
 		let atribute = atributes[indexPath.row]
@@ -160,7 +160,7 @@ class CatalogeDetailExpandedCell: UITableViewCell, UITableViewDataSource, UITabl
 		cellDelegate?.sendItemButton(sender)
 	}
 	
-	@objc func sendAllItems(_ sender: UILongPressGestureRecognizer){
+	@objc func sendAllItems(_ sender: UILongPressGestureRecognizer) {
 		guard sender.state == .ended else { return }
 		cellDelegate?.sendItemToAllButton(sendButton)
 	}

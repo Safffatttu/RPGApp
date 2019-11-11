@@ -10,7 +10,7 @@ import UIKit
 import FontAwesome_swift
 import CoreData
 
-class NewNoteCell: UICollectionViewCell{
+class NewNoteCell: UICollectionViewCell {
 	
 	@IBOutlet weak var button: UIButton!
 	

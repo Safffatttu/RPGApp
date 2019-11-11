@@ -19,7 +19,7 @@ class catalogeMenu: UIViewController {
 	
 	var showModel: Bool = false
 	
-    override func viewWillAppear(_ animated: Bool){
+    override func viewWillAppear(_ animated: Bool) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(showModelView))
         NotificationCenter.default.addObserver(self, selector: #selector(dismissKeyboard), name: .dismissKeyboard, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: .reloadCataloge, object: nil)
@@ -31,23 +31,23 @@ class catalogeMenu: UIViewController {
         super.viewWillAppear(animated)
     }
 	
-	@objc func reloadTableView(){
+	@objc func reloadTableView() {
 		list = CatalogeDataSource.source.menuItems
 		tableView.reloadData()
 	}
 	
-    @objc func dismissKeyboard(){
+    @objc func dismissKeyboard() {
         searchBar.endEditing(true)
     }
     
-    @objc func showModelView(){
+    @objc func showModelView() {
         showModel = !showModel
 		tableView.reloadData()
     }
 	
 }
 
-extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
+extension catalogeMenu: UITableViewDataSource, UITableViewDelegate {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		if showModel {
@@ -58,30 +58,30 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if showModel{
+		if showModel {
 			return model[section].count
-		}else{
+		}else {
 			return list[section].1.count
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if showModel{
+		if showModel {
 			let modelItem = model[indexPath.section][indexPath.row]
 			
 			let cell = tableView.dequeueReusableCell(withIdentifier: modelItem.cellName)
 			
-			if let filterItem = modelItem as? CatalogeFilterItem, let filterCell = cell as? CatalogeFilterCell{
+			if let filterItem = modelItem as? CatalogeFilterItem, let filterCell = cell as? CatalogeFilterCell {
 				filterCell.setup(using: filterItem)
 				cell?.selectionStyle = .none
-			}else{
+			}else {
 				cell?.textLabel?.text = modelItem.name
 				cell?.detailTextLabel?.text = ""
 				cell?.accessoryType = modelItem.selected ? .checkmark : .none
 			}
 			
 			return cell!
-		}else{
+		}else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeMenuCell")
 			let cellSubCategory = list[indexPath.section].1[indexPath.row]
 			
@@ -94,19 +94,19 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 	}
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		if showModel{
+		if showModel {
 			return model[section].name
-		}else{
+		}else {
 			return list[section].0
 		}
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		if showModel{
+		if showModel {
 			model[indexPath.section].select(index: indexPath.row)
 			
 			tableView.reloadData()
-		}else{
+		}else {
 			NotificationCenter.default.post(name: .goToSectionCataloge, object: indexPath)
 		}
 	}
@@ -119,7 +119,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate{
 	}
 }
 
-extension catalogeMenu: UISearchBarDelegate{
+extension catalogeMenu: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		let searchFieldIsFull = searchText.replacingOccurrences(of: " ", with: "").count > 0
@@ -130,7 +130,7 @@ extension catalogeMenu: UISearchBarDelegate{
 			showModel = true
 			
 			tableView.reloadData()
-		}else{
+		}else {
 			showModel = false
 			
 			tableView.reloadData()
@@ -138,7 +138,7 @@ extension catalogeMenu: UISearchBarDelegate{
     }
 }
 
-extension Notification.Name{
+extension Notification.Name {
     static let goToSectionCataloge = Notification.Name("goToSectionCataloge")
     static let searchCataloge = Notification.Name("searchCataloge")
     static let dismissKeyboard = Notification.Name("dismissKeyboard")
