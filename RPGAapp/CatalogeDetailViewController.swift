@@ -14,7 +14,7 @@ import Former
 
 let iconSize: CGFloat = 20
 
-class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate {
+class CatalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
 	
@@ -81,7 +81,7 @@ class catalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate 
 	
 }
 
-extension catalogeDetail: UITableViewDataSource, UITableViewDelegate {
+extension CatalogeDetail: UITableViewDataSource, UITableViewDelegate {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return self.diffCalculator?.numberOfSections() ?? 0
@@ -112,7 +112,7 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate {
 			
 			return cell
 		}else {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "catalogeDetailCell") as! CatalogeDetailCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: "CatalogeDetailCell") as! CatalogeDetailCell
 			
 			cell.cellDelegate = self
 			cell.item = cellItem
@@ -197,7 +197,7 @@ extension catalogeDetail: UITableViewDataSource, UITableViewDelegate {
 	}
 }
 
-extension catalogeDetail: catalogeDetailCellDelegate {
+extension CatalogeDetail: catalogeDetailCellDelegate {
 	func addToPackageButton(_ sender: UIButton) {
 		let indexPath = getCurrentCellIndexPath(sender, tableView: self.tableView)
 		
@@ -210,7 +210,7 @@ extension catalogeDetail: catalogeDetailCellDelegate {
 		popController.popoverPresentationController?.delegate = self
 		popController.popoverPresentationController?.sourceView = sender
 		
-		(popController as! addToPackage).item = cellItem
+		(popController as! AddToPackage).item = cellItem
 		
 		self.present(popController, animated: true, completion: nil)
 	}
@@ -242,7 +242,7 @@ extension catalogeDetail: catalogeDetailCellDelegate {
 		popController.popoverPresentationController?.delegate = self
 		popController.popoverPresentationController?.sourceView = sender
 		
-		(popController as! sendPopover).item = cellItem
+		(popController as! SendPopover).item = cellItem
 		
 		self.present(popController, animated: true, completion: nil)
 	}

@@ -16,28 +16,28 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var diffCalculator: SingleSectionTableViewDiffCalculator<val>?
+    var diffCalculator: SingleSectionTableViewDiffCalculator<Val>?
     
-    struct val: Equatable {
+    struct Val: Equatable {
         var name: String
         var count: Int64
         
-        static func ==(lhs: RandomItemDetailView.val, rhs: RandomItemDetailView.val) -> Bool {
+        static func ==(lhs: RandomItemDetailView.Val, rhs: RandomItemDetailView.Val) -> Bool {
             return lhs.count == rhs.count && lhs.name == rhs.name
         }
     }
     
-    var diffTable : [val] = []
+    var diffTable : [Val] = []
     
     func setDiffTable() {
         diffTable = []
 		
 		if ItemDrawManager.randomlySelected.count == 0 {
-			diffTable = [val(name: "", count: 0)]
+			diffTable = [Val(name: "", count: 0)]
 		}else {
 			for han in ItemDrawManager.randomlySelected {
 				guard let name = han.item?.name else { continue }
-				let newVal = val(name: name, count: han.count)
+				let newVal = Val(name: name, count: han.count)
 				diffTable.append(newVal)
 			}
 		}
@@ -68,7 +68,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell") as! randomItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RandomItemCell") as! RandomItemCell
         
         if ItemDrawManager.randomlySelected.count > 0 {
             let cellItem = ItemDrawManager.randomlySelected[indexPath.row]
@@ -123,7 +123,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         
-        (popController as! addToPackage).itemToAdd = ItemDrawManager.randomlySelected[(indexPath?.row)!]
+        (popController as! AddToPackage).itemToAdd = ItemDrawManager.randomlySelected[(indexPath?.row)!]
         
         self.present(popController, animated: true, completion: nil)
     }
@@ -146,7 +146,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        (popController as! showItemInfoPopover).item = ItemDrawManager.randomlySelected[(indexPath?.row)!].item
+        (popController as! ShowItemInfoPopover).item = ItemDrawManager.randomlySelected[(indexPath?.row)!].item
         
         self.present(popController, animated: true, completion: nil)
     }
@@ -159,7 +159,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        (popController as! sendPopover).itemHandler = ItemDrawManager.randomlySelected[(indexPath?.row)!]
+        (popController as! SendPopover).itemHandler = ItemDrawManager.randomlySelected[(indexPath?.row)!]
         
         self.present(popController, animated: true, completion: nil)
     }
@@ -177,7 +177,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
         
-        (popController as! addToPackage).itemsToAdd = ItemDrawManager.randomlySelected
+        (popController as! AddToPackage).itemsToAdd = ItemDrawManager.randomlySelected
         
         self.present(popController, animated: true, completion: nil)
     }
@@ -190,7 +190,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
         
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = sender
-        (popController as! sendPopover).itemHandlers = ItemDrawManager.randomlySelected
+        (popController as! SendPopover).itemHandlers = ItemDrawManager.randomlySelected
         
         self.present(popController, animated: true, completion: nil)
     }

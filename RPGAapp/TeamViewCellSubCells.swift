@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class newAbilityCell: UITableViewCell,UITextFieldDelegate {
+class NewAbilityCell: UITableViewCell,UITextFieldDelegate {
 	
 	var character: Character!
 	
@@ -50,7 +50,7 @@ protocol AbilityCellDelegate {
 }
 
 
-class abilityCell: UITableViewCell {
+class AbilityCell: UITableViewCell {
 	
 	var character: Character!
 	
@@ -146,7 +146,7 @@ protocol CharacterItemCellDelegate {
 	func modifiedItemHandler()
 }
 
-class characterItemCell: UITableViewCell {
+class CharacterItemCell: UITableViewCell {
 	
 	var itemHandler: ItemHandler!
 	
@@ -169,7 +169,7 @@ class characterItemCell: UITableViewCell {
 	}
 	
 	@IBAction func sendItem(_ sender: UIButton) {
-		let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop") as! sendPopover
+		let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "sendPop") as! SendPopover
 		
 		popController.modalPresentationStyle = .popover
 		popController.popoverPresentationController?.sourceView = sender

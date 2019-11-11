@@ -32,22 +32,22 @@ class PackageViewerCell: UITableViewCell {
 		}
 	}
 	
-	struct val: Equatable {
+	struct Val: Equatable {
 		var name: String
 		var count: Int64
 		
-		static func ==(lhs: PackageViewerCell.val, rhs: PackageViewerCell.val) -> Bool {
+		static func ==(lhs: PackageViewerCell.Val, rhs: PackageViewerCell.Val) -> Bool {
 			return lhs.count == rhs.count && lhs.name == rhs.name
 		}
 	}
 	
-	var diffTable : [val] = []
+	var diffTable : [Val] = []
 	
 	func setDiffTable() {
 		diffTable = []
 		for han in items {
 			guard let name = han.item?.id else { continue }
-			let newVal = val(name: name, count: han.count)
+			let newVal = Val(name: name, count: han.count)
 			diffTable.append(newVal)
 		}
 	}
@@ -59,7 +59,7 @@ class PackageViewerCell: UITableViewCell {
 		}
 	}
 	
-	var diffCalculator: SingleSectionTableViewDiffCalculator<val>?
+	var diffCalculator: SingleSectionTableViewDiffCalculator<Val>?
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -93,7 +93,7 @@ class PackageViewerCell: UITableViewCell {
 		
 		popController.popoverPresentationController?.sourceView = sender
 		
-		(popController as! sendPopover).itemHandlers = items
+		(popController as! SendPopover).itemHandlers = items
 		
 		let topViewController = UIApplication.topViewController()
 		

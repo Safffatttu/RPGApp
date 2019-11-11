@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class catalogeMenu: UIViewController {
+class CatalogeMenu: UIViewController {
 	
 	var list: [(String, [(String, Int)])] = CatalogeDataSource.source.menuItems
 	var model: CatalogeModel = CatalogeDataSource.source.model
@@ -47,7 +47,7 @@ class catalogeMenu: UIViewController {
 	
 }
 
-extension catalogeMenu: UITableViewDataSource, UITableViewDelegate {
+extension CatalogeMenu: UITableViewDataSource, UITableViewDelegate {
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		if showModel {
@@ -119,7 +119,7 @@ extension catalogeMenu: UITableViewDataSource, UITableViewDelegate {
 	}
 }
 
-extension catalogeMenu: UISearchBarDelegate {
+extension CatalogeMenu: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		let searchFieldIsFull = searchText.replacingOccurrences(of: " ", with: "").count > 0

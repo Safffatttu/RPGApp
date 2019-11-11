@@ -9,7 +9,7 @@ import XCTest
 import CoreData
 @testable import RPGAapp
 
-class drawingTest: XCTestCase {
+class DrawingTest: XCTestCase {
     
     override func setUp() {
         super.setUp()

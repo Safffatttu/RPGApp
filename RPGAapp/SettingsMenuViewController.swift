@@ -17,7 +17,7 @@ protocol settingCellDelegate {
     func pressedButton(_ sender: UIButton)
 }
 
-class settingSwitchCell: UITableViewCell {
+class SettingSwitchCell: UITableViewCell {
     
     var delegate: settingCellDelegate?
     
@@ -29,7 +29,7 @@ class settingSwitchCell: UITableViewCell {
     @IBOutlet weak var settingSwitch: UISwitch!
 }
 
-class settingButtonCell: UITableViewCell {
+class SettingButtonCell: UITableViewCell {
     
     var delegate: settingCellDelegate?
     
@@ -207,7 +207,7 @@ class SettingMenu: UITableViewController {
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if indexPath.section == 0 {
 			if indexPath.row < settingValues.count {
-				let cell = tableView.dequeueReusableCell(withIdentifier: "settingSwitchCell") as! settingSwitchCell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "SettingSwitchCell") as! SettingSwitchCell
 				let cellSetting = keys[indexPath.row].key
 				cell.settingLabel.text = NSLocalizedString(cellSetting, comment: "")
 				cell.settingSwitch.setOn(UserDefaults.standard.bool(forKey: keys[indexPath.row].key), animated: false)
@@ -227,7 +227,7 @@ class SettingMenu: UITableViewController {
 			}
 		}else if indexPath.section == 1 {
 			if indexPath.row == 0 {
-				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "SettingButtonCell") as! SettingButtonCell
 				cell.settingLabel?.text = NSLocalizedString("New session", comment: "")
 				cell.selectionStyle = .none
 				let localizedAdd = NSLocalizedString("Add", comment: "")
@@ -250,7 +250,7 @@ class SettingMenu: UITableViewController {
 			}
 		}else if indexPath.section == 2 {
 			if indexPath.row == 0 {
-				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "SettingButtonCell") as! SettingButtonCell
 				cell.settingLabel?.text = NSLocalizedString("New Currency", comment: "")
 				cell.selectionStyle = .none
 				let localizedCreate = NSLocalizedString("Create", comment: "")
@@ -275,7 +275,7 @@ class SettingMenu: UITableViewController {
 			}
 		}else if indexPath.section == 3 {
 			if indexPath.row == 0 {
-				let cell = tableView.dequeueReusableCell(withIdentifier: "settingButtonCell") as! settingButtonCell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "SettingButtonCell") as! SettingButtonCell
 				cell.settingLabel?.text = NSLocalizedString("New visibility", comment: "")
 				cell.selectionStyle = .none
 				let localizedCreate = NSLocalizedString("Create", comment: "")

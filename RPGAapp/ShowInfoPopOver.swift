@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class showItemInfoPopover: UIViewController {
+class ShowItemInfoPopover: UIViewController {
     
     var item: Item? = nil
     @IBOutlet weak var descritionText: UILabel!

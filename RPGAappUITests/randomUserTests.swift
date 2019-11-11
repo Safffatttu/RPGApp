@@ -7,7 +7,7 @@
 
 import XCTest
 
-class randomUserTests: XCTestCase {
+class RandomUserTests: XCTestCase {
         
     override func setUp() {
         super.setUp()

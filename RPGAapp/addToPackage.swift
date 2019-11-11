@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import FontAwesome_swift
 
-class addToPackage: UITableViewController, addToPackageDelegate {
+class AddToPackage: UITableViewController, addToPackageDelegate {
 
     var packages: [Package] = Load.packages(usingVisiblitiy: true)
     
@@ -58,7 +58,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == packages.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "newPackageCell") as! newPackageCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewPackageCell") as! NewPackageCell
         
             cell.newPackageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
             cell.newPackageButton.setTitle(String.fontAwesomeIcon(name: .plus), for: .normal)
@@ -68,7 +68,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "packageCell") as! packageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PackageCell") as! PackageCell
         cell.packageName.text = packages[indexPath.row].name
         
         cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
@@ -168,7 +168,7 @@ class addToPackage: UITableViewController, addToPackageDelegate {
     }
 }
 
-class packageCell: UITableViewCell {
+class PackageCell: UITableViewCell {
     
     weak var cellDelegate: addToPackageDelegate?
     
@@ -181,7 +181,7 @@ class packageCell: UITableViewCell {
     }
 }
 
-class newPackageCell: UITableViewCell {
+class NewPackageCell: UITableViewCell {
     
     weak var cellDelegate: addToPackageDelegate?
     

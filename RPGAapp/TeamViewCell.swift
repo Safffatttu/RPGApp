@@ -213,7 +213,7 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") as? characterItemCell {
+		if let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell") as? CharacterItemCell {
 			let cellItem = equipmentDiffCalculator?.rows[indexPath.row]
 			
 			cell.itemHandlerDelegate = self
@@ -229,14 +229,14 @@ extension TeamViewCell: UITableViewDataSource, UITableViewDelegate {
 		}else if tableView == abilityTable {
 			if indexPath.row == abilities.count {
 				
-				let cell = tableView.dequeueReusableCell(withIdentifier: "newAbilityCell") as? newAbilityCell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "NewAbilityCell") as? NewAbilityCell
 				
 				cell?.newAbilityDelegate = self
 				cell?.character = character
 				
 				return cell!
 			}else {
-				let cell = tableView.dequeueReusableCell(withIdentifier: "abilityCell") as? abilityCell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "AbilityCell") as? AbilityCell
 				
 				cell?.abilityDelgate = self
 				

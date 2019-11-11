@@ -93,7 +93,7 @@ class RandomItemMenu: UITableViewController {
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "randomItemCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RandomItemCell")
         let cellName: String
         
         if section == -1 {

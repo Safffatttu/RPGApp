@@ -10,7 +10,7 @@ import UIKit
 import FontAwesome_swift
 import CoreData
 
-class sendPopover: UITableViewController, sendPopoverDelegate {
+class SendPopover: UITableViewController, sendPopoverDelegate {
     
     var item: Item? = nil
     var itemHandler: ItemHandler? = nil
@@ -64,7 +64,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sendPopoverCell") as! sendPopoverCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SendPopoverCell") as! SendPopoverCell
         cell.cellDelegate = self
         if (team.count > 0) {
             cell.playerName.text = team[indexPath.row].name
@@ -183,7 +183,7 @@ class sendPopover: UITableViewController, sendPopoverDelegate {
     }
 }
 
-class sendPopoverCell: UITableViewCell {
+class SendPopoverCell: UITableViewCell {
     
     weak var cellDelegate: sendPopoverDelegate?
     

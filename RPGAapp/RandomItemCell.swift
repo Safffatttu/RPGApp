@@ -7,7 +7,7 @@
 
 import UIKit
 
-class randomItemCell: UITableViewCell {
+class RandomItemCell: UITableViewCell {
 	
 	@IBOutlet weak var nameLabel: UILabel!
 	
