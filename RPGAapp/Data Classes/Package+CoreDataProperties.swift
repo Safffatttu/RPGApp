@@ -12,7 +12,8 @@ import CoreData
 
 extension Package {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Package> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Package> {
         return NSFetchRequest<Package>(entityName: "Package")
     }
 

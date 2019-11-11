@@ -11,56 +11,56 @@ import MultipeerConnectivity
 typealias ActionData = NSMutableDictionary
 
 protocol Action {
-	
+
 	var actionType: ActionType { get }
-	
+
 	var data: ActionData { get }
-	
+
 	func execute()
-	
+
 	init(actionData: ActionData, sender: MCPeerID)
-	
+
 }
 
 enum ActionType: Int {
 	//Utility
 	case disconnectPeer = 0
 	case generatedRandomNumber
-	
+
 	//Item
 	case itemCharacterAdded
 	case itemCharacterDeleted
 	case itemCharacterChanged
-	
+
 	case itemPackageAdded
 	case itemPackageDeleted
-	
+
 	//Package
 	case packageCreated
 	case packageDeleted
 	case packageSend
-	
+
 	//character
 	case characterCreated
 	case characterRemoved
 	case characterMoneyChanged
 	case characterHealthChanged
-	
+
 	// Map
 	case mapEntityMoved
 	case mapTextureChanged
-	
+
 	//Session
 	case sessionCreated
 	case sessionSwitched
 	case sessionDeleted
 	case sessionReceived
-	
+
 	//Ability
 	case abilityAdded
 	case abilityValueChanged
 	case abilityRemoved
-	
+
 	//ItemData
 	case itemsRequest
 	case itemsRequestResponse
@@ -75,15 +75,15 @@ enum ActionType: Int {
 
 	//Currency
 	case currencyCreated
-	
+
 	//Visibility
 	case visibilityCreated
 	case visibilityRemoved
 	case characterVisibilityChanged
-	
+
 	//Note
 	case noteCreated
 	case noteTextChanged
 	case noteRemoved
-	
+
 }

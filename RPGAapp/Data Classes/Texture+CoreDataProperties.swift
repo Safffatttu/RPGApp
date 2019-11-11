@@ -12,7 +12,8 @@ import CoreData
 
 extension Texture {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Texture> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Texture> {
         return NSFetchRequest<Texture>(entityName: "Texture")
     }
 

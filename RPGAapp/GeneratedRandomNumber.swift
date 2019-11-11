@@ -10,35 +10,33 @@ import MultipeerConnectivity
 import Whisper
 
 struct GeneratedRandomNumber: Action {
-	
+
 	var actionType: ActionType = ActionType.generatedRandomNumber
 	var data: ActionData {
-		get {
-			let data = ActionData(dictionary: [
-				"number": number
-				])
-			return data
-		}
+		let data = ActionData(dictionary: [
+			"number": number
+			])
+		return data
 	}
-	
+
 	var sender: MCPeerID?
-	
+
 	var number: Int
-	
+
 	var actionData: ActionData?
-	
+
 	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
-		
+
 		self.number = actionData.value(forKey: "number") as! Int
-		
+
 		self.actionData = actionData
 	}
-	
+
 	init(number: Int) {
 		self.number = number
 	}
-	
+
 	func execute() {
 		let message = "\(NSLocalizedString("Drawn", comment: "")) \(number)"
 		whisper(messege: message)

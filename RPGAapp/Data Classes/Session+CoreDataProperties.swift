@@ -12,7 +12,8 @@ import CoreData
 
 extension Session {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Session> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Session> {
         return NSFetchRequest<Session>(entityName: "Session")
     }
 

@@ -14,11 +14,11 @@ import Whisper
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     
     var window: UIWindow?
-	
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController
-        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
+        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count - 1] as! UINavigationController
         navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         splitViewController.delegate = self
         let defaults = UserDefaults.standard
@@ -37,27 +37,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 defaults.set(setting.value, forKey: setting.key)
             }
         }
-		
+	
 		_ = PackageService.pack
-		
+	
         return true
     }
-	
-	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+
+	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
 		guard let sessionDictionary = NSDictionary(contentsOf: url) else { return false }
-		
+	
 		guard let newSession = unPackSession(from: sessionDictionary) else { return false }
-		
+	
 		Load.sessions().first(where: {$0.current})?.current = false
 		newSession.current = true
-		
+	
 		let action = SessionReceived(session: newSession, setCurrent: true)
 		PackageService.pack.send(action: action)
-		
+	
 		NotificationCenter.default.post(name: .sessionReceived, object: nil)
 		NotificationCenter.default.post(name: .reloadTeam, object: nil)
 		NotificationCenter.default.post(name: .currencyChanged, object: nil)
-		
+	
 		return true
 	}
 }

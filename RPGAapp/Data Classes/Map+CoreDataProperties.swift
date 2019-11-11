@@ -12,7 +12,8 @@ import CoreData
 
 extension Map {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Map> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Map> {
         return NSFetchRequest<Map>(entityName: "Map")
     }
 

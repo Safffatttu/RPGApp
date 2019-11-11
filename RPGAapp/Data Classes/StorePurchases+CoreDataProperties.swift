@@ -12,7 +12,8 @@ import CoreData
 
 extension StorePurchases {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<StorePurchases> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<StorePurchases> {
         return NSFetchRequest<StorePurchases>(entityName: "StorePurchases")
     }
 

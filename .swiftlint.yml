@@ -14,19 +14,21 @@ disabled_rules: # rule identifiers to exclude from running
   - comma
   - cyclomatic_complexity
   - function_body_length
+  - trailing_whitespace
+  - vertical_whitespace
 
 opt_in_rules:
   # - empty_count
-  # - explicit_init
+  - explicit_init
   # - closure_spacing
-  # - overridden_super_call
-  # - redundant_nil_coalescing
+  - overridden_super_call
+  - redundant_nil_coalescing
   # - private_outlet
   # - nimble_operator
-  # - attributes
-  # - operator_usage_whitespace
+  - attributes
+  - operator_usage_whitespace
   # - closure_end_indentation
-  # - first_where
+  - first_where
   # - object_literal
   # - number_separator
   # - prohibited_super_call
@@ -72,7 +74,7 @@ trailing_newline: warning
 comma: error
 colon: error
 opening_brace: error
-empty_count: error
+empty_count: warning
 legacy_constructor: error
 statement_position: error
 legacy_constant: error
@@ -80,7 +82,7 @@ trailing_semicolon: error
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
 
-# custom_rules:
+custom_rules:
 #   empty_line_before_closing_brace: # from https://github.com/brandenr/swiftlintconfig
 #     name: "Empty Line before closing brace"
 #     regex: '(^[ a-zA-Z ]*(?:protocol|extension|class|struct) (?!(?:var|let))[ a-zA-Z:]*\{\n *\S+)'

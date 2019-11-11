@@ -9,44 +9,42 @@ import Foundation
 import MultipeerConnectivity
 
 struct NoteRemoved: Action {
-	
+
 	var actionType: ActionType = ActionType.noteRemoved
 	var data: ActionData {
-		get {
-			let data = ActionData(dictionary: [
-				"noteId": noteId
-				])
-			return data
-		}
+        let data = ActionData(dictionary: [
+            "noteId": noteId
+            ])
+        return data
 	}
-	
+
 	var sender: MCPeerID?
-	
+
 	let noteId: String
-	
+
 	var actionData: ActionData?
-	
+
 	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
-		
+	
 		self.noteId = actionData.value(forKey: "noteId") as! String
-		
+	
 		self.actionData = actionData
 	}
-	
+
 	init(noteId: String) {
 		self.noteId = noteId
 	}
-	
+
 	func execute() {
-		guard let note = Load.notes().filter({$0.id == noteId}).first else { return }
-		
+        guard let note = Load.notes().first(where: {$0.id == noteId}) else { return }
+	
 		let contex = CoreDataStack.managedObjectContext
-		
+	
 		contex.delete(note)
-		
+	
 		CoreDataStack.saveContext()
-		
+	
 		NotificationCenter.default.post(name: .addedNote, object: nil)
 	}
 }

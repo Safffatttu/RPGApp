@@ -14,20 +14,19 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
 
     var packages: [Package] = Load.packages(usingVisiblitiy: true)
     
-    var item: Item? = nil
-    var itemToAdd: ItemHandler? = nil
+    var item: Item?
+    var itemToAdd: ItemHandler?
     var itemsToAdd: [ItemHandler] = []
     
     let iconSize: CGFloat = 20
     
     override func viewDidLoad() {
-        var height =  Int()
+        var height = Int()
         var y = Int()
-        if (packages.count > 0) {
+        if packages.count > 0 {
             height = 44 * (packages.count + 1)
             y = 13
-        }
-        else {
+        } else {
             height = 44
             y = 24
         }
@@ -36,13 +35,14 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .reloadTeam, object: nil)
         
         self.preferredContentSize = CGSize(width: 200, height: height)
-        self.popoverPresentationController?.sourceRect = CGRect(x:0, y: y,width: 0,height: 0)
+        self.popoverPresentationController?.sourceRect = CGRect(x: 0, y: y,width: 0,height: 0)
         self.popoverPresentationController?.permittedArrowDirections = .right
         
         super.viewDidLoad()
     }
     
-    @objc func reloadPackages() {
+    @objc
+    func reloadPackages() {
         packages = Load.packages(usingVisiblitiy: true)
         tableView.reloadData()
         viewDidLoad()
@@ -103,7 +103,7 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != packages.count {
             addToPackage(indexPath)
-        }else {
+        } else {
             newPackage()
         }
     }
@@ -115,20 +115,20 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
     
     func addToPackage(_ indexPath: IndexPath) {
         let package = packages[indexPath.row]
-		
+	
 		var itemsId: [String] = []
 		var itemsCount: [Int64] = []
-		
+	
         if item != nil {
             add(item!, to: package, count: nil)
 			itemsId = [(item?.id)!]
 			itemsCount = [1]
-        }else if (itemToAdd != nil) {
+        } else if itemToAdd != nil {
             add((itemToAdd?.item!)!, to: package, count: itemToAdd?.count)
 			itemsId = [(item?.id)!]
 			itemsCount = [(itemToAdd?.count)!]
-			
-        }else {
+
+        } else {
             for item in itemsToAdd {
                 add(item.item!, to: package, count: item.count)
 				itemsId.append((item.item?.id)!)
@@ -139,29 +139,29 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
         if UserDefaults.standard.bool(forKey: "Schowaj menu pakietów") {
             dismiss(animated: true, completion: nil)
         }
-		
+
         CoreDataStack.saveContext()
-		
+	
 		let action = ItemPackageAdded(package: package, itemsId: itemsId, itemsCount: itemsCount)
-		
+	
 		PackageService.pack.send(action: action)
     }
-    
+
     func newPackage() {
 		let session = Load.currentSession()
-		
-		let newPackage =  NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext) as! Package
+
+		let newPackage = NSEntityDescription.insertNewObject(forEntityName: String(describing: Package.self), into: CoreDataStack.managedObjectContext) as! Package
         let number = packages.count
         
 		newPackage.name = "\(NSLocalizedString("Package nr.", comment: "")) \(number + 1)"
         newPackage.id = "\(newPackage.name!) \(Date()) \(myRand(10000)))"
 		newPackage.visibility = Load.currentVisibility()
         newPackage.session = session
-		
+
         CoreDataStack.saveContext()
-		
+
         let action = PackageCreated(package: newPackage)
-		
+	
 		PackageService.pack.send(action: action)
         
         NotificationCenter.default.post(name: .createdPackage, object: nil)
@@ -195,7 +195,7 @@ class NewPackageCell: UITableViewCell {
 protocol addToPackageDelegate: class {
     
     func addToPackageButton(_ sender: UIButton)
-    
+
     func newPackage()
 }
 

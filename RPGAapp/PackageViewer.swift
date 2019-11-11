@@ -17,21 +17,22 @@ class PackageViewer: UITableViewController {
 			diffCalculator?.rows = packages
 		}
 	}
-	
+
 	var diffCalculator: SingleSectionTableViewDiffCalculator<Package>?
-	
+
 	@IBOutlet var packagesTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+	
 		diffCalculator = SingleSectionTableViewDiffCalculator(tableView: self.tableView, initialRows: packages, sectionIndex: 0)
-		
+	
         NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .createdPackage, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .reloadTeam, object: nil)
     }
-	
-    @objc func reloadPackages() {
+
+    @objc
+    func reloadPackages() {
         packages = Load.packages()
     }
     
@@ -42,17 +43,17 @@ class PackageViewer: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let count = diffCalculator?.rows.count {
 			return count
-		}else {
+		} else {
 			return 0
 		}
     }
-	
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PackageViewerCell") as! PackageViewerCell
-		
+	
 		cell.package = diffCalculator?.rows[indexPath.row]
 		cell.selectionStyle = .none
-		
+	
 		return cell
 	}
     
@@ -67,9 +68,9 @@ class PackageViewer: UITableViewController {
             
             CoreDataStack.managedObjectContext.delete(package)
             CoreDataStack.saveContext()
-			
+
             packages.remove(at: indexPath.row)
-			
+
 			let action = PackageDeleted(packageId: packageId!)
 			PackageService.pack.send(action: action)
         }
