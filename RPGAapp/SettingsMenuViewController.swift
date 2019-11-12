@@ -563,17 +563,14 @@ extension SettingMenu: settingCellDelegate {
 		guard let index = getCurrentCellIndexPath(sender, tableView: self.tableView) else { return } 
 
 		if index.section == 1 {
-            let session = Session.createSeesion()
-            sessions.append(session)
-            for ses in sessions.filter({ $0.id != session.id }) {
-                ses.current = false
-            }
+            Session.create()
 		} else if index.section == 2 {
 			createCurrency()
 		} else if index.section == 3 {
-			createVisibility()
+            Visibility.createVisibility()
+            visibilities = Load.visibilities()
 		}
-        
+        sessions = Load.sessions()
         updateDiffTable()
     }
 
@@ -584,36 +581,6 @@ extension SettingMenu: settingCellDelegate {
 
 		present(currencyForm, animated: true)
 
-	}
-
-	func createVisibility() {
-		let context = CoreDataStack.managedObjectContext
-		let newVisibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
-
-		newVisibility.name = NameGenerator.createVisibilityData().0
-		newVisibility.current = true
-		newVisibility.id = String(describing: Date()) + newVisibility.name! + String(myRand(10000))
-		newVisibility.session = Load.currentSession()
-
-		let cur = visibilities.filter({ $0.current })
-
-		for i in cur {
-			i.current = false
-		}
-
-		newVisibility.current = true
-
-		visibilities = Load.visibilities()
-		sessions = Load.sessions()
-
-		CoreDataStack.saveContext()
-
-		updateDiffTable()
-
-		NotificationCenter.default.post(name: .reloadTeam, object: nil)
-
-		let action = VisibilityCreated(visibility: newVisibility)
-		PackageService.pack.send(action: action)
 	}
 
 }

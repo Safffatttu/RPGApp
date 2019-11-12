@@ -41,3 +41,34 @@ extension Visibility {
     @NSManaged public func removeFromCharacters(_ values: NSSet)
 
 }
+
+extension Visibility {
+    
+    static func createVisibility() -> Visibility{
+        let context = CoreDataStack.managedObjectContext
+        let newVisibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
+        
+        newVisibility.name = NameGenerator.createVisibilityData().0
+        newVisibility.current = true
+        newVisibility.id = String(describing: Date()) + newVisibility.name! + String(myRand(10000))
+        newVisibility.session = Load.currentSession()
+        
+        let currentVisibilities = Load.visibilities().filter({ $0.current })
+        
+        for visib in currentVisibilities {
+            visib.current = false
+        }
+        
+        newVisibility.current = true
+        
+        CoreDataStack.saveContext()
+        
+        NotificationCenter.default.post(name: .reloadTeam, object: nil)
+        
+        let action = VisibilityCreated(visibility: newVisibility)
+        PackageService.pack.send(action: action)
+        
+        return newVisibility
+    }
+}
+

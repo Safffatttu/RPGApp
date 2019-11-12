@@ -57,3 +57,35 @@ extension Currency {
     @NSManaged public func removeFromSubCurrency(_ values: NSOrderedSet)
 
 }
+
+extension Currency {
+    
+    @discardableResult
+    static func create(name: String, rate: Double, subList: [(String, Int16)]) -> Currency {
+        let context = CoreDataStack.managedObjectContext
+        let currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency
+        
+        currency.name = name
+        currency.rate = rate
+        
+        
+        for sub in subList {
+            let subCurrency = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
+            
+            subCurrency.name = sub.0
+            subCurrency.rate = sub.1
+            
+            currency.addToSubCurrency(subCurrency)
+        }
+        
+        CoreDataStack.saveContext()
+        
+        return currency
+    }
+    
+    static func createBasicCurrency() {
+        Currency.create(name: "PLN", rate: 1, subList: [("Zł", 1), ("Gr", 100)])
+        Currency.create(name: "ZkSrM", rate: 1, subList: [("Zk", 1), ("Sr", 12), ("M", 12)])
+        CoreDataStack.saveContext()
+    }
+}

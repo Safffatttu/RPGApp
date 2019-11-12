@@ -199,7 +199,7 @@ class NewCurrencyForm: FormViewController {
                 }
             }
         } else {
-            newCurrency = createCurrencyUsing(name: currencyName, rate: currencyRate, subList: currencyData)
+            newCurrency = Currency.create(name: currencyName, rate: currencyRate, subList: currencyData)
         }
         
         CoreDataStack.saveContext()
