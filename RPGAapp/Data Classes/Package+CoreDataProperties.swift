@@ -48,6 +48,9 @@ extension Package {
         
         var itemHandler = self.items?.first(where: { ($0 as! ItemHandler).item == item }) as? ItemHandler
         
+        guard let itemId = item.id else { return }
+        var itemCount: Int64
+        
         if itemHandler == nil {
             itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as? ItemHandler
             itemHandler!.item = item
@@ -55,12 +58,20 @@ extension Package {
                 itemHandler!.count = count!
             }
             self.addToItems(itemHandler!)
-        } else if count != nil {
-            itemHandler?.count += count!
-        } else if (itemHandler?.count)! > 0 {
+        }
+        
+        if let count = count {
+            itemHandler?.count += count
+            itemCount = count
+        } else {
             itemHandler?.count += 1
+            itemCount = 1
         }
         
         NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
+        
+        let action = ItemPackageAdded(package: self, itemsId: [itemId], itemsCount: [itemCount])
+        
+        PackageService.pack.send(action: action)
     }
 }

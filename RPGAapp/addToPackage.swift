@@ -115,24 +115,15 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
     
     func addToPackage(_ indexPath: IndexPath) {
         let package = packages[indexPath.row]
-	
-		var itemsId: [String] = []
-		var itemsCount: [Int64] = []
-	
+
         if item != nil {
             package.add(item!)
-			itemsId = [(item?.id)!]
-			itemsCount = [1]
         } else if itemToAdd != nil {
             package.add((itemToAdd?.item)!, count: itemToAdd?.count)
-			itemsId = [(item?.id)!]
-			itemsCount = [(itemToAdd?.count)!]
 
         } else {
             for item in itemsToAdd {
                 package.add(item.item!, count: item.count)
-				itemsId.append((item.item?.id)!)
-				itemsCount.append(item.count)
             }
         }
         
@@ -141,10 +132,6 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
         }
 
         CoreDataStack.saveContext()
-	
-		let action = ItemPackageAdded(package: package, itemsId: itemsId, itemsCount: itemsCount)
-	
-		PackageService.pack.send(action: action)
     }
 
     func newPackage() {
