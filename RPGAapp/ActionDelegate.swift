@@ -108,10 +108,6 @@ class ActionDelegate: PackageServiceDelegate{
 			let action = ItemListRecieved(actionData: actionData, sender: sender)
 			action.execute()
 			
-		}else if actionType == .textureSend{
-			let action = TextureSend(actionData: actionData, sender: sender)
-			action.execute()
-			
 		}else if actionType == .currencyCreated{
 			let action = CurrencyCreated(actionData: actionData, sender: sender)
 			action.execute()

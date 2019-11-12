@@ -70,7 +70,6 @@ enum ActionType: Int {
 	case itemListSync
 
 	//Textures
-	case textureSend
 	case textureRequest
 
 	//Currency
