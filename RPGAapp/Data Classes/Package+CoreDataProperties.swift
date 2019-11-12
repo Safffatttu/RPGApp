@@ -41,3 +41,26 @@ extension Package {
     @NSManaged public func removeFromItems(_ values: NSSet)
 
 }
+
+extension Package {
+    func add(_ item: Item, count: Int64? = nil) {
+        let context = CoreDataStack.managedObjectContext
+        
+        var itemHandler = self.items?.first(where: { ($0 as! ItemHandler).item == item }) as? ItemHandler
+        
+        if itemHandler == nil {
+            itemHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as? ItemHandler
+            itemHandler!.item = item
+            if count != nil {
+                itemHandler!.count = count!
+            }
+            self.addToItems(itemHandler!)
+        } else if count != nil {
+            itemHandler?.count += count!
+        } else if (itemHandler?.count)! > 0 {
+            itemHandler?.count += 1
+        }
+        
+        NotificationCenter.default.post(name: .addedItemToPackage, object: nil)
+    }
+}

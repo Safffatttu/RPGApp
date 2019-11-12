@@ -120,17 +120,17 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
 		var itemsCount: [Int64] = []
 	
         if item != nil {
-            add(item!, to: package, count: nil)
+            package.add(item!)
 			itemsId = [(item?.id)!]
 			itemsCount = [1]
         } else if itemToAdd != nil {
-            add((itemToAdd?.item!)!, to: package, count: itemToAdd?.count)
+            package.add((itemToAdd?.item)!, count: itemToAdd?.count)
 			itemsId = [(item?.id)!]
 			itemsCount = [(itemToAdd?.count)!]
 
         } else {
             for item in itemsToAdd {
-                add(item.item!, to: package, count: item.count)
+                package.add(item.item!, count: item.count)
 				itemsId.append((item.item?.id)!)
 				itemsCount.append(item.count)
             }

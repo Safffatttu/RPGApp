@@ -73,7 +73,7 @@ struct ItemCharacterAdded: Action {
 			}
 			let count = itemData.1
 
-			addToEquipment(item: item, to: character, count: count)
+            character.addToEquipment(item: item, count: count)
 		}
 	
 		if requestList.count != 0 {

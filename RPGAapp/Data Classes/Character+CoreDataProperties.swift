@@ -64,3 +64,39 @@ extension Character {
     @NSManaged public func removeFromEquipment(_ values: NSSet)
 
 }
+
+extension Character {
+    func addToEquipment(itemHandler: ItemHandler) {
+        let context = CoreDataStack.managedObjectContext
+
+        var newHandler = itemHandler
+
+        if let handler = (self.equipment?.first(where: { ($0 as! ItemHandler).item == itemHandler.item }) as? ItemHandler) {
+            handler.count += itemHandler.count
+        } else {
+            newHandler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+            newHandler.item = itemHandler.item
+            newHandler.count = itemHandler.count
+
+            self.addToEquipment(newHandler)
+        }
+
+        let atribute = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemAtributeHandler.self), into: context) as! ItemAtributeHandler
+
+        itemHandler.addToItemAtributesHandler(atribute)
+    }
+    
+    func addToEquipment(item: Item, count: Int64 = 1) {
+        let context = CoreDataStack.managedObjectContext
+
+        if let handler = (self.equipment?.first(where: { ($0 as! ItemHandler).item == item }) as? ItemHandler) {
+            handler.count += count
+        } else {
+            let handler = NSEntityDescription.insertNewObject(forEntityName: String(describing: ItemHandler.self), into: context) as! ItemHandler
+
+            handler.item = item
+            handler.count = count
+            self.addToEquipment(handler)
+        }
+    }
+}

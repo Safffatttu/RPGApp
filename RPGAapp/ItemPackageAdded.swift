@@ -59,8 +59,7 @@ struct ItemPackageAdded: Action {
 				continue
 			}
 			let count = itemData.1
-
-			add(item, to: package, count: count)
+            package.add(item, count: count)
 		}
 	
 		if requestList.count != 0 {

@@ -258,7 +258,7 @@ extension CatalogeDetail: catalogeDetailCellDelegate {
 		let characters = Load.characters()
 
 		for character in characters {
-			addToEquipment(item: item, to: character)
+            character.addToEquipment(item: item)
 			let action = ItemCharacterAdded(characterId: character.id!, itemId: item.id!)
 			PackageService.pack.send(action: action)
 		}

@@ -102,7 +102,7 @@ class SendPopover: UITableViewController, sendPopoverDelegate {
 		guard let itemHandler = itemHandler else { return }
 		guard let item = itemHandler.item else { return }
 	
-		addToEquipment(item: item, to: to)
+        to.addToEquipment(item: item)
 	
 		itemHandler.count -= 1
 	
@@ -140,12 +140,12 @@ class SendPopover: UITableViewController, sendPopoverDelegate {
 
 	func sendItem(to recipient: Character) {
         if let itemToAdd = item {
-            addToEquipment(item: itemToAdd, to: recipient)
+            recipient.addToEquipment(item: itemToAdd)
         } else if let handlerToAdd = itemHandler {
-            addToEquipment(itemHandler: handlerToAdd, to: recipient)
+            recipient.addToEquipment(itemHandler: handlerToAdd)
         } else {
             for handler in itemHandlers {
-                addToEquipment(itemHandler: handler, to: recipient)
+                recipient.addToEquipment(itemHandler: handler)
             }
         }
         
