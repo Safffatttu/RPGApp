@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct SessionDeleted: Action {
 
-	var actionType: ActionType = ActionType.sessionDeleted
+	var actionType: ActionType = .sessionDeleted
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"sessionId": sessionId

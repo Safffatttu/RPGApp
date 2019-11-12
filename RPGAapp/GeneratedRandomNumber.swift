@@ -11,7 +11,7 @@ import Whisper
 
 struct GeneratedRandomNumber: Action {
 
-	var actionType: ActionType = ActionType.generatedRandomNumber
+	var actionType: ActionType = .generatedRandomNumber
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"number": number

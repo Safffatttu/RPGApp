@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct CharacterHealthChanged: Action {
 
-	var actionType: ActionType = ActionType.characterHealthChanged
+	var actionType: ActionType = .characterHealthChanged
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "characterId": characterId,

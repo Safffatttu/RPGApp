@@ -101,25 +101,6 @@ class ActionTest: XCTestCase {
 		return action
 	}
 
-//    public static func sendItemAction() -> NSMutableDictionary {
-//
-//        let itemId = Load.items().random()?.id
-//        let characterId = Load.characters().random()?.id
-//        let count = Int64(myRand(100))
-//        let action =  NSMutableDictionary()
-//
-//        let actionType: NSNumber = NSNumber(value: ActionType.itemDataSend.rawValue)
-//        action.setValue(actionType, forKey: "action")
-//
-//
-//        action.setValue(itemId, forKey: "itemId")
-//        action.setValue(count, forKey: "itemCount")
-//
-//        action.setValue(characterId, forKey: "characterId")
-//
-//        return action
-//    }
-
 	public static func createPackgeAction() -> NSMutableDictionary {
 
 		let name = "Paczka nr." + String(myRand(1000))

@@ -12,7 +12,8 @@ import CoreData
 
 extension SubCurrency {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<SubCurrency> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<SubCurrency> {
         return NSFetchRequest<SubCurrency>(entityName: "SubCurrency")
     }
 

@@ -11,7 +11,7 @@ import MultipeerConnectivity
 
 struct ItemCharacterDeleted: Action {
 
-	var actionType: ActionType = ActionType.itemCharacterDeleted
+	var actionType: ActionType = .itemCharacterDeleted
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"characterId": characterId,

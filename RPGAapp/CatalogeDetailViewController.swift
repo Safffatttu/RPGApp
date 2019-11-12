@@ -47,7 +47,7 @@ class CatalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate 
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems(_:)), name: .editedItem, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadItems(_:)), name: .reloadCataloge, object: nil)
 
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }

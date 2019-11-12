@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct MapEntityMoved: Action {
 
-	var actionType: ActionType = ActionType.mapEntityMoved
+	var actionType: ActionType = .mapEntityMoved
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "entityId": entityId,

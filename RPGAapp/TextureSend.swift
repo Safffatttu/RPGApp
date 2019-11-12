@@ -11,7 +11,7 @@ import CoreData
 
 struct TextureSend: Action {
 
-	var actionType: ActionType = ActionType.textureSend
+	var actionType: ActionType = .textureSend
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "imageData": imageData,

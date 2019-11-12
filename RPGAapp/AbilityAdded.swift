@@ -11,7 +11,7 @@ import CoreData
 
 struct AbilityAdded: Action {
 
-	var actionType: ActionType = ActionType.abilityAdded
+	var actionType: ActionType = .abilityAdded
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"characterId": characterId,

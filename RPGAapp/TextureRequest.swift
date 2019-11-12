@@ -11,7 +11,7 @@ import CoreData
 
 struct TextureRequest: Action {
 
-	var actionType: ActionType = ActionType.textureRequest
+	var actionType: ActionType = .textureRequest
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"id": id

@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct NoteRemoved: Action {
 
-	var actionType: ActionType = ActionType.noteRemoved
+	var actionType: ActionType = .noteRemoved
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "noteId": noteId

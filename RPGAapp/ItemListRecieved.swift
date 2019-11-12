@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct ItemListRecieved: Action {
 
-	var actionType: ActionType = ActionType.itemListRecieved
+	var actionType: ActionType = .itemListRecieved
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "itemList": recievedItemList

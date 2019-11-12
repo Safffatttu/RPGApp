@@ -11,7 +11,7 @@ import CoreData
 
 struct VisibilityCreated: Action {
 
-	var actionType: ActionType = ActionType.visibilityCreated
+	var actionType: ActionType = .visibilityCreated
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "visibilityName": visibilityName,

@@ -9,7 +9,7 @@ import Foundation
 import MultipeerConnectivity
 
 struct ItemPackageAdded: Action {
-	var actionType: ActionType = ActionType.itemPackageAdded
+	var actionType: ActionType = .itemPackageAdded
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "packageId": packageId,

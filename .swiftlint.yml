@@ -112,11 +112,11 @@ custom_rules:
 #     regex: '(^ *super\.[ a-zA-Z0-9=?.\(\)\{\}:,><!]*\n *(?!(?:\}|return))\S+)'
 #     message: "There should be an empty line after super"
 #     severity: error
-#   unnecessary_type: # from https://github.com/brandenr/swiftlintconfig
-#     name: "Unnecessary Type"
-#     regex: '[ a-zA-Z0-9]*(?:let|var) [ a-zA-Z0-9]*: ([a-zA-Z0-9]*)[\? ]*= \1'
-#     message: "Type Definition Not Needed"
-#     severity: error
+  unnecessary_type: # from https://github.com/brandenr/swiftlintconfig
+    name: "Unnecessary Type"
+    regex: '[ a-zA-Z0-9]*(?:let|var) [ a-zA-Z0-9]*: ([a-zA-Z0-9]*)[\? ]*= \1'
+    message: "Type Definition Not Needed"
+    severity: error
 #   double_space: # from https://github.com/IBM-Swift/Package-Builder
 #     include: "*.swift"
 #     name: "Double space"

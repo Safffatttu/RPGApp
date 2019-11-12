@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct DisconnectPeer: Action {
 
-	var actionType: ActionType = ActionType.disconnectPeer
+	var actionType: ActionType = .disconnectPeer
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"peer": peer

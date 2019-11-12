@@ -12,11 +12,11 @@ import CoreData
 class ItemDrawManager {
 
 	static var randomlySelected: [ItemHandler] = []
-	static let propabilities: [Int16] = [100,800,90,9,1]
+	static let propabilities: [Int16] = [100, 800, 90, 9, 1]
 
 	var lastDrawSetting: Any?
 
-	static var drawManager: ItemDrawManager = ItemDrawManager()
+	static var drawManager = ItemDrawManager()
 
 	func drawItems(using: Any?) {
 		var itemsToDraw: [Item] = []

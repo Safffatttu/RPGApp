@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct NoteTextChanged: Action {
 
-	var actionType: ActionType = ActionType.noteTextChanged
+	var actionType: ActionType = .noteTextChanged
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "noteId": noteId,

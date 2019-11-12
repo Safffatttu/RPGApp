@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct MapTextureChanged: Action {
 
-	var actionType: ActionType = ActionType.mapTextureChanged
+	var actionType: ActionType = .mapTextureChanged
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "mapId": mapId

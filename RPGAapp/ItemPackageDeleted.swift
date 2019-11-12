@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct ItemPackageDeleted: Action {
 
-	var actionType: ActionType = ActionType.itemPackageDeleted
+	var actionType: ActionType = .itemPackageDeleted
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"packageId": packageId,

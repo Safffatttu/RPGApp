@@ -9,7 +9,7 @@ import Foundation
 
 class CatalogeDataSource {
 
-	static var source: CatalogeDataSource = CatalogeDataSource()
+	static var source = CatalogeDataSource()
 
 	init() {
 		NotificationCenter.default.addObserver(self, selector: #selector(searchCataloge(_:)), name: .searchCataloge, object: nil)

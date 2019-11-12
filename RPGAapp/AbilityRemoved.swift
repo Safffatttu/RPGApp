@@ -11,7 +11,7 @@ import Whisper
 
 struct AbilityRemoved: Action {
 
-	var actionType: ActionType = ActionType.abilityRemoved
+	var actionType: ActionType = .abilityRemoved
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"characterId": characterId,

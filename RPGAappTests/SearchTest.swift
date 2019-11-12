@@ -30,8 +30,8 @@ class SearchTest: XCTestCase {
     }
 
     func testSortModel() {
-        let sortTypesCount: UInt32 = UInt32(dataSource.model.sortModel.count)
-        let randomSortType: Int = Int(arc4random_uniform(sortTypesCount))
+        let sortTypesCount = UInt32(dataSource.model.sortModel.count)
+        let randomSortType = Int(arc4random_uniform(sortTypesCount))
         dataSource.model.sortModel.select(index: randomSortType)
         NotificationCenter.default.post(name: .catalogeModelChanged, object: nil)
     }

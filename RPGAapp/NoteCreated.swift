@@ -11,7 +11,7 @@ import CoreData
 
 struct NoteCreated: Action {
 
-	var actionType: ActionType = ActionType.noteCreated
+	var actionType: ActionType = .noteCreated
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "noteId": noteId,

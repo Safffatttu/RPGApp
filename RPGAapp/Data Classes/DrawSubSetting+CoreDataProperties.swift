@@ -12,7 +12,8 @@ import CoreData
 
 extension DrawSubSetting {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<DrawSubSetting> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<DrawSubSetting> {
         return NSFetchRequest<DrawSubSetting>(entityName: "DrawSubSetting")
     }
 

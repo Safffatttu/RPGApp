@@ -11,7 +11,7 @@ import CoreData
 
 struct PackageCreated: Action {
 
-	var actionType: ActionType = ActionType.packageCreated
+	var actionType: ActionType = .packageCreated
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"packageName": packageName,

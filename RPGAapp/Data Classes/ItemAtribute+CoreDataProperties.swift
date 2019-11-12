@@ -12,7 +12,8 @@ import CoreData
 
 extension ItemAtribute {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ItemAtribute> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<ItemAtribute> {
         return NSFetchRequest<ItemAtribute>(entityName: "ItemAtribute")
     }
 

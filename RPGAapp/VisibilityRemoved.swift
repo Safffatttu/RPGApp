@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct VisibilityRemoved: Action {
 
-	var actionType: ActionType = ActionType.visibilityRemoved
+	var actionType: ActionType = .visibilityRemoved
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "visibilityId": visibilityId

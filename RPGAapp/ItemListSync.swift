@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct ItemListSync: Action {
 
-	var actionType: ActionType = ActionType.itemListSync
+	var actionType: ActionType = .itemListSync
 	var data: ActionData {
         let data = ActionData(dictionary: [:])
         return data

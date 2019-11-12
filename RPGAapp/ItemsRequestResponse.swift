@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct ItemsRequestResponse: Action {
 
-	var actionType: ActionType = ActionType.itemsRequestResponse
+	var actionType: ActionType = .itemsRequestResponse
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "requestId": requestId,

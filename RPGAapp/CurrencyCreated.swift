@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 struct CurrencyCreated: Action {
 
-	var actionType: ActionType = ActionType.currencyCreated
+	var actionType: ActionType = .currencyCreated
 	var data: ActionData {
         let data = ActionData(dictionary: [
             "currencyData": currencyData

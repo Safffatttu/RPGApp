@@ -11,7 +11,7 @@ import CoreData
 
 struct CharacterVisibilityChanged: Action {
 
-	var actionType: ActionType = ActionType.characterVisibilityChanged
+	var actionType: ActionType = .characterVisibilityChanged
 	var data: ActionData {
 		let data = ActionData(dictionary: [
 			"characterId": characterId,
