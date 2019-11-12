@@ -145,5 +145,4 @@ extension Notification.Name {
     static let goToSectionCataloge = Notification.Name("goToSectionCataloge")
     static let searchCataloge = Notification.Name("searchCataloge")
     static let dismissKeyboard = Notification.Name("dismissKeyboard")
-	static let searchCatalogeModelChanged = Notification.Name("searchCatalogeModelChanged")
 }

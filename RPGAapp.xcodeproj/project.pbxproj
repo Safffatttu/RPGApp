@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		47322C71237ABAD9009D1260 /* periphery */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 47322C72237ABAD9009D1260 /* Build configuration list for PBXAggregateTarget "periphery" */;
+			buildPhases = (
+				47322C75237ABADC009D1260 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = periphery;
+			productName = periphery;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		12F51BB5C46DBD12E46D0BD5 /* Pods_RPGAapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */; };
 		3B01662A213858D10074A747 /* AbilityAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B016629213858D10074A747 /* AbilityAdded.swift */; };
@@ -55,9 +69,7 @@
 		3B709CEC20ACA9F400D5825E /* MapHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B709CEB20ACA9F400D5825E /* MapHelperFunctions.swift */; };
 		3B7778CB1FD9C3D300F56F04 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */; };
 		3B7B159B1F3DFC680055EE5F /* RandomItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */; };
-		3B7B159D1F3DFDB30055EE5F /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7B159C1F3DFDB30055EE5F /* StoreDetailViewController.swift */; };
 		3B7D23051F43468D00A86F3E /* SendPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7D23041F43468D00A86F3E /* SendPopoverViewController.swift */; };
-		3B7FCD961F3F784700AC4193 /* StoreMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD951F3F784700AC4193 /* StoreMenuViewController.swift */; };
 		3B7FCD981F3F79C100AC4193 /* RandomItemMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */; };
 		3B7FD39E20DFFA530052EDDB /* ItemDrawManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FD39D20DFFA530052EDDB /* ItemDrawManager.swift */; };
 		3B85B4E92146C41500D637B2 /* CatalogeFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85B4E82146C41500D637B2 /* CatalogeFilterCell.swift */; };
@@ -228,9 +240,7 @@
 		3B73F9211F8FB04900EA7E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		3B7B159A1F3DFC680055EE5F /* RandomItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemDetailViewController.swift; sourceTree = "<group>"; };
-		3B7B159C1F3DFDB30055EE5F /* StoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
 		3B7D23041F43468D00A86F3E /* SendPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendPopoverViewController.swift; sourceTree = "<group>"; };
-		3B7FCD951F3F784700AC4193 /* StoreMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMenuViewController.swift; sourceTree = "<group>"; };
 		3B7FCD971F3F79C100AC4193 /* RandomItemMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomItemMenuViewController.swift; sourceTree = "<group>"; };
 		3B7FD39D20DFFA530052EDDB /* ItemDrawManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDrawManager.swift; sourceTree = "<group>"; };
 		3B85B4E82146C41500D637B2 /* CatalogeFilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeFilterCell.swift; sourceTree = "<group>"; };
@@ -394,7 +404,6 @@
 				3B063D641F3A21A800B5271C /* MasterViewController.swift */,
 				3B063D681F3A21A800B5271C /* Main.storyboard */,
 				3B063D6D1F3A21A800B5271C /* LaunchScreen.storyboard */,
-				3B11312920C2C9EF00F95088 /* Store */,
 				3B11312820C2C9CD00F95088 /* RandomItem */,
 				3B11312720C2C99700F95088 /* TeamView */,
 				3B709CE620ACA26B00D5825E /* Map */,
@@ -457,15 +466,6 @@
 				3B7778CA1FD9C3D300F56F04 /* RandomNumberGenerator.swift */,
 			);
 			name = RandomItem;
-			sourceTree = "<group>";
-		};
-		3B11312920C2C9EF00F95088 /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				3B7B159C1F3DFDB30055EE5F /* StoreDetailViewController.swift */,
-				3B7FCD951F3F784700AC4193 /* StoreMenuViewController.swift */,
-			);
-			name = Store;
 			sourceTree = "<group>";
 		};
 		3B295D8420A8E303001DC35D /* Utilities */ = {
@@ -754,6 +754,7 @@
 		3B063D571F3A21A800B5271C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Original;
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Jakub;
@@ -787,6 +788,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3B063D5E1F3A21A800B5271C;
 					};
+					47322C71237ABAD9009D1260 = {
+						CreatedOnToolsVersion = 11.2;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 3B063D5A1F3A21A800B5271C /* Build configuration list for PBXProject "RPGAapp" */;
@@ -806,6 +811,7 @@
 				3B063D5E1F3A21A800B5271C /* RPGAapp */,
 				3B73F91C1F8FB04900EA7E6A /* RPGAappTests */,
 				3BD335871FF28B2E004F70BF /* RPGAappUITests */,
+				47322C71237ABAD9009D1260 /* periphery */,
 			);
 		};
 /* End PBXProject section */
@@ -858,6 +864,23 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		47322C75237ABADC009D1260 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -rfd /Users/jakubberkop/Library/Caches/com.peripheryapp.periphery\nperiphery scan --workspace RPGAapp.xcworkspace --targets \"RPGAapp\" --schemes \"RPGAapp\" --verbose --aggressive\n\n";
 		};
 		8C38864759148D99E6708452 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -918,7 +941,6 @@
 				3B3C05311F3BC1D600CFB002 /* MapViewController.swift in Sources */,
 				3B50DC021F40EB6B0040DCCC /* MPManager.swift in Sources */,
 				3BDBD9EC20ACD45D00E0EB62 /* Character+CoreDataProperties.swift in Sources */,
-				3B7B159D1F3DFDB30055EE5F /* StoreDetailViewController.swift in Sources */,
 				3B88010C20B2E9A100AB2C62 /* Store+CoreDataClass.swift in Sources */,
 				3BDBD9F120ACD45D00E0EB62 /* Session+CoreDataProperties.swift in Sources */,
 				3BA749A5213951D0002E09A1 /* TextureRequest.swift in Sources */,
@@ -991,7 +1013,6 @@
 				3BDBDA0820ACD45D00E0EB62 /* SubCategory+CoreDataClass.swift in Sources */,
 				3BDBD9F320ACD45D00E0EB62 /* Ability+CoreDataProperties.swift in Sources */,
 				3BDBDA0D20ACD4F400E0EB62 /* SubCurrency+CoreDataProperties.swift in Sources */,
-				3B7FCD961F3F784700AC4193 /* StoreMenuViewController.swift in Sources */,
 				3B88010E20B2E9A100AB2C62 /* StoreAvalibleItem+CoreDataClass.swift in Sources */,
 				47A61DD72357500B00DBEBCF /* CoreDataStack.swift in Sources */,
 				3B079FE120AF754200D70BBB /* ProfileFieldCell.swift in Sources */,
@@ -1364,6 +1385,22 @@
 			};
 			name = Release;
 		};
+		47322C73237ABAD9009D1260 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		47322C74237ABAD9009D1260 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1399,6 +1436,15 @@
 			buildConfigurations = (
 				3BD335901FF28B2E004F70BF /* Debug */,
 				3BD335911FF28B2E004F70BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47322C72237ABAD9009D1260 /* Build configuration list for PBXAggregateTarget "periphery" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47322C73237ABAD9009D1260 /* Debug */,
+				47322C74237ABAD9009D1260 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

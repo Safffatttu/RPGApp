@@ -52,10 +52,6 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 	}
 
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        // Local variable inserted by Swift 4.2 migrator.
-//        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-//        let chosenImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as! UIImage
         let chosenImage = info[UIImagePickerController.InfoKey.editedImage] as! UIImage
 		dismiss(animated: true, completion: nil)
 
@@ -86,14 +82,4 @@ class MapViewController: UIViewController, UIImagePickerControllerDelegate, UINa
 		let action = MapTextureChanged(mapId: mapId)
 		PackageService.pack.send(action: action)
 	}
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }

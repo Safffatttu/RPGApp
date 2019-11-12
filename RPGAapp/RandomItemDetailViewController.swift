@@ -50,7 +50,6 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         tableView.accessibilityIdentifier = "selectedTable"
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: .reloadRandomItemTable, object: nil)
         super.viewDidAppear(animated)

@@ -35,7 +35,7 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPackages), name: .reloadTeam, object: nil)
         
         self.preferredContentSize = CGSize(width: 200, height: height)
-        self.popoverPresentationController?.sourceRect = CGRect(x: 0, y: y, width: 0,height: 0)
+        self.popoverPresentationController?.sourceRect = CGRect(x: 0, y: y, width: 0, height: 0)
         self.popoverPresentationController?.permittedArrowDirections = .right
         
         super.viewDidLoad()
