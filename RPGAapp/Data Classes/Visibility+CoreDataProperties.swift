@@ -44,7 +44,8 @@ extension Visibility {
 
 extension Visibility {
     
-    static func createVisibility() -> Visibility{
+    @discardableResult
+    static func createVisibility() -> Visibility {
         let context = CoreDataStack.managedObjectContext
         let newVisibility = NSEntityDescription.insertNewObject(forEntityName: String(describing: Visibility.self), into: context) as! Visibility
         

@@ -125,7 +125,7 @@ extension Session {
         let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
         session.name = NSLocalizedString("Session", comment: "")
         session.gameMaster = UIDevice.current.name
-        session.current = true
+        
         session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date()) + String(myRand(100000))))
 
         let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
@@ -140,6 +140,9 @@ extension Session {
         var devices = PackageService.pack.session.connectedPeers.map { $0.displayName }
         devices.append(UIDevice.current.name)
         session.devices = NSSet(array: devices)
+        
+        Load.sessions().forEach{ $0.current = false }
+        session.current = true
         
         CoreDataStack.saveContext()
 
