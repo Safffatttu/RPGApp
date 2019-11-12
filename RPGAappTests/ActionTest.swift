@@ -59,10 +59,10 @@ class ActionTest: XCTestCase {
 	}
 
 	let actions = [ ActionTest.createCharacterAction(),
-//                    ActionTest.sendItemAction(),
 					ActionTest.createPackgeAction(),
 					ActionTest.deletePackageAction(),
 					ActionTest.adddItemToPackageAction(),
+                    ActionTest.addItemToCharacter(),
 					ActionTest.delteItemFromCharacter(),
 					ActionTest.newSessionAction(),
 					ActionTest.sessionSwitchedAction(),
@@ -299,4 +299,34 @@ class ActionTest: XCTestCase {
 		return action
 	}
 
+    public static func addItemToCharacter() -> NSMutableDictionary {
+        guard let character = Load.characters().randomElement() else { return NSMutableDictionary() }
+        let characterId = character.id
+        
+        let action = NSMutableDictionary()
+        let actionType = NSNumber(value: ActionType.itemCharacterAdded.rawValue)
+        
+        action.setValue(actionType, forKey: "action")
+        
+        let itemsId = NSMutableArray()
+        let itemsCount = NSMutableArray()
+        
+        let items = Load.items()
+        let numberOfItems = Int(arc4random_uniform(100))
+        
+        for _ in 0...numberOfItems {
+            guard let itemId = items.randomElement()?.id else { continue }
+            let itemCount = Int(arc4random_uniform(100))
+            itemsId.add(itemId)
+            itemsCount.add(itemCount)
+        }
+
+        action.setValue(actionType, forKey: "action")
+        action.setValue(characterId, forKey: "characterId")
+        
+        action.setValue(itemsId, forKey: "itemsId")
+        action.setValue(itemsCount, forKey: "itemsCount")
+
+        return action
+    }
 }
