@@ -207,7 +207,7 @@ extension CatalogeDetail: catalogeDetailCellDelegate {
 
 		let cellItem = (self.diffCalculator?.value(atIndexPath: indexPath!))
 
-		let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
+		let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddToPackage")
 
 		popController.modalPresentationStyle = .popover
 

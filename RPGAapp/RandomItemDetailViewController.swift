@@ -117,7 +117,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     func addToPackage(_ sender: UIButton) {
         let indexPath = getCurrentCellIndexPath(sender, tableView: tableView)
 
-        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddToPackage")
 
         popController.modalPresentationStyle = .popover
 
@@ -171,7 +171,7 @@ class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableView
     }
 
     @IBAction func addAllToPackage(_ sender: UIView) {
-        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "addToPackage")
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddToPackage")
 
         popController.modalPresentationStyle = .popover
 

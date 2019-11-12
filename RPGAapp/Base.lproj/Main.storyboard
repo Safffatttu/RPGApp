@@ -389,7 +389,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="JjZ-q0-tPj">
-                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -774,7 +774,7 @@
         <!--Show Item Info Popover-->
         <scene sceneID="Tx7-Yc-G7w">
             <objects>
-                <viewController storyboardIdentifier="showInfoPop" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aai-j2-H7u" customClass="showItemInfoPopover" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showInfoPop" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Aai-j2-H7u" customClass="ShowItemInfoPopover" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AOw-hl-Z1R"/>
                         <viewControllerLayoutGuide type="bottom" id="gbQ-sk-7EW"/>
