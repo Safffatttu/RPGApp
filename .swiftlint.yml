@@ -14,8 +14,8 @@ disabled_rules: # rule identifiers to exclude from running
   # - comma
   - cyclomatic_complexity
   - function_body_length
-  # - trailing_whitespace
-  # - vertical_whitespace
+  - trailing_whitespace
+  - vertical_whitespace
 
 opt_in_rules:
   # - empty_count
