@@ -11,7 +11,6 @@ import MultipeerConnectivity
 
 func packSessionForMessage(_ session: Session) -> NSDictionary {
 	let current = session.current
-	//let devices = NSArray(array: (session.devices as! NSSet).allObjects)
 	let gameMaster = session.gameMaster
 	let gameMasterName = session.gameMasterName
 	let id = session.id
@@ -139,7 +138,6 @@ func packSessionForMessage(_ session: Session) -> NSDictionary {
 
 	let dictionary = NSMutableDictionary()
 	dictionary.setValue(current, forKey: "current")
-	//dictionary.setValue(devices, forKey: "devices")
 	dictionary.setValue(gameMaster, forKey: "gameMaster")
 	dictionary.setValue(gameMasterName, forKey: "gameMasterName")
 	dictionary.setValue(id, forKey: "id")
@@ -179,7 +177,6 @@ func unPackSession(from dictionary: NSDictionary) -> Session? {
 	session.id = id
 	session.gameMaster = gameMaster
 	session.gameMasterName = gameMasterName
-	//session.devices	= NSSet(array: devices as! [Any])
 
 	let PLN = Load.currencies().first { $0.name == "PLN" }
 	session.currency = PLN

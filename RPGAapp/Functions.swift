@@ -40,8 +40,6 @@ func forTailingZero(_ temp: Double) -> String {
 
 func loadItemsFromAsset() {
     let context = CoreDataStack.managedObjectContext
-//    var currency: Currency
-//    var subCurrency: SubCurrency
 
     var currentCategory: Category?
     var currentSubCategory: SubCategory?
@@ -59,14 +57,6 @@ func loadItemsFromAsset() {
 
     for line in itemList {
         if line.first == "DATA"{
-//            currency = NSEntityDescription.insertNewObject(forEntityName: String(describing: Currency.self), into: context) as! Currency
-//            currency.name = "Złoty"
-//            currency.globalRate = Double(line[2])!
-//
-//            subCurrency = NSEntityDescription.insertNewObject(forEntityName: String(describing: SubCurrency.self), into: context) as! SubCurrency
-//            subCurrency.name = "PLN"
-//            subCurrency.rate = 1
-
             continue
         }
 
@@ -140,8 +130,6 @@ func whisper(messege: String) {
 }
 
 func save(dictionary: NSDictionary) -> URL {
-
-	//let randomFilename = UUID().uuidString
 	let url = getDocumentsDirectory().appendingPathComponent("session" + String(describing: Date())).appendingPathExtension("rpgs")
 	dictionary.write(to: url, atomically: true)
 
