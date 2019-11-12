@@ -109,7 +109,26 @@ open class InlinePickerRowFormer<T: UITableViewCell, S>
             $0.pickerItems = pickerItems
             $0.selectedRow = selectedRow
             $0.enabled = enabled
-        }.onValueChanged(valueChanged).update()
+        }
+        
+        inlineRowFormer.onValueChanged({[unowned self] picker in
+            if self.enabled {
+                let inlineRowFormer = self.inlineRowFormer as! PickerRowFormer<InlineCellType, S>
+                let inlinePickerItem = picker as! InlinePickerItem
+                let displayLabel = self.cell.formDisplayLabel()
+
+                self.selectedRow = inlineRowFormer.selectedRow
+                displayLabel?.text = inlinePickerItem.title
+                if let displayTitle = inlinePickerItem.displayTitle {
+                    displayLabel?.attributedText = displayTitle
+                } else {
+                    if self.displayTextColor == nil { self.displayTextColor = displayLabel?.textColor ?? .black }
+                    _ = self.displayEditingColor.map { displayLabel?.textColor = $0 }
+                }
+                self.onValueChanged?(inlinePickerItem)
+            }
+
+        }).update()
     }
 
     open override func cellSelected(indexPath: IndexPath) {
@@ -163,21 +182,4 @@ open class InlinePickerRowFormer<T: UITableViewCell, S>
     private final var titleColor: UIColor?
     private final var displayTextColor: UIColor?
     
-    private func valueChanged(pickerItem: PickerItem<S>) {
-        if enabled {
-            let inlineRowFormer = self.inlineRowFormer as! PickerRowFormer<InlineCellType, S>
-            let inlinePickerItem = pickerItem as! InlinePickerItem
-            let displayLabel = cell.formDisplayLabel()
-            
-            selectedRow = inlineRowFormer.selectedRow
-            displayLabel?.text = inlinePickerItem.title
-            if let displayTitle = inlinePickerItem.displayTitle {
-                displayLabel?.attributedText = displayTitle
-            } else {
-                if displayTextColor == nil { displayTextColor = displayLabel?.textColor ?? .black }
-                _ = displayEditingColor.map { displayLabel?.textColor = $0 }
-            }
-            onValueChanged?(inlinePickerItem)
-        }
-    }
 }
