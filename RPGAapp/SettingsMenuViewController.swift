@@ -563,12 +563,18 @@ extension SettingMenu: settingCellDelegate {
 		guard let index = getCurrentCellIndexPath(sender, tableView: self.tableView) else { return } 
 
 		if index.section == 1 {
-			createSeesion()
+            let session = Session.createSeesion()
+            sessions.append(session)
+            for ses in sessions.filter({ $0.id != session.id }) {
+                ses.current = false
+            }
 		} else if index.section == 2 {
 			createCurrency()
 		} else if index.section == 3 {
 			createVisibility()
 		}
+        
+        updateDiffTable()
     }
 
 	func createCurrency() {
@@ -610,46 +616,6 @@ extension SettingMenu: settingCellDelegate {
 		PackageService.pack.send(action: action)
 	}
 
-	func createSeesion() {
-		let context = CoreDataStack.managedObjectContext
-		let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-		session.name = NSLocalizedString("Session", comment: "")
-		session.gameMaster = UIDevice.current.name
-		session.current = true
-		session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date()) + String(myRand(100000))))
-
-		let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
-
-		newMap.id = String(strHash(session.id!)) + String(describing: Date())
-		newMap.current = true
-
-		session.addToMaps(newMap)
-
-		let PLN = Load.currencies().first { $0.name == "PLN" }
-		session.currency = PLN
-
-		var devices = PackageService.pack.session.connectedPeers.map { $0.displayName }
-		devices.append(UIDevice.current.name)
-
-		session.devices = NSSet(array: devices)
-
-		sessions.append(session)
-
-		CoreDataStack.saveContext()
-
-		for sessio in sessions.filter({ $0.current }) {
-			sessio.current = false
-		}
-		session.current = true
-
-		updateDiffTable()
-
-		NotificationCenter.default.post(name: .reloadTeam, object: nil)
-		NotificationCenter.default.post(name: .currencyChanged, object: nil)
-
-		let action = SessionReceived(session: session, setCurrent: session.current)
-		PackageService.pack.send(action: action)
-    }
 }
 
 extension Notification.Name {
