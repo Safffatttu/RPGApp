@@ -12,7 +12,8 @@ import CoreData
 
 extension ItemHandler {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ItemHandler> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<ItemHandler> {
         return NSFetchRequest<ItemHandler>(entityName: "ItemHandler")
     }
 

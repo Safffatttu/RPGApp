@@ -12,7 +12,8 @@ import CoreData
 
 extension Ability {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Ability> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Ability> {
         return NSFetchRequest<Ability>(entityName: "Ability")
     }
 

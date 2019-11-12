@@ -12,7 +12,8 @@ import CoreData
 
 extension SubCategory {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<SubCategory> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<SubCategory> {
         return NSFetchRequest<SubCategory>(entityName: "SubCategory")
     }
 
@@ -38,4 +39,3 @@ extension SubCategory {
     @NSManaged public func removeFromItems(_ values: NSSet)
     
 }
-

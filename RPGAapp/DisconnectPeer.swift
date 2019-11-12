@@ -9,37 +9,35 @@ import Foundation
 import MultipeerConnectivity
 
 struct DisconnectPeer: Action {
-	
-	var actionType: ActionType = ActionType.disconnectPeer
-	var data: ActionData{
-		get{
-			let data = ActionData(dictionary: [
-				"peer": peer
-				])
-			return data
-		}
+
+	var actionType: ActionType = .disconnectPeer
+	var data: ActionData {
+		let data = ActionData(dictionary: [
+			"peer": peer
+			])
+		return data
 	}
-	
+
 	var sender: MCPeerID?
-	
+
 	var peer: String
-	
+
 	var actionData: ActionData?
-	
-	init(actionData: ActionData, sender: MCPeerID){
+
+	init(actionData: ActionData, sender: MCPeerID) {
 		self.sender = sender
-		
+	
 		self.peer = actionData.value(forKey: "peer") as! String
-		
+	
 		self.actionData = actionData
 	}
-	
-	init(peer: String){
+
+	init(peer: String) {
 		self.peer = peer
 	}
-	
-	func execute(){
-		if peer == UIDevice.current.name{
+
+	func execute() {
+		if peer == UIDevice.current.name {
 			PackageService.pack.session.disconnect()
 		}
 	}

@@ -9,19 +9,19 @@ import Foundation
 import UIKit
 import Former
 
-final class CenteredLabelCell: UITableViewCell, LabelFormableRow{
+final class CenteredLabelCell: UITableViewCell, LabelFormableRow {
 
 	@IBOutlet weak var centerTextLabel: UILabel!
-	
+
 	func formTextLabel() -> UILabel? {
 		return centerTextLabel
 	}
-	
+
 	func formSubTextLabel() -> UILabel? {
 		return nil
 	}
-	
+
 	func updateWithRowFormer(_ rowFormer: RowFormer) {
 	}
-	
+
 }

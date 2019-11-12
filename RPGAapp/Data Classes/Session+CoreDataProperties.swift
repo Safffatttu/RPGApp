@@ -8,11 +8,13 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 extension Session {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Session> {
+    @nonobjc
+    public class func fetchRequest() -> NSFetchRequest<Session> {
         return NSFetchRequest<Session>(entityName: "Session")
     }
 
@@ -114,4 +116,42 @@ extension Session {
     @objc(removeNotes:)
     @NSManaged public func removeFromNotes(_ values: NSSet)
 
+}
+extension Session {
+    
+    @discardableResult
+    static func create() -> Session {
+        let context = CoreDataStack.managedObjectContext
+        let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
+        session.name = NSLocalizedString("Session", comment: "")
+        session.gameMaster = UIDevice.current.name
+        
+        session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date()) + String(myRand(100000))))
+
+        let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
+        newMap.id = String(strHash(session.id!)) + String(describing: Date())
+        newMap.current = true
+
+        session.addToMaps(newMap)
+
+        let PLN = Load.currencies().first { $0.name == "PLN" }
+        session.currency = PLN
+
+        var devices = PackageService.pack.session.connectedPeers.map { $0.displayName }
+        devices.append(UIDevice.current.name)
+        session.devices = NSSet(array: devices)
+        
+        Load.sessions().forEach{ $0.current = false }
+        session.current = true
+        
+        CoreDataStack.saveContext()
+
+        NotificationCenter.default.post(name: .reloadTeam, object: nil)
+        NotificationCenter.default.post(name: .currencyChanged, object: nil)
+
+        let action = SessionReceived(session: session, setCurrent: session.current)
+        PackageService.pack.send(action: action)
+        
+        return session
+    }
 }
