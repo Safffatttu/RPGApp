@@ -383,7 +383,7 @@
         <!--Cataloge Menu-->
         <scene sceneID="YF8-Wf-jfI">
             <objects>
-                <tableViewController id="4zW-xu-N3D" customClass="catalogeMenu" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4zW-xu-N3D" customClass="CatalogeMenu" customModule="RPGAapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="gXH-uA-J4E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
