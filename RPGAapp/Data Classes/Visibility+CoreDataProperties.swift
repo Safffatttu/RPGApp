@@ -72,4 +72,3 @@ extension Visibility {
         return newVisibility
     }
 }
-
