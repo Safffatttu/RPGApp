@@ -37,7 +37,7 @@ struct ItemListRecieved: Action {
 	}
 
 	func execute() {
-		let localItemList = Load.items().map {$0.id!}
+		let localItemList = Load.items().map { $0.id! }
 	
 		let requestList = recievedItemList.filter {itemId in
 			!localItemList.contains(itemId)

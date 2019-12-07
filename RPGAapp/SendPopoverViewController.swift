@@ -19,7 +19,7 @@ class SendPopover: UITableViewController, sendPopoverDelegate {
     var team: [Character] = Load.characters(usingVisibility: true)
 	var from: Character? = nil {
 		didSet {
-			team = team.filter {$0 != from}
+			team = team.filter { $0 != from }
 		}
 	}
 

@@ -48,7 +48,7 @@ struct ItemCharacterChanged: Action {
 		guard let character = Load.character(with: characterId) else { return }
 	
 		guard let handler = character.equipment?
-			.first(where: {($0 as? ItemHandler)?.item?.id == itemId}) as? ItemHandler else { return }
+			.first(where: { ($0 as? ItemHandler)?.item?.id == itemId }) as? ItemHandler else { return }
 	
 		handler.count = itemCount
 	

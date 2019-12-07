@@ -63,13 +63,13 @@ class ItemDrawManager {
 			item.propability = Int64(ItemDrawManager.propabilities[Int(item.rarity) - 1])
 		}
 	
-		let weight = Int64(items.map {$0.propability}.reduce(0, +))
+		let weight = Int64(items.map { $0.propability }.reduce(0, +))
 	
 		guard weight > 0 else { return }
 	
 		for _ in 1...numberOf {
 			let newItem = weightedRandom(items: items, weightTotal: weight)
-            var itemHandler = ItemDrawManager.randomlySelected.first(where: {$0.item == newItem})
+            var itemHandler = ItemDrawManager.randomlySelected.first(where: { $0.item == newItem })
 
 			itemHandler?.count += 1
 
@@ -102,7 +102,7 @@ class ItemDrawManager {
 				itemsToDraw = Load.items()
 			}
 
-			itemsToDraw = itemsToDraw.filter({$0.rarity >= setting.minRarity && $0.rarity <= setting.maxRarity})
+			itemsToDraw = itemsToDraw.filter({ $0.rarity >= setting.minRarity && $0.rarity <= setting.maxRarity })
 
 			if itemsToDraw.count == 0 {
 				continue
@@ -133,7 +133,7 @@ class ItemDrawManager {
 
 			let listOfAllItems = listOfListToDrawFrom(drawSetting)
 
-			itemsToDraw = listOfAllItems.flatMap {$0.0}
+			itemsToDraw = listOfAllItems.flatMap { $0.0 }
 
 		} else if let subCategory = self.lastDrawSetting as? SubCategory {
 			itemsToDraw = subCategory.items?.sortedArray(using: [.sortItemByName]) as! [Item]

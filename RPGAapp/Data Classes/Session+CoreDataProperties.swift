@@ -141,7 +141,7 @@ extension Session {
         devices.append(UIDevice.current.name)
         session.devices = NSSet(array: devices)
         
-        Load.sessions().forEach{ $0.current = false }
+        Load.sessions().forEach { $0.current = false }
         session.current = true
         
         CoreDataStack.saveContext()

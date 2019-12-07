@@ -27,7 +27,7 @@ class MapScene: SKScene {
 					entities = entities.filter {$0.character?.visibility == nil
 											|| $0.character?.visibility == visibility}
 	
-				var newMapThings: [(MapEntity,SKSpriteNode)] = []
+				var newMapThings: [(MapEntity, SKSpriteNode)] = []
 
 				for e in entities {
 					let newSprite = SKSpriteNode(entity: e)
@@ -64,7 +64,7 @@ class MapScene: SKScene {
 		background.zPosition = -2
 	
 		self.camera?.addChild(background)
-		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
+		map = Load.currentExistingSession()?.maps?.first(where: { ($0 as! Map).current }) as? Map
 	
 		if let backgroundTexture = map?.background {
 			let image = UIImage(data: backgroundTexture.data! as Data)
@@ -107,7 +107,7 @@ class MapScene: SKScene {
 		let entity = object.0
 		let newPos = object.1
 	
-		guard let sprite = mapThings.first(where: {$0.0 == entity})?.1 else { return }
+		guard let sprite = mapThings.first(where: { $0.0 == entity })?.1 else { return }
 	
 		let moveToAction = SKAction.move(to: newPos, duration: 0.4)
 	
@@ -121,7 +121,7 @@ class MapScene: SKScene {
 		var textureData: Data?
 	
 		if let entity = sender.object as? MapEntity {
-			sprite = mapThings.first(where: {$0.0 == entity})?.1
+			sprite = mapThings.first(where: { $0.0 == entity })?.1
 
 			textureData = entity.texture?.data as Data?
 		} else {
@@ -146,7 +146,7 @@ class MapScene: SKScene {
 
 	@objc
     func reloadEntities() {
-		for sprite in mapThings.map({$0.1}) {
+		for sprite in mapThings.map({ $0.1 }) {
 			sprite.run(SKAction.hide())
 		}
 		reloadBackground()
@@ -154,7 +154,7 @@ class MapScene: SKScene {
 
 	@objc
     func reloadBackground() {
-		map = Load.currentExistingSession()?.maps?.first(where: {($0 as! Map).current}) as? Map
+		map = Load.currentExistingSession()?.maps?.first(where: { ($0 as! Map).current }) as? Map
 		if let backgroundData = map?.background?.data {
 			guard let image = UIImage(data: backgroundData as Data) else { return }
 			let texture = SKTexture(image: image)
@@ -234,7 +234,7 @@ class MapScene: SKScene {
 	func selectNodeForTouch(touchLocation: CGPoint) {
 		let touchedNode = self.atPoint(touchLocation)
 	
-		guard mapThings.map({$0.1}).contains(touchedNode) else {
+		guard mapThings.map({ $0.1 }).contains(touchedNode) else {
 			selectedNode?.removeAllActions()
 			selectedNode = nil
 			return
@@ -295,7 +295,7 @@ class MapScene: SKScene {
 			node.removeAllActions()
 			node.run(scaleBack)
 
-            let entity = mapThings.first(where: {$0.1 == node})?.0
+            let entity = mapThings.first(where: { $0.1 == node })?.0
 			entity?.x = Double(node.position.x)
 			entity?.y = Double(node.position.y)
 
@@ -314,7 +314,7 @@ class MapScene: SKScene {
 	}
 
 	func sendPositionData(node: SKSpriteNode) {
-        guard let entity = mapThings.first(where: {$0.1 == node})?.0 else { return }
+        guard let entity = mapThings.first(where: { $0.1 == node })?.0 else { return }
 	
 		let action = MapEntityMoved(mapEntity: entity)	
 		PackageService.pack.send(action: action)

@@ -347,8 +347,8 @@ class NewItemForm: FormViewController {
 			newItem.addToItemAtribute(attribute)
 		}
 
-		let atributesToDelete = Load.itemAtributes().filter({$0.item == nil})
-		atributesToDelete.forEach {context.delete($0)}
+		let atributesToDelete = Load.itemAtributes().filter({ $0.item == nil })
+		atributesToDelete.forEach { context.delete($0) }
 	
 		CoreDataStack.saveContext()
 	

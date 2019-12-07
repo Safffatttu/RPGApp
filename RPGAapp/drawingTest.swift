@@ -114,19 +114,19 @@ class DrawingTest: XCTestCase {
     func randomFilter() -> [String: Double?] {
         let items = Load.items()
         var maxPrice: Double = {
-            return (items.max { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
+            return (items.max { (item1, item2) -> Bool in item1.price < item2.price }?.price)!
         }()
 
         var minPrice: Double = {
-            return (items.min { (item1, item2) -> Bool in item1.price < item2.price}?.price)!
+            return (items.min { (item1, item2) -> Bool in item1.price < item2.price }?.price)!
         }()
 
         var maxRarity: Double = {
-            return Double((items.max { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
+            return Double((items.max { (item1, item2) -> Bool in item1.rarity < item2.rarity }?.rarity)!)
         }()
 
         var minRarity: Double = {
-            return Double((items.min { (item1, item2) -> Bool in item1.rarity < item2.rarity}?.rarity)!)
+            return Double((items.min { (item1, item2) -> Bool in item1.rarity < item2.rarity }?.rarity)!)
         }()
 
         maxPrice = Double(myRand(Int(maxPrice)))

@@ -42,7 +42,7 @@ func stack(_ array: [Int], _ n: Int) -> [Int] {
 
 
 public func countOccurances(_ array: [Int], _ number: Int) -> Int {
-	return array.filter({$0 == number}).count
+	return array.filter({ $0 == number }).count
 }
 
 func rollDices(_ count: Int, ofType: Int = 6) -> [Int] {

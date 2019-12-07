@@ -43,7 +43,7 @@ struct AbilityRemoved: Action {
 
 	func execute() {
 		guard let character = Load.character(with: characterId) else { return }
-		guard let ability = character.abilities?.first(where: {($0 as? Ability)?.id == abilityId}) as? Ability else { return }
+		guard let ability = character.abilities?.first(where: { ($0 as? Ability)?.id == abilityId }) as? Ability else { return }
 
 		let contex = CoreDataStack.managedObjectContext
 

@@ -95,18 +95,18 @@ public struct Load {
 			print(error)
 		}
 
-		return sessions.first(where: {$0.id == Id})
+		return sessions.first(where: { $0.id == Id })
 	}
 
 	public static func currentExistingSession() -> Session? {
-		let session = Load.sessions().first(where: {$0.current})
+		let session = Load.sessions().first(where: { $0.current })
 
 		return session
 	}
 
 	public static func currentSession() -> Session {
 
-		let sessions = Load.sessions().filter {$0.current}
+		let sessions = Load.sessions().filter { $0.current }
 
 		if sessions.count == 0 {
 			let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
@@ -122,12 +122,12 @@ public struct Load {
 
 			session.addToMaps(newMap)
 
-			let PLN = Load.currencies().first {$0.name == "PLN"}
+			let PLN = Load.currencies().first { $0.name == "PLN" }
 			session.currency = PLN
 
 			CoreDataStack.saveContext()
 
-			var devices = PackageService.pack.session.connectedPeers.map {$0.displayName}
+			var devices = PackageService.pack.session.connectedPeers.map { $0.displayName }
 			devices.append(UIDevice.current.name)
 
 			let action = SessionReceived(session: session)
@@ -137,7 +137,7 @@ public struct Load {
 			return session
 		}
 
-		var currentSession = sessions.first(where: {$0.current == true})
+		var currentSession = sessions.first(where: { $0.current == true })
 
 		if currentSession == nil {
 			currentSession = sessions.first
@@ -157,7 +157,7 @@ public struct Load {
 
 		if usingVisiblitiy {
 			let visiblity = Load.currentVisibility()
-			packages = packages.filter {$0.visibility == visiblity}
+			packages = packages.filter { $0.visibility == visiblity }
 		}
 
         return packages
@@ -227,7 +227,7 @@ public struct Load {
     }
 
 	public static func currentMap(session: Session) -> Map {
-        return session.maps?.first(where: {($0 as! Map).current}) as! Map
+        return session.maps?.first(where: { ($0 as! Map).current }) as! Map
 	}
 
 	public static func map(withId id: String) -> Map? {
@@ -279,7 +279,7 @@ public struct Load {
 		if let currency = session?.currency {
 			return currency
 		} else {
-			return currencies().first(where: {$0.name == "PLN"})
+			return currencies().first(where: { $0.name == "PLN" })
 		}
 	}
 
@@ -292,7 +292,7 @@ public struct Load {
 	public static func currentVisibility() -> Visibility? {
 		let visibilities = Load.visibilities()
 
-		return visibilities.first(where: {$0.current})
+		return visibilities.first(where: { $0.current })
 	}
 
 	public static func visibility(with id: String) -> Visibility? {
@@ -363,7 +363,7 @@ public struct Load {
 	}
 
 	public static var priceRange: (Double, Double) {
-		let priceList = Load.items().map {$0.price}
+		let priceList = Load.items().map { $0.price }
 		return (priceList.min() ?? 0, priceList.max() ?? 0)
 	}
 }

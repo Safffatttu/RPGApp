@@ -183,7 +183,7 @@ final class CatalogeSortSection: CatalogeModelSection {
 	}
 
 	var sortBy: SortType {
-		if let selectedType = store.first(where: {$0.selected})?.type {
+		if let selectedType = store.first(where: { $0.selected })?.type {
 			return selectedType
 		} else {
 			return SortType.categories
@@ -239,7 +239,7 @@ final class CatalogeFilterSection: CatalogeModelSection {
 	@objc
     private func reloadPriceRange() {
 		let range = Load.priceRange
-		let priceFilters = store.filter({($0 as? CatalogeFilterItem)?.filterType == FilterType.price})
+		let priceFilters = store.filter { ($0 as? CatalogeFilterItem)?.filterType == FilterType.price }
 		for case let filter as CatalogeFilterItem in priceFilters {
 			filter.range = range
 		}

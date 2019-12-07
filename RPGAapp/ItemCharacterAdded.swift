@@ -83,7 +83,7 @@ struct ItemCharacterAdded: Action {
 			let data = requestAction.data
 			data.setValue(requestAction.actionType.rawValue, forKey: "action")
 
-			let request = ItemRequest(with: requestList.map {$0.0}, sender: sender!, action: data)
+			let request = ItemRequest(with: requestList.map { $0.0 }, sender: sender!, action: data)
 
 			ItemRequester.rq.request(request)
 		}

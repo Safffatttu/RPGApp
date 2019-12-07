@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 	
 		guard let newSession = unPackSession(from: sessionDictionary) else { return false }
 	
-		Load.sessions().first(where: {$0.current})?.current = false
+		Load.sessions().first(where: { $0.current })?.current = false
 		newSession.current = true
 	
 		let action = SessionReceived(session: newSession, setCurrent: true)

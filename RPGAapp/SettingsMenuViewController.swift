@@ -586,7 +586,6 @@ extension SettingMenu: settingCellDelegate {
 }
 
 extension Notification.Name {
-    static let reload = Notification.Name("reload")
     static let switchedSession = Notification.Name("switchedSession")
     static let sessionDeleted = Notification.Name("sessionDeleted")
 	static let sessionReceived = Notification.Name("sessionReceived")

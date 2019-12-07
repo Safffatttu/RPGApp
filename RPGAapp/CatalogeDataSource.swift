@@ -129,7 +129,7 @@ class CatalogeDataSource {
 			for item in list {
 				guard let itemSubCategory = item.subCategory else { continue }
 
-				if let index = subCategoryList.firstIndex(where: {$0.0 == itemSubCategory}) {
+				if let index = subCategoryList.firstIndex(where: { $0.0 == itemSubCategory }) {
 					subCategoryList[index].1.append(item)
 				} else {
 					subCategoryList.append((itemSubCategory, [item]))
@@ -139,14 +139,14 @@ class CatalogeDataSource {
 			subCategoryList.sort(by: { ($0.0.category?.name)! < ($1.0.category?.name)!
 				|| (($0.0.category?.name)! == ($1.0.category?.name)! && ($0.0.name)! < ($1.0.name)! )})
 
-			let namedSubCategoryList = subCategoryList.map {($0.0.name!, $0.1)}
-
-			let subCategories = subCategoryList.map {$0.0}
+			let namedSubCategoryList = subCategoryList.map { ($0.0.name!, $0.1) }
+            
+			let subCategories = subCategoryList.map { $0.0 }
 
 			var categories: [(Category, [SubCategory])] = []
 
 			for subCategory in subCategories {
-				if let index = categories.firstIndex(where: { $0.0 === subCategory.category}) {
+				if let index = categories.firstIndex(where: { $0.0 === subCategory.category }) {
 					categories[index].1.append(subCategory)
 				} else {
 					categories.append((subCategory.category!, [subCategory]))
@@ -154,8 +154,8 @@ class CatalogeDataSource {
 			}
 
 			self.menuItems = categories.map { cat, subCats in
-				let sectionCount = subCats.compactMap { sub in subCategoryList.first(where: {$0.0 == sub})?.1.count }
-				let sectionTable: [(String, Int)] = zip(subCats.compactMap {$0.name}, sectionCount).map {$0}
+				let sectionCount = subCats.compactMap { sub in subCategoryList.first(where: { $0.0 == sub })?.1.count }
+				let sectionTable: [(String, Int)] = zip(subCats.compactMap { $0.name }, sectionCount).map { $0 }
 				return (cat.name!, sectionTable)
 				}
 
@@ -175,11 +175,11 @@ class CatalogeDataSource {
 				alphabetDict[itemName]?.append(item)
 			}
 
-			let alphabetArray = Array(alphabetDict).sorted(by: {$0.key < $1.key})
+			let alphabetArray = Array(alphabetDict).sorted(by: { $0.key < $1.key })
 
 			let localizedAlphabet = NSLocalizedString("Alphabet", comment: "")
 			self.menuItems = [(localizedAlphabet,
-			                   zip(alphabetArray.map {$0.key}, alphabetArray.map {$0.value.count}).map {$0}
+			                   zip(alphabetArray.map { $0.key }, alphabetArray.map { $0.value.count }).map { $0 }
 				)]
 
 			return alphabetArray
@@ -202,9 +202,9 @@ class CatalogeDataSource {
 
 				priceThreshold *= thresholdRate
 
-				let itemsLowerThan = newList.filter({$0.price < priceThreshold})
-					.sorted(by: { $0.price < $1.price || ($0.price == $1.price && $0.name! < $1.name!)})
-				newList = newList.filter({$0.price >= priceThreshold})
+				let itemsLowerThan = newList.filter({ $0.price < priceThreshold })
+					.sorted(by: { $0.price < $1.price || ($0.price == $1.price && $0.name! < $1.name!) })
+				newList = newList.filter { $0.price >= priceThreshold }
 
 				let sectionName: String
 
@@ -222,7 +222,7 @@ class CatalogeDataSource {
 			}
 
 			menuItems = [(NSLocalizedString("Price segment", comment: ""),
-			              zip(priceList.map {$0.0}, priceList.map {$0.1.count}).map {$0})]
+			              zip(priceList.map { $0.0 }, priceList.map { $0.1.count }).map { $0 })]
 			return priceList
 
 		case .rarity:
@@ -233,8 +233,8 @@ class CatalogeDataSource {
 
 			while newList.count > 1 {
 
-				let itemsLowerThan = newList.filter({$0.rarity == rarityThreshold}).sorted(by: {$0.name! < $1.name!})
-				newList = newList.filter({$0.rarity != rarityThreshold})
+				let itemsLowerThan = newList.filter({ $0.rarity == rarityThreshold }).sorted(by: { $0.name! < $1.name! })
+				newList = newList.filter({ $0.rarity != rarityThreshold })
 
 				let sectionName = rarityName[Int(rarityThreshold) - 1]
 
@@ -246,7 +246,7 @@ class CatalogeDataSource {
 			}
 
 			menuItems = [(NSLocalizedString("Rarity segment", comment: ""),
-					zip(rarityList.map {$0.0}, rarityList.map {$1.count}).map {$0}
+					zip(rarityList.map { $0.0 }, rarityList.map { $1.count }).map { $0 }
 				)]
 			return rarityList
 

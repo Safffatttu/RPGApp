@@ -41,7 +41,7 @@ struct CharacterHealthChanged: Action {
 	}
 
 	func execute() {
-		guard let character = Load.character(with: characterId) else {return}
+		guard let character = Load.character(with: characterId) else { return }
 	
 		character.health = healthValue
 	

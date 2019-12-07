@@ -50,7 +50,7 @@ class ItemRequestQueue {
 	}
 
 	public func getActionWith(id: String) -> ItemRequest? {
-		return actionsToExecute.drop(while: {$0.id == id}).first
+		return actionsToExecute.drop(while: { $0.id == id }).first
 	}
 
 }

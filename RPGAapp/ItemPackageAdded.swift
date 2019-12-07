@@ -64,7 +64,7 @@ struct ItemPackageAdded: Action {
 	
 		if requestList.count != 0 {
 
-			let requestAction = ItemPackageAdded(package: package, itemsId: requestList.map {$0.0}, itemsCount: requestList.map {$0.1})
+			let requestAction = ItemPackageAdded(package: package, itemsId: requestList.map { $0.0 }, itemsCount: requestList.map { $0.1 })
 
 			let data = requestAction.data
 			data.setValue(self.actionType.rawValue, forKey: "action")

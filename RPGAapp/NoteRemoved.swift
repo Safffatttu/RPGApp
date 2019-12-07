@@ -37,7 +37,7 @@ struct NoteRemoved: Action {
 	}
 
 	func execute() {
-        guard let note = Load.notes().first(where: {$0.id == noteId}) else { return }
+        guard let note = Load.notes().first(where: { $0.id == noteId }) else { return }
 	
 		let contex = CoreDataStack.managedObjectContext
 	

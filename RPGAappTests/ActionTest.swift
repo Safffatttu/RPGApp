@@ -194,7 +194,7 @@ class ActionTest: XCTestCase {
 
 		session.addToMaps(newMap)
 
-		var devices = PackageService.pack.session.connectedPeers.map {$0.displayName}
+		var devices = PackageService.pack.session.connectedPeers.map { $0.displayName }
 		devices.append(UIDevice.current.name)
 
 		CoreDataStack.saveContext()
@@ -278,7 +278,7 @@ class ActionTest: XCTestCase {
 
 		guard let character = Load.characters().randomElement() else { return NSMutableDictionary() }
 
-		guard (character.abilities?.sortedArray(using: [.sortAbilityByName]).count)! > 0 else { return NSMutableDictionary()	}
+		guard (character.abilities?.sortedArray(using: [.sortAbilityByName]).count)! > 0 else { return NSMutableDictionary() }
 
 		let characterId = character.id
 

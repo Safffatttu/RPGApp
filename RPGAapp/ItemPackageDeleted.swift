@@ -42,7 +42,7 @@ struct ItemPackageDeleted: Action {
 
 	func execute() {
 		guard let package = Load.packages(with: packageId) else { return }
-		guard let itemHandlerToRemove = package.items?.first(where: {($0 as! ItemHandler ).item?.id == itemId}) as? ItemHandler else { return }
+		guard let itemHandlerToRemove = package.items?.first(where: { ($0 as! ItemHandler ).item?.id == itemId }) as? ItemHandler else { return }
 	
 		package.removeFromItems(itemHandlerToRemove)
 	

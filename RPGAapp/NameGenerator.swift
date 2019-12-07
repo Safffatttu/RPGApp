@@ -22,8 +22,8 @@ class NameGenerator {
 										]
 
 	static func createVisibilityData() -> (String, UIColor) {
-		let colorsAlreadyUsed = Set(Load.visibilities().map {$0.name!})
-		let allColors = Set(self.colors.map {$0.0})
+		let colorsAlreadyUsed = Set(Load.visibilities().map { $0.name! })
+		let allColors = Set(self.colors.map { $0.0 })
 	
 		let colorsLeft = allColors.subtracting(colorsAlreadyUsed)
 	
@@ -31,7 +31,7 @@ class NameGenerator {
 			return colors.randomElement()!
 		} else {
 			if let new = Array(colorsLeft).randomElement() {
-				return colors.first(where: {$0.0 == new})!
+				return colors.first(where: { $0.0 == new })!
 			} else {
 				return colors.randomElement()!
 			}
