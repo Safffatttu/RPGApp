@@ -9,6 +9,8 @@ import Foundation
 import XCTest
 import UIKit
 import CoreData
+import MultipeerConnectivity
+
 @testable import RPGAapp
 
 class ActionTest: XCTestCase {
@@ -40,8 +42,15 @@ class ActionTest: XCTestCase {
 
 				guard let randAction = self.actions.randomElement() else { continue }
 
-				self.ad.receiveLocally(randAction)
-//                self.pack.send(action: randAction)
+                let data = randAction()
+				self.ad.receiveLocally(data)
+                
+                guard let action = try? AnyAction(actionData: data) else {
+                    print(data)
+                    continue
+                }
+                
+                self.pack.send(action: action)
 
 				sleep(1)
 			}
@@ -54,27 +63,27 @@ class ActionTest: XCTestCase {
 
 			guard let randAction = self.actions.randomElement() else { continue }
 
-			self.ad.receiveLocally(randAction)
+            self.ad.receiveLocally(try! randAction())
 		}
 	}
 
-	let actions = [ ActionTest.createCharacterAction(),
-					ActionTest.createPackgeAction(),
-					ActionTest.deletePackageAction(),
-					ActionTest.adddItemToPackageAction(),
-                    ActionTest.addItemToCharacter(),
-					ActionTest.delteItemFromCharacter(),
-					ActionTest.newSessionAction(),
-					ActionTest.sessionSwitchedAction(),
-					ActionTest.deleteSessionAction(),
-					ActionTest.generatedRandomNumber(),
-					ActionTest.addAbilityAction(),
-					ActionTest.valueOfAbilityChangedAction()
-
+        
+    let actions = [ ActionTest.createCharacterAction,
+					ActionTest.createPackgeAction,
+					ActionTest.deletePackageAction,
+					ActionTest.adddItemToPackageAction,
+                    ActionTest.addItemToCharacter,
+					ActionTest.delteItemFromCharacter,
+					ActionTest.newSessionAction,
+					ActionTest.sessionSwitchedAction,
+					ActionTest.deleteSessionAction,
+					ActionTest.generatedRandomNumber,
+					ActionTest.addAbilityAction,
+					ActionTest.valueOfAbilityChangedAction
 	]
 
-	public static func createCharacterAction() -> NSMutableDictionary {
-		let action = NSMutableDictionary()
+	public static func createCharacterAction() -> ActionData {
+        let action = NSMutableDictionary()
 
 		action.setValue(NSNumber(value: ActionType.characterCreated.rawValue), forKey: "action")
 
@@ -98,7 +107,7 @@ class ActionTest: XCTestCase {
 		action.setValue(mapX, forKey: "mapEntityPosX")
 		action.setValue(mapY, forKey: "mapEntityPosY")
 
-		return action
+        return action
 	}
 
 	public static func createPackgeAction() -> NSMutableDictionary {
