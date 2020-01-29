@@ -142,31 +142,32 @@ class RandomItemMenu: UITableViewController {
         return indexPath.section == 0 && drawSettings.count > 0
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, _) in
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, _)   in
             let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor") as! UINavigationController
-			let editController = navController.viewControllers.first as! EditDrawSetting
+            let editController = navController.viewControllers.first as! EditDrawSetting
 
             navController.modalPresentationStyle = .pageSheet
 
             editController.setting = self.drawSettings[indexPath.row]
             editController.editingMode = true
 
-			self.present(navController, animated: true, completion: nil)
+            self.present(navController, animated: true, completion: nil)
         }
         editAction.backgroundColor = .blue
+        
 
-        let deleteAction = UITableViewRowAction(style: .normal, title: "Remove") {[unowned self] (_, indexPath) in
-			let settingToDelete = self.drawSettings[indexPath.row]
+        let deleteAction = UIContextualAction(style: .normal, title: "Remove") {[unowned self] (_, _, _) in
+            let settingToDelete = self.drawSettings[indexPath.row]
 
-			if (ItemDrawManager.drawManager.lastDrawSetting as? DrawSetting) == settingToDelete {
-				ItemDrawManager.drawManager.lastDrawSetting = nil
-			}
+            if (ItemDrawManager.drawManager.lastDrawSetting as? DrawSetting) == settingToDelete {
+                ItemDrawManager.drawManager.lastDrawSetting = nil
+            }
 
-			self.drawSettings.remove(at: indexPath.row)
+            self.drawSettings.remove(at: indexPath.row)
 
-			let context = CoreDataStack.managedObjectContext
-			context.delete(settingToDelete)
+            let context = CoreDataStack.managedObjectContext
+            context.delete(settingToDelete)
 
             CoreDataStack.saveContext()
 
@@ -181,9 +182,9 @@ class RandomItemMenu: UITableViewController {
 
         deleteAction.backgroundColor = .red
 
-        return [deleteAction, editAction]
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
-
+    
     @objc
     func addDrawSetting(_ sender: UIBarButtonItem) {
         let addDrawSettingControler = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "settingEditor")

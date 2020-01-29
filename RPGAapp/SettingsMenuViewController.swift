@@ -402,8 +402,8 @@ class SettingMenu: UITableViewController {
 			||  indexPath.section == 4
     }
 
-	override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-		var actions: [UITableViewRowAction]?
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+		var actions: [UIContextualAction] = []
 		let localizedYes = NSLocalizedString("Yes", comment: "")
 		let localizedNo = NSLocalizedString("No", comment: "")
 		let localizedRemove = NSLocalizedString("Remove", comment: "")
@@ -412,7 +412,7 @@ class SettingMenu: UITableViewController {
 			actions = []
 
 			let localizedDelete = NSLocalizedString("Delete", comment: "")
-			let removeSession = UITableViewRowAction(style: .destructive, title: localizedDelete, handler: {action, path in
+			let removeSession = UIContextualAction(style: .destructive, title: localizedDelete, handler: { (_, _, _) in
 
 				let localizedMessage = NSLocalizedString("Do you want to delete this session?", comment: "")
 				let alert = UIAlertController(title: nil, message: localizedMessage, preferredStyle: .alert)
@@ -420,9 +420,9 @@ class SettingMenu: UITableViewController {
 				let alertYes = UIAlertAction(title: localizedYes, style: .destructive, handler: { (_) -> Void in
 
 					let context = CoreDataStack.managedObjectContext
-					let session = self.sessions[path.row - 1]
+					let session = self.sessions[indexPath.row - 1]
 					let sessionId = session.id
-					self.sessions.remove(at: path.row - 1)
+					self.sessions.remove(at: indexPath.row - 1)
 
 					context.delete(session)
 					CoreDataStack.saveContext()
@@ -446,13 +446,13 @@ class SettingMenu: UITableViewController {
 				self.present(alert, animated: true, completion: nil)
 			})
 
-			actions?.append(removeSession)
+			actions.append(removeSession)
 
 			let localizedSendTitle = NSLocalizedString("Send", comment: "")
 
-			let sendSession = UITableViewRowAction(style: .normal, title: localizedSendTitle, handler: {action, path in
+			let sendSession = UIContextualAction(style: .normal, title: localizedSendTitle, handler: { (_, _, _) in
 
-				let session = self.sessions[path.row - 1]
+				let session = self.sessions[indexPath.row - 1]
 
 				let action = SessionReceived(session: session)
 				PackageService.pack.send(action: action)
@@ -463,10 +463,10 @@ class SettingMenu: UITableViewController {
 				whisper(messege: localizedSendSessionString)
 			})
 
-			actions?.append(sendSession)
+			actions.append(sendSession)
 
 			let localizedSharedTitle = NSLocalizedString("Share", comment: "")
-			let shareSession = UITableViewRowAction(style: .normal, title: localizedSharedTitle, handler: {_, path in
+			let shareSession = UIContextualAction(style: .normal, title: localizedSharedTitle, handler: { (_, _, _) in
 				guard self.sessions.count > indexPath.row - 1 && indexPath.row - 1 >= 0  else { return }
 
 				let dict = packSessionForMessage(self.sessions[indexPath.row - 1])
@@ -474,16 +474,16 @@ class SettingMenu: UITableViewController {
 
 				self.documenController = UIDocumentInteractionController(url: url)
 
-				let touchPoint = tableView.rectForRow(at: path)
+				let touchPoint = tableView.rectForRow(at: indexPath)
 				self.documenController.presentOptionsMenu(from: touchPoint, in: tableView, animated: true)
 			})
 
 			shareSession.backgroundColor = UIColor.darkGray
 
-			actions?.append(shareSession)
+			actions.append(shareSession)
 
 		} else if indexPath.section == 2 {
-			let deleteCurrency = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {_, _ in
+			let deleteCurrency = UIContextualAction(style: .destructive, title: localizedRemove, handler: { (_, _, _) in
 
 				let currencyToDelete = self.currencies[indexPath.row - 1]
 
@@ -498,7 +498,7 @@ class SettingMenu: UITableViewController {
 			})
 			let localizedEdit = NSLocalizedString("Edit", comment: "")
 
-			let editCurrency = UITableViewRowAction(style: .normal, title: localizedEdit, handler: {_, _ in
+			let editCurrency = UIContextualAction(style: .normal, title: localizedEdit, handler: { (_, _, _) in
 				let currency = self.currencies[indexPath.row - 1]
 
 				let currencyForm = NewCurrencyForm()
@@ -511,7 +511,7 @@ class SettingMenu: UITableViewController {
 
 			actions = [deleteCurrency, editCurrency]
 		} else if indexPath.section == 3 {
-			let deleteVisibility = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: { _, _ in
+			let deleteVisibility = UIContextualAction(style: .destructive, title: localizedRemove, handler: {  (_, _, _) in
 
 				let visibilityToDelete = self.visibilities[indexPath.row - 1]
 				let visibilityId = visibilityToDelete.id
@@ -532,18 +532,18 @@ class SettingMenu: UITableViewController {
 			actions = [deleteVisibility]
 		} else if indexPath.section == 4 {
 			actions = []
-			let removePeer = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {action, path in
+			let removePeer = UIContextualAction(style: .destructive, title: localizedRemove, handler: { (_, _, _) in
 
-				let peer = PackageService.pack.session.connectedPeers[path.row]
+				let peer = PackageService.pack.session.connectedPeers[indexPath.row]
 				let action = DisconnectPeer(peer: peer.displayName)
 
 				PackageService.pack.send(action: action)
 				PackageService.pack.session.cancelConnectPeer(peer)
 			})
-			actions?.append(removePeer)
+			actions.append(removePeer)
 		}
 
-		return actions
+		return UISwipeActionsConfiguration(actions: actions)
 	}
 
 }

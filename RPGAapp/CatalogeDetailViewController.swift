@@ -171,9 +171,9 @@ extension CatalogeDetail: UITableViewDataSource, UITableViewDelegate {
 		return true
 	}
 
-	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		let localizedRemove = NSLocalizedString("Remove", comment: "")
-		let removeAction = UITableViewRowAction(style: .destructive, title: localizedRemove, handler: {_, _ in
+		let removeAction = UIContextualAction(style: .destructive, title: localizedRemove, handler: { (_, _, _) in
 			if indexPath == self.expandedCell {
 				self.expandedCell = nil
 			}
@@ -187,7 +187,7 @@ extension CatalogeDetail: UITableViewDataSource, UITableViewDelegate {
 		})
 
 		let localizedShare = NSLocalizedString("Share item", comment: "")
-		let sendAction = UITableViewRowAction(style: .normal, title: localizedShare, handler: { _, _ in
+		let sendAction = UIContextualAction(style: .normal, title: localizedShare, handler: { (_, _, _) in
 
 			guard let item = self.diffCalculator?.value(atIndexPath: indexPath) else { return }
 
@@ -197,7 +197,7 @@ extension CatalogeDetail: UITableViewDataSource, UITableViewDelegate {
 			PackageService.pack.send(action: action)
 		})
 
-		return [sendAction, removeAction]
+		return UISwipeActionsConfiguration(actions: [sendAction, removeAction])
 	}
 }
 

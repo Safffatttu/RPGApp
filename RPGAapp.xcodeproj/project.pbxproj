@@ -1264,7 +1264,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_PROFILING_CODE = NO;
 				INFOPLIST_FILE = RPGAapp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LLVM_LTO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -Xfrontend -debug-time-function-bodies";
@@ -1300,7 +1300,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GENERATE_PROFILING_CODE = NO;
 				INFOPLIST_FILE = RPGAapp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_NO_PIE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
