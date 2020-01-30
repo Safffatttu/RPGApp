@@ -50,8 +50,6 @@ struct SessionReceived: Action {
 
 		if let session = Load.session(with: sessionId) {
 			if ProcessInfo.processInfo.arguments.contains("UITests") {
-				UIView.setAnimationsEnabled(false)
-				UIApplication.shared.keyWindow?.layer.speed = 100
 
 				if arc4random() % 2 == 1 {
 					let contex = CoreDataStack.managedObjectContext
