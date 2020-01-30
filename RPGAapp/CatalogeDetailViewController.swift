@@ -7,12 +7,9 @@
 
 import Foundation
 import UIKit
-import FontAwesome_swift
 import CoreData
 import Dwifft
 import Former
-
-let iconSize: CGFloat = 20
 
 class CatalogeDetail: UIViewController, UIPopoverPresentationControllerDelegate {
 

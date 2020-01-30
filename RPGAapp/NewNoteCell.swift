@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import FontAwesome_swift
 import CoreData
 
 class NewNoteCell: UICollectionViewCell {
@@ -15,8 +14,8 @@ class NewNoteCell: UICollectionViewCell {
 	@IBOutlet weak var button: UIButton!
 
 	override func awakeFromNib() {
-		button.titleLabel?.font = UIFont.fontAwesome(ofSize: 100, style: .regular)
-		button.setTitle(String.fontAwesomeIcon(name: .plus), for: .normal)
+		button.setTitle("", for: .normal)
+		button.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
 
 		super.awakeFromNib()
 	}

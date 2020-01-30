@@ -12,8 +12,6 @@ import Dwifft
 
 class RandomItemDetailView: UIViewController, UITableViewDataSource, UITableViewDelegate, randomItemCellDelegate, UIPopoverPresentationControllerDelegate {
 
-    let iconSize: CGFloat = 20
-
     @IBOutlet weak var tableView: UITableView!
 
     var diffCalculator: SingleSectionTableViewDiffCalculator<Val>?

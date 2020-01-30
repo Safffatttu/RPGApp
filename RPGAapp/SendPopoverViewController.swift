@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import FontAwesome_swift
 import CoreData
 
 class SendPopover: UITableViewController, sendPopoverDelegate {
@@ -67,8 +66,8 @@ class SendPopover: UITableViewController, sendPopoverDelegate {
         cell.cellDelegate = self
         if team.count > 0 {
             cell.playerName.text = team[indexPath.row].name
-            cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 20, style: .regular)
-            cell.sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
+            cell.sendButton.setTitle("", for: .normal)
+            cell.sendButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
         } else {
             cell.playerName.text = NSLocalizedString("No characters", comment: "")
             cell.sendButton.isHidden = true

@@ -7,7 +7,6 @@
 import Foundation
 import UIKit
 import Dwifft
-import FontAwesome_swift
 
 class TeamViewCell: UICollectionViewCell {
 
@@ -78,11 +77,11 @@ class TeamViewCell: UICollectionViewCell {
 	
 		let iconSize: CGFloat = 25
 	
-		deleteButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
-		deleteButton.setTitle(String.fontAwesomeIcon(name: .times), for: .normal)
+		deleteButton.setTitle("", for: .normal)
+		deleteButton.setImage(UIImage(systemName: "trash"), for: .normal)
 	
-		editButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
-		editButton.setTitle(String.fontAwesomeIcon(name: .edit), for: .normal)
+		editButton.setTitle("", for: .normal)
+		editButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
 	
 		abilityLabel.text = NSLocalizedString("Abilities", comment: "")
 		equipmentLabel.text = NSLocalizedString("Equipment", comment: "")

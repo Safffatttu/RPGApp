@@ -44,17 +44,17 @@ class RandomItemCell: UITableViewCell {
 	}
 
 	override func awakeFromNib() {
-		sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
-		sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
+		sendButton.setTitle("", for: .normal)
+        sendButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
 	
-		infoButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
-		infoButton.setTitle(String.fontAwesomeIcon(name: .info), for: .normal)
+		infoButton.setTitle("", for: .normal)
+		infoButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
 	
-		redrawButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
-		redrawButton.setTitle(String.fontAwesomeIcon(name: .sync), for: .normal)
+		redrawButton.setTitle("", for: .normal)
+		redrawButton.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
 	
-		packageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
-		packageButton.setTitle(String.fontAwesomeIcon(name: .cube), for: .normal)
+		packageButton.setTitle("", for: .normal)
+		packageButton.setImage(UIImage(systemName: "cube"), for: .normal)
 	
 		NotificationCenter.default.addObserver(self, selector: #selector(reloadPrice), name: .currencyChanged, object: nil)
         super.awakeFromNib()

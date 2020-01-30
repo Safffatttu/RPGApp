@@ -80,7 +80,7 @@ class DrawingTest: XCTestCase {
         for sett in drawSettings {
             let asd = sett.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)]) as! [DrawSubSetting]
             for i in 0...(asd.count - 1) {
-                print(asd[i])
+//                print(asd[i])
             }
         }
 

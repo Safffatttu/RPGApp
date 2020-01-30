@@ -245,9 +245,6 @@ extension EditDrawSetting: UITableViewDataSource, UITableViewDelegate {
 					let cellSubCategories = cellCategory.subCategories?.sortedArray(using: [.sortSubCategoryByName]) as! [SubCategory]
 					cell?.textLabel?.text = cellSubCategories[indexPath.row - 1].name
 				}
-
-                cell?.detailTextLabel?.font = UIFont.fontAwesome(ofSize: CGFloat(20), style: .regular)
-				cell?.detailTextLabel?.text = String.fontAwesomeIcon(name: .paperPlane)
 			}
 
 		} else {

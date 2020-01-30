@@ -52,27 +52,34 @@ struct SessionReceived: Action {
 			let localizedTitle = NSLocalizedString("receive session with id of exising session", comment: "")
 			let localizedMessage = NSLocalizedString("Do you want to replace it or keep local version?", comment: "")
 
-			let alert = UIAlertController(title: localizedTitle, message: localizedMessage, preferredStyle: .alert)
+            if (arc4random() % 2 == 1){
+                let contex = CoreDataStack.managedObjectContext
+                contex.delete(session)
+                self.createSession()
+            }
+            
+            
+//			let alert = UIAlertController(title: localizedTitle, message: localizedMessage, preferredStyle: .alert)
 
-			let localizedReplace = NSLocalizedString("Replace", comment: "")
-			let alertReplace = UIAlertAction(title: localizedReplace, style: .default, handler: { _ in
-				let contex = CoreDataStack.managedObjectContext
+//			let localizedReplace = NSLocalizedString("Replace", comment: "")
+//			let alertReplace = UIAlertAction(title: localizedReplace, style: .default, handler: { _ in
+//				let contex = CoreDataStack.managedObjectContext
+//
+//				contex.delete(session)
+//
+//				self.createSession()
+//			})
 
-				contex.delete(session)
-
-				self.createSession()
-			})
-
-			let localizedKeep = NSLocalizedString("Keep", comment: "")
-
-			let alertKeep = UIAlertAction(title: localizedKeep, style: .default, handler: nil)
-
-			alert.addAction(alertReplace)
-			alert.addAction(alertKeep)
-
-			guard let topViewController = UIApplication.topViewController() else { return }
-
-			topViewController.present(alert, animated: true, completion: nil)
+//			let localizedKeep = NSLocalizedString("Keep", comment: "")
+//
+//			let alertKeep = UIAlertAction(title: localizedKeep, style: .default, handler: nil)
+//
+//			alert.addAction(alertReplace)
+//			alert.addAction(alertKeep)
+//
+//			guard let topViewController = UIApplication.topViewController() else { return }
+//
+//			topViewController.present(alert, animated: true, completion: nil)
 
 		} else {
 			createSession()

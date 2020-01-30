@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import CoreData
-import FontAwesome_swift
 
 class AddToPackage: UITableViewController, addToPackageDelegate {
 
@@ -17,9 +16,7 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
     var item: Item?
     var itemToAdd: ItemHandler?
     var itemsToAdd: [ItemHandler] = []
-    
-    let iconSize: CGFloat = 20
-    
+        
     override func viewDidLoad() {
         var height = Int()
         var y = Int()
@@ -59,10 +56,10 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == packages.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewPackageCell") as! NewPackageCell
-        
-            cell.newPackageButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
-            cell.newPackageButton.setTitle(String.fontAwesomeIcon(name: .plus), for: .normal)
-            
+
+            cell.newPackageButton.setTitle("", for: .normal)
+            cell.newPackageButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+
             cell.cellDelegate = self
             
             return cell
@@ -71,8 +68,8 @@ class AddToPackage: UITableViewController, addToPackageDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PackageCell") as! PackageCell
         cell.packageName.text = packages[indexPath.row].name
         
-        cell.sendButton.titleLabel?.font = UIFont.fontAwesome(ofSize: iconSize, style: .regular)
-        cell.sendButton.setTitle(String.fontAwesomeIcon(name: .paperPlane), for: .normal)
+        cell.sendButton.setTitle("", for: .normal)
+        cell.sendButton.setImage(UIImage(systemName: "paperplane"), for: .normal)
         
         cell.cellDelegate = self
         return cell
