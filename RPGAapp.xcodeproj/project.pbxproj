@@ -115,7 +115,6 @@
 		3BC448392166A49100A03B49 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC448382166A49100A03B49 /* NoteCell.swift */; };
 		3BC4483B2166A80000A03B49 /* NewNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC4483A2166A80000A03B49 /* NewNoteCell.swift */; };
 		3BCD73801F3C4E1400B35D75 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCD737F1F3C4E1400B35D75 /* TeamView.swift */; };
-		3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */; };
 		3BD335931FF291DC004F70BF /* drawingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD335921FF291DC004F70BF /* drawingTest.swift */; };
 		3BD7779221384A5900A03A88 /* SessionSwitched.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7779121384A5900A03A88 /* SessionSwitched.swift */; };
 		3BD777942138506300A03A88 /* PackageCreated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD777932138506300A03A88 /* PackageCreated.swift */; };
@@ -287,7 +286,6 @@
 		3BCF1593210F8B31000E3082 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3BCF1595210F8B31000E3082 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3BD335881FF28B2E004F70BF /* RPGAappUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RPGAappUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPGAappUITests.swift; sourceTree = "<group>"; };
 		3BD3358C1FF28B2E004F70BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BD335921FF291DC004F70BF /* drawingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = drawingTest.swift; path = ../RPGAapp/drawingTest.swift; sourceTree = "<group>"; };
 		3BD7779121384A5900A03A88 /* SessionSwitched.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionSwitched.swift; sourceTree = "<group>"; };
@@ -592,7 +590,6 @@
 			isa = PBXGroup;
 			children = (
 				3B588DFF1FF30C0500715440 /* randomUserTests.swift */,
-				3BD3358A1FF28B2E004F70BF /* RPGAappUITests.swift */,
 				3BD3358C1FF28B2E004F70BF /* Info.plist */,
 			);
 			path = RPGAappUITests;
@@ -1075,7 +1072,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BD3358B1FF28B2E004F70BF /* RPGAappUITests.swift in Sources */,
 				3B588E001FF30C0500715440 /* randomUserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

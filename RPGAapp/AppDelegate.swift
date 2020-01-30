@@ -30,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 Currency.createBasicCurrency()
             }
         }
+        if ProcessInfo.processInfo.arguments.contains("UITests") {
+            UIView.setAnimationsEnabled(false)
+            UIApplication.shared.keyWindow?.layer.speed = 100
+        }
         
         for setting in settingValues {
             if defaults.value(forKey: setting.key) == nil {
