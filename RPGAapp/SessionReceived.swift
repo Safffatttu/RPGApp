@@ -49,37 +49,41 @@ struct SessionReceived: Action {
 		let sessionId = sessionData.value(forKey: "id") as! String
 
 		if let session = Load.session(with: sessionId) {
+			if ProcessInfo.processInfo.arguments.contains("UITests") {
+				UIView.setAnimationsEnabled(false)
+				UIApplication.shared.keyWindow?.layer.speed = 100
+
+				if arc4random() % 2 == 1 {
+					let contex = CoreDataStack.managedObjectContext
+					contex.delete(session)
+					self.createSession()
+				}
+
+				return
+			}
+
 			let localizedTitle = NSLocalizedString("receive session with id of exising session", comment: "")
 			let localizedMessage = NSLocalizedString("Do you want to replace it or keep local version?", comment: "")
 
-            if (arc4random() % 2 == 1){
-                let contex = CoreDataStack.managedObjectContext
-                contex.delete(session)
-                self.createSession()
-            }
-            
-            
-//			let alert = UIAlertController(title: localizedTitle, message: localizedMessage, preferredStyle: .alert)
+			let alert = UIAlertController(title: localizedTitle, message: localizedMessage, preferredStyle: .alert)
 
-//			let localizedReplace = NSLocalizedString("Replace", comment: "")
-//			let alertReplace = UIAlertAction(title: localizedReplace, style: .default, handler: { _ in
-//				let contex = CoreDataStack.managedObjectContext
-//
-//				contex.delete(session)
-//
-//				self.createSession()
-//			})
+			let localizedReplace = NSLocalizedString("Replace", comment: "")
+			let alertReplace = UIAlertAction(title: localizedReplace, style: .default, handler: { _ in
+				let contex = CoreDataStack.managedObjectContext
+				contex.delete(session)
+				self.createSession()
+			})
 
-//			let localizedKeep = NSLocalizedString("Keep", comment: "")
-//
-//			let alertKeep = UIAlertAction(title: localizedKeep, style: .default, handler: nil)
-//
-//			alert.addAction(alertReplace)
-//			alert.addAction(alertKeep)
-//
-//			guard let topViewController = UIApplication.topViewController() else { return }
-//
-//			topViewController.present(alert, animated: true, completion: nil)
+			let localizedKeep = NSLocalizedString("Keep", comment: "")
+
+			let alertKeep = UIAlertAction(title: localizedKeep, style: .default, handler: nil)
+
+			alert.addAction(alertReplace)
+			alert.addAction(alertKeep)
+
+			guard let topViewController = UIApplication.topViewController() else { return }
+
+			topViewController.present(alert, animated: true, completion: nil)
 
 		} else {
 			createSession()
