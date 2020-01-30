@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Ability" representedClassName="Ability" syncable="YES">
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -98,7 +98,7 @@
         <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="mapRepresentation" inverseEntity="Character"/>
         <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Map" inverseName="entities" inverseEntity="Map"/>
-        <relationship name="texture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" inverseName="mapEntity" inverseEntity="Texture" storedInTruthFile="YES"/>
+        <relationship name="texture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Texture" inverseName="mapEntity" inverseEntity="Texture"/>
         <fetchIndex name="byIdIndex">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -118,7 +118,6 @@
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES">
         <attribute name="current" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="devices" optional="YES" attributeType="Transformable"/>
         <attribute name="gameMaster" optional="YES" attributeType="String"/>
         <attribute name="gameMasterName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
@@ -129,24 +128,6 @@
         <relationship name="notes" toMany="YES" deletionRule="Cascade" destinationEntity="Note" inverseName="session" inverseEntity="Note"/>
         <relationship name="packages" toMany="YES" deletionRule="Cascade" destinationEntity="Package" inverseName="session" inverseEntity="Package"/>
         <relationship name="visibility" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Visibility" inverseName="session" inverseEntity="Visibility"/>
-    </entity>
-    <entity name="Store" representedClassName="Store" syncable="YES">
-        <attribute name="budget" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String" defaultValueString="Sklep"/>
-        <attribute name="size" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
-        <relationship name="avalibleItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoreAvalibleItem"/>
-        <relationship name="buys" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StorePurchases"/>
-    </entity>
-    <entity name="StoreAvalibleItem" representedClassName="StoreAvalibleItem" syncable="YES">
-        <attribute name="priceMod" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="item" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemHandler"/>
-    </entity>
-    <entity name="StorePurchases" representedClassName="StorePurchases" syncable="YES">
-        <attribute name="maxRarity" optional="YES" attributeType="Integer 16" defaultValueString="5" usesScalarValueType="YES"/>
-        <attribute name="minRarity" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
-        <attribute name="priceMod" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category"/>
-        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory"/>
     </entity>
     <entity name="SubCategory" representedClassName="SubCategory" syncable="YES">
         <attribute name="name" attributeType="String"/>
@@ -184,13 +165,10 @@
         <element name="ItemAtributeHandler" positionX="-173" positionY="228" width="128" height="75"/>
         <element name="ItemHandler" positionX="-243" positionY="81" width="128" height="105"/>
         <element name="Map" positionX="-1026" positionY="204" width="128" height="165"/>
-        <element name="MapEntity" positionX="-819" positionY="405" width="128" height="135"/>
+        <element name="MapEntity" positionX="-819" positionY="405" width="128" height="133"/>
         <element name="Note" positionX="-1044" positionY="6" width="128" height="30"/>
         <element name="Package" positionX="-452" positionY="-99" width="128" height="120"/>
-        <element name="Session" positionX="-866" positionY="-84" width="128" height="225"/>
-        <element name="Store" positionX="-531" positionY="431" width="126" height="118"/>
-        <element name="StoreAvalibleItem" positionX="-378" positionY="359" width="128" height="73"/>
-        <element name="StorePurchases" positionX="-387" positionY="557" width="128" height="118"/>
+        <element name="Session" positionX="-866" positionY="-84" width="128" height="208"/>
         <element name="SubCategory" positionX="153" positionY="-43" width="128" height="90"/>
         <element name="SubCurrency" positionX="-830" positionY="-205" width="128" height="88"/>
         <element name="Texture" positionX="-1062" positionY="453" width="128" height="90"/>

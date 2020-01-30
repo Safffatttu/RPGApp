@@ -2,7 +2,7 @@
 //  Session+CoreDataProperties.swift
 //  
 //
-//  Created by Jakub on 16.05.2018.
+//  Created by Jakub Berkop on 29/01/2020.
 //
 //
 
@@ -19,7 +19,6 @@ extension Session {
     }
 
     @NSManaged public var current: Bool
-    @NSManaged public var devices: NSObject?
     @NSManaged public var gameMaster: String?
     @NSManaged public var gameMasterName: String?
     @NSManaged public var id: String?
@@ -137,9 +136,6 @@ extension Session {
         let PLN = Load.currencies().first { $0.name == "PLN" }
         session.currency = PLN
 
-        var devices = PackageService.pack.session.connectedPeers.map { $0.displayName }
-        devices.append(UIDevice.current.name)
-        session.devices = NSSet(array: devices)
         
         Load.sessions().forEach { $0.current = false }
         session.current = true

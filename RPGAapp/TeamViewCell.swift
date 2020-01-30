@@ -75,8 +75,6 @@ class TeamViewCell: UICollectionViewCell {
 		abilityDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: abilityTable, initialRows: [], sectionIndex: 0)
 		visibilitiesDiffCalculator = SingleSectionTableViewDiffCalculator(tableView: visibilitiesTable, initialRows: [], sectionIndex: 0)
 	
-		let iconSize: CGFloat = 25
-	
 		deleteButton.setTitle("", for: .normal)
 		deleteButton.setImage(UIImage(systemName: "trash"), for: .normal)
 	
