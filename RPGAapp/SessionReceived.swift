@@ -49,14 +49,12 @@ struct SessionReceived: Action {
 		let sessionId = sessionData.value(forKey: "id") as! String
 
 		if let session = Load.session(with: sessionId) {
-			if ProcessInfo.processInfo.arguments.contains("UITests") {
-
+			if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
 				if arc4random() % 2 == 1 {
 					let contex = CoreDataStack.managedObjectContext
 					contex.delete(session)
 					self.createSession()
 				}
-
 				return
 			}
 

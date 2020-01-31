@@ -13,12 +13,15 @@ class DrawingTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        let drawSettings = Load.drawSettings()
+        let context = CoreDataStack.managedObjectContext
+        for d in drawSettings {
+            context.delete(d)
+        }
+        CoreDataStack.saveContext()
         super.tearDown()
     }
 
@@ -30,20 +33,18 @@ class DrawingTest: XCTestCase {
 
         let subCategoires: [SubCategory] = Load.subCategories()
 
-        self.measure {
-            for cat in categories {
-                toTest.drawItems(using: cat)
-            }
+        for cat in categories {
+            toTest.drawItems(using: cat)
+        }
 
-            for sub in subCategoires {
-                print(sub.name)
-                toTest.drawItems(using: sub)
-            }
+        for sub in subCategoires {
+//            print(sub.name)
+            toTest.drawItems(using: sub)
+        }
 
-            for _ in 0...10 {
-                let setting = self.createRandomDrawSettin(categories: categories, subCategories: subCategoires)
-                toTest.drawItems(using: setting)
-            }
+        for _ in 0...10 {
+            let setting = self.createRandomDrawSettin(categories: categories, subCategories: subCategoires)
+            toTest.drawItems(using: setting)
         }
     }
 
@@ -54,7 +55,7 @@ class DrawingTest: XCTestCase {
 
         let subCategoires: [SubCategory] = Load.subCategories()
 
-        for i in 0...100 {
+        for i in 0...10 {
             print("test nr:" + String(describing: i))
 
             for cat in categories {
@@ -79,9 +80,6 @@ class DrawingTest: XCTestCase {
 
         for sett in drawSettings {
             let asd = sett.subSettings?.sortedArray(using: [NSSortDescriptor(key: #keyPath(DrawSubSetting.name), ascending: true)]) as! [DrawSubSetting]
-            for i in 0...(asd.count - 1) {
-//                print(asd[i])
-            }
         }
 
     }

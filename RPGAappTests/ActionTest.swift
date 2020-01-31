@@ -21,6 +21,14 @@ class ActionTest: XCTestCase {
 		super.setUp()
 
 	}
+    
+    override class func tearDown() {
+        let context = CoreDataStack.managedObjectContext
+        Load.sessions().forEach({ context.delete($0) })
+        Load.drawSettings().forEach({ context.delete($0) })
+        CoreDataStack.saveContext()
+        super.tearDown()
+    }
 
 	func testRandomActions() {
 
@@ -46,7 +54,7 @@ class ActionTest: XCTestCase {
 				self.ad.receiveLocally(data)
                 
                 guard let action = try? AnyAction(actionData: data) else {
-                    print(data)
+//                    print(data)
                     continue
                 }
                 
