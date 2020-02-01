@@ -20,6 +20,7 @@ class NetworkActionTest2: XCTestCase {
         let context = CoreDataStack.managedObjectContext
         Load.sessions().forEach({ context.delete($0) })
         Load.drawSettings().forEach({ context.delete($0) })
+        Load.packages().forEach({ context.delete($0) })
         CoreDataStack.saveContext()
         super.setUp()
     }
@@ -28,12 +29,13 @@ class NetworkActionTest2: XCTestCase {
         let context = CoreDataStack.managedObjectContext
         Load.sessions().forEach({ context.delete($0) })
         Load.drawSettings().forEach({ context.delete($0) })
+        Load.packages().forEach({ context.delete($0) })
         CoreDataStack.saveContext()
         super.tearDown()
     }
     
     func testRandomActions() {
-                let expect = XCTestExpectation(description: "expect")
+        let expect = XCTestExpectation(description: "expect")
 
         DispatchQueue.global().async {
             while PackageService.pack.session.connectedPeers.count == 0 {
@@ -48,13 +50,13 @@ class NetworkActionTest2: XCTestCase {
         
         let testEnded = XCTestExpectation()
         DispatchQueue.global().async {
-            for n in 0...100000 {
+            for n in 0...20 {
                 print("test nr\(n)")
                 self.executeAction()
-                usleep(5000)
+                usleep(500000)
             }
             DispatchQueue.main.async {
-                expect.fulfill()
+                testEnded.fulfill()
             }
         }
         wait(for: [testEnded], timeout: 100000000)

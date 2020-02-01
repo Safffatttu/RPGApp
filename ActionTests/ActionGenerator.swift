@@ -71,8 +71,19 @@ class ActionGenerator: XCTestCase {
     }
 
     public static func deletePackageAction() -> NSMutableDictionary {
+        var packageId: String?
 
-        guard let packageId = Load.packages().randomElement()?.id else { return NSMutableDictionary() }
+        let loadPackage = DispatchWorkItem(block: {
+            let id = Load.packages().randomElement()?.id
+            if let id = id {
+                packageId = id
+            }
+        })
+
+        DispatchQueue.main.async(execute: loadPackage)
+        loadPackage.wait()
+
+        guard packageId != nil else { return NSMutableDictionary() }
 
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.packageDeleted.rawValue)
@@ -84,19 +95,30 @@ class ActionGenerator: XCTestCase {
     }
 
     public static func adddItemToPackageAction() -> NSMutableDictionary {
+        var packageId: String?
+        var packageName: String?
+        var itemIds: [String] = []
 
-        guard let packageId = Load.packages().randomElement()?.id  else { return NSMutableDictionary() }
-        guard let packageName = Load.packages().randomElement()?.name  else { return NSMutableDictionary() }
+        let loadPackage = DispatchWorkItem(block: {
+            packageId = Load.packages().randomElement()?.id
+            packageName = Load.packages().randomElement()?.name
+            itemIds = Load.items().compactMap { $0.id }
+        })
+
+        DispatchQueue.main.async(execute: loadPackage)
+        loadPackage.wait()
+
+        guard packageId != nil else { return NSMutableDictionary() }
+        guard packageName != nil else { return NSMutableDictionary() }
 
         let numberOfItems = Int(arc4random_uniform(100))
-        let items = Load.items()
 
         let itemsId = NSMutableArray()
         let itemsCount = NSMutableArray()
 
 
         for _ in 0...numberOfItems {
-            guard let itemId = items.randomElement()?.id else { continue }
+            guard let itemId = itemIds.randomElement() else { continue }
             let itemCount = Int(arc4random_uniform(100))
             itemsId.add(itemId)
             itemsCount.add(itemCount)
@@ -115,10 +137,21 @@ class ActionGenerator: XCTestCase {
     }
 
     public static func delteItemFromCharacter() -> NSMutableDictionary {
+        var characterId: String?
+        var itemId: String?
 
-        let character = Load.characters().randomElement()
-        guard let characterId = character?.id  else { return NSMutableDictionary() }
-        guard let itemId = (character?.equipment?.allObjects.randomElement() as? Item)?.id  else { return NSMutableDictionary() }
+        let loadCharacter = DispatchWorkItem(block: {
+            let character = Load.characters().randomElement()
+            characterId = character?.id
+            itemId = (character?.equipment?.allObjects.randomElement() as? Item)?.id
+        })
+
+        DispatchQueue.main.async(execute: loadCharacter)
+
+        loadCharacter.wait()
+
+        guard characterId != nil else { return NSMutableDictionary() }
+        guard itemId != nil else { return NSMutableDictionary() }
 
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.itemCharacterDeleted.rawValue)
@@ -132,43 +165,65 @@ class ActionGenerator: XCTestCase {
     }
 
     public static func newSessionAction() -> NSMutableDictionary {
-        let context = CoreDataStack.managedObjectContext
-        let session = NSEntityDescription.insertNewObject(forEntityName: String(describing: Session.self), into: context) as! Session
-
-        session.name = String(myRand(1000))
-        session.gameMaster = UIDevice.current.name
-        session.current = true
-        session.id = String(strHash(session.name! + session.gameMaster! + String(describing: Date())))
-
-        let newMap = NSEntityDescription.insertNewObject(forEntityName: String(describing: Map.self), into: context) as! Map
-
-        newMap.id = String(strHash(session.id!)) + String(describing: Date())
-        newMap.current = true
-
-        session.addToMaps(newMap)
-
-        var devices = PackageService.pack.session.connectedPeers.map { $0.displayName }
-        devices.append(UIDevice.current.name)
-
-        CoreDataStack.saveContext()
-
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.sessionReceived.rawValue)
 
         action.setValue(actionType, forKey: "action")
 
-        let sessionDictionary = packSessionForMessage(session)
+        let dictionary = NSMutableDictionary()
+        let name = String(myRand(1000))
+        dictionary.setValue(name, forKey: "name")
+        let gameMaster = UIDevice.current.name
+        dictionary.setValue(gameMaster, forKey: "gameMaster")
+        let id = String(strHash(name + gameMaster + String(describing: Date())))
+        dictionary.setValue(id, forKey: "id")
 
+
+        dictionary.setValue(true, forKey: "current")
+
+        let charactersToSend = NSMutableArray()
+        dictionary.setValue(charactersToSend, forKey: "characters")
+        let packages = NSMutableArray()
+        dictionary.setValue(packages, forKey: "packages")
+        let maps = NSMutableArray()
+        let mapDict = NSMutableDictionary()
+        mapDict.setValue(String(strHash(id)) + String(describing: Date()), forKey: "id")
+        mapDict.setValue(0.0, forKey: "posX")
+        mapDict.setValue(0.0, forKey: "posY")
+        mapDict.setValue(true, forKey: "current")
+        let mapEntities = NSMutableArray()
+        mapDict.setValue(mapEntities, forKey: "mapEntities")
+        mapDict.setValue(false, forKey: "hasBackground")
+
+        maps.add(mapDict)
+
+        dictionary.setValue(maps, forKey: "maps")
+
+
+        let visibilties = NSMutableArray()
+        dictionary.setValue(visibilties, forKey: "visibilties")
+        let notes = NSMutableArray()
+        dictionary.setValue(notes, forKey: "notes")
+
+        let sessionDictionary = dictionary
         action.setValue(actionType, forKey: "action")
         action.setValue(sessionDictionary, forKey: "sessionData")
-        action.setValue(session.current, forKey: "setCurrent")
+        action.setValue(true, forKey: "setCurrent")
 
         return action
     }
 
     public static func sessionSwitchedAction() -> NSMutableDictionary {
+        var sessionId: String?
 
-        guard let sessionId = Load.sessions().randomElement()?.id else { return NSMutableDictionary() }
+        let loadSessionId = DispatchWorkItem(block: {
+            sessionId = Load.sessions().randomElement()?.id
+        })
+
+        DispatchQueue.main.async(execute: loadSessionId)
+        loadSessionId.wait()
+
+        guard sessionId != nil else { return NSMutableDictionary() }
 
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.sessionSwitched.rawValue)
@@ -180,8 +235,16 @@ class ActionGenerator: XCTestCase {
     }
 
     public static func deleteSessionAction() -> NSMutableDictionary {
+        var sessionId: String?
 
-        guard let sessionId = Load.sessions().randomElement()?.id else { return NSMutableDictionary() }
+        let loadSessionId = DispatchWorkItem(block: {
+            sessionId = Load.sessions().randomElement()?.id
+        })
+
+        DispatchQueue.main.async(execute: loadSessionId)
+        loadSessionId.wait()
+
+        guard sessionId != nil else { return NSMutableDictionary() }
 
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.sessionSwitched.rawValue)
@@ -206,10 +269,19 @@ class ActionGenerator: XCTestCase {
     }
 
     public static func addAbilityAction() -> NSMutableDictionary {
-        guard let characterId = Load.characters().randomElement()?.id else { return NSMutableDictionary() }
+        var characterId: String?
+
+        let loadCharacter = DispatchWorkItem(block: {
+            characterId = Load.characters().randomElement()?.id
+        })
+
+        DispatchQueue.main.async(execute: loadCharacter)
+        loadCharacter.wait()
+
+        guard characterId != nil else { return NSMutableDictionary() }
 
         let name = String(myRand(10000))
-        let abilityId = String(strHash(name + characterId + String(describing: Date())))
+        let abilityId = String(strHash(name + characterId! + String(describing: Date())))
 
         let abilityValue = myRand(100)
 
@@ -228,17 +300,25 @@ class ActionGenerator: XCTestCase {
     }
 
     public static func valueOfAbilityChangedAction() -> NSMutableDictionary {
+        var characterId: String?
+        var abilityId: String?
+        var abilityValue: Int16?
 
-        guard let character = Load.characters().randomElement() else { return NSMutableDictionary() }
+        let loadCharacter = DispatchWorkItem(block: {
+            let character = Load.characters().randomElement()
+            characterId = character?.id
+            let ability = character?.abilities?.sortedArray(using: [.sortAbilityByName]).randomElement() as? Ability
+            abilityId = ability?.id
+            abilityValue = ability?.value
+        })
 
-        guard (character.abilities?.sortedArray(using: [.sortAbilityByName]).count)! > 0 else { return NSMutableDictionary() }
+        DispatchQueue.main.async(execute: loadCharacter)
+        loadCharacter.wait()
 
-        let characterId = character.id
+        guard characterId != nil else { return NSMutableDictionary() }
 
-        let ability = character.abilities?.sortedArray(using: [.sortAbilityByName]).randomElement() as? Ability
-
-        let abilityId = ability?.id
-        let abilityValue = ability?.value
+        guard abilityId != nil else { return NSMutableDictionary() }
+        guard abilityValue != nil else { return NSMutableDictionary() }
 
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.abilityValueChanged.rawValue)
@@ -253,22 +333,30 @@ class ActionGenerator: XCTestCase {
     }
 
     public static func addItemToCharacter() -> NSMutableDictionary {
-        guard let character = Load.characters().randomElement() else { return NSMutableDictionary() }
-        let characterId = character.id
-        
+        var characterId: String?
+        var itemIds: [String] = []
+        let loadCharacter = DispatchWorkItem(block: {
+            characterId = Load.characters().randomElement()?.id
+            itemIds = Load.items().compactMap({ $0.id })
+        })
+
+        DispatchQueue.main.async(execute: loadCharacter)
+        loadCharacter.wait()
+
+        guard characterId != nil else { return NSMutableDictionary() }
+
         let action = NSMutableDictionary()
         let actionType = NSNumber(value: ActionType.itemCharacterAdded.rawValue)
-        
+
         action.setValue(actionType, forKey: "action")
-        
+
         let itemsId = NSMutableArray()
         let itemsCount = NSMutableArray()
-        
-        let items = Load.items()
+
         let numberOfItems = Int(arc4random_uniform(100))
-        
+
         for _ in 0...numberOfItems {
-            guard let itemId = items.randomElement()?.id else { continue }
+            guard let itemId = itemIds.randomElement() else { continue }
             let itemCount = Int(arc4random_uniform(100))
             itemsId.add(itemId)
             itemsCount.add(itemCount)
@@ -276,7 +364,7 @@ class ActionGenerator: XCTestCase {
 
         action.setValue(actionType, forKey: "action")
         action.setValue(characterId, forKey: "characterId")
-        
+
         action.setValue(itemsId, forKey: "itemsId")
         action.setValue(itemsCount, forKey: "itemsCount")
 
