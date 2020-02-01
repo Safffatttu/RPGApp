@@ -166,6 +166,10 @@
 		47A61DD523574F9400DBEBCF /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47A61DD323574F9400DBEBCF /* DataModel.xcdatamodeld */; };
 		47A61DD72357500B00DBEBCF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A61DD62357500B00DBEBCF /* CoreDataStack.swift */; };
 		47A61DD92357501C00DBEBCF /* CatalogeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A61DD82357501C00DBEBCF /* CatalogeDataSource.swift */; };
+		47BC7AF523E5FB8800D5B8D9 /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC7AF423E5FB8800D5B8D9 /* ActionTests.swift */; };
+		47BC7AFD23E5FB9B00D5B8D9 /* ActionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC7AFC23E5FB9B00D5B8D9 /* ActionGenerator.swift */; };
+		47BC7AFF23E5FC5500D5B8D9 /* LocalActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC7AFE23E5FC5500D5B8D9 /* LocalActionTest.swift */; };
+		47BC7B0123E5FE1000D5B8D9 /* NetworkActionTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BC7B0023E5FE1000D5B8D9 /* NetworkActionTest2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +181,13 @@
 			remoteInfo = RPGAapp;
 		};
 		3BD3358D1FF28B2E004F70BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B063D571F3A21A800B5271C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B063D5E1F3A21A800B5271C;
+			remoteInfo = RPGAapp;
+		};
+		47BC7AF723E5FB8800D5B8D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3B063D571F3A21A800B5271C /* Project object */;
 			proxyType = 1;
@@ -339,6 +350,12 @@
 		47A61DD423574F9400DBEBCF /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		47A61DD62357500B00DBEBCF /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		47A61DD82357501C00DBEBCF /* CatalogeDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogeDataSource.swift; sourceTree = "<group>"; };
+		47BC7AF223E5FB8800D5B8D9 /* ActionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		47BC7AF423E5FB8800D5B8D9 /* ActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
+		47BC7AF623E5FB8800D5B8D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47BC7AFC23E5FB9B00D5B8D9 /* ActionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionGenerator.swift; sourceTree = "<group>"; };
+		47BC7AFE23E5FC5500D5B8D9 /* LocalActionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalActionTest.swift; sourceTree = "<group>"; };
+		47BC7B0023E5FE1000D5B8D9 /* NetworkActionTest2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActionTest2.swift; sourceTree = "<group>"; };
 		8AB0BAF53BA80927A2237D45 /* Pods-RPGAapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RPGAapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RPGAapp/Pods-RPGAapp.release.xcconfig"; sourceTree = "<group>"; };
 		B8C303BEBA01DB42BEEC4272 /* Pods-RPGAapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RPGAapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RPGAapp/Pods-RPGAapp.debug.xcconfig"; sourceTree = "<group>"; };
 		BE1DDFB58330F4312E9F934A /* Pods_RPGAapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RPGAapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,6 +385,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		47BC7AEF23E5FB8800D5B8D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -377,6 +401,7 @@
 				3B063D611F3A21A800B5271C /* RPGAapp */,
 				3B73F91E1F8FB04900EA7E6A /* RPGAappTests */,
 				3BD335891FF28B2E004F70BF /* RPGAappUITests */,
+				47BC7AF323E5FB8800D5B8D9 /* ActionTests */,
 				3B063D601F3A21A800B5271C /* Products */,
 				CB81D7CA0204AF3DDF488BBA /* Frameworks */,
 				720AED23FB42C467F5CA1912 /* Pods */,
@@ -389,6 +414,7 @@
 				3B063D5F1F3A21A800B5271C /* RPGAapp.app */,
 				3B73F91D1F8FB04900EA7E6A /* RPGAappTests.xctest */,
 				3BD335881FF28B2E004F70BF /* RPGAappUITests.xctest */,
+				47BC7AF223E5FB8800D5B8D9 /* ActionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -664,6 +690,18 @@
 			name = Popover;
 			sourceTree = "<group>";
 		};
+		47BC7AF323E5FB8800D5B8D9 /* ActionTests */ = {
+			isa = PBXGroup;
+			children = (
+				47BC7B0023E5FE1000D5B8D9 /* NetworkActionTest2.swift */,
+				47BC7AFE23E5FC5500D5B8D9 /* LocalActionTest.swift */,
+				47BC7AFC23E5FB9B00D5B8D9 /* ActionGenerator.swift */,
+				47BC7AF423E5FB8800D5B8D9 /* ActionTests.swift */,
+				47BC7AF623E5FB8800D5B8D9 /* Info.plist */,
+			);
+			path = ActionTests;
+			sourceTree = "<group>";
+		};
 		720AED23FB42C467F5CA1912 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +780,24 @@
 			productReference = 3BD335881FF28B2E004F70BF /* RPGAappUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		47BC7AF123E5FB8800D5B8D9 /* ActionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47BC7AF923E5FB8800D5B8D9 /* Build configuration list for PBXNativeTarget "ActionTests" */;
+			buildPhases = (
+				47BC7AEE23E5FB8800D5B8D9 /* Sources */,
+				47BC7AEF23E5FB8800D5B8D9 /* Frameworks */,
+				47BC7AF023E5FB8800D5B8D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				47BC7AF823E5FB8800D5B8D9 /* PBXTargetDependency */,
+			);
+			name = ActionTests;
+			productName = ActionTests;
+			productReference = 47BC7AF223E5FB8800D5B8D9 /* ActionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -749,7 +805,7 @@
 			isa = PBXProject;
 			attributes = {
 				DefaultBuildSystemTypeForWorkspace = Original;
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Jakub;
 				TargetAttributes = {
@@ -786,6 +842,11 @@
 						CreatedOnToolsVersion = 11.2;
 						ProvisioningStyle = Automatic;
 					};
+					47BC7AF123E5FB8800D5B8D9 = {
+						CreatedOnToolsVersion = 11.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3B063D5E1F3A21A800B5271C;
+					};
 				};
 			};
 			buildConfigurationList = 3B063D5A1F3A21A800B5271C /* Build configuration list for PBXProject "RPGAapp" */;
@@ -806,6 +867,7 @@
 				3B73F91C1F8FB04900EA7E6A /* RPGAappTests */,
 				3BD335871FF28B2E004F70BF /* RPGAappUITests */,
 				47322C71237ABAD9009D1260 /* periphery */,
+				47BC7AF123E5FB8800D5B8D9 /* ActionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -835,6 +897,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3BD335861FF28B2E004F70BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47BC7AF023E5FB8800D5B8D9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1076,6 +1145,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		47BC7AEE23E5FB8800D5B8D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47BC7AF523E5FB8800D5B8D9 /* ActionTests.swift in Sources */,
+				47BC7B0123E5FE1000D5B8D9 /* NetworkActionTest2.swift in Sources */,
+				47BC7AFD23E5FB9B00D5B8D9 /* ActionGenerator.swift in Sources */,
+				47BC7AFF23E5FC5500D5B8D9 /* LocalActionTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1088,6 +1168,11 @@
 			isa = PBXTargetDependency;
 			target = 3B063D5E1F3A21A800B5271C /* RPGAapp */;
 			targetProxy = 3BD3358D1FF28B2E004F70BF /* PBXContainerItemProxy */;
+		};
+		47BC7AF823E5FB8800D5B8D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B063D5E1F3A21A800B5271C /* RPGAapp */;
+			targetProxy = 47BC7AF723E5FB8800D5B8D9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1393,6 +1478,49 @@
 			};
 			name = Release;
 		};
+		47BC7AFA23E5FB8800D5B8D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = ActionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SafffatttuStudio.ActionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RPGAapp.app/RPGAapp";
+			};
+			name = Debug;
+		};
+		47BC7AFB23E5FB8800D5B8D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ActionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SafffatttuStudio.ActionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RPGAapp.app/RPGAapp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1437,6 +1565,15 @@
 			buildConfigurations = (
 				47322C73237ABAD9009D1260 /* Debug */,
 				47322C74237ABAD9009D1260 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47BC7AF923E5FB8800D5B8D9 /* Build configuration list for PBXNativeTarget "ActionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47BC7AFA23E5FB8800D5B8D9 /* Debug */,
+				47BC7AFB23E5FB8800D5B8D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

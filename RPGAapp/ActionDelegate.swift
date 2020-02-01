@@ -16,7 +16,7 @@ class ActionDelegate: PackageServiceDelegate {
 
     func received(_ actionData: ActionData, from sender: MCPeerID) {
 	
-		print(actionData)
+//		print(actionData)
         do {
             try AnyAction(actionData: actionData, sender: sender).execute()
         } catch {
