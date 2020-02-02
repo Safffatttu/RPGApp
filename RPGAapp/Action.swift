@@ -38,7 +38,6 @@ enum ActionType: Int {
 	//Package
 	case packageCreated
 	case packageDeleted
-	case packageSend
 
 	//character
 	case characterCreated
@@ -51,7 +50,6 @@ enum ActionType: Int {
 	case mapTextureChanged
 
 	//Session
-	case sessionCreated
 	case sessionSwitched
 	case sessionDeleted
 	case sessionReceived
@@ -171,8 +169,10 @@ struct AnyAction: Action {
                 base = MapTextureChanged(actionData: actionData, sender: sender)
             } else if actionType == .characterMoneyChanged {
                 base = CharacterMoneyChanged(actionData: actionData, sender: sender)
-            } else { // if actionType == .characterHealthChanged {
+            } else if actionType == .characterHealthChanged {
                 base = CharacterHealthChanged(actionData: actionData, sender: sender)
+            } else {
+                throw ParseError()
         }
     }
 }
